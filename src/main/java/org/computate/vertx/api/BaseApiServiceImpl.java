@@ -10,7 +10,7 @@ import org.computate.search.tool.SearchTool;
 import org.computate.vertx.config.ComputateVertxConfigKeys;
 import org.computate.vertx.model.base.ComputateVertxBaseModel;
 import org.computate.vertx.model.user.ComputateVertxSiteUser;
-import org.computate.vertx.model.user.ComputateVertxSiteUserEnUSApiServiceImpl;
+import org.computate.vertx.model.user.ComputateVertxSiteUser;
 import org.computate.vertx.request.ComputateVertxSiteRequest;
 import org.computate.vertx.search.list.SearchList;
 import org.computate.vertx.verticle.EmailVerticle;
@@ -45,7 +45,7 @@ import io.vertx.sqlclient.Tuple;
  * Map.hackathonColumn: Develop Base Classes
  * Map.hackathonLabels: Java,Vert.x
  **/
-public class BaseApiServiceImpl {
+public abstract class BaseApiServiceImpl {
 
 	protected static final Logger LOG = LoggerFactory.getLogger(BaseApiServiceImpl.class);
 
@@ -107,28 +107,18 @@ public class BaseApiServiceImpl {
 		}
 	}
 
-	public ComputateVertxSiteRequest generateComputateVertxSiteRequest(User user, ServiceRequest serviceRequest) {
-		return generateComputateVertxSiteRequest(user, serviceRequest, serviceRequest.getParams().getJsonObject("body"));
+	public ComputateVertxSiteRequest generateSiteRequest(User user, ServiceRequest serviceRequest) {
+		return generateSiteRequest(user, serviceRequest, serviceRequest.getParams().getJsonObject("body"));
 	}
 
-	public ComputateVertxSiteRequest generateComputateVertxSiteRequest(User user, ServiceRequest serviceRequest, JsonObject body) {
-		ComputateVertxSiteRequest siteRequest = new ComputateVertxSiteRequest();
-		siteRequest.setWebClient(webClient);
-		siteRequest.setJsonObject(body);
-		siteRequest.setUser(user);
-		siteRequest.setConfig(config);
-		siteRequest.setServiceRequest(serviceRequest);
-		siteRequest.initDeepComputateVertxSiteRequest(siteRequest);
-
-		return siteRequest;
-	}
+	public abstract ComputateVertxSiteRequest generateSiteRequest(User user, ServiceRequest serviceRequest, JsonObject body);
 
 	public Future<ComputateVertxSiteRequest> user(ServiceRequest serviceRequest) {
 		Promise<ComputateVertxSiteRequest> promise = Promise.promise();
 		try {
 			JsonObject userJson = serviceRequest.getUser();
 			if(userJson == null) {
-				ComputateVertxSiteRequest siteRequest = generateComputateVertxSiteRequest(null, serviceRequest);
+				ComputateVertxSiteRequest siteRequest = generateSiteRequest(null, serviceRequest);
 				promise.complete(siteRequest);
 			} else {
 				User token = User.create(userJson);
@@ -139,7 +129,7 @@ public class BaseApiServiceImpl {
 							JsonObject userAttributes = user.attributes();
 							JsonObject accessToken = userAttributes.getJsonObject("accessToken");
 							String userId = accessToken.getString("sub");
-							ComputateVertxSiteRequest siteRequest = generateComputateVertxSiteRequest(user, serviceRequest);
+							ComputateVertxSiteRequest siteRequest = generateSiteRequest(user, serviceRequest);
 							SearchList<ComputateVertxSiteUser> searchList = new SearchList<ComputateVertxSiteUser>();
 							searchList.q("*:*");
 							searchList.setStore(true);
@@ -147,7 +137,6 @@ public class BaseApiServiceImpl {
 							searchList.fq("userId_docvalues_string:" + SearchTool.escapeQueryChars(userId));
 							searchList.promiseDeepSearchList(siteRequest).onSuccess(c -> {
 								ComputateVertxSiteUser siteUser1 = searchList.getList().stream().findFirst().orElse(null);
-								ComputateVertxSiteUserEnUSApiServiceImpl userService = new ComputateVertxSiteUserEnUSApiServiceImpl(eventBus, config, workerExecutor, pgPool, webClient, oauth2AuthenticationProvider, authorizationProvider, templateEngine);
 
 								if(siteUser1 == null) {
 									JsonObject jsonObject = new JsonObject();
@@ -161,7 +150,7 @@ public class BaseApiServiceImpl {
 
 									ComputateVertxSiteRequest siteRequest2 = siteRequest.copy();
 									siteRequest2.setJsonObject(jsonObject);
-									siteRequest2.initDeepComputateVertxSiteRequest(siteRequest);
+									siteRequest2.initDeepSiteRequest(siteRequest);
 
 									ApiRequest apiRequest = new ApiRequest();
 									apiRequest.setRows(1L);
@@ -170,7 +159,7 @@ public class BaseApiServiceImpl {
 									apiRequest.initDeepApiRequest(siteRequest2);
 									siteRequest2.setApiRequest_(apiRequest);
 
-									userService.postComputateVertxSiteUserFuture(siteRequest2, false).onSuccess(siteUser -> {
+									userService.postSiteUserFuture(siteRequest2, false).onSuccess(siteUser -> {
 										siteRequest.setUserName(accessToken.getString("preferred_username"));
 										siteRequest.setUserFirstName(accessToken.getString("given_name"));
 										siteRequest.setUserLastName(accessToken.getString("family_name"));
@@ -194,7 +183,7 @@ public class BaseApiServiceImpl {
 
 										ComputateVertxSiteRequest siteRequest2 = siteRequest.copy();
 										siteRequest2.setJsonObject(jsonObject);
-										siteRequest2.initDeepComputateVertxSiteRequest(siteRequest);
+										siteRequest2.initDeepSiteRequest(siteRequest);
 										siteUser1.setSiteRequest_(siteRequest2);
 
 										ApiRequest apiRequest = new ApiRequest();
@@ -204,7 +193,7 @@ public class BaseApiServiceImpl {
 										apiRequest.initDeepApiRequest(siteRequest2);
 										siteRequest2.setApiRequest_(apiRequest);
 
-										userService.patchComputateVertxSiteUserFuture(siteUser1, false).onSuccess(siteUser2 -> {
+										userService.patchSiteUserFuture(siteUser1, false).onSuccess(siteUser2 -> {
 											siteRequest.setUserName(siteUser2.getUserName());
 											siteRequest.setUserFirstName(siteUser2.getUserFirstName());
 											siteRequest.setUserLastName(siteUser2.getUserLastName());

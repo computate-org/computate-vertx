@@ -145,44 +145,44 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 	}
 
 	////////////////
-	// staticSolr //
+	// staticSearch //
 	////////////////
 
-	public static Object staticSolrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrOpenApi3Generator(entityVar,  siteRequest_, o);
+	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchOpenApi3Generator(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSolrOpenApi3Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchOpenApi3Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 			default:
-				return Swagger2Generator.staticSolrSwagger2Generator(entityVar,  siteRequest_, o);
+				return Swagger2Generator.staticSearchSwagger2Generator(entityVar,  siteRequest_, o);
 		}
 	}
 
 	///////////////////
-	// staticSolrStr //
+	// staticSearchStr //
 	///////////////////
 
-	public static String staticSolrStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrStrOpenApi3Generator(entityVar,  siteRequest_, o);
+	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchStrOpenApi3Generator(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrStrOpenApi3Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrOpenApi3Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 			default:
-				return Swagger2Generator.staticSolrStrSwagger2Generator(entityVar,  siteRequest_, o);
+				return Swagger2Generator.staticSearchStrSwagger2Generator(entityVar,  siteRequest_, o);
 		}
 	}
 
 	//////////////////
-	// staticSolrFq //
+	// staticSearchFq //
 	//////////////////
 
-	public static String staticSolrFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
-		return staticSolrFqOpenApi3Generator(entityVar,  siteRequest_, o);
+	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+		return staticSearchFqOpenApi3Generator(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrFqOpenApi3Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqOpenApi3Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 			default:
-				return Swagger2Generator.staticSolrFqSwagger2Generator(entityVar,  siteRequest_, o);
+				return Swagger2Generator.staticSearchFqSwagger2Generator(entityVar,  siteRequest_, o);
 		}
 	}
 

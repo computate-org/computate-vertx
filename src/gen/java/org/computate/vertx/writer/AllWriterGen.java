@@ -123,16 +123,16 @@ public abstract class AllWriterGen<DEV> extends Object {
 		return (AllWriter)this;
 	}
 
-	public static String staticSolrTabStr(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchTabStr(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrTabStr(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrTabStr(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqTabStr(ComputateVertxSiteRequest siteRequest_, String o) {
-		return AllWriter.staticSolrStrTabStr(siteRequest_, AllWriter.staticSolrTabStr(siteRequest_, AllWriter.staticSetTabStr(siteRequest_, o)));
+	public static String staticSearchFqTabStr(ComputateVertxSiteRequest siteRequest_, String o) {
+		return AllWriter.staticSearchStrTabStr(siteRequest_, AllWriter.staticSearchTabStr(siteRequest_, AllWriter.staticSetTabStr(siteRequest_, o)));
 	}
 
 	//////////
@@ -329,16 +329,16 @@ public abstract class AllWriterGen<DEV> extends Object {
 		return (AllWriter)this;
 	}
 
-	public static Boolean staticSolrEmpty(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchEmpty(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSolrStrEmpty(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrEmpty(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqEmpty(ComputateVertxSiteRequest siteRequest_, String o) {
-		return AllWriter.staticSolrStrEmpty(siteRequest_, AllWriter.staticSolrEmpty(siteRequest_, AllWriter.staticSetEmpty(siteRequest_, o)));
+	public static String staticSearchFqEmpty(ComputateVertxSiteRequest siteRequest_, String o) {
+		return AllWriter.staticSearchStrEmpty(siteRequest_, AllWriter.staticSearchEmpty(siteRequest_, AllWriter.staticSetEmpty(siteRequest_, o)));
 	}
 
 	//////////////
@@ -467,54 +467,54 @@ public abstract class AllWriterGen<DEV> extends Object {
 	}
 
 	////////////////
-	// staticSolr //
+	// staticSearch //
 	////////////////
 
-	public static Object staticSolrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrAllWriter(entityVar,  siteRequest_, o);
+	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchAllWriter(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSolrAllWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchAllWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "tabStr":
-			return AllWriter.staticSolrTabStr(siteRequest_, (String)o);
+			return AllWriter.staticSearchTabStr(siteRequest_, (String)o);
 		case "empty":
-			return AllWriter.staticSolrEmpty(siteRequest_, (Boolean)o);
+			return AllWriter.staticSearchEmpty(siteRequest_, (Boolean)o);
 			default:
 				return null;
 		}
 	}
 
 	///////////////////
-	// staticSolrStr //
+	// staticSearchStr //
 	///////////////////
 
-	public static String staticSolrStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrStrAllWriter(entityVar,  siteRequest_, o);
+	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchStrAllWriter(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrStrAllWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrAllWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "tabStr":
-			return AllWriter.staticSolrStrTabStr(siteRequest_, (String)o);
+			return AllWriter.staticSearchStrTabStr(siteRequest_, (String)o);
 		case "empty":
-			return AllWriter.staticSolrStrEmpty(siteRequest_, (Boolean)o);
+			return AllWriter.staticSearchStrEmpty(siteRequest_, (Boolean)o);
 			default:
 				return null;
 		}
 	}
 
 	//////////////////
-	// staticSolrFq //
+	// staticSearchFq //
 	//////////////////
 
-	public static String staticSolrFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
-		return staticSolrFqAllWriter(entityVar,  siteRequest_, o);
+	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+		return staticSearchFqAllWriter(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrFqAllWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqAllWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "tabStr":
-			return AllWriter.staticSolrFqTabStr(siteRequest_, o);
+			return AllWriter.staticSearchFqTabStr(siteRequest_, o);
 		case "empty":
-			return AllWriter.staticSolrFqEmpty(siteRequest_, o);
+			return AllWriter.staticSearchFqEmpty(siteRequest_, o);
 			default:
 				return null;
 		}

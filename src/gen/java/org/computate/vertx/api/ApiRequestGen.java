@@ -150,16 +150,16 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static Date staticSolrCreated(ComputateVertxSiteRequest siteRequest_, ZonedDateTime o) {
+	public static Date staticSearchCreated(ComputateVertxSiteRequest siteRequest_, ZonedDateTime o) {
 		return o == null ? null : Date.from(o.toInstant());
 	}
 
-	public static String staticSolrStrCreated(ComputateVertxSiteRequest siteRequest_, Date o) {
+	public static String staticSearchStrCreated(ComputateVertxSiteRequest siteRequest_, Date o) {
 		return "\"" + DateTimeFormatter.ISO_DATE_TIME.format(o.toInstant().atOffset(ZoneOffset.UTC)) + "\"";
 	}
 
-	public static String staticSolrFqCreated(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiRequest.staticSolrStrCreated(siteRequest_, ApiRequest.staticSolrCreated(siteRequest_, ApiRequest.staticSetCreated(siteRequest_, o)));
+	public static String staticSearchFqCreated(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiRequest.staticSearchStrCreated(siteRequest_, ApiRequest.staticSearchCreated(siteRequest_, ApiRequest.staticSetCreated(siteRequest_, o)));
 	}
 
 	//////////
@@ -207,16 +207,16 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static Long staticSolrRows(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static Long staticSearchRows(ComputateVertxSiteRequest siteRequest_, Long o) {
 		return o;
 	}
 
-	public static String staticSolrStrRows(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static String staticSearchStrRows(ComputateVertxSiteRequest siteRequest_, Long o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqRows(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiRequest.staticSolrStrRows(siteRequest_, ApiRequest.staticSolrRows(siteRequest_, ApiRequest.staticSetRows(siteRequest_, o)));
+	public static String staticSearchFqRows(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiRequest.staticSearchStrRows(siteRequest_, ApiRequest.staticSearchRows(siteRequest_, ApiRequest.staticSetRows(siteRequest_, o)));
 	}
 
 	//////////////
@@ -264,16 +264,16 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static Long staticSolrNumFound(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static Long staticSearchNumFound(ComputateVertxSiteRequest siteRequest_, Long o) {
 		return o;
 	}
 
-	public static String staticSolrStrNumFound(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static String staticSearchStrNumFound(ComputateVertxSiteRequest siteRequest_, Long o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqNumFound(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiRequest.staticSolrStrNumFound(siteRequest_, ApiRequest.staticSolrNumFound(siteRequest_, ApiRequest.staticSetNumFound(siteRequest_, o)));
+	public static String staticSearchFqNumFound(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiRequest.staticSearchStrNumFound(siteRequest_, ApiRequest.staticSearchNumFound(siteRequest_, ApiRequest.staticSetNumFound(siteRequest_, o)));
 	}
 
 	//////////////
@@ -321,16 +321,16 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static Long staticSolrNumPATCH(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static Long staticSearchNumPATCH(ComputateVertxSiteRequest siteRequest_, Long o) {
 		return o;
 	}
 
-	public static String staticSolrStrNumPATCH(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static String staticSearchStrNumPATCH(ComputateVertxSiteRequest siteRequest_, Long o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqNumPATCH(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiRequest.staticSolrStrNumPATCH(siteRequest_, ApiRequest.staticSolrNumPATCH(siteRequest_, ApiRequest.staticSetNumPATCH(siteRequest_, o)));
+	public static String staticSearchFqNumPATCH(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiRequest.staticSearchStrNumPATCH(siteRequest_, ApiRequest.staticSearchNumPATCH(siteRequest_, ApiRequest.staticSetNumPATCH(siteRequest_, o)));
 	}
 
 	//////////
@@ -370,16 +370,16 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static String staticSolrUuid(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchUuid(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrUuid(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrUuid(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqUuid(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiRequest.staticSolrStrUuid(siteRequest_, ApiRequest.staticSolrUuid(siteRequest_, ApiRequest.staticSetUuid(siteRequest_, o)));
+	public static String staticSearchFqUuid(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiRequest.staticSearchStrUuid(siteRequest_, ApiRequest.staticSearchUuid(siteRequest_, ApiRequest.staticSetUuid(siteRequest_, o)));
 	}
 
 	////////
@@ -419,16 +419,16 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static String staticSolrId(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchId(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrId(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrId(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqId(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiRequest.staticSolrStrId(siteRequest_, ApiRequest.staticSolrId(siteRequest_, ApiRequest.staticSetId(siteRequest_, o)));
+	public static String staticSearchFqId(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiRequest.staticSearchStrId(siteRequest_, ApiRequest.staticSearchId(siteRequest_, ApiRequest.staticSetId(siteRequest_, o)));
 	}
 
 	////////
@@ -476,16 +476,16 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static Long staticSolrPk(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static Long staticSearchPk(ComputateVertxSiteRequest siteRequest_, Long o) {
 		return o;
 	}
 
-	public static String staticSolrStrPk(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static String staticSearchStrPk(ComputateVertxSiteRequest siteRequest_, Long o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqPk(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiRequest.staticSolrStrPk(siteRequest_, ApiRequest.staticSolrPk(siteRequest_, ApiRequest.staticSetPk(siteRequest_, o)));
+	public static String staticSearchFqPk(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiRequest.staticSearchStrPk(siteRequest_, ApiRequest.staticSearchPk(siteRequest_, ApiRequest.staticSetPk(siteRequest_, o)));
 	}
 
 	//////////////
@@ -596,16 +596,16 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static Long staticSolrPks(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static Long staticSearchPks(ComputateVertxSiteRequest siteRequest_, Long o) {
 		return o;
 	}
 
-	public static String staticSolrStrPks(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static String staticSearchStrPks(ComputateVertxSiteRequest siteRequest_, Long o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqPks(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiRequest.staticSolrStrPks(siteRequest_, ApiRequest.staticSolrPks(siteRequest_, ApiRequest.staticSetPks(siteRequest_, o)));
+	public static String staticSearchFqPks(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiRequest.staticSearchStrPks(siteRequest_, ApiRequest.staticSearchPks(siteRequest_, ApiRequest.staticSetPks(siteRequest_, o)));
 	}
 
 	/////////////
@@ -662,16 +662,16 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static String staticSolrClasses(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClasses(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClasses(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClasses(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClasses(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiRequest.staticSolrStrClasses(siteRequest_, ApiRequest.staticSolrClasses(siteRequest_, ApiRequest.staticSetClasses(siteRequest_, o)));
+	public static String staticSearchFqClasses(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiRequest.staticSearchStrClasses(siteRequest_, ApiRequest.staticSearchClasses(siteRequest_, ApiRequest.staticSetClasses(siteRequest_, o)));
 	}
 
 	//////////
@@ -728,16 +728,16 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static String staticSolrVars(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchVars(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrVars(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrVars(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqVars(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiRequest.staticSolrStrVars(siteRequest_, ApiRequest.staticSolrVars(siteRequest_, ApiRequest.staticSetVars(siteRequest_, o)));
+	public static String staticSearchFqVars(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiRequest.staticSearchStrVars(siteRequest_, ApiRequest.staticSearchVars(siteRequest_, ApiRequest.staticSetVars(siteRequest_, o)));
 	}
 
 	///////////////////
@@ -777,16 +777,16 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static String staticSolrTimeRemaining(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchTimeRemaining(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrTimeRemaining(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrTimeRemaining(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqTimeRemaining(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiRequest.staticSolrStrTimeRemaining(siteRequest_, ApiRequest.staticSolrTimeRemaining(siteRequest_, ApiRequest.staticSetTimeRemaining(siteRequest_, o)));
+	public static String staticSearchFqTimeRemaining(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiRequest.staticSearchStrTimeRemaining(siteRequest_, ApiRequest.staticSearchTimeRemaining(siteRequest_, ApiRequest.staticSetTimeRemaining(siteRequest_, o)));
 	}
 
 	//////////////
@@ -951,108 +951,108 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	}
 
 	////////////////
-	// staticSolr //
+	// staticSearch //
 	////////////////
 
-	public static Object staticSolrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrApiRequest(entityVar,  siteRequest_, o);
+	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchApiRequest(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSolrApiRequest(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchApiRequest(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "created":
-			return ApiRequest.staticSolrCreated(siteRequest_, (ZonedDateTime)o);
+			return ApiRequest.staticSearchCreated(siteRequest_, (ZonedDateTime)o);
 		case "rows":
-			return ApiRequest.staticSolrRows(siteRequest_, (Long)o);
+			return ApiRequest.staticSearchRows(siteRequest_, (Long)o);
 		case "numFound":
-			return ApiRequest.staticSolrNumFound(siteRequest_, (Long)o);
+			return ApiRequest.staticSearchNumFound(siteRequest_, (Long)o);
 		case "numPATCH":
-			return ApiRequest.staticSolrNumPATCH(siteRequest_, (Long)o);
+			return ApiRequest.staticSearchNumPATCH(siteRequest_, (Long)o);
 		case "uuid":
-			return ApiRequest.staticSolrUuid(siteRequest_, (String)o);
+			return ApiRequest.staticSearchUuid(siteRequest_, (String)o);
 		case "id":
-			return ApiRequest.staticSolrId(siteRequest_, (String)o);
+			return ApiRequest.staticSearchId(siteRequest_, (String)o);
 		case "pk":
-			return ApiRequest.staticSolrPk(siteRequest_, (Long)o);
+			return ApiRequest.staticSearchPk(siteRequest_, (Long)o);
 		case "pks":
-			return ApiRequest.staticSolrPks(siteRequest_, (Long)o);
+			return ApiRequest.staticSearchPks(siteRequest_, (Long)o);
 		case "classes":
-			return ApiRequest.staticSolrClasses(siteRequest_, (String)o);
+			return ApiRequest.staticSearchClasses(siteRequest_, (String)o);
 		case "vars":
-			return ApiRequest.staticSolrVars(siteRequest_, (String)o);
+			return ApiRequest.staticSearchVars(siteRequest_, (String)o);
 		case "timeRemaining":
-			return ApiRequest.staticSolrTimeRemaining(siteRequest_, (String)o);
+			return ApiRequest.staticSearchTimeRemaining(siteRequest_, (String)o);
 			default:
 				return null;
 		}
 	}
 
 	///////////////////
-	// staticSolrStr //
+	// staticSearchStr //
 	///////////////////
 
-	public static String staticSolrStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrStrApiRequest(entityVar,  siteRequest_, o);
+	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchStrApiRequest(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrStrApiRequest(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrApiRequest(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "created":
-			return ApiRequest.staticSolrStrCreated(siteRequest_, (Date)o);
+			return ApiRequest.staticSearchStrCreated(siteRequest_, (Date)o);
 		case "rows":
-			return ApiRequest.staticSolrStrRows(siteRequest_, (Long)o);
+			return ApiRequest.staticSearchStrRows(siteRequest_, (Long)o);
 		case "numFound":
-			return ApiRequest.staticSolrStrNumFound(siteRequest_, (Long)o);
+			return ApiRequest.staticSearchStrNumFound(siteRequest_, (Long)o);
 		case "numPATCH":
-			return ApiRequest.staticSolrStrNumPATCH(siteRequest_, (Long)o);
+			return ApiRequest.staticSearchStrNumPATCH(siteRequest_, (Long)o);
 		case "uuid":
-			return ApiRequest.staticSolrStrUuid(siteRequest_, (String)o);
+			return ApiRequest.staticSearchStrUuid(siteRequest_, (String)o);
 		case "id":
-			return ApiRequest.staticSolrStrId(siteRequest_, (String)o);
+			return ApiRequest.staticSearchStrId(siteRequest_, (String)o);
 		case "pk":
-			return ApiRequest.staticSolrStrPk(siteRequest_, (Long)o);
+			return ApiRequest.staticSearchStrPk(siteRequest_, (Long)o);
 		case "pks":
-			return ApiRequest.staticSolrStrPks(siteRequest_, (Long)o);
+			return ApiRequest.staticSearchStrPks(siteRequest_, (Long)o);
 		case "classes":
-			return ApiRequest.staticSolrStrClasses(siteRequest_, (String)o);
+			return ApiRequest.staticSearchStrClasses(siteRequest_, (String)o);
 		case "vars":
-			return ApiRequest.staticSolrStrVars(siteRequest_, (String)o);
+			return ApiRequest.staticSearchStrVars(siteRequest_, (String)o);
 		case "timeRemaining":
-			return ApiRequest.staticSolrStrTimeRemaining(siteRequest_, (String)o);
+			return ApiRequest.staticSearchStrTimeRemaining(siteRequest_, (String)o);
 			default:
 				return null;
 		}
 	}
 
 	//////////////////
-	// staticSolrFq //
+	// staticSearchFq //
 	//////////////////
 
-	public static String staticSolrFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
-		return staticSolrFqApiRequest(entityVar,  siteRequest_, o);
+	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+		return staticSearchFqApiRequest(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrFqApiRequest(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqApiRequest(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "created":
-			return ApiRequest.staticSolrFqCreated(siteRequest_, o);
+			return ApiRequest.staticSearchFqCreated(siteRequest_, o);
 		case "rows":
-			return ApiRequest.staticSolrFqRows(siteRequest_, o);
+			return ApiRequest.staticSearchFqRows(siteRequest_, o);
 		case "numFound":
-			return ApiRequest.staticSolrFqNumFound(siteRequest_, o);
+			return ApiRequest.staticSearchFqNumFound(siteRequest_, o);
 		case "numPATCH":
-			return ApiRequest.staticSolrFqNumPATCH(siteRequest_, o);
+			return ApiRequest.staticSearchFqNumPATCH(siteRequest_, o);
 		case "uuid":
-			return ApiRequest.staticSolrFqUuid(siteRequest_, o);
+			return ApiRequest.staticSearchFqUuid(siteRequest_, o);
 		case "id":
-			return ApiRequest.staticSolrFqId(siteRequest_, o);
+			return ApiRequest.staticSearchFqId(siteRequest_, o);
 		case "pk":
-			return ApiRequest.staticSolrFqPk(siteRequest_, o);
+			return ApiRequest.staticSearchFqPk(siteRequest_, o);
 		case "pks":
-			return ApiRequest.staticSolrFqPks(siteRequest_, o);
+			return ApiRequest.staticSearchFqPks(siteRequest_, o);
 		case "classes":
-			return ApiRequest.staticSolrFqClasses(siteRequest_, o);
+			return ApiRequest.staticSearchFqClasses(siteRequest_, o);
 		case "vars":
-			return ApiRequest.staticSolrFqVars(siteRequest_, o);
+			return ApiRequest.staticSearchFqVars(siteRequest_, o);
 		case "timeRemaining":
-			return ApiRequest.staticSolrFqTimeRemaining(siteRequest_, o);
+			return ApiRequest.staticSearchFqTimeRemaining(siteRequest_, o);
 			default:
 				return null;
 		}

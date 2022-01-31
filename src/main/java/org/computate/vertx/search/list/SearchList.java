@@ -163,12 +163,6 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 
 	/**
 	 * {@inheritDoc}
-	 */
-	protected void _request(SearchRequest o) {
-	}
-
-	/**
-	 * {@inheritDoc}
 	 * Ignore: true
 	 */
 	protected void _siteRequest_(Wrap<ComputateVertxSiteRequest> c) {
@@ -260,10 +254,9 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 
 	/**
 	 * {@inheritDoc}
-	 * Ignore: true
 	 */
-	protected void _queryResponse(Promise<SolrResponse> promise) {        
-		try {
+	protected void _request(SearchRequest o) {
+		if(request.getQuery() != null) {
 			if(this.c != null)
 				request.fq("classCanonicalName_docvalues_string:" + SearchTool.escapeQueryChars(this.c.getCanonicalName()));
 			ComputateVertxSiteUser siteUser = siteRequest_.getSiteUser_();
@@ -271,6 +264,15 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 				request.fq("deleted_docvalues_boolean:false");
 			if(siteUser == null || BooleanUtils.isNotTrue(siteUser.getSeeArchived()))
 				request.fq("archived_docvalues_boolean:false");
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * Ignore: true
+	 */
+	protected void _queryResponse(Promise<SolrResponse> promise) {        
+		try {
 			if(request.getQuery() != null) {
 				request.initDeepForClass(siteRequest_);
 				String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);

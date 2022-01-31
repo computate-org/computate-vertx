@@ -19,12 +19,12 @@ public class OpenApi3Generator extends OpenApi3GeneratorGen<Swagger2Generator> {
 		configureConfig(vertx).onSuccess(config -> {
 			OpenApi3Generator api = new OpenApi3Generator();
 			WebClient webClient = WebClient.create(vertx);
-			ComputateVertxSiteRequest siteRequest = new ComputateVertxSiteRequest();
+			ComputateVertxSiteRequest siteRequest = ComputateVertxSiteRequest.create();
 			siteRequest.setConfig(config);
 			siteRequest.setWebClient(webClient);
 			api.setWebClient(webClient);
 			api.setConfig(config);
-			siteRequest.initDeepComputateVertxSiteRequest();
+			siteRequest.initDeepSiteRequest();
 			api.initDeepOpenApi3Generator(siteRequest);
 			api.writeOpenApi().onSuccess(a -> {
 				LOG.info("Write OpenAPI completed. ");

@@ -210,16 +210,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Integer staticSolrContextRows(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static Integer staticSearchContextRows(ComputateVertxSiteRequest siteRequest_, Integer o) {
 		return o;
 	}
 
-	public static String staticSolrStrContextRows(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static String staticSearchStrContextRows(ComputateVertxSiteRequest siteRequest_, Integer o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqContextRows(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrContextRows(siteRequest_, ApiWriter.staticSolrContextRows(siteRequest_, ApiWriter.staticSetContextRows(siteRequest_, o)));
+	public static String staticSearchFqContextRows(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrContextRows(siteRequest_, ApiWriter.staticSearchContextRows(siteRequest_, ApiWriter.staticSetContextRows(siteRequest_, o)));
 	}
 
 	////////////////////
@@ -259,16 +259,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassApiMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiMethod(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassApiMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiMethod(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassApiMethod(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassApiMethod(siteRequest_, ApiWriter.staticSolrClassApiMethod(siteRequest_, ApiWriter.staticSetClassApiMethod(siteRequest_, o)));
+	public static String staticSearchFqClassApiMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassApiMethod(siteRequest_, ApiWriter.staticSearchClassApiMethod(siteRequest_, ApiWriter.staticSetClassApiMethod(siteRequest_, o)));
 	}
 
 	////////////////////
@@ -308,16 +308,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrOpenApiVersion(siteRequest_, ApiWriter.staticSolrOpenApiVersion(siteRequest_, ApiWriter.staticSetOpenApiVersion(siteRequest_, o)));
+	public static String staticSearchFqOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrOpenApiVersion(siteRequest_, ApiWriter.staticSearchOpenApiVersion(siteRequest_, ApiWriter.staticSetOpenApiVersion(siteRequest_, o)));
 	}
 
 	///////////////
@@ -378,16 +378,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassUris(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassUris(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassUris(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassUris(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassUris(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassUris(siteRequest_, ApiWriter.staticSolrClassUris(siteRequest_, ApiWriter.staticSetClassUris(siteRequest_, o)));
+	public static String staticSearchFqClassUris(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassUris(siteRequest_, ApiWriter.staticSearchClassUris(siteRequest_, ApiWriter.staticSetClassUris(siteRequest_, o)));
 	}
 
 	//////////////////////////
@@ -435,16 +435,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Integer staticSolrOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static Integer staticSearchOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, Integer o) {
 		return o;
 	}
 
-	public static String staticSolrStrOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static String staticSearchStrOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, Integer o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrOpenApiVersionNumber(siteRequest_, ApiWriter.staticSolrOpenApiVersionNumber(siteRequest_, ApiWriter.staticSetOpenApiVersionNumber(siteRequest_, o)));
+	public static String staticSearchFqOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrOpenApiVersionNumber(siteRequest_, ApiWriter.staticSearchOpenApiVersionNumber(siteRequest_, ApiWriter.staticSetOpenApiVersionNumber(siteRequest_, o)));
 	}
 
 	////////////////
@@ -492,16 +492,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Integer staticSolrTabsSchema(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static Integer staticSearchTabsSchema(ComputateVertxSiteRequest siteRequest_, Integer o) {
 		return o;
 	}
 
-	public static String staticSolrStrTabsSchema(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static String staticSearchStrTabsSchema(ComputateVertxSiteRequest siteRequest_, Integer o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqTabsSchema(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrTabsSchema(siteRequest_, ApiWriter.staticSolrTabsSchema(siteRequest_, ApiWriter.staticSetTabsSchema(siteRequest_, o)));
+	public static String staticSearchFqTabsSchema(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrTabsSchema(siteRequest_, ApiWriter.staticSearchTabsSchema(siteRequest_, ApiWriter.staticSetTabsSchema(siteRequest_, o)));
 	}
 
 	///////////////////
@@ -549,16 +549,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Integer staticSolrTabsResponses(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static Integer staticSearchTabsResponses(ComputateVertxSiteRequest siteRequest_, Integer o) {
 		return o;
 	}
 
-	public static String staticSolrStrTabsResponses(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static String staticSearchStrTabsResponses(ComputateVertxSiteRequest siteRequest_, Integer o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqTabsResponses(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrTabsResponses(siteRequest_, ApiWriter.staticSolrTabsResponses(siteRequest_, ApiWriter.staticSetTabsResponses(siteRequest_, o)));
+	public static String staticSearchFqTabsResponses(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrTabsResponses(siteRequest_, ApiWriter.staticSearchTabsResponses(siteRequest_, ApiWriter.staticSetTabsResponses(siteRequest_, o)));
 	}
 
 	////////////
@@ -1075,16 +1075,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassApiTag(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiTag(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassApiTag(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiTag(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassApiTag(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassApiTag(siteRequest_, ApiWriter.staticSolrClassApiTag(siteRequest_, ApiWriter.staticSetClassApiTag(siteRequest_, o)));
+	public static String staticSearchFqClassApiTag(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassApiTag(siteRequest_, ApiWriter.staticSearchClassApiTag(siteRequest_, ApiWriter.staticSetClassApiTag(siteRequest_, o)));
 	}
 
 	//////////////////////
@@ -1129,16 +1129,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSolrClassExtendsBase(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassExtendsBase(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassExtendsBase(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassExtendsBase(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassExtendsBase(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassExtendsBase(siteRequest_, ApiWriter.staticSolrClassExtendsBase(siteRequest_, ApiWriter.staticSetClassExtendsBase(siteRequest_, o)));
+	public static String staticSearchFqClassExtendsBase(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassExtendsBase(siteRequest_, ApiWriter.staticSearchClassExtendsBase(siteRequest_, ApiWriter.staticSetClassExtendsBase(siteRequest_, o)));
 	}
 
 	/////////////////
@@ -1183,16 +1183,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSolrClassIsBase(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassIsBase(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassIsBase(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassIsBase(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassIsBase(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassIsBase(siteRequest_, ApiWriter.staticSolrClassIsBase(siteRequest_, ApiWriter.staticSetClassIsBase(siteRequest_, o)));
+	public static String staticSearchFqClassIsBase(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassIsBase(siteRequest_, ApiWriter.staticSearchClassIsBase(siteRequest_, ApiWriter.staticSetClassIsBase(siteRequest_, o)));
 	}
 
 	/////////////////////
@@ -1232,16 +1232,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassSimpleName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassSimpleName(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassSimpleName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassSimpleName(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassSimpleName(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassSimpleName(siteRequest_, ApiWriter.staticSolrClassSimpleName(siteRequest_, ApiWriter.staticSetClassSimpleName(siteRequest_, o)));
+	public static String staticSearchFqClassSimpleName(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassSimpleName(siteRequest_, ApiWriter.staticSearchClassSimpleName(siteRequest_, ApiWriter.staticSetClassSimpleName(siteRequest_, o)));
 	}
 
 	/////////////
@@ -1281,16 +1281,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrAppName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchAppName(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrAppName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrAppName(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqAppName(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrAppName(siteRequest_, ApiWriter.staticSolrAppName(siteRequest_, ApiWriter.staticSetAppName(siteRequest_, o)));
+	public static String staticSearchFqAppName(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrAppName(siteRequest_, ApiWriter.staticSearchAppName(siteRequest_, ApiWriter.staticSetAppName(siteRequest_, o)));
 	}
 
 	///////////////////////
@@ -1330,16 +1330,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassAbsolutePath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassAbsolutePath(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassAbsolutePath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassAbsolutePath(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassAbsolutePath(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassAbsolutePath(siteRequest_, ApiWriter.staticSolrClassAbsolutePath(siteRequest_, ApiWriter.staticSetClassAbsolutePath(siteRequest_, o)));
+	public static String staticSearchFqClassAbsolutePath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassAbsolutePath(siteRequest_, ApiWriter.staticSearchClassAbsolutePath(siteRequest_, ApiWriter.staticSetClassAbsolutePath(siteRequest_, o)));
 	}
 
 	///////////////////////
@@ -1379,16 +1379,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassApiUriMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiUriMethod(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassApiUriMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiUriMethod(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassApiUriMethod(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassApiUriMethod(siteRequest_, ApiWriter.staticSolrClassApiUriMethod(siteRequest_, ApiWriter.staticSetClassApiUriMethod(siteRequest_, o)));
+	public static String staticSearchFqClassApiUriMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassApiUriMethod(siteRequest_, ApiWriter.staticSearchClassApiUriMethod(siteRequest_, ApiWriter.staticSetClassApiUriMethod(siteRequest_, o)));
 	}
 
 	/////////////////////////
@@ -1433,16 +1433,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSolrClassRoleUserMethod(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassRoleUserMethod(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassRoleUserMethod(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassRoleUserMethod(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassRoleUserMethod(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassRoleUserMethod(siteRequest_, ApiWriter.staticSolrClassRoleUserMethod(siteRequest_, ApiWriter.staticSetClassRoleUserMethod(siteRequest_, o)));
+	public static String staticSearchFqClassRoleUserMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassRoleUserMethod(siteRequest_, ApiWriter.staticSearchClassRoleUserMethod(siteRequest_, ApiWriter.staticSetClassRoleUserMethod(siteRequest_, o)));
 	}
 
 	//////////////////////////
@@ -1482,16 +1482,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassApiMethodMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiMethodMethod(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassApiMethodMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiMethodMethod(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassApiMethodMethod(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassApiMethodMethod(siteRequest_, ApiWriter.staticSolrClassApiMethodMethod(siteRequest_, ApiWriter.staticSetClassApiMethodMethod(siteRequest_, o)));
+	public static String staticSearchFqClassApiMethodMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassApiMethodMethod(siteRequest_, ApiWriter.staticSearchClassApiMethodMethod(siteRequest_, ApiWriter.staticSetClassApiMethodMethod(siteRequest_, o)));
 	}
 
 	////////////////////////////////
@@ -1531,16 +1531,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassApiMediaType200Method(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiMediaType200Method(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassApiMediaType200Method(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiMediaType200Method(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassApiMediaType200Method(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassApiMediaType200Method(siteRequest_, ApiWriter.staticSolrClassApiMediaType200Method(siteRequest_, ApiWriter.staticSetClassApiMediaType200Method(siteRequest_, o)));
+	public static String staticSearchFqClassApiMediaType200Method(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassApiMediaType200Method(siteRequest_, ApiWriter.staticSearchClassApiMediaType200Method(siteRequest_, ApiWriter.staticSetClassApiMediaType200Method(siteRequest_, o)));
 	}
 
 	///////////////////////////////
@@ -1580,16 +1580,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassApiOperationIdMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiOperationIdMethod(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassApiOperationIdMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiOperationIdMethod(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassApiOperationIdMethod(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassApiOperationIdMethod(siteRequest_, ApiWriter.staticSolrClassApiOperationIdMethod(siteRequest_, ApiWriter.staticSetClassApiOperationIdMethod(siteRequest_, o)));
+	public static String staticSearchFqClassApiOperationIdMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassApiOperationIdMethod(siteRequest_, ApiWriter.staticSearchClassApiOperationIdMethod(siteRequest_, ApiWriter.staticSetClassApiOperationIdMethod(siteRequest_, o)));
 	}
 
 	//////////////////////////////////////
@@ -1629,16 +1629,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassApiOperationIdMethodRequest(siteRequest_, ApiWriter.staticSolrClassApiOperationIdMethodRequest(siteRequest_, ApiWriter.staticSetClassApiOperationIdMethodRequest(siteRequest_, o)));
+	public static String staticSearchFqClassApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassApiOperationIdMethodRequest(siteRequest_, ApiWriter.staticSearchClassApiOperationIdMethodRequest(siteRequest_, ApiWriter.staticSetClassApiOperationIdMethodRequest(siteRequest_, o)));
 	}
 
 	///////////////////////////////////////
@@ -1678,16 +1678,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassApiOperationIdMethodResponse(siteRequest_, ApiWriter.staticSolrClassApiOperationIdMethodResponse(siteRequest_, ApiWriter.staticSetClassApiOperationIdMethodResponse(siteRequest_, o)));
+	public static String staticSearchFqClassApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassApiOperationIdMethodResponse(siteRequest_, ApiWriter.staticSearchClassApiOperationIdMethodResponse(siteRequest_, ApiWriter.staticSetClassApiOperationIdMethodResponse(siteRequest_, o)));
 	}
 
 	///////////////////////////////////////////
@@ -1727,16 +1727,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassSuperApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassSuperApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassSuperApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassSuperApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassSuperApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassSuperApiOperationIdMethodRequest(siteRequest_, ApiWriter.staticSolrClassSuperApiOperationIdMethodRequest(siteRequest_, ApiWriter.staticSetClassSuperApiOperationIdMethodRequest(siteRequest_, o)));
+	public static String staticSearchFqClassSuperApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassSuperApiOperationIdMethodRequest(siteRequest_, ApiWriter.staticSearchClassSuperApiOperationIdMethodRequest(siteRequest_, ApiWriter.staticSetClassSuperApiOperationIdMethodRequest(siteRequest_, o)));
 	}
 
 	////////////////////////////////////////////
@@ -1776,16 +1776,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassSuperApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassSuperApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassSuperApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassSuperApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassSuperApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassSuperApiOperationIdMethodResponse(siteRequest_, ApiWriter.staticSolrClassSuperApiOperationIdMethodResponse(siteRequest_, ApiWriter.staticSetClassSuperApiOperationIdMethodResponse(siteRequest_, o)));
+	public static String staticSearchFqClassSuperApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassSuperApiOperationIdMethodResponse(siteRequest_, ApiWriter.staticSearchClassSuperApiOperationIdMethodResponse(siteRequest_, ApiWriter.staticSetClassSuperApiOperationIdMethodResponse(siteRequest_, o)));
 	}
 
 	//////////////////////////////////
@@ -1825,16 +1825,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassPageCanonicalNameMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassPageCanonicalNameMethod(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassPageCanonicalNameMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassPageCanonicalNameMethod(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassPageCanonicalNameMethod(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassPageCanonicalNameMethod(siteRequest_, ApiWriter.staticSolrClassPageCanonicalNameMethod(siteRequest_, ApiWriter.staticSetClassPageCanonicalNameMethod(siteRequest_, o)));
+	public static String staticSearchFqClassPageCanonicalNameMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassPageCanonicalNameMethod(siteRequest_, ApiWriter.staticSearchClassPageCanonicalNameMethod(siteRequest_, ApiWriter.staticSetClassPageCanonicalNameMethod(siteRequest_, o)));
 	}
 
 	////////////////////////
@@ -1879,16 +1879,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSolrClassKeywordsFound(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassKeywordsFound(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassKeywordsFound(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassKeywordsFound(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassKeywordsFound(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassKeywordsFound(siteRequest_, ApiWriter.staticSolrClassKeywordsFound(siteRequest_, ApiWriter.staticSetClassKeywordsFound(siteRequest_, o)));
+	public static String staticSearchFqClassKeywordsFound(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassKeywordsFound(siteRequest_, ApiWriter.staticSearchClassKeywordsFound(siteRequest_, ApiWriter.staticSetClassKeywordsFound(siteRequest_, o)));
 	}
 
 	///////////////////
@@ -1949,16 +1949,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassKeywords(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassKeywords(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassKeywords(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassKeywords(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassKeywords(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassKeywords(siteRequest_, ApiWriter.staticSolrClassKeywords(siteRequest_, ApiWriter.staticSetClassKeywords(siteRequest_, o)));
+	public static String staticSearchFqClassKeywords(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassKeywords(siteRequest_, ApiWriter.staticSearchClassKeywords(siteRequest_, ApiWriter.staticSetClassKeywords(siteRequest_, o)));
 	}
 
 	/////////////////////
@@ -2003,16 +2003,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSolrClassPublicRead(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassPublicRead(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassPublicRead(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassPublicRead(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassPublicRead(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassPublicRead(siteRequest_, ApiWriter.staticSolrClassPublicRead(siteRequest_, ApiWriter.staticSetClassPublicRead(siteRequest_, o)));
+	public static String staticSearchFqClassPublicRead(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassPublicRead(siteRequest_, ApiWriter.staticSearchClassPublicRead(siteRequest_, ApiWriter.staticSetClassPublicRead(siteRequest_, o)));
 	}
 
 	//////////////////////
@@ -2057,16 +2057,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSolrClassRoleSession(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassRoleSession(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassRoleSession(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassRoleSession(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassRoleSession(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassRoleSession(siteRequest_, ApiWriter.staticSolrClassRoleSession(siteRequest_, ApiWriter.staticSetClassRoleSession(siteRequest_, o)));
+	public static String staticSearchFqClassRoleSession(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassRoleSession(siteRequest_, ApiWriter.staticSearchClassRoleSession(siteRequest_, ApiWriter.staticSetClassRoleSession(siteRequest_, o)));
 	}
 
 	//////////////////////////
@@ -2111,16 +2111,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSolrClassRoleUtilisateur(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassRoleUtilisateur(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassRoleUtilisateur(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassRoleUtilisateur(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassRoleUtilisateur(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassRoleUtilisateur(siteRequest_, ApiWriter.staticSolrClassRoleUtilisateur(siteRequest_, ApiWriter.staticSetClassRoleUtilisateur(siteRequest_, o)));
+	public static String staticSearchFqClassRoleUtilisateur(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassRoleUtilisateur(siteRequest_, ApiWriter.staticSearchClassRoleUtilisateur(siteRequest_, ApiWriter.staticSetClassRoleUtilisateur(siteRequest_, o)));
 	}
 
 	//////////////////
@@ -2165,16 +2165,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSolrClassRoleAll(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassRoleAll(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassRoleAll(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassRoleAll(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassRoleAll(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassRoleAll(siteRequest_, ApiWriter.staticSolrClassRoleAll(siteRequest_, ApiWriter.staticSetClassRoleAll(siteRequest_, o)));
+	public static String staticSearchFqClassRoleAll(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassRoleAll(siteRequest_, ApiWriter.staticSearchClassRoleAll(siteRequest_, ApiWriter.staticSetClassRoleAll(siteRequest_, o)));
 	}
 
 	/////////////////////
@@ -2219,16 +2219,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSolrClassRolesFound(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassRolesFound(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassRolesFound(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassRolesFound(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassRolesFound(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassRolesFound(siteRequest_, ApiWriter.staticSolrClassRolesFound(siteRequest_, ApiWriter.staticSetClassRolesFound(siteRequest_, o)));
+	public static String staticSearchFqClassRolesFound(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassRolesFound(siteRequest_, ApiWriter.staticSearchClassRolesFound(siteRequest_, ApiWriter.staticSetClassRolesFound(siteRequest_, o)));
 	}
 
 	////////////////
@@ -2289,16 +2289,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassRoles(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassRoles(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassRoles(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassRoles(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassRoles(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassRoles(siteRequest_, ApiWriter.staticSolrClassRoles(siteRequest_, ApiWriter.staticSetClassRoles(siteRequest_, o)));
+	public static String staticSearchFqClassRoles(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassRoles(siteRequest_, ApiWriter.staticSearchClassRoles(siteRequest_, ApiWriter.staticSetClassRoles(siteRequest_, o)));
 	}
 
 	////////////////////////
@@ -2359,16 +2359,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrClassRolesLanguage(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassRolesLanguage(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrClassRolesLanguage(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassRolesLanguage(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqClassRolesLanguage(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrClassRolesLanguage(siteRequest_, ApiWriter.staticSolrClassRolesLanguage(siteRequest_, ApiWriter.staticSetClassRolesLanguage(siteRequest_, o)));
+	public static String staticSearchFqClassRolesLanguage(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassRolesLanguage(siteRequest_, ApiWriter.staticSearchClassRolesLanguage(siteRequest_, ApiWriter.staticSetClassRolesLanguage(siteRequest_, o)));
 	}
 
 	//////////////////
@@ -2408,16 +2408,16 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSolrLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSolrStrLanguageName(siteRequest_, ApiWriter.staticSolrLanguageName(siteRequest_, ApiWriter.staticSetLanguageName(siteRequest_, o)));
+	public static String staticSearchFqLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrLanguageName(siteRequest_, ApiWriter.staticSearchLanguageName(siteRequest_, ApiWriter.staticSetLanguageName(siteRequest_, o)));
 	}
 
 	////////////////////////
@@ -2794,240 +2794,240 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	}
 
 	////////////////
-	// staticSolr //
+	// staticSearch //
 	////////////////
 
-	public static Object staticSolrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrApiWriter(entityVar,  siteRequest_, o);
+	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchApiWriter(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSolrApiWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchApiWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "contextRows":
-			return ApiWriter.staticSolrContextRows(siteRequest_, (Integer)o);
+			return ApiWriter.staticSearchContextRows(siteRequest_, (Integer)o);
 		case "classApiMethod":
-			return ApiWriter.staticSolrClassApiMethod(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassApiMethod(siteRequest_, (String)o);
 		case "openApiVersion":
-			return ApiWriter.staticSolrOpenApiVersion(siteRequest_, (String)o);
+			return ApiWriter.staticSearchOpenApiVersion(siteRequest_, (String)o);
 		case "classUris":
-			return ApiWriter.staticSolrClassUris(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassUris(siteRequest_, (String)o);
 		case "openApiVersionNumber":
-			return ApiWriter.staticSolrOpenApiVersionNumber(siteRequest_, (Integer)o);
+			return ApiWriter.staticSearchOpenApiVersionNumber(siteRequest_, (Integer)o);
 		case "tabsSchema":
-			return ApiWriter.staticSolrTabsSchema(siteRequest_, (Integer)o);
+			return ApiWriter.staticSearchTabsSchema(siteRequest_, (Integer)o);
 		case "tabsResponses":
-			return ApiWriter.staticSolrTabsResponses(siteRequest_, (Integer)o);
+			return ApiWriter.staticSearchTabsResponses(siteRequest_, (Integer)o);
 		case "classApiTag":
-			return ApiWriter.staticSolrClassApiTag(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassApiTag(siteRequest_, (String)o);
 		case "classExtendsBase":
-			return ApiWriter.staticSolrClassExtendsBase(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchClassExtendsBase(siteRequest_, (Boolean)o);
 		case "classIsBase":
-			return ApiWriter.staticSolrClassIsBase(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchClassIsBase(siteRequest_, (Boolean)o);
 		case "classSimpleName":
-			return ApiWriter.staticSolrClassSimpleName(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassSimpleName(siteRequest_, (String)o);
 		case "appName":
-			return ApiWriter.staticSolrAppName(siteRequest_, (String)o);
+			return ApiWriter.staticSearchAppName(siteRequest_, (String)o);
 		case "classAbsolutePath":
-			return ApiWriter.staticSolrClassAbsolutePath(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassAbsolutePath(siteRequest_, (String)o);
 		case "classApiUriMethod":
-			return ApiWriter.staticSolrClassApiUriMethod(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassApiUriMethod(siteRequest_, (String)o);
 		case "classRoleUserMethod":
-			return ApiWriter.staticSolrClassRoleUserMethod(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchClassRoleUserMethod(siteRequest_, (Boolean)o);
 		case "classApiMethodMethod":
-			return ApiWriter.staticSolrClassApiMethodMethod(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassApiMethodMethod(siteRequest_, (String)o);
 		case "classApiMediaType200Method":
-			return ApiWriter.staticSolrClassApiMediaType200Method(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassApiMediaType200Method(siteRequest_, (String)o);
 		case "classApiOperationIdMethod":
-			return ApiWriter.staticSolrClassApiOperationIdMethod(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassApiOperationIdMethod(siteRequest_, (String)o);
 		case "classApiOperationIdMethodRequest":
-			return ApiWriter.staticSolrClassApiOperationIdMethodRequest(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassApiOperationIdMethodRequest(siteRequest_, (String)o);
 		case "classApiOperationIdMethodResponse":
-			return ApiWriter.staticSolrClassApiOperationIdMethodResponse(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassApiOperationIdMethodResponse(siteRequest_, (String)o);
 		case "classSuperApiOperationIdMethodRequest":
-			return ApiWriter.staticSolrClassSuperApiOperationIdMethodRequest(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassSuperApiOperationIdMethodRequest(siteRequest_, (String)o);
 		case "classSuperApiOperationIdMethodResponse":
-			return ApiWriter.staticSolrClassSuperApiOperationIdMethodResponse(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassSuperApiOperationIdMethodResponse(siteRequest_, (String)o);
 		case "classPageCanonicalNameMethod":
-			return ApiWriter.staticSolrClassPageCanonicalNameMethod(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassPageCanonicalNameMethod(siteRequest_, (String)o);
 		case "classKeywordsFound":
-			return ApiWriter.staticSolrClassKeywordsFound(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchClassKeywordsFound(siteRequest_, (Boolean)o);
 		case "classKeywords":
-			return ApiWriter.staticSolrClassKeywords(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassKeywords(siteRequest_, (String)o);
 		case "classPublicRead":
-			return ApiWriter.staticSolrClassPublicRead(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchClassPublicRead(siteRequest_, (Boolean)o);
 		case "classRoleSession":
-			return ApiWriter.staticSolrClassRoleSession(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchClassRoleSession(siteRequest_, (Boolean)o);
 		case "classRoleUtilisateur":
-			return ApiWriter.staticSolrClassRoleUtilisateur(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchClassRoleUtilisateur(siteRequest_, (Boolean)o);
 		case "classRoleAll":
-			return ApiWriter.staticSolrClassRoleAll(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchClassRoleAll(siteRequest_, (Boolean)o);
 		case "classRolesFound":
-			return ApiWriter.staticSolrClassRolesFound(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchClassRolesFound(siteRequest_, (Boolean)o);
 		case "classRoles":
-			return ApiWriter.staticSolrClassRoles(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassRoles(siteRequest_, (String)o);
 		case "classRolesLanguage":
-			return ApiWriter.staticSolrClassRolesLanguage(siteRequest_, (String)o);
+			return ApiWriter.staticSearchClassRolesLanguage(siteRequest_, (String)o);
 		case "languageName":
-			return ApiWriter.staticSolrLanguageName(siteRequest_, (String)o);
+			return ApiWriter.staticSearchLanguageName(siteRequest_, (String)o);
 			default:
 				return null;
 		}
 	}
 
 	///////////////////
-	// staticSolrStr //
+	// staticSearchStr //
 	///////////////////
 
-	public static String staticSolrStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrStrApiWriter(entityVar,  siteRequest_, o);
+	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchStrApiWriter(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrStrApiWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrApiWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "contextRows":
-			return ApiWriter.staticSolrStrContextRows(siteRequest_, (Integer)o);
+			return ApiWriter.staticSearchStrContextRows(siteRequest_, (Integer)o);
 		case "classApiMethod":
-			return ApiWriter.staticSolrStrClassApiMethod(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassApiMethod(siteRequest_, (String)o);
 		case "openApiVersion":
-			return ApiWriter.staticSolrStrOpenApiVersion(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrOpenApiVersion(siteRequest_, (String)o);
 		case "classUris":
-			return ApiWriter.staticSolrStrClassUris(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassUris(siteRequest_, (String)o);
 		case "openApiVersionNumber":
-			return ApiWriter.staticSolrStrOpenApiVersionNumber(siteRequest_, (Integer)o);
+			return ApiWriter.staticSearchStrOpenApiVersionNumber(siteRequest_, (Integer)o);
 		case "tabsSchema":
-			return ApiWriter.staticSolrStrTabsSchema(siteRequest_, (Integer)o);
+			return ApiWriter.staticSearchStrTabsSchema(siteRequest_, (Integer)o);
 		case "tabsResponses":
-			return ApiWriter.staticSolrStrTabsResponses(siteRequest_, (Integer)o);
+			return ApiWriter.staticSearchStrTabsResponses(siteRequest_, (Integer)o);
 		case "classApiTag":
-			return ApiWriter.staticSolrStrClassApiTag(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassApiTag(siteRequest_, (String)o);
 		case "classExtendsBase":
-			return ApiWriter.staticSolrStrClassExtendsBase(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchStrClassExtendsBase(siteRequest_, (Boolean)o);
 		case "classIsBase":
-			return ApiWriter.staticSolrStrClassIsBase(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchStrClassIsBase(siteRequest_, (Boolean)o);
 		case "classSimpleName":
-			return ApiWriter.staticSolrStrClassSimpleName(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassSimpleName(siteRequest_, (String)o);
 		case "appName":
-			return ApiWriter.staticSolrStrAppName(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrAppName(siteRequest_, (String)o);
 		case "classAbsolutePath":
-			return ApiWriter.staticSolrStrClassAbsolutePath(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassAbsolutePath(siteRequest_, (String)o);
 		case "classApiUriMethod":
-			return ApiWriter.staticSolrStrClassApiUriMethod(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassApiUriMethod(siteRequest_, (String)o);
 		case "classRoleUserMethod":
-			return ApiWriter.staticSolrStrClassRoleUserMethod(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchStrClassRoleUserMethod(siteRequest_, (Boolean)o);
 		case "classApiMethodMethod":
-			return ApiWriter.staticSolrStrClassApiMethodMethod(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassApiMethodMethod(siteRequest_, (String)o);
 		case "classApiMediaType200Method":
-			return ApiWriter.staticSolrStrClassApiMediaType200Method(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassApiMediaType200Method(siteRequest_, (String)o);
 		case "classApiOperationIdMethod":
-			return ApiWriter.staticSolrStrClassApiOperationIdMethod(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassApiOperationIdMethod(siteRequest_, (String)o);
 		case "classApiOperationIdMethodRequest":
-			return ApiWriter.staticSolrStrClassApiOperationIdMethodRequest(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassApiOperationIdMethodRequest(siteRequest_, (String)o);
 		case "classApiOperationIdMethodResponse":
-			return ApiWriter.staticSolrStrClassApiOperationIdMethodResponse(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassApiOperationIdMethodResponse(siteRequest_, (String)o);
 		case "classSuperApiOperationIdMethodRequest":
-			return ApiWriter.staticSolrStrClassSuperApiOperationIdMethodRequest(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassSuperApiOperationIdMethodRequest(siteRequest_, (String)o);
 		case "classSuperApiOperationIdMethodResponse":
-			return ApiWriter.staticSolrStrClassSuperApiOperationIdMethodResponse(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassSuperApiOperationIdMethodResponse(siteRequest_, (String)o);
 		case "classPageCanonicalNameMethod":
-			return ApiWriter.staticSolrStrClassPageCanonicalNameMethod(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassPageCanonicalNameMethod(siteRequest_, (String)o);
 		case "classKeywordsFound":
-			return ApiWriter.staticSolrStrClassKeywordsFound(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchStrClassKeywordsFound(siteRequest_, (Boolean)o);
 		case "classKeywords":
-			return ApiWriter.staticSolrStrClassKeywords(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassKeywords(siteRequest_, (String)o);
 		case "classPublicRead":
-			return ApiWriter.staticSolrStrClassPublicRead(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchStrClassPublicRead(siteRequest_, (Boolean)o);
 		case "classRoleSession":
-			return ApiWriter.staticSolrStrClassRoleSession(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchStrClassRoleSession(siteRequest_, (Boolean)o);
 		case "classRoleUtilisateur":
-			return ApiWriter.staticSolrStrClassRoleUtilisateur(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchStrClassRoleUtilisateur(siteRequest_, (Boolean)o);
 		case "classRoleAll":
-			return ApiWriter.staticSolrStrClassRoleAll(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchStrClassRoleAll(siteRequest_, (Boolean)o);
 		case "classRolesFound":
-			return ApiWriter.staticSolrStrClassRolesFound(siteRequest_, (Boolean)o);
+			return ApiWriter.staticSearchStrClassRolesFound(siteRequest_, (Boolean)o);
 		case "classRoles":
-			return ApiWriter.staticSolrStrClassRoles(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassRoles(siteRequest_, (String)o);
 		case "classRolesLanguage":
-			return ApiWriter.staticSolrStrClassRolesLanguage(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrClassRolesLanguage(siteRequest_, (String)o);
 		case "languageName":
-			return ApiWriter.staticSolrStrLanguageName(siteRequest_, (String)o);
+			return ApiWriter.staticSearchStrLanguageName(siteRequest_, (String)o);
 			default:
 				return null;
 		}
 	}
 
 	//////////////////
-	// staticSolrFq //
+	// staticSearchFq //
 	//////////////////
 
-	public static String staticSolrFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
-		return staticSolrFqApiWriter(entityVar,  siteRequest_, o);
+	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+		return staticSearchFqApiWriter(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrFqApiWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqApiWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "contextRows":
-			return ApiWriter.staticSolrFqContextRows(siteRequest_, o);
+			return ApiWriter.staticSearchFqContextRows(siteRequest_, o);
 		case "classApiMethod":
-			return ApiWriter.staticSolrFqClassApiMethod(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassApiMethod(siteRequest_, o);
 		case "openApiVersion":
-			return ApiWriter.staticSolrFqOpenApiVersion(siteRequest_, o);
+			return ApiWriter.staticSearchFqOpenApiVersion(siteRequest_, o);
 		case "classUris":
-			return ApiWriter.staticSolrFqClassUris(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassUris(siteRequest_, o);
 		case "openApiVersionNumber":
-			return ApiWriter.staticSolrFqOpenApiVersionNumber(siteRequest_, o);
+			return ApiWriter.staticSearchFqOpenApiVersionNumber(siteRequest_, o);
 		case "tabsSchema":
-			return ApiWriter.staticSolrFqTabsSchema(siteRequest_, o);
+			return ApiWriter.staticSearchFqTabsSchema(siteRequest_, o);
 		case "tabsResponses":
-			return ApiWriter.staticSolrFqTabsResponses(siteRequest_, o);
+			return ApiWriter.staticSearchFqTabsResponses(siteRequest_, o);
 		case "classApiTag":
-			return ApiWriter.staticSolrFqClassApiTag(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassApiTag(siteRequest_, o);
 		case "classExtendsBase":
-			return ApiWriter.staticSolrFqClassExtendsBase(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassExtendsBase(siteRequest_, o);
 		case "classIsBase":
-			return ApiWriter.staticSolrFqClassIsBase(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassIsBase(siteRequest_, o);
 		case "classSimpleName":
-			return ApiWriter.staticSolrFqClassSimpleName(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassSimpleName(siteRequest_, o);
 		case "appName":
-			return ApiWriter.staticSolrFqAppName(siteRequest_, o);
+			return ApiWriter.staticSearchFqAppName(siteRequest_, o);
 		case "classAbsolutePath":
-			return ApiWriter.staticSolrFqClassAbsolutePath(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassAbsolutePath(siteRequest_, o);
 		case "classApiUriMethod":
-			return ApiWriter.staticSolrFqClassApiUriMethod(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassApiUriMethod(siteRequest_, o);
 		case "classRoleUserMethod":
-			return ApiWriter.staticSolrFqClassRoleUserMethod(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassRoleUserMethod(siteRequest_, o);
 		case "classApiMethodMethod":
-			return ApiWriter.staticSolrFqClassApiMethodMethod(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassApiMethodMethod(siteRequest_, o);
 		case "classApiMediaType200Method":
-			return ApiWriter.staticSolrFqClassApiMediaType200Method(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassApiMediaType200Method(siteRequest_, o);
 		case "classApiOperationIdMethod":
-			return ApiWriter.staticSolrFqClassApiOperationIdMethod(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassApiOperationIdMethod(siteRequest_, o);
 		case "classApiOperationIdMethodRequest":
-			return ApiWriter.staticSolrFqClassApiOperationIdMethodRequest(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassApiOperationIdMethodRequest(siteRequest_, o);
 		case "classApiOperationIdMethodResponse":
-			return ApiWriter.staticSolrFqClassApiOperationIdMethodResponse(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassApiOperationIdMethodResponse(siteRequest_, o);
 		case "classSuperApiOperationIdMethodRequest":
-			return ApiWriter.staticSolrFqClassSuperApiOperationIdMethodRequest(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassSuperApiOperationIdMethodRequest(siteRequest_, o);
 		case "classSuperApiOperationIdMethodResponse":
-			return ApiWriter.staticSolrFqClassSuperApiOperationIdMethodResponse(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassSuperApiOperationIdMethodResponse(siteRequest_, o);
 		case "classPageCanonicalNameMethod":
-			return ApiWriter.staticSolrFqClassPageCanonicalNameMethod(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassPageCanonicalNameMethod(siteRequest_, o);
 		case "classKeywordsFound":
-			return ApiWriter.staticSolrFqClassKeywordsFound(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassKeywordsFound(siteRequest_, o);
 		case "classKeywords":
-			return ApiWriter.staticSolrFqClassKeywords(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassKeywords(siteRequest_, o);
 		case "classPublicRead":
-			return ApiWriter.staticSolrFqClassPublicRead(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassPublicRead(siteRequest_, o);
 		case "classRoleSession":
-			return ApiWriter.staticSolrFqClassRoleSession(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassRoleSession(siteRequest_, o);
 		case "classRoleUtilisateur":
-			return ApiWriter.staticSolrFqClassRoleUtilisateur(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassRoleUtilisateur(siteRequest_, o);
 		case "classRoleAll":
-			return ApiWriter.staticSolrFqClassRoleAll(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassRoleAll(siteRequest_, o);
 		case "classRolesFound":
-			return ApiWriter.staticSolrFqClassRolesFound(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassRolesFound(siteRequest_, o);
 		case "classRoles":
-			return ApiWriter.staticSolrFqClassRoles(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassRoles(siteRequest_, o);
 		case "classRolesLanguage":
-			return ApiWriter.staticSolrFqClassRolesLanguage(siteRequest_, o);
+			return ApiWriter.staticSearchFqClassRolesLanguage(siteRequest_, o);
 		case "languageName":
-			return ApiWriter.staticSolrFqLanguageName(siteRequest_, o);
+			return ApiWriter.staticSearchFqLanguageName(siteRequest_, o);
 			default:
 				return null;
 		}

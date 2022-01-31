@@ -1,12 +1,12 @@
-{{#*inline "htmTitleComputateVertxBaseModelPage"}}		<!-- inline "htmTitleComputateVertxBaseModelPage" -->
-		<title>{{#if searchListComputateVertxBaseModel_}}{{#eq computateVertxBaseModelCount int1}}{{#eq params.query.q "*:*"}}{{else}}{{/eq}}{{else}}{{/eq}}{{else}}{{/if}}</title>
+{{#*inline "htmTitleBaseModelPage"}}		<!-- inline "htmTitleBaseModelPage" -->
+		<title>{{#if searchListBaseModel_}}{{#eq BaseModelCount int1}}{{#eq params.query.q "*:*"}}{{else}}{{/eq}}{{else}}{{/eq}}{{else}}{{/if}}</title>
 {{/inline}}
-{{#*inline "htmMetaComputateVertxBaseModelPage"}}{{> "htmMetaComputateVertxPageLayout"}}{{/inline}}
-{{#*inline "htmStyleComputateVertxBaseModelPage"}}{{> "htmStyleComputateVertxPageLayout"}}{{/inline}}
-{{#*inline "htmScriptsComputateVertxBaseModelPage"}}{{> "htmScriptsComputateVertxPageLayout"}}		<!-- inline "htmScriptsComputateVertxBaseModelPage" -->
-		<script src="{{staticBaseUrl}}/js/enUS/ComputateVertxBaseModelPage.js"></script>
+{{#*inline "htmMetaBaseModelPage"}}{{> "htmMetaComputateVertxPageLayout"}}{{/inline}}
+{{#*inline "htmStyleBaseModelPage"}}{{> "htmStyleComputateVertxPageLayout"}}{{/inline}}
+{{#*inline "htmScriptsBaseModelPage"}}{{> "htmScriptsComputateVertxPageLayout"}}		<!-- inline "htmScriptsBaseModelPage" -->
+		<script src="{{staticBaseUrl}}/js/enUS/BaseModelPage.js"></script>
 {{/inline}}
-{{#*inline "htmScriptComputateVertxBaseModelPage"}}		<!-- inline "htmScriptComputateVertxBaseModelPage" -->
+{{#*inline "htmScriptBaseModelPage"}}		<!-- inline "htmScriptBaseModelPage" -->
 		<script>
 			$(document).ready(function() {
 				document.onkeydown = function(evt) {
@@ -25,13 +25,13 @@
 				var pk = {{#if pk}}{{pk}}{{else}}null{{/if}};
 				if(pk != null) {
 				}
-				websocketComputateVertxBaseModel(websocketComputateVertxBaseModelInner);
+				websocketBaseModel(websocketBaseModelInner);
 			});
 		</script>
 {{/inline}}
-{{#*inline "htmUrlComputateVertxBaseModel"}}{{pageUri}}?q={{query.q}}&amp;rows={{#if rows}}{{rows}}{{else}}{{pagination.rows}}{{/if}}&amp;rows={{#if start}}{{start}}{{else}}{{pagination.start}}{{/if}}{{#each query.fq}}{{#eq fq this}}{{else}}&fq={{fq}}:{{val}}{{/eq}}{{/each}}{{#each query.sort}}{{#eq sort this}}{{else}}&sort={{var}} {{order}}{{/eq}}{{/each}}{{/inline}}
-{{#*inline "htmHeadComputateVertxBaseModelPage"}}{{> "htmTitleComputateVertxBaseModelPage"}}{{> "htmMetaComputateVertxBaseModelPage"}}{{> "htmStyleComputateVertxBaseModelPage"}}{{> "htmScriptsComputateVertxBaseModelPage"}}{{> "htmScriptComputateVertxBaseModelPage"}}{{/inline}}
-{{#*inline "htmBodyCount0ComputateVertxBaseModelPage"}}		<!-- #*inline "htmBodyCount0ComputateVertxBaseModelPage" -->
+{{#*inline "htmUrlBaseModel"}}{{pageUri}}?q={{query.q}}&amp;rows={{#if rows}}{{rows}}{{else}}{{pagination.rows}}{{/if}}&amp;rows={{#if start}}{{start}}{{else}}{{pagination.start}}{{/if}}{{#each query.fq}}{{#eq fq this}}{{else}}&fq={{fq}}:{{val}}{{/eq}}{{/each}}{{#each query.sort}}{{#eq sort this}}{{else}}&sort={{var}} {{order}}{{/eq}}{{/each}}{{/inline}}
+{{#*inline "htmHeadBaseModelPage"}}{{> "htmTitleBaseModelPage"}}{{> "htmMetaBaseModelPage"}}{{> "htmStyleBaseModelPage"}}{{> "htmScriptsBaseModelPage"}}{{> "htmScriptBaseModelPage"}}{{/inline}}
+{{#*inline "htmBodyCount0BaseModelPage"}}		<!-- #*inline "htmBodyCount0BaseModelPage" -->
 		<h1>
 			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3- w3-hover-">
 				{{#if contextIconCssClasses}}
@@ -49,7 +49,7 @@
 			</span>
 		</h2>
 {{/inline}}
-{{#*inline "htmBodyCount1AllComputateVertxBaseModelPage"}}		<!-- #*inline "htmBodyCount1AllComputateVertxBaseModelPage" -->
+{{#*inline "htmBodyCount1AllBaseModelPage"}}		<!-- #*inline "htmBodyCount1AllBaseModelPage" -->
 		<h1 class="w3-center ">
 			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-block w3- w3-hover-">
 			{{#if contextIconCssClasses}}
@@ -60,12 +60,12 @@
 		</h1>
 		<h2 class="w3-center ">
 			<span class="w3-bar-item w3-padding w3-center w3-block w3-">
-				<span class="">{{computateVertxBaseModel_.objectTitle}}</span>
+				<span class="">{{BaseModel_.objectTitle}}</span>
 			</span>
 		</h2>
 {{#block "htmForm"}}{{/block}}
 {{/inline}}
-{{#*inline "htmBodyCount1ComputateVertxBaseModelPage"}}		<!-- #*inline "htmBodyCount1ComputateVertxBaseModelPage" -->
+{{#*inline "htmBodyCount1BaseModelPage"}}		<!-- #*inline "htmBodyCount1BaseModelPage" -->
 		<h1>
 			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3- w3-hover-">
 	{{#if contextIconCssClasses}}
@@ -101,9 +101,9 @@
 	{{/if}}
 			<span>{{ pagination.startNum }} - {{ pagination.endNum }} of {{ pagination.foundNum }}</span>
 		</div>
-{{> "table1ComputateVertxBaseModelPage"}}
+{{> "table1BaseModelPage"}}
 {{/inline}}
-{{#*inline "htmBodyAllComputateVertxBaseModelPage"}}		<!-- #*inline "htmBodyAllComputateVertxBaseModelPage" -->
+{{#*inline "htmBodyAllBaseModelPage"}}		<!-- #*inline "htmBodyAllBaseModelPage" -->
 		<h1>
 			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3- w3-hover-">
 	{{#if contextIconCssClasses}}
@@ -140,30 +140,30 @@
 	{{/if}}
 				<span>{{ pagination.startNum }} - {{ pagination.endNum }} of {{ pagination.foundNum }}</span>
 			</div>
-{{> "table1ComputateVertxBaseModelPage"}}
+{{> "table1BaseModelPage"}}
 		</div>
 {{/inline}}
-{{#*inline "htmFormComputateVertxBaseModelPage"}}	{{#if pk}}
+{{#*inline "htmFormBaseModelPage"}}	{{#if pk}}
 		<!-- #*inline "htmForm" -->
-		<form action="" id="ComputateVertxBaseModelForm" style="display: inline-block; width: 100%; " onsubmit="event.preventDefault(); return false; ">
+		<form action="" id="BaseModelForm" style="display: inline-block; width: 100%; " onsubmit="event.preventDefault(); return false; ">
 			<input name="pk" class="valuePk" type="hidden" value="{{pk}}"/>
 			<input name="focusId" type="hidden"/>
 		</form>
-{{#block "htmForm_searchpageComputateVertxBaseModel"}}{{/block}}
+{{#block "htmForm_searchpageBaseModel"}}{{/block}}
 	{{/if}}
 {{/inline}}
-{{#*inline "htmBodyStartComputateVertxBaseModelPage"}}
+{{#*inline "htmBodyStartBaseModelPage"}}
 {{> "htmBodyStartComputateVertxPageLayout"}}
 {{/inline}}
-{{#*inline "htmBodyEndComputateVertxBaseModelPage"}}
+{{#*inline "htmBodyEndBaseModelPage"}}
 {{> "htmBodyEndComputateVertxPageLayout"}}
 {{/inline}}
-{{#*inline "htmBodyComputateVertxBaseModelPage"}}
+{{#*inline "htmBodyBaseModelPage"}}
 {{#block "htmBodyStart"}}{{/block}}
-	{{#eq computateVertxBaseModelCount int0}}
+	{{#eq BaseModelCount int0}}
 {{#block "htmBodyCount0"}}{{/block}}
 	{{else}}
-		{{#eq computateVertxBaseModelCount int1}}
+		{{#eq BaseModelCount int1}}
 			{{#eq params.query.q "*:*"}}
 {{#block "htmBodyCount1All"}}{{/block}}
 			{{else}}
@@ -176,34 +176,34 @@
 {{#block "htmForms"}}{{/block}}
 {{#block "htmBodyEnd"}}{{/block}}
 {{/inline}}
-{{#*inline "table1ComputateVertxBaseModelPage"}}
+{{#*inline "table1BaseModelPage"}}
 		<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable ">
-			{{> table2ComputateVertxBaseModelPage}}
+			{{> table2BaseModelPage}}
 		</table>
 {{/inline}}
-{{#*inline "table2ComputateVertxBaseModelPage"}}
-		{{> "thead1ComputateVertxBaseModelPage"}}
-		{{> "tbody1ComputateVertxBaseModelPage"}}
-		{{> "tfoot1ComputateVertxBaseModelPage"}}
+{{#*inline "table2BaseModelPage"}}
+		{{> "thead1BaseModelPage"}}
+		{{> "tbody1BaseModelPage"}}
+		{{> "tfoot1BaseModelPage"}}
 	{{/inline}}
-{{#*inline "thead1ComputateVertxBaseModelPage"}}
+{{#*inline "thead1BaseModelPage"}}
 		<thead class="w3- w3-hover-">
-			{{> thead2ComputateVertxBaseModelPage}}
+			{{> thead2BaseModelPage}}
 		</thead>
 	{{/inline}}
-{{#*inline "thead2ComputateVertxBaseModelPage"}}
+{{#*inline "thead2BaseModelPage"}}
 			<tr>
 				<th>created</th>
 				<th></th>
 			</tr>
 {{/inline}}
-{{#*inline "tbody1ComputateVertxBaseModelPage"}}
+{{#*inline "tbody1BaseModelPage"}}
 		<tbody>
-			{{> tbody2ComputateVertxBaseModelPage}}
+			{{> tbody2BaseModelPage}}
 		</tbody>
 {{/inline}}
-{{#*inline "tbody2ComputateVertxBaseModelPage"}}
-		{{#each listComputateVertxBaseModel}}
+{{#*inline "tbody2BaseModelPage"}}
+		{{#each listBaseModel}}
 			<tr>
 					<td>
 						<a href="{{pageUrlPk}}">
@@ -218,12 +218,12 @@
 			</tr>
 		{{/each}}
 {{/inline}}
-{{#*inline "tfoot1ComputateVertxBaseModelPage"}}
+{{#*inline "tfoot1BaseModelPage"}}
 		<tfoot class="w3- w3-hover-">
-			{{> tfoot2ComputateVertxBaseModelPage}}
+			{{> tfoot2BaseModelPage}}
 		</tfoot>
 {{/inline}}
-{{#*inline "tfoot2ComputateVertxBaseModelPage"}}
+{{#*inline "tfoot2BaseModelPage"}}
 		<tr>
 			{{#if getColumnCreated}}
 				<td>
@@ -235,13 +235,13 @@
 			{{/if}}
 		</tr>
 	{{/inline}}
-{{#*inline "htmFormsComputateVertxBaseModelPage"}}
+{{#*inline "htmFormsBaseModelPage"}}
 	{{#ifContainsAnyRoles roles rolesRequired}}
-		{{#eq computateVertxBaseModelCount int1}}
+		{{#eq BaseModelCount int1}}
 		<button
 			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3- "
-			id="refreshComputateVertxBaseModelGenPage"
-			onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pk:{{pk}}' } ], {}, function() { addGlow($('#refreshComputateVertxBaseModelGenPage')); }, function() { addError($('#refreshComputateVertxBaseModelGenPage')); }); return false; ">
+			id="refreshBaseModelGenPage"
+			onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pk:{{pk}}' } ], {}, function() { addGlow($('#refreshBaseModelGenPage')); }, function() { addError($('#refreshBaseModelGenPage')); }); return false; ">
 			<i class="fas fa-sync-alt "></i>
 			refresh 
 		</button>
@@ -251,11 +251,11 @@
 	{{/ifContainsAnyRoles}}
 {{#block "htmSuggested"}}{{/block}}
 {{/inline}}
-{{#*inline "htmSuggestedComputateVertxBaseModelPage"}}
+{{#*inline "htmSuggestedBaseModelPage"}}
 			{{#ifContainsAnyRoles roles rolesRequired}}
 					<div class="">
-						<button id="refreshComputateVertxBaseModelGenPage{{id}}" class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3- "
-							onclick="patch{{classSimpleName}}Vals([], {}, function() { addGlow($('#refreshComputateVertxBaseModelGenPage{{id}}')); }, function() { addError($('#refreshComputateVertxBaseModelGenPage{{id}}')); }); "
+						<button id="refreshBaseModelGenPage{{id}}" class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3- "
+							onclick="patch{{classSimpleName}}Vals([], {}, function() { addGlow($('#refreshBaseModelGenPage{{id}}')); }, function() { addError($('#refreshBaseModelGenPage{{id}}')); }); "
 							>
 							<i class="fas fa-sync-alt "></i>
 							refresh 
@@ -272,13 +272,13 @@
 			<div class="w3-bar ">
 				<input
 					type="text"
-					class="suggestComputateVertxBaseModel w3-input w3-border w3-bar-item "
-					name="suggestComputateVertxBaseModel"
-					id="suggestComputateVertxBaseModel{{id}}"
+					class="suggestBaseModel w3-input w3-border w3-bar-item "
+					name="suggestBaseModel"
+					id="suggestBaseModel{{id}}"
 					autocomplete="off"
-					oninput="suggestComputateVertxBaseModelObjectSuggest( [ { 'name': 'q', 'value': 'objectSuggest:' + $(this).val() }, { 'name': 'rows', 'value': '10' }, { 'name': 'fl', 'value': 'pk,pageUrlPk,objectTitle' } ], $('#suggestListComputateVertxBaseModel{{id}}'), {{pk}}; "
+					oninput="suggestBaseModelObjectSuggest( [ { 'name': 'q', 'value': 'objectSuggest:' + $(this).val() }, { 'name': 'rows', 'value': '10' }, { 'name': 'fl', 'value': 'pk,pageUrlPk,objectTitle' } ], $('#suggestListBaseModel{{id}}'), {{pk}}; "
 					onkeyup="if (event.keyCode === 13) { event.preventDefault(); window.location.href = 'null?q={{query1}}:' + encodeURIComponent(this.value) + '{{fqs}}{{sorts}}&amp;rows={{start2}}&amp;rows={{rows1}}"
-				{{#if listComputateVertxBaseModel}}
+				{{#if listBaseModel}}
 					value="{{query2}}"
 				{{/if}}
 				/>
@@ -291,7 +291,7 @@
 			<div>
 			<div class="w3-cell-row ">
 				<div class="w3-cell w3-left-align w3-cell-top ">
-					<ul class="w3-ul w3-hoverable " id="suggestListComputateVertxBaseModel{{id}}">
+					<ul class="w3-ul w3-hoverable " id="suggestListBaseModel{{id}}">
 					</ul>
 				</div>
 			</div>
@@ -328,14 +328,14 @@
 
 {{#*inline "inputPk"}}
 	{{#eq 'Page' classApiMethodMethod}}
-														<span class="varComputateVertxBaseModel{{pk}}Pk ">{{computateVertxBaseModel_.pk}}</span>
+														<span class="varBaseModel{{pk}}Pk ">{{BaseModel_.pk}}</span>
 	{{/eq}}
 {{/inline}}
 
 {{#*inline "htmInheritPk"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
-										<div id="suggest{{classApiMethodMethod}}ComputateVertxBaseModelInheritPk">
+										<div id="suggest{{classApiMethodMethod}}BaseModelInheritPk">
 											<div class="w3-card ">
 												<div class="w3-cell-row w3-padding ">
 													<div class="w3-cell ">
@@ -346,7 +346,7 @@
 																<button
 																		tabindex="-1"
 																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3- "
-																		onclick="removeGlow($('#{{classApiMethodMethod}}_inheritPk')); $('#{{classApiMethodMethod}}_inheritPk').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ComputateVertxBaseModelForm :input[name=pk]').val() }], 'setInheritPk', null, function() { addGlow($('#{{classApiMethodMethod}}_inheritPk')); }, function() { addError($('#{{classApiMethodMethod}}_inheritPk')); }); "
+																		onclick="removeGlow($('#{{classApiMethodMethod}}_inheritPk')); $('#{{classApiMethodMethod}}_inheritPk').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#BaseModelForm :input[name=pk]').val() }], 'setInheritPk', null, function() { addGlow($('#{{classApiMethodMethod}}_inheritPk')); }, function() { addError($('#{{classApiMethodMethod}}_inheritPk')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
 																</button>
@@ -364,14 +364,14 @@
 															type="text"
 															id="{{classApiMethodMethod}}_inheritPk"
 	{{#eq "Page" classApiMethodMethod}}
-																class="setInheritPk classComputateVertxBaseModel inputComputateVertxBaseModel{{pk}}InheritPk w3-input w3-border "
+																class="setInheritPk classBaseModel inputBaseModel{{pk}}InheritPk w3-input w3-border "
 																name="setInheritPk"
 	{{else}}
 		{{#eq "PATCH" classApiMethodMethod}}
-																class="setInheritPk classComputateVertxBaseModel inputComputateVertxBaseModel{{pk}}InheritPk w3-input w3-border "
+																class="setInheritPk classBaseModel inputBaseModel{{pk}}InheritPk w3-input w3-border "
 																name="setInheritPk"
 		{{else}}
-																class="valueInheritPk w3-input w3-border classComputateVertxBaseModel inputComputateVertxBaseModel{{pk}}InheritPk w3-input w3-border "
+																class="valueInheritPk w3-input w3-border classBaseModel inputBaseModel{{pk}}InheritPk w3-input w3-border "
 																name="inheritPk"
 		{{/eq}}
 	{{/eq}}
@@ -380,7 +380,7 @@
 																onchange="patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:{{pk}}' }], 'setInheritPk', $(this).val(), function() { addGlow($('#{{classApiMethodMethod}}_inheritPk')); }, function() { addError($('#{{classApiMethodMethod}}_inheritPk')); }); "
 	{{/eq}}
 	{{#eq "Page" classApiMethodMethod}}
-															value="{{computateVertxBaseModel_.inheritPk}}"
+															value="{{BaseModel_.inheritPk}}"
 	{{/eq}}
 														/>
 
@@ -389,7 +389,7 @@
 {{#*inline "htmCreated"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
-										<div id="suggest{{classApiMethodMethod}}ComputateVertxBaseModelCreated">
+										<div id="suggest{{classApiMethodMethod}}BaseModelCreated">
 											<div class="w3-card ">
 												<div class="w3-cell-row w3-">
 													<label for="{{classApiMethodMethod}}_created">created</label>
@@ -407,7 +407,7 @@
 
 {{#*inline "inputCreated"}}
 	{{#eq 'Page' classApiMethodMethod}}
-														<span class="varComputateVertxBaseModel{{pk}}Created " title="{{formatZonedDateTime computateVertxBaseModel_.created 'EEEE MMMM d yyyy H:mm:ss.SSS zz VV' requestLocaleId requestZoneId}}">{{formatZonedDateTime computateVertxBaseModel_.created 'EEE MMM d yyyy h:mm a zz' requestLocaleId requestZoneId}}</span>
+														<span class="varBaseModel{{pk}}Created " title="{{formatZonedDateTime BaseModel_.created 'EEEE MMMM d yyyy H:mm:ss.SSS zz VV' requestLocaleId requestZoneId}}">{{formatZonedDateTime BaseModel_.created 'EEE MMM d yyyy h:mm a zz' requestLocaleId requestZoneId}}</span>
 	{{/eq}}
 {{/inline}}
 
@@ -436,14 +436,14 @@
 
 {{#*inline "inputModified"}}
 	{{#eq 'Page' classApiMethodMethod}}
-														<span class="varComputateVertxBaseModel{{pk}}Modified " title="{{formatZonedDateTime computateVertxBaseModel_.modified 'EEEE MMMM d yyyy H:mm:ss.SSS zz VV' requestLocaleId requestZoneId}}">{{formatZonedDateTime computateVertxBaseModel_.modified 'EEE MMM d yyyy h:mm a zz' requestLocaleId requestZoneId}}</span>
+														<span class="varBaseModel{{pk}}Modified " title="{{formatZonedDateTime BaseModel_.modified 'EEEE MMMM d yyyy H:mm:ss.SSS zz VV' requestLocaleId requestZoneId}}">{{formatZonedDateTime BaseModel_.modified 'EEE MMM d yyyy h:mm a zz' requestLocaleId requestZoneId}}</span>
 	{{/eq}}
 {{/inline}}
 
 {{#*inline "htmArchived"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
-										<div id="suggest{{classApiMethodMethod}}ComputateVertxBaseModelArchived">
+										<div id="suggest{{classApiMethodMethod}}BaseModelArchived">
 											<div class="w3-card ">
 												<div class="w3-cell-row w3-">
 													<label for="{{classApiMethodMethod}}_archived">archived</label>
@@ -470,14 +470,14 @@
 															id="{{classApiMethodMethod}}_archived"
 	{{/eq}}
 	{{#eq 'Page' classApiMethodMethod}}
-															class="classComputateVertxBaseModel inputComputateVertxBaseModel{{pk}}Archived w3-input w3-border "
+															class="classBaseModel inputBaseModel{{pk}}Archived w3-input w3-border "
 															name="setArchived"
 	{{else}}
 		{{#eq 'Page' classApiMethodMethod}}
-																class="classComputateVertxBaseModel inputComputateVertxBaseModel{{pk}}Archived w3-input w3-border "
+																class="classBaseModel inputBaseModel{{pk}}Archived w3-input w3-border "
 																name="setArchived"
 		{{else}}
-																class="setArchived valueArchived classComputateVertxBaseModel inputComputateVertxBaseModel{{pk}}Archived w3-input w3-border "
+																class="setArchived valueArchived classBaseModel inputBaseModel{{pk}}Archived w3-input w3-border "
 																name="setArchived"
 		{{/eq}}
 	{{/eq}}
@@ -485,7 +485,7 @@
 															onchange="patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:{{pk}}' }], 'setArchived', $(this).prop('checked'), function() { addGlow($('#{{classApiMethodMethod}}_archived')); }, function() { addError($('#{{classApiMethodMethod}}_archived')); }); "
 	{{/eq}}
 	{{#eq 'Page' classApiMethodMethod}}
-		{{#if computateVertxBaseModel_.archived}}
+		{{#if BaseModel_.archived}}
 																checked="checked"
 		{{/if}}
 																/>
@@ -502,7 +502,7 @@
 {{#*inline "htmDeleted"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
-										<div id="suggest{{classApiMethodMethod}}ComputateVertxBaseModelDeleted">
+										<div id="suggest{{classApiMethodMethod}}BaseModelDeleted">
 											<div class="w3-card ">
 												<div class="w3-cell-row w3-">
 													<label for="{{classApiMethodMethod}}_deleted">deleted</label>
@@ -529,14 +529,14 @@
 															id="{{classApiMethodMethod}}_deleted"
 	{{/eq}}
 	{{#eq 'Page' classApiMethodMethod}}
-															class="classComputateVertxBaseModel inputComputateVertxBaseModel{{pk}}Deleted w3-input w3-border "
+															class="classBaseModel inputBaseModel{{pk}}Deleted w3-input w3-border "
 															name="setDeleted"
 	{{else}}
 		{{#eq 'Page' classApiMethodMethod}}
-																class="classComputateVertxBaseModel inputComputateVertxBaseModel{{pk}}Deleted w3-input w3-border "
+																class="classBaseModel inputBaseModel{{pk}}Deleted w3-input w3-border "
 																name="setDeleted"
 		{{else}}
-																class="setDeleted valueDeleted classComputateVertxBaseModel inputComputateVertxBaseModel{{pk}}Deleted w3-input w3-border "
+																class="setDeleted valueDeleted classBaseModel inputBaseModel{{pk}}Deleted w3-input w3-border "
 																name="setDeleted"
 		{{/eq}}
 	{{/eq}}
@@ -544,7 +544,7 @@
 															onchange="patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:{{pk}}' }], 'setDeleted', $(this).prop('checked'), function() { addGlow($('#{{classApiMethodMethod}}_deleted')); }, function() { addError($('#{{classApiMethodMethod}}_deleted')); }); "
 	{{/eq}}
 	{{#eq 'Page' classApiMethodMethod}}
-		{{#if computateVertxBaseModel_.deleted}}
+		{{#if BaseModel_.deleted}}
 																checked="checked"
 		{{/if}}
 																/>
@@ -561,7 +561,7 @@
 {{#*inline "htmSessionId"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
-										<div id="suggest{{classApiMethodMethod}}ComputateVertxBaseModelSessionId">
+										<div id="suggest{{classApiMethodMethod}}BaseModelSessionId">
 											<div class="w3-card ">
 												<div class="w3-cell-row w3-padding ">
 													<div class="w3-cell ">
@@ -576,14 +576,14 @@
 
 {{#*inline "inputSessionId"}}
 	{{#eq 'Page' classApiMethodMethod}}
-														<span class="varComputateVertxBaseModel{{pk}}SessionId ">{{computateVertxBaseModel_.sessionId}}</span>
+														<span class="varBaseModel{{pk}}SessionId ">{{BaseModel_.sessionId}}</span>
 	{{/eq}}
 {{/inline}}
 
 {{#*inline "htmUserKey"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
-										<div id="suggest{{classApiMethodMethod}}ComputateVertxBaseModelUserKey">
+										<div id="suggest{{classApiMethodMethod}}BaseModelUserKey">
 											<div class="w3-card ">
 												<div class="w3-cell-row w3-padding ">
 													<div class="w3-cell ">
@@ -598,7 +598,7 @@
 
 {{#*inline "inputUserKey"}}
 	{{#eq 'Page' classApiMethodMethod}}
-														<span class="varComputateVertxBaseModel{{pk}}UserKey ">{{computateVertxBaseModel_.userKey}}</span>
+														<span class="varBaseModel{{pk}}UserKey ">{{BaseModel_.userKey}}</span>
 	{{/eq}}
 {{/inline}}
 
@@ -624,7 +624,7 @@
 
 {{#*inline "inputObjectTitle"}}
 	{{#eq 'Page' classApiMethodMethod}}
-														<span class="varComputateVertxBaseModel{{pk}}ObjectTitle ">{{computateVertxBaseModel_.objectTitle}}</span>
+														<span class="varBaseModel{{pk}}ObjectTitle ">{{BaseModel_.objectTitle}}</span>
 	{{/eq}}
 {{/inline}}
 
@@ -653,6 +653,6 @@
 
 {{#*inline "inputObjectId"}}
 	{{#eq 'Page' classApiMethodMethod}}
-														<span class="varComputateVertxBaseModel{{pk}}ObjectId ">{{computateVertxBaseModel_.objectId}}</span>
+														<span class="varBaseModel{{pk}}ObjectId ">{{BaseModel_.objectId}}</span>
 	{{/eq}}
 {{/inline}}

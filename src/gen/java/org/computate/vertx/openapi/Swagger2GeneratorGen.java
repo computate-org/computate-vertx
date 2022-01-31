@@ -203,16 +203,16 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSolrAppName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchAppName(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrAppName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrAppName(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqAppName(ComputateVertxSiteRequest siteRequest_, String o) {
-		return Swagger2Generator.staticSolrStrAppName(siteRequest_, Swagger2Generator.staticSolrAppName(siteRequest_, Swagger2Generator.staticSetAppName(siteRequest_, o)));
+	public static String staticSearchFqAppName(ComputateVertxSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrAppName(siteRequest_, Swagger2Generator.staticSearchAppName(siteRequest_, Swagger2Generator.staticSetAppName(siteRequest_, o)));
 	}
 
 	//////////////////
@@ -252,16 +252,16 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSolrLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
-		return Swagger2Generator.staticSolrStrLanguageName(siteRequest_, Swagger2Generator.staticSolrLanguageName(siteRequest_, Swagger2Generator.staticSetLanguageName(siteRequest_, o)));
+	public static String staticSearchFqLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrLanguageName(siteRequest_, Swagger2Generator.staticSearchLanguageName(siteRequest_, Swagger2Generator.staticSetLanguageName(siteRequest_, o)));
 	}
 
 	/////////////
@@ -301,16 +301,16 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSolrAppPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchAppPath(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrAppPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrAppPath(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqAppPath(ComputateVertxSiteRequest siteRequest_, String o) {
-		return Swagger2Generator.staticSolrStrAppPath(siteRequest_, Swagger2Generator.staticSolrAppPath(siteRequest_, Swagger2Generator.staticSetAppPath(siteRequest_, o)));
+	public static String staticSearchFqAppPath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrAppPath(siteRequest_, Swagger2Generator.staticSearchAppPath(siteRequest_, Swagger2Generator.staticSetAppPath(siteRequest_, o)));
 	}
 
 	////////////////////
@@ -350,16 +350,16 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSolrOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
-		return Swagger2Generator.staticSolrStrOpenApiVersion(siteRequest_, Swagger2Generator.staticSolrOpenApiVersion(siteRequest_, Swagger2Generator.staticSetOpenApiVersion(siteRequest_, o)));
+	public static String staticSearchFqOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrOpenApiVersion(siteRequest_, Swagger2Generator.staticSearchOpenApiVersion(siteRequest_, Swagger2Generator.staticSetOpenApiVersion(siteRequest_, o)));
 	}
 
 	//////////////////////////
@@ -407,16 +407,16 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static Integer staticSolrOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static Integer staticSearchOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, Integer o) {
 		return o;
 	}
 
-	public static String staticSolrStrOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static String staticSearchStrOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, Integer o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, String o) {
-		return Swagger2Generator.staticSolrStrOpenApiVersionNumber(siteRequest_, Swagger2Generator.staticSolrOpenApiVersionNumber(siteRequest_, Swagger2Generator.staticSetOpenApiVersionNumber(siteRequest_, o)));
+	public static String staticSearchFqOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrOpenApiVersionNumber(siteRequest_, Swagger2Generator.staticSearchOpenApiVersionNumber(siteRequest_, Swagger2Generator.staticSetOpenApiVersionNumber(siteRequest_, o)));
 	}
 
 	////////////////
@@ -464,16 +464,16 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static Integer staticSolrTabsSchema(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static Integer staticSearchTabsSchema(ComputateVertxSiteRequest siteRequest_, Integer o) {
 		return o;
 	}
 
-	public static String staticSolrStrTabsSchema(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static String staticSearchStrTabsSchema(ComputateVertxSiteRequest siteRequest_, Integer o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqTabsSchema(ComputateVertxSiteRequest siteRequest_, String o) {
-		return Swagger2Generator.staticSolrStrTabsSchema(siteRequest_, Swagger2Generator.staticSolrTabsSchema(siteRequest_, Swagger2Generator.staticSetTabsSchema(siteRequest_, o)));
+	public static String staticSearchFqTabsSchema(ComputateVertxSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrTabsSchema(siteRequest_, Swagger2Generator.staticSearchTabsSchema(siteRequest_, Swagger2Generator.staticSetTabsSchema(siteRequest_, o)));
 	}
 
 	////////////////
@@ -513,16 +513,16 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSolrApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
-		return Swagger2Generator.staticSolrStrApiVersion(siteRequest_, Swagger2Generator.staticSolrApiVersion(siteRequest_, Swagger2Generator.staticSetApiVersion(siteRequest_, o)));
+	public static String staticSearchFqApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrApiVersion(siteRequest_, Swagger2Generator.staticSearchApiVersion(siteRequest_, Swagger2Generator.staticSetApiVersion(siteRequest_, o)));
 	}
 
 	/////////////////////
@@ -562,16 +562,16 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSolrOpenApiYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchOpenApiYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSolrStrOpenApiYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrOpenApiYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqOpenApiYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
-		return Swagger2Generator.staticSolrStrOpenApiYamlPath(siteRequest_, Swagger2Generator.staticSolrOpenApiYamlPath(siteRequest_, Swagger2Generator.staticSetOpenApiYamlPath(siteRequest_, o)));
+	public static String staticSearchFqOpenApiYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrOpenApiYamlPath(siteRequest_, Swagger2Generator.staticSearchOpenApiYamlPath(siteRequest_, Swagger2Generator.staticSetOpenApiYamlPath(siteRequest_, o)));
 	}
 
 	/////////////////////
@@ -950,90 +950,90 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	}
 
 	////////////////
-	// staticSolr //
+	// staticSearch //
 	////////////////
 
-	public static Object staticSolrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrSwagger2Generator(entityVar,  siteRequest_, o);
+	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchSwagger2Generator(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSolrSwagger2Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchSwagger2Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "appName":
-			return Swagger2Generator.staticSolrAppName(siteRequest_, (String)o);
+			return Swagger2Generator.staticSearchAppName(siteRequest_, (String)o);
 		case "languageName":
-			return Swagger2Generator.staticSolrLanguageName(siteRequest_, (String)o);
+			return Swagger2Generator.staticSearchLanguageName(siteRequest_, (String)o);
 		case "appPath":
-			return Swagger2Generator.staticSolrAppPath(siteRequest_, (String)o);
+			return Swagger2Generator.staticSearchAppPath(siteRequest_, (String)o);
 		case "openApiVersion":
-			return Swagger2Generator.staticSolrOpenApiVersion(siteRequest_, (String)o);
+			return Swagger2Generator.staticSearchOpenApiVersion(siteRequest_, (String)o);
 		case "openApiVersionNumber":
-			return Swagger2Generator.staticSolrOpenApiVersionNumber(siteRequest_, (Integer)o);
+			return Swagger2Generator.staticSearchOpenApiVersionNumber(siteRequest_, (Integer)o);
 		case "tabsSchema":
-			return Swagger2Generator.staticSolrTabsSchema(siteRequest_, (Integer)o);
+			return Swagger2Generator.staticSearchTabsSchema(siteRequest_, (Integer)o);
 		case "apiVersion":
-			return Swagger2Generator.staticSolrApiVersion(siteRequest_, (String)o);
+			return Swagger2Generator.staticSearchApiVersion(siteRequest_, (String)o);
 		case "openApiYamlPath":
-			return Swagger2Generator.staticSolrOpenApiYamlPath(siteRequest_, (String)o);
+			return Swagger2Generator.staticSearchOpenApiYamlPath(siteRequest_, (String)o);
 			default:
 				return null;
 		}
 	}
 
 	///////////////////
-	// staticSolrStr //
+	// staticSearchStr //
 	///////////////////
 
-	public static String staticSolrStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrStrSwagger2Generator(entityVar,  siteRequest_, o);
+	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchStrSwagger2Generator(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrStrSwagger2Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrSwagger2Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "appName":
-			return Swagger2Generator.staticSolrStrAppName(siteRequest_, (String)o);
+			return Swagger2Generator.staticSearchStrAppName(siteRequest_, (String)o);
 		case "languageName":
-			return Swagger2Generator.staticSolrStrLanguageName(siteRequest_, (String)o);
+			return Swagger2Generator.staticSearchStrLanguageName(siteRequest_, (String)o);
 		case "appPath":
-			return Swagger2Generator.staticSolrStrAppPath(siteRequest_, (String)o);
+			return Swagger2Generator.staticSearchStrAppPath(siteRequest_, (String)o);
 		case "openApiVersion":
-			return Swagger2Generator.staticSolrStrOpenApiVersion(siteRequest_, (String)o);
+			return Swagger2Generator.staticSearchStrOpenApiVersion(siteRequest_, (String)o);
 		case "openApiVersionNumber":
-			return Swagger2Generator.staticSolrStrOpenApiVersionNumber(siteRequest_, (Integer)o);
+			return Swagger2Generator.staticSearchStrOpenApiVersionNumber(siteRequest_, (Integer)o);
 		case "tabsSchema":
-			return Swagger2Generator.staticSolrStrTabsSchema(siteRequest_, (Integer)o);
+			return Swagger2Generator.staticSearchStrTabsSchema(siteRequest_, (Integer)o);
 		case "apiVersion":
-			return Swagger2Generator.staticSolrStrApiVersion(siteRequest_, (String)o);
+			return Swagger2Generator.staticSearchStrApiVersion(siteRequest_, (String)o);
 		case "openApiYamlPath":
-			return Swagger2Generator.staticSolrStrOpenApiYamlPath(siteRequest_, (String)o);
+			return Swagger2Generator.staticSearchStrOpenApiYamlPath(siteRequest_, (String)o);
 			default:
 				return null;
 		}
 	}
 
 	//////////////////
-	// staticSolrFq //
+	// staticSearchFq //
 	//////////////////
 
-	public static String staticSolrFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
-		return staticSolrFqSwagger2Generator(entityVar,  siteRequest_, o);
+	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+		return staticSearchFqSwagger2Generator(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrFqSwagger2Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqSwagger2Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "appName":
-			return Swagger2Generator.staticSolrFqAppName(siteRequest_, o);
+			return Swagger2Generator.staticSearchFqAppName(siteRequest_, o);
 		case "languageName":
-			return Swagger2Generator.staticSolrFqLanguageName(siteRequest_, o);
+			return Swagger2Generator.staticSearchFqLanguageName(siteRequest_, o);
 		case "appPath":
-			return Swagger2Generator.staticSolrFqAppPath(siteRequest_, o);
+			return Swagger2Generator.staticSearchFqAppPath(siteRequest_, o);
 		case "openApiVersion":
-			return Swagger2Generator.staticSolrFqOpenApiVersion(siteRequest_, o);
+			return Swagger2Generator.staticSearchFqOpenApiVersion(siteRequest_, o);
 		case "openApiVersionNumber":
-			return Swagger2Generator.staticSolrFqOpenApiVersionNumber(siteRequest_, o);
+			return Swagger2Generator.staticSearchFqOpenApiVersionNumber(siteRequest_, o);
 		case "tabsSchema":
-			return Swagger2Generator.staticSolrFqTabsSchema(siteRequest_, o);
+			return Swagger2Generator.staticSearchFqTabsSchema(siteRequest_, o);
 		case "apiVersion":
-			return Swagger2Generator.staticSolrFqApiVersion(siteRequest_, o);
+			return Swagger2Generator.staticSearchFqApiVersion(siteRequest_, o);
 		case "openApiYamlPath":
-			return Swagger2Generator.staticSolrFqOpenApiYamlPath(siteRequest_, o);
+			return Swagger2Generator.staticSearchFqOpenApiYamlPath(siteRequest_, o);
 			default:
 				return null;
 		}

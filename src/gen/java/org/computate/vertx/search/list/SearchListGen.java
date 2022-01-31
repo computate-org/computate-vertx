@@ -86,40 +86,6 @@ public abstract class SearchListGen<DEV> {
 		return (SearchList)this;
 	}
 
-	/////////////
-	// request //
-	/////////////
-
-	/**	 The entity request
-	 *	 It is constructed before being initialized with the constructor by default. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected SearchRequest request = new SearchRequest();
-
-	/**	<br> The entity request
-	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=classeEtendGen_indexed_boolean:true&fq=entiteVar_enUS_indexed_string:request">Find the entity request in Solr</a>
-	 * <br>
-	 * @param o is the entity already constructed. 
-	 **/
-	protected abstract void _request(SearchRequest o);
-
-	public SearchRequest getRequest() {
-		return request;
-	}
-
-	public void setRequest(SearchRequest request) {
-		this.request = request;
-	}
-	public static SearchRequest staticSetRequest(ComputateVertxSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected SearchList requestInit() {
-		_request(request);
-		return (SearchList)this;
-	}
-
 	//////////////////
 	// siteRequest_ //
 	//////////////////
@@ -200,16 +166,16 @@ public abstract class SearchListGen<DEV> {
 		return (SearchList)this;
 	}
 
-	public static Boolean staticSolrStore(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchStore(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSolrStrStore(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrStore(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqStore(ComputateVertxSiteRequest siteRequest_, String o) {
-		return SearchList.staticSolrStrStore(siteRequest_, SearchList.staticSolrStore(siteRequest_, SearchList.staticSetStore(siteRequest_, o)));
+	public static String staticSearchFqStore(ComputateVertxSiteRequest siteRequest_, String o) {
+		return SearchList.staticSearchStrStore(siteRequest_, SearchList.staticSearchStore(siteRequest_, SearchList.staticSetStore(siteRequest_, o)));
 	}
 
 	//////////////
@@ -254,16 +220,51 @@ public abstract class SearchListGen<DEV> {
 		return (SearchList)this;
 	}
 
-	public static Boolean staticSolrPopulate(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchPopulate(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSolrStrPopulate(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrPopulate(ComputateVertxSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqPopulate(ComputateVertxSiteRequest siteRequest_, String o) {
-		return SearchList.staticSolrStrPopulate(siteRequest_, SearchList.staticSolrPopulate(siteRequest_, SearchList.staticSetPopulate(siteRequest_, o)));
+	public static String staticSearchFqPopulate(ComputateVertxSiteRequest siteRequest_, String o) {
+		return SearchList.staticSearchStrPopulate(siteRequest_, SearchList.staticSearchPopulate(siteRequest_, SearchList.staticSetPopulate(siteRequest_, o)));
+	}
+
+	/////////////
+	// request //
+	/////////////
+
+	/**	 The entity request
+	 *	 It is constructed before being initialized with the constructor by default. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected SearchRequest request = new SearchRequest();
+
+	/**	<br> The entity request
+	 *  It is constructed before being initialized with the constructor by default. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=classeEtendGen_indexed_boolean:true&fq=entiteVar_enUS_indexed_string:request">Find the entity request in Solr</a>
+	 * <br>
+	 * @param o is the entity already constructed. 
+	 **/
+	protected abstract void _request(SearchRequest o);
+
+	public SearchRequest getRequest() {
+		return request;
+	}
+
+	public void setRequest(SearchRequest request) {
+		this.request = request;
+	}
+	public static SearchRequest staticSetRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected SearchList requestInit() {
+		_request(request);
+		request.initDeepForClass(siteRequest_);
+		return (SearchList)this;
 	}
 
 	///////////////////
@@ -464,10 +465,10 @@ public abstract class SearchListGen<DEV> {
 			Promise<Void> promise2 = Promise.promise();
 			try {
 				cInit();
-				requestInit();
 				siteRequest_Init();
 				storeInit();
 				populateInit();
+				requestInit();
 				promise2.complete();
 			} catch(Exception ex) {
 				promise2.fail(ex);
@@ -509,6 +510,8 @@ public abstract class SearchListGen<DEV> {
 	/////////////////
 
 	public void siteRequestSearchList(ComputateVertxSiteRequest siteRequest_) {
+		if(request != null)
+			request.setSiteRequest_(siteRequest_);
 	}
 
 	public void siteRequestForClass(ComputateVertxSiteRequest siteRequest_) {
@@ -541,14 +544,14 @@ public abstract class SearchListGen<DEV> {
 		switch(var) {
 			case "c":
 				return oSearchList.c;
-			case "request":
-				return oSearchList.request;
 			case "siteRequest_":
 				return oSearchList.siteRequest_;
 			case "store":
 				return oSearchList.store;
 			case "populate":
 				return oSearchList.populate;
+			case "request":
+				return oSearchList.request;
 			case "queryResponse":
 				return oSearchList.queryResponse;
 			case "docs":
@@ -606,54 +609,54 @@ public abstract class SearchListGen<DEV> {
 	}
 
 	////////////////
-	// staticSolr //
+	// staticSearch //
 	////////////////
 
-	public static Object staticSolrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrSearchList(entityVar,  siteRequest_, o);
+	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchSearchList(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSolrSearchList(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchSearchList(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "store":
-			return SearchList.staticSolrStore(siteRequest_, (Boolean)o);
+			return SearchList.staticSearchStore(siteRequest_, (Boolean)o);
 		case "populate":
-			return SearchList.staticSolrPopulate(siteRequest_, (Boolean)o);
+			return SearchList.staticSearchPopulate(siteRequest_, (Boolean)o);
 			default:
 				return null;
 		}
 	}
 
 	///////////////////
-	// staticSolrStr //
+	// staticSearchStr //
 	///////////////////
 
-	public static String staticSolrStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrStrSearchList(entityVar,  siteRequest_, o);
+	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchStrSearchList(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrStrSearchList(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrSearchList(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "store":
-			return SearchList.staticSolrStrStore(siteRequest_, (Boolean)o);
+			return SearchList.staticSearchStrStore(siteRequest_, (Boolean)o);
 		case "populate":
-			return SearchList.staticSolrStrPopulate(siteRequest_, (Boolean)o);
+			return SearchList.staticSearchStrPopulate(siteRequest_, (Boolean)o);
 			default:
 				return null;
 		}
 	}
 
 	//////////////////
-	// staticSolrFq //
+	// staticSearchFq //
 	//////////////////
 
-	public static String staticSolrFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
-		return staticSolrFqSearchList(entityVar,  siteRequest_, o);
+	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+		return staticSearchFqSearchList(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrFqSearchList(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqSearchList(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "store":
-			return SearchList.staticSolrFqStore(siteRequest_, o);
+			return SearchList.staticSearchFqStore(siteRequest_, o);
 		case "populate":
-			return SearchList.staticSolrFqPopulate(siteRequest_, o);
+			return SearchList.staticSearchFqPopulate(siteRequest_, o);
 			default:
 				return null;
 		}
@@ -695,20 +698,20 @@ public abstract class SearchListGen<DEV> {
 	}
 
 	public static final String VAR_c = "c";
-	public static final String VAR_request = "request";
 	public static final String VAR_siteRequest_ = "siteRequest_";
 	public static final String VAR_store = "store";
 	public static final String VAR_populate = "populate";
+	public static final String VAR_request = "request";
 	public static final String VAR_queryResponse = "queryResponse";
 	public static final String VAR_docs = "docs";
 	public static final String VAR_list = "list";
 	public static final String VAR_first = "first";
 
 	public static final String DISPLAY_NAME_c = "";
-	public static final String DISPLAY_NAME_request = "";
 	public static final String DISPLAY_NAME_siteRequest_ = "";
 	public static final String DISPLAY_NAME_store = "";
 	public static final String DISPLAY_NAME_populate = "";
+	public static final String DISPLAY_NAME_request = "";
 	public static final String DISPLAY_NAME_queryResponse = "";
 	public static final String DISPLAY_NAME_docs = "";
 	public static final String DISPLAY_NAME_list = "";
@@ -721,14 +724,14 @@ public abstract class SearchListGen<DEV> {
 		switch(var) {
 		case VAR_c:
 			return DISPLAY_NAME_c;
-		case VAR_request:
-			return DISPLAY_NAME_request;
 		case VAR_siteRequest_:
 			return DISPLAY_NAME_siteRequest_;
 		case VAR_store:
 			return DISPLAY_NAME_store;
 		case VAR_populate:
 			return DISPLAY_NAME_populate;
+		case VAR_request:
+			return DISPLAY_NAME_request;
 		case VAR_queryResponse:
 			return DISPLAY_NAME_queryResponse;
 		case VAR_docs:

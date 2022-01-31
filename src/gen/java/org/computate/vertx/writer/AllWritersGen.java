@@ -235,13 +235,13 @@ public abstract class AllWritersGen<DEV> extends Object {
 	}
 
 	////////////////
-	// staticSolr //
+	// staticSearch //
 	////////////////
 
-	public static Object staticSolrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrAllWriters(entityVar,  siteRequest_, o);
+	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchAllWriters(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSolrAllWriters(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchAllWriters(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 			default:
 				return null;
@@ -249,13 +249,13 @@ public abstract class AllWritersGen<DEV> extends Object {
 	}
 
 	///////////////////
-	// staticSolrStr //
+	// staticSearchStr //
 	///////////////////
 
-	public static String staticSolrStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrStrAllWriters(entityVar,  siteRequest_, o);
+	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchStrAllWriters(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrStrAllWriters(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrAllWriters(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 			default:
 				return null;
@@ -263,13 +263,13 @@ public abstract class AllWritersGen<DEV> extends Object {
 	}
 
 	//////////////////
-	// staticSolrFq //
+	// staticSearchFq //
 	//////////////////
 
-	public static String staticSolrFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
-		return staticSolrFqAllWriters(entityVar,  siteRequest_, o);
+	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+		return staticSearchFqAllWriters(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrFqAllWriters(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqAllWriters(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 			default:
 				return null;

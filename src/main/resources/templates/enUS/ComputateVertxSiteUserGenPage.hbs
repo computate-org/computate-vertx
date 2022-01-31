@@ -1,12 +1,12 @@
-{{#*inline "htmTitleComputateVertxSiteUserPage"}}		<!-- inline "htmTitleComputateVertxSiteUserPage" -->
-		<title>{{#if searchListComputateVertxSiteUser_}}{{#eq computateVertxSiteUserCount int1}}{{#eq params.query.q "*:*"}}site user{{else}}site user{{/eq}}{{else}}no site user found{{/eq}}{{else}}site users{{/if}}</title>
+{{#*inline "htmTitleSiteUserPage"}}		<!-- inline "htmTitleSiteUserPage" -->
+		<title>{{#if searchListSiteUser_}}{{#eq SiteUserCount int1}}{{#eq params.query.q "*:*"}}site user{{else}}site user{{/eq}}{{else}}no site user found{{/eq}}{{else}}site users{{/if}}</title>
 {{/inline}}
-{{#*inline "htmMetaComputateVertxSiteUserPage"}}{{> "htmMetaComputateVertxBaseModelPage"}}{{/inline}}
-{{#*inline "htmStyleComputateVertxSiteUserPage"}}{{> "htmStyleComputateVertxBaseModelPage"}}{{/inline}}
-{{#*inline "htmScriptsComputateVertxSiteUserPage"}}{{> "htmScriptsComputateVertxBaseModelPage"}}		<!-- inline "htmScriptsComputateVertxSiteUserPage" -->
-		<script src="{{staticBaseUrl}}/js/enUS/ComputateVertxSiteUserPage.js"></script>
+{{#*inline "htmMetaSiteUserPage"}}{{> "htmMetaBaseModelPage"}}{{/inline}}
+{{#*inline "htmStyleSiteUserPage"}}{{> "htmStyleBaseModelPage"}}{{/inline}}
+{{#*inline "htmScriptsSiteUserPage"}}{{> "htmScriptsBaseModelPage"}}		<!-- inline "htmScriptsSiteUserPage" -->
+		<script src="{{staticBaseUrl}}/js/enUS/SiteUserPage.js"></script>
 {{/inline}}
-{{#*inline "htmScriptComputateVertxSiteUserPage"}}		<!-- inline "htmScriptComputateVertxSiteUserPage" -->
+{{#*inline "htmScriptSiteUserPage"}}		<!-- inline "htmScriptSiteUserPage" -->
 		<script>
 			$(document).ready(function() {
 				document.onkeydown = function(evt) {
@@ -25,13 +25,13 @@
 				var pk = {{#if pk}}{{pk}}{{else}}null{{/if}};
 				if(pk != null) {
 				}
-				websocketComputateVertxSiteUser(websocketComputateVertxSiteUserInner);
+				websocketSiteUser(websocketSiteUserInner);
 			});
 		</script>
 {{/inline}}
-{{#*inline "htmUrlComputateVertxSiteUser"}}{{pageUri}}?q={{query.q}}&amp;rows={{#if rows}}{{rows}}{{else}}{{pagination.rows}}{{/if}}&amp;rows={{#if start}}{{start}}{{else}}{{pagination.start}}{{/if}}{{#each query.fq}}{{#eq fq this}}{{else}}&fq={{fq}}:{{val}}{{/eq}}{{/each}}{{#each query.sort}}{{#eq sort this}}{{else}}&sort={{var}} {{order}}{{/eq}}{{/each}}{{/inline}}
-{{#*inline "htmHeadComputateVertxSiteUserPage"}}{{> "htmTitleComputateVertxSiteUserPage"}}{{> "htmMetaComputateVertxSiteUserPage"}}{{> "htmStyleComputateVertxSiteUserPage"}}{{> "htmScriptsComputateVertxSiteUserPage"}}{{> "htmScriptComputateVertxSiteUserPage"}}{{/inline}}
-{{#*inline "htmBodyCount0ComputateVertxSiteUserPage"}}		<!-- #*inline "htmBodyCount0ComputateVertxSiteUserPage" -->
+{{#*inline "htmUrlSiteUser"}}{{pageUri}}?q={{query.q}}&amp;rows={{#if rows}}{{rows}}{{else}}{{pagination.rows}}{{/if}}&amp;rows={{#if start}}{{start}}{{else}}{{pagination.start}}{{/if}}{{#each query.fq}}{{#eq fq this}}{{else}}&fq={{fq}}:{{val}}{{/eq}}{{/each}}{{#each query.sort}}{{#eq sort this}}{{else}}&sort={{var}} {{order}}{{/eq}}{{/each}}{{/inline}}
+{{#*inline "htmHeadSiteUserPage"}}{{> "htmTitleSiteUserPage"}}{{> "htmMetaSiteUserPage"}}{{> "htmStyleSiteUserPage"}}{{> "htmScriptsSiteUserPage"}}{{> "htmScriptSiteUserPage"}}{{/inline}}
+{{#*inline "htmBodyCount0SiteUserPage"}}		<!-- #*inline "htmBodyCount0SiteUserPage" -->
 		<h1>
 			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-teal w3-hover-teal">
 				{{#if contextIconCssClasses}}
@@ -49,7 +49,7 @@
 			</span>
 		</h2>
 {{/inline}}
-{{#*inline "htmBodyCount1AllComputateVertxSiteUserPage"}}		<!-- #*inline "htmBodyCount1AllComputateVertxSiteUserPage" -->
+{{#*inline "htmBodyCount1AllSiteUserPage"}}		<!-- #*inline "htmBodyCount1AllSiteUserPage" -->
 		<h1 class="w3-center ">
 			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-block w3-teal w3-hover-teal">
 			{{#if contextIconCssClasses}}
@@ -60,12 +60,12 @@
 		</h1>
 		<h2 class="w3-center ">
 			<span class="w3-bar-item w3-padding w3-center w3-block w3-teal">
-				<span class="">{{computateVertxSiteUser_.objectTitle}}</span>
+				<span class="">{{SiteUser_.objectTitle}}</span>
 			</span>
 		</h2>
 {{#block "htmForm"}}{{/block}}
 {{/inline}}
-{{#*inline "htmBodyCount1ComputateVertxSiteUserPage"}}		<!-- #*inline "htmBodyCount1ComputateVertxSiteUserPage" -->
+{{#*inline "htmBodyCount1SiteUserPage"}}		<!-- #*inline "htmBodyCount1SiteUserPage" -->
 		<h1>
 			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-teal w3-hover-teal">
 	{{#if contextIconCssClasses}}
@@ -101,9 +101,9 @@
 	{{/if}}
 			<span>{{ pagination.startNum }} - {{ pagination.endNum }} of {{ pagination.foundNum }}</span>
 		</div>
-{{> "table1ComputateVertxSiteUserPage"}}
+{{> "table1SiteUserPage"}}
 {{/inline}}
-{{#*inline "htmBodyAllComputateVertxSiteUserPage"}}		<!-- #*inline "htmBodyAllComputateVertxSiteUserPage" -->
+{{#*inline "htmBodyAllSiteUserPage"}}		<!-- #*inline "htmBodyAllSiteUserPage" -->
 		<h1>
 			<a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-teal w3-hover-teal">
 	{{#if contextIconCssClasses}}
@@ -140,36 +140,36 @@
 	{{/if}}
 				<span>{{ pagination.startNum }} - {{ pagination.endNum }} of {{ pagination.foundNum }}</span>
 			</div>
-{{> "table1ComputateVertxSiteUserPage"}}
+{{> "table1SiteUserPage"}}
 		</div>
 {{/inline}}
-{{#*inline "htmFormComputateVertxSiteUserPage"}}	{{#if pk}}
+{{#*inline "htmFormSiteUserPage"}}	{{#if pk}}
 		<!-- #*inline "htmForm" -->
-		<form action="" id="ComputateVertxSiteUserForm" style="display: inline-block; width: 100%; " onsubmit="event.preventDefault(); return false; ">
+		<form action="" id="SiteUserForm" style="display: inline-block; width: 100%; " onsubmit="event.preventDefault(); return false; ">
 			<input name="pk" class="valuePk" type="hidden" value="{{pk}}"/>
 			<input name="focusId" type="hidden"/>
 		</form>
-{{#block "htmForm_searchpageComputateVertxSiteUser"}}{{/block}}
+{{#block "htmForm_searchpageSiteUser"}}{{/block}}
 	{{/if}}
 {{/inline}}
-{{#*inline "htmFormComputateVertxSiteUserPage_patchComputateVertxSiteUser"}}
+{{#*inline "htmFormSiteUserPage_patchSiteUser"}}
 		<button
 			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-teal "
-			onclick="$('#patchComputateVertxSiteUserModal').show(); "
+			onclick="$('#patchSiteUserModal').show(); "
 			>
 			<i class="fas fa-edit "></i>
 			Modify site users
 		</button>
-		<div id="patchComputateVertxSiteUserModal" class="w3-modal w3-padding-32 ">
+		<div id="patchSiteUserModal" class="w3-modal w3-padding-32 ">
 			<div class="w3-modal-content ">
 				<div class="w3-card-4 ">
 					<header class="w3-container w3-teal">
 	{{#eq "Page" classApiMethodMethod}}
-						<span class="w3-button w3-display-topright " onclick="$('#patchComputateVertxSiteUserModal').hide(); ">×</span>
+						<span class="w3-button w3-display-topright " onclick="$('#patchSiteUserModal').hide(); ">×</span>
 	{{/eq}}
 						<h2 class="w3-padding ">Modify site users</h2>
 					</header>
-					<div class="" id="patchComputateVertxSiteUserFormValues">
+					<div class="" id="patchSiteUserFormValues">
 							<div class="w3-cell-row ">
 {{> "htmCreated" classApiMethodMethod="PATCH"}}
 							</div>
@@ -183,32 +183,32 @@
 							</div>
 						<button
 							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-teal "
-							onclick="patchComputateVertxSiteUser(null, $('#patchComputateVertxSiteUserFormValues')); "
+							onclick="patchSiteUser(null, $('#patchSiteUserFormValues')); "
 							>Modify site users</button>
 					</div>
 				</div>
 			</div>
 		</div>
 {{/inline}}
-{{#*inline "htmFormComputateVertxSiteUserPage_postComputateVertxSiteUser"}}
+{{#*inline "htmFormSiteUserPage_postSiteUser"}}
 		<button
 			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-teal "
-			onclick="$('#postComputateVertxSiteUserModal').show(); "
+			onclick="$('#postSiteUserModal').show(); "
 			>
 			<i class="fas fa-file-plus "></i>
 			Create a site user
 		</button>
-		<div id="postComputateVertxSiteUserModal" class="w3-modal w3-padding-32 ">
+		<div id="postSiteUserModal" class="w3-modal w3-padding-32 ">
 			<div class="w3-modal-content ">
 				<div class="w3-card-4 ">
 					<header class="w3-container w3-teal">
 	{{#eq "Page" classApiMethodMethod}}
-						<span class="w3-button w3-display-topright " onclick="$('#postComputateVertxSiteUserModal').hide(); ">×</span>
+						<span class="w3-button w3-display-topright " onclick="$('#postSiteUserModal').hide(); ">×</span>
 	{{/eq}}
 						<h2 class="w3-padding ">Create a site user</h2>
 					</header>
-					<div class="" id="postComputateVertxSiteUserFormValues">
-						<div id="postComputateVertxSiteUserForm">
+					<div class="" id="postSiteUserFormValues">
+						<div id="postSiteUserForm">
 							<div class="w3-cell-row ">
 {{> "htmCreated" classApiMethodMethod="POST"}}
 							</div>
@@ -223,25 +223,25 @@
 						</div>
 						<button
 							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-teal "
-							onclick="postComputateVertxSiteUser($('#postComputateVertxSiteUserForm')); "
+							onclick="postSiteUser($('#postSiteUserForm')); "
 							>Create a site user</button>
 					</div>
 				</div>
 			</div>
 		</div>
 {{/inline}}
-{{#*inline "htmFormComputateVertxSiteUserPage_searchpageComputateVertxSiteUser"}}
-		<div id="searchpageComputateVertxSiteUserModal" class="w3-padding-32 ">
+{{#*inline "htmFormSiteUserPage_searchpageSiteUser"}}
+		<div id="searchpageSiteUserModal" class="w3-padding-32 ">
 			<div class="">
 				<div class="w3-card-4 ">
 					<header class="w3-container w3-teal">
 	{{#eq "Page" classApiMethodMethod}}
-						<span class="w3-button w3-display-topright " onclick="$('#searchpageComputateVertxSiteUserModal').hide(); ">×</span>
+						<span class="w3-button w3-display-topright " onclick="$('#searchpageSiteUserModal').hide(); ">×</span>
 	{{/eq}}
 						<h2 class="w3-padding ">Delete site users</h2>
 					</header>
-					<div class="" id="searchpageComputateVertxSiteUserFormValues">
-						<div id="searchpageComputateVertxSiteUserForm">
+					<div class="" id="searchpageSiteUserFormValues">
+						<div id="searchpageSiteUserForm">
 							<div class="w3-cell-row ">
 {{> "htmPk" classApiMethodMethod="Page"}}
 {{> "htmCreated" classApiMethodMethod="Page"}}
@@ -259,25 +259,25 @@
 						</div>
 						<button
 							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-teal "
-							onclick="searchpageComputateVertxSiteUser(); "
+							onclick="searchpageSiteUser(); "
 							>Delete site users</button>
 					</div>
 				</div>
 			</div>
 		</div>
 {{/inline}}
-{{#*inline "htmBodyStartComputateVertxSiteUserPage"}}
-{{> "htmBodyStartComputateVertxBaseModelPage"}}
+{{#*inline "htmBodyStartSiteUserPage"}}
+{{> "htmBodyStartBaseModelPage"}}
 {{/inline}}
-{{#*inline "htmBodyEndComputateVertxSiteUserPage"}}
-{{> "htmBodyEndComputateVertxBaseModelPage"}}
+{{#*inline "htmBodyEndSiteUserPage"}}
+{{> "htmBodyEndBaseModelPage"}}
 {{/inline}}
-{{#*inline "htmBodyComputateVertxSiteUserPage"}}
+{{#*inline "htmBodySiteUserPage"}}
 {{#block "htmBodyStart"}}{{/block}}
-	{{#eq computateVertxSiteUserCount int0}}
+	{{#eq SiteUserCount int0}}
 {{#block "htmBodyCount0"}}{{/block}}
 	{{else}}
-		{{#eq computateVertxSiteUserCount int1}}
+		{{#eq SiteUserCount int1}}
 			{{#eq params.query.q "*:*"}}
 {{#block "htmBodyCount1All"}}{{/block}}
 			{{else}}
@@ -290,34 +290,34 @@
 {{#block "htmForms"}}{{/block}}
 {{#block "htmBodyEnd"}}{{/block}}
 {{/inline}}
-{{#*inline "table1ComputateVertxSiteUserPage"}}
+{{#*inline "table1SiteUserPage"}}
 		<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable ">
-			{{> table2ComputateVertxSiteUserPage}}
+			{{> table2SiteUserPage}}
 		</table>
 {{/inline}}
-{{#*inline "table2ComputateVertxSiteUserPage"}}
-		{{> "thead1ComputateVertxSiteUserPage"}}
-		{{> "tbody1ComputateVertxSiteUserPage"}}
-		{{> "tfoot1ComputateVertxSiteUserPage"}}
+{{#*inline "table2SiteUserPage"}}
+		{{> "thead1SiteUserPage"}}
+		{{> "tbody1SiteUserPage"}}
+		{{> "tfoot1SiteUserPage"}}
 	{{/inline}}
-{{#*inline "thead1ComputateVertxSiteUserPage"}}
+{{#*inline "thead1SiteUserPage"}}
 		<thead class="w3-teal w3-hover-teal">
-			{{> thead2ComputateVertxSiteUserPage}}
+			{{> thead2SiteUserPage}}
 		</thead>
 	{{/inline}}
-{{#*inline "thead2ComputateVertxSiteUserPage"}}
+{{#*inline "thead2SiteUserPage"}}
 			<tr>
 				<th>created</th>
 				<th></th>
 			</tr>
 {{/inline}}
-{{#*inline "tbody1ComputateVertxSiteUserPage"}}
+{{#*inline "tbody1SiteUserPage"}}
 		<tbody>
-			{{> tbody2ComputateVertxSiteUserPage}}
+			{{> tbody2SiteUserPage}}
 		</tbody>
 {{/inline}}
-{{#*inline "tbody2ComputateVertxSiteUserPage"}}
-		{{#each listComputateVertxSiteUser}}
+{{#*inline "tbody2SiteUserPage"}}
+		{{#each listSiteUser}}
 			<tr>
 					<td>
 						<a href="{{pageUrlPk}}">
@@ -333,12 +333,12 @@
 			</tr>
 		{{/each}}
 {{/inline}}
-{{#*inline "tfoot1ComputateVertxSiteUserPage"}}
+{{#*inline "tfoot1SiteUserPage"}}
 		<tfoot class="w3-teal w3-hover-teal">
-			{{> tfoot2ComputateVertxSiteUserPage}}
+			{{> tfoot2SiteUserPage}}
 		</tfoot>
 {{/inline}}
-{{#*inline "tfoot2ComputateVertxSiteUserPage"}}
+{{#*inline "tfoot2SiteUserPage"}}
 		<tr>
 			{{#if getColumnCreated}}
 				<td>
@@ -350,29 +350,29 @@
 			{{/if}}
 		</tr>
 	{{/inline}}
-{{#*inline "htmFormsComputateVertxSiteUserPage"}}
+{{#*inline "htmFormsSiteUserPage"}}
 	{{#ifContainsAnyRoles roles rolesRequired}}
-		{{#eq computateVertxSiteUserCount int1}}
+		{{#eq SiteUserCount int1}}
 		<button
 			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-teal "
-			id="refreshThisComputateVertxSiteUserGenPage"
-			onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pk:{{pk}}' } ], {}, function() { addGlow($('#refreshThisComputateVertxSiteUserGenPage')); }, function() { addError($('#refreshThisComputateVertxSiteUserGenPage')); }); return false; ">
+			id="refreshThisSiteUserGenPage"
+			onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pk:{{pk}}' } ], {}, function() { addGlow($('#refreshThisSiteUserGenPage')); }, function() { addError($('#refreshThisSiteUserGenPage')); }); return false; ">
 			<i class="fas fa-sync-alt "></i>
 			refresh this site user
 		</button>
 		{{/eq}}
 	{{/ifContainsAnyRoles}}
 	{{#ifContainsAnyRoles roles authRolesAdmin}}
-{{#block "htmForm_patchComputateVertxSiteUser"}}{{/block}}
-{{#block "htmForm_postComputateVertxSiteUser"}}{{/block}}
+{{#block "htmForm_patchSiteUser"}}{{/block}}
+{{#block "htmForm_postSiteUser"}}{{/block}}
 	{{/ifContainsAnyRoles}}
 {{#block "htmSuggested"}}{{/block}}
 {{/inline}}
-{{#*inline "htmSuggestedComputateVertxSiteUserPage"}}
+{{#*inline "htmSuggestedSiteUserPage"}}
 			{{#ifContainsAnyRoles roles rolesRequired}}
 					<div class="">
-						<button id="refreshAllComputateVertxSiteUserGenPage{{id}}" class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-teal "
-							onclick="patch{{classSimpleName}}Vals([], {}, function() { addGlow($('#refreshAllComputateVertxSiteUserGenPage{{id}}')); }, function() { addError($('#refreshAllComputateVertxSiteUserGenPage{{id}}')); }); "
+						<button id="refreshAllSiteUserGenPage{{id}}" class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-teal "
+							onclick="patch{{classSimpleName}}Vals([], {}, function() { addGlow($('#refreshAllSiteUserGenPage{{id}}')); }, function() { addError($('#refreshAllSiteUserGenPage{{id}}')); }); "
 							>
 							<i class="fas fa-sync-alt "></i>
 							refresh all the site users
@@ -389,13 +389,13 @@
 			<div class="w3-bar ">
 				<input
 					type="text"
-					class="suggestComputateVertxSiteUser w3-input w3-border w3-bar-item "
-					name="suggestComputateVertxSiteUser"
-					id="suggestComputateVertxSiteUser{{id}}"
+					class="suggestSiteUser w3-input w3-border w3-bar-item "
+					name="suggestSiteUser"
+					id="suggestSiteUser{{id}}"
 					autocomplete="off"
-					oninput="suggestComputateVertxSiteUserObjectSuggest( [ { 'name': 'q', 'value': 'objectSuggest:' + $(this).val() }, { 'name': 'rows', 'value': '10' }, { 'name': 'fl', 'value': 'pk,pageUrlPk,objectTitle' } ], $('#suggestListComputateVertxSiteUser{{id}}'), {{pk}}; "
+					oninput="suggestSiteUserObjectSuggest( [ { 'name': 'q', 'value': 'objectSuggest:' + $(this).val() }, { 'name': 'rows', 'value': '10' }, { 'name': 'fl', 'value': 'pk,pageUrlPk,objectTitle' } ], $('#suggestListSiteUser{{id}}'), {{pk}}; "
 					onkeyup="if (event.keyCode === 13) { event.preventDefault(); window.location.href = '/api/user?q={{query1}}:' + encodeURIComponent(this.value) + '{{fqs}}{{sorts}}&amp;rows={{start2}}&amp;rows={{rows1}}"
-				{{#if listComputateVertxSiteUser}}
+				{{#if listSiteUser}}
 					value="{{query2}}"
 				{{/if}}
 				/>
@@ -408,7 +408,7 @@
 			<div>
 			<div class="w3-cell-row ">
 				<div class="w3-cell w3-left-align w3-cell-top ">
-					<ul class="w3-ul w3-hoverable " id="suggestListComputateVertxSiteUser{{id}}">
+					<ul class="w3-ul w3-hoverable " id="suggestListSiteUser{{id}}">
 					</ul>
 				</div>
 			</div>
@@ -419,12 +419,12 @@
 				</a>
 			</div>
 {{/inline}}
-{{> ComputateVertxBaseModelPage computateVertxBaseModel_=computateVertxSiteUser_}}
+{{> BaseModelPage BaseModel_=SiteUser_}}
 
 {{#*inline "htmUserId"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
-										<div id="suggest{{classApiMethodMethod}}ComputateVertxSiteUserUserId">
+										<div id="suggest{{classApiMethodMethod}}SiteUserUserId">
 											<div class="w3-card ">
 												<div class="w3-cell-row w3-padding ">
 													<div class="w3-cell ">
@@ -439,14 +439,14 @@
 
 {{#*inline "inputUserId"}}
 	{{#eq 'Page' classApiMethodMethod}}
-														<span class="varComputateVertxSiteUser{{pk}}UserId ">{{computateVertxSiteUser_.userId}}</span>
+														<span class="varSiteUser{{pk}}UserId ">{{SiteUser_.userId}}</span>
 	{{/eq}}
 {{/inline}}
 
 {{#*inline "htmUserName"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
-										<div id="suggest{{classApiMethodMethod}}ComputateVertxSiteUserUserName">
+										<div id="suggest{{classApiMethodMethod}}SiteUserUserName">
 											<div class="w3-card ">
 												<div class="w3-cell-row w3-padding ">
 													<div class="w3-cell ">
@@ -458,7 +458,7 @@
 																<button
 																		tabindex="-1"
 																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-teal "
-																		onclick="removeGlow($('#{{classApiMethodMethod}}_userName')); $('#{{classApiMethodMethod}}_userName').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ComputateVertxSiteUserForm :input[name=pk]').val() }], 'setUserName', null, function() { addGlow($('#{{classApiMethodMethod}}_userName')); }, function() { addError($('#{{classApiMethodMethod}}_userName')); }); "
+																		onclick="removeGlow($('#{{classApiMethodMethod}}_userName')); $('#{{classApiMethodMethod}}_userName').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#SiteUserForm :input[name=pk]').val() }], 'setUserName', null, function() { addGlow($('#{{classApiMethodMethod}}_userName')); }, function() { addError($('#{{classApiMethodMethod}}_userName')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
 																</button>
@@ -478,14 +478,14 @@
 															type="text"
 															id="{{classApiMethodMethod}}_userName"
 	{{#eq "Page" classApiMethodMethod}}
-																class="setUserName classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserName w3-input w3-border "
+																class="setUserName classSiteUser inputSiteUser{{pk}}UserName w3-input w3-border "
 																name="setUserName"
 	{{else}}
 		{{#eq "PATCH" classApiMethodMethod}}
-																class="setUserName classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserName w3-input w3-border "
+																class="setUserName classSiteUser inputSiteUser{{pk}}UserName w3-input w3-border "
 																name="setUserName"
 		{{else}}
-																class="valueUserName w3-input w3-border classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserName w3-input w3-border "
+																class="valueUserName w3-input w3-border classSiteUser inputSiteUser{{pk}}UserName w3-input w3-border "
 																name="userName"
 		{{/eq}}
 	{{/eq}}
@@ -494,19 +494,19 @@
 																onchange="patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:{{pk}}' }], 'setUserName', $(this).val(), function() { addGlow($('#{{classApiMethodMethod}}_userName')); }, function() { addError($('#{{classApiMethodMethod}}_userName')); }); "
 	{{/eq}}
 	{{#eq "Page" classApiMethodMethod}}
-															value="{{computateVertxSiteUser_.userName}}"
+															value="{{SiteUser_.userName}}"
 	{{/eq}}
 														/>
 
 													{{else}}
-															<span class="varComputateVertxSiteUser{{pk}}UserName ">{{computateVertxSiteUser_.userName}}</span>
+															<span class="varSiteUser{{pk}}UserName ">{{SiteUser_.userName}}</span>
 		{{/ifContainsAnyRoles}}
 {{/inline}}
 
 {{#*inline "htmUserEmail"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
-										<div id="suggest{{classApiMethodMethod}}ComputateVertxSiteUserUserEmail">
+										<div id="suggest{{classApiMethodMethod}}SiteUserUserEmail">
 											<div class="w3-card ">
 												<div class="w3-cell-row w3-padding ">
 													<div class="w3-cell ">
@@ -518,7 +518,7 @@
 																<button
 																		tabindex="-1"
 																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-teal "
-																		onclick="removeGlow($('#{{classApiMethodMethod}}_userEmail')); $('#{{classApiMethodMethod}}_userEmail').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ComputateVertxSiteUserForm :input[name=pk]').val() }], 'setUserEmail', null, function() { addGlow($('#{{classApiMethodMethod}}_userEmail')); }, function() { addError($('#{{classApiMethodMethod}}_userEmail')); }); "
+																		onclick="removeGlow($('#{{classApiMethodMethod}}_userEmail')); $('#{{classApiMethodMethod}}_userEmail').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#SiteUserForm :input[name=pk]').val() }], 'setUserEmail', null, function() { addGlow($('#{{classApiMethodMethod}}_userEmail')); }, function() { addError($('#{{classApiMethodMethod}}_userEmail')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
 																</button>
@@ -538,14 +538,14 @@
 															type="text"
 															id="{{classApiMethodMethod}}_userEmail"
 	{{#eq "Page" classApiMethodMethod}}
-																class="setUserEmail classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserEmail w3-input w3-border "
+																class="setUserEmail classSiteUser inputSiteUser{{pk}}UserEmail w3-input w3-border "
 																name="setUserEmail"
 	{{else}}
 		{{#eq "PATCH" classApiMethodMethod}}
-																class="setUserEmail classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserEmail w3-input w3-border "
+																class="setUserEmail classSiteUser inputSiteUser{{pk}}UserEmail w3-input w3-border "
 																name="setUserEmail"
 		{{else}}
-																class="valueUserEmail w3-input w3-border classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserEmail w3-input w3-border "
+																class="valueUserEmail w3-input w3-border classSiteUser inputSiteUser{{pk}}UserEmail w3-input w3-border "
 																name="userEmail"
 		{{/eq}}
 	{{/eq}}
@@ -554,19 +554,19 @@
 																onchange="patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:{{pk}}' }], 'setUserEmail', $(this).val(), function() { addGlow($('#{{classApiMethodMethod}}_userEmail')); }, function() { addError($('#{{classApiMethodMethod}}_userEmail')); }); "
 	{{/eq}}
 	{{#eq "Page" classApiMethodMethod}}
-															value="{{computateVertxSiteUser_.userEmail}}"
+															value="{{SiteUser_.userEmail}}"
 	{{/eq}}
 														/>
 
 													{{else}}
-															<span class="varComputateVertxSiteUser{{pk}}UserEmail ">{{computateVertxSiteUser_.userEmail}}</span>
+															<span class="varSiteUser{{pk}}UserEmail ">{{SiteUser_.userEmail}}</span>
 		{{/ifContainsAnyRoles}}
 {{/inline}}
 
 {{#*inline "htmUserFirstName"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
-										<div id="suggest{{classApiMethodMethod}}ComputateVertxSiteUserUserFirstName">
+										<div id="suggest{{classApiMethodMethod}}SiteUserUserFirstName">
 											<div class="w3-card ">
 												<div class="w3-cell-row w3-padding ">
 													<div class="w3-cell ">
@@ -578,7 +578,7 @@
 																<button
 																		tabindex="-1"
 																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-teal "
-																		onclick="removeGlow($('#{{classApiMethodMethod}}_userFirstName')); $('#{{classApiMethodMethod}}_userFirstName').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ComputateVertxSiteUserForm :input[name=pk]').val() }], 'setUserFirstName', null, function() { addGlow($('#{{classApiMethodMethod}}_userFirstName')); }, function() { addError($('#{{classApiMethodMethod}}_userFirstName')); }); "
+																		onclick="removeGlow($('#{{classApiMethodMethod}}_userFirstName')); $('#{{classApiMethodMethod}}_userFirstName').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#SiteUserForm :input[name=pk]').val() }], 'setUserFirstName', null, function() { addGlow($('#{{classApiMethodMethod}}_userFirstName')); }, function() { addError($('#{{classApiMethodMethod}}_userFirstName')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
 																</button>
@@ -598,14 +598,14 @@
 															type="text"
 															id="{{classApiMethodMethod}}_userFirstName"
 	{{#eq "Page" classApiMethodMethod}}
-																class="setUserFirstName classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserFirstName w3-input w3-border "
+																class="setUserFirstName classSiteUser inputSiteUser{{pk}}UserFirstName w3-input w3-border "
 																name="setUserFirstName"
 	{{else}}
 		{{#eq "PATCH" classApiMethodMethod}}
-																class="setUserFirstName classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserFirstName w3-input w3-border "
+																class="setUserFirstName classSiteUser inputSiteUser{{pk}}UserFirstName w3-input w3-border "
 																name="setUserFirstName"
 		{{else}}
-																class="valueUserFirstName w3-input w3-border classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserFirstName w3-input w3-border "
+																class="valueUserFirstName w3-input w3-border classSiteUser inputSiteUser{{pk}}UserFirstName w3-input w3-border "
 																name="userFirstName"
 		{{/eq}}
 	{{/eq}}
@@ -614,19 +614,19 @@
 																onchange="patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:{{pk}}' }], 'setUserFirstName', $(this).val(), function() { addGlow($('#{{classApiMethodMethod}}_userFirstName')); }, function() { addError($('#{{classApiMethodMethod}}_userFirstName')); }); "
 	{{/eq}}
 	{{#eq "Page" classApiMethodMethod}}
-															value="{{computateVertxSiteUser_.userFirstName}}"
+															value="{{SiteUser_.userFirstName}}"
 	{{/eq}}
 														/>
 
 													{{else}}
-															<span class="varComputateVertxSiteUser{{pk}}UserFirstName ">{{computateVertxSiteUser_.userFirstName}}</span>
+															<span class="varSiteUser{{pk}}UserFirstName ">{{SiteUser_.userFirstName}}</span>
 		{{/ifContainsAnyRoles}}
 {{/inline}}
 
 {{#*inline "htmUserLastName"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
-										<div id="suggest{{classApiMethodMethod}}ComputateVertxSiteUserUserLastName">
+										<div id="suggest{{classApiMethodMethod}}SiteUserUserLastName">
 											<div class="w3-card ">
 												<div class="w3-cell-row w3-padding ">
 													<div class="w3-cell ">
@@ -638,7 +638,7 @@
 																<button
 																		tabindex="-1"
 																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-teal "
-																		onclick="removeGlow($('#{{classApiMethodMethod}}_userLastName')); $('#{{classApiMethodMethod}}_userLastName').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ComputateVertxSiteUserForm :input[name=pk]').val() }], 'setUserLastName', null, function() { addGlow($('#{{classApiMethodMethod}}_userLastName')); }, function() { addError($('#{{classApiMethodMethod}}_userLastName')); }); "
+																		onclick="removeGlow($('#{{classApiMethodMethod}}_userLastName')); $('#{{classApiMethodMethod}}_userLastName').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#SiteUserForm :input[name=pk]').val() }], 'setUserLastName', null, function() { addGlow($('#{{classApiMethodMethod}}_userLastName')); }, function() { addError($('#{{classApiMethodMethod}}_userLastName')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
 																</button>
@@ -658,14 +658,14 @@
 															type="text"
 															id="{{classApiMethodMethod}}_userLastName"
 	{{#eq "Page" classApiMethodMethod}}
-																class="setUserLastName classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserLastName w3-input w3-border "
+																class="setUserLastName classSiteUser inputSiteUser{{pk}}UserLastName w3-input w3-border "
 																name="setUserLastName"
 	{{else}}
 		{{#eq "PATCH" classApiMethodMethod}}
-																class="setUserLastName classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserLastName w3-input w3-border "
+																class="setUserLastName classSiteUser inputSiteUser{{pk}}UserLastName w3-input w3-border "
 																name="setUserLastName"
 		{{else}}
-																class="valueUserLastName w3-input w3-border classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserLastName w3-input w3-border "
+																class="valueUserLastName w3-input w3-border classSiteUser inputSiteUser{{pk}}UserLastName w3-input w3-border "
 																name="userLastName"
 		{{/eq}}
 	{{/eq}}
@@ -674,19 +674,19 @@
 																onchange="patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:{{pk}}' }], 'setUserLastName', $(this).val(), function() { addGlow($('#{{classApiMethodMethod}}_userLastName')); }, function() { addError($('#{{classApiMethodMethod}}_userLastName')); }); "
 	{{/eq}}
 	{{#eq "Page" classApiMethodMethod}}
-															value="{{computateVertxSiteUser_.userLastName}}"
+															value="{{SiteUser_.userLastName}}"
 	{{/eq}}
 														/>
 
 													{{else}}
-															<span class="varComputateVertxSiteUser{{pk}}UserLastName ">{{computateVertxSiteUser_.userLastName}}</span>
+															<span class="varSiteUser{{pk}}UserLastName ">{{SiteUser_.userLastName}}</span>
 		{{/ifContainsAnyRoles}}
 {{/inline}}
 
 {{#*inline "htmUserFullName"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
-										<div id="suggest{{classApiMethodMethod}}ComputateVertxSiteUserUserFullName">
+										<div id="suggest{{classApiMethodMethod}}SiteUserUserFullName">
 											<div class="w3-card ">
 												<div class="w3-cell-row w3-padding ">
 													<div class="w3-cell ">
@@ -698,7 +698,7 @@
 																<button
 																		tabindex="-1"
 																		class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-teal "
-																		onclick="removeGlow($('#{{classApiMethodMethod}}_userFullName')); $('#{{classApiMethodMethod}}_userFullName').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#ComputateVertxSiteUserForm :input[name=pk]').val() }], 'setUserFullName', null, function() { addGlow($('#{{classApiMethodMethod}}_userFullName')); }, function() { addError($('#{{classApiMethodMethod}}_userFullName')); }); "
+																		onclick="removeGlow($('#{{classApiMethodMethod}}_userFullName')); $('#{{classApiMethodMethod}}_userFullName').val(null); patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + $('#SiteUserForm :input[name=pk]').val() }], 'setUserFullName', null, function() { addGlow($('#{{classApiMethodMethod}}_userFullName')); }, function() { addError($('#{{classApiMethodMethod}}_userFullName')); }); "
 																		>
 																	<i class="far fa-eraser "></i>
 																</button>
@@ -718,14 +718,14 @@
 															type="text"
 															id="{{classApiMethodMethod}}_userFullName"
 	{{#eq "Page" classApiMethodMethod}}
-																class="setUserFullName classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserFullName w3-input w3-border "
+																class="setUserFullName classSiteUser inputSiteUser{{pk}}UserFullName w3-input w3-border "
 																name="setUserFullName"
 	{{else}}
 		{{#eq "PATCH" classApiMethodMethod}}
-																class="setUserFullName classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserFullName w3-input w3-border "
+																class="setUserFullName classSiteUser inputSiteUser{{pk}}UserFullName w3-input w3-border "
 																name="setUserFullName"
 		{{else}}
-																class="valueUserFullName w3-input w3-border classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}UserFullName w3-input w3-border "
+																class="valueUserFullName w3-input w3-border classSiteUser inputSiteUser{{pk}}UserFullName w3-input w3-border "
 																name="userFullName"
 		{{/eq}}
 	{{/eq}}
@@ -734,19 +734,19 @@
 																onchange="patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:{{pk}}' }], 'setUserFullName', $(this).val(), function() { addGlow($('#{{classApiMethodMethod}}_userFullName')); }, function() { addError($('#{{classApiMethodMethod}}_userFullName')); }); "
 	{{/eq}}
 	{{#eq "Page" classApiMethodMethod}}
-															value="{{computateVertxSiteUser_.userFullName}}"
+															value="{{SiteUser_.userFullName}}"
 	{{/eq}}
 														/>
 
 													{{else}}
-															<span class="varComputateVertxSiteUser{{pk}}UserFullName ">{{computateVertxSiteUser_.userFullName}}</span>
+															<span class="varSiteUser{{pk}}UserFullName ">{{SiteUser_.userFullName}}</span>
 		{{/ifContainsAnyRoles}}
 {{/inline}}
 
 {{#*inline "htmSeeArchived"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
-										<div id="suggest{{classApiMethodMethod}}ComputateVertxSiteUserSeeArchived">
+										<div id="suggest{{classApiMethodMethod}}SiteUserSeeArchived">
 											<div class="w3-card ">
 												<div class="w3-cell-row w3-teal">
 													<label for="{{classApiMethodMethod}}_seeArchived">see archived</label>
@@ -774,14 +774,14 @@
 															id="{{classApiMethodMethod}}_seeArchived"
 	{{/eq}}
 	{{#eq 'Page' classApiMethodMethod}}
-															class="classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}SeeArchived w3-input w3-border "
+															class="classSiteUser inputSiteUser{{pk}}SeeArchived w3-input w3-border "
 															name="setSeeArchived"
 	{{else}}
 		{{#eq 'Page' classApiMethodMethod}}
-																class="classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}SeeArchived w3-input w3-border "
+																class="classSiteUser inputSiteUser{{pk}}SeeArchived w3-input w3-border "
 																name="setSeeArchived"
 		{{else}}
-																class="setSeeArchived valueSeeArchived classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}SeeArchived w3-input w3-border "
+																class="setSeeArchived valueSeeArchived classSiteUser inputSiteUser{{pk}}SeeArchived w3-input w3-border "
 																name="setSeeArchived"
 		{{/eq}}
 	{{/eq}}
@@ -789,7 +789,7 @@
 															onchange="patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:{{pk}}' }], 'setSeeArchived', $(this).prop('checked'), function() { addGlow($('#{{classApiMethodMethod}}_seeArchived')); }, function() { addError($('#{{classApiMethodMethod}}_seeArchived')); }); "
 	{{/eq}}
 	{{#eq 'Page' classApiMethodMethod}}
-		{{#if computateVertxSiteUser_.seeArchived}}
+		{{#if SiteUser_.seeArchived}}
 																checked="checked"
 		{{/if}}
 																/>
@@ -802,14 +802,14 @@
 	{{/eq}}
 
 													{{else}}
-															<span class="varComputateVertxSiteUser{{pk}}SeeArchived ">{{computateVertxSiteUser_.seeArchived}}</span>
+															<span class="varSiteUser{{pk}}SeeArchived ">{{SiteUser_.seeArchived}}</span>
 		{{/ifContainsAnyRoles}}
 {{/inline}}
 
 {{#*inline "htmSeeDeleted"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
-										<div id="suggest{{classApiMethodMethod}}ComputateVertxSiteUserSeeDeleted">
+										<div id="suggest{{classApiMethodMethod}}SiteUserSeeDeleted">
 											<div class="w3-card ">
 												<div class="w3-cell-row w3-teal">
 													<label for="{{classApiMethodMethod}}_seeDeleted">see deleted</label>
@@ -837,14 +837,14 @@
 															id="{{classApiMethodMethod}}_seeDeleted"
 	{{/eq}}
 	{{#eq 'Page' classApiMethodMethod}}
-															class="classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}SeeDeleted w3-input w3-border "
+															class="classSiteUser inputSiteUser{{pk}}SeeDeleted w3-input w3-border "
 															name="setSeeDeleted"
 	{{else}}
 		{{#eq 'Page' classApiMethodMethod}}
-																class="classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}SeeDeleted w3-input w3-border "
+																class="classSiteUser inputSiteUser{{pk}}SeeDeleted w3-input w3-border "
 																name="setSeeDeleted"
 		{{else}}
-																class="setSeeDeleted valueSeeDeleted classComputateVertxSiteUser inputComputateVertxSiteUser{{pk}}SeeDeleted w3-input w3-border "
+																class="setSeeDeleted valueSeeDeleted classSiteUser inputSiteUser{{pk}}SeeDeleted w3-input w3-border "
 																name="setSeeDeleted"
 		{{/eq}}
 	{{/eq}}
@@ -852,7 +852,7 @@
 															onchange="patch{{classSimpleName}}Val([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:{{pk}}' }], 'setSeeDeleted', $(this).prop('checked'), function() { addGlow($('#{{classApiMethodMethod}}_seeDeleted')); }, function() { addError($('#{{classApiMethodMethod}}_seeDeleted')); }); "
 	{{/eq}}
 	{{#eq 'Page' classApiMethodMethod}}
-		{{#if computateVertxSiteUser_.seeDeleted}}
+		{{#if SiteUser_.seeDeleted}}
 																checked="checked"
 		{{/if}}
 																/>
@@ -865,6 +865,6 @@
 	{{/eq}}
 
 													{{else}}
-															<span class="varComputateVertxSiteUser{{pk}}SeeDeleted ">{{computateVertxSiteUser_.seeDeleted}}</span>
+															<span class="varSiteUser{{pk}}SeeDeleted ">{{SiteUser_.seeDeleted}}</span>
 		{{/ifContainsAnyRoles}}
 {{/inline}}

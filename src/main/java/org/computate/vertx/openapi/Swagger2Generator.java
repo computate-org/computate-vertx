@@ -39,7 +39,7 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			siteRequest.setWebClient(webClient);
 			api.setWebClient(webClient);
 			api.setConfig(config);
-			siteRequest.initDeepComputateVertxSiteRequest();
+			siteRequest.initDeepSiteRequest();
 			api.initDeepSwagger2Generator(siteRequest);
 			api.writeOpenApi().onSuccess(a -> {
 				LOG.info("Write OpenAPI completed. ");

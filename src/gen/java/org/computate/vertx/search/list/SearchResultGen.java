@@ -165,16 +165,16 @@ public abstract class SearchResultGen<DEV> extends Object {
 		return (SearchResult)this;
 	}
 
-	public static Long staticSolrResultIndex(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static Long staticSearchResultIndex(ComputateVertxSiteRequest siteRequest_, Long o) {
 		return o;
 	}
 
-	public static String staticSolrStrResultIndex(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static String staticSearchStrResultIndex(ComputateVertxSiteRequest siteRequest_, Long o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSolrFqResultIndex(ComputateVertxSiteRequest siteRequest_, String o) {
-		return SearchResult.staticSolrStrResultIndex(siteRequest_, SearchResult.staticSolrResultIndex(siteRequest_, SearchResult.staticSetResultIndex(siteRequest_, o)));
+	public static String staticSearchFqResultIndex(ComputateVertxSiteRequest siteRequest_, String o) {
+		return SearchResult.staticSearchStrResultIndex(siteRequest_, SearchResult.staticSearchResultIndex(siteRequest_, SearchResult.staticSetResultIndex(siteRequest_, o)));
 	}
 
 	//////////////
@@ -289,48 +289,48 @@ public abstract class SearchResultGen<DEV> extends Object {
 	}
 
 	////////////////
-	// staticSolr //
+	// staticSearch //
 	////////////////
 
-	public static Object staticSolrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrSearchResult(entityVar,  siteRequest_, o);
+	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchSearchResult(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSolrSearchResult(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchSearchResult(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "resultIndex":
-			return SearchResult.staticSolrResultIndex(siteRequest_, (Long)o);
+			return SearchResult.staticSearchResultIndex(siteRequest_, (Long)o);
 			default:
 				return null;
 		}
 	}
 
 	///////////////////
-	// staticSolrStr //
+	// staticSearchStr //
 	///////////////////
 
-	public static String staticSolrStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
-		return staticSolrStrSearchResult(entityVar,  siteRequest_, o);
+	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+		return staticSearchStrSearchResult(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrStrSearchResult(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrSearchResult(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "resultIndex":
-			return SearchResult.staticSolrStrResultIndex(siteRequest_, (Long)o);
+			return SearchResult.staticSearchStrResultIndex(siteRequest_, (Long)o);
 			default:
 				return null;
 		}
 	}
 
 	//////////////////
-	// staticSolrFq //
+	// staticSearchFq //
 	//////////////////
 
-	public static String staticSolrFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
-		return staticSolrFqSearchResult(entityVar,  siteRequest_, o);
+	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+		return staticSearchFqSearchResult(entityVar,  siteRequest_, o);
 	}
-	public static String staticSolrFqSearchResult(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqSearchResult(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "resultIndex":
-			return SearchResult.staticSolrFqResultIndex(siteRequest_, o);
+			return SearchResult.staticSearchFqResultIndex(siteRequest_, o);
 			default:
 				return null;
 		}
