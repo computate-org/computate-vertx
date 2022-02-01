@@ -6,6 +6,11 @@ package org.computate.vertx.config;
 public class ComputateVertxConfigKeys {
 
 	/**
+	 * Run the OpenAPI3 Generator when this environment variable is set to true. 
+	 **/
+	public static final String RUN_OPENAPI3_GENERATOR = "RUN_OPENAPI3_GENERATOR";
+
+	/**
 	 * The path to the config file of the site. 
 	 **/
 	public static final String CONFIG_PATH = "CONFIG_PATH";

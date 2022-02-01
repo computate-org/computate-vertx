@@ -28,33 +28,6 @@ import io.vertx.ext.web.client.WebClient;
 
 public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 
-	public static void  main(String[] args) {
-		Vertx vertx = Vertx.vertx();
-		String configPath = System.getenv("CONFIG_PATH");
-		configureConfig(vertx).onSuccess(config -> {
-			OpenApi3Generator api = new OpenApi3Generator();
-			WebClient webClient = WebClient.create(vertx);
-			ComputateVertxSiteRequest siteRequest = new ComputateVertxSiteRequest();
-			siteRequest.setConfig(config);
-			siteRequest.setWebClient(webClient);
-			api.setWebClient(webClient);
-			api.setConfig(config);
-			siteRequest.initDeepSiteRequest();
-			api.initDeepSwagger2Generator(siteRequest);
-			api.writeOpenApi().onSuccess(a -> {
-				LOG.info("Write OpenAPI completed. ");
-				vertx.close();
-			}).onFailure(ex -> {
-				LOG.error("Write OpenAPI failed. ", ex);
-				vertx.close();
-			});
-			
-		}).onFailure(ex -> {
-			LOG.error(String.format("Error loading config: %s", configPath), ex);
-			vertx.close();
-		});
-	}
-
 	/**	
 	 * Val.Complete.enUS:The config was configured successfully. 
 	 * Val.Fail.enUS:Could not configure the config(). 

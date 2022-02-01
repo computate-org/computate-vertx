@@ -259,7 +259,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		if(request.getQuery() != null) {
 			if(this.c != null)
 				request.fq("classCanonicalName_docvalues_string:" + SearchTool.escapeQueryChars(this.c.getCanonicalName()));
-			ComputateVertxSiteUser siteUser = siteRequest_.getSiteUser_();
+			ComputateVertxSiteUser siteUser = siteRequest_.getSiteUser_(ComputateVertxSiteUser.class);
 			if(siteUser == null || BooleanUtils.isNotTrue(siteUser.getSeeDeleted()))
 				request.fq("deleted_docvalues_boolean:false");
 			if(siteUser == null || BooleanUtils.isNotTrue(siteUser.getSeeArchived()))
@@ -376,5 +376,9 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 	@Override
 	public Iterator<DEV> iterator() {
 		return list.iterator();
+	}
+
+	public <T extends ComputateVertxSiteRequest> T getSiteRequest_(Class<T> clazz) {
+		return (T)siteRequest_;
 	}
 }

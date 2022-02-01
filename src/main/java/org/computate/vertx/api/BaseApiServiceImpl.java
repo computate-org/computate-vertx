@@ -1,5 +1,8 @@
 package org.computate.vertx.api;
 
+import java.lang.reflect.InvocationTargetException;
+import java.nio.charset.Charset;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -9,7 +12,6 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.computate.search.tool.SearchTool;
 import org.computate.vertx.config.ComputateVertxConfigKeys;
 import org.computate.vertx.model.base.ComputateVertxBaseModel;
-import org.computate.vertx.model.user.ComputateVertxSiteUser;
 import org.computate.vertx.model.user.ComputateVertxSiteUser;
 import org.computate.vertx.request.ComputateVertxSiteRequest;
 import org.computate.vertx.search.list.SearchList;
@@ -107,19 +109,35 @@ public abstract class BaseApiServiceImpl {
 		}
 	}
 
-	public ComputateVertxSiteRequest generateSiteRequest(User user, ServiceRequest serviceRequest) {
-		return generateSiteRequest(user, serviceRequest, serviceRequest.getParams().getJsonObject("body"));
+	public <T extends ComputateVertxSiteRequest> T generateSiteRequest(User user, ServiceRequest serviceRequest, Class<T> clazz) {
+		return generateSiteRequest(user, serviceRequest, serviceRequest.getParams().getJsonObject("body"), clazz);
 	}
 
-	public abstract ComputateVertxSiteRequest generateSiteRequest(User user, ServiceRequest serviceRequest, JsonObject body);
+	public <T extends ComputateVertxSiteRequest> T generateSiteRequest(User user, ServiceRequest serviceRequest, JsonObject body, Class<T> clazz) {
+		T siteRequest = null;
+		try {
+			siteRequest = clazz.getDeclaredConstructor().newInstance();
+			siteRequest.setWebClient(webClient);
+			siteRequest.setJsonObject(body);
+			siteRequest.setUser(user);
+			siteRequest.setConfig(config);
+			siteRequest.setServiceRequest(serviceRequest);
+			siteRequest.setSiteRequest_(siteRequest);
+			siteRequest.initDeepForClass();
+		} catch (Exception ex) {
+			ExceptionUtils.rethrow(ex);
+		}
 
-	public Future<ComputateVertxSiteRequest> user(ServiceRequest serviceRequest) {
-		Promise<ComputateVertxSiteRequest> promise = Promise.promise();
+		return siteRequest;
+	}
+
+	public <T extends ComputateVertxSiteRequest> Future<T> user(ServiceRequest serviceRequest, Class<T> clazz, String vertxAddress, String postAction, String patchAction) {
+		Promise<T> promise = Promise.promise();
 		try {
 			JsonObject userJson = serviceRequest.getUser();
 			if(userJson == null) {
-				ComputateVertxSiteRequest siteRequest = generateSiteRequest(null, serviceRequest);
-				promise.complete(siteRequest);
+				ComputateVertxSiteRequest siteRequest = generateSiteRequest(null, serviceRequest, clazz);
+				promise.complete((T)siteRequest);
 			} else {
 				User token = User.create(userJson);
 				oauth2AuthenticationProvider.authenticate(token.principal()).onSuccess(user -> {
@@ -129,7 +147,7 @@ public abstract class BaseApiServiceImpl {
 							JsonObject userAttributes = user.attributes();
 							JsonObject accessToken = userAttributes.getJsonObject("accessToken");
 							String userId = accessToken.getString("sub");
-							ComputateVertxSiteRequest siteRequest = generateSiteRequest(user, serviceRequest);
+							T siteRequest = generateSiteRequest(user, serviceRequest, clazz);
 							SearchList<ComputateVertxSiteUser> searchList = new SearchList<ComputateVertxSiteUser>();
 							searchList.q("*:*");
 							searchList.setStore(true);
@@ -150,7 +168,8 @@ public abstract class BaseApiServiceImpl {
 
 									ComputateVertxSiteRequest siteRequest2 = siteRequest.copy();
 									siteRequest2.setJsonObject(jsonObject);
-									siteRequest2.initDeepSiteRequest(siteRequest);
+									siteRequest2.setSiteRequest_(siteRequest);
+									siteRequest2.initDeepForClass();
 
 									ApiRequest apiRequest = new ApiRequest();
 									apiRequest.setRows(1L);
@@ -159,16 +178,39 @@ public abstract class BaseApiServiceImpl {
 									apiRequest.initDeepApiRequest(siteRequest2);
 									siteRequest2.setApiRequest_(apiRequest);
 
-									userService.postSiteUserFuture(siteRequest2, false).onSuccess(siteUser -> {
+									JsonObject params = new JsonObject();
+									params.put("body", jsonObject);
+									params.put("path", new JsonObject());
+									params.put("cookie", new JsonObject());
+									params.put("header", new JsonObject());
+									params.put("form", new JsonObject());
+									JsonObject query = new JsonObject();
+									Boolean softCommit = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getBoolean("softCommit")).orElse(null);
+									Integer commitWithin = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getInteger("commitWithin")).orElse(null);
+									if(softCommit == null && commitWithin == null)
+										softCommit = true;
+									if(softCommit)
+										query.put("softCommit", softCommit);
+									if(commitWithin != null)
+										query.put("commitWithin", commitWithin);
+									params.put("query", query);
+									JsonObject context = new JsonObject().put("params", params).put("user", Optional.ofNullable(siteRequest.getUser()).map(u -> u.attributes().getJsonObject("tokenPrincipal")).orElse(null));
+									JsonObject json = new JsonObject().put("context", context);
+									eventBus.request(vertxAddress, json, new DeliveryOptions().addHeader("action", postAction)).onSuccess(a -> {
+										JsonObject responseMessage = (JsonObject)a.body();
+										JsonObject responseBody = new JsonObject(new String(Base64.getDecoder().decode(responseMessage.getString("payload") + "K"), Charset.forName("UTF-8")));
+										Long pk = Long.parseLong(responseBody.getString("pk"));
 										siteRequest.setUserName(accessToken.getString("preferred_username"));
 										siteRequest.setUserFirstName(accessToken.getString("given_name"));
 										siteRequest.setUserLastName(accessToken.getString("family_name"));
 										siteRequest.setUserEmail(accessToken.getString("email"));
 										siteRequest.setUserId(accessToken.getString("sub"));
-										siteRequest.setUserKey(siteUser.getPk());
+										apiRequest.setPk(pk);
+										siteRequest.setUserKey(pk);
 										promise.complete(siteRequest);
 									}).onFailure(ex -> {
-										error(siteRequest, null, ex);
+										LOG.error(String.format("postSiteUser failed. "), ex);
+										promise.fail(ex);
 									});
 								} else {
 									JsonObject jsonObject = new JsonObject();
@@ -183,7 +225,8 @@ public abstract class BaseApiServiceImpl {
 
 										ComputateVertxSiteRequest siteRequest2 = siteRequest.copy();
 										siteRequest2.setJsonObject(jsonObject);
-										siteRequest2.initDeepSiteRequest(siteRequest);
+										siteRequest2.setSiteRequest_(siteRequest);
+										siteRequest2.initDeepForClass();
 										siteUser1.setSiteRequest_(siteRequest2);
 
 										ApiRequest apiRequest = new ApiRequest();
@@ -193,13 +236,36 @@ public abstract class BaseApiServiceImpl {
 										apiRequest.initDeepApiRequest(siteRequest2);
 										siteRequest2.setApiRequest_(apiRequest);
 
-										userService.patchSiteUserFuture(siteUser1, false).onSuccess(siteUser2 -> {
-											siteRequest.setUserName(siteUser2.getUserName());
-											siteRequest.setUserFirstName(siteUser2.getUserFirstName());
-											siteRequest.setUserLastName(siteUser2.getUserLastName());
-											siteRequest.setUserKey(siteUser2.getPk());
+										JsonObject params = new JsonObject();
+										params.put("body", jsonObject);
+										params.put("path", new JsonObject());
+										params.put("cookie", new JsonObject());
+										params.put("header", new JsonObject());
+										params.put("form", new JsonObject());
+										JsonObject query = new JsonObject();
+										Boolean softCommit = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getBoolean("softCommit")).orElse(null);
+										Integer commitWithin = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getInteger("commitWithin")).orElse(null);
+										if(softCommit == null && commitWithin == null)
+											softCommit = true;
+										if(softCommit)
+											query.put("softCommit", softCommit);
+										if(commitWithin != null)
+											query.put("commitWithin", commitWithin);
+										query.put("q", "*:*").put("fq", new JsonArray().add("pk:" + siteUser1.getPk())).put("var", new JsonArray().add("refresh:false"));
+										params.put("query", query);
+										JsonObject context = new JsonObject().put("params", params).put("user", Optional.ofNullable(siteRequest.getUser()).map(u -> u.attributes().getJsonObject("tokenPrincipal")).orElse(null));
+										JsonObject json = new JsonObject().put("context", context);
+										eventBus.request(vertxAddress, json, new DeliveryOptions().addHeader("action", postAction)).onSuccess(a -> {
+											JsonObject responseBody = (JsonObject)a.body();
+											siteRequest.setUserName(accessToken.getString("preferred_username"));
+											siteRequest.setUserFirstName(accessToken.getString("given_name"));
+											siteRequest.setUserLastName(accessToken.getString("family_name"));
+											siteRequest.setUserEmail(accessToken.getString("email"));
+											siteRequest.setUserId(accessToken.getString("sub"));
+											siteRequest.setUserKey(Long.parseLong(responseBody.getString("pk")));
 											promise.complete(siteRequest);
 										}).onFailure(ex -> {
+											LOG.error(String.format("postSiteUser failed. "), ex);
 											promise.fail(ex);
 										});
 									} else {
@@ -207,7 +273,7 @@ public abstract class BaseApiServiceImpl {
 										siteRequest.setUserFirstName(siteUser1.getUserFirstName());
 										siteRequest.setUserLastName(siteUser1.getUserLastName());
 										siteRequest.setUserKey(siteUser1.getPk());
-										promise.complete(siteRequest);
+										promise.complete((T)siteRequest);
 									}
 								}
 							}).onFailure(ex -> {
@@ -225,8 +291,8 @@ public abstract class BaseApiServiceImpl {
 				}).onFailure(ex -> {
 					oauth2AuthenticationProvider.refresh(token).onSuccess(user -> {
 						serviceRequest.setUser(user.principal());
-						user(serviceRequest).onSuccess(siteRequest -> {
-							promise.complete(siteRequest);
+						user(serviceRequest, clazz, vertxAddress, postAction, patchAction).onSuccess(siteRequest -> {
+							promise.complete((T)siteRequest);
 						}).onFailure(ex2 -> {
 							LOG.error(String.format("user failed. ", ex2));
 							promise.fail(ex2);

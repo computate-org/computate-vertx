@@ -9,9 +9,9 @@ public interface ComputateVertxBaseModel {
 
 	public Object obtainForClass(String v);
 
-	public Object relateForClass(String v, Object val);
+	public boolean relateForClass(String v, Object val);
 
-	public Object defineForClass(String v, Object val);
+	public boolean defineForClass(String v, Object val);
 	
 }
 //

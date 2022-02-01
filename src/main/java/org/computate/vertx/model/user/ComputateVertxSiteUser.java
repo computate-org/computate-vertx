@@ -16,7 +16,7 @@ public interface ComputateVertxSiteUser extends ComputateVertxBaseModel {
 
 	void setUserId(String userId);
 
-	void setSiteRequest_(ComputateVertxSiteRequest siteRequest2);
+	<T extends ComputateVertxSiteRequest> void setSiteRequest_(T siteRequest);
 
 	String getUserName();
 
