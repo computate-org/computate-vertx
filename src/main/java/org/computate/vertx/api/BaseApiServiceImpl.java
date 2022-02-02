@@ -30,6 +30,7 @@ import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
+import io.vertx.core.json.impl.JsonUtil;
 import io.vertx.ext.auth.User;
 import io.vertx.ext.auth.authorization.AuthorizationProvider;
 import io.vertx.ext.auth.oauth2.OAuth2Auth;
@@ -198,7 +199,7 @@ public abstract class BaseApiServiceImpl {
 									JsonObject json = new JsonObject().put("context", context);
 									eventBus.request(vertxAddress, json, new DeliveryOptions().addHeader("action", postAction)).onSuccess(a -> {
 										JsonObject responseMessage = (JsonObject)a.body();
-										JsonObject responseBody = new JsonObject(new String(Base64.getDecoder().decode(responseMessage.getString("payload") + "K"), Charset.forName("UTF-8")));
+										JsonObject responseBody = new JsonObject(Buffer.buffer(JsonUtil.BASE64_DECODER.decode(responseMessage.getString("payload"))));
 										Long pk = Long.parseLong(responseBody.getString("pk"));
 										siteRequest.setUserName(accessToken.getString("preferred_username"));
 										siteRequest.setUserFirstName(accessToken.getString("given_name"));
