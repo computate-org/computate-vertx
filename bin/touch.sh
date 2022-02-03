@@ -9,9 +9,7 @@ touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/search/list
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/writer/AllWriter.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/writer/AllWriters.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/writer/ApiWriter.java
-touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/request/SiteRequest.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/model/base/ComputateVertxBaseModel.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/model/user/ComputateVertxSiteUser.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/verticle/EmailVerticle.java
-touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/page/PageLayout.java
 
