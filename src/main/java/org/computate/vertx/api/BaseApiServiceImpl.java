@@ -142,12 +142,12 @@ public abstract class BaseApiServiceImpl {
 		return siteRequest;
 	}
 
-	public <T extends ComputateVertxSiteRequest> Future<T> user(ServiceRequest serviceRequest, Class<T> clazz, String vertxAddress, String postAction, String patchAction) {
+	public <T extends ComputateVertxSiteRequest> Future<T> user(ServiceRequest serviceRequest, Class<T> cSiteRequest, Class<?> cSiteUser, String vertxAddress, String postAction, String patchAction) {
 		Promise<T> promise = Promise.promise();
 		try {
 			JsonObject userJson = serviceRequest.getUser();
 			if(userJson == null) {
-				ComputateVertxSiteRequest siteRequest = generateSiteRequest(null, serviceRequest, clazz);
+				ComputateVertxSiteRequest siteRequest = generateSiteRequest(null, serviceRequest, cSiteRequest);
 				promise.complete((T)siteRequest);
 			} else {
 				User token = User.create(userJson);
@@ -158,11 +158,11 @@ public abstract class BaseApiServiceImpl {
 							JsonObject userAttributes = user.attributes();
 							JsonObject accessToken = userAttributes.getJsonObject("accessToken");
 							String userId = accessToken.getString("sub");
-							T siteRequest = generateSiteRequest(user, serviceRequest, clazz);
+							T siteRequest = generateSiteRequest(user, serviceRequest, cSiteRequest);
 							SearchList<ComputateVertxSiteUser> searchList = new SearchList<ComputateVertxSiteUser>();
 							searchList.q("*:*");
 							searchList.setStore(true);
-							searchList.setC(ComputateVertxSiteUser.class);
+							searchList.setC(cSiteUser);
 							searchList.fq("userId_docvalues_string:" + SearchTool.escapeQueryChars(userId));
 							searchList.promiseDeepSearchList(siteRequest).onSuccess(c -> {
 								ComputateVertxSiteUser siteUser1 = searchList.getList().stream().findFirst().orElse(null);
@@ -302,7 +302,7 @@ public abstract class BaseApiServiceImpl {
 				}).onFailure(ex -> {
 					oauth2AuthenticationProvider.refresh(token).onSuccess(user -> {
 						serviceRequest.setUser(user.principal());
-						user(serviceRequest, clazz, vertxAddress, postAction, patchAction).onSuccess(siteRequest -> {
+						user(serviceRequest, cSiteRequest, cSiteUser, vertxAddress, postAction, patchAction).onSuccess(siteRequest -> {
 							promise.complete((T)siteRequest);
 						}).onFailure(ex2 -> {
 							LOG.error(String.format("user failed. ", ex2));
@@ -334,7 +334,7 @@ public abstract class BaseApiServiceImpl {
 				SearchList<ComputateVertxBaseModel> searchList = new SearchList<ComputateVertxBaseModel>();
 				searchList.q("*:*");
 				searchList.setStore(true);
-				searchList.setC(ComputateVertxBaseModel.class);
+				searchList.setC(c1);
 				searchList.fq("classCanonicalNames_docvalues_strings:" + SearchTool.escapeQueryChars(c2.getCanonicalName()));
 				searchList.fq((inheritPk ? "inheritPk_docvalues_string:" : "pk_docvalues_long:") + SearchTool.escapeQueryChars(l));
 				searchList.promiseDeepSearchList(siteRequest).onSuccess(s -> {

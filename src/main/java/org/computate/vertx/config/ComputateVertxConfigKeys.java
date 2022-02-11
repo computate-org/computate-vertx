@@ -487,4 +487,14 @@ public class ComputateVertxConfigKeys {
 	 * 
 	 **/
 	public static final String ZOOKEEPER_HOSTS = "ZOOKEEPER_HOSTS";
+
+	/**
+	 * 
+	 **/
+	public static final String SOLR_WORKER_COMMIT_WITHIN_MILLIS = "SOLR_WORKER_COMMIT_WITHIN_MILLIS";
+
+	/**
+	 * 
+	 **/
+	public static final String VERTX_WORKER_SEND_TIMEOUT_MILLIS = "VERTX_WORKER_SEND_TIMEOUT_MILLIS";
 }
