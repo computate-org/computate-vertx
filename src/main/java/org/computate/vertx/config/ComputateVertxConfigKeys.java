@@ -179,6 +179,16 @@ public class ComputateVertxConfigKeys {
 	public static final String SSL_CERT_PATH = "SSL_CERT_PATH";
 
 	/**
+	 * The path to the PEM key for the site. 
+	 **/
+	public static final String SSL_PEM_KEY_PATH = "SSL_PEM_KEY_PATH";
+
+	/**
+	 * The path to the PEM certificate for the site. 
+	 **/
+	public static final String SSL_PEM_CERT_PATH = "SSL_PEM_CERT_PATH";
+
+	/**
 	 * The port to the Auth server. 
 	 **/
 	public static final String AUTH_PORT = "AUTH_PORT";

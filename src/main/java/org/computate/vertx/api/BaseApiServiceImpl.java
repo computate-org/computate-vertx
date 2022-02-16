@@ -78,6 +78,24 @@ public abstract class BaseApiServiceImpl {
 
 	protected HandlebarsTemplateEngine templateEngine;
 
+	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, WebClient webClient) {
+		this.eventBus = eventBus;
+		this.config = config;
+		this.workerExecutor = workerExecutor;
+		this.pgPool = pgPool;
+		this.webClient = webClient;
+	}
+
+	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider) {
+		this.eventBus = eventBus;
+		this.config = config;
+		this.workerExecutor = workerExecutor;
+		this.pgPool = pgPool;
+		this.webClient = webClient;
+		this.oauth2AuthenticationProvider = oauth2AuthenticationProvider;
+		this.authorizationProvider = authorizationProvider;
+	}
+
 	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, HandlebarsTemplateEngine templateEngine) {
 		this.eventBus = eventBus;
 		this.config = config;

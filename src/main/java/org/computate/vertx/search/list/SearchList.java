@@ -73,6 +73,10 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		request.rows(s);
 		return this;
 	}
+	public SearchList<DEV> rows(Integer s) {
+		request.rows(s);
+		return this;
+	}
 	public Long getRows() {
 		return request.getRows();
 	}
@@ -117,6 +121,33 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 	}
 	public Boolean getFacet() {
 		return request.getFacet();
+	}
+
+	public SearchList<DEV> facetLimit(Integer s) {
+		request.facetLimit(s);
+		return this;
+	}
+	public Integer getFacetLimit() {
+		return request.getFacetLimit();
+	}
+
+	public SearchList<DEV> facetMinCount(Integer s) {
+		request.facetMinCount(s);
+		return this;
+	}
+	public Integer getFacetMinCount() {
+		return request.getFacetMinCount();
+	}
+
+	public SearchList<DEV> facetOffset(Integer s) {
+		request.facetOffset(s);
+		return this;
+	}
+	public Integer getFacetOffset() {
+		return request.getFacetOffset();
+	}
+	public void setFacetOffset(Integer facetOffset) {
+		request.setFacetOffset(facetOffset);
 	}
 
 	public SearchList<DEV> facetRangeStart(String s) {
