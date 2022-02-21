@@ -425,4 +425,10 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 	public <T extends ComputateVertxSiteRequest> T getSiteRequest_(Class<T> clazz) {
 		return (T)siteRequest_;
 	}
+	public SolrResponse.FacetField getFacetField(String var) {
+		if(queryResponse != null)
+			return queryResponse.getFacetField(var);
+		else 
+			return null;
+	}
 }
