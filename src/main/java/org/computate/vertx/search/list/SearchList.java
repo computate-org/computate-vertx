@@ -355,7 +355,11 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 	 */
 	protected void _docs(Wrap<List<SolrResponse.Doc>> w) {
 		if(request.getQuery() != null) {
-			w.o(queryResponse.getResponse().getDocs());
+			if(queryResponse.getError() != null) {
+				throw new RuntimeException(queryResponse.getError().getMsg());
+			} else {
+				w.o(queryResponse.getResponse().getDocs());
+			}
 		}
 	}
 
