@@ -115,12 +115,28 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		return request.getFacetPivots();
 	}
 
+	public SearchList<DEV> facetPivotMinCount(Integer s) {
+		request.facetPivotMinCount(s);
+		return this;
+	}
+	public Integer getFacetPivotMinCount() {
+		return request.getFacetPivotMinCount();
+	}
+
 	public SearchList<DEV> facet(Boolean facet) {
 		request.facet(facet);
 		return this;
 	}
 	public Boolean getFacet() {
 		return request.getFacet();
+	}
+
+	public SearchList<DEV> facetSort(String s) {
+		request.facetSort(s);
+		return this;
+	}
+	public String getFacetSort() {
+		return request.getFacetSort();
 	}
 
 	public SearchList<DEV> facetLimit(Integer s) {

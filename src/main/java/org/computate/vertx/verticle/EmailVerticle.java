@@ -14,18 +14,15 @@
 package org.computate.vertx.verticle;
 
 import org.apache.commons.lang3.StringUtils;
+import org.computate.vertx.config.ComputateVertxConfigKeys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.vertx.config.ConfigRetriever;
-import io.vertx.config.ConfigRetrieverOptions;
-import io.vertx.config.ConfigStoreOptions;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.Promise;
 import io.vertx.core.eventbus.Message;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mail.MailClient;
 import io.vertx.ext.mail.MailConfig;
 import io.vertx.ext.mail.MailMessage;
@@ -47,10 +44,7 @@ public class EmailVerticle extends AbstractVerticle {
 
 	@Override
 	public void start(Promise<Void> startPromise) throws Exception {
-		ConfigRetriever retriever = getConfigRetriever();
-		Future<JsonObject> futureConfig = retriever.getConfig();
-		futureConfig.onSuccess(config -> {
-			this.configureEmail(config);
+		configureEmail().onSuccess(config -> {
 			startPromise.complete();
 		}).onFailure(ex -> {
 			startPromise.fail(ex);
@@ -97,41 +91,25 @@ public class EmailVerticle extends AbstractVerticle {
 		};
 	}
 
-	private void configureEmail(JsonObject config) {
+	private Future<Void> configureEmail() {
+		Promise<Void> promise = Promise.promise();
 		try {
 			MailConfig mailConfig = new MailConfig();
-			mailConfig.setHostname(config.getString("emailHost"));
-			mailConfig.setPort(config.getInteger("emailPort"));
-			mailConfig.setSsl(config.getBoolean("emailSsl"));
-			mailConfig.setUsername(config.getString("emailUsername"));
-			mailConfig.setPassword(config.getString("emailPassword"));
-			this.fallbackMailFrom = config.getString("emailFrom");
-			this.fallbackMailTo = config.getString("emailTo");
-			this.fallbackMailSubject = config.getString("emailSubject");
+			mailConfig.setHostname(config().getString(ComputateVertxConfigKeys.EMAIL_HOST));
+			mailConfig.setPort(config().getInteger(ComputateVertxConfigKeys.EMAIL_PORT));
+			mailConfig.setSsl(config().getBoolean(ComputateVertxConfigKeys.EMAIL_SSL));
+			mailConfig.setUsername(config().getString(ComputateVertxConfigKeys.EMAIL_USERNAME));
+			mailConfig.setPassword(config().getString(ComputateVertxConfigKeys.EMAIL_PASSWORD));
+			this.fallbackMailFrom = config().getString(ComputateVertxConfigKeys.EMAIL_FROM);
+			this.fallbackMailTo = config().getString(ComputateVertxConfigKeys.EMAIL_ADMIN);
+			this.fallbackMailSubject = "";
 			this.mailClient = MailClient.createShared(vertx, mailConfig);
 			LOG.info("The email was configured successfully. ");
+			promise.complete();
 		} catch(Exception ex) {
 			LOG.error("The email was not configured successfully. ", ex);
+			promise.fail(ex);
 		}
-	}
-
-	private ConfigRetriever getConfigRetriever() {
-		ConfigRetrieverOptions retrieverOptions = new ConfigRetrieverOptions();
-
-		retrieverOptions.setScanPeriod(0);
-
-		ConfigStoreOptions storeApplicationProperties = new ConfigStoreOptions().setType("file").setFormat("properties").setConfig(new JsonObject().put("path", "application.properties"));
-		retrieverOptions.addStore(storeApplicationProperties);
-
-		String configPath = System.getenv("configPath");
-		if(StringUtils.isNotBlank(configPath)) {
-			ConfigStoreOptions storeIni = new ConfigStoreOptions().setType("file").setFormat("properties").setConfig(new JsonObject().put("path", configPath));
-			retrieverOptions.addStore(storeIni);
-		}
-
-		ConfigStoreOptions storeEnv = new ConfigStoreOptions().setType("env");
-		retrieverOptions.addStore(storeEnv);
-
-		return ConfigRetriever.create(vertx, retrieverOptions);
+		return promise.future();
 	}
 }
