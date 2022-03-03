@@ -163,12 +163,12 @@ public abstract class BaseApiServiceImpl {
 	public <T extends ComputateVertxSiteRequest> Future<T> user(ServiceRequest serviceRequest, Class<T> cSiteRequest, Class<?> cSiteUser, String vertxAddress, String postAction, String patchAction) {
 		Promise<T> promise = Promise.promise();
 		try {
-			JsonObject userJson = serviceRequest.getUser();
-			if(userJson == null) {
+			JsonObject userPrincipal = serviceRequest.getUser();
+			if(userPrincipal == null) {
 				ComputateVertxSiteRequest siteRequest = generateSiteRequest(null, serviceRequest, cSiteRequest);
 				promise.complete((T)siteRequest);
 			} else {
-				User token = User.create(userJson);
+				User token = User.create(userPrincipal);
 				oauth2AuthenticationProvider.authenticate(token.principal()).onSuccess(user -> {
 					user.attributes().put("accessToken", user.principal());
 					authorizationProvider.getAuthorizations(user).onSuccess(b -> {
@@ -236,6 +236,8 @@ public abstract class BaseApiServiceImpl {
 										siteRequest.setUserId(accessToken.getString("sub"));
 										apiRequest.setPk(pk);
 										siteRequest.setUserKey(pk);
+										siteRequest.setApiRequest_(apiRequest);
+										siteRequest.setUserPrincipal(userPrincipal);
 										promise.complete(siteRequest);
 									}).onFailure(ex -> {
 										LOG.error(String.format("postSiteUser failed. "), ex);
@@ -292,6 +294,8 @@ public abstract class BaseApiServiceImpl {
 											siteRequest.setUserEmail(accessToken.getString("email"));
 											siteRequest.setUserId(accessToken.getString("sub"));
 											siteRequest.setUserKey(Long.parseLong(responseBody.getString("pk")));
+											siteRequest.setApiRequest_(apiRequest);
+											siteRequest.setUserPrincipal(userPrincipal);
 											promise.complete(siteRequest);
 										}).onFailure(ex -> {
 											LOG.error(String.format("postSiteUser failed. "), ex);
@@ -442,7 +446,7 @@ public abstract class BaseApiServiceImpl {
 					pks.add(pk2);
 					classes.add(c2.getSimpleName());
 				}
-				siteRequest.getSqlConnection().preparedQuery(String.format("UPDATE %s SET %s=$1 WHERE pk=null", c1.getSimpleName(), entityVar1)).execute(Tuple.of(pk1)).onSuccess(a -> {
+				siteRequest.getSqlConnection().preparedQuery(String.format("UPDATE %s SET %s=null WHERE pk=$1", c1.getSimpleName(), entityVar1)).execute(Tuple.of(pk1)).onSuccess(a -> {
 					promise.complete();
 				}).onFailure(ex -> {
 					promise.fail(ex);

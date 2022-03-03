@@ -259,6 +259,10 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 				String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
 				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
 				String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION);
+
+				request.setQueryString(null);
+				request.initDeepForClass(siteRequest_);
+
 				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
 				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
 					SolrResponse response = a.bodyAsJson(SolrResponse.class);
@@ -290,6 +294,10 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 			String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
 			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
 			String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION);
+
+			request.setQueryString(null);
+			request.initDeepForClass(siteRequest_);
+
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
 			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
 				SolrResponse response = a.bodyAsJson(SolrResponse.class);

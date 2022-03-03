@@ -92,6 +92,10 @@ public interface ComputateVertxSiteRequest extends ComputateSearchSiteRequest {
 
 	User getUser();
 
+	JsonObject getUserPrincipal();
+
+	void setUserPrincipal(JsonObject userPrincipal);
+
 	void setUserEmail(String string);
 
 	void setUserId(String string);
