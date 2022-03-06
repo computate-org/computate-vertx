@@ -326,7 +326,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 	protected void _request(SearchRequest o) {
 		if(request.getQuery() != null) {
 			if(this.c != null)
-				request.fq("classCanonicalName_docvalues_string:" + SearchTool.escapeQueryChars(this.c.getCanonicalName()));
+				request.fq("classCanonicalNames_docvalues_strings:" + SearchTool.escapeQueryChars(this.c.getCanonicalName()));
 			ComputateVertxSiteUser siteUser = siteRequest_.getSiteUser_(ComputateVertxSiteUser.class);
 			if(siteUser == null || BooleanUtils.isNotTrue(siteUser.getSeeDeleted()))
 				request.fq("deleted_docvalues_boolean:false");
