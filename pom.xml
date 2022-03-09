@@ -1,6 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<parent>
 		<groupId>org.computate</groupId>
@@ -40,6 +38,20 @@
 		<developerConnection>scm:git:ssh://github.com:computate-org/computate-vertx.git</developerConnection>
 		<url>http://github.com/computate-org/computate-vertx/tree/master</url>
 	</scm>
+
+	<repositories>
+		<repository>
+			<id>redhat-ga</id>
+			<name>Red Hat GA</name>
+			<url>https://maven.repository.redhat.com/ga/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<dependencyManagement>
 		<dependencies>
@@ -354,4 +366,3 @@
 		</snapshotRepository>
 	</distributionManagement>
 </project>
-
