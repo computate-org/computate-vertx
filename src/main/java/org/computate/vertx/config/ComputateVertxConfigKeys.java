@@ -466,6 +466,11 @@ public class ComputateVertxConfigKeys {
 	/**
 	 * 
 	 **/
+	public static final String IMPORT_DATA = "IMPORT_DATA";
+
+	/**
+	 * 
+	 **/
 	public static final String IMPORT_DATA_PERIOD = "IMPORT_DATA_PERIOD";
 
 	/**
