@@ -190,6 +190,14 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		return request.getFacetRangeGap();
 	}
 
+	public SearchList<DEV> facetQuery(String s) {
+		request.facetQuery(s);
+		return this;
+	}
+	public List<String> getFacetQueries() {
+		return request.getFacetQueries();
+	}
+
 	public SearchList<DEV> facetField(String s) {
 		request.facetField(s);
 		return this;
