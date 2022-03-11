@@ -24,6 +24,19 @@ public enum SiteHelpers implements Helper<Object> {
 
 
 	/**
+	 * Return the original value, otherwise the default value. 
+	 */
+	defaultVal {
+		@Override
+		public CharSequence apply(final Object originalValue, final Options options) throws IOException {
+			if(originalValue == null)
+				return options.param(0).toString();
+			else
+				return originalValue.toString();
+		}
+	},
+
+	/**
 	 */
 	formatZonedDateTime {
 		@Override
