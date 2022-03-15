@@ -441,12 +441,7 @@ public class ComputateVertxConfigKeys {
 	/**
 	 * 
 	 **/
-	public static final String TIMER_DB_SOLR_SYNC_IN_SECONDS = "TIMER_DB_SOLR_SYNC_IN_SECONDS";
-
-	/**
-	 * 
-	 **/
-	public static final String ENABLE_DB_SOLR_SYNC = "ENABLE_DB_SOLR_SYNC";
+	public static final String REFRESH_DATA_PAUSE_IN_SECONDS = "REFRESH_DATA_PAUSE_IN_SECONDS";
 
 	/**
 	 * 
@@ -512,4 +507,9 @@ public class ComputateVertxConfigKeys {
 	 * 
 	 **/
 	public static final String VERTX_WORKER_SEND_TIMEOUT_MILLIS = "VERTX_WORKER_SEND_TIMEOUT_MILLIS";
+
+	/**
+	 * 
+	 **/
+	public static final String FONTAWESOME_KIT = "FONTAWESOME_KIT";
 }
