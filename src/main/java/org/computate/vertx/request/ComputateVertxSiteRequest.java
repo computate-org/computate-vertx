@@ -82,8 +82,6 @@ public interface ComputateVertxSiteRequest extends ComputateSearchSiteRequest {
 
 	void setRequestHeaders(MultiMap requestHeaders);
 
-	void setRequestPk(Long pk);
-
 	JsonObject getConfig();
 
 	WebClient getWebClient();

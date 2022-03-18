@@ -24,7 +24,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import org.computate.vertx.api.ApiRequest;
-import org.computate.vertx.model.base.ComputateVertxBaseModel;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -403,10 +402,6 @@ public abstract class AllWriterGen<DEV> extends Object {
 		for(String v : vars) {
 			if(o == null)
 				o = obtainAllWriter(v);
-			else if(o instanceof ComputateVertxBaseModel) {
-				ComputateVertxBaseModel computateVertxBaseModel = (ComputateVertxBaseModel)o;
-				o = computateVertxBaseModel.obtainForClass(v);
-			}
 			else if(o instanceof Map) {
 				Map<?, ?> map = (Map<?, ?>)o;
 				o = map.get(v);
@@ -446,10 +441,6 @@ public abstract class AllWriterGen<DEV> extends Object {
 		for(String v : vars) {
 			if(o == null)
 				o = relateAllWriter(v, val);
-			else if(o instanceof ComputateVertxBaseModel) {
-				ComputateVertxBaseModel computateVertxBaseModel = (ComputateVertxBaseModel)o;
-				o = computateVertxBaseModel.relateForClass(v, val);
-			}
 		}
 		return o != null;
 	}
@@ -528,32 +519,6 @@ public abstract class AllWriterGen<DEV> extends Object {
 			return AllWriter.staticSearchFqTabStr(siteRequest_, o);
 		case "empty":
 			return AllWriter.staticSearchFqEmpty(siteRequest_, o);
-			default:
-				return null;
-		}
-	}
-
-	/////////////
-	// define //
-	/////////////
-
-	public boolean defineForClass(String var, Object val) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		if(val != null) {
-			for(String v : vars) {
-				if(o == null)
-					o = defineAllWriter(v, val);
-				else if(o instanceof ComputateVertxBaseModel) {
-					ComputateVertxBaseModel oComputateVertxBaseModel = (ComputateVertxBaseModel)o;
-					o = oComputateVertxBaseModel.defineForClass(v, val);
-				}
-			}
-		}
-		return o != null;
-	}
-	public Object defineAllWriter(String var, Object val) {
-		switch(var.toLowerCase()) {
 			default:
 				return null;
 		}

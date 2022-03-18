@@ -438,6 +438,10 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		return list.size();
 	}
 
+	public Long getNumFound() {
+		return Optional.ofNullable(getQueryResponse()).map(l -> l.getResponse()).map(r -> r.getNumFound()).orElse(0L);
+	}
+
 	@Override()
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

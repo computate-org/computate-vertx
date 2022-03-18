@@ -100,6 +100,7 @@ public class AllWriter extends AllWriterGen<Object> {
 				c.o(new PrintWriter(stringWriter));
 			else {
 				try {
+					file.getParentFile().mkdir();
 					c.o(new PrintWriter(file));
 				} catch (FileNotFoundException e) {
 					ExceptionUtils.rethrow(e);
