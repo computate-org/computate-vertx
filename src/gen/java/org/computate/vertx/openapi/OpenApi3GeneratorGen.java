@@ -203,7 +203,7 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 	// define //
 	/////////////
 
-	@Override public boolean defineForClass(String var, Object val) {
+	@Override public boolean persistForClass(String var, Object val) {
 		String[] vars = StringUtils.split(var, ".");
 		Object o = null;
 		if(val != null) {
@@ -212,7 +212,7 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 					o = defineOpenApi3Generator(v, val);
 				else if(o instanceof ComputateVertxBaseModel) {
 					ComputateVertxBaseModel oComputateVertxBaseModel = (ComputateVertxBaseModel)o;
-					o = oComputateVertxBaseModel.defineForClass(v, val);
+					o = oComputateVertxBaseModel.persistForClass(v, val);
 				}
 			}
 		}

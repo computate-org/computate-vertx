@@ -11,7 +11,7 @@
  * and will automatically terminate your rights under this License (including 
  * any patent licenses granted under the third paragraph of section 11).
  */
-package org.computate.vertx.api; 
+package org.computate.vertx.api;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;

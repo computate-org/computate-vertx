@@ -27,7 +27,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import org.computate.vertx.api.ApiRequest;
-import org.computate.vertx.model.base.ComputateVertxBaseModel;
 import java.lang.Long;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.util.Locale;
@@ -145,6 +144,8 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		this.created = ApiRequest.staticSetCreated(siteRequest_, o);
 	}
 	public static ZonedDateTime staticSetCreated(ComputateVertxSiteRequest siteRequest_, String o) {
+		if(StringUtils.endsWith(o, "]"))
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
 		if(StringUtils.endsWith(o, "Z"))
 			return o == null ? null : Instant.parse(o).atZone(ZoneId.of(siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
 		else
@@ -857,10 +858,6 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		for(String v : vars) {
 			if(o == null)
 				o = obtainApiRequest(v);
-			else if(o instanceof ComputateVertxBaseModel) {
-				ComputateVertxBaseModel computateVertxBaseModel = (ComputateVertxBaseModel)o;
-				o = computateVertxBaseModel.obtainForClass(v);
-			}
 			else if(o instanceof Map) {
 				Map<?, ?> map = (Map<?, ?>)o;
 				o = map.get(v);
@@ -912,10 +909,6 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		for(String v : vars) {
 			if(o == null)
 				o = relateApiRequest(v, val);
-			else if(o instanceof ComputateVertxBaseModel) {
-				ComputateVertxBaseModel computateVertxBaseModel = (ComputateVertxBaseModel)o;
-				o = computateVertxBaseModel.relateForClass(v, val);
-			}
 		}
 		return o != null;
 	}
@@ -1066,32 +1059,6 @@ public abstract class ApiRequestGen<DEV> extends Object {
 			return ApiRequest.staticSearchFqVars(siteRequest_, o);
 		case "timeRemaining":
 			return ApiRequest.staticSearchFqTimeRemaining(siteRequest_, o);
-			default:
-				return null;
-		}
-	}
-
-	/////////////
-	// define //
-	/////////////
-
-	public boolean defineForClass(String var, Object val) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		if(val != null) {
-			for(String v : vars) {
-				if(o == null)
-					o = defineApiRequest(v, val);
-				else if(o instanceof ComputateVertxBaseModel) {
-					ComputateVertxBaseModel oComputateVertxBaseModel = (ComputateVertxBaseModel)o;
-					o = oComputateVertxBaseModel.defineForClass(v, val);
-				}
-			}
-		}
-		return o != null;
-	}
-	public Object defineApiRequest(String var, Object val) {
-		switch(var.toLowerCase()) {
 			default:
 				return null;
 		}

@@ -3050,7 +3050,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// define //
 	/////////////
 
-	public boolean defineForClass(String var, Object val) {
+	public boolean persistForClass(String var, Object val) {
 		String[] vars = StringUtils.split(var, ".");
 		Object o = null;
 		if(val != null) {
@@ -3059,7 +3059,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 					o = defineApiWriter(v, val);
 				else if(o instanceof ComputateVertxBaseModel) {
 					ComputateVertxBaseModel oComputateVertxBaseModel = (ComputateVertxBaseModel)o;
-					o = oComputateVertxBaseModel.defineForClass(v, val);
+					o = oComputateVertxBaseModel.persistForClass(v, val);
 				}
 			}
 		}
