@@ -170,7 +170,7 @@ public abstract class BaseApiServiceImpl {
 			} else {
 				User token = User.create(userPrincipal);
 				oauth2AuthenticationProvider.authenticate(token.principal()).onSuccess(user -> {
-					user.attributes().put("accessToken", user.principal());
+					user.attributes().put("principal", user.principal());
 					authorizationProvider.getAuthorizations(user).onSuccess(b -> {
 						try {
 							JsonObject userAttributes = user.attributes();
