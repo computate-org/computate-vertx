@@ -5,6 +5,7 @@ import static org.apache.commons.lang3.Validate.isTrue;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -216,6 +217,20 @@ public enum SiteHelpers implements Helper<Object> {
 			return dateFormatter.format(date);
 		}
 
+	},
+
+
+	/**
+	 * URL Encode the value
+	 */
+	encodeURIComponent {
+		@Override
+		public CharSequence apply(final Object originalValue, final Options options) throws IOException {
+			if(originalValue == null)
+				return null;
+			else
+				return URLEncoder.encode(originalValue.toString(), "UTF-8");
+		}
 	},
 	;
 }
