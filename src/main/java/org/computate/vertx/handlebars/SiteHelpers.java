@@ -13,6 +13,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TimeZone;
 
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
@@ -21,7 +22,56 @@ import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.Options;
 import com.github.jknack.handlebars.internal.lang3.LocaleUtils;
 
+import io.vertx.core.json.JsonObject;
+
 public enum SiteHelpers implements Helper<Object> {
+
+
+	/**
+	 * Call the toString method on an object. 
+	 */
+	toString {
+		@Override
+		public CharSequence apply(final Object originalValue, final Options options) throws IOException {
+			if(originalValue == null)
+				return "";
+			else
+				return originalValue.toString();
+		}
+	},
+
+
+	/**
+	 * Call the toString method on an object. 
+	 */
+	toJsonObjectString {
+		@Override
+		public CharSequence apply(final Object originalValue, final Options options) throws IOException {
+			if(originalValue == null)
+				return "";
+			else
+				return new JsonObject((Map<String, Object>)originalValue).toString();
+		}
+	},
+
+
+	/**
+	 * Call the toString method on an object and replace apostrophes. 
+	 */
+	toJsonObjectStringInApostrophes {
+		@Override
+		public CharSequence apply(final Object originalValue, final Options options) throws IOException {
+			if(originalValue == null) {
+				return "";
+			} else {
+				if(originalValue instanceof String) {
+					return new JsonObject((String)originalValue).toString().replace("'", "&apos;");
+				} else {
+					return new JsonObject((Map<String, Object>)originalValue).toString().replace("'", "&apos;");
+				}
+			}
+		}
+	},
 
 
 	/**
