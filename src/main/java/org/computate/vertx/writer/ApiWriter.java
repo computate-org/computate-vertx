@@ -473,10 +473,15 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				|| classRolesFound && BooleanUtils.isNotTrue(classRoleSession) && BooleanUtils.isNotTrue(classPublicRead)
 				|| classRolesFound && BooleanUtils.isNotTrue(classRoleSession) && BooleanUtils.isTrue(classPublicRead) && StringUtils.equalsAny(classApiMethodMethod, "POST", "PUT", "PATCH", "DELETE")
 				) {
-			wPaths.tl(3, "security:");
-//			wPaths.tl(4, "- basicAuth: []");
-			wPaths.tl(4, "- openIdConnect:");
-			wPaths.tl(5, "- profile");
+			String roleSecurity = (String)classSolrDocument.get(String.format("RoleSecurity_%s_stored_string", classApiMethod));
+			if(roleSecurity == null || roleSecurity.equals("true")) {
+				wPaths.tl(3, "security:");
+	//			wPaths.tl(4, "- basicAuth: []");
+				wPaths.tl(4, "- openIdConnect:");
+				wPaths.tl(5, "- profile");
+			} else {
+				roleSecurity.toString();
+			}
 		}
 
 		wPaths.t(3, "description: ").yamlStr(4, "");
