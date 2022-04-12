@@ -214,6 +214,14 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		return request.getFacetRanges();
 	}
 
+	public SearchList<DEV> jsonFacet(String s) {
+		request.jsonFacet(s);
+		return this;
+	}
+	public List<String> getJsonFacets() {
+		return request.getJsonFacets();
+	}
+
 	public SearchList<DEV> cursorMark(String s) {
 		request.cursorMark(s);
 		return this;

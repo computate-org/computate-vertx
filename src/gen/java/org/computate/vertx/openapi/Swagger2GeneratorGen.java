@@ -26,7 +26,6 @@ import java.lang.Integer;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import org.computate.vertx.api.ApiRequest;
-import org.computate.vertx.model.base.ComputateVertxBaseModel;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -45,6 +44,7 @@ import java.io.File;
 import java.util.Objects;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import io.vertx.core.json.JsonArray;
+import java.util.List;
 import org.computate.search.wrap.Wrap;
 import org.computate.vertx.writer.AllWriter;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -856,10 +856,6 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		for(String v : vars) {
 			if(o == null)
 				o = obtainSwagger2Generator(v);
-			else if(o instanceof ComputateVertxBaseModel) {
-				ComputateVertxBaseModel computateVertxBaseModel = (ComputateVertxBaseModel)o;
-				o = computateVertxBaseModel.obtainForClass(v);
-			}
 			else if(o instanceof Map) {
 				Map<?, ?> map = (Map<?, ?>)o;
 				o = map.get(v);
@@ -917,10 +913,6 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		for(String v : vars) {
 			if(o == null)
 				o = relateSwagger2Generator(v, val);
-			else if(o instanceof ComputateVertxBaseModel) {
-				ComputateVertxBaseModel computateVertxBaseModel = (ComputateVertxBaseModel)o;
-				o = computateVertxBaseModel.relateForClass(v, val);
-			}
 		}
 		return o != null;
 	}
@@ -1047,32 +1039,6 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			return Swagger2Generator.staticSearchFqApiVersion(siteRequest_, o);
 		case "openApiYamlPath":
 			return Swagger2Generator.staticSearchFqOpenApiYamlPath(siteRequest_, o);
-			default:
-				return null;
-		}
-	}
-
-	/////////////
-	// define //
-	/////////////
-
-	public boolean persistForClass(String var, Object val) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		if(val != null) {
-			for(String v : vars) {
-				if(o == null)
-					o = defineSwagger2Generator(v, val);
-				else if(o instanceof ComputateVertxBaseModel) {
-					ComputateVertxBaseModel oComputateVertxBaseModel = (ComputateVertxBaseModel)o;
-					o = oComputateVertxBaseModel.persistForClass(v, val);
-				}
-			}
-		}
-		return o != null;
-	}
-	public Object defineSwagger2Generator(String var, Object val) {
-		switch(var.toLowerCase()) {
 			default:
 				return null;
 		}

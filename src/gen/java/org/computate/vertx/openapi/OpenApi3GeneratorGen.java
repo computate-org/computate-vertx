@@ -25,7 +25,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import org.computate.vertx.api.ApiRequest;
-import org.computate.vertx.model.base.ComputateVertxBaseModel;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -41,6 +40,7 @@ import org.computate.search.serialize.ComputateZonedDateTimeDeserializer;
 import java.util.Objects;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import io.vertx.core.json.JsonArray;
+import java.util.List;
 import org.computate.search.wrap.Wrap;
 import org.apache.commons.lang3.math.NumberUtils;
 import java.util.Optional;
@@ -99,10 +99,6 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 		for(String v : vars) {
 			if(o == null)
 				o = obtainOpenApi3Generator(v);
-			else if(o instanceof ComputateVertxBaseModel) {
-				ComputateVertxBaseModel computateVertxBaseModel = (ComputateVertxBaseModel)o;
-				o = computateVertxBaseModel.obtainForClass(v);
-			}
 			else if(o instanceof Map) {
 				Map<?, ?> map = (Map<?, ?>)o;
 				o = map.get(v);
@@ -128,10 +124,6 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 		for(String v : vars) {
 			if(o == null)
 				o = relateOpenApi3Generator(v, val);
-			else if(o instanceof ComputateVertxBaseModel) {
-				ComputateVertxBaseModel computateVertxBaseModel = (ComputateVertxBaseModel)o;
-				o = computateVertxBaseModel.relateForClass(v, val);
-			}
 		}
 		return o != null;
 	}
@@ -196,32 +188,6 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 		switch(entityVar) {
 			default:
 				return Swagger2Generator.staticSearchFqSwagger2Generator(entityVar,  siteRequest_, o);
-		}
-	}
-
-	/////////////
-	// define //
-	/////////////
-
-	@Override public boolean persistForClass(String var, Object val) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		if(val != null) {
-			for(String v : vars) {
-				if(o == null)
-					o = defineOpenApi3Generator(v, val);
-				else if(o instanceof ComputateVertxBaseModel) {
-					ComputateVertxBaseModel oComputateVertxBaseModel = (ComputateVertxBaseModel)o;
-					o = oComputateVertxBaseModel.persistForClass(v, val);
-				}
-			}
-		}
-		return o != null;
-	}
-	public Object defineOpenApi3Generator(String var, Object val) {
-		switch(var.toLowerCase()) {
-			default:
-				return super.defineSwagger2Generator(var, val);
 		}
 	}
 

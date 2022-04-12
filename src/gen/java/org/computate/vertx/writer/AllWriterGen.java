@@ -44,6 +44,7 @@ import java.io.File;
 import java.util.Objects;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import io.vertx.core.json.JsonArray;
+import java.util.List;
 import io.vertx.core.buffer.Buffer;
 import org.computate.search.wrap.Wrap;
 import org.apache.commons.lang3.math.NumberUtils;
