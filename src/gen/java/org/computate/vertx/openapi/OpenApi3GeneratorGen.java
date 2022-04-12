@@ -13,43 +13,49 @@
  */
 package org.computate.vertx.openapi;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Arrays;
-import org.computate.vertx.openapi.Swagger2Generator;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import org.slf4j.LoggerFactory;
 import org.computate.vertx.request.ComputateVertxSiteRequest;
-import org.computate.search.serialize.ComputateLocalDateDeserializer;
-import java.util.HashMap;
-import org.apache.commons.lang3.StringUtils;
-import java.text.NumberFormat;
-import java.util.ArrayList;
 import org.computate.vertx.api.ApiRequest;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.computate.vertx.config.ComputateVertxConfigKeys;
-import java.math.RoundingMode;
-import org.slf4j.Logger;
-import java.math.MathContext;
-import io.vertx.core.Promise;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import io.vertx.core.Future;
-import org.computate.search.serialize.ComputateZonedDateTimeDeserializer;
-import java.util.Objects;
-import org.computate.search.serialize.ComputateLocalDateSerializer;
-import io.vertx.core.json.JsonArray;
-import java.util.List;
-import org.computate.search.wrap.Wrap;
-import org.apache.commons.lang3.math.NumberUtils;
 import java.util.Optional;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import java.util.List;
+import org.apache.commons.lang3.StringUtils;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.computate.search.serialize.ComputateLocalDateSerializer;
+import org.computate.search.serialize.ComputateLocalDateDeserializer;
+import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import org.computate.search.serialize.ComputateZonedDateTimeDeserializer;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import java.math.MathContext;
+import org.apache.commons.lang3.math.NumberUtils;
+import java.text.NumberFormat;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.math.RoundingMode;
+import java.util.Map;
+import org.computate.vertx.openapi.Swagger2Generator;
+import org.computate.search.wrap.Wrap;
+import io.vertx.core.Promise;
+import io.vertx.core.Future;
+import io.vertx.core.json.JsonArray;
 
 /**	
- * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.OpenApi3Generator&fq=classeEtendGen_indexed_boolean:true">Find the class  in Solr. </a>
+ * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.OpenApi3Generator">Find the class OpenApi3Generator in Solr. </a>
+ * <br><br>Delete the class OpenApi3Generator in Solr. 
+ * <br><pre>curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.OpenApi3Generator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'</pre>
+ * <br>Delete  the package org.computate.vertx.openapi in Solr. 
+ * <br><pre>curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'</pre>
+ * <br>Delete  the project computate-vertx in Solr. 
+ * <br><pre>curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'</pre>
  * <br>
  **/
 public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
@@ -201,6 +207,7 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 		return sb.toString();
 	}
 
+	public static final String CLASS_SIMPLE_NAME = "OpenApi3Generator";
 
 
 	public static String displayNameForClass(String var) {
