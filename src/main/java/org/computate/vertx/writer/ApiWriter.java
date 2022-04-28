@@ -459,9 +459,12 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 
 	public void  writeApi(Boolean id) throws Exception, Exception {
 
+		if(classPageCanonicalNameMethod != null && BooleanUtils.isFalse(id) && !"/".equals(classApiUriMethod))
+			writeApi(true);
+
 		if(id || !classUris.contains(classApiUriMethod)) {
 			wPaths.tl(1, classApiUriMethod, (id ? "/{id}" : ""), ":");
-			classUris.add(classApiUriMethod);
+			classUris.add(classApiUriMethod + (id ? "/{id}" : ""));
 		}
 
 		wPaths.tl(2, StringUtils.lowerCase(classApiMethodMethod), ":");
@@ -737,8 +740,6 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wSchemas.s(wResponseSchema.toString());
 			}
 		}
-		if(classPageCanonicalNameMethod != null && BooleanUtils.isFalse(id) && !"/".equals(classApiUriMethod))
-			writeApi(true);
 	}
 
 	@Override()

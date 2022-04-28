@@ -706,6 +706,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	/**	 The entity config
 	 *	 is defined as null before being initialized. 
 	 */
+	@JsonProperty
 	@JsonInclude(Include.NON_NULL)
 	protected JsonObject config;
 
@@ -724,7 +725,14 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setConfig(JsonObject config) {
 		this.config = config;
 	}
+	@JsonIgnore
+	public void setConfig(String o) {
+		this.config = ApiWriter.staticSetConfig(siteRequest_, o);
+	}
 	public static JsonObject staticSetConfig(ComputateVertxSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonObject(o);
+		}
 		return null;
 	}
 	protected ApiWriter configInit() {
@@ -734,6 +742,18 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			setConfig(configWrap.o);
 		}
 		return (ApiWriter)this;
+	}
+
+	public static JsonObject staticSearchConfig(ComputateVertxSiteRequest siteRequest_, JsonObject o) {
+		return o;
+	}
+
+	public static String staticSearchStrConfig(ComputateVertxSiteRequest siteRequest_, JsonObject o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqConfig(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrConfig(siteRequest_, ApiWriter.staticSearchConfig(siteRequest_, ApiWriter.staticSetConfig(siteRequest_, o)));
 	}
 
 	/////////////////////
@@ -2746,6 +2766,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSetTabsSchema(siteRequest_, o);
 		case "tabsResponses":
 			return ApiWriter.staticSetTabsResponses(siteRequest_, o);
+		case "config":
+			return ApiWriter.staticSetConfig(siteRequest_, o);
 		case "classApiTag":
 			return ApiWriter.staticSetClassApiTag(siteRequest_, o);
 		case "classExtendsBase":
@@ -2826,6 +2848,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchTabsSchema(siteRequest_, (Integer)o);
 		case "tabsResponses":
 			return ApiWriter.staticSearchTabsResponses(siteRequest_, (Integer)o);
+		case "config":
+			return ApiWriter.staticSearchConfig(siteRequest_, (JsonObject)o);
 		case "classApiTag":
 			return ApiWriter.staticSearchClassApiTag(siteRequest_, (String)o);
 		case "classExtendsBase":
@@ -2906,6 +2930,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchStrTabsSchema(siteRequest_, (Integer)o);
 		case "tabsResponses":
 			return ApiWriter.staticSearchStrTabsResponses(siteRequest_, (Integer)o);
+		case "config":
+			return ApiWriter.staticSearchStrConfig(siteRequest_, (JsonObject)o);
 		case "classApiTag":
 			return ApiWriter.staticSearchStrClassApiTag(siteRequest_, (String)o);
 		case "classExtendsBase":
@@ -2986,6 +3012,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchFqTabsSchema(siteRequest_, o);
 		case "tabsResponses":
 			return ApiWriter.staticSearchFqTabsResponses(siteRequest_, o);
+		case "config":
+			return ApiWriter.staticSearchFqConfig(siteRequest_, o);
 		case "classApiTag":
 			return ApiWriter.staticSearchFqClassApiTag(siteRequest_, o);
 		case "classExtendsBase":
