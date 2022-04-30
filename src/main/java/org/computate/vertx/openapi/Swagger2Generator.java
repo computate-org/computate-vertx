@@ -17,12 +17,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.computate.search.computate.enus.ComputateEnUSClass;
 import org.computate.search.request.SearchRequest;
 import org.computate.search.response.solr.SolrResponse;
+import org.computate.search.response.solr.SolrResponse.Doc;
 import org.computate.search.tool.SearchTool;
 import org.computate.search.wrap.Wrap;
 import org.computate.vertx.config.ComputateVertxConfigKeys;
@@ -126,8 +128,44 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 		c.o(new File(openApiYamlPath));
 	}
 
+	protected void _sqlCreatePath(Wrap<String> c) {
+		c.o(appPath + "/src/main/resources/sql/db-create.sql");
+	}
+
+	protected void _sqlCreateFile(Wrap<File> c) {
+		c.o(new File(sqlCreatePath));
+	}
+
+	protected void _sqlDropPath(Wrap<String> c) {
+		c.o(appPath + "/src/main/resources/sql/db-drop.sql");
+	}
+
+	protected void _sqlDropFile(Wrap<File> c) {
+		c.o(new File(sqlDropPath));
+	}
+
+	protected void _articleYamlPath(Wrap<String> c) {
+		c.o(appPath + "/src/main/resources/article.yml");
+	}
+
+	protected void _articleYamlFile(Wrap<File> c) {
+		c.o(new File(articleYamlPath));
+	}
+
 	protected void _w(Wrap<AllWriter> c) {
 		c.o(AllWriter.create(siteRequest_, openApiYamlFile, "  "));
+	}
+
+	protected void _wSqlCreate(Wrap<AllWriter> c) {
+		c.o(AllWriter.create(siteRequest_, sqlCreateFile, "  "));
+	}
+
+	protected void _wSqlDrop(Wrap<AllWriter> c) {
+		c.o(AllWriter.create(siteRequest_, sqlDropFile, "  "));
+	}
+
+	protected void _wArticle(Wrap<AllWriter> c) {
+		c.o(AllWriter.create(siteRequest_, articleYamlFile, "  "));
 	}
 
 	protected void _wPaths(Wrap<AllWriter> c) {
@@ -156,8 +194,6 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			w.flushClose();
 			promise.fail(ex);
 		});
-
-
 
 		return promise.future();
 	}
@@ -239,12 +275,15 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			}
 
 			loadClasses().onSuccess(classDoc -> {
+				LOG.info("Write OpenAPI completed. ");
 				promise.complete();
 			}).onFailure(ex -> {
+				LOG.error("Write OpenAPI failed. ", ex);
 				promise.fail(ex);
 			});
 
 		} catch (Exception ex) {
+			LOG.error("Write OpenAPI failed. ", ex);
 			LOG.error(writeApiError, ex);
 		}
 
@@ -391,6 +430,298 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 		} catch (Exception e) {
 			ExceptionUtils.rethrow(e);
 		}
+
+		return promise.future();
+	}
+
+	public Future<Void> loadSql1() {
+		Promise<Void> promise = Promise.promise();
+
+		try {
+			SearchRequest searchClasses = new SearchRequest();
+			searchClasses.q("*:*");
+			searchClasses.rows(1000000);
+			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
+			searchClasses.fq("classeSauvegarde_indexed_boolean:true");
+			searchClasses.fq("partEstClasse_indexed_boolean:true");
+			searchClasses.sortAsc("sqlSort_indexed_int");
+			searchClasses.initDeepForClass(siteRequest_);
+
+			String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
+			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
+			String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION_COMPUTATE);
+			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
+			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
+				try {
+					SolrResponse queryResponse = a.bodyAsJson(SolrResponse.class);
+					loadSql1(queryResponse.getResponse().getDocs(), 0).onSuccess(b -> {
+						promise.complete();
+					}).onFailure(ex -> {
+						promise.fail(ex);
+					});
+				} catch(Exception ex) {
+					LOG.error(String.format("Could not read response from Solr: http://%s:%s%s", solrHostName, solrPort, solrRequestUri), ex);
+					promise.fail(ex);
+				}
+			}).onFailure(ex -> {
+				LOG.error(String.format("Search failed. "), new RuntimeException(ex));
+				promise.fail(ex);
+			});
+		} catch (Exception ex) {
+			promise.fail(ex);
+		}
+
+		return promise.future();
+	}
+
+	public Future<Void> loadSql1(List<SolrResponse.Doc> docs, Integer i) {
+		Promise<Void> promise = Promise.promise();
+
+		try {
+			if(docs.size() >= (i + 1)) {
+				SolrResponse.Doc doc1 = docs.get(i);
+				String langueNom = "enUS";
+	
+				List<String> classeEntiteClassesSuperEtMoiSansGen = doc1.get("entiteClassesSuperEtMoiSansGen_stored_strings");
+				String fqClassesSuperEtMoi = "(" + classeEntiteClassesSuperEtMoiSansGen.stream().map(c -> SearchTool.escapeQueryChars(c)).collect(Collectors.joining(" OR ")) + ")";
+
+				SearchRequest searchClasses = new SearchRequest();
+				searchClasses.q("*:*");
+				searchClasses.rows(1000000);
+				searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
+				searchClasses.fq("classeNomCanonique_" + langueNom + "_indexed_string:" + fqClassesSuperEtMoi);
+				searchClasses.fq("partEstEntite_indexed_boolean:true");
+				searchClasses.fq("-entiteTypeJson_indexed_string:array");
+				searchClasses.fq("(entiteAttribuer_indexed_boolean:true OR entiteDefinir_indexed_boolean:true OR entiteClePrimaire_indexed_boolean:true)");
+				searchClasses.sortAsc("classeEstBase_indexed_boolean");
+				searchClasses.sortAsc("partNumero_indexed_int");
+				searchClasses.initDeepForClass(siteRequest_);
+	
+				String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
+				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
+				String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION_COMPUTATE);
+				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
+				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
+					try {
+						SolrResponse queryResponse = a.bodyAsJson(SolrResponse.class);
+	
+						String classeNomSimple = (String)doc1.get("classeNomSimple_" + langueNom + "_stored_string");
+						wSqlDrop.l("DROP TABLE ", classeNomSimple, " CASCADE;");
+						wSqlCreate.l("CREATE TABLE ", classeNomSimple, "(");
+
+						List<Doc> entiteDocs = queryResponse.getResponse().getDocs();
+						for(Integer j = 0; j < entiteDocs.size(); j++) {
+							SolrResponse.Doc doc2 = entiteDocs.get(j);
+							if(doc2.get("entiteAttribuerTypeJson_stored_string") != null && (((String)doc2.get("entiteVar_" + langueNom + "_stored_string")).compareTo((String)doc2.get("entiteAttribuerVar_" + langueNom + "_stored_string")) < 0 || "array".equals(doc2.get("entiteAttribuerTypeJson_stored_string"))) || doc2.get("entiteAttribuerTypeJson_stored_string") == null) {
+								wSqlCreate.t(1);
+								if(j > 0)
+									wSqlCreate.s(", ");
+								wSqlCreate.s(doc2.get("entiteVar_" + langueNom + "_stored_string"), " ", doc2.get("entiteTypeSql_stored_string"));
+								if(doc2.get("entiteAttribuerTypeJson_stored_string") != null)
+									wSqlCreate.s(" references ", (String)doc2.get("entiteAttribuerNomSimple_" + langueNom + "_stored_string"), "(pk)");
+								wSqlCreate.l();
+							}
+						}
+
+						wSqlCreate.tl(1, ");");
+	
+						loadSql1(docs, i + 1).onSuccess(b -> {
+							promise.complete();
+						}).onFailure(ex -> {
+							promise.fail(ex);
+						});
+					} catch(Exception ex) {
+						LOG.error(String.format("Could not read response from Solr: http://%s:%s%s", solrHostName, solrPort, solrRequestUri), ex);
+						promise.fail(ex);
+					}
+				}).onFailure(ex -> {
+					LOG.error(String.format("Search failed. "), new RuntimeException(ex));
+					promise.fail(ex);
+				});
+			} else {
+				promise.complete();
+			}
+		} catch(Exception ex) {
+			LOG.error("Could not load SQL. ", ex);
+			promise.fail(ex);
+		}
+		return promise.future();
+	}
+
+	public Future<Void> loadSql2() {
+		Promise<Void> promise = Promise.promise();
+
+		try {
+			SearchRequest searchClasses = new SearchRequest();
+			searchClasses.q("*:*");
+			searchClasses.rows(1000000);
+			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
+			searchClasses.fq("partEstEntite_indexed_boolean:true");
+			searchClasses.fq("entiteTypeJson_indexed_string:array");
+			searchClasses.fq("entiteAttribuerTypeJson_indexed_string:array");
+			searchClasses.initDeepForClass(siteRequest_);
+
+			String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
+			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
+			String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION_COMPUTATE);
+			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
+			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
+				try {
+					SolrResponse queryResponse = a.bodyAsJson(SolrResponse.class);
+					loadSql2(queryResponse.getResponse().getDocs(), 0).onSuccess(b -> {
+						promise.complete();
+					}).onFailure(ex -> {
+						promise.fail(ex);
+					});
+				} catch(Exception ex) {
+					LOG.error(String.format("Could not read response from Solr: http://%s:%s%s", solrHostName, solrPort, solrRequestUri), ex);
+					promise.fail(ex);
+				}
+			}).onFailure(ex -> {
+				LOG.error(String.format("Search failed. "), new RuntimeException(ex));
+				promise.fail(ex);
+			});
+		} catch (Exception ex) {
+			promise.fail(ex);
+		}
+
+		return promise.future();
+	}
+
+	public Future<Void> loadSql2(List<SolrResponse.Doc> docs, Integer i) {
+		Promise<Void> promise = Promise.promise();
+
+		try {
+			if(docs.size() >= (i + 1)) {
+				String langueNom = "enUS";
+				SolrResponse.Doc doc1 = docs.get(i);
+				String var = doc1.get("entiteVar_" + langueNom + "_stored_string");
+				String varAttribuer = doc1.get("entiteAttribuerVar_" + langueNom + "_stored_string");
+
+				if(var.compareTo(varAttribuer) < 0) {
+					String c1 = doc1.get("classeNomSimple_" + langueNom + "_stored_string");
+					String c2 = doc1.get("entiteAttribuerNomSimple_" + langueNom + "_stored_string");
+
+					wSqlDrop.l("DROP TABLE ", c1, StringUtils.capitalize(var), "_", c2, StringUtils.capitalize(varAttribuer), " CASCADE;");
+					wSqlCreate.l("CREATE TABLE ", c1, StringUtils.capitalize(var), "_", c2, StringUtils.capitalize(varAttribuer), "(");
+					wSqlCreate.tl(1, "pk bigserial primary key");
+					wSqlCreate.tl(1, ", pk1 bigint references ", c1, "(pk)");
+					wSqlCreate.tl(1, ", pk2 bigint references ", c2, "(pk)");
+					wSqlCreate.tl(1, ");");
+				}
+
+				loadSql2(docs, i + 1).onSuccess(b -> {
+					promise.complete();
+				}).onFailure(ex -> {
+					promise.fail(ex);
+				});
+			} else {
+				promise.complete();
+			}
+		} catch(Exception ex) {
+			LOG.error("Could not load SQL. ", ex);
+			promise.fail(ex);
+		}
+		return promise.future();
+	}
+
+	public Future<Void> writeSql() {
+		Promise<Void> promise = Promise.promise();
+
+		loadSql1().onSuccess(a -> {
+			loadSql2().onSuccess(b -> {
+				wSqlCreate.flushClose();
+				wSqlDrop.flushClose();
+				LOG.info("Write SQL completed. ");
+				promise.complete();
+			}).onFailure(ex -> {
+				wSqlCreate.flushClose();
+				wSqlDrop.flushClose();
+				LOG.error("Write SQL failed. ", ex);
+				promise.fail(ex);
+			});
+		}).onFailure(ex -> {
+			wSqlCreate.flushClose();
+			wSqlDrop.flushClose();
+			LOG.error("Write SQL failed. ", ex);
+			promise.fail(ex);
+		});
+
+		return promise.future();
+	}
+
+	public Future<Void> loadArticle() {
+		Promise<Void> promise = Promise.promise();
+
+		try {
+			SearchRequest searchClasses = new SearchRequest();
+			searchClasses.q("*:*");
+			searchClasses.rows(1000000);
+			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
+			searchClasses.fq("article_indexed_boolean:true");
+			searchClasses.fq("partEstClasse_indexed_boolean:true");
+			searchClasses.sortAsc("classeNomCanonique_enUS_indexed_string");
+			searchClasses.sortAsc("partNumero_indexed_int");
+			searchClasses.initDeepForClass(siteRequest_);
+
+			String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
+			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
+			String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION_COMPUTATE);
+			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
+			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
+				try {
+					SolrResponse queryResponse = a.bodyAsJson(SolrResponse.class);
+					loadArticle(queryResponse.getResponse().getDocs(), 0).onSuccess(b -> {
+						promise.complete();
+					}).onFailure(ex -> {
+						LOG.error("Write Articles failed. ", ex);
+						promise.fail(ex);
+					});
+				} catch(Exception ex) {
+					LOG.error(String.format("Could not read response from Solr: http://%s:%s%s", solrHostName, solrPort, solrRequestUri), ex);
+					promise.fail(ex);
+				}
+			}).onFailure(ex -> {
+				LOG.error(String.format("Search failed. "), new RuntimeException(ex));
+				promise.fail(ex);
+			});
+		} catch (Exception ex) {
+			LOG.error("Write Articles failed. ", ex);
+			promise.fail(ex);
+		}
+
+		return promise.future();
+	}
+
+	public Future<Void> loadArticle(List<SolrResponse.Doc> docs, Integer i) {
+		Promise<Void> promise = Promise.promise();
+		if(docs.size() >= (i + 1)) {
+			SolrResponse.Doc doc = docs.get(i);
+			ComputateEnUSClass classDoc = JsonObject.mapFrom(doc.getFields()).mapTo(ComputateEnUSClass.class);
+			wArticle.l("- ", classDoc.getClassCanonicalName());
+			loadArticle(docs, i + 1).onSuccess(b -> {
+				promise.complete();
+			}).onFailure(ex -> {
+				promise.fail(ex);
+			});
+		} else {
+			promise.complete();
+		}
+		return promise.future();
+	}
+
+	public Future<Void> writeArticle() {
+		Promise<Void> promise = Promise.promise();
+
+		loadArticle().onSuccess(a -> {
+			wArticle.flushClose();
+			LOG.info("Write Articles completed. ");
+			promise.complete();
+		}).onFailure(ex -> {
+			wArticle.flushClose();
+			LOG.error("Write Articles failed. ", ex);
+			promise.fail(ex);
+		});
 
 		return promise.future();
 	}

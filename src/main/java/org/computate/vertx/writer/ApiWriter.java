@@ -520,31 +520,41 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: string");
 			}
-			if(classApiMethod.contains("Search") || classApiMethod.contains("PATCH") || "PUT".equals(classApiMethodMethod)) {
+			if(classApiMethod.contains("Search") || classApiMethod.contains("PATCH")) {
 				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: q");
-				wPaths.tl(5, "description: ''");
+				wPaths.tl(5, "description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'");
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: string");
 				wPaths.tl(6, "default: '*:*'");
 				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: fq");
-				wPaths.tl(5, "description: ''");
+				wPaths.tl(5, "description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '");
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: array");
 				wPaths.tl(6, "items:");
 				wPaths.tl(7, "type: string");
 				wPaths.tl(4, "- in: query");
+				wPaths.tl(5, "name: var");
+				wPaths.tl(5, "description: 'The var parameters are additional optional variables and values to pass into the application. '");
+				wPaths.tl(5, "required: false");
+				wPaths.tl(5, "schema:");
+				wPaths.tl(6, "type: array");
+				wPaths.tl(6, "items:");
+				wPaths.tl(7, "  type: string");
+			}
+			if(classApiMethod.contains("Search")) {
+				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: fl");
-				wPaths.tl(5, "description: ''");
+				wPaths.tl(5, "description: 'The field list parameter limits the information included in a query response to a specified list of fields. '");
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: string");
 				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: sort");
-				wPaths.tl(5, "description: ''");
+				wPaths.tl(5, "description: 'The sort parameter arranges search results in either ascending (asc) or descending (desc) order. '");
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: array");
@@ -552,7 +562,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(7, "type: string");
 				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: start");
-				wPaths.tl(5, "description: ''");
+				wPaths.tl(5, "description: 'The start parameter specifies an offset into a query result set and instructs Solr to begin displaying results from this offset. '");
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: integer");
@@ -560,7 +570,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(6, "minimum: 0");
 				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: rows");
-				wPaths.tl(5, "description: ''");
+				wPaths.tl(5, "description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '");
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: integer");
@@ -570,16 +580,8 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 					wPaths.tl(6, "default: ", contextRows);
 				wPaths.tl(6, "minimum: 0");
 				wPaths.tl(4, "- in: query");
-				wPaths.tl(5, "name: var");
-				wPaths.tl(5, "description: ''");
-				wPaths.tl(5, "required: false");
-				wPaths.tl(5, "schema:");
-				wPaths.tl(6, "type: array");
-				wPaths.tl(6, "items:");
-				wPaths.tl(7, "  type: string");
-				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: facet");
-				wPaths.tl(5, "description: ''");
+				wPaths.tl(5, "description: 'The facet parameter enables facet counts in the query response. '");
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: array");
@@ -587,7 +589,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(7, "type: boolean");
 				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: facet.range.start");
-				wPaths.tl(5, "description: ''");
+				wPaths.tl(5, "description: 'The facet.range.start parameter specifies the lower bound of the ranges. '");
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: array");
@@ -595,7 +597,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(7, "type: string");
 				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: facet.range.end");
-				wPaths.tl(5, "description: ''");
+				wPaths.tl(5, "description: 'The facet.range.end specifies the upper bound of the ranges. '");
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: array");
@@ -603,7 +605,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(7, "type: string");
 				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: facet.range.gap");
-				wPaths.tl(5, "description: ''");
+				wPaths.tl(5, "description: 'The span of each range expressed as a value to be added to the lower bound. '");
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: array");
@@ -611,7 +613,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(7, "type: string");
 				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: facet.pivot");
-				wPaths.tl(5, "description: ''");
+				wPaths.tl(5, "description: 'The facet.pivot parameter defines the fields to use for the pivot. '");
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: array");
@@ -619,7 +621,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(7, "type: string");
 				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: facet.range");
-				wPaths.tl(5, "description: ''");
+				wPaths.tl(5, "description: 'The facet.range parameter defines the field for which Solr should create range facets. '");
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: array");
@@ -627,12 +629,43 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(7, "type: string");
 				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: facet.field");
-				wPaths.tl(5, "description: ''");
+				wPaths.tl(5, "description: 'The facet.field parameter identifies a field that should be treated as a facet. '");
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: array");
 				wPaths.tl(6, "items:");
 				wPaths.tl(7, "type: string");
+				wPaths.tl(4, "- in: query");
+				wPaths.tl(5, "name: d");
+				wPaths.tl(5, "description: 'The radial distance, usually in kilometers. '");
+				wPaths.tl(5, "required: false");
+				wPaths.tl(5, "schema:");
+				wPaths.tl(6, "type: integer");
+				wPaths.tl(6, "minimum: 0");
+				wPaths.tl(4, "- in: query");
+				wPaths.tl(5, "name: pt");
+				wPaths.tl(5, "description: 'he center point using the format lat,lon if latitude & longitude. Otherwise, x,y for PointType or x y for RPT field types. '");
+				wPaths.tl(5, "required: false");
+				wPaths.tl(5, "schema:");
+				wPaths.tl(6, "type: string");
+				wPaths.tl(4, "- in: query");
+				wPaths.tl(5, "name: sfield");
+				wPaths.tl(5, "description: 'A spatial indexed field. '");
+				wPaths.tl(5, "required: false");
+				wPaths.tl(5, "schema:");
+				wPaths.tl(6, "type: string");
+				wPaths.tl(4, "- in: query");
+				wPaths.tl(5, "name: score");
+				wPaths.tl(5, "description: '(Advanced option; not supported by LatLonType (deprecated) or PointType) If the query is used in a scoring context (e.g., as the main query in q), this local parameter determines what scores will be produced. Valid values are: none, kilometers, miles, degrees, distance, recipDistance, overlapRatio, area, area2D'");
+				wPaths.tl(5, "required: false");
+				wPaths.tl(5, "schema:");
+				wPaths.tl(6, "type: string");
+				wPaths.tl(4, "- in: query");
+				wPaths.tl(5, "name: distanceUnits");
+				wPaths.tl(5, "description: 'This is used to specify the units for distance measurements used throughout the use of this field. This can be degrees, kilometers or miles. '");
+				wPaths.tl(5, "required: false");
+				wPaths.tl(5, "schema:");
+				wPaths.tl(6, "type: string");
 			}
 		}
 
@@ -731,11 +764,13 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 					wSchemas.tl(tabsSchema + 2, "- type: array");
 					wSchemas.tl(tabsSchema + 3, "items:");
 					wSchemas.tl(tabsSchema + 4, "type: object");
-					wSchemas.tl(tabsSchema + 4, "properties:");
+					if(!wResponseSchema.getEmpty())
+						wSchemas.tl(tabsSchema + 4, "properties:");
 				}
 				else {
 					wSchemas.tl(tabsSchema + 2, "- type: object");
-					wSchemas.tl(tabsSchema + 3, "properties:");
+					if(!wResponseSchema.getEmpty())
+						wSchemas.tl(tabsSchema + 3, "properties:");
 				}
 				wSchemas.s(wResponseSchema.toString());
 			}

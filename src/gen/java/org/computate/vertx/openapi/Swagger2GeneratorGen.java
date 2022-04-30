@@ -155,6 +155,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	/**	 The entity config
 	 *	 is defined as null before being initialized. 
 	 */
+	@JsonProperty
 	@JsonInclude(Include.NON_NULL)
 	protected JsonObject config;
 
@@ -173,7 +174,14 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setConfig(JsonObject config) {
 		this.config = config;
 	}
+	@JsonIgnore
+	public void setConfig(String o) {
+		this.config = Swagger2Generator.staticSetConfig(siteRequest_, o);
+	}
 	public static JsonObject staticSetConfig(ComputateVertxSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonObject(o);
+		}
 		return null;
 	}
 	protected Swagger2Generator configInit() {
@@ -183,6 +191,18 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			setConfig(configWrap.o);
 		}
 		return (Swagger2Generator)this;
+	}
+
+	public static JsonObject staticSearchConfig(ComputateVertxSiteRequest siteRequest_, JsonObject o) {
+		return o;
+	}
+
+	public static String staticSearchStrConfig(ComputateVertxSiteRequest siteRequest_, JsonObject o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqConfig(ComputateVertxSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrConfig(siteRequest_, Swagger2Generator.staticSearchConfig(siteRequest_, Swagger2Generator.staticSetConfig(siteRequest_, o)));
 	}
 
 	/////////////
@@ -631,6 +651,267 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
+	///////////////////
+	// sqlCreatePath //
+	///////////////////
+
+	/**	 The entity sqlCreatePath
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String sqlCreatePath;
+
+	/**	<br> The entity sqlCreatePath
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:sqlCreatePath">Find the entity sqlCreatePath in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _sqlCreatePath(Wrap<String> c);
+
+	public String getSqlCreatePath() {
+		return sqlCreatePath;
+	}
+	public void setSqlCreatePath(String o) {
+		this.sqlCreatePath = Swagger2Generator.staticSetSqlCreatePath(siteRequest_, o);
+	}
+	public static String staticSetSqlCreatePath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected Swagger2Generator sqlCreatePathInit() {
+		Wrap<String> sqlCreatePathWrap = new Wrap<String>().var("sqlCreatePath");
+		if(sqlCreatePath == null) {
+			_sqlCreatePath(sqlCreatePathWrap);
+			setSqlCreatePath(sqlCreatePathWrap.o);
+		}
+		return (Swagger2Generator)this;
+	}
+
+	public static String staticSearchSqlCreatePath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrSqlCreatePath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqSqlCreatePath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrSqlCreatePath(siteRequest_, Swagger2Generator.staticSearchSqlCreatePath(siteRequest_, Swagger2Generator.staticSetSqlCreatePath(siteRequest_, o)));
+	}
+
+	///////////////////
+	// sqlCreateFile //
+	///////////////////
+
+	/**	 The entity sqlCreateFile
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected File sqlCreateFile;
+
+	/**	<br> The entity sqlCreateFile
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:sqlCreateFile">Find the entity sqlCreateFile in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _sqlCreateFile(Wrap<File> c);
+
+	public File getSqlCreateFile() {
+		return sqlCreateFile;
+	}
+
+	public void setSqlCreateFile(File sqlCreateFile) {
+		this.sqlCreateFile = sqlCreateFile;
+	}
+	public static File staticSetSqlCreateFile(ComputateVertxSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Swagger2Generator sqlCreateFileInit() {
+		Wrap<File> sqlCreateFileWrap = new Wrap<File>().var("sqlCreateFile");
+		if(sqlCreateFile == null) {
+			_sqlCreateFile(sqlCreateFileWrap);
+			setSqlCreateFile(sqlCreateFileWrap.o);
+		}
+		return (Swagger2Generator)this;
+	}
+
+	/////////////////
+	// sqlDropPath //
+	/////////////////
+
+	/**	 The entity sqlDropPath
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String sqlDropPath;
+
+	/**	<br> The entity sqlDropPath
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:sqlDropPath">Find the entity sqlDropPath in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _sqlDropPath(Wrap<String> c);
+
+	public String getSqlDropPath() {
+		return sqlDropPath;
+	}
+	public void setSqlDropPath(String o) {
+		this.sqlDropPath = Swagger2Generator.staticSetSqlDropPath(siteRequest_, o);
+	}
+	public static String staticSetSqlDropPath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected Swagger2Generator sqlDropPathInit() {
+		Wrap<String> sqlDropPathWrap = new Wrap<String>().var("sqlDropPath");
+		if(sqlDropPath == null) {
+			_sqlDropPath(sqlDropPathWrap);
+			setSqlDropPath(sqlDropPathWrap.o);
+		}
+		return (Swagger2Generator)this;
+	}
+
+	public static String staticSearchSqlDropPath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrSqlDropPath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqSqlDropPath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrSqlDropPath(siteRequest_, Swagger2Generator.staticSearchSqlDropPath(siteRequest_, Swagger2Generator.staticSetSqlDropPath(siteRequest_, o)));
+	}
+
+	/////////////////
+	// sqlDropFile //
+	/////////////////
+
+	/**	 The entity sqlDropFile
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected File sqlDropFile;
+
+	/**	<br> The entity sqlDropFile
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:sqlDropFile">Find the entity sqlDropFile in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _sqlDropFile(Wrap<File> c);
+
+	public File getSqlDropFile() {
+		return sqlDropFile;
+	}
+
+	public void setSqlDropFile(File sqlDropFile) {
+		this.sqlDropFile = sqlDropFile;
+	}
+	public static File staticSetSqlDropFile(ComputateVertxSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Swagger2Generator sqlDropFileInit() {
+		Wrap<File> sqlDropFileWrap = new Wrap<File>().var("sqlDropFile");
+		if(sqlDropFile == null) {
+			_sqlDropFile(sqlDropFileWrap);
+			setSqlDropFile(sqlDropFileWrap.o);
+		}
+		return (Swagger2Generator)this;
+	}
+
+	/////////////////////
+	// articleYamlPath //
+	/////////////////////
+
+	/**	 The entity articleYamlPath
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String articleYamlPath;
+
+	/**	<br> The entity articleYamlPath
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:articleYamlPath">Find the entity articleYamlPath in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _articleYamlPath(Wrap<String> c);
+
+	public String getArticleYamlPath() {
+		return articleYamlPath;
+	}
+	public void setArticleYamlPath(String o) {
+		this.articleYamlPath = Swagger2Generator.staticSetArticleYamlPath(siteRequest_, o);
+	}
+	public static String staticSetArticleYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected Swagger2Generator articleYamlPathInit() {
+		Wrap<String> articleYamlPathWrap = new Wrap<String>().var("articleYamlPath");
+		if(articleYamlPath == null) {
+			_articleYamlPath(articleYamlPathWrap);
+			setArticleYamlPath(articleYamlPathWrap.o);
+		}
+		return (Swagger2Generator)this;
+	}
+
+	public static String staticSearchArticleYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrArticleYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqArticleYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrArticleYamlPath(siteRequest_, Swagger2Generator.staticSearchArticleYamlPath(siteRequest_, Swagger2Generator.staticSetArticleYamlPath(siteRequest_, o)));
+	}
+
+	/////////////////////
+	// articleYamlFile //
+	/////////////////////
+
+	/**	 The entity articleYamlFile
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected File articleYamlFile;
+
+	/**	<br> The entity articleYamlFile
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:articleYamlFile">Find the entity articleYamlFile in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _articleYamlFile(Wrap<File> c);
+
+	public File getArticleYamlFile() {
+		return articleYamlFile;
+	}
+
+	public void setArticleYamlFile(File articleYamlFile) {
+		this.articleYamlFile = articleYamlFile;
+	}
+	public static File staticSetArticleYamlFile(ComputateVertxSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Swagger2Generator articleYamlFileInit() {
+		Wrap<File> articleYamlFileWrap = new Wrap<File>().var("articleYamlFile");
+		if(articleYamlFile == null) {
+			_articleYamlFile(articleYamlFileWrap);
+			setArticleYamlFile(articleYamlFileWrap.o);
+		}
+		return (Swagger2Generator)this;
+	}
+
 	///////
 	// w //
 	///////
@@ -668,6 +949,126 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		}
 		if(w != null)
 			w.initDeepForClass(siteRequest_);
+		return (Swagger2Generator)this;
+	}
+
+	////////////////
+	// wSqlCreate //
+	////////////////
+
+	/**	 The entity wSqlCreate
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected AllWriter wSqlCreate;
+
+	/**	<br> The entity wSqlCreate
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wSqlCreate">Find the entity wSqlCreate in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _wSqlCreate(Wrap<AllWriter> c);
+
+	public AllWriter getWSqlCreate() {
+		return wSqlCreate;
+	}
+
+	public void setWSqlCreate(AllWriter wSqlCreate) {
+		this.wSqlCreate = wSqlCreate;
+	}
+	public static AllWriter staticSetWSqlCreate(ComputateVertxSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Swagger2Generator wSqlCreateInit() {
+		Wrap<AllWriter> wSqlCreateWrap = new Wrap<AllWriter>().var("wSqlCreate");
+		if(wSqlCreate == null) {
+			_wSqlCreate(wSqlCreateWrap);
+			setWSqlCreate(wSqlCreateWrap.o);
+		}
+		if(wSqlCreate != null)
+			wSqlCreate.initDeepForClass(siteRequest_);
+		return (Swagger2Generator)this;
+	}
+
+	//////////////
+	// wSqlDrop //
+	//////////////
+
+	/**	 The entity wSqlDrop
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected AllWriter wSqlDrop;
+
+	/**	<br> The entity wSqlDrop
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wSqlDrop">Find the entity wSqlDrop in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _wSqlDrop(Wrap<AllWriter> c);
+
+	public AllWriter getWSqlDrop() {
+		return wSqlDrop;
+	}
+
+	public void setWSqlDrop(AllWriter wSqlDrop) {
+		this.wSqlDrop = wSqlDrop;
+	}
+	public static AllWriter staticSetWSqlDrop(ComputateVertxSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Swagger2Generator wSqlDropInit() {
+		Wrap<AllWriter> wSqlDropWrap = new Wrap<AllWriter>().var("wSqlDrop");
+		if(wSqlDrop == null) {
+			_wSqlDrop(wSqlDropWrap);
+			setWSqlDrop(wSqlDropWrap.o);
+		}
+		if(wSqlDrop != null)
+			wSqlDrop.initDeepForClass(siteRequest_);
+		return (Swagger2Generator)this;
+	}
+
+	//////////////
+	// wArticle //
+	//////////////
+
+	/**	 The entity wArticle
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected AllWriter wArticle;
+
+	/**	<br> The entity wArticle
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wArticle">Find the entity wArticle in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _wArticle(Wrap<AllWriter> c);
+
+	public AllWriter getWArticle() {
+		return wArticle;
+	}
+
+	public void setWArticle(AllWriter wArticle) {
+		this.wArticle = wArticle;
+	}
+	public static AllWriter staticSetWArticle(ComputateVertxSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Swagger2Generator wArticleInit() {
+		Wrap<AllWriter> wArticleWrap = new Wrap<AllWriter>().var("wArticle");
+		if(wArticle == null) {
+			_wArticle(wArticleWrap);
+			setWArticle(wArticleWrap.o);
+		}
+		if(wArticle != null)
+			wArticle.initDeepForClass(siteRequest_);
 		return (Swagger2Generator)this;
 	}
 
@@ -823,7 +1224,16 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 				apiVersionInit();
 				openApiYamlPathInit();
 				openApiYamlFileInit();
+				sqlCreatePathInit();
+				sqlCreateFileInit();
+				sqlDropPathInit();
+				sqlDropFileInit();
+				articleYamlPathInit();
+				articleYamlFileInit();
 				wInit();
+				wSqlCreateInit();
+				wSqlDropInit();
+				wArticleInit();
 				wPathsInit();
 				wRequestBodiesInit();
 				wSchemasInit();
@@ -840,6 +1250,12 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void siteRequestSwagger2Generator(ComputateVertxSiteRequest siteRequest_) {
 		if(w != null)
 			w.setSiteRequest_(siteRequest_);
+		if(wSqlCreate != null)
+			wSqlCreate.setSiteRequest_(siteRequest_);
+		if(wSqlDrop != null)
+			wSqlDrop.setSiteRequest_(siteRequest_);
+		if(wArticle != null)
+			wArticle.setSiteRequest_(siteRequest_);
 		if(wPaths != null)
 			wPaths.setSiteRequest_(siteRequest_);
 		if(wRequestBodies != null)
@@ -896,8 +1312,26 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 				return oSwagger2Generator.openApiYamlPath;
 			case "openApiYamlFile":
 				return oSwagger2Generator.openApiYamlFile;
+			case "sqlCreatePath":
+				return oSwagger2Generator.sqlCreatePath;
+			case "sqlCreateFile":
+				return oSwagger2Generator.sqlCreateFile;
+			case "sqlDropPath":
+				return oSwagger2Generator.sqlDropPath;
+			case "sqlDropFile":
+				return oSwagger2Generator.sqlDropFile;
+			case "articleYamlPath":
+				return oSwagger2Generator.articleYamlPath;
+			case "articleYamlFile":
+				return oSwagger2Generator.articleYamlFile;
 			case "w":
 				return oSwagger2Generator.w;
+			case "wSqlCreate":
+				return oSwagger2Generator.wSqlCreate;
+			case "wSqlDrop":
+				return oSwagger2Generator.wSqlDrop;
+			case "wArticle":
+				return oSwagger2Generator.wArticle;
 			case "wPaths":
 				return oSwagger2Generator.wPaths;
 			case "wRequestBodies":
@@ -939,6 +1373,8 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	}
 	public static Object staticSetSwagger2Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
+		case "config":
+			return Swagger2Generator.staticSetConfig(siteRequest_, o);
 		case "appName":
 			return Swagger2Generator.staticSetAppName(siteRequest_, o);
 		case "languageName":
@@ -955,6 +1391,12 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			return Swagger2Generator.staticSetApiVersion(siteRequest_, o);
 		case "openApiYamlPath":
 			return Swagger2Generator.staticSetOpenApiYamlPath(siteRequest_, o);
+		case "sqlCreatePath":
+			return Swagger2Generator.staticSetSqlCreatePath(siteRequest_, o);
+		case "sqlDropPath":
+			return Swagger2Generator.staticSetSqlDropPath(siteRequest_, o);
+		case "articleYamlPath":
+			return Swagger2Generator.staticSetArticleYamlPath(siteRequest_, o);
 			default:
 				return null;
 		}
@@ -969,6 +1411,8 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	}
 	public static Object staticSearchSwagger2Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
+		case "config":
+			return Swagger2Generator.staticSearchConfig(siteRequest_, (JsonObject)o);
 		case "appName":
 			return Swagger2Generator.staticSearchAppName(siteRequest_, (String)o);
 		case "languageName":
@@ -985,6 +1429,12 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			return Swagger2Generator.staticSearchApiVersion(siteRequest_, (String)o);
 		case "openApiYamlPath":
 			return Swagger2Generator.staticSearchOpenApiYamlPath(siteRequest_, (String)o);
+		case "sqlCreatePath":
+			return Swagger2Generator.staticSearchSqlCreatePath(siteRequest_, (String)o);
+		case "sqlDropPath":
+			return Swagger2Generator.staticSearchSqlDropPath(siteRequest_, (String)o);
+		case "articleYamlPath":
+			return Swagger2Generator.staticSearchArticleYamlPath(siteRequest_, (String)o);
 			default:
 				return null;
 		}
@@ -999,6 +1449,8 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	}
 	public static String staticSearchStrSwagger2Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
+		case "config":
+			return Swagger2Generator.staticSearchStrConfig(siteRequest_, (JsonObject)o);
 		case "appName":
 			return Swagger2Generator.staticSearchStrAppName(siteRequest_, (String)o);
 		case "languageName":
@@ -1015,6 +1467,12 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			return Swagger2Generator.staticSearchStrApiVersion(siteRequest_, (String)o);
 		case "openApiYamlPath":
 			return Swagger2Generator.staticSearchStrOpenApiYamlPath(siteRequest_, (String)o);
+		case "sqlCreatePath":
+			return Swagger2Generator.staticSearchStrSqlCreatePath(siteRequest_, (String)o);
+		case "sqlDropPath":
+			return Swagger2Generator.staticSearchStrSqlDropPath(siteRequest_, (String)o);
+		case "articleYamlPath":
+			return Swagger2Generator.staticSearchStrArticleYamlPath(siteRequest_, (String)o);
 			default:
 				return null;
 		}
@@ -1029,6 +1487,8 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	}
 	public static String staticSearchFqSwagger2Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
+		case "config":
+			return Swagger2Generator.staticSearchFqConfig(siteRequest_, o);
 		case "appName":
 			return Swagger2Generator.staticSearchFqAppName(siteRequest_, o);
 		case "languageName":
@@ -1045,6 +1505,12 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			return Swagger2Generator.staticSearchFqApiVersion(siteRequest_, o);
 		case "openApiYamlPath":
 			return Swagger2Generator.staticSearchFqOpenApiYamlPath(siteRequest_, o);
+		case "sqlCreatePath":
+			return Swagger2Generator.staticSearchFqSqlCreatePath(siteRequest_, o);
+		case "sqlDropPath":
+			return Swagger2Generator.staticSearchFqSqlDropPath(siteRequest_, o);
+		case "articleYamlPath":
+			return Swagger2Generator.staticSearchFqArticleYamlPath(siteRequest_, o);
 			default:
 				return null;
 		}
@@ -1074,7 +1540,16 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public static final String VAR_apiVersion = "apiVersion";
 	public static final String VAR_openApiYamlPath = "openApiYamlPath";
 	public static final String VAR_openApiYamlFile = "openApiYamlFile";
+	public static final String VAR_sqlCreatePath = "sqlCreatePath";
+	public static final String VAR_sqlCreateFile = "sqlCreateFile";
+	public static final String VAR_sqlDropPath = "sqlDropPath";
+	public static final String VAR_sqlDropFile = "sqlDropFile";
+	public static final String VAR_articleYamlPath = "articleYamlPath";
+	public static final String VAR_articleYamlFile = "articleYamlFile";
 	public static final String VAR_w = "w";
+	public static final String VAR_wSqlCreate = "wSqlCreate";
+	public static final String VAR_wSqlDrop = "wSqlDrop";
+	public static final String VAR_wArticle = "wArticle";
 	public static final String VAR_wPaths = "wPaths";
 	public static final String VAR_wRequestBodies = "wRequestBodies";
 	public static final String VAR_wSchemas = "wSchemas";
@@ -1091,7 +1566,16 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_apiVersion = "";
 	public static final String DISPLAY_NAME_openApiYamlPath = "";
 	public static final String DISPLAY_NAME_openApiYamlFile = "";
+	public static final String DISPLAY_NAME_sqlCreatePath = "";
+	public static final String DISPLAY_NAME_sqlCreateFile = "";
+	public static final String DISPLAY_NAME_sqlDropPath = "";
+	public static final String DISPLAY_NAME_sqlDropFile = "";
+	public static final String DISPLAY_NAME_articleYamlPath = "";
+	public static final String DISPLAY_NAME_articleYamlFile = "";
 	public static final String DISPLAY_NAME_w = "";
+	public static final String DISPLAY_NAME_wSqlCreate = "";
+	public static final String DISPLAY_NAME_wSqlDrop = "";
+	public static final String DISPLAY_NAME_wArticle = "";
 	public static final String DISPLAY_NAME_wPaths = "";
 	public static final String DISPLAY_NAME_wRequestBodies = "";
 	public static final String DISPLAY_NAME_wSchemas = "";
@@ -1125,8 +1609,26 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			return DISPLAY_NAME_openApiYamlPath;
 		case VAR_openApiYamlFile:
 			return DISPLAY_NAME_openApiYamlFile;
+		case VAR_sqlCreatePath:
+			return DISPLAY_NAME_sqlCreatePath;
+		case VAR_sqlCreateFile:
+			return DISPLAY_NAME_sqlCreateFile;
+		case VAR_sqlDropPath:
+			return DISPLAY_NAME_sqlDropPath;
+		case VAR_sqlDropFile:
+			return DISPLAY_NAME_sqlDropFile;
+		case VAR_articleYamlPath:
+			return DISPLAY_NAME_articleYamlPath;
+		case VAR_articleYamlFile:
+			return DISPLAY_NAME_articleYamlFile;
 		case VAR_w:
 			return DISPLAY_NAME_w;
+		case VAR_wSqlCreate:
+			return DISPLAY_NAME_wSqlCreate;
+		case VAR_wSqlDrop:
+			return DISPLAY_NAME_wSqlDrop;
+		case VAR_wArticle:
+			return DISPLAY_NAME_wArticle;
 		case VAR_wPaths:
 			return DISPLAY_NAME_wPaths;
 		case VAR_wRequestBodies:

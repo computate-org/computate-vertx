@@ -24,6 +24,16 @@ public class ComputateVertxConfigKeys {
 	public static final String RUN_OPENAPI3_GENERATOR = "RUN_OPENAPI3_GENERATOR";
 
 	/**
+	 * Run the SQL Generator when this environment variable is set to true. 
+	 **/
+	public static final String RUN_SQL_GENERATOR = "RUN_SQL_GENERATOR";
+
+	/**
+	 * Run the Article Generator when this environment variable is set to true. 
+	 **/
+	public static final String RUN_ARTICLE_GENERATOR = "RUN_ARTICLE_GENERATOR";
+
+	/**
 	 * The path to the config file of the site. 
 	 **/
 	public static final String CONFIG_PATH = "CONFIG_PATH";
