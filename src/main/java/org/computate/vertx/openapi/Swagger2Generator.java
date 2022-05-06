@@ -507,23 +507,20 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 	
 						String classeNomSimple = (String)doc1.get("classeNomSimple_" + langueNom + "_stored_string");
 						wSqlDrop.l("DROP TABLE ", classeNomSimple, " CASCADE;");
-						wSqlCreate.l("CREATE TABLE ", classeNomSimple, "(");
+						wSqlCreate.l();
+						wSqlCreate.l("CREATE TABLE IF NOT EXISTS ", classeNomSimple, "();");
 
 						List<Doc> entiteDocs = queryResponse.getResponse().getDocs();
 						for(Integer j = 0; j < entiteDocs.size(); j++) {
 							SolrResponse.Doc doc2 = entiteDocs.get(j);
 							if(doc2.get("entiteAttribuerTypeJson_stored_string") != null && (((String)doc2.get("entiteVar_" + langueNom + "_stored_string")).compareTo((String)doc2.get("entiteAttribuerVar_" + langueNom + "_stored_string")) < 0 || "array".equals(doc2.get("entiteAttribuerTypeJson_stored_string"))) || doc2.get("entiteAttribuerTypeJson_stored_string") == null) {
-								wSqlCreate.t(1);
-								if(j > 0)
-									wSqlCreate.s(", ");
+								wSqlCreate.s("ALTER TABLE ", classeNomSimple, " ADD COLUMN ");
 								wSqlCreate.s(doc2.get("entiteVar_" + langueNom + "_stored_string"), " ", doc2.get("entiteTypeSql_stored_string"));
 								if(doc2.get("entiteAttribuerTypeJson_stored_string") != null)
 									wSqlCreate.s(" references ", (String)doc2.get("entiteAttribuerNomSimple_" + langueNom + "_stored_string"), "(pk)");
-								wSqlCreate.l();
+								wSqlCreate.l(";");
 							}
 						}
-
-						wSqlCreate.tl(1, ");");
 	
 						loadSql1(docs, i + 1).onSuccess(b -> {
 							promise.complete();
