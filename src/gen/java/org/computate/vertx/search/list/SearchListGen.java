@@ -285,41 +285,41 @@ public abstract class SearchListGen<DEV> {
 		return (SearchList)this;
 	}
 
-	///////////////////
-	// queryResponse //
-	///////////////////
+	//////////////
+	// response //
+	//////////////
 
-	/**	 The entity queryResponse
+	/**	 The entity response
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonIgnore
 	@JsonInclude(Include.NON_NULL)
-	protected SolrResponse queryResponse;
+	protected SolrResponse response;
 
-	/**	<br> The entity queryResponse
+	/**	<br> The entity response
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:queryResponse">Find the entity queryResponse in Solr</a>
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:response">Find the entity response in Solr</a>
 	 * <br>
 	 * @param promise is for wrapping a value to assign to this entity during initialization. 
 	 **/
-	protected abstract void _queryResponse(Promise<SolrResponse> promise);
+	protected abstract void _response(Promise<SolrResponse> promise);
 
-	public SolrResponse getQueryResponse() {
-		return queryResponse;
+	public SolrResponse getResponse() {
+		return response;
 	}
 
-	public void setQueryResponse(SolrResponse queryResponse) {
-		this.queryResponse = queryResponse;
+	public void setResponse(SolrResponse response) {
+		this.response = response;
 	}
-	public static SolrResponse staticSetQueryResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static SolrResponse staticSetResponse(ComputateVertxSiteRequest siteRequest_, String o) {
 		return null;
 	}
-	protected Future<SolrResponse> queryResponsePromise() {
+	protected Future<SolrResponse> responsePromise() {
 		Promise<SolrResponse> promise = Promise.promise();
 		Promise<SolrResponse> promise2 = Promise.promise();
-		_queryResponse(promise2);
+		_response(promise2);
 		promise2.future().onSuccess(o -> {
-			setQueryResponse(o);
+			setResponse(o);
 			promise.complete(o);
 		}).onFailure(ex -> {
 			promise.fail(ex);
@@ -494,7 +494,7 @@ public abstract class SearchListGen<DEV> {
 			return promise2.future();
 		}).compose(a -> {
 			Promise<Void> promise2 = Promise.promise();
-			queryResponsePromise().onSuccess(queryResponse -> {
+			responsePromise().onSuccess(response -> {
 				promise2.complete();
 			}).onFailure(ex -> {
 				promise2.fail(ex);
@@ -566,8 +566,8 @@ public abstract class SearchListGen<DEV> {
 				return oSearchList.populate;
 			case "request":
 				return oSearchList.request;
-			case "queryResponse":
-				return oSearchList.queryResponse;
+			case "response":
+				return oSearchList.response;
 			case "docs":
 				return oSearchList.docs;
 			case "list":
@@ -687,7 +687,7 @@ public abstract class SearchListGen<DEV> {
 	public static final String VAR_store = "store";
 	public static final String VAR_populate = "populate";
 	public static final String VAR_request = "request";
-	public static final String VAR_queryResponse = "queryResponse";
+	public static final String VAR_response = "response";
 	public static final String VAR_docs = "docs";
 	public static final String VAR_list = "list";
 	public static final String VAR_first = "first";
@@ -697,7 +697,7 @@ public abstract class SearchListGen<DEV> {
 	public static final String DISPLAY_NAME_store = "";
 	public static final String DISPLAY_NAME_populate = "";
 	public static final String DISPLAY_NAME_request = "";
-	public static final String DISPLAY_NAME_queryResponse = "";
+	public static final String DISPLAY_NAME_response = "";
 	public static final String DISPLAY_NAME_docs = "";
 	public static final String DISPLAY_NAME_list = "";
 	public static final String DISPLAY_NAME_first = "";
@@ -717,8 +717,8 @@ public abstract class SearchListGen<DEV> {
 			return DISPLAY_NAME_populate;
 		case VAR_request:
 			return DISPLAY_NAME_request;
-		case VAR_queryResponse:
-			return DISPLAY_NAME_queryResponse;
+		case VAR_response:
+			return DISPLAY_NAME_response;
 		case VAR_docs:
 			return DISPLAY_NAME_docs;
 		case VAR_list:

@@ -123,6 +123,22 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		return request.getFacetPivotMinCount();
 	}
 
+	public SearchList<DEV> stats(Boolean stats) {
+		request.stats(stats);
+		return this;
+	}
+	public Boolean getStats() {
+		return request.getStats();
+	}
+
+	public SearchList<DEV> statsField(String statsField) {
+		request.statsField(statsField);
+		return this;
+	}
+	public List<String> getStatsFields() {
+		return request.getStatsFields();
+	}
+
 	public SearchList<DEV> facet(Boolean facet) {
 		request.facet(facet);
 		return this;
@@ -269,7 +285,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		try {
 			Long start = Optional.ofNullable(request.getStart()).orElse(0L);
 			Long rows = Optional.ofNullable(request.getRows()).orElse(0L);
-			Long numFound = Optional.ofNullable(queryResponse).map(r -> r.getResponse()).map(r -> r.getNumFound()).orElse(0L);
+			Long numFound = Optional.ofNullable(response).map(r -> r.getResponse()).map(r -> r.getNumFound()).orElse(0L);
 			if(rows > 0 && (start + rows) < numFound) {
 				request.setStart(start + rows);
 				String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
@@ -282,7 +298,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
 				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
 					SolrResponse response = a.bodyAsJson(SolrResponse.class);
-					setQueryResponse(response);
+					setResponse(response);
 					Wrap<List<SolrResponse.Doc>> docsWrap = new Wrap<List<SolrResponse.Doc>>().var("docs").o(response.getResponse().getDocs());
 					_docs(docsWrap);
 					setDocs(docsWrap.o);
@@ -317,7 +333,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
 			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
 				SolrResponse response = a.bodyAsJson(SolrResponse.class);
-				setQueryResponse(response);
+				setResponse(response);
 				Wrap<List<SolrResponse.Doc>> docsWrap = new Wrap<List<SolrResponse.Doc>>().var("docs").o(response.getResponse().getDocs());
 				_docs(docsWrap);
 				setDocs(docsWrap.o);
@@ -355,7 +371,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 	 * {@inheritDoc}
 	 * Ignore: true
 	 */
-	protected void _queryResponse(Promise<SolrResponse> promise) {        
+	protected void _response(Promise<SolrResponse> promise) {
 		try {
 			if(request.getQuery() != null) {
 				request.initDeepForClass(siteRequest_);
@@ -365,9 +381,9 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
 				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
 					try {
-						SolrResponse queryResponse = a.bodyAsJson(SolrResponse.class);
-						setQueryResponse(queryResponse);
-						promise.complete(queryResponse);
+						SolrResponse response = a.bodyAsJson(SolrResponse.class);
+						setResponse(response);
+						promise.complete(response);
 					} catch(Exception ex) {
 						LOG.error(String.format("Could not read response from Solr: http://%s:%s%s", solrHostName, solrPort, solrRequestUri), ex);
 						promise.fail(ex);
@@ -395,10 +411,10 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 	 */
 	protected void _docs(Wrap<List<SolrResponse.Doc>> w) {
 		if(request.getQuery() != null) {
-			if(queryResponse.getError() != null) {
-				throw new RuntimeException(queryResponse.getError().getMsg());
+			if(response.getError() != null) {
+				throw new RuntimeException(response.getError().getMsg());
 			} else {
-				w.o(queryResponse.getResponse().getDocs());
+				w.o(response.getResponse().getDocs());
 			}
 		}
 	}
@@ -447,7 +463,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 	}
 
 	public Long getNumFound() {
-		return Optional.ofNullable(getQueryResponse()).map(l -> l.getResponse()).map(r -> r.getNumFound()).orElse(0L);
+		return Optional.ofNullable(getResponse()).map(l -> l.getResponse()).map(r -> r.getNumFound()).orElse(0L);
 	}
 
 	@Override()
@@ -459,7 +475,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		} catch (UnsupportedEncodingException e) {
 			ExceptionUtils.rethrow(e);
 		}
-		Long numFound = Optional.ofNullable(getQueryResponse()).map(l -> l.getResponse()).map(r -> r.getNumFound()).orElse(null);
+		Long numFound = Optional.ofNullable(getResponse()).map(l -> l.getResponse()).map(r -> r.getNumFound()).orElse(null);
 		if(numFound != null)
 			sb.append("numFound: ").append(numFound).append("\n");
 		return sb.toString();
@@ -474,8 +490,8 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		return (T)siteRequest_;
 	}
 	public SolrResponse.FacetField getFacetField(String var) {
-		if(queryResponse != null)
-			return queryResponse.getFacetField(var);
+		if(response != null)
+			return response.getFacetField(var);
 		else 
 			return null;
 	}

@@ -584,9 +584,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(5, "description: 'The facet parameter enables facet counts in the query response. '");
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
-				wPaths.tl(6, "type: array");
-				wPaths.tl(6, "items:");
-				wPaths.tl(7, "type: boolean");
+				wPaths.tl(6, "type: boolean");
 				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: facet.range.start");
 				wPaths.tl(5, "description: 'The facet.range.start parameter specifies the lower bound of the ranges. '");
@@ -666,6 +664,20 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(5, "required: false");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: string");
+				wPaths.tl(4, "- in: query");
+				wPaths.tl(5, "name: stats");
+				wPaths.tl(5, "description: 'The Stats component returns simple statistics for numeric, string, and date fields within the document set. '");
+				wPaths.tl(5, "required: false");
+				wPaths.tl(5, "schema:");
+				wPaths.tl(6, "type: boolean");
+				wPaths.tl(4, "- in: query");
+				wPaths.tl(5, "name: stats.field");
+				wPaths.tl(5, "description: 'Specifies a field for which statistics should be generated. '");
+				wPaths.tl(5, "required: false");
+				wPaths.tl(5, "schema:");
+				wPaths.tl(6, "type: array");
+				wPaths.tl(6, "items:");
+				wPaths.tl(7, "type: string");
 			}
 		}
 
