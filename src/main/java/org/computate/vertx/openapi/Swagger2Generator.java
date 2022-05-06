@@ -514,7 +514,7 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 						for(Integer j = 0; j < entiteDocs.size(); j++) {
 							SolrResponse.Doc doc2 = entiteDocs.get(j);
 							if(doc2.get("entiteAttribuerTypeJson_stored_string") != null && (((String)doc2.get("entiteVar_" + langueNom + "_stored_string")).compareTo((String)doc2.get("entiteAttribuerVar_" + langueNom + "_stored_string")) < 0 || "array".equals(doc2.get("entiteAttribuerTypeJson_stored_string"))) || doc2.get("entiteAttribuerTypeJson_stored_string") == null) {
-								wSqlCreate.s("ALTER TABLE ", classeNomSimple, " ADD COLUMN ");
+								wSqlCreate.s("ALTER TABLE ", classeNomSimple, " ADD COLUMN IF NOT EXISTS ");
 								wSqlCreate.s(doc2.get("entiteVar_" + langueNom + "_stored_string"), " ", doc2.get("entiteTypeSql_stored_string"));
 								if(doc2.get("entiteAttribuerTypeJson_stored_string") != null)
 									wSqlCreate.s(" references ", (String)doc2.get("entiteAttribuerNomSimple_" + langueNom + "_stored_string"), "(pk)");
