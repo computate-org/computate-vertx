@@ -600,7 +600,7 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 					String c2 = doc1.get("entiteAttribuerNomSimple_" + langueNom + "_stored_string");
 
 					wSqlDrop.l("DROP TABLE ", c1, StringUtils.capitalize(var), "_", c2, StringUtils.capitalize(varAttribuer), " CASCADE;");
-					wSqlCreate.l("CREATE TABLE ", c1, StringUtils.capitalize(var), "_", c2, StringUtils.capitalize(varAttribuer), "(");
+					wSqlCreate.l("CREATE TABLE IF NOT EXISTS ", c1, StringUtils.capitalize(var), "_", c2, StringUtils.capitalize(varAttribuer), "(");
 					wSqlCreate.tl(1, "pk bigserial primary key");
 					wSqlCreate.tl(1, ", pk1 bigint references ", c1, "(pk)");
 					wSqlCreate.tl(1, ", pk2 bigint references ", c2, "(pk)");

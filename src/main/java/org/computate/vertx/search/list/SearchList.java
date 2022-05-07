@@ -426,7 +426,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 				try {
 					if(doc != null) {
 						String classCanonicalName = (String)fields.get("classCanonicalName_docvalues_string");
-						DEV o = (DEV)Class.forName(classCanonicalName).newInstance();
+						DEV o = (DEV)Class.forName(classCanonicalName == null ? c.getCanonicalName() : classCanonicalName).newInstance();
 						MethodUtils.invokeMethod(o, "setSiteRequest_", siteRequest_);
 						if(populate)
 							MethodUtils.invokeMethod(o, "populateForClass", doc);
