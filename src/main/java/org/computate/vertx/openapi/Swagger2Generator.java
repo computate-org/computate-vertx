@@ -444,6 +444,7 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
 			searchClasses.fq("classeSauvegarde_indexed_boolean:true");
 			searchClasses.fq("partEstClasse_indexed_boolean:true");
+			searchClasses.fq("classeEstBase_indexed_boolean:false");
 			searchClasses.sortAsc("sqlSort_indexed_int");
 			searchClasses.initDeepForClass(siteRequest_);
 
