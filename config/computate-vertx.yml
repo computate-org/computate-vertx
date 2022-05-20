@@ -1,0 +1,15 @@
+SITE_NAME: "computate-vertx"
+
+LANGUAGE_NAME: "enUS"
+SITE_PATH_enUS: "/home/ctate/.local/src/computate-vertx"
+DOMAIN_NAME: "example.com"
+DOMAIN_PACKAGE_NAME: "org.computate.vertx"
+SUFFIX_SRC_MAIN_JAVA: "/src/main/java"
+SUFFIX_SRC_GEN_JAVA: "/src/gen/java"
+RELATIVE_PATHS_TO_WATCH: "src/main/java/org/computate/vertx"
+
+SOLR_URL: "http://localhost:8983/solr/computate-vertx"
+SOLR_URL_COMPUTATE: "http://localhost:8983/solr/computate"
+ENABLE_LOG: true
+ENABLE_VERTX: true
+ENABLE_QUARKUS: true
