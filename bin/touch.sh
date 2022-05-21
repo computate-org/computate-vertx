@@ -7,8 +7,8 @@ touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/handlebars/
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/handlebars/SiteHelpers.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/model/base/ComputateVertxBaseModel.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/model/user/ComputateVertxSiteUser.java
-touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/openapi/OpenApi3Generator.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/openapi/Swagger2Generator.java
+touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/openapi/OpenApi3Generator.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/request/ComputateVertxSiteRequest.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/search/list/SearchList.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/search/list/SearchResult.java

@@ -37,7 +37,7 @@ import io.vertx.core.Promise;
 
 /** 
  * Keyword: classSimpleNameSearchList
- */ 
+ */
 public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV> {
 
 	public SearchList<DEV> q(String s) {
