@@ -1532,6 +1532,55 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return ApiWriter.staticSearchStrClassApiMethodMethod(siteRequest_, ApiWriter.staticSearchClassApiMethodMethod(siteRequest_, ApiWriter.staticSetClassApiMethodMethod(siteRequest_, o)));
 	}
 
+	////////////////////////////////////
+	// classApiMediaTypeRequestMethod //
+	////////////////////////////////////
+
+	/**	 The entity classApiMediaTypeRequestMethod
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String classApiMediaTypeRequestMethod;
+
+	/**	<br> The entity classApiMediaTypeRequestMethod
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiMediaTypeRequestMethod">Find the entity classApiMediaTypeRequestMethod in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _classApiMediaTypeRequestMethod(Wrap<String> c);
+
+	public String getClassApiMediaTypeRequestMethod() {
+		return classApiMediaTypeRequestMethod;
+	}
+	public void setClassApiMediaTypeRequestMethod(String o) {
+		this.classApiMediaTypeRequestMethod = ApiWriter.staticSetClassApiMediaTypeRequestMethod(siteRequest_, o);
+	}
+	public static String staticSetClassApiMediaTypeRequestMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ApiWriter classApiMediaTypeRequestMethodInit() {
+		Wrap<String> classApiMediaTypeRequestMethodWrap = new Wrap<String>().var("classApiMediaTypeRequestMethod");
+		if(classApiMediaTypeRequestMethod == null) {
+			_classApiMediaTypeRequestMethod(classApiMediaTypeRequestMethodWrap);
+			setClassApiMediaTypeRequestMethod(classApiMediaTypeRequestMethodWrap.o);
+		}
+		return (ApiWriter)this;
+	}
+
+	public static String staticSearchClassApiMediaTypeRequestMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrClassApiMediaTypeRequestMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqClassApiMediaTypeRequestMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassApiMediaTypeRequestMethod(siteRequest_, ApiWriter.staticSearchClassApiMediaTypeRequestMethod(siteRequest_, ApiWriter.staticSetClassApiMediaTypeRequestMethod(siteRequest_, o)));
+	}
+
 	////////////////////////////////
 	// classApiMediaType200Method //
 	////////////////////////////////
@@ -2542,6 +2591,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				classApiUriMethodInit();
 				classRoleUserMethodInit();
 				classApiMethodMethodInit();
+				classApiMediaTypeRequestMethodInit();
 				classApiMediaType200MethodInit();
 				classApiOperationIdMethodInit();
 				classApiOperationIdMethodRequestInit();
@@ -2681,6 +2731,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				return oApiWriter.classRoleUserMethod;
 			case "classApiMethodMethod":
 				return oApiWriter.classApiMethodMethod;
+			case "classApiMediaTypeRequestMethod":
+				return oApiWriter.classApiMediaTypeRequestMethod;
 			case "classApiMediaType200Method":
 				return oApiWriter.classApiMediaType200Method;
 			case "classApiOperationIdMethod":
@@ -2786,6 +2838,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSetClassRoleUserMethod(siteRequest_, o);
 		case "classApiMethodMethod":
 			return ApiWriter.staticSetClassApiMethodMethod(siteRequest_, o);
+		case "classApiMediaTypeRequestMethod":
+			return ApiWriter.staticSetClassApiMediaTypeRequestMethod(siteRequest_, o);
 		case "classApiMediaType200Method":
 			return ApiWriter.staticSetClassApiMediaType200Method(siteRequest_, o);
 		case "classApiOperationIdMethod":
@@ -2868,6 +2922,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchClassRoleUserMethod(siteRequest_, (Boolean)o);
 		case "classApiMethodMethod":
 			return ApiWriter.staticSearchClassApiMethodMethod(siteRequest_, (String)o);
+		case "classApiMediaTypeRequestMethod":
+			return ApiWriter.staticSearchClassApiMediaTypeRequestMethod(siteRequest_, (String)o);
 		case "classApiMediaType200Method":
 			return ApiWriter.staticSearchClassApiMediaType200Method(siteRequest_, (String)o);
 		case "classApiOperationIdMethod":
@@ -2950,6 +3006,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchStrClassRoleUserMethod(siteRequest_, (Boolean)o);
 		case "classApiMethodMethod":
 			return ApiWriter.staticSearchStrClassApiMethodMethod(siteRequest_, (String)o);
+		case "classApiMediaTypeRequestMethod":
+			return ApiWriter.staticSearchStrClassApiMediaTypeRequestMethod(siteRequest_, (String)o);
 		case "classApiMediaType200Method":
 			return ApiWriter.staticSearchStrClassApiMediaType200Method(siteRequest_, (String)o);
 		case "classApiOperationIdMethod":
@@ -3032,6 +3090,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchFqClassRoleUserMethod(siteRequest_, o);
 		case "classApiMethodMethod":
 			return ApiWriter.staticSearchFqClassApiMethodMethod(siteRequest_, o);
+		case "classApiMediaTypeRequestMethod":
+			return ApiWriter.staticSearchFqClassApiMediaTypeRequestMethod(siteRequest_, o);
 		case "classApiMediaType200Method":
 			return ApiWriter.staticSearchFqClassApiMediaType200Method(siteRequest_, o);
 		case "classApiOperationIdMethod":
@@ -3112,6 +3172,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String VAR_classApiUriMethod = "classApiUriMethod";
 	public static final String VAR_classRoleUserMethod = "classRoleUserMethod";
 	public static final String VAR_classApiMethodMethod = "classApiMethodMethod";
+	public static final String VAR_classApiMediaTypeRequestMethod = "classApiMediaTypeRequestMethod";
 	public static final String VAR_classApiMediaType200Method = "classApiMediaType200Method";
 	public static final String VAR_classApiOperationIdMethod = "classApiOperationIdMethod";
 	public static final String VAR_classApiOperationIdMethodRequest = "classApiOperationIdMethodRequest";
@@ -3162,6 +3223,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_classApiUriMethod = "";
 	public static final String DISPLAY_NAME_classRoleUserMethod = "";
 	public static final String DISPLAY_NAME_classApiMethodMethod = "";
+	public static final String DISPLAY_NAME_classApiMediaTypeRequestMethod = "";
 	public static final String DISPLAY_NAME_classApiMediaType200Method = "";
 	public static final String DISPLAY_NAME_classApiOperationIdMethod = "";
 	public static final String DISPLAY_NAME_classApiOperationIdMethodRequest = "";
@@ -3248,6 +3310,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return DISPLAY_NAME_classRoleUserMethod;
 		case VAR_classApiMethodMethod:
 			return DISPLAY_NAME_classApiMethodMethod;
+		case VAR_classApiMediaTypeRequestMethod:
+			return DISPLAY_NAME_classApiMediaTypeRequestMethod;
 		case VAR_classApiMediaType200Method:
 			return DISPLAY_NAME_classApiMediaType200Method;
 		case VAR_classApiOperationIdMethod:

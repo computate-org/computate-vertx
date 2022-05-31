@@ -144,7 +144,7 @@ public abstract class BaseApiServiceImpl {
 	}
 
 	public <T extends ComputateVertxSiteRequest> T generateSiteRequest(User user, ServiceRequest serviceRequest, Class<T> clazz) {
-		return generateSiteRequest(user, serviceRequest, serviceRequest.getParams().getJsonObject("body"), clazz);
+		return generateSiteRequest(user, serviceRequest, Optional.ofNullable(serviceRequest.getParams().getValue("body")).map(v -> (v instanceof JsonObject ? (JsonObject)v : null)).orElse(null), clazz);
 	}
 
 	public <T extends ComputateVertxSiteRequest> T generateSiteRequest(User user, ServiceRequest serviceRequest, JsonObject body, Class<T> clazz) {

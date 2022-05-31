@@ -147,6 +147,10 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 		c.o((String)classSolrDocument.get("classeApiMethode" + classApiMethod + "_enUS_stored_string"));
 	}
 
+	protected void _classApiMediaTypeRequestMethod(Wrap<String> c) {
+		c.o((String)classSolrDocument.get("classeApiTypeMediaRequete" + classApiMethod + "_enUS_stored_string"));
+	}
+
 	protected void _classApiMediaType200Method(Wrap<String> c) {
 		c.o((String)classSolrDocument.get("classeApiTypeMedia200" + classApiMethod + "_enUS_stored_string"));
 	}
@@ -690,7 +694,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.t(4, "description: ").yamlStr(5, StringUtils.trim(strRequestDescription));
 				wPaths.tl(4, "required: true");
 				wPaths.tl(4, "content:");
-				wPaths.tl(5, "application/json:");
+				wPaths.tl(5, classApiMediaTypeRequestMethod, ":");
 				wPaths.tl(6, "schema:");
 				wPaths.tl(7, "$ref: '#/components/schemas/", classApiOperationIdMethodRequest, "'");
 			}

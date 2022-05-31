@@ -153,9 +153,9 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public static ZonedDateTime staticSetCreated(ComputateVertxSiteRequest siteRequest_, String o) {
 		if(StringUtils.endsWith(o, "]"))
 			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
-		if(StringUtils.endsWith(o, "Z"))
+		else if(StringUtils.endsWith(o, "Z"))
 			return o == null ? null : Instant.parse(o).atZone(ZoneId.of(siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
-		if(StringUtils.contains(o, "T"))
+		else if(StringUtils.contains(o, "T"))
 			return o == null ? null : ZonedDateTime.parse(o, DateTimeFormatter.ISO_DATE_TIME).truncatedTo(ChronoUnit.MILLIS);
 		else
 			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);

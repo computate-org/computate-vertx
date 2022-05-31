@@ -90,7 +90,7 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 	}
 
 	protected void _appName(Wrap<String> c) {
-		c.o("choice-reports");
+		c.o(config.getString(ComputateVertxConfigKeys.SITE_NAME));
 	}
 
 	protected void _languageName(Wrap<String> c) {
