@@ -229,6 +229,11 @@ public class ComputateVertxConfigKeys {
 	public static final String SITE_BASE_URL = "SITE_BASE_URL";
 
 	/**
+	 * The name of the site. 
+	 **/
+	public static final String SITE_NAME = "SITE_NAME";
+
+	/**
 	 * The display name of the site. 
 	 **/
 	public static final String SITE_DISPLAY_NAME = "SITE_DISPLAY_NAME";
@@ -522,4 +527,9 @@ public class ComputateVertxConfigKeys {
 	 * 
 	 **/
 	public static final String FONTAWESOME_KIT = "FONTAWESOME_KIT";
+
+	/**
+	 * 
+	 **/
+	public static final String DYNAMIC_PAGE_PATH = "DYNAMIC_PAGE_PATH";
 }
