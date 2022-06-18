@@ -606,6 +606,7 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 					wSqlCreate.tl(1, ", pk1 bigint references ", c1, "(pk)");
 					wSqlCreate.tl(1, ", pk2 bigint references ", c2, "(pk)");
 					wSqlCreate.tl(1, ");");
+					wSqlCreate.l("CREATE UNIQUE INDEX IF NOT EXISTS ", c1, StringUtils.capitalize(var), "_", c2, StringUtils.capitalize(varAttribuer), "_pk1_pk2 ON ", c1, StringUtils.capitalize(var), "_", c2, StringUtils.capitalize(varAttribuer), "(pk1, pk2);");
 				}
 
 				loadSql2(docs, i + 1).onSuccess(b -> {

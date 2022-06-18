@@ -239,6 +239,26 @@ public class ComputateVertxConfigKeys {
 	public static final String SITE_DISPLAY_NAME = "SITE_DISPLAY_NAME";
 
 	/**
+	 * The name Github organization for the site. 
+	 **/
+	public static final String GITHUB_ORG = "GITHUB_ORG";
+
+	/**
+	 * The project powered by URL. 
+	 **/
+	public static final String PROJECT_POWERED_BY_URL = "PROJECT_POWERED_BY_URL";
+
+	/**
+	 * The project powered by organization name. 
+	 **/
+	public static final String PROJECT_POWERED_BY_NAME = "PROJECT_POWERED_BY_NAME";
+
+	/**
+	 * The project powered by image relative URI. 
+	 **/
+	public static final String PROJECT_POWERED_BY_IMAGE_URI = "PROJECT_POWERED_BY_IMAGE_URI";
+
+	/**
 	 * The class name of the JDBC driver class for the database. 
 	 **/
 	public static final String JDBC_DRIVER_CLASS = "JDBC_DRIVER_CLASS";

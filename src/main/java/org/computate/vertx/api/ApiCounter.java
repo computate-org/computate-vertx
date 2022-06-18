@@ -33,8 +33,22 @@ public class ApiCounter {
 		this.totalNum++;
 	}
 
+	public void incrementTotalNum(Long num) {
+		this.totalNum += num;
+	}
+
 	public void setTotalNum(Long totalNum) {
 		this.totalNum = totalNum;
+	}
+
+	private Long totalNumOld;
+
+	public Long getTotalNumOld() {
+		return totalNumOld;
+	}
+
+	public void setTotalNumOld(Long totalNumOld) {
+		this.totalNumOld = totalNumOld;
 	}
 
 	private Long queueNum;
@@ -47,11 +61,29 @@ public class ApiCounter {
 		this.queueNum++;
 	}
 
+	public void incrementQueueNum(Long num) {
+		this.queueNum += num;
+	}
+
 	public void decrementQueueNum() {
 		this.queueNum--;
 	}
 
+	public void decrementQueueNum(Long num) {
+		this.queueNum -= num;
+	}
+
 	public void setQueueNum(Long countNum) {
 		this.queueNum = countNum;
+	}
+
+	private Long queueNumOld;
+
+	public Long getQueueNumOld() {
+		return queueNumOld;
+	}
+
+	public void setQueueNumOld(Long countNumOld) {
+		this.queueNumOld = countNumOld;
 	}
 }

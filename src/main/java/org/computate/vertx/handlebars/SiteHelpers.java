@@ -20,6 +20,7 @@ import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
 
 import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.Options;
+import com.github.jknack.handlebars.TagType;
 import com.github.jknack.handlebars.internal.lang3.LocaleUtils;
 
 import io.vertx.core.json.JsonObject;
@@ -282,6 +283,40 @@ public enum SiteHelpers implements Helper<Object> {
 				return URLEncoder.encode(originalValue.toString(), "UTF-8");
 		}
 	},
+
+
+	/**
+	 * Return true if the value is an even number, otherwise false
+	 */
+	even{
+		@Override
+		public Object apply(final Object value, final Options options) throws IOException {
+			isTrue(value instanceof Number, "found '%s', expected 'number'", value);
+			Number number = (Number) value;
+			boolean result = (number.intValue() % 2) == 0;
+			if (options.tagType == TagType.SECTION) {
+				return result ? options.fn() : options.inverse();
+			}
+			return result ? options.hash("yes", true) : options.hash("no", false);
+		}
+	},
+
+
+	/**
+	 * Return true if the value is an even number, otherwise false
+	 */
+	odd{
+		@Override
+		public Object apply(final Object value, final Options options) throws IOException {
+			isTrue(value instanceof Number, "found '%s', expected 'number'", value);
+			Number number = (Number) value;
+			boolean result = (number.intValue() % 2) == 1;
+			if (options.tagType == TagType.SECTION) {
+				return result ? options.fn() : options.inverse();
+			}
+			return result ? options.hash("yes", true) : options.hash("no", false);
+		}
+	}
 	;
 }
 
