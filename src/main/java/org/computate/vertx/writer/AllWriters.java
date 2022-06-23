@@ -17,17 +17,17 @@ import java.io.IOException;
 import java.util.List;
 
 import org.computate.search.wrap.Wrap;
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.request.ComputateSiteRequest;
 
 /**
  * Keyword: classSimpleNameAllWriters
  **/
 public class AllWriters extends AllWritersGen<Object> {
 
-	protected void _siteRequest_(Wrap<ComputateVertxSiteRequest> c) {
+	protected void _siteRequest_(Wrap<ComputateSiteRequest> c) {
 	}
 
-	public static AllWriters create(ComputateVertxSiteRequest siteRequest_, AllWriter...writers) {
+	public static AllWriters create(ComputateSiteRequest siteRequest_, AllWriter...writers) {
 		AllWriters o = new AllWriters();
 		o.initDeepForClass(siteRequest_);
 		o.addWriters(writers);

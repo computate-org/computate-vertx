@@ -27,8 +27,8 @@ import org.computate.search.response.solr.SolrResponse;
 import org.computate.search.response.solr.SolrResponse.Doc;
 import org.computate.search.tool.SearchTool;
 import org.computate.search.wrap.Wrap;
-import org.computate.vertx.config.ComputateVertxConfigKeys;
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.config.ComputateConfigKeys;
+import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.writer.AllWriter;
 import org.computate.vertx.writer.ApiWriter;
 
@@ -55,7 +55,7 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 
 			retrieverOptions.addStore(new ConfigStoreOptions().setType("file").setFormat("yaml").setConfig(new JsonObject().put("path", Thread.currentThread().getContextClassLoader().getResource("application.yml").getPath())));
 
-			String configPath = System.getenv(ComputateVertxConfigKeys.CONFIG_PATH);
+			String configPath = System.getenv(ComputateConfigKeys.CONFIG_PATH);
 			if(StringUtils.isNotBlank(configPath)) {
 				ConfigStoreOptions configIni = new ConfigStoreOptions().setType("file").setFormat("yaml").setConfig(new JsonObject().put("path", configPath));
 				retrieverOptions.addStore(configIni);
@@ -83,14 +83,14 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 	protected void _webClient(Wrap<WebClient> w) {
 	}
 
-	protected void _siteRequest_(Wrap<ComputateVertxSiteRequest> c) {
+	protected void _siteRequest_(Wrap<ComputateSiteRequest> c) {
 	}
 
 	protected void _config(Wrap<JsonObject> c) {
 	}
 
 	protected void _appName(Wrap<String> c) {
-		c.o(config.getString(ComputateVertxConfigKeys.SITE_NAME));
+		c.o(config.getString(ComputateConfigKeys.SITE_NAME));
 	}
 
 	protected void _languageName(Wrap<String> c) {
@@ -98,11 +98,11 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 	}
 
 	protected void _appPath(Wrap<String> c) {
-		c.o(config.getString(ComputateVertxConfigKeys.SITE_PATH + "_" + languageName));
+		c.o(config.getString(ComputateConfigKeys.SITE_PATH + "_" + languageName));
 	}
 
 	protected void _openApiVersion(Wrap<String> c) {
-		c.o(config.getString(ComputateVertxConfigKeys.OPEN_API_VERSION, "3.0"));
+		c.o(config.getString(ComputateConfigKeys.OPEN_API_VERSION, "3.0"));
 	}
 
 	protected void _openApiVersionNumber(Wrap<Integer> c) {
@@ -117,7 +117,7 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 	}
 
 	protected void _apiVersion(Wrap<String> c) {
-		c.o(config.getString(ComputateVertxConfigKeys.API_VERSION));
+		c.o(config.getString(ComputateConfigKeys.API_VERSION));
 	}
 
 	protected void _openApiYamlPath(Wrap<String> c) {
@@ -207,7 +207,7 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 
 		wPaths.l("info:");
 
-		wPaths.t(1, "title: ").string(config.getString(ComputateVertxConfigKeys.API_TITLE)).l();
+		wPaths.t(1, "title: ").string(config.getString(ComputateConfigKeys.API_TITLE)).l();
 //		wPaths.t(1, "description: ").yamlStr(2, siteConfig.getApiDescription());
 		if(openApiVersionNumber == 2) {
 			wPaths.t(1, "version: ").string(apiVersion).l();
@@ -260,14 +260,14 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			}
 			else {
 				wRequestBodies.tl(0, "components:");
-				if(config.getString(ComputateVertxConfigKeys.AUTH_URL) != null) {
+				if(config.getString(ComputateConfigKeys.AUTH_URL) != null) {
 					wRequestBodies.tl(1, "securitySchemes:");
 						wRequestBodies.tl(2, "basicAuth:");
 						wRequestBodies.tl(3, "type: http");
 						wRequestBodies.tl(3, "scheme: basic");
 						wRequestBodies.tl(2, "openIdConnect:");
 						wRequestBodies.tl(3, "type: openIdConnect");
-						wRequestBodies.tl(3, "openIdConnectUrl: ", config.getString(ComputateVertxConfigKeys.AUTH_URL), "/realms/", config.getString(ComputateVertxConfigKeys.AUTH_REALM), "/.well-known/openid-configuration");
+						wRequestBodies.tl(3, "openIdConnectUrl: ", config.getString(ComputateConfigKeys.AUTH_URL), "/realms/", config.getString(ComputateConfigKeys.AUTH_REALM), "/.well-known/openid-configuration");
 				}
 				wRequestBodies.tl(1, "requestBodies:");
 
@@ -304,9 +304,9 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			searchClasses.sortAsc("partNumero_indexed_int");
 			searchClasses.initDeepForClass(siteRequest_);
 
-			String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
-			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
-			String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION_COMPUTATE);
+			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
+			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
 			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
 				try {
@@ -395,9 +395,9 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			searchEntities.sortAsc("partNumero_indexed_int");
 			searchEntities.initDeepForClass(siteRequest_);
 
-			String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
-			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
-			String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION_COMPUTATE);
+			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
+			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchEntities.getQueryString());
 			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
 				try {
@@ -448,9 +448,9 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			searchClasses.sortAsc("sqlSort_indexed_int");
 			searchClasses.initDeepForClass(siteRequest_);
 
-			String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
-			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
-			String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION_COMPUTATE);
+			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
+			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
 			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
 				try {
@@ -498,9 +498,9 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 				searchClasses.sortAsc("partNumero_indexed_int");
 				searchClasses.initDeepForClass(siteRequest_);
 	
-				String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
-				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
-				String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION_COMPUTATE);
+				String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
+				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+				String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
 				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
 				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
 					try {
@@ -559,9 +559,9 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			searchClasses.fq("entiteAttribuerTypeJson_indexed_string:array");
 			searchClasses.initDeepForClass(siteRequest_);
 
-			String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
-			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
-			String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION_COMPUTATE);
+			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
+			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
 			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
 				try {
@@ -663,9 +663,9 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			searchClasses.sortAsc("partNumero_indexed_int");
 			searchClasses.initDeepForClass(siteRequest_);
 
-			String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
-			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
-			String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION_COMPUTATE);
+			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
+			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
 			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
 				try {

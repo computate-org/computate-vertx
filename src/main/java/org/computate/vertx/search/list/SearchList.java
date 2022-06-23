@@ -28,9 +28,9 @@ import org.computate.search.request.SearchRequest;
 import org.computate.search.response.solr.SolrResponse;
 import org.computate.search.tool.SearchTool;
 import org.computate.search.wrap.Wrap;
-import org.computate.vertx.config.ComputateVertxConfigKeys;
-import org.computate.vertx.model.user.ComputateVertxSiteUser;
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.config.ComputateConfigKeys;
+import org.computate.vertx.model.user.ComputateSiteUser;
+import org.computate.vertx.request.ComputateSiteRequest;
 
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
@@ -257,7 +257,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 	 * {@inheritDoc}
 	 * Ignore: true
 	 */
-	protected void _siteRequest_(Wrap<ComputateVertxSiteRequest> c) {
+	protected void _siteRequest_(Wrap<ComputateSiteRequest> c) {
 	}
 
 	/**
@@ -288,9 +288,9 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 			Long numFound = Optional.ofNullable(response).map(r -> r.getResponse()).map(r -> r.getNumFound()).orElse(0L);
 			if(rows > 0 && (start + rows) < numFound) {
 				request.setStart(start + rows);
-				String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
-				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
-				String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION);
+				String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
+				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+				String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
 
 				request.setQueryString(null);
 				request.initDeepForClass(siteRequest_);
@@ -323,9 +323,9 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 	public Future<Boolean> query() {
 		Promise<Boolean> promise = Promise.promise();
 		try {
-			String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
-			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
-			String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION);
+			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
+			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
 
 			request.setQueryString(null);
 			request.initDeepForClass(siteRequest_);
@@ -359,7 +359,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		if(request.getQuery() != null) {
 			if(this.c != null)
 				request.fq("classCanonicalNames_docvalues_strings:" + SearchTool.escapeQueryChars(this.c.getCanonicalName()));
-			ComputateVertxSiteUser siteUser = siteRequest_.getSiteUser_(ComputateVertxSiteUser.class);
+			ComputateSiteUser siteUser = siteRequest_.getSiteUser_(ComputateSiteUser.class);
 			if(siteUser == null || BooleanUtils.isNotTrue(siteUser.getSeeDeleted()))
 				request.fq("deleted_docvalues_boolean:false");
 			if(siteUser == null || BooleanUtils.isNotTrue(siteUser.getSeeArchived()))
@@ -375,9 +375,9 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		try {
 			if(request.getQuery() != null) {
 				request.initDeepForClass(siteRequest_);
-				String solrHostName = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_HOST_NAME);
-				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateVertxConfigKeys.SOLR_PORT);
-				String solrCollection = siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SOLR_COLLECTION);
+				String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
+				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+				String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
 				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
 				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
 					try {
@@ -486,7 +486,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		return list.iterator();
 	}
 
-	public <T extends ComputateVertxSiteRequest> T getSiteRequest_(Class<T> clazz) {
+	public <T extends ComputateSiteRequest> T getSiteRequest_(Class<T> clazz) {
 		return (T)siteRequest_;
 	}
 	public SolrResponse.FacetField getFacetField(String var) {

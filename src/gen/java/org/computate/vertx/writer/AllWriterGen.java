@@ -13,9 +13,9 @@
  */
 package org.computate.vertx.writer;
 
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.api.ApiRequest;
-import org.computate.vertx.config.ComputateVertxConfigKeys;
+import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -76,7 +76,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 	 */
 	@JsonProperty
 	@JsonInclude(Include.NON_NULL)
-	protected ComputateVertxSiteRequest siteRequest_;
+	protected ComputateSiteRequest siteRequest_;
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
@@ -84,20 +84,20 @@ public abstract class AllWriterGen<DEV> extends Object {
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
-	protected abstract void _siteRequest_(Wrap<ComputateVertxSiteRequest> c);
+	protected abstract void _siteRequest_(Wrap<ComputateSiteRequest> c);
 
-	public ComputateVertxSiteRequest getSiteRequest_() {
+	public ComputateSiteRequest getSiteRequest_() {
 		return siteRequest_;
 	}
 
-	public void setSiteRequest_(ComputateVertxSiteRequest siteRequest_) {
+	public void setSiteRequest_(ComputateSiteRequest siteRequest_) {
 		this.siteRequest_ = siteRequest_;
 	}
-	public static ComputateVertxSiteRequest staticSetSiteRequest_(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static ComputateSiteRequest staticSetSiteRequest_(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected AllWriter siteRequest_Init() {
-		Wrap<ComputateVertxSiteRequest> siteRequest_Wrap = new Wrap<ComputateVertxSiteRequest>().var("siteRequest_");
+		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
 		if(siteRequest_ == null) {
 			_siteRequest_(siteRequest_Wrap);
 			setSiteRequest_(siteRequest_Wrap.o);
@@ -130,7 +130,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 	public void setTabStr(String o) {
 		this.tabStr = AllWriter.staticSetTabStr(siteRequest_, o);
 	}
-	public static String staticSetTabStr(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetTabStr(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected AllWriter tabStrInit() {
@@ -142,15 +142,15 @@ public abstract class AllWriterGen<DEV> extends Object {
 		return (AllWriter)this;
 	}
 
-	public static String staticSearchTabStr(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchTabStr(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrTabStr(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrTabStr(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqTabStr(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqTabStr(ComputateSiteRequest siteRequest_, String o) {
 		return AllWriter.staticSearchStrTabStr(siteRequest_, AllWriter.staticSearchTabStr(siteRequest_, AllWriter.staticSetTabStr(siteRequest_, o)));
 	}
 
@@ -180,7 +180,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 	public void setFile(File file) {
 		this.file = file;
 	}
-	public static File staticSetFile(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static File staticSetFile(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected AllWriter fileInit() {
@@ -218,7 +218,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 	public void setStringWriter(StringWriter stringWriter) {
 		this.stringWriter = stringWriter;
 	}
-	public static StringWriter staticSetStringWriter(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static StringWriter staticSetStringWriter(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected AllWriter stringWriterInit() {
@@ -256,7 +256,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 	public void setBuffer(Buffer buffer) {
 		this.buffer = buffer;
 	}
-	public static Buffer staticSetBuffer(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Buffer staticSetBuffer(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected AllWriter bufferInit() {
@@ -294,7 +294,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 	public void setPrintWriter(PrintWriter printWriter) {
 		this.printWriter = printWriter;
 	}
-	public static PrintWriter staticSetPrintWriter(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static PrintWriter staticSetPrintWriter(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected AllWriter printWriterInit() {
@@ -336,7 +336,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 	public void setEmpty(String o) {
 		this.empty = AllWriter.staticSetEmpty(siteRequest_, o);
 	}
-	public static Boolean staticSetEmpty(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Boolean staticSetEmpty(ComputateSiteRequest siteRequest_, String o) {
 		return Boolean.parseBoolean(o);
 	}
 	protected AllWriter emptyInit() {
@@ -348,15 +348,15 @@ public abstract class AllWriterGen<DEV> extends Object {
 		return (AllWriter)this;
 	}
 
-	public static Boolean staticSearchEmpty(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchEmpty(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSearchStrEmpty(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrEmpty(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqEmpty(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqEmpty(ComputateSiteRequest siteRequest_, String o) {
 		return AllWriter.staticSearchStrEmpty(siteRequest_, AllWriter.staticSearchEmpty(siteRequest_, AllWriter.staticSetEmpty(siteRequest_, o)));
 	}
 
@@ -364,7 +364,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 	// initDeep //
 	//////////////
 
-	public AllWriter initDeepAllWriter(ComputateVertxSiteRequest siteRequest_) {
+	public AllWriter initDeepAllWriter(ComputateSiteRequest siteRequest_) {
 		setSiteRequest_(siteRequest_);
 		initDeepAllWriter();
 		return (AllWriter)this;
@@ -384,7 +384,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 				emptyInit();
 	}
 
-	public void initDeepForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void initDeepForClass(ComputateSiteRequest siteRequest_) {
 		initDeepAllWriter(siteRequest_);
 	}
 
@@ -392,10 +392,10 @@ public abstract class AllWriterGen<DEV> extends Object {
 	// siteRequest //
 	/////////////////
 
-	public void siteRequestAllWriter(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestAllWriter(ComputateSiteRequest siteRequest_) {
 	}
 
-	public void siteRequestForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
 		siteRequestAllWriter(siteRequest_);
 	}
 
@@ -463,10 +463,10 @@ public abstract class AllWriterGen<DEV> extends Object {
 	// staticSet //
 	///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSetAllWriter(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSetAllWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetAllWriter(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "tabStr":
 			return AllWriter.staticSetTabStr(siteRequest_, o);
@@ -481,10 +481,10 @@ public abstract class AllWriterGen<DEV> extends Object {
 	// staticSearch //
 	////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchAllWriter(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSearchAllWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchAllWriter(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "tabStr":
 			return AllWriter.staticSearchTabStr(siteRequest_, (String)o);
@@ -499,10 +499,10 @@ public abstract class AllWriterGen<DEV> extends Object {
 	// staticSearchStr //
 	///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchStrAllWriter(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchStrAllWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrAllWriter(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "tabStr":
 			return AllWriter.staticSearchStrTabStr(siteRequest_, (String)o);
@@ -517,10 +517,10 @@ public abstract class AllWriterGen<DEV> extends Object {
 	// staticSearchFq //
 	//////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSearchFqAllWriter(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchFqAllWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqAllWriter(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "tabStr":
 			return AllWriter.staticSearchFqTabStr(siteRequest_, o);

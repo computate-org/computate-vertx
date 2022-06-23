@@ -13,9 +13,9 @@
  */
 package org.computate.vertx.writer;
 
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.api.ApiRequest;
-import org.computate.vertx.config.ComputateVertxConfigKeys;
+import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -71,7 +71,7 @@ public abstract class AllWritersGen<DEV> extends Object {
 	 */
 	@JsonProperty
 	@JsonInclude(Include.NON_NULL)
-	protected ComputateVertxSiteRequest siteRequest_;
+	protected ComputateSiteRequest siteRequest_;
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
@@ -79,20 +79,20 @@ public abstract class AllWritersGen<DEV> extends Object {
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
-	protected abstract void _siteRequest_(Wrap<ComputateVertxSiteRequest> c);
+	protected abstract void _siteRequest_(Wrap<ComputateSiteRequest> c);
 
-	public ComputateVertxSiteRequest getSiteRequest_() {
+	public ComputateSiteRequest getSiteRequest_() {
 		return siteRequest_;
 	}
 
-	public void setSiteRequest_(ComputateVertxSiteRequest siteRequest_) {
+	public void setSiteRequest_(ComputateSiteRequest siteRequest_) {
 		this.siteRequest_ = siteRequest_;
 	}
-	public static ComputateVertxSiteRequest staticSetSiteRequest_(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static ComputateSiteRequest staticSetSiteRequest_(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected AllWriters siteRequest_Init() {
-		Wrap<ComputateVertxSiteRequest> siteRequest_Wrap = new Wrap<ComputateVertxSiteRequest>().var("siteRequest_");
+		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
 		if(siteRequest_ == null) {
 			_siteRequest_(siteRequest_Wrap);
 			setSiteRequest_(siteRequest_Wrap.o);
@@ -127,11 +127,11 @@ public abstract class AllWritersGen<DEV> extends Object {
 	public void setWriters(List<AllWriter> writers) {
 		this.writers = writers;
 	}
-	public static AllWriter staticSetWriters(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWriters(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
-	public AllWriters addWriters(AllWriter...objets) {
-		for(AllWriter o : objets) {
+	public AllWriters addWriters(AllWriter...objects) {
+		for(AllWriter o : objects) {
 			addWriters(o);
 		}
 		return (AllWriters)this;
@@ -150,7 +150,7 @@ public abstract class AllWritersGen<DEV> extends Object {
 	// initDeep //
 	//////////////
 
-	public AllWriters initDeepAllWriters(ComputateVertxSiteRequest siteRequest_) {
+	public AllWriters initDeepAllWriters(ComputateSiteRequest siteRequest_) {
 		setSiteRequest_(siteRequest_);
 		initDeepAllWriters();
 		return (AllWriters)this;
@@ -165,7 +165,7 @@ public abstract class AllWritersGen<DEV> extends Object {
 				writersInit();
 	}
 
-	public void initDeepForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void initDeepForClass(ComputateSiteRequest siteRequest_) {
 		initDeepAllWriters(siteRequest_);
 	}
 
@@ -173,10 +173,10 @@ public abstract class AllWritersGen<DEV> extends Object {
 	// siteRequest //
 	/////////////////
 
-	public void siteRequestAllWriters(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestAllWriters(ComputateSiteRequest siteRequest_) {
 	}
 
-	public void siteRequestForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
 		siteRequestAllWriters(siteRequest_);
 	}
 
@@ -234,10 +234,10 @@ public abstract class AllWritersGen<DEV> extends Object {
 	// staticSet //
 	///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSetAllWriters(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSetAllWriters(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetAllWriters(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 			default:
 				return null;
@@ -248,10 +248,10 @@ public abstract class AllWritersGen<DEV> extends Object {
 	// staticSearch //
 	////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchAllWriters(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSearchAllWriters(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchAllWriters(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 			default:
 				return null;
@@ -262,10 +262,10 @@ public abstract class AllWritersGen<DEV> extends Object {
 	// staticSearchStr //
 	///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchStrAllWriters(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchStrAllWriters(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrAllWriters(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 			default:
 				return null;
@@ -276,10 +276,10 @@ public abstract class AllWritersGen<DEV> extends Object {
 	// staticSearchFq //
 	//////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSearchFqAllWriters(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchFqAllWriters(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqAllWriters(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 			default:
 				return null;

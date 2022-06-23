@@ -16,7 +16,7 @@ package org.computate.vertx.config;
 /**
  * Keyword: classSimpleNameConfigKeys
  */
-public class ComputateVertxConfigKeys {
+public class ComputateConfigKeys {
 
 	/**
 	 * Run the OpenAPI3 Generator when this environment variable is set to true. 
@@ -552,4 +552,14 @@ public class ComputateVertxConfigKeys {
 	 * 
 	 **/
 	public static final String DYNAMIC_PAGE_PATH = "DYNAMIC_PAGE_PATH";
+
+	/**
+	 * Map default location. 
+	 **/
+	public static final String DEFAULT_MAP_LOCATION = "DEFAULT_MAP_LOCATION";
+
+	/**
+	 * Map default zoom. 
+	 **/
+	public static final String DEFAULT_MAP_ZOOM = "DEFAULT_MAP_ZOOM";
 }

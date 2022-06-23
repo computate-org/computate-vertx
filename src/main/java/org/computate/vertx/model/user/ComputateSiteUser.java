@@ -13,13 +13,13 @@
  */
 package org.computate.vertx.model.user;
 
-import org.computate.vertx.model.base.ComputateVertxBaseModel;
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.model.base.ComputateBaseModel;
+import org.computate.vertx.request.ComputateSiteRequest;
 
 /**   
  * Keyword: classSimpleNameSiteUser
  */ 
-public interface ComputateVertxSiteUser extends ComputateVertxBaseModel {
+public interface ComputateSiteUser extends ComputateBaseModel {
 
 	void setUserName(String userName);
 
@@ -29,7 +29,7 @@ public interface ComputateVertxSiteUser extends ComputateVertxBaseModel {
 
 	void setUserId(String userId);
 
-	<T extends ComputateVertxSiteRequest> void setSiteRequest_(T siteRequest);
+	<T extends ComputateSiteRequest> void setSiteRequest_(T siteRequest);
 
 	String getUserName();
 
@@ -39,7 +39,7 @@ public interface ComputateVertxSiteUser extends ComputateVertxBaseModel {
 
 	void apiRequestSiteUser();
 
-	ComputateVertxSiteRequest getSiteRequest_();
+	ComputateSiteRequest getSiteRequest_();
 
 	void setInheritPk(String string);
 

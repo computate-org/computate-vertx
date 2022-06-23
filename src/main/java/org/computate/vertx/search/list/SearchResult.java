@@ -14,7 +14,7 @@
 package org.computate.vertx.search.list;
 
 import org.computate.search.wrap.Wrap;
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.request.ComputateSiteRequest;
 
 import io.vertx.core.json.JsonObject;
 
@@ -23,7 +23,7 @@ import io.vertx.core.json.JsonObject;
  */
 public class SearchResult extends SearchResultGen<Object> {
 
-	protected void _siteRequest_(Wrap<ComputateVertxSiteRequest> c) {
+	protected void _siteRequest_(Wrap<ComputateSiteRequest> c) {
 	}
 
 	protected void _solrDocument(Wrap<JsonObject> c) {

@@ -13,9 +13,9 @@
  */
 package org.computate.vertx.openapi;
 
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.api.ApiRequest;
-import org.computate.vertx.config.ComputateVertxConfigKeys;
+import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -98,7 +98,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setWebClient(WebClient webClient) {
 		this.webClient = webClient;
 	}
-	public static WebClient staticSetWebClient(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static WebClient staticSetWebClient(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected Swagger2Generator webClientInit() {
@@ -119,7 +119,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	 */
 	@JsonProperty
 	@JsonInclude(Include.NON_NULL)
-	protected ComputateVertxSiteRequest siteRequest_;
+	protected ComputateSiteRequest siteRequest_;
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
@@ -127,20 +127,20 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
-	protected abstract void _siteRequest_(Wrap<ComputateVertxSiteRequest> c);
+	protected abstract void _siteRequest_(Wrap<ComputateSiteRequest> c);
 
-	public ComputateVertxSiteRequest getSiteRequest_() {
+	public ComputateSiteRequest getSiteRequest_() {
 		return siteRequest_;
 	}
 
-	public void setSiteRequest_(ComputateVertxSiteRequest siteRequest_) {
+	public void setSiteRequest_(ComputateSiteRequest siteRequest_) {
 		this.siteRequest_ = siteRequest_;
 	}
-	public static ComputateVertxSiteRequest staticSetSiteRequest_(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static ComputateSiteRequest staticSetSiteRequest_(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected Swagger2Generator siteRequest_Init() {
-		Wrap<ComputateVertxSiteRequest> siteRequest_Wrap = new Wrap<ComputateVertxSiteRequest>().var("siteRequest_");
+		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
 		if(siteRequest_ == null) {
 			_siteRequest_(siteRequest_Wrap);
 			setSiteRequest_(siteRequest_Wrap.o);
@@ -178,7 +178,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setConfig(String o) {
 		this.config = Swagger2Generator.staticSetConfig(siteRequest_, o);
 	}
-	public static JsonObject staticSetConfig(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static JsonObject staticSetConfig(ComputateSiteRequest siteRequest_, String o) {
 		if(o != null) {
 				return new JsonObject(o);
 		}
@@ -193,15 +193,15 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static JsonObject staticSearchConfig(ComputateVertxSiteRequest siteRequest_, JsonObject o) {
+	public static JsonObject staticSearchConfig(ComputateSiteRequest siteRequest_, JsonObject o) {
 		return o;
 	}
 
-	public static String staticSearchStrConfig(ComputateVertxSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrConfig(ComputateSiteRequest siteRequest_, JsonObject o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqConfig(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqConfig(ComputateSiteRequest siteRequest_, String o) {
 		return Swagger2Generator.staticSearchStrConfig(siteRequest_, Swagger2Generator.staticSearchConfig(siteRequest_, Swagger2Generator.staticSetConfig(siteRequest_, o)));
 	}
 
@@ -230,7 +230,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setAppName(String o) {
 		this.appName = Swagger2Generator.staticSetAppName(siteRequest_, o);
 	}
-	public static String staticSetAppName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetAppName(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected Swagger2Generator appNameInit() {
@@ -242,15 +242,15 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSearchAppName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchAppName(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrAppName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrAppName(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqAppName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqAppName(ComputateSiteRequest siteRequest_, String o) {
 		return Swagger2Generator.staticSearchStrAppName(siteRequest_, Swagger2Generator.staticSearchAppName(siteRequest_, Swagger2Generator.staticSetAppName(siteRequest_, o)));
 	}
 
@@ -279,7 +279,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setLanguageName(String o) {
 		this.languageName = Swagger2Generator.staticSetLanguageName(siteRequest_, o);
 	}
-	public static String staticSetLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetLanguageName(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected Swagger2Generator languageNameInit() {
@@ -291,15 +291,15 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSearchLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchLanguageName(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrLanguageName(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqLanguageName(ComputateSiteRequest siteRequest_, String o) {
 		return Swagger2Generator.staticSearchStrLanguageName(siteRequest_, Swagger2Generator.staticSearchLanguageName(siteRequest_, Swagger2Generator.staticSetLanguageName(siteRequest_, o)));
 	}
 
@@ -328,7 +328,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setAppPath(String o) {
 		this.appPath = Swagger2Generator.staticSetAppPath(siteRequest_, o);
 	}
-	public static String staticSetAppPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetAppPath(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected Swagger2Generator appPathInit() {
@@ -340,15 +340,15 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSearchAppPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchAppPath(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrAppPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrAppPath(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqAppPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqAppPath(ComputateSiteRequest siteRequest_, String o) {
 		return Swagger2Generator.staticSearchStrAppPath(siteRequest_, Swagger2Generator.staticSearchAppPath(siteRequest_, Swagger2Generator.staticSetAppPath(siteRequest_, o)));
 	}
 
@@ -377,7 +377,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setOpenApiVersion(String o) {
 		this.openApiVersion = Swagger2Generator.staticSetOpenApiVersion(siteRequest_, o);
 	}
-	public static String staticSetOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetOpenApiVersion(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected Swagger2Generator openApiVersionInit() {
@@ -389,15 +389,15 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSearchOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchOpenApiVersion(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrOpenApiVersion(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqOpenApiVersion(ComputateSiteRequest siteRequest_, String o) {
 		return Swagger2Generator.staticSearchStrOpenApiVersion(siteRequest_, Swagger2Generator.staticSearchOpenApiVersion(siteRequest_, Swagger2Generator.staticSetOpenApiVersion(siteRequest_, o)));
 	}
 
@@ -432,7 +432,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setOpenApiVersionNumber(String o) {
 		this.openApiVersionNumber = Swagger2Generator.staticSetOpenApiVersionNumber(siteRequest_, o);
 	}
-	public static Integer staticSetOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Integer staticSetOpenApiVersionNumber(ComputateSiteRequest siteRequest_, String o) {
 		if(NumberUtils.isParsable(o))
 			return Integer.parseInt(o);
 		return null;
@@ -446,15 +446,15 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static Integer staticSearchOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static Integer staticSearchOpenApiVersionNumber(ComputateSiteRequest siteRequest_, Integer o) {
 		return o;
 	}
 
-	public static String staticSearchStrOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static String staticSearchStrOpenApiVersionNumber(ComputateSiteRequest siteRequest_, Integer o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqOpenApiVersionNumber(ComputateSiteRequest siteRequest_, String o) {
 		return Swagger2Generator.staticSearchStrOpenApiVersionNumber(siteRequest_, Swagger2Generator.staticSearchOpenApiVersionNumber(siteRequest_, Swagger2Generator.staticSetOpenApiVersionNumber(siteRequest_, o)));
 	}
 
@@ -489,7 +489,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setTabsSchema(String o) {
 		this.tabsSchema = Swagger2Generator.staticSetTabsSchema(siteRequest_, o);
 	}
-	public static Integer staticSetTabsSchema(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Integer staticSetTabsSchema(ComputateSiteRequest siteRequest_, String o) {
 		if(NumberUtils.isParsable(o))
 			return Integer.parseInt(o);
 		return null;
@@ -503,15 +503,15 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static Integer staticSearchTabsSchema(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static Integer staticSearchTabsSchema(ComputateSiteRequest siteRequest_, Integer o) {
 		return o;
 	}
 
-	public static String staticSearchStrTabsSchema(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static String staticSearchStrTabsSchema(ComputateSiteRequest siteRequest_, Integer o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqTabsSchema(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqTabsSchema(ComputateSiteRequest siteRequest_, String o) {
 		return Swagger2Generator.staticSearchStrTabsSchema(siteRequest_, Swagger2Generator.staticSearchTabsSchema(siteRequest_, Swagger2Generator.staticSetTabsSchema(siteRequest_, o)));
 	}
 
@@ -540,7 +540,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setApiVersion(String o) {
 		this.apiVersion = Swagger2Generator.staticSetApiVersion(siteRequest_, o);
 	}
-	public static String staticSetApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetApiVersion(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected Swagger2Generator apiVersionInit() {
@@ -552,15 +552,15 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSearchApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchApiVersion(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrApiVersion(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqApiVersion(ComputateSiteRequest siteRequest_, String o) {
 		return Swagger2Generator.staticSearchStrApiVersion(siteRequest_, Swagger2Generator.staticSearchApiVersion(siteRequest_, Swagger2Generator.staticSetApiVersion(siteRequest_, o)));
 	}
 
@@ -589,7 +589,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setOpenApiYamlPath(String o) {
 		this.openApiYamlPath = Swagger2Generator.staticSetOpenApiYamlPath(siteRequest_, o);
 	}
-	public static String staticSetOpenApiYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetOpenApiYamlPath(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected Swagger2Generator openApiYamlPathInit() {
@@ -601,15 +601,15 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSearchOpenApiYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchOpenApiYamlPath(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrOpenApiYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrOpenApiYamlPath(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqOpenApiYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqOpenApiYamlPath(ComputateSiteRequest siteRequest_, String o) {
 		return Swagger2Generator.staticSearchStrOpenApiYamlPath(siteRequest_, Swagger2Generator.staticSearchOpenApiYamlPath(siteRequest_, Swagger2Generator.staticSetOpenApiYamlPath(siteRequest_, o)));
 	}
 
@@ -639,7 +639,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setOpenApiYamlFile(File openApiYamlFile) {
 		this.openApiYamlFile = openApiYamlFile;
 	}
-	public static File staticSetOpenApiYamlFile(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static File staticSetOpenApiYamlFile(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected Swagger2Generator openApiYamlFileInit() {
@@ -676,7 +676,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setSqlCreatePath(String o) {
 		this.sqlCreatePath = Swagger2Generator.staticSetSqlCreatePath(siteRequest_, o);
 	}
-	public static String staticSetSqlCreatePath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetSqlCreatePath(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected Swagger2Generator sqlCreatePathInit() {
@@ -688,15 +688,15 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSearchSqlCreatePath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchSqlCreatePath(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrSqlCreatePath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrSqlCreatePath(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqSqlCreatePath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqSqlCreatePath(ComputateSiteRequest siteRequest_, String o) {
 		return Swagger2Generator.staticSearchStrSqlCreatePath(siteRequest_, Swagger2Generator.staticSearchSqlCreatePath(siteRequest_, Swagger2Generator.staticSetSqlCreatePath(siteRequest_, o)));
 	}
 
@@ -726,7 +726,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setSqlCreateFile(File sqlCreateFile) {
 		this.sqlCreateFile = sqlCreateFile;
 	}
-	public static File staticSetSqlCreateFile(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static File staticSetSqlCreateFile(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected Swagger2Generator sqlCreateFileInit() {
@@ -763,7 +763,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setSqlDropPath(String o) {
 		this.sqlDropPath = Swagger2Generator.staticSetSqlDropPath(siteRequest_, o);
 	}
-	public static String staticSetSqlDropPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetSqlDropPath(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected Swagger2Generator sqlDropPathInit() {
@@ -775,15 +775,15 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSearchSqlDropPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchSqlDropPath(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrSqlDropPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrSqlDropPath(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqSqlDropPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqSqlDropPath(ComputateSiteRequest siteRequest_, String o) {
 		return Swagger2Generator.staticSearchStrSqlDropPath(siteRequest_, Swagger2Generator.staticSearchSqlDropPath(siteRequest_, Swagger2Generator.staticSetSqlDropPath(siteRequest_, o)));
 	}
 
@@ -813,7 +813,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setSqlDropFile(File sqlDropFile) {
 		this.sqlDropFile = sqlDropFile;
 	}
-	public static File staticSetSqlDropFile(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static File staticSetSqlDropFile(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected Swagger2Generator sqlDropFileInit() {
@@ -850,7 +850,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setArticleYamlPath(String o) {
 		this.articleYamlPath = Swagger2Generator.staticSetArticleYamlPath(siteRequest_, o);
 	}
-	public static String staticSetArticleYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetArticleYamlPath(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected Swagger2Generator articleYamlPathInit() {
@@ -862,15 +862,15 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
-	public static String staticSearchArticleYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchArticleYamlPath(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrArticleYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrArticleYamlPath(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqArticleYamlPath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqArticleYamlPath(ComputateSiteRequest siteRequest_, String o) {
 		return Swagger2Generator.staticSearchStrArticleYamlPath(siteRequest_, Swagger2Generator.staticSearchArticleYamlPath(siteRequest_, Swagger2Generator.staticSetArticleYamlPath(siteRequest_, o)));
 	}
 
@@ -900,7 +900,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setArticleYamlFile(File articleYamlFile) {
 		this.articleYamlFile = articleYamlFile;
 	}
-	public static File staticSetArticleYamlFile(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static File staticSetArticleYamlFile(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected Swagger2Generator articleYamlFileInit() {
@@ -938,7 +938,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setW(AllWriter w) {
 		this.w = w;
 	}
-	public static AllWriter staticSetW(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetW(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected Swagger2Generator wInit() {
@@ -978,7 +978,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setWSqlCreate(AllWriter wSqlCreate) {
 		this.wSqlCreate = wSqlCreate;
 	}
-	public static AllWriter staticSetWSqlCreate(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWSqlCreate(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected Swagger2Generator wSqlCreateInit() {
@@ -1018,7 +1018,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setWSqlDrop(AllWriter wSqlDrop) {
 		this.wSqlDrop = wSqlDrop;
 	}
-	public static AllWriter staticSetWSqlDrop(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWSqlDrop(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected Swagger2Generator wSqlDropInit() {
@@ -1058,7 +1058,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setWArticle(AllWriter wArticle) {
 		this.wArticle = wArticle;
 	}
-	public static AllWriter staticSetWArticle(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWArticle(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected Swagger2Generator wArticleInit() {
@@ -1098,7 +1098,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setWPaths(AllWriter wPaths) {
 		this.wPaths = wPaths;
 	}
-	public static AllWriter staticSetWPaths(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWPaths(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected Swagger2Generator wPathsInit() {
@@ -1138,7 +1138,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setWRequestBodies(AllWriter wRequestBodies) {
 		this.wRequestBodies = wRequestBodies;
 	}
-	public static AllWriter staticSetWRequestBodies(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWRequestBodies(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected Swagger2Generator wRequestBodiesInit() {
@@ -1178,7 +1178,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public void setWSchemas(AllWriter wSchemas) {
 		this.wSchemas = wSchemas;
 	}
-	public static AllWriter staticSetWSchemas(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWSchemas(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected Swagger2Generator wSchemasInit() {
@@ -1201,7 +1201,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	// initDeep //
 	//////////////
 
-	public Swagger2Generator initDeepSwagger2Generator(ComputateVertxSiteRequest siteRequest_) {
+	public Swagger2Generator initDeepSwagger2Generator(ComputateSiteRequest siteRequest_) {
 		setSiteRequest_(siteRequest_);
 		initDeepSwagger2Generator();
 		return (Swagger2Generator)this;
@@ -1239,7 +1239,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 				wSchemasInit();
 	}
 
-	public void initDeepForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void initDeepForClass(ComputateSiteRequest siteRequest_) {
 		initDeepSwagger2Generator(siteRequest_);
 	}
 
@@ -1247,7 +1247,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	// siteRequest //
 	/////////////////
 
-	public void siteRequestSwagger2Generator(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestSwagger2Generator(ComputateSiteRequest siteRequest_) {
 		if(w != null)
 			w.setSiteRequest_(siteRequest_);
 		if(wSqlCreate != null)
@@ -1264,7 +1264,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			wSchemas.setSiteRequest_(siteRequest_);
 	}
 
-	public void siteRequestForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
 		siteRequestSwagger2Generator(siteRequest_);
 	}
 
@@ -1368,10 +1368,10 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	// staticSet //
 	///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSetSwagger2Generator(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSetSwagger2Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "config":
 			return Swagger2Generator.staticSetConfig(siteRequest_, o);
@@ -1406,10 +1406,10 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	// staticSearch //
 	////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchSwagger2Generator(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSearchSwagger2Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "config":
 			return Swagger2Generator.staticSearchConfig(siteRequest_, (JsonObject)o);
@@ -1444,10 +1444,10 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	// staticSearchStr //
 	///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchStrSwagger2Generator(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchStrSwagger2Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "config":
 			return Swagger2Generator.staticSearchStrConfig(siteRequest_, (JsonObject)o);
@@ -1482,10 +1482,10 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	// staticSearchFq //
 	//////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSearchFqSwagger2Generator(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchFqSwagger2Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "config":
 			return Swagger2Generator.staticSearchFqConfig(siteRequest_, o);

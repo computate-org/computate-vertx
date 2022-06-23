@@ -16,7 +16,7 @@ package org.computate.vertx.model.base;
 /**
  * Keyword: classSimpleNameCluster
  */
-public interface ComputateVertxBaseModel {
+public interface ComputateBaseModel {
 
 	public Long getPk();
 

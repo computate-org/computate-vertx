@@ -24,7 +24,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.text.WordUtils;
 import org.computate.search.wrap.Wrap;
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.request.ComputateSiteRequest;
 
 import io.vertx.core.buffer.Buffer;
 
@@ -33,34 +33,34 @@ import io.vertx.core.buffer.Buffer;
  **/
 public class AllWriter extends AllWriterGen<Object> {
 
-	protected void _siteRequest_(Wrap<ComputateVertxSiteRequest> c) {
+	protected void _siteRequest_(Wrap<ComputateSiteRequest> c) {
 	}
 
 	protected void _tabStr(Wrap<String> c) {
 		c.o("\t");
 	}
 
-	public static AllWriter create(ComputateVertxSiteRequest siteRequest_) {
+	public static AllWriter create(ComputateSiteRequest siteRequest_) {
 		AllWriter o = new AllWriter();
 		o.initDeepForClass(siteRequest_);
 		return o;
 	}
 
-	public static AllWriter create(ComputateVertxSiteRequest siteRequest_, String tabStr) {
+	public static AllWriter create(ComputateSiteRequest siteRequest_, String tabStr) {
 		AllWriter o = new AllWriter();
 		o.setTabStr(tabStr);
 		o.initDeepForClass(siteRequest_);
 		return o;
 	}
 
-	public static AllWriter create(ComputateVertxSiteRequest siteRequest_, File file) {
+	public static AllWriter create(ComputateSiteRequest siteRequest_, File file) {
 		AllWriter o = new AllWriter();
 		o.setFile(file);
 		o.initDeepForClass(siteRequest_);
 		return o;
 	}
 
-	public static AllWriter create(ComputateVertxSiteRequest siteRequest_, File file, String tabStr) {
+	public static AllWriter create(ComputateSiteRequest siteRequest_, File file, String tabStr) {
 		AllWriter o = new AllWriter();
 		o.setFile(file);
 		o.setTabStr(tabStr);
@@ -68,14 +68,14 @@ public class AllWriter extends AllWriterGen<Object> {
 		return o;
 	}
 
-	public static AllWriter create(ComputateVertxSiteRequest siteRequest_, Buffer buffer) {
+	public static AllWriter create(ComputateSiteRequest siteRequest_, Buffer buffer) {
 		AllWriter o = new AllWriter();
 		o.setBuffer(buffer);
 		o.initDeepForClass(siteRequest_);
 		return o;
 	}
 
-	public static AllWriter create(ComputateVertxSiteRequest siteRequest_, Buffer buffer, String tabStr) {
+	public static AllWriter create(ComputateSiteRequest siteRequest_, Buffer buffer, String tabStr) {
 		AllWriter o = new AllWriter();
 		o.setBuffer(buffer);
 		o.setTabStr(tabStr);

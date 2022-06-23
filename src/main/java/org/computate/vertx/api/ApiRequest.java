@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.computate.search.wrap.Wrap;
-import org.computate.vertx.config.ComputateVertxConfigKeys;
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.config.ComputateConfigKeys;
+import org.computate.vertx.request.ComputateSiteRequest;
 
 /**
  * Keyword: classSimpleNameApiRequest
@@ -32,10 +32,10 @@ public class ApiRequest extends ApiRequestGen<Object> {
 	 * {@inheritDoc}
 	 * Ignore: true
 	 */
-	protected void _siteRequest_(Wrap<ComputateVertxSiteRequest> c) {}
+	protected void _siteRequest_(Wrap<ComputateSiteRequest> c) {}
 	
 	protected void _created(Wrap<ZonedDateTime> c) {
-		c.o(ZonedDateTime.now(ZoneId.of(siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SITE_ZONE))));
+		c.o(ZonedDateTime.now(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))));
 	}
 
 	protected void _rows(Wrap<Long> c) {
@@ -76,7 +76,7 @@ public class ApiRequest extends ApiRequestGen<Object> {
 	}
 
 	public String calculateTimeRemaining() {
-		ZonedDateTime now = ZonedDateTime.now(ZoneId.of(siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SITE_ZONE)));
+		ZonedDateTime now = ZonedDateTime.now(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE)));
 		Long timeDifferenceNow = ChronoUnit.SECONDS.between(created, now);
 		Double ratio = ((double) numPATCH / numFound);
 		Double remainingSeconds = ((double) timeDifferenceNow) / ratio - ((double) timeDifferenceNow);

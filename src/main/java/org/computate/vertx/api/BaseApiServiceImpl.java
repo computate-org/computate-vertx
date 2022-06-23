@@ -25,10 +25,10 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.computate.search.request.SearchRequest;
 import org.computate.search.response.solr.SolrResponse;
 import org.computate.search.tool.SearchTool;
-import org.computate.vertx.config.ComputateVertxConfigKeys;
-import org.computate.vertx.model.base.ComputateVertxBaseModel;
-import org.computate.vertx.model.user.ComputateVertxSiteUser;
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.config.ComputateConfigKeys;
+import org.computate.vertx.model.base.ComputateBaseModel;
+import org.computate.vertx.model.user.ComputateSiteUser;
+import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.search.list.SearchList;
 import org.computate.vertx.verticle.EmailVerticle;
 import org.slf4j.Logger;
@@ -114,7 +114,7 @@ public abstract class BaseApiServiceImpl {
 
 	// General //
 
-	public void error(ComputateVertxSiteRequest siteRequest, Handler<AsyncResult<ServiceResponse>> eventHandler, Throwable ex) {
+	public void error(ComputateSiteRequest siteRequest, Handler<AsyncResult<ServiceResponse>> eventHandler, Throwable ex) {
 		JsonObject json = new JsonObject();
 		JsonObject jsonError = new JsonObject();
 		json.put("error", jsonError);
@@ -133,7 +133,7 @@ public abstract class BaseApiServiceImpl {
 		);
 		if(siteRequest != null) {
 			DeliveryOptions options = new DeliveryOptions();
-			options.addHeader(EmailVerticle.MAIL_HEADER_SUBJECT, String.format("%s %s", config.getString(ComputateVertxConfigKeys.SITE_BASE_URL), Optional.ofNullable(ex).map(Throwable::getMessage).orElse(null)));
+			options.addHeader(EmailVerticle.MAIL_HEADER_SUBJECT, String.format("%s %s", config.getString(ComputateConfigKeys.SITE_BASE_URL), Optional.ofNullable(ex).map(Throwable::getMessage).orElse(null)));
 			eventBus.publish(EmailVerticle.MAIL_EVENTBUS_ADDRESS, String.format("%s\n\n%s", json.encodePrettily(), ExceptionUtils.getStackTrace(ex)));
 			if(eventHandler != null)
 				eventHandler.handle(Future.succeededFuture(responseOperation));
@@ -143,16 +143,17 @@ public abstract class BaseApiServiceImpl {
 		}
 	}
 
-	public <T extends ComputateVertxSiteRequest> T generateSiteRequest(User user, ServiceRequest serviceRequest, Class<T> clazz) {
-		return generateSiteRequest(user, serviceRequest, Optional.ofNullable(serviceRequest.getParams().getValue("body")).map(v -> (v instanceof JsonObject ? (JsonObject)v : null)).orElse(null), clazz);
+	public <T extends ComputateSiteRequest> T generateSiteRequest(User user, JsonObject userPrincipal, ServiceRequest serviceRequest, Class<T> clazz) {
+		return generateSiteRequest(user, userPrincipal, serviceRequest, Optional.ofNullable(serviceRequest.getParams().getValue("body")).map(v -> (v instanceof JsonObject ? (JsonObject)v : null)).orElse(null), clazz);
 	}
 
-	public <T extends ComputateVertxSiteRequest> T generateSiteRequest(User user, ServiceRequest serviceRequest, JsonObject body, Class<T> clazz) {
+	public <T extends ComputateSiteRequest> T generateSiteRequest(User user, JsonObject userPrincipal, ServiceRequest serviceRequest, JsonObject body, Class<T> clazz) {
 		T siteRequest = null;
 		try {
 			siteRequest = clazz.getDeclaredConstructor().newInstance();
 			siteRequest.setWebClient(webClient);
 			siteRequest.setJsonObject(body);
+			siteRequest.setUserPrincipal(userPrincipal);
 			siteRequest.setUser(user);
 			siteRequest.setConfig(config);
 			siteRequest.setServiceRequest(serviceRequest);
@@ -165,12 +166,12 @@ public abstract class BaseApiServiceImpl {
 		return siteRequest;
 	}
 
-	public <T extends ComputateVertxSiteRequest> Future<T> user(ServiceRequest serviceRequest, Class<T> cSiteRequest, Class<?> cSiteUser, String vertxAddress, String postAction, String patchAction) {
+	public <T extends ComputateSiteRequest> Future<T> user(ServiceRequest serviceRequest, Class<T> cSiteRequest, Class<?> cSiteUser, String vertxAddress, String postAction, String patchAction) {
 		Promise<T> promise = Promise.promise();
 		try {
 			JsonObject userPrincipal = serviceRequest.getUser();
 			if(userPrincipal == null) {
-				ComputateVertxSiteRequest siteRequest = generateSiteRequest(null, serviceRequest, cSiteRequest);
+				ComputateSiteRequest siteRequest = generateSiteRequest(null, null, serviceRequest, cSiteRequest);
 				promise.complete((T)siteRequest);
 			} else {
 				User token = User.create(userPrincipal);
@@ -181,14 +182,14 @@ public abstract class BaseApiServiceImpl {
 							JsonObject userAttributes = user.attributes();
 							JsonObject accessToken = userAttributes.getJsonObject("accessToken");
 							String userId = accessToken.getString("sub");
-							T siteRequest = generateSiteRequest(user, serviceRequest, cSiteRequest);
-							SearchList<ComputateVertxSiteUser> searchList = new SearchList<ComputateVertxSiteUser>();
+							T siteRequest = generateSiteRequest(user, userPrincipal, serviceRequest, cSiteRequest);
+							SearchList<ComputateSiteUser> searchList = new SearchList<ComputateSiteUser>();
 							searchList.q("*:*");
 							searchList.setStore(true);
 							searchList.setC(cSiteUser);
 							searchList.fq("userId_docvalues_string:" + SearchTool.escapeQueryChars(userId));
 							searchList.promiseDeepSearchList(siteRequest).onSuccess(c -> {
-								ComputateVertxSiteUser siteUser1 = searchList.getList().stream().findFirst().orElse(null);
+								ComputateSiteUser siteUser1 = searchList.getList().stream().findFirst().orElse(null);
 
 								if(siteUser1 == null) {
 									JsonObject jsonObject = new JsonObject();
@@ -200,7 +201,7 @@ public abstract class BaseApiServiceImpl {
 									jsonObject.put("userEmail", accessToken.getString("email"));
 									userDefine(siteRequest, jsonObject, false);
 
-									ComputateVertxSiteRequest siteRequest2 = siteRequest.copy();
+									ComputateSiteRequest siteRequest2 = siteRequest.copy();
 									siteRequest2.setJsonObject(jsonObject);
 									siteRequest2.setSiteRequest_(siteRequest);
 									siteRequest2.initDeepForClass();
@@ -259,7 +260,7 @@ public abstract class BaseApiServiceImpl {
 									Boolean define = userDefine(siteRequest, jsonObject, true);
 									if(define) {
 
-										ComputateVertxSiteRequest siteRequest2 = siteRequest.copy();
+										ComputateSiteRequest siteRequest2 = siteRequest.copy();
 										siteRequest2.setJsonObject(jsonObject);
 										siteRequest2.setSiteRequest_(siteRequest);
 										siteRequest2.initDeepForClass();
@@ -311,6 +312,7 @@ public abstract class BaseApiServiceImpl {
 										siteRequest.setUserFirstName(siteUser1.getUserFirstName());
 										siteRequest.setUserLastName(siteUser1.getUserLastName());
 										siteRequest.setUserKey(siteUser1.getPk());
+										siteRequest.setUserPrincipal(userPrincipal);
 										promise.complete((T)siteRequest);
 									}
 								}
@@ -348,17 +350,17 @@ public abstract class BaseApiServiceImpl {
 		return promise.future();
 	}
 
-	public Boolean userDefine(ComputateVertxSiteRequest siteRequest, JsonObject jsonObject, Boolean patch) {
+	public Boolean userDefine(ComputateSiteRequest siteRequest, JsonObject jsonObject, Boolean patch) {
 		return false;
 	}
 
-	public void attributeArrayFuture(ComputateVertxSiteRequest siteRequest, Class<?> c1, Long pk1, Class<?> c2, String pk2, List<Future<?>> futures, String entityVar, Boolean inheritPk) {
+	public void attributeArrayFuture(ComputateSiteRequest siteRequest, Class<?> c1, Long pk1, Class<?> c2, String pk2, List<Future<?>> futures, String entityVar, Boolean inheritPk) {
 		ApiRequest apiRequest = siteRequest.getApiRequest_();
 		List<Long> pks = apiRequest.getPks();
 
 		for(String l : Optional.ofNullable(siteRequest.getJsonObject().getJsonArray(entityVar)).orElse(new JsonArray()).stream().map(a -> (String)a).collect(Collectors.toList())) {
 			if(l != null) {
-				SearchList<ComputateVertxBaseModel> searchList = new SearchList<ComputateVertxBaseModel>();
+				SearchList<ComputateBaseModel> searchList = new SearchList<ComputateBaseModel>();
 				searchList.q("*:*");
 				searchList.setStore(true);
 				searchList.setC(c1);
@@ -393,22 +395,22 @@ public abstract class BaseApiServiceImpl {
 		private ApiRequest apiRequest;
 		private List<Long> pks;
 		private List<String> classes;
-		private ComputateVertxSiteRequest siteRequest;
+		private ComputateSiteRequest siteRequest;
 
-		public SqlUpdate(ComputateVertxSiteRequest siteRequest) {
+		public SqlUpdate(ComputateSiteRequest siteRequest) {
 			this.siteRequest = siteRequest;
 			this.apiRequest = siteRequest.getApiRequest_();
 			this.pks = apiRequest.getPks();
 			this.classes = apiRequest.getClasses();
 		}
 
-		public SqlUpdate update(Class<? extends ComputateVertxBaseModel> c1, Long pk1) {
+		public SqlUpdate update(Class<? extends ComputateBaseModel> c1, Long pk1) {
 			this.c1 = c1;
 			this.pk1 = pk1;
 			return this;
 		}
 
-		public SqlUpdate insertInto(Class<? extends ComputateVertxBaseModel> c1, String entityVar1, Class<? extends ComputateVertxBaseModel> c2, String entityVar2) {
+		public SqlUpdate insertInto(Class<? extends ComputateBaseModel> c1, String entityVar1, Class<? extends ComputateBaseModel> c2, String entityVar2) {
 			this.c1 = c1;
 			this.entityVar1 = entityVar1;
 			this.c2 = c2;
@@ -416,7 +418,7 @@ public abstract class BaseApiServiceImpl {
 			return this;
 		}
 
-		public SqlUpdate deleteFrom(Class<? extends ComputateVertxBaseModel> c1, String entityVar1, Class<? extends ComputateVertxBaseModel> c2, String entityVar2) {
+		public SqlUpdate deleteFrom(Class<? extends ComputateBaseModel> c1, String entityVar1, Class<? extends ComputateBaseModel> c2, String entityVar2) {
 			this.c1 = c1;
 			this.entityVar1 = entityVar1;
 			this.c2 = c2;
@@ -424,7 +426,7 @@ public abstract class BaseApiServiceImpl {
 			return this;
 		}
 
-		public Future<Void> set(String entityVar1, Class<? extends ComputateVertxBaseModel> c2, Long pk2) {
+		public Future<Void> set(String entityVar1, Class<? extends ComputateBaseModel> c2, Long pk2) {
 			Promise<Void> promise = Promise.promise();
 			if(pk2 == null) {
 				promise.complete();
@@ -442,7 +444,7 @@ public abstract class BaseApiServiceImpl {
 			return promise.future();
 		}
 
-		public Future<Void> setToNull(String entityVar1, Class<? extends ComputateVertxBaseModel> c2, Long pk2) {
+		public Future<Void> setToNull(String entityVar1, Class<? extends ComputateBaseModel> c2, Long pk2) {
 			Promise<Void> promise = Promise.promise();
 			if(pk2 == null) {
 				promise.complete();
@@ -497,7 +499,7 @@ public abstract class BaseApiServiceImpl {
 		}
 	}
 
-	public SqlUpdate sql(ComputateVertxSiteRequest siteRequest) {
+	public SqlUpdate sql(ComputateSiteRequest siteRequest) {
 		return new SqlUpdate(siteRequest);
 	}
 
@@ -506,16 +508,16 @@ public abstract class BaseApiServiceImpl {
 	/////////////////
 
 	public class SearchQuery {
-		private ComputateVertxSiteRequest siteRequest;
+		private ComputateSiteRequest siteRequest;
 
-		public SearchQuery(ComputateVertxSiteRequest siteRequest) {
+		public SearchQuery(ComputateSiteRequest siteRequest) {
 			this.siteRequest = siteRequest;
 		}
 
-		public Future<Long> query(Class<? extends ComputateVertxBaseModel> c, String pk, Boolean inheritPk) {
+		public Future<Long> query(Class<? extends ComputateBaseModel> c, String pk, Boolean inheritPk) {
 			Promise<Long> promise = Promise.promise();
 			if(pk != null) {
-				SearchList<ComputateVertxBaseModel> searchList = new SearchList<ComputateVertxBaseModel>();
+				SearchList<ComputateBaseModel> searchList = new SearchList<ComputateBaseModel>();
 				searchList.q("*:*");
 				searchList.setStore(true);
 				searchList.setC(c);
@@ -533,7 +535,7 @@ public abstract class BaseApiServiceImpl {
 		}
 	}
 
-	public SearchQuery search(ComputateVertxSiteRequest siteRequest) {
+	public SearchQuery search(ComputateSiteRequest siteRequest) {
 		return new SearchQuery(siteRequest);
 	}
 

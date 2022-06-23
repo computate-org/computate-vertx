@@ -13,9 +13,9 @@
  */
 package org.computate.vertx.search.list;
 
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.api.ApiRequest;
-import org.computate.vertx.config.ComputateVertxConfigKeys;
+import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -73,7 +73,7 @@ public abstract class SearchResultGen<DEV> extends Object {
 	 */
 	@JsonProperty
 	@JsonInclude(Include.NON_NULL)
-	protected ComputateVertxSiteRequest siteRequest_;
+	protected ComputateSiteRequest siteRequest_;
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
@@ -81,20 +81,20 @@ public abstract class SearchResultGen<DEV> extends Object {
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
-	protected abstract void _siteRequest_(Wrap<ComputateVertxSiteRequest> c);
+	protected abstract void _siteRequest_(Wrap<ComputateSiteRequest> c);
 
-	public ComputateVertxSiteRequest getSiteRequest_() {
+	public ComputateSiteRequest getSiteRequest_() {
 		return siteRequest_;
 	}
 
-	public void setSiteRequest_(ComputateVertxSiteRequest siteRequest_) {
+	public void setSiteRequest_(ComputateSiteRequest siteRequest_) {
 		this.siteRequest_ = siteRequest_;
 	}
-	public static ComputateVertxSiteRequest staticSetSiteRequest_(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static ComputateSiteRequest staticSetSiteRequest_(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected SearchResult siteRequest_Init() {
-		Wrap<ComputateVertxSiteRequest> siteRequest_Wrap = new Wrap<ComputateVertxSiteRequest>().var("siteRequest_");
+		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
 		if(siteRequest_ == null) {
 			_siteRequest_(siteRequest_Wrap);
 			setSiteRequest_(siteRequest_Wrap.o);
@@ -132,7 +132,7 @@ public abstract class SearchResultGen<DEV> extends Object {
 	public void setSolrDocument(String o) {
 		this.solrDocument = SearchResult.staticSetSolrDocument(siteRequest_, o);
 	}
-	public static JsonObject staticSetSolrDocument(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static JsonObject staticSetSolrDocument(ComputateSiteRequest siteRequest_, String o) {
 		if(o != null) {
 				return new JsonObject(o);
 		}
@@ -147,15 +147,15 @@ public abstract class SearchResultGen<DEV> extends Object {
 		return (SearchResult)this;
 	}
 
-	public static JsonObject staticSearchSolrDocument(ComputateVertxSiteRequest siteRequest_, JsonObject o) {
+	public static JsonObject staticSearchSolrDocument(ComputateSiteRequest siteRequest_, JsonObject o) {
 		return o;
 	}
 
-	public static String staticSearchStrSolrDocument(ComputateVertxSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrSolrDocument(ComputateSiteRequest siteRequest_, JsonObject o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqSolrDocument(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqSolrDocument(ComputateSiteRequest siteRequest_, String o) {
 		return SearchResult.staticSearchStrSolrDocument(siteRequest_, SearchResult.staticSearchSolrDocument(siteRequest_, SearchResult.staticSetSolrDocument(siteRequest_, o)));
 	}
 
@@ -190,7 +190,7 @@ public abstract class SearchResultGen<DEV> extends Object {
 	public void setResultIndex(String o) {
 		this.resultIndex = SearchResult.staticSetResultIndex(siteRequest_, o);
 	}
-	public static Long staticSetResultIndex(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Long staticSetResultIndex(ComputateSiteRequest siteRequest_, String o) {
 		if(NumberUtils.isParsable(o))
 			return Long.parseLong(o);
 		return null;
@@ -204,15 +204,15 @@ public abstract class SearchResultGen<DEV> extends Object {
 		return (SearchResult)this;
 	}
 
-	public static Long staticSearchResultIndex(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static Long staticSearchResultIndex(ComputateSiteRequest siteRequest_, Long o) {
 		return o;
 	}
 
-	public static String staticSearchStrResultIndex(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static String staticSearchStrResultIndex(ComputateSiteRequest siteRequest_, Long o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqResultIndex(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqResultIndex(ComputateSiteRequest siteRequest_, String o) {
 		return SearchResult.staticSearchStrResultIndex(siteRequest_, SearchResult.staticSearchResultIndex(siteRequest_, SearchResult.staticSetResultIndex(siteRequest_, o)));
 	}
 
@@ -220,7 +220,7 @@ public abstract class SearchResultGen<DEV> extends Object {
 	// initDeep //
 	//////////////
 
-	public SearchResult initDeepSearchResult(ComputateVertxSiteRequest siteRequest_) {
+	public SearchResult initDeepSearchResult(ComputateSiteRequest siteRequest_) {
 		setSiteRequest_(siteRequest_);
 		initDeepSearchResult();
 		return (SearchResult)this;
@@ -236,7 +236,7 @@ public abstract class SearchResultGen<DEV> extends Object {
 				resultIndexInit();
 	}
 
-	public void initDeepForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void initDeepForClass(ComputateSiteRequest siteRequest_) {
 		initDeepSearchResult(siteRequest_);
 	}
 
@@ -244,10 +244,10 @@ public abstract class SearchResultGen<DEV> extends Object {
 	// siteRequest //
 	/////////////////
 
-	public void siteRequestSearchResult(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestSearchResult(ComputateSiteRequest siteRequest_) {
 	}
 
-	public void siteRequestForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
 		siteRequestSearchResult(siteRequest_);
 	}
 
@@ -307,10 +307,10 @@ public abstract class SearchResultGen<DEV> extends Object {
 	// staticSet //
 	///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSetSearchResult(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSetSearchResult(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetSearchResult(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "solrDocument":
 			return SearchResult.staticSetSolrDocument(siteRequest_, o);
@@ -325,10 +325,10 @@ public abstract class SearchResultGen<DEV> extends Object {
 	// staticSearch //
 	////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchSearchResult(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSearchSearchResult(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchSearchResult(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "solrDocument":
 			return SearchResult.staticSearchSolrDocument(siteRequest_, (JsonObject)o);
@@ -343,10 +343,10 @@ public abstract class SearchResultGen<DEV> extends Object {
 	// staticSearchStr //
 	///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchStrSearchResult(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchStrSearchResult(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrSearchResult(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "solrDocument":
 			return SearchResult.staticSearchStrSolrDocument(siteRequest_, (JsonObject)o);
@@ -361,10 +361,10 @@ public abstract class SearchResultGen<DEV> extends Object {
 	// staticSearchFq //
 	//////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSearchFqSearchResult(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchFqSearchResult(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqSearchResult(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "solrDocument":
 			return SearchResult.staticSearchFqSolrDocument(siteRequest_, o);

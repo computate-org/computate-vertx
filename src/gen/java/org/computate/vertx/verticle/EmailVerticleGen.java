@@ -13,9 +13,9 @@
  */
 package org.computate.vertx.verticle;
 
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.api.ApiRequest;
-import org.computate.vertx.config.ComputateVertxConfigKeys;
+import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -70,7 +70,7 @@ public abstract class EmailVerticleGen<DEV> extends AbstractVerticle {
 	// initDeep //
 	//////////////
 
-	public EmailVerticle initDeepEmailVerticle(ComputateVertxSiteRequest siteRequest_) {
+	public EmailVerticle initDeepEmailVerticle(ComputateSiteRequest siteRequest_) {
 		initDeepEmailVerticle();
 		return (EmailVerticle)this;
 	}
@@ -82,7 +82,7 @@ public abstract class EmailVerticleGen<DEV> extends AbstractVerticle {
 	public void initEmailVerticle() {
 	}
 
-	public void initDeepForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void initDeepForClass(ComputateSiteRequest siteRequest_) {
 		initDeepEmailVerticle(siteRequest_);
 	}
 
@@ -136,10 +136,10 @@ public abstract class EmailVerticleGen<DEV> extends AbstractVerticle {
 	// staticSet //
 	///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSetEmailVerticle(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSetEmailVerticle(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetEmailVerticle(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 			default:
 				return null;
@@ -150,10 +150,10 @@ public abstract class EmailVerticleGen<DEV> extends AbstractVerticle {
 	// staticSearch //
 	////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchEmailVerticle(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSearchEmailVerticle(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchEmailVerticle(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 			default:
 				return null;
@@ -164,10 +164,10 @@ public abstract class EmailVerticleGen<DEV> extends AbstractVerticle {
 	// staticSearchStr //
 	///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchStrEmailVerticle(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchStrEmailVerticle(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrEmailVerticle(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 			default:
 				return null;
@@ -178,10 +178,10 @@ public abstract class EmailVerticleGen<DEV> extends AbstractVerticle {
 	// staticSearchFq //
 	//////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSearchFqEmailVerticle(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchFqEmailVerticle(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqEmailVerticle(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 			default:
 				return null;

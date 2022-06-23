@@ -13,9 +13,9 @@
  */
 package org.computate.vertx.api;
 
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.api.ApiRequest;
-import org.computate.vertx.config.ComputateVertxConfigKeys;
+import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -83,7 +83,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	 */
 	@JsonIgnore
 	@JsonInclude(Include.NON_NULL)
-	protected ComputateVertxSiteRequest siteRequest_;
+	protected ComputateSiteRequest siteRequest_;
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
@@ -91,20 +91,20 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
-	protected abstract void _siteRequest_(Wrap<ComputateVertxSiteRequest> c);
+	protected abstract void _siteRequest_(Wrap<ComputateSiteRequest> c);
 
-	public ComputateVertxSiteRequest getSiteRequest_() {
+	public ComputateSiteRequest getSiteRequest_() {
 		return siteRequest_;
 	}
 
-	public void setSiteRequest_(ComputateVertxSiteRequest siteRequest_) {
+	public void setSiteRequest_(ComputateSiteRequest siteRequest_) {
 		this.siteRequest_ = siteRequest_;
 	}
-	public static ComputateVertxSiteRequest staticSetSiteRequest_(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static ComputateSiteRequest staticSetSiteRequest_(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiRequest siteRequest_Init() {
-		Wrap<ComputateVertxSiteRequest> siteRequest_Wrap = new Wrap<ComputateVertxSiteRequest>().var("siteRequest_");
+		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
 		if(siteRequest_ == null) {
 			_siteRequest_(siteRequest_Wrap);
 			setSiteRequest_(siteRequest_Wrap.o);
@@ -150,19 +150,19 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public void setCreated(String o) {
 		this.created = ApiRequest.staticSetCreated(siteRequest_, o);
 	}
-	public static ZonedDateTime staticSetCreated(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static ZonedDateTime staticSetCreated(ComputateSiteRequest siteRequest_, String o) {
 		if(StringUtils.endsWith(o, "]"))
 			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
 		else if(StringUtils.endsWith(o, "Z"))
-			return o == null ? null : Instant.parse(o).atZone(ZoneId.of(siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
+			return o == null ? null : Instant.parse(o).atZone(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
 		else if(StringUtils.contains(o, "T"))
 			return o == null ? null : ZonedDateTime.parse(o, DateTimeFormatter.ISO_DATE_TIME).truncatedTo(ChronoUnit.MILLIS);
 		else
-			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
+			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
 	}
 	@JsonIgnore
 	public void setCreated(Date o) {
-		this.created = o == null ? null : ZonedDateTime.ofInstant(o.toInstant(), ZoneId.of(siteRequest_.getConfig().getString(ComputateVertxConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
+		this.created = o == null ? null : ZonedDateTime.ofInstant(o.toInstant(), ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
 	}
 	protected ApiRequest createdInit() {
 		Wrap<ZonedDateTime> createdWrap = new Wrap<ZonedDateTime>().var("created");
@@ -173,15 +173,15 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static Date staticSearchCreated(ComputateVertxSiteRequest siteRequest_, ZonedDateTime o) {
+	public static Date staticSearchCreated(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
 		return o == null ? null : Date.from(o.toInstant());
 	}
 
-	public static String staticSearchStrCreated(ComputateVertxSiteRequest siteRequest_, Date o) {
+	public static String staticSearchStrCreated(ComputateSiteRequest siteRequest_, Date o) {
 		return "\"" + DateTimeFormatter.ISO_DATE_TIME.format(o.toInstant().atOffset(ZoneOffset.UTC)) + "\"";
 	}
 
-	public static String staticSearchFqCreated(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqCreated(ComputateSiteRequest siteRequest_, String o) {
 		return ApiRequest.staticSearchStrCreated(siteRequest_, ApiRequest.staticSearchCreated(siteRequest_, ApiRequest.staticSetCreated(siteRequest_, o)));
 	}
 
@@ -216,7 +216,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public void setRows(String o) {
 		this.rows = ApiRequest.staticSetRows(siteRequest_, o);
 	}
-	public static Long staticSetRows(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Long staticSetRows(ComputateSiteRequest siteRequest_, String o) {
 		if(NumberUtils.isParsable(o))
 			return Long.parseLong(o);
 		return null;
@@ -230,15 +230,15 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static Long staticSearchRows(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static Long staticSearchRows(ComputateSiteRequest siteRequest_, Long o) {
 		return o;
 	}
 
-	public static String staticSearchStrRows(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static String staticSearchStrRows(ComputateSiteRequest siteRequest_, Long o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqRows(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqRows(ComputateSiteRequest siteRequest_, String o) {
 		return ApiRequest.staticSearchStrRows(siteRequest_, ApiRequest.staticSearchRows(siteRequest_, ApiRequest.staticSetRows(siteRequest_, o)));
 	}
 
@@ -273,7 +273,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public void setNumFound(String o) {
 		this.numFound = ApiRequest.staticSetNumFound(siteRequest_, o);
 	}
-	public static Long staticSetNumFound(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Long staticSetNumFound(ComputateSiteRequest siteRequest_, String o) {
 		if(NumberUtils.isParsable(o))
 			return Long.parseLong(o);
 		return null;
@@ -287,15 +287,15 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static Long staticSearchNumFound(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static Long staticSearchNumFound(ComputateSiteRequest siteRequest_, Long o) {
 		return o;
 	}
 
-	public static String staticSearchStrNumFound(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static String staticSearchStrNumFound(ComputateSiteRequest siteRequest_, Long o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqNumFound(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqNumFound(ComputateSiteRequest siteRequest_, String o) {
 		return ApiRequest.staticSearchStrNumFound(siteRequest_, ApiRequest.staticSearchNumFound(siteRequest_, ApiRequest.staticSetNumFound(siteRequest_, o)));
 	}
 
@@ -330,7 +330,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public void setNumPATCH(String o) {
 		this.numPATCH = ApiRequest.staticSetNumPATCH(siteRequest_, o);
 	}
-	public static Long staticSetNumPATCH(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Long staticSetNumPATCH(ComputateSiteRequest siteRequest_, String o) {
 		if(NumberUtils.isParsable(o))
 			return Long.parseLong(o);
 		return null;
@@ -344,15 +344,15 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static Long staticSearchNumPATCH(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static Long staticSearchNumPATCH(ComputateSiteRequest siteRequest_, Long o) {
 		return o;
 	}
 
-	public static String staticSearchStrNumPATCH(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static String staticSearchStrNumPATCH(ComputateSiteRequest siteRequest_, Long o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqNumPATCH(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqNumPATCH(ComputateSiteRequest siteRequest_, String o) {
 		return ApiRequest.staticSearchStrNumPATCH(siteRequest_, ApiRequest.staticSearchNumPATCH(siteRequest_, ApiRequest.staticSetNumPATCH(siteRequest_, o)));
 	}
 
@@ -381,7 +381,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public void setUuid(String o) {
 		this.uuid = ApiRequest.staticSetUuid(siteRequest_, o);
 	}
-	public static String staticSetUuid(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetUuid(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiRequest uuidInit() {
@@ -393,15 +393,15 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static String staticSearchUuid(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchUuid(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrUuid(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrUuid(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqUuid(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqUuid(ComputateSiteRequest siteRequest_, String o) {
 		return ApiRequest.staticSearchStrUuid(siteRequest_, ApiRequest.staticSearchUuid(siteRequest_, ApiRequest.staticSetUuid(siteRequest_, o)));
 	}
 
@@ -430,7 +430,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public void setId(String o) {
 		this.id = ApiRequest.staticSetId(siteRequest_, o);
 	}
-	public static String staticSetId(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetId(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiRequest idInit() {
@@ -442,15 +442,15 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static String staticSearchId(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchId(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrId(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrId(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqId(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqId(ComputateSiteRequest siteRequest_, String o) {
 		return ApiRequest.staticSearchStrId(siteRequest_, ApiRequest.staticSearchId(siteRequest_, ApiRequest.staticSetId(siteRequest_, o)));
 	}
 
@@ -485,7 +485,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public void setPk(String o) {
 		this.pk = ApiRequest.staticSetPk(siteRequest_, o);
 	}
-	public static Long staticSetPk(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Long staticSetPk(ComputateSiteRequest siteRequest_, String o) {
 		if(NumberUtils.isParsable(o))
 			return Long.parseLong(o);
 		return null;
@@ -499,15 +499,15 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static Long staticSearchPk(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static Long staticSearchPk(ComputateSiteRequest siteRequest_, Long o) {
 		return o;
 	}
 
-	public static String staticSearchStrPk(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static String staticSearchStrPk(ComputateSiteRequest siteRequest_, Long o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqPk(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqPk(ComputateSiteRequest siteRequest_, String o) {
 		return ApiRequest.staticSearchStrPk(siteRequest_, ApiRequest.staticSearchPk(siteRequest_, ApiRequest.staticSetPk(siteRequest_, o)));
 	}
 
@@ -537,7 +537,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public void setOriginal(Object original) {
 		this.original = original;
 	}
-	public static Object staticSetOriginal(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetOriginal(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiRequest originalInit() {
@@ -583,13 +583,13 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		if(l != null)
 			addPks(l);
 	}
-	public static Long staticSetPks(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Long staticSetPks(ComputateSiteRequest siteRequest_, String o) {
 		if(NumberUtils.isParsable(o))
 			return Long.parseLong(o);
 		return null;
 	}
-	public ApiRequest addPks(Long...objets) {
-		for(Long o : objets) {
+	public ApiRequest addPks(Long...objects) {
+		for(Long o : objects) {
 			addPks(o);
 		}
 		return (ApiRequest)this;
@@ -600,10 +600,10 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 	@JsonIgnore
-	public void setPks(JsonArray objets) {
+	public void setPks(JsonArray objects) {
 		pks.clear();
-		for(int i = 0; i < objets.size(); i++) {
-			Long o = objets.getLong(i);
+		for(int i = 0; i < objects.size(); i++) {
+			Long o = objects.getLong(i);
 			addPks(o);
 		}
 	}
@@ -619,15 +619,15 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static Long staticSearchPks(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static Long staticSearchPks(ComputateSiteRequest siteRequest_, Long o) {
 		return o;
 	}
 
-	public static String staticSearchStrPks(ComputateVertxSiteRequest siteRequest_, Long o) {
+	public static String staticSearchStrPks(ComputateSiteRequest siteRequest_, Long o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqPks(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqPks(ComputateSiteRequest siteRequest_, String o) {
 		return ApiRequest.staticSearchStrPks(siteRequest_, ApiRequest.staticSearchPks(siteRequest_, ApiRequest.staticSetPks(siteRequest_, o)));
 	}
 
@@ -658,11 +658,11 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public void setClasses(List<String> classes) {
 		this.classes = classes;
 	}
-	public static String staticSetClasses(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClasses(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
-	public ApiRequest addClasses(String...objets) {
-		for(String o : objets) {
+	public ApiRequest addClasses(String...objects) {
+		for(String o : objects) {
 			addClasses(o);
 		}
 		return (ApiRequest)this;
@@ -673,10 +673,10 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 	@JsonIgnore
-	public void setClasses(JsonArray objets) {
+	public void setClasses(JsonArray objects) {
 		classes.clear();
-		for(int i = 0; i < objets.size(); i++) {
-			String o = objets.getString(i);
+		for(int i = 0; i < objects.size(); i++) {
+			String o = objects.getString(i);
 			addClasses(o);
 		}
 	}
@@ -685,15 +685,15 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static String staticSearchClasses(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClasses(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClasses(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClasses(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClasses(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClasses(ComputateSiteRequest siteRequest_, String o) {
 		return ApiRequest.staticSearchStrClasses(siteRequest_, ApiRequest.staticSearchClasses(siteRequest_, ApiRequest.staticSetClasses(siteRequest_, o)));
 	}
 
@@ -724,11 +724,11 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public void setVars(List<String> vars) {
 		this.vars = vars;
 	}
-	public static String staticSetVars(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetVars(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
-	public ApiRequest addVars(String...objets) {
-		for(String o : objets) {
+	public ApiRequest addVars(String...objects) {
+		for(String o : objects) {
 			addVars(o);
 		}
 		return (ApiRequest)this;
@@ -739,10 +739,10 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 	@JsonIgnore
-	public void setVars(JsonArray objets) {
+	public void setVars(JsonArray objects) {
 		vars.clear();
-		for(int i = 0; i < objets.size(); i++) {
-			String o = objets.getString(i);
+		for(int i = 0; i < objects.size(); i++) {
+			String o = objects.getString(i);
 			addVars(o);
 		}
 	}
@@ -751,15 +751,15 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static String staticSearchVars(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchVars(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrVars(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrVars(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqVars(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqVars(ComputateSiteRequest siteRequest_, String o) {
 		return ApiRequest.staticSearchStrVars(siteRequest_, ApiRequest.staticSearchVars(siteRequest_, ApiRequest.staticSetVars(siteRequest_, o)));
 	}
 
@@ -788,7 +788,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public void setTimeRemaining(String o) {
 		this.timeRemaining = ApiRequest.staticSetTimeRemaining(siteRequest_, o);
 	}
-	public static String staticSetTimeRemaining(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetTimeRemaining(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiRequest timeRemainingInit() {
@@ -800,15 +800,15 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return (ApiRequest)this;
 	}
 
-	public static String staticSearchTimeRemaining(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchTimeRemaining(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrTimeRemaining(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrTimeRemaining(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqTimeRemaining(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqTimeRemaining(ComputateSiteRequest siteRequest_, String o) {
 		return ApiRequest.staticSearchStrTimeRemaining(siteRequest_, ApiRequest.staticSearchTimeRemaining(siteRequest_, ApiRequest.staticSetTimeRemaining(siteRequest_, o)));
 	}
 
@@ -816,7 +816,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	// initDeep //
 	//////////////
 
-	public ApiRequest initDeepApiRequest(ComputateVertxSiteRequest siteRequest_) {
+	public ApiRequest initDeepApiRequest(ComputateSiteRequest siteRequest_) {
 		setSiteRequest_(siteRequest_);
 		initDeepApiRequest();
 		return (ApiRequest)this;
@@ -842,7 +842,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 				timeRemainingInit();
 	}
 
-	public void initDeepForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void initDeepForClass(ComputateSiteRequest siteRequest_) {
 		initDeepApiRequest(siteRequest_);
 	}
 
@@ -850,10 +850,10 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	// siteRequest //
 	/////////////////
 
-	public void siteRequestApiRequest(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestApiRequest(ComputateSiteRequest siteRequest_) {
 	}
 
-	public void siteRequestForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
 		siteRequestApiRequest(siteRequest_);
 	}
 
@@ -933,10 +933,10 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	// staticSet //
 	///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSetApiRequest(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSetApiRequest(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetApiRequest(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "created":
 			return ApiRequest.staticSetCreated(siteRequest_, o);
@@ -969,10 +969,10 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	// staticSearch //
 	////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchApiRequest(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSearchApiRequest(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchApiRequest(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "created":
 			return ApiRequest.staticSearchCreated(siteRequest_, (ZonedDateTime)o);
@@ -1005,10 +1005,10 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	// staticSearchStr //
 	///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchStrApiRequest(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchStrApiRequest(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrApiRequest(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "created":
 			return ApiRequest.staticSearchStrCreated(siteRequest_, (Date)o);
@@ -1041,10 +1041,10 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	// staticSearchFq //
 	//////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSearchFqApiRequest(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchFqApiRequest(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqApiRequest(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "created":
 			return ApiRequest.staticSearchFqCreated(siteRequest_, o);

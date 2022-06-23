@@ -13,9 +13,9 @@
  */
 package org.computate.vertx.openapi;
 
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.api.ApiRequest;
-import org.computate.vertx.config.ComputateVertxConfigKeys;
+import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -65,7 +65,7 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 	// initDeep //
 	//////////////
 
-	public OpenApi3Generator initDeepOpenApi3Generator(ComputateVertxSiteRequest siteRequest_) {
+	public OpenApi3Generator initDeepOpenApi3Generator(ComputateSiteRequest siteRequest_) {
 		setSiteRequest_(siteRequest_);
 		initDeepOpenApi3Generator();
 		return (OpenApi3Generator)this;
@@ -79,7 +79,7 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 	public void initOpenApi3Generator() {
 	}
 
-	@Override public void initDeepForClass(ComputateVertxSiteRequest siteRequest_) {
+	@Override public void initDeepForClass(ComputateSiteRequest siteRequest_) {
 		initDeepOpenApi3Generator(siteRequest_);
 	}
 
@@ -87,11 +87,11 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 	// siteRequest //
 	/////////////////
 
-	public void siteRequestOpenApi3Generator(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestOpenApi3Generator(ComputateSiteRequest siteRequest_) {
 			super.siteRequestSwagger2Generator(siteRequest_);
 	}
 
-	public void siteRequestForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
 		siteRequestOpenApi3Generator(siteRequest_);
 	}
 
@@ -145,10 +145,10 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 	// staticSet //
 	///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSetOpenApi3Generator(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSetOpenApi3Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetOpenApi3Generator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 			default:
 				return Swagger2Generator.staticSetSwagger2Generator(entityVar,  siteRequest_, o);
@@ -159,10 +159,10 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 	// staticSearch //
 	////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchOpenApi3Generator(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSearchOpenApi3Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchOpenApi3Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 			default:
 				return Swagger2Generator.staticSearchSwagger2Generator(entityVar,  siteRequest_, o);
@@ -173,10 +173,10 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 	// staticSearchStr //
 	///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchStrOpenApi3Generator(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchStrOpenApi3Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrOpenApi3Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 			default:
 				return Swagger2Generator.staticSearchStrSwagger2Generator(entityVar,  siteRequest_, o);
@@ -187,10 +187,10 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 	// staticSearchFq //
 	//////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSearchFqOpenApi3Generator(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchFqOpenApi3Generator(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqOpenApi3Generator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 			default:
 				return Swagger2Generator.staticSearchFqSwagger2Generator(entityVar,  siteRequest_, o);

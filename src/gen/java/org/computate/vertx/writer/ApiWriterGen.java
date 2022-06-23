@@ -13,9 +13,9 @@
  */
 package org.computate.vertx.writer;
 
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.api.ApiRequest;
-import org.computate.vertx.config.ComputateVertxConfigKeys;
+import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -78,7 +78,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	 */
 	@JsonProperty
 	@JsonInclude(Include.NON_NULL)
-	protected ComputateVertxSiteRequest siteRequest_;
+	protected ComputateSiteRequest siteRequest_;
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
@@ -86,20 +86,20 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
-	protected abstract void _siteRequest_(Wrap<ComputateVertxSiteRequest> w);
+	protected abstract void _siteRequest_(Wrap<ComputateSiteRequest> w);
 
-	public ComputateVertxSiteRequest getSiteRequest_() {
+	public ComputateSiteRequest getSiteRequest_() {
 		return siteRequest_;
 	}
 
-	public void setSiteRequest_(ComputateVertxSiteRequest siteRequest_) {
+	public void setSiteRequest_(ComputateSiteRequest siteRequest_) {
 		this.siteRequest_ = siteRequest_;
 	}
-	public static ComputateVertxSiteRequest staticSetSiteRequest_(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static ComputateSiteRequest staticSetSiteRequest_(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter siteRequest_Init() {
-		Wrap<ComputateVertxSiteRequest> siteRequest_Wrap = new Wrap<ComputateVertxSiteRequest>().var("siteRequest_");
+		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
 		if(siteRequest_ == null) {
 			_siteRequest_(siteRequest_Wrap);
 			setSiteRequest_(siteRequest_Wrap.o);
@@ -133,7 +133,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassDoc(ComputateEnUSClass classDoc) {
 		this.classDoc = classDoc;
 	}
-	public static ComputateEnUSClass staticSetClassDoc(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static ComputateEnUSClass staticSetClassDoc(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter classDocInit() {
@@ -171,7 +171,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassSolrDocument(Doc classSolrDocument) {
 		this.classSolrDocument = classSolrDocument;
 	}
-	public static Doc staticSetClassSolrDocument(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Doc staticSetClassSolrDocument(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter classSolrDocumentInit() {
@@ -214,7 +214,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setContextRows(String o) {
 		this.contextRows = ApiWriter.staticSetContextRows(siteRequest_, o);
 	}
-	public static Integer staticSetContextRows(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Integer staticSetContextRows(ComputateSiteRequest siteRequest_, String o) {
 		if(NumberUtils.isParsable(o))
 			return Integer.parseInt(o);
 		return null;
@@ -228,15 +228,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Integer staticSearchContextRows(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static Integer staticSearchContextRows(ComputateSiteRequest siteRequest_, Integer o) {
 		return o;
 	}
 
-	public static String staticSearchStrContextRows(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static String staticSearchStrContextRows(ComputateSiteRequest siteRequest_, Integer o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqContextRows(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqContextRows(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrContextRows(siteRequest_, ApiWriter.staticSearchContextRows(siteRequest_, ApiWriter.staticSetContextRows(siteRequest_, o)));
 	}
 
@@ -265,7 +265,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassApiMethod(String o) {
 		this.classApiMethod = ApiWriter.staticSetClassApiMethod(siteRequest_, o);
 	}
-	public static String staticSetClassApiMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassApiMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter classApiMethodInit() {
@@ -277,15 +277,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassApiMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassApiMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassApiMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassApiMethod(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassApiMethod(siteRequest_, ApiWriter.staticSearchClassApiMethod(siteRequest_, ApiWriter.staticSetClassApiMethod(siteRequest_, o)));
 	}
 
@@ -314,7 +314,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setOpenApiVersion(String o) {
 		this.openApiVersion = ApiWriter.staticSetOpenApiVersion(siteRequest_, o);
 	}
-	public static String staticSetOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetOpenApiVersion(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter openApiVersionInit() {
@@ -326,15 +326,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchOpenApiVersion(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrOpenApiVersion(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqOpenApiVersion(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqOpenApiVersion(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrOpenApiVersion(siteRequest_, ApiWriter.staticSearchOpenApiVersion(siteRequest_, ApiWriter.staticSetOpenApiVersion(siteRequest_, o)));
 	}
 
@@ -365,11 +365,11 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassUris(List<String> classUris) {
 		this.classUris = classUris;
 	}
-	public static String staticSetClassUris(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassUris(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
-	public ApiWriter addClassUris(String...objets) {
-		for(String o : objets) {
+	public ApiWriter addClassUris(String...objects) {
+		for(String o : objects) {
 			addClassUris(o);
 		}
 		return (ApiWriter)this;
@@ -380,10 +380,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 	@JsonIgnore
-	public void setClassUris(JsonArray objets) {
+	public void setClassUris(JsonArray objects) {
 		classUris.clear();
-		for(int i = 0; i < objets.size(); i++) {
-			String o = objets.getString(i);
+		for(int i = 0; i < objects.size(); i++) {
+			String o = objects.getString(i);
 			addClassUris(o);
 		}
 	}
@@ -396,15 +396,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassUris(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassUris(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassUris(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassUris(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassUris(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassUris(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassUris(siteRequest_, ApiWriter.staticSearchClassUris(siteRequest_, ApiWriter.staticSetClassUris(siteRequest_, o)));
 	}
 
@@ -439,7 +439,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setOpenApiVersionNumber(String o) {
 		this.openApiVersionNumber = ApiWriter.staticSetOpenApiVersionNumber(siteRequest_, o);
 	}
-	public static Integer staticSetOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Integer staticSetOpenApiVersionNumber(ComputateSiteRequest siteRequest_, String o) {
 		if(NumberUtils.isParsable(o))
 			return Integer.parseInt(o);
 		return null;
@@ -453,15 +453,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Integer staticSearchOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static Integer staticSearchOpenApiVersionNumber(ComputateSiteRequest siteRequest_, Integer o) {
 		return o;
 	}
 
-	public static String staticSearchStrOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static String staticSearchStrOpenApiVersionNumber(ComputateSiteRequest siteRequest_, Integer o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqOpenApiVersionNumber(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqOpenApiVersionNumber(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrOpenApiVersionNumber(siteRequest_, ApiWriter.staticSearchOpenApiVersionNumber(siteRequest_, ApiWriter.staticSetOpenApiVersionNumber(siteRequest_, o)));
 	}
 
@@ -496,7 +496,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setTabsSchema(String o) {
 		this.tabsSchema = ApiWriter.staticSetTabsSchema(siteRequest_, o);
 	}
-	public static Integer staticSetTabsSchema(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Integer staticSetTabsSchema(ComputateSiteRequest siteRequest_, String o) {
 		if(NumberUtils.isParsable(o))
 			return Integer.parseInt(o);
 		return null;
@@ -510,15 +510,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Integer staticSearchTabsSchema(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static Integer staticSearchTabsSchema(ComputateSiteRequest siteRequest_, Integer o) {
 		return o;
 	}
 
-	public static String staticSearchStrTabsSchema(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static String staticSearchStrTabsSchema(ComputateSiteRequest siteRequest_, Integer o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqTabsSchema(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqTabsSchema(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrTabsSchema(siteRequest_, ApiWriter.staticSearchTabsSchema(siteRequest_, ApiWriter.staticSetTabsSchema(siteRequest_, o)));
 	}
 
@@ -553,7 +553,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setTabsResponses(String o) {
 		this.tabsResponses = ApiWriter.staticSetTabsResponses(siteRequest_, o);
 	}
-	public static Integer staticSetTabsResponses(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Integer staticSetTabsResponses(ComputateSiteRequest siteRequest_, String o) {
 		if(NumberUtils.isParsable(o))
 			return Integer.parseInt(o);
 		return null;
@@ -567,15 +567,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Integer staticSearchTabsResponses(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static Integer staticSearchTabsResponses(ComputateSiteRequest siteRequest_, Integer o) {
 		return o;
 	}
 
-	public static String staticSearchStrTabsResponses(ComputateVertxSiteRequest siteRequest_, Integer o) {
+	public static String staticSearchStrTabsResponses(ComputateSiteRequest siteRequest_, Integer o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqTabsResponses(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqTabsResponses(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrTabsResponses(siteRequest_, ApiWriter.staticSearchTabsResponses(siteRequest_, ApiWriter.staticSetTabsResponses(siteRequest_, o)));
 	}
 
@@ -605,7 +605,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setWPaths(AllWriter wPaths) {
 		this.wPaths = wPaths;
 	}
-	public static AllWriter staticSetWPaths(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWPaths(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter wPathsInit() {
@@ -645,7 +645,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setWRequestBodies(AllWriter wRequestBodies) {
 		this.wRequestBodies = wRequestBodies;
 	}
-	public static AllWriter staticSetWRequestBodies(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWRequestBodies(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter wRequestBodiesInit() {
@@ -685,7 +685,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setWSchemas(AllWriter wSchemas) {
 		this.wSchemas = wSchemas;
 	}
-	public static AllWriter staticSetWSchemas(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWSchemas(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter wSchemasInit() {
@@ -729,7 +729,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setConfig(String o) {
 		this.config = ApiWriter.staticSetConfig(siteRequest_, o);
 	}
-	public static JsonObject staticSetConfig(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static JsonObject staticSetConfig(ComputateSiteRequest siteRequest_, String o) {
 		if(o != null) {
 				return new JsonObject(o);
 		}
@@ -744,15 +744,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static JsonObject staticSearchConfig(ComputateVertxSiteRequest siteRequest_, JsonObject o) {
+	public static JsonObject staticSearchConfig(ComputateSiteRequest siteRequest_, JsonObject o) {
 		return o;
 	}
 
-	public static String staticSearchStrConfig(ComputateVertxSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrConfig(ComputateSiteRequest siteRequest_, JsonObject o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqConfig(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqConfig(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrConfig(siteRequest_, ApiWriter.staticSearchConfig(siteRequest_, ApiWriter.staticSetConfig(siteRequest_, o)));
 	}
 
@@ -782,7 +782,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setWRequestHeaders(AllWriter wRequestHeaders) {
 		this.wRequestHeaders = wRequestHeaders;
 	}
-	public static AllWriter staticSetWRequestHeaders(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWRequestHeaders(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter wRequestHeadersInit() {
@@ -822,7 +822,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setWRequestDescription(AllWriter wRequestDescription) {
 		this.wRequestDescription = wRequestDescription;
 	}
-	public static AllWriter staticSetWRequestDescription(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWRequestDescription(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter wRequestDescriptionInit() {
@@ -862,7 +862,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setWResponseDescription(AllWriter wResponseDescription) {
 		this.wResponseDescription = wResponseDescription;
 	}
-	public static AllWriter staticSetWResponseDescription(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWResponseDescription(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter wResponseDescriptionInit() {
@@ -902,7 +902,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setWRequestBody(AllWriter wRequestBody) {
 		this.wRequestBody = wRequestBody;
 	}
-	public static AllWriter staticSetWRequestBody(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWRequestBody(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter wRequestBodyInit() {
@@ -942,7 +942,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setWResponseBody(AllWriter wResponseBody) {
 		this.wResponseBody = wResponseBody;
 	}
-	public static AllWriter staticSetWResponseBody(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWResponseBody(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter wResponseBodyInit() {
@@ -982,7 +982,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setWRequestSchema(AllWriter wRequestSchema) {
 		this.wRequestSchema = wRequestSchema;
 	}
-	public static AllWriter staticSetWRequestSchema(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWRequestSchema(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter wRequestSchemaInit() {
@@ -1022,7 +1022,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setWResponseSchema(AllWriter wResponseSchema) {
 		this.wResponseSchema = wResponseSchema;
 	}
-	public static AllWriter staticSetWResponseSchema(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriter staticSetWResponseSchema(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter wResponseSchemaInit() {
@@ -1062,7 +1062,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setWriters(AllWriters writers) {
 		this.writers = writers;
 	}
-	public static AllWriters staticSetWriters(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static AllWriters staticSetWriters(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter writersInit() {
@@ -1101,7 +1101,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassApiTag(String o) {
 		this.classApiTag = ApiWriter.staticSetClassApiTag(siteRequest_, o);
 	}
-	public static String staticSetClassApiTag(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassApiTag(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter classApiTagInit() {
@@ -1113,15 +1113,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassApiTag(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiTag(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassApiTag(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiTag(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassApiTag(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassApiTag(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassApiTag(siteRequest_, ApiWriter.staticSearchClassApiTag(siteRequest_, ApiWriter.staticSetClassApiTag(siteRequest_, o)));
 	}
 
@@ -1155,7 +1155,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassExtendsBase(String o) {
 		this.classExtendsBase = ApiWriter.staticSetClassExtendsBase(siteRequest_, o);
 	}
-	public static Boolean staticSetClassExtendsBase(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Boolean staticSetClassExtendsBase(ComputateSiteRequest siteRequest_, String o) {
 		return Boolean.parseBoolean(o);
 	}
 	protected ApiWriter classExtendsBaseInit() {
@@ -1167,15 +1167,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSearchClassExtendsBase(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassExtendsBase(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassExtendsBase(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassExtendsBase(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassExtendsBase(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassExtendsBase(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassExtendsBase(siteRequest_, ApiWriter.staticSearchClassExtendsBase(siteRequest_, ApiWriter.staticSetClassExtendsBase(siteRequest_, o)));
 	}
 
@@ -1209,7 +1209,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassIsBase(String o) {
 		this.classIsBase = ApiWriter.staticSetClassIsBase(siteRequest_, o);
 	}
-	public static Boolean staticSetClassIsBase(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Boolean staticSetClassIsBase(ComputateSiteRequest siteRequest_, String o) {
 		return Boolean.parseBoolean(o);
 	}
 	protected ApiWriter classIsBaseInit() {
@@ -1221,15 +1221,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSearchClassIsBase(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassIsBase(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassIsBase(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassIsBase(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassIsBase(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassIsBase(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassIsBase(siteRequest_, ApiWriter.staticSearchClassIsBase(siteRequest_, ApiWriter.staticSetClassIsBase(siteRequest_, o)));
 	}
 
@@ -1258,7 +1258,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassSimpleName(String o) {
 		this.classSimpleName = ApiWriter.staticSetClassSimpleName(siteRequest_, o);
 	}
-	public static String staticSetClassSimpleName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassSimpleName(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter classSimpleNameInit() {
@@ -1270,15 +1270,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassSimpleName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassSimpleName(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassSimpleName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassSimpleName(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassSimpleName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassSimpleName(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassSimpleName(siteRequest_, ApiWriter.staticSearchClassSimpleName(siteRequest_, ApiWriter.staticSetClassSimpleName(siteRequest_, o)));
 	}
 
@@ -1307,7 +1307,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setAppName(String o) {
 		this.appName = ApiWriter.staticSetAppName(siteRequest_, o);
 	}
-	public static String staticSetAppName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetAppName(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter appNameInit() {
@@ -1319,15 +1319,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchAppName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchAppName(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrAppName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrAppName(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqAppName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqAppName(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrAppName(siteRequest_, ApiWriter.staticSearchAppName(siteRequest_, ApiWriter.staticSetAppName(siteRequest_, o)));
 	}
 
@@ -1356,7 +1356,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassAbsolutePath(String o) {
 		this.classAbsolutePath = ApiWriter.staticSetClassAbsolutePath(siteRequest_, o);
 	}
-	public static String staticSetClassAbsolutePath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassAbsolutePath(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter classAbsolutePathInit() {
@@ -1368,15 +1368,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassAbsolutePath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassAbsolutePath(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassAbsolutePath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassAbsolutePath(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassAbsolutePath(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassAbsolutePath(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassAbsolutePath(siteRequest_, ApiWriter.staticSearchClassAbsolutePath(siteRequest_, ApiWriter.staticSetClassAbsolutePath(siteRequest_, o)));
 	}
 
@@ -1405,7 +1405,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassApiUriMethod(String o) {
 		this.classApiUriMethod = ApiWriter.staticSetClassApiUriMethod(siteRequest_, o);
 	}
-	public static String staticSetClassApiUriMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassApiUriMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter classApiUriMethodInit() {
@@ -1417,15 +1417,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassApiUriMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiUriMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassApiUriMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiUriMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassApiUriMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassApiUriMethod(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassApiUriMethod(siteRequest_, ApiWriter.staticSearchClassApiUriMethod(siteRequest_, ApiWriter.staticSetClassApiUriMethod(siteRequest_, o)));
 	}
 
@@ -1459,7 +1459,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassRoleUserMethod(String o) {
 		this.classRoleUserMethod = ApiWriter.staticSetClassRoleUserMethod(siteRequest_, o);
 	}
-	public static Boolean staticSetClassRoleUserMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Boolean staticSetClassRoleUserMethod(ComputateSiteRequest siteRequest_, String o) {
 		return Boolean.parseBoolean(o);
 	}
 	protected ApiWriter classRoleUserMethodInit() {
@@ -1471,15 +1471,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSearchClassRoleUserMethod(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassRoleUserMethod(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassRoleUserMethod(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassRoleUserMethod(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassRoleUserMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassRoleUserMethod(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassRoleUserMethod(siteRequest_, ApiWriter.staticSearchClassRoleUserMethod(siteRequest_, ApiWriter.staticSetClassRoleUserMethod(siteRequest_, o)));
 	}
 
@@ -1508,7 +1508,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassApiMethodMethod(String o) {
 		this.classApiMethodMethod = ApiWriter.staticSetClassApiMethodMethod(siteRequest_, o);
 	}
-	public static String staticSetClassApiMethodMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassApiMethodMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter classApiMethodMethodInit() {
@@ -1520,15 +1520,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassApiMethodMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiMethodMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassApiMethodMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiMethodMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassApiMethodMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassApiMethodMethod(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassApiMethodMethod(siteRequest_, ApiWriter.staticSearchClassApiMethodMethod(siteRequest_, ApiWriter.staticSetClassApiMethodMethod(siteRequest_, o)));
 	}
 
@@ -1557,7 +1557,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassApiMediaTypeRequestMethod(String o) {
 		this.classApiMediaTypeRequestMethod = ApiWriter.staticSetClassApiMediaTypeRequestMethod(siteRequest_, o);
 	}
-	public static String staticSetClassApiMediaTypeRequestMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassApiMediaTypeRequestMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter classApiMediaTypeRequestMethodInit() {
@@ -1569,15 +1569,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassApiMediaTypeRequestMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiMediaTypeRequestMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassApiMediaTypeRequestMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiMediaTypeRequestMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassApiMediaTypeRequestMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassApiMediaTypeRequestMethod(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassApiMediaTypeRequestMethod(siteRequest_, ApiWriter.staticSearchClassApiMediaTypeRequestMethod(siteRequest_, ApiWriter.staticSetClassApiMediaTypeRequestMethod(siteRequest_, o)));
 	}
 
@@ -1606,7 +1606,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassApiMediaType200Method(String o) {
 		this.classApiMediaType200Method = ApiWriter.staticSetClassApiMediaType200Method(siteRequest_, o);
 	}
-	public static String staticSetClassApiMediaType200Method(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassApiMediaType200Method(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter classApiMediaType200MethodInit() {
@@ -1618,15 +1618,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassApiMediaType200Method(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiMediaType200Method(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassApiMediaType200Method(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiMediaType200Method(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassApiMediaType200Method(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassApiMediaType200Method(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassApiMediaType200Method(siteRequest_, ApiWriter.staticSearchClassApiMediaType200Method(siteRequest_, ApiWriter.staticSetClassApiMediaType200Method(siteRequest_, o)));
 	}
 
@@ -1655,7 +1655,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassApiOperationIdMethod(String o) {
 		this.classApiOperationIdMethod = ApiWriter.staticSetClassApiOperationIdMethod(siteRequest_, o);
 	}
-	public static String staticSetClassApiOperationIdMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassApiOperationIdMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter classApiOperationIdMethodInit() {
@@ -1667,15 +1667,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassApiOperationIdMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiOperationIdMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassApiOperationIdMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiOperationIdMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassApiOperationIdMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassApiOperationIdMethod(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassApiOperationIdMethod(siteRequest_, ApiWriter.staticSearchClassApiOperationIdMethod(siteRequest_, ApiWriter.staticSetClassApiOperationIdMethod(siteRequest_, o)));
 	}
 
@@ -1704,7 +1704,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassApiOperationIdMethodRequest(String o) {
 		this.classApiOperationIdMethodRequest = ApiWriter.staticSetClassApiOperationIdMethodRequest(siteRequest_, o);
 	}
-	public static String staticSetClassApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassApiOperationIdMethodRequest(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter classApiOperationIdMethodRequestInit() {
@@ -1716,15 +1716,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiOperationIdMethodRequest(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiOperationIdMethodRequest(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassApiOperationIdMethodRequest(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassApiOperationIdMethodRequest(siteRequest_, ApiWriter.staticSearchClassApiOperationIdMethodRequest(siteRequest_, ApiWriter.staticSetClassApiOperationIdMethodRequest(siteRequest_, o)));
 	}
 
@@ -1753,7 +1753,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassApiOperationIdMethodResponse(String o) {
 		this.classApiOperationIdMethodResponse = ApiWriter.staticSetClassApiOperationIdMethodResponse(siteRequest_, o);
 	}
-	public static String staticSetClassApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassApiOperationIdMethodResponse(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter classApiOperationIdMethodResponseInit() {
@@ -1765,15 +1765,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassApiOperationIdMethodResponse(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassApiOperationIdMethodResponse(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassApiOperationIdMethodResponse(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassApiOperationIdMethodResponse(siteRequest_, ApiWriter.staticSearchClassApiOperationIdMethodResponse(siteRequest_, ApiWriter.staticSetClassApiOperationIdMethodResponse(siteRequest_, o)));
 	}
 
@@ -1802,7 +1802,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassSuperApiOperationIdMethodRequest(String o) {
 		this.classSuperApiOperationIdMethodRequest = ApiWriter.staticSetClassSuperApiOperationIdMethodRequest(siteRequest_, o);
 	}
-	public static String staticSetClassSuperApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassSuperApiOperationIdMethodRequest(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter classSuperApiOperationIdMethodRequestInit() {
@@ -1814,15 +1814,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassSuperApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassSuperApiOperationIdMethodRequest(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassSuperApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassSuperApiOperationIdMethodRequest(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassSuperApiOperationIdMethodRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassSuperApiOperationIdMethodRequest(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassSuperApiOperationIdMethodRequest(siteRequest_, ApiWriter.staticSearchClassSuperApiOperationIdMethodRequest(siteRequest_, ApiWriter.staticSetClassSuperApiOperationIdMethodRequest(siteRequest_, o)));
 	}
 
@@ -1851,7 +1851,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassSuperApiOperationIdMethodResponse(String o) {
 		this.classSuperApiOperationIdMethodResponse = ApiWriter.staticSetClassSuperApiOperationIdMethodResponse(siteRequest_, o);
 	}
-	public static String staticSetClassSuperApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassSuperApiOperationIdMethodResponse(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter classSuperApiOperationIdMethodResponseInit() {
@@ -1863,15 +1863,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassSuperApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassSuperApiOperationIdMethodResponse(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassSuperApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassSuperApiOperationIdMethodResponse(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassSuperApiOperationIdMethodResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassSuperApiOperationIdMethodResponse(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassSuperApiOperationIdMethodResponse(siteRequest_, ApiWriter.staticSearchClassSuperApiOperationIdMethodResponse(siteRequest_, ApiWriter.staticSetClassSuperApiOperationIdMethodResponse(siteRequest_, o)));
 	}
 
@@ -1900,7 +1900,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassPageCanonicalNameMethod(String o) {
 		this.classPageCanonicalNameMethod = ApiWriter.staticSetClassPageCanonicalNameMethod(siteRequest_, o);
 	}
-	public static String staticSetClassPageCanonicalNameMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassPageCanonicalNameMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter classPageCanonicalNameMethodInit() {
@@ -1912,15 +1912,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassPageCanonicalNameMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassPageCanonicalNameMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassPageCanonicalNameMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassPageCanonicalNameMethod(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassPageCanonicalNameMethod(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassPageCanonicalNameMethod(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassPageCanonicalNameMethod(siteRequest_, ApiWriter.staticSearchClassPageCanonicalNameMethod(siteRequest_, ApiWriter.staticSetClassPageCanonicalNameMethod(siteRequest_, o)));
 	}
 
@@ -1954,7 +1954,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassKeywordsFound(String o) {
 		this.classKeywordsFound = ApiWriter.staticSetClassKeywordsFound(siteRequest_, o);
 	}
-	public static Boolean staticSetClassKeywordsFound(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Boolean staticSetClassKeywordsFound(ComputateSiteRequest siteRequest_, String o) {
 		return Boolean.parseBoolean(o);
 	}
 	protected ApiWriter classKeywordsFoundInit() {
@@ -1966,15 +1966,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSearchClassKeywordsFound(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassKeywordsFound(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassKeywordsFound(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassKeywordsFound(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassKeywordsFound(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassKeywordsFound(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassKeywordsFound(siteRequest_, ApiWriter.staticSearchClassKeywordsFound(siteRequest_, ApiWriter.staticSetClassKeywordsFound(siteRequest_, o)));
 	}
 
@@ -2005,11 +2005,11 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassKeywords(List<String> classKeywords) {
 		this.classKeywords = classKeywords;
 	}
-	public static String staticSetClassKeywords(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassKeywords(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
-	public ApiWriter addClassKeywords(String...objets) {
-		for(String o : objets) {
+	public ApiWriter addClassKeywords(String...objects) {
+		for(String o : objects) {
 			addClassKeywords(o);
 		}
 		return (ApiWriter)this;
@@ -2020,10 +2020,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 	@JsonIgnore
-	public void setClassKeywords(JsonArray objets) {
+	public void setClassKeywords(JsonArray objects) {
 		classKeywords.clear();
-		for(int i = 0; i < objets.size(); i++) {
-			String o = objets.getString(i);
+		for(int i = 0; i < objects.size(); i++) {
+			String o = objects.getString(i);
 			addClassKeywords(o);
 		}
 	}
@@ -2036,15 +2036,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassKeywords(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassKeywords(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassKeywords(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassKeywords(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassKeywords(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassKeywords(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassKeywords(siteRequest_, ApiWriter.staticSearchClassKeywords(siteRequest_, ApiWriter.staticSetClassKeywords(siteRequest_, o)));
 	}
 
@@ -2078,7 +2078,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassPublicRead(String o) {
 		this.classPublicRead = ApiWriter.staticSetClassPublicRead(siteRequest_, o);
 	}
-	public static Boolean staticSetClassPublicRead(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Boolean staticSetClassPublicRead(ComputateSiteRequest siteRequest_, String o) {
 		return Boolean.parseBoolean(o);
 	}
 	protected ApiWriter classPublicReadInit() {
@@ -2090,15 +2090,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSearchClassPublicRead(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassPublicRead(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassPublicRead(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassPublicRead(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassPublicRead(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassPublicRead(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassPublicRead(siteRequest_, ApiWriter.staticSearchClassPublicRead(siteRequest_, ApiWriter.staticSetClassPublicRead(siteRequest_, o)));
 	}
 
@@ -2132,7 +2132,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassRoleSession(String o) {
 		this.classRoleSession = ApiWriter.staticSetClassRoleSession(siteRequest_, o);
 	}
-	public static Boolean staticSetClassRoleSession(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Boolean staticSetClassRoleSession(ComputateSiteRequest siteRequest_, String o) {
 		return Boolean.parseBoolean(o);
 	}
 	protected ApiWriter classRoleSessionInit() {
@@ -2144,15 +2144,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSearchClassRoleSession(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassRoleSession(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassRoleSession(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassRoleSession(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassRoleSession(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassRoleSession(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassRoleSession(siteRequest_, ApiWriter.staticSearchClassRoleSession(siteRequest_, ApiWriter.staticSetClassRoleSession(siteRequest_, o)));
 	}
 
@@ -2186,7 +2186,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassRoleUtilisateur(String o) {
 		this.classRoleUtilisateur = ApiWriter.staticSetClassRoleUtilisateur(siteRequest_, o);
 	}
-	public static Boolean staticSetClassRoleUtilisateur(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Boolean staticSetClassRoleUtilisateur(ComputateSiteRequest siteRequest_, String o) {
 		return Boolean.parseBoolean(o);
 	}
 	protected ApiWriter classRoleUtilisateurInit() {
@@ -2198,15 +2198,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSearchClassRoleUtilisateur(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassRoleUtilisateur(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassRoleUtilisateur(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassRoleUtilisateur(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassRoleUtilisateur(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassRoleUtilisateur(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassRoleUtilisateur(siteRequest_, ApiWriter.staticSearchClassRoleUtilisateur(siteRequest_, ApiWriter.staticSetClassRoleUtilisateur(siteRequest_, o)));
 	}
 
@@ -2240,7 +2240,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassRoleAll(String o) {
 		this.classRoleAll = ApiWriter.staticSetClassRoleAll(siteRequest_, o);
 	}
-	public static Boolean staticSetClassRoleAll(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Boolean staticSetClassRoleAll(ComputateSiteRequest siteRequest_, String o) {
 		return Boolean.parseBoolean(o);
 	}
 	protected ApiWriter classRoleAllInit() {
@@ -2252,15 +2252,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSearchClassRoleAll(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassRoleAll(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassRoleAll(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassRoleAll(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassRoleAll(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassRoleAll(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassRoleAll(siteRequest_, ApiWriter.staticSearchClassRoleAll(siteRequest_, ApiWriter.staticSetClassRoleAll(siteRequest_, o)));
 	}
 
@@ -2294,7 +2294,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassRolesFound(String o) {
 		this.classRolesFound = ApiWriter.staticSetClassRolesFound(siteRequest_, o);
 	}
-	public static Boolean staticSetClassRolesFound(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Boolean staticSetClassRolesFound(ComputateSiteRequest siteRequest_, String o) {
 		return Boolean.parseBoolean(o);
 	}
 	protected ApiWriter classRolesFoundInit() {
@@ -2306,15 +2306,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static Boolean staticSearchClassRolesFound(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchClassRolesFound(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassRolesFound(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrClassRolesFound(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassRolesFound(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassRolesFound(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassRolesFound(siteRequest_, ApiWriter.staticSearchClassRolesFound(siteRequest_, ApiWriter.staticSetClassRolesFound(siteRequest_, o)));
 	}
 
@@ -2345,11 +2345,11 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassRoles(List<String> classRoles) {
 		this.classRoles = classRoles;
 	}
-	public static String staticSetClassRoles(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassRoles(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
-	public ApiWriter addClassRoles(String...objets) {
-		for(String o : objets) {
+	public ApiWriter addClassRoles(String...objects) {
+		for(String o : objects) {
 			addClassRoles(o);
 		}
 		return (ApiWriter)this;
@@ -2360,10 +2360,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 	@JsonIgnore
-	public void setClassRoles(JsonArray objets) {
+	public void setClassRoles(JsonArray objects) {
 		classRoles.clear();
-		for(int i = 0; i < objets.size(); i++) {
-			String o = objets.getString(i);
+		for(int i = 0; i < objects.size(); i++) {
+			String o = objects.getString(i);
 			addClassRoles(o);
 		}
 	}
@@ -2376,15 +2376,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassRoles(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassRoles(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassRoles(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassRoles(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassRoles(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassRoles(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassRoles(siteRequest_, ApiWriter.staticSearchClassRoles(siteRequest_, ApiWriter.staticSetClassRoles(siteRequest_, o)));
 	}
 
@@ -2415,11 +2415,11 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassRolesLanguage(List<String> classRolesLanguage) {
 		this.classRolesLanguage = classRolesLanguage;
 	}
-	public static String staticSetClassRolesLanguage(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetClassRolesLanguage(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
-	public ApiWriter addClassRolesLanguage(String...objets) {
-		for(String o : objets) {
+	public ApiWriter addClassRolesLanguage(String...objects) {
+		for(String o : objects) {
 			addClassRolesLanguage(o);
 		}
 		return (ApiWriter)this;
@@ -2430,10 +2430,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 	@JsonIgnore
-	public void setClassRolesLanguage(JsonArray objets) {
+	public void setClassRolesLanguage(JsonArray objects) {
 		classRolesLanguage.clear();
-		for(int i = 0; i < objets.size(); i++) {
-			String o = objets.getString(i);
+		for(int i = 0; i < objects.size(); i++) {
+			String o = objects.getString(i);
 			addClassRolesLanguage(o);
 		}
 	}
@@ -2446,15 +2446,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchClassRolesLanguage(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchClassRolesLanguage(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrClassRolesLanguage(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrClassRolesLanguage(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqClassRolesLanguage(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqClassRolesLanguage(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrClassRolesLanguage(siteRequest_, ApiWriter.staticSearchClassRolesLanguage(siteRequest_, ApiWriter.staticSetClassRolesLanguage(siteRequest_, o)));
 	}
 
@@ -2483,7 +2483,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setLanguageName(String o) {
 		this.languageName = ApiWriter.staticSetLanguageName(siteRequest_, o);
 	}
-	public static String staticSetLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSetLanguageName(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 	protected ApiWriter languageNameInit() {
@@ -2495,15 +2495,15 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return (ApiWriter)this;
 	}
 
-	public static String staticSearchLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchLanguageName(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrLanguageName(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqLanguageName(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqLanguageName(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrLanguageName(siteRequest_, ApiWriter.staticSearchLanguageName(siteRequest_, ApiWriter.staticSetLanguageName(siteRequest_, o)));
 	}
 
@@ -2533,7 +2533,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setEntitySolrDocument(Doc entitySolrDocument) {
 		this.entitySolrDocument = entitySolrDocument;
 	}
-	public static Doc staticSetEntitySolrDocument(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Doc staticSetEntitySolrDocument(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected ApiWriter entitySolrDocumentInit() {
@@ -2549,7 +2549,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// initDeep //
 	//////////////
 
-	public ApiWriter initDeepApiWriter(ComputateVertxSiteRequest siteRequest_) {
+	public ApiWriter initDeepApiWriter(ComputateSiteRequest siteRequest_) {
 		setSiteRequest_(siteRequest_);
 		initDeepApiWriter();
 		return (ApiWriter)this;
@@ -2612,7 +2612,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				entitySolrDocumentInit();
 	}
 
-	public void initDeepForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void initDeepForClass(ComputateSiteRequest siteRequest_) {
 		initDeepApiWriter(siteRequest_);
 	}
 
@@ -2620,7 +2620,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// siteRequest //
 	/////////////////
 
-	public void siteRequestApiWriter(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestApiWriter(ComputateSiteRequest siteRequest_) {
 		if(wPaths != null)
 			wPaths.setSiteRequest_(siteRequest_);
 		if(wRequestBodies != null)
@@ -2645,7 +2645,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			writers.setSiteRequest_(siteRequest_);
 	}
 
-	public void siteRequestForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
 		siteRequestApiWriter(siteRequest_);
 	}
 
@@ -2799,10 +2799,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// staticSet //
 	///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSetApiWriter(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSetApiWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetApiWriter(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "contextRows":
 			return ApiWriter.staticSetContextRows(siteRequest_, o);
@@ -2883,10 +2883,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// staticSearch //
 	////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchApiWriter(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSearchApiWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchApiWriter(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "contextRows":
 			return ApiWriter.staticSearchContextRows(siteRequest_, (Integer)o);
@@ -2967,10 +2967,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// staticSearchStr //
 	///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchStrApiWriter(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchStrApiWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrApiWriter(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "contextRows":
 			return ApiWriter.staticSearchStrContextRows(siteRequest_, (Integer)o);
@@ -3051,10 +3051,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// staticSearchFq //
 	//////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSearchFqApiWriter(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchFqApiWriter(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqApiWriter(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "contextRows":
 			return ApiWriter.staticSearchFqContextRows(siteRequest_, o);

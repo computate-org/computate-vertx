@@ -14,7 +14,7 @@
 package org.computate.vertx.verticle;
 
 import org.apache.commons.lang3.StringUtils;
-import org.computate.vertx.config.ComputateVertxConfigKeys;
+import org.computate.vertx.config.ComputateConfigKeys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,14 +72,14 @@ public class EmailVerticle extends EmailVerticleGen<AbstractVerticle> {
 					JsonObject body = params.getJsonObject("body");
 					JsonObject headers = params.getJsonObject("header");
 					String mailTemplate = headers.getString(MAIL_HEADER_TEMPLATE);
-					String templatePath = config().getString(ComputateVertxConfigKeys.TEMPLATE_PATH);
+					String templatePath = config().getString(ComputateConfigKeys.TEMPLATE_PATH);
 	
-					body.put(ComputateVertxConfigKeys.STATIC_BASE_URL, config().getString(ComputateVertxConfigKeys.STATIC_BASE_URL));
-					body.put(ComputateVertxConfigKeys.SITE_BASE_URL, config().getString(ComputateVertxConfigKeys.STATIC_BASE_URL));
-					body.put(ComputateVertxConfigKeys.AUTH_URL, config().getString(ComputateVertxConfigKeys.AUTH_URL));
-					body.put(ComputateVertxConfigKeys.AUTH_REALM, config().getString(ComputateVertxConfigKeys.AUTH_REALM));
-					body.put("staticBaseUrl", config().getString(ComputateVertxConfigKeys.STATIC_BASE_URL));
-					body.put("siteBaseUrl", config().getString(ComputateVertxConfigKeys.SITE_BASE_URL));
+					body.put(ComputateConfigKeys.STATIC_BASE_URL, config().getString(ComputateConfigKeys.STATIC_BASE_URL));
+					body.put(ComputateConfigKeys.SITE_BASE_URL, config().getString(ComputateConfigKeys.STATIC_BASE_URL));
+					body.put(ComputateConfigKeys.AUTH_URL, config().getString(ComputateConfigKeys.AUTH_URL));
+					body.put(ComputateConfigKeys.AUTH_REALM, config().getString(ComputateConfigKeys.AUTH_REALM));
+					body.put("staticBaseUrl", config().getString(ComputateConfigKeys.STATIC_BASE_URL));
+					body.put("siteBaseUrl", config().getString(ComputateConfigKeys.SITE_BASE_URL));
 					templateEngine.render(body, String.format("%s/%s", templatePath, mailTemplate)).onSuccess(buffer -> {
 	
 						String mailFrom = headers.getString(MAIL_HEADER_FROM);
@@ -129,13 +129,13 @@ public class EmailVerticle extends EmailVerticleGen<AbstractVerticle> {
 		Promise<Void> promise = Promise.promise();
 		try {
 			MailConfig mailConfig = new MailConfig();
-			mailConfig.setHostname(config().getString(ComputateVertxConfigKeys.EMAIL_HOST));
-			mailConfig.setPort(config().getInteger(ComputateVertxConfigKeys.EMAIL_PORT));
-			mailConfig.setSsl(config().getBoolean(ComputateVertxConfigKeys.EMAIL_SSL));
-			mailConfig.setUsername(config().getString(ComputateVertxConfigKeys.EMAIL_USERNAME));
-			mailConfig.setPassword(config().getString(ComputateVertxConfigKeys.EMAIL_PASSWORD));
-			this.fallbackMailFrom = config().getString(ComputateVertxConfigKeys.EMAIL_FROM);
-			this.fallbackMailTo = config().getString(ComputateVertxConfigKeys.EMAIL_ADMIN);
+			mailConfig.setHostname(config().getString(ComputateConfigKeys.EMAIL_HOST));
+			mailConfig.setPort(config().getInteger(ComputateConfigKeys.EMAIL_PORT));
+			mailConfig.setSsl(config().getBoolean(ComputateConfigKeys.EMAIL_SSL));
+			mailConfig.setUsername(config().getString(ComputateConfigKeys.EMAIL_USERNAME));
+			mailConfig.setPassword(config().getString(ComputateConfigKeys.EMAIL_PASSWORD));
+			this.fallbackMailFrom = config().getString(ComputateConfigKeys.EMAIL_FROM);
+			this.fallbackMailTo = config().getString(ComputateConfigKeys.EMAIL_ADMIN);
 			this.fallbackMailSubject = "";
 			this.mailClient = MailClient.createShared(vertx, mailConfig);
 			LOG.info("The email was configured successfully. ");

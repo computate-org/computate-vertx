@@ -13,9 +13,9 @@
  */
 package org.computate.vertx.search.list;
 
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.api.ApiRequest;
-import org.computate.vertx.config.ComputateVertxConfigKeys;
+import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -92,7 +92,7 @@ public abstract class SearchListGen<DEV> {
 	public void setC(Class<?> c) {
 		this.c = c;
 	}
-	public static Class<?> staticSetC(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Class<?> staticSetC(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected SearchList cInit() {
@@ -113,7 +113,7 @@ public abstract class SearchListGen<DEV> {
 	 */
 	@JsonIgnore
 	@JsonInclude(Include.NON_NULL)
-	protected ComputateVertxSiteRequest siteRequest_;
+	protected ComputateSiteRequest siteRequest_;
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
@@ -121,20 +121,20 @@ public abstract class SearchListGen<DEV> {
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
-	protected abstract void _siteRequest_(Wrap<ComputateVertxSiteRequest> c);
+	protected abstract void _siteRequest_(Wrap<ComputateSiteRequest> c);
 
-	public ComputateVertxSiteRequest getSiteRequest_() {
+	public ComputateSiteRequest getSiteRequest_() {
 		return siteRequest_;
 	}
 
-	public void setSiteRequest_(ComputateVertxSiteRequest siteRequest_) {
+	public void setSiteRequest_(ComputateSiteRequest siteRequest_) {
 		this.siteRequest_ = siteRequest_;
 	}
-	public static ComputateVertxSiteRequest staticSetSiteRequest_(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static ComputateSiteRequest staticSetSiteRequest_(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected SearchList siteRequest_Init() {
-		Wrap<ComputateVertxSiteRequest> siteRequest_Wrap = new Wrap<ComputateVertxSiteRequest>().var("siteRequest_");
+		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
 		if(siteRequest_ == null) {
 			_siteRequest_(siteRequest_Wrap);
 			setSiteRequest_(siteRequest_Wrap.o);
@@ -172,7 +172,7 @@ public abstract class SearchListGen<DEV> {
 	public void setStore(String o) {
 		this.store = SearchList.staticSetStore(siteRequest_, o);
 	}
-	public static Boolean staticSetStore(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Boolean staticSetStore(ComputateSiteRequest siteRequest_, String o) {
 		return Boolean.parseBoolean(o);
 	}
 	protected SearchList storeInit() {
@@ -184,15 +184,15 @@ public abstract class SearchListGen<DEV> {
 		return (SearchList)this;
 	}
 
-	public static Boolean staticSearchStore(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchStore(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSearchStrStore(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrStore(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqStore(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqStore(ComputateSiteRequest siteRequest_, String o) {
 		return SearchList.staticSearchStrStore(siteRequest_, SearchList.staticSearchStore(siteRequest_, SearchList.staticSetStore(siteRequest_, o)));
 	}
 
@@ -226,7 +226,7 @@ public abstract class SearchListGen<DEV> {
 	public void setPopulate(String o) {
 		this.populate = SearchList.staticSetPopulate(siteRequest_, o);
 	}
-	public static Boolean staticSetPopulate(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Boolean staticSetPopulate(ComputateSiteRequest siteRequest_, String o) {
 		return Boolean.parseBoolean(o);
 	}
 	protected SearchList populateInit() {
@@ -238,15 +238,15 @@ public abstract class SearchListGen<DEV> {
 		return (SearchList)this;
 	}
 
-	public static Boolean staticSearchPopulate(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static Boolean staticSearchPopulate(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o;
 	}
 
-	public static String staticSearchStrPopulate(ComputateVertxSiteRequest siteRequest_, Boolean o) {
+	public static String staticSearchStrPopulate(ComputateSiteRequest siteRequest_, Boolean o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqPopulate(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqPopulate(ComputateSiteRequest siteRequest_, String o) {
 		return SearchList.staticSearchStrPopulate(siteRequest_, SearchList.staticSearchPopulate(siteRequest_, SearchList.staticSetPopulate(siteRequest_, o)));
 	}
 
@@ -276,7 +276,7 @@ public abstract class SearchListGen<DEV> {
 	public void setRequest(SearchRequest request) {
 		this.request = request;
 	}
-	public static SearchRequest staticSetRequest(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static SearchRequest staticSetRequest(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected SearchList requestInit() {
@@ -311,7 +311,7 @@ public abstract class SearchListGen<DEV> {
 	public void setResponse(SolrResponse response) {
 		this.response = response;
 	}
-	public static SolrResponse staticSetResponse(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static SolrResponse staticSetResponse(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected Future<SolrResponse> responsePromise() {
@@ -353,11 +353,11 @@ public abstract class SearchListGen<DEV> {
 	public void setDocs(List<Doc> docs) {
 		this.docs = docs;
 	}
-	public static Doc staticSetDocs(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Doc staticSetDocs(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
-	public SearchList addDocs(Doc...objets) {
-		for(Doc o : objets) {
+	public SearchList addDocs(Doc...objects) {
+		for(Doc o : objects) {
 			addDocs(o);
 		}
 		return (SearchList)this;
@@ -403,8 +403,8 @@ public abstract class SearchListGen<DEV> {
 	public void setList(List<DEV> list) {
 		this.list = list;
 	}
-	public SearchList addList(DEV...objets) {
-		for(DEV o : objets) {
+	public SearchList addList(DEV...objects) {
+		for(DEV o : objects) {
 			addList(o);
 		}
 		return (SearchList)this;
@@ -445,7 +445,7 @@ public abstract class SearchListGen<DEV> {
 	public void setFirst(Object first) {
 		this.first = first;
 	}
-	public static Object staticSetFirst(ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetFirst(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
 	protected SearchList firstInit() {
@@ -461,7 +461,7 @@ public abstract class SearchListGen<DEV> {
 	// initDeep //
 	//////////////
 
-	public Future<Void> promiseDeepSearchList(ComputateVertxSiteRequest siteRequest_) {
+	public Future<Void> promiseDeepSearchList(ComputateSiteRequest siteRequest_) {
 		setSiteRequest_(siteRequest_);
 		return promiseDeepSearchList();
 	}
@@ -519,7 +519,7 @@ public abstract class SearchListGen<DEV> {
 		return promise.future();
 	}
 
-	public Future<Void> promiseDeepForClass(ComputateVertxSiteRequest siteRequest_) {
+	public Future<Void> promiseDeepForClass(ComputateSiteRequest siteRequest_) {
 		return promiseDeepSearchList(siteRequest_);
 	}
 
@@ -527,12 +527,12 @@ public abstract class SearchListGen<DEV> {
 	// siteRequest //
 	/////////////////
 
-	public void siteRequestSearchList(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestSearchList(ComputateSiteRequest siteRequest_) {
 		if(request != null)
 			request.setSiteRequest_(siteRequest_);
 	}
 
-	public void siteRequestForClass(ComputateVertxSiteRequest siteRequest_) {
+	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
 		siteRequestSearchList(siteRequest_);
 	}
 
@@ -604,10 +604,10 @@ public abstract class SearchListGen<DEV> {
 	// staticSet //
 	///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSetSearchList(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSetSearchList(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static Object staticSetSearchList(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "store":
 			return SearchList.staticSetStore(siteRequest_, o);
@@ -622,10 +622,10 @@ public abstract class SearchListGen<DEV> {
 	// staticSearch //
 	////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchSearchList(entityVar,  siteRequest_, o);
 	}
-	public static Object staticSearchSearchList(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static Object staticSearchSearchList(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "store":
 			return SearchList.staticSearchStore(siteRequest_, (Boolean)o);
@@ -640,10 +640,10 @@ public abstract class SearchListGen<DEV> {
 	// staticSearchStr //
 	///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		return staticSearchStrSearchList(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchStrSearchList(String entityVar, ComputateVertxSiteRequest siteRequest_, Object o) {
+	public static String staticSearchStrSearchList(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "store":
 			return SearchList.staticSearchStrStore(siteRequest_, (Boolean)o);
@@ -658,10 +658,10 @@ public abstract class SearchListGen<DEV> {
 	// staticSearchFq //
 	//////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		return staticSearchFqSearchList(entityVar,  siteRequest_, o);
 	}
-	public static String staticSearchFqSearchList(String entityVar, ComputateVertxSiteRequest siteRequest_, String o) {
+	public static String staticSearchFqSearchList(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 		case "store":
 			return SearchList.staticSearchFqStore(siteRequest_, o);

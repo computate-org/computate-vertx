@@ -18,7 +18,7 @@ import java.util.Map;
 
 import org.computate.search.request.ComputateSearchSiteRequest;
 import org.computate.vertx.api.ApiRequest;
-import org.computate.vertx.model.user.ComputateVertxSiteUser;
+import org.computate.vertx.model.user.ComputateSiteUser;
 
 import io.vertx.core.MultiMap;
 import io.vertx.core.json.JsonObject;
@@ -30,7 +30,7 @@ import io.vertx.sqlclient.SqlConnection;
 /**
  * Keyword: classSimpleNameSiteRequest
  */
-public interface ComputateVertxSiteRequest extends ComputateSearchSiteRequest {
+public interface ComputateSiteRequest extends ComputateSearchSiteRequest {
 
 	String getUserName();
 
@@ -42,7 +42,7 @@ public interface ComputateVertxSiteRequest extends ComputateSearchSiteRequest {
 
 	ServiceRequest getServiceRequest();
 
-	ComputateVertxSiteRequest copy();
+	ComputateSiteRequest copy();
 
 	void setJsonObject(JsonObject jsonObject);
 
@@ -78,7 +78,7 @@ public interface ComputateVertxSiteRequest extends ComputateSearchSiteRequest {
 
 	void initDeepForClass();
 
-	<T extends ComputateVertxSiteRequest> void setSiteRequest_(T siteRequest);
+	<T extends ComputateSiteRequest> void setSiteRequest_(T siteRequest);
 
 	void setRequestHeaders(MultiMap requestHeaders);
 
@@ -86,7 +86,7 @@ public interface ComputateVertxSiteRequest extends ComputateSearchSiteRequest {
 
 	WebClient getWebClient();
 
-	<T extends ComputateVertxSiteUser> T getSiteUser_(Class<T> clazz);
+	<T extends ComputateSiteUser> T getSiteUser_(Class<T> clazz);
 
 	User getUser();
 

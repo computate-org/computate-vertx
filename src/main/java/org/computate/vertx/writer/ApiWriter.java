@@ -22,13 +22,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.computate.search.computate.enus.ComputateEnUSClass;
 import org.computate.search.response.solr.SolrResponse;
 import org.computate.search.wrap.Wrap;
-import org.computate.vertx.request.ComputateVertxSiteRequest;
+import org.computate.vertx.request.ComputateSiteRequest;
 
 import io.vertx.core.json.JsonObject;
 
 public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWriter> {
 
-	protected void _siteRequest_(Wrap<ComputateVertxSiteRequest> w) {
+	protected void _siteRequest_(Wrap<ComputateSiteRequest> w) {
 	}
 
 	protected void _classDoc(Wrap<ComputateEnUSClass> w) {
