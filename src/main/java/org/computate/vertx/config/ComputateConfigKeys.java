@@ -516,6 +516,11 @@ public class ComputateConfigKeys {
 	/**
 	 * 
 	 **/
+	public static final String VERTX_MAX_EVENT_LOOP_EXECUTE_TIME = "VERTX_MAX_EVENT_LOOP_EXECUTE_TIME";
+
+	/**
+	 * 
+	 **/
 	public static final String ENABLE_ZOOKEEPER_CLUSTER = "ENABLE_ZOOKEEPER_CLUSTER";
 
 	/**
