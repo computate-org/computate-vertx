@@ -312,7 +312,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 	}
 
 	public void  writeEntitySchema(Integer numberTabs, AllWriter w, String apiRequestOrResponse) throws Exception, Exception {
-		numberTabs = numberTabs == null ? (classApiMethod.contains("Search") && "response".equals(apiRequestOrResponse) ? 1 : 0) : numberTabs;
+		numberTabs = numberTabs == null ? (classApiMethod.contains("Search") && "response".equals(apiRequestOrResponse) ? 3 : 0) : numberTabs;
 		if(entityJsonType != null) {
 
 			if("PATCH".equals(classApiMethodMethod)) {
@@ -777,11 +777,23 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				}
 	
 				if(classApiMethod.contains("Search")) {
-					wSchemas.tl(tabsSchema + 2, "- type: array");
-					wSchemas.tl(tabsSchema + 3, "items:");
-					wSchemas.tl(tabsSchema + 4, "type: object");
+					wSchemas.tl(tabsSchema + 2, "- type: object");
+					wSchemas.tl(tabsSchema + 3, "properties:");
+					wSchemas.tl(tabsSchema + 4, "startNum:");
+					wSchemas.tl(tabsSchema + 5, "type: integer");
+					wSchemas.tl(tabsSchema + 5, "minimum: 0");
+					wSchemas.tl(tabsSchema + 4, "foundNum:");
+					wSchemas.tl(tabsSchema + 5, "type: integer");
+					wSchemas.tl(tabsSchema + 5, "minimum: 0");
+					wSchemas.tl(tabsSchema + 4, "returnedNum:");
+					wSchemas.tl(tabsSchema + 5, "type: integer");
+					wSchemas.tl(tabsSchema + 5, "minimum: 0");
+					wSchemas.tl(tabsSchema + 4, "list:");
+					wSchemas.tl(tabsSchema + 5, "type: array");
+					wSchemas.tl(tabsSchema + 5, "items:");
+					wSchemas.tl(tabsSchema + 6, "type: object");
 					if(!wResponseSchema.getEmpty())
-						wSchemas.tl(tabsSchema + 4, "properties:");
+						wSchemas.tl(tabsSchema + 6, "properties:");
 				}
 				else {
 					wSchemas.tl(tabsSchema + 2, "- type: object");

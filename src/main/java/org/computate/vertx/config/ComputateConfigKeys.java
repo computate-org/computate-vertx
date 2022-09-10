@@ -246,17 +246,17 @@ public class ComputateConfigKeys {
 	/**
 	 * The project powered by URL. 
 	 **/
-	public static final String PROJECT_POWERED_BY_URL = "PROJECT_POWERED_BY_URL";
+	public static final String SITE_POWERED_BY_URL = "SITE_POWERED_BY_URL";
 
 	/**
 	 * The project powered by organization name. 
 	 **/
-	public static final String PROJECT_POWERED_BY_NAME = "PROJECT_POWERED_BY_NAME";
+	public static final String SITE_POWERED_BY_NAME = "SITE_POWERED_BY_NAME";
 
 	/**
 	 * The project powered by image relative URI. 
 	 **/
-	public static final String PROJECT_POWERED_BY_IMAGE_URI = "PROJECT_POWERED_BY_IMAGE_URI";
+	public static final String SITE_POWERED_BY_IMAGE_URI = "SITE_POWERED_BY_IMAGE_URI";
 
 	/**
 	 * The class name of the JDBC driver class for the database. 
@@ -537,6 +537,31 @@ public class ComputateConfigKeys {
 	 * 
 	 **/
 	public static final String ZOOKEEPER_HOSTS = "ZOOKEEPER_HOSTS";
+
+	/**
+	 * max number of times to retry
+	 */
+	public static final String ZOOKEEPER_MAX_RETRIES = "ZOOKEEPER_MAX_RETRIES";
+
+	/**
+	 * initial amount of time to wait between retries
+	 */
+	public static final String ZOOKEEPER_BASE_SLEEP_TIME_MILLIS = "ZOOKEEPER_BASE_SLEEP_TIME_MILLIS";
+
+	/**
+	 * max time in ms to sleep on each retry
+	 */
+	public static final String ZOOKEEPER_MAX_SLEEP_MILLIS = "ZOOKEEPER_MAX_SLEEP_MILLIS";
+
+	/**
+	 * Zookeeper connection timeout
+	 */
+	public static final String ZOOKEEPER_CONNECTION_TIMEOUT_MILLIS = "ZOOKEEPER_CONNECTION_TIMEOUT_MILLIS";
+
+	/**
+	 * Zookeeper session timeout
+	 */
+	public static final String ZOOKEEPER_SESSION_TIMEOUT_MILLIS = "ZOOKEEPER_SESSION_TIMEOUT_MILLIS";
 
 	/**
 	 * 

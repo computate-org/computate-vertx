@@ -379,6 +379,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
 				String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
 				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
+				System.out.println(solrRequestUri);
 				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
 					try {
 						SolrResponse response = a.bodyAsJson(SolrResponse.class);
