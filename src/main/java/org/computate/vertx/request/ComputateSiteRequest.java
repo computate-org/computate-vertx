@@ -98,4 +98,12 @@ public interface ComputateSiteRequest extends ComputateSearchSiteRequest {
 
 	void setUserId(String string);
 
+	String getLang();
+
+	Long getUserKey();
+
+	String getUserEmail();
+
+	MultiMap getRequestHeaders();
+
 }

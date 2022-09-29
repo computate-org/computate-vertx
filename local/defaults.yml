@@ -1,0 +1,9 @@
+---
+ENABLE_STATIC: false
+ENABLE_ANSIBLE: false
+ENABLE_LAUNCH: false
+ENABLE_CONFIG_TEMPLATE: false
+SITE_NAME: computate-vertx
+SITE_SERVICES:
+  - SITE_NAME: "computate-vertx"
+    SITE_SRC: "/home/ctate/.local/src/computate-vertx"

@@ -45,6 +45,7 @@ import java.util.Map;
 import java.lang.Class;
 import java.lang.Boolean;
 import org.computate.search.request.SearchRequest;
+import java.lang.String;
 import org.computate.search.response.solr.SolrResponse;
 import org.computate.search.response.solr.SolrResponse.Doc;
 import java.lang.Object;
@@ -307,6 +308,55 @@ public abstract class SearchListGen<DEV> {
 		return (SearchList)this;
 	}
 
+	///////////////
+	// searchUrl //
+	///////////////
+
+	/**	 The entity searchUrl
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String searchUrl;
+
+	/**	<br> The entity searchUrl
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:searchUrl">Find the entity searchUrl in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _searchUrl(Wrap<String> w);
+
+	public String getSearchUrl() {
+		return searchUrl;
+	}
+	public void setSearchUrl(String o) {
+		this.searchUrl = SearchList.staticSetSearchUrl(siteRequest_, o);
+	}
+	public static String staticSetSearchUrl(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected SearchList searchUrlInit() {
+		Wrap<String> searchUrlWrap = new Wrap<String>().var("searchUrl");
+		if(searchUrl == null) {
+			_searchUrl(searchUrlWrap);
+			setSearchUrl(searchUrlWrap.o);
+		}
+		return (SearchList)this;
+	}
+
+	public static String staticSearchSearchUrl(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrSearchUrl(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqSearchUrl(ComputateSiteRequest siteRequest_, String o) {
+		return SearchList.staticSearchStrSearchUrl(siteRequest_, SearchList.staticSearchSearchUrl(siteRequest_, SearchList.staticSetSearchUrl(siteRequest_, o)));
+	}
+
 	//////////////
 	// response //
 	//////////////
@@ -509,6 +559,7 @@ public abstract class SearchListGen<DEV> {
 				storeInit();
 				populateInit();
 				requestInit();
+				searchUrlInit();
 				promise2.complete();
 			} catch(Exception ex) {
 				promise2.fail(ex);
@@ -588,6 +639,8 @@ public abstract class SearchListGen<DEV> {
 				return oSearchList.populate;
 			case "request":
 				return oSearchList.request;
+			case "searchUrl":
+				return oSearchList.searchUrl;
 			case "response":
 				return oSearchList.response;
 			case "docs":
@@ -635,6 +688,8 @@ public abstract class SearchListGen<DEV> {
 			return SearchList.staticSetStore(siteRequest_, o);
 		case "populate":
 			return SearchList.staticSetPopulate(siteRequest_, o);
+		case "searchUrl":
+			return SearchList.staticSetSearchUrl(siteRequest_, o);
 			default:
 				return null;
 		}
@@ -653,6 +708,8 @@ public abstract class SearchListGen<DEV> {
 			return SearchList.staticSearchStore(siteRequest_, (Boolean)o);
 		case "populate":
 			return SearchList.staticSearchPopulate(siteRequest_, (Boolean)o);
+		case "searchUrl":
+			return SearchList.staticSearchSearchUrl(siteRequest_, (String)o);
 			default:
 				return null;
 		}
@@ -671,6 +728,8 @@ public abstract class SearchListGen<DEV> {
 			return SearchList.staticSearchStrStore(siteRequest_, (Boolean)o);
 		case "populate":
 			return SearchList.staticSearchStrPopulate(siteRequest_, (Boolean)o);
+		case "searchUrl":
+			return SearchList.staticSearchStrSearchUrl(siteRequest_, (String)o);
 			default:
 				return null;
 		}
@@ -689,6 +748,8 @@ public abstract class SearchListGen<DEV> {
 			return SearchList.staticSearchFqStore(siteRequest_, o);
 		case "populate":
 			return SearchList.staticSearchFqPopulate(siteRequest_, o);
+		case "searchUrl":
+			return SearchList.staticSearchFqSearchUrl(siteRequest_, o);
 			default:
 				return null;
 		}
@@ -709,6 +770,7 @@ public abstract class SearchListGen<DEV> {
 	public static final String VAR_store = "store";
 	public static final String VAR_populate = "populate";
 	public static final String VAR_request = "request";
+	public static final String VAR_searchUrl = "searchUrl";
 	public static final String VAR_response = "response";
 	public static final String VAR_docs = "docs";
 	public static final String VAR_list = "list";
@@ -719,6 +781,7 @@ public abstract class SearchListGen<DEV> {
 	public static final String DISPLAY_NAME_store = "";
 	public static final String DISPLAY_NAME_populate = "";
 	public static final String DISPLAY_NAME_request = "";
+	public static final String DISPLAY_NAME_searchUrl = "";
 	public static final String DISPLAY_NAME_response = "";
 	public static final String DISPLAY_NAME_docs = "";
 	public static final String DISPLAY_NAME_list = "";
@@ -739,6 +802,8 @@ public abstract class SearchListGen<DEV> {
 			return DISPLAY_NAME_populate;
 		case VAR_request:
 			return DISPLAY_NAME_request;
+		case VAR_searchUrl:
+			return DISPLAY_NAME_searchUrl;
 		case VAR_response:
 			return DISPLAY_NAME_response;
 		case VAR_docs:

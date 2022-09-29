@@ -7,15 +7,14 @@ touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/handlebars/
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/handlebars/SiteHelpers.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/model/base/ComputateBaseModel.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/model/user/ComputateSiteUser.java
-touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/openapi/Swagger2Generator.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/openapi/OpenApi3Generator.java
+touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/openapi/Swagger2Generator.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/request/ComputateSiteRequest.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/search/list/SearchList.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/search/list/SearchResult.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/serialize/pgclient/PgClientPointDeserializer.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/serialize/pgclient/PgClientPointSerializer.java
+touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/verticle/EmailVerticle.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/writer/AllWriter.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/writer/AllWriters.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/writer/ApiWriter.java
-touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/verticle/EmailVerticle.java
-

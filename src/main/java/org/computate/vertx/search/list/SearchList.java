@@ -369,24 +369,30 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 
 	/**
 	 * {@inheritDoc}
+	 */
+	protected void _searchUrl(Wrap<String> w) {
+		String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
+		Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+		String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
+		String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
+		w.o(String.format("http://%s:%s%s", solrHostName, solrPort, solrRequestUri));
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * Ignore: true
 	 */
 	protected void _response(Promise<SolrResponse> promise) {
 		try {
 			if(request.getQuery() != null) {
 				request.initDeepForClass(siteRequest_);
-				String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
-				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
-				String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
-				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
-				System.out.println(solrRequestUri);
-				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
+				siteRequest_.getWebClient().get(searchUrl).send().onSuccess(a -> {
 					try {
 						SolrResponse response = a.bodyAsJson(SolrResponse.class);
 						setResponse(response);
 						promise.complete(response);
 					} catch(Exception ex) {
-						LOG.error(String.format("Could not read response from Solr: http://%s:%s%s", solrHostName, solrPort, solrRequestUri), ex);
+						LOG.error(String.format("Could not read response from Solr: http://%s:%s%s", searchUrl), ex);
 						promise.fail(ex);
 					}
 				}).onFailure(ex -> {
