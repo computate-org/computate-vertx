@@ -88,6 +88,8 @@ public interface ComputateSiteRequest extends ComputateSearchSiteRequest {
 
 	<T extends ComputateSiteUser> T getSiteUser_(Class<T> clazz);
 
+	<T extends ComputateSiteUser> void setSiteUser(T siteUser_);
+
 	User getUser();
 
 	JsonObject getUserPrincipal();

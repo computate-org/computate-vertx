@@ -386,7 +386,11 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		try {
 			if(request.getQuery() != null) {
 				request.initDeepForClass(siteRequest_);
-				siteRequest_.getWebClient().get(searchUrl).send().onSuccess(a -> {
+				String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
+				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+				String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
+				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
+				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
 					try {
 						SolrResponse response = a.bodyAsJson(SolrResponse.class);
 						setResponse(response);

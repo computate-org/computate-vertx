@@ -30,8 +30,8 @@ public class ComputateJavaClassEnUSApiServiceImpl extends ComputateJavaClassEnUS
 		String solrHostName = siteRequest.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
 		Integer solrPort = siteRequest.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
 		String solrCollection = "computate";
-		String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
-		w.o(String.format("http://%s:%s%s", "localhost", solrPort, solrRequestUri));
+//		String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
+//		w.o(String.format("http://%s:%s%s", "localhost", solrPort, solrRequestUri));
 		searchList.setSearchUrl(null);
 	}
 }

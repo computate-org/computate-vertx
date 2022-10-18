@@ -244,6 +244,7 @@ public abstract class BaseApiServiceImpl {
 										siteRequest.setUserKey(pk);
 										siteRequest.setApiRequest_(apiRequest);
 										siteRequest.setUserPrincipal(userPrincipal);
+										siteRequest.setSiteUser(siteUser1);
 										promise.complete(siteRequest);
 									}).onFailure(ex -> {
 										LOG.error(String.format("postSiteUser failed. "), ex);
@@ -257,6 +258,8 @@ public abstract class BaseApiServiceImpl {
 									jsonObject.put("setUserCompleteName", accessToken.getString("name"));
 									jsonObject.put("setUserId", accessToken.getString("sub"));
 									jsonObject.put("setUserEmail", accessToken.getString("email"));
+									jsonObject.put("setSeeDeleted", siteUser1.getSeeDeleted());
+									jsonObject.put("setSeeArchived", siteUser1.getSeeArchived());
 									Boolean define = userDefine(siteRequest, jsonObject, true);
 									if(define) {
 
@@ -299,9 +302,10 @@ public abstract class BaseApiServiceImpl {
 											siteRequest.setUserLastName(accessToken.getString("family_name"));
 											siteRequest.setUserEmail(accessToken.getString("email"));
 											siteRequest.setUserId(accessToken.getString("sub"));
-											siteRequest.setUserKey(Long.parseLong(responseBody.getString("pk")));
+											siteRequest.setUserKey(siteUser1.getPk());
 											siteRequest.setApiRequest_(apiRequest);
 											siteRequest.setUserPrincipal(userPrincipal);
+											siteRequest.setSiteUser(siteUser1);
 											promise.complete(siteRequest);
 										}).onFailure(ex -> {
 											LOG.error(String.format("postSiteUser failed. "), ex);
@@ -313,6 +317,7 @@ public abstract class BaseApiServiceImpl {
 										siteRequest.setUserLastName(siteUser1.getUserLastName());
 										siteRequest.setUserKey(siteUser1.getPk());
 										siteRequest.setUserPrincipal(userPrincipal);
+										siteRequest.setSiteUser(siteUser1);
 										promise.complete((T)siteRequest);
 									}
 								}
@@ -686,5 +691,9 @@ public abstract class BaseApiServiceImpl {
 				});
 			}
 		}
+	}
+
+	public void calendarStuff() {
+		
 	}
 }

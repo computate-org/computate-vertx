@@ -18,7 +18,7 @@ package org.computate.vertx.result.base;
  */
 public interface ComputateBaseResult {
 
-	public Long getId();
+	public String getId();
 
 	public Object obtainForClass(String v);
 	
