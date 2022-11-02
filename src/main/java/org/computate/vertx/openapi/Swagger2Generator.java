@@ -262,9 +262,6 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 				wRequestBodies.tl(0, "components:");
 				if(config.getString(ComputateConfigKeys.AUTH_URL) != null) {
 					wRequestBodies.tl(1, "securitySchemes:");
-						wRequestBodies.tl(2, "basicAuth:");
-						wRequestBodies.tl(3, "type: http");
-						wRequestBodies.tl(3, "scheme: basic");
 						wRequestBodies.tl(2, "openIdConnect:");
 						wRequestBodies.tl(3, "type: openIdConnect");
 						wRequestBodies.tl(3, "openIdConnectUrl: ", config.getString(ComputateConfigKeys.AUTH_URL), "/realms/", config.getString(ComputateConfigKeys.AUTH_REALM), "/.well-known/openid-configuration");
