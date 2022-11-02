@@ -19,6 +19,16 @@ package org.computate.vertx.config;
 public class ComputateConfigKeys {
 
 	/**
+	 * 
+	 **/
+	public static final String QUAYIO_ORG = "QUAYIO_ORG";
+
+	/**
+	 * 
+	 **/
+	public static final String MAILING_LIST_URL = "MAILING_LIST_URL";
+
+	/**
 	 * Run the OpenAPI3 Generator when this environment variable is set to true. 
 	 **/
 	public static final String RUN_OPENAPI3_GENERATOR = "RUN_OPENAPI3_GENERATOR";
@@ -239,6 +249,16 @@ public class ComputateConfigKeys {
 	public static final String SITE_DISPLAY_NAME = "SITE_DISPLAY_NAME";
 
 	/**
+	 * 
+	 **/
+	public static final String SITE_PUBLIC_URL = "SITE_PUBLIC_URL";
+
+	/**
+	 * 
+	 **/
+	public static final String SITE_POM_GROUP_ID = "SITE_POM_GROUP_ID";
+
+	/**
 	 * The name Github organization for the site. 
 	 **/
 	public static final String GITHUB_ORG = "GITHUB_ORG";
@@ -342,6 +362,11 @@ public class ComputateConfigKeys {
 	 * The Solr computate collection. 
 	 **/
 	public static final String SOLR_COLLECTION_COMPUTATE = "SOLR_COLLECTION_COMPUTATE";
+
+	/**
+	 * The path to the computate source code. 
+	 **/
+	public static final String COMPUTATE_SRC = "COMPUTATE_SRC";
 
 	/**
 	 * The Email account for the site. 
@@ -581,7 +606,12 @@ public class ComputateConfigKeys {
 	/**
 	 * 
 	 **/
-	public static final String DYNAMIC_PAGE_PATH = "DYNAMIC_PAGE_PATH";
+	public static final String DYNAMIC_PAGE_PATHS = "DYNAMIC_PAGE_PATHS";
+
+	/**
+	 * 
+	 **/
+	public static final String I18N_PATHS = "I18N_PATHS";
 
 	/**
 	 * Map default location. 
