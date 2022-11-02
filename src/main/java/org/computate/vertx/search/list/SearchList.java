@@ -396,7 +396,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 						setResponse(response);
 						promise.complete(response);
 					} catch(Exception ex) {
-						LOG.error(String.format("Could not read response from Solr: http://%s:%s%s", searchUrl), ex);
+						LOG.error(String.format("Could not read response from Solr: %s", searchUrl), ex);
 						promise.fail(ex);
 					}
 				}).onFailure(ex -> {
