@@ -244,6 +244,11 @@ public class ComputateConfigKeys {
 	public static final String SITE_NAME = "SITE_NAME";
 
 	/**
+	 * The path to the source code of the site. 
+	 **/
+	public static final String SITE_SRC = "SITE_SRC";
+
+	/**
 	 * The display name of the site. 
 	 **/
 	public static final String SITE_DISPLAY_NAME = "SITE_DISPLAY_NAME";
