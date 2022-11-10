@@ -296,6 +296,7 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			searchClasses.rows(1000000);
 			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
 			searchClasses.fq("classeApi_indexed_boolean:true");
+			searchClasses.fq("classeEtendGen_indexed_boolean:true");
 			searchClasses.fq("partEstClasse_indexed_boolean:true");
 			searchClasses.sortAsc("classeNomCanonique_enUS_indexed_string");
 			searchClasses.sortAsc("partNumero_indexed_int");
