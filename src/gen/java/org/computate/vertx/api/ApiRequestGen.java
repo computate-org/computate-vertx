@@ -62,16 +62,20 @@ import io.vertx.core.Promise;
 import io.vertx.core.Future;
 
 /**	
- * <h1>Suggestions that can generate more code for you: </h1>
- * <ol>
- * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ApiRequestGen into the class ApiRequest. 
- * </li>
+<ol>
+<li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these ApiRequest objects in a RESTful API. 
+</li>
+<li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ApiRequestGen into the class ApiRequest. 
+</li>
+0<h3>Suggestions that can generate more code for you: </h3></ol>
  * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these ApiRequest objects in a RESTful API. 
  * </li>
- * </ol>
- * <h1>About the ApiRequest class and it's generated class ApiRequestGen&lt;Object&gt;: </h1>
+ * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ApiRequestGen into the class ApiRequest. 
+ * </li>
+ * 0<h3>Suggestions that can generate more code for you: </h3>
+ * <h3>About the ApiRequest class and it's generated class ApiRequestGen&lt;Object&gt;: </h3>extends ApiRequestGen
  * <p>
- * This Java class extends a generated Java class built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
+ * This Java class extends a generated Java class ApiRequestGen built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
@@ -80,6 +84,27 @@ import io.vertx.core.Future;
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
  * </p>
+ * extends ApiRequestGen<Object>
+ * <p>This <code>class ApiRequest extends ApiRequestGen&lt;Object&gt;</code>, which means it extends a newly generated ApiRequestGen. 
+ * The generated <code>class ApiRequestGen extends Object</code> which means that ApiRequest extends ApiRequestGen which extends Object. 
+ * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
+ * </p>
+ * Api: true
+ * ApiTag.enUS: null
+ * ApiUri.enUS: null
+ * Color: null
+ * IconGroup: null
+ * IconName: null
+ * Indexed: true
+ * {@inheritDoc}
+ * <p>By adding a class comment "{@inheritDoc}", the ApiRequest class will inherit the helpful inherited class comments from the super class ApiRequestGen. 
+ * </p>
+ * Rows: null
+ * Model: true
+ * Page: true
+ * SuperPage.enUS: null
+ * Promise: true
+ * AName: null
  * <p>
  * Delete the class ApiRequest in Solr: 
  * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
@@ -99,6 +124,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	//////////////////
 	// siteRequest_ //
 	//////////////////
+
 
 	/**	 The entity siteRequest_
 	 *	 is defined as null before being initialized. 
@@ -137,6 +163,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	/////////////
 	// created //
 	/////////////
+
 
 	/**	 The entity created
 	 *	 is defined as null before being initialized. 
@@ -211,6 +238,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	// rows //
 	//////////
 
+
 	/**	 The entity rows
 	 *	 is defined as null before being initialized. 
 	 */
@@ -267,6 +295,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	//////////////
 	// numFound //
 	//////////////
+
 
 	/**	 The entity numFound
 	 *	 is defined as null before being initialized. 
@@ -325,6 +354,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	// numPATCH //
 	//////////////
 
+
 	/**	 The entity numPATCH
 	 *	 is defined as null before being initialized. 
 	 */
@@ -382,6 +412,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	// uuid //
 	//////////
 
+
 	/**	 The entity uuid
 	 *	 is defined as null before being initialized. 
 	 */
@@ -431,6 +462,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	// id //
 	////////
 
+
 	/**	 The entity id
 	 *	 is defined as null before being initialized. 
 	 */
@@ -479,6 +511,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	////////
 	// pk //
 	////////
+
 
 	/**	 The entity pk
 	 *	 is defined as null before being initialized. 
@@ -537,6 +570,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	// original //
 	//////////////
 
+
 	/**	 The entity original
 	 *	 is defined as null before being initialized. 
 	 */
@@ -574,6 +608,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	/////////
 	// pks //
 	/////////
+
 
 	/**	 The entity pks
 	 *	 It is constructed before being initialized with the constructor by default. 
@@ -657,6 +692,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	// classes //
 	/////////////
 
+
 	/**	 The entity classes
 	 *	 It is constructed before being initialized with the constructor by default. 
 	 */
@@ -722,6 +758,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	//////////
 	// vars //
 	//////////
+
 
 	/**	 The entity vars
 	 *	 It is constructed before being initialized with the constructor by default. 
@@ -789,6 +826,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	// timeRemaining //
 	///////////////////
 
+
 	/**	 The entity timeRemaining
 	 *	 is defined as null before being initialized. 
 	 */
@@ -833,6 +871,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public static String staticSearchFqTimeRemaining(ComputateSiteRequest siteRequest_, String o) {
 		return ApiRequest.staticSearchStrTimeRemaining(siteRequest_, ApiRequest.staticSearchTimeRemaining(siteRequest_, ApiRequest.staticSetTimeRemaining(siteRequest_, o)));
 	}
+
 
 	//////////////
 	// initDeep //

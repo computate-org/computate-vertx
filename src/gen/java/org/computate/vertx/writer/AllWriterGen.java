@@ -55,16 +55,20 @@ import io.vertx.core.Future;
 import io.vertx.core.json.JsonArray;
 
 /**	
- * <h1>Suggestions that can generate more code for you: </h1>
- * <ol>
- * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class AllWriterGen into the class AllWriter. 
- * </li>
+<ol>
+<li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these AllWriter objects in a RESTful API. 
+</li>
+<li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class AllWriterGen into the class AllWriter. 
+</li>
+0<h3>Suggestions that can generate more code for you: </h3></ol>
  * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these AllWriter objects in a RESTful API. 
  * </li>
- * </ol>
- * <h1>About the AllWriter class and it's generated class AllWriterGen&lt;Object&gt;: </h1>
+ * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class AllWriterGen into the class AllWriter. 
+ * </li>
+ * 0<h3>Suggestions that can generate more code for you: </h3>
+ * <h3>About the AllWriter class and it's generated class AllWriterGen&lt;Object&gt;: </h3>extends AllWriterGen
  * <p>
- * This Java class extends a generated Java class built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
+ * This Java class extends a generated Java class AllWriterGen built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
@@ -73,6 +77,27 @@ import io.vertx.core.json.JsonArray;
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
  * </p>
+ * extends AllWriterGen<Object>
+ * <p>This <code>class AllWriter extends AllWriterGen&lt;Object&gt;</code>, which means it extends a newly generated AllWriterGen. 
+ * The generated <code>class AllWriterGen extends Object</code> which means that AllWriter extends AllWriterGen which extends Object. 
+ * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
+ * </p>
+ * Api: true
+ * ApiTag.enUS: null
+ * ApiUri.enUS: null
+ * Color: null
+ * IconGroup: null
+ * IconName: null
+ * Indexed: true
+ * {@inheritDoc}
+ * <p>By adding a class comment "{@inheritDoc}", the AllWriter class will inherit the helpful inherited class comments from the super class AllWriterGen. 
+ * </p>
+ * Rows: null
+ * Model: true
+ * Page: true
+ * SuperPage.enUS: null
+ * Promise: true
+ * AName: null
  * <p>
  * Delete the class AllWriter in Solr: 
  * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
@@ -92,6 +117,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 	//////////////////
 	// siteRequest_ //
 	//////////////////
+
 
 	/**	 The entity siteRequest_
 	 *	 is defined as null before being initialized. 
@@ -130,6 +156,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 	////////////
 	// tabStr //
 	////////////
+
 
 	/**	 The entity tabStr
 	 *	 is defined as null before being initialized. 
@@ -176,9 +203,16 @@ public abstract class AllWriterGen<DEV> extends Object {
 		return AllWriter.staticSearchStrTabStr(siteRequest_, AllWriter.staticSearchTabStr(siteRequest_, AllWriter.staticSetTabStr(siteRequest_, o)));
 	}
 
+
+
+
+
+
+
 	//////////
 	// file //
 	//////////
+
 
 	/**	 The entity file
 	 *	 is defined as null before being initialized. 
@@ -218,6 +252,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 	// stringWriter //
 	//////////////////
 
+
 	/**	 The entity stringWriter
 	 *	 is defined as null before being initialized. 
 	 */
@@ -255,6 +290,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 	////////////
 	// buffer //
 	////////////
+
 
 	/**	 The entity buffer
 	 *	 is defined as null before being initialized. 
@@ -294,6 +330,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 	// printWriter //
 	/////////////////
 
+
 	/**	 The entity printWriter
 	 *	 is defined as null before being initialized. 
 	 */
@@ -331,6 +368,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 	///////////
 	// empty //
 	///////////
+
 
 	/**	 The entity empty
 	 *	 is defined as null before being initialized. 
@@ -381,6 +419,17 @@ public abstract class AllWriterGen<DEV> extends Object {
 	public static String staticSearchFqEmpty(ComputateSiteRequest siteRequest_, String o) {
 		return AllWriter.staticSearchStrEmpty(siteRequest_, AllWriter.staticSearchEmpty(siteRequest_, AllWriter.staticSetEmpty(siteRequest_, o)));
 	}
+
+
+
+
+
+
+
+
+
+
+
 
 	//////////////
 	// initDeep //

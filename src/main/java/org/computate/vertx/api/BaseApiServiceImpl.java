@@ -566,8 +566,11 @@ public abstract class BaseApiServiceImpl {
 			Optional.ofNullable(responseSearch.getStats()).map(s -> s.getStatsFields()).map(s -> s.getFields()).ifPresent(stats -> {
 				JsonObject stats2 = new JsonObject();
 				stats.forEach((key, val) -> {
-					String var = StringUtils.substringBefore(key, "_");
-					stats2.put(var, val);
+					JsonObject values = JsonObject.mapFrom(val);
+					String var = searchVar(key);
+					values.remove("name");
+					values.put("var", var);
+					stats2.put(var, values);
 				});
 				json.put("stats", stats2);
 			});
@@ -576,7 +579,7 @@ public abstract class BaseApiServiceImpl {
 				Optional.ofNullable(facetCounts.getFacetFields()).map(f -> f.getFacets()).ifPresent(facets -> {
 					JsonObject facets2 = new JsonObject();
 					for(SolrResponse.FacetField facetField : facets.values()) {
-						String facetFieldVar = StringUtils.substringBefore(facetField.getName(), "_");
+						String facetFieldVar = searchVar(facetField.getName());
 						JsonObject facetFieldCounts = new JsonObject();
 						facets2.put(facetFieldVar, facetFieldCounts);
 						facetField.getCounts().forEach((name, count) -> {
@@ -588,7 +591,7 @@ public abstract class BaseApiServiceImpl {
 				Optional.ofNullable(facetCounts.getFacetHeatMaps()).map(f -> f.getFacets()).ifPresent(facets -> {
 					JsonObject facets2 = new JsonObject();
 					for(SolrResponse.FacetField facetField : facets.values()) {
-						String facetFieldVar = StringUtils.substringBefore(facetField.getName(), "_");
+						String facetFieldVar = searchVar(facetField.getName());
 						JsonObject facetFieldCounts = new JsonObject();
 						facets2.put(facetFieldVar, facetFieldCounts);
 						facetField.getCounts().forEach((name, count) -> {
@@ -600,7 +603,7 @@ public abstract class BaseApiServiceImpl {
 				Optional.ofNullable(facetCounts.getFacetIntervals()).map(f -> f.getFacets()).ifPresent(facets -> {
 					JsonObject facets2 = new JsonObject();
 					for(SolrResponse.FacetField facetField : facets.values()) {
-						String facetFieldVar = StringUtils.substringBefore(facetField.getName(), "_");
+						String facetFieldVar = searchVar(facetField.getName());
 						JsonObject facetFieldCounts = new JsonObject();
 						facets2.put(facetFieldVar, facetFieldCounts);
 						facetField.getCounts().forEach((name, count) -> {
@@ -617,14 +620,13 @@ public abstract class BaseApiServiceImpl {
 //						String[] entityVars = new String[varsIndexed.length];
 //						for(Integer i = 0; i < entityVars.length; i++) {
 //							String entityIndexed = varsIndexed[i];
-//							entityVars[i] = StringUtils.substringBefore(entityIndexed, "_docvalues_");
+//							entityVars[i] = searchVar(entityIndexed);
 //						}
-//						JsonArray pivotArray = new JsonArray();
-//						facets2.put(StringUtils.join(entityVars, ","), pivotArray);
-//						responsePivotSearch(pivot.getPivotList(), pivotArray);
+//						facets2.put(StringUtils.join(entityVars, ","), pivotMap);
+//						responsePivotSearch(pivot.getPivotMap(), pivotMap);
 //					}
 					responsePivotSearch(facets, pivotMap);
-					facetCounts2.put("facet_pivot", facets2);
+					facetCounts2.put("facet_pivot", pivotMap);
 				});
 				Optional.ofNullable(facetCounts.getFacetQueries()).map(f -> f.getFacets()).ifPresent(facets -> {
 					JsonObject facets2 = new JsonObject();
@@ -634,7 +636,7 @@ public abstract class BaseApiServiceImpl {
 					JsonObject facets2 = new JsonObject();
 					for(SolrResponse.FacetRange facetField : facets.values()) {
 						JsonObject rangeFacetJson = new JsonObject();
-						String rangeFacetVar = StringUtils.substringBefore(facetField.getName(), "_docvalues_");
+						String rangeFacetVar = searchVar(facetField.getName());
 						facets2.put(rangeFacetVar, rangeFacetJson);
 						JsonObject rangeFacetCountsMap = new JsonObject();
 						rangeFacetJson.put("counts", rangeFacetCountsMap);
@@ -663,35 +665,41 @@ public abstract class BaseApiServiceImpl {
 		if(pivots != null) {
 			for(SolrResponse.Pivot pivotField : pivots.values()) {
 				String entityIndexed = pivotField.getField();
-				String entityVar = StringUtils.substringBefore(entityIndexed, "_docvalues_");
+				String entityVar = searchVar(entityIndexed);
+				String pivotValue = pivotField.getValue();
 				JsonObject pivotJson = new JsonObject();
-				pivotMap.put(pivotField.getName(), pivotJson);
-				pivotJson.put("field", entityVar);
-				pivotJson.put("value", pivotField.getValue());
-				pivotJson.put("count", pivotField.getCount());
-				Collection<SolrResponse.PivotRange> pivotRanges = pivotField.getRanges().values();
-				if(pivotRanges != null) {
-					JsonObject rangeJson = new JsonObject();
-					pivotJson.put("ranges", rangeJson);
-					for(SolrResponse.PivotRange rangeFacet : pivotRanges) {
-						JsonObject rangeFacetJson = new JsonObject();
-						String rangeFacetVar = StringUtils.substringBefore(rangeFacet.getName(), "_docvalues_");
-						rangeJson.put(rangeFacetVar, rangeFacetJson);
-						JsonObject rangeFacetCountsObject = new JsonObject();
-						rangeFacetJson.put("counts", rangeFacetCountsObject);
-						rangeFacet.getCounts().forEach((value, count) -> {
-							rangeFacetCountsObject.put(value, count);
-						});
+				pivotJson.put("var", entityVar);
+				if(pivotValue == null) {
+					pivotMap.put(entityVar, pivotJson);
+				} else {
+					pivotJson.put("count", pivotField.getCount());
+					pivotMap.put(pivotValue, pivotJson);
+					Collection<SolrResponse.PivotRange> pivotRanges = pivotField.getRanges().values();
+					if(pivotRanges != null) {
+						JsonObject rangeJson = new JsonObject();
+						pivotJson.put("ranges", rangeJson);
+						for(SolrResponse.PivotRange rangeFacet : pivotRanges) {
+							JsonObject rangeFacetJson = new JsonObject();
+							String rangeFacetVar = searchVar(rangeFacet.getName());
+							rangeJson.put(rangeFacetVar, rangeFacetJson);
+							JsonObject rangeFacetCountsObject = new JsonObject();
+							rangeFacetJson.put("counts", rangeFacetCountsObject);
+							rangeFacet.getCounts().forEach((value, count) -> {
+								rangeFacetCountsObject.put(value, count);
+							});
+						}
 					}
 				}
-				Optional.ofNullable(pivotField.getPivotMap()).ifPresent(pivotFields2 -> {
-					JsonObject pivotMap2 = new JsonObject();
-					pivotJson.put("pivot", pivotMap2);
-					responsePivotSearch(pivotFields2, pivotMap2);
-				});
+				if(Optional.ofNullable(pivotField.getPivotMap()).map(m -> m.size()).orElse(0) > 0) {
+					JsonObject pivotValues = new JsonObject();
+					pivotJson.put("pivot", pivotValues);
+					responsePivotSearch(pivotField.getPivotMap(), pivotValues);
+				}
 			}
 		}
 	}
+
+	public abstract String searchVar(String varIndexed);
 
 	public void calendarStuff() {
 		
