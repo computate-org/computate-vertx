@@ -55,21 +55,30 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.computate.search.response.solr.SolrResponse;
 
 /**	
- * <h1>Suggestions that can generate more code for you: </h1>
- * <ol>
+<ol>
+<li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ComputateJavaClassGen into the class ComputateJavaClass. 
+</li>
+<li>You can add a class comment "Rows: 100" if you wish the ComputateJavaClass API to return more or less than 10 records by default. 
+In this case, the API will return 100 records from the API instead of 10 by default. 
+Each API has built in pagination of the search records to ensure a user can query all the data a page at a time without running the application out of memory. 
+</li>
+<li>You can add a class comment "Model: true" if you wish to persist these ComputateJavaClass objects in a relational PostgreSQL database transactionally in the RESTful API. 
+The code to persist and query the ComputateJavaClassGen data in the database will then be automatically generated. 
+</li>
+0<h3>Suggestions that can generate more code for you: </h3></ol>
  * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ComputateJavaClassGen into the class ComputateJavaClass. 
- * </li>
- * <li>You can add a class comment "Model: true" if you wish to persist these ComputateJavaClass objects in a relational PostgreSQL database transactionally in the RESTful API. 
- * The code to persist and query the ComputateJavaClassGen data in the database will then be automatically generated. 
  * </li>
  * <li>You can add a class comment "Rows: 100" if you wish the ComputateJavaClass API to return more or less than 10 records by default. 
  * In this case, the API will return 100 records from the API instead of 10 by default. 
  * Each API has built in pagination of the search records to ensure a user can query all the data a page at a time without running the application out of memory. 
  * </li>
- * </ol>
- * <h1>About the ComputateJavaClass class and it's generated class ComputateJavaClassGen&lt;Object&gt;: </h1>
+ * <li>You can add a class comment "Model: true" if you wish to persist these ComputateJavaClass objects in a relational PostgreSQL database transactionally in the RESTful API. 
+ * The code to persist and query the ComputateJavaClassGen data in the database will then be automatically generated. 
+ * </li>
+ * 0<h3>Suggestions that can generate more code for you: </h3>
+ * <h3>About the ComputateJavaClass class and it's generated class ComputateJavaClassGen&lt;Object&gt;: </h3>extends ComputateJavaClassGen
  * <p>
- * This Java class extends a generated Java class built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
+ * This Java class extends a generated Java class ComputateJavaClassGen built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
@@ -78,34 +87,79 @@ import org.computate.search.response.solr.SolrResponse;
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
  * </p>
- * <p>This class contains a comment <b>"Indexed: true"</b>, which means this class will be indexed in the search engine. 
- * Every protected void method that begins with "_" that is marked to be searched with a comment like "Indexed: true", "Stored: true", or "DocValues: true" will be indexed in the search engine. 
+ * extends ComputateJavaClassGen<Object>
+ * <p>This <code>class ComputateJavaClass extends ComputateJavaClassGen&lt;Object&gt;</code>, which means it extends a newly generated ComputateJavaClassGen. 
+ * The generated <code>class ComputateJavaClassGen extends Object</code> which means that ComputateJavaClass extends ComputateJavaClassGen which extends Object. 
+ * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
- * <p>This class contains a comment <b>"Page: true"</b>, which means this class will have webpage code generated for these objects. 
- * Java Vert.x backend API code, Handlebars HTML template frontend code, and JavaScript code will all generated and can be extended. 
- * This creates a new Java class org.computate.vertx.result.java.ComputateJavaClassPage. 
- * </p>
- * <p>This class contains a comment <b>"SuperPage.enUS: ComputatePageLayout"</b>, which identifies the Java super class of the page code by it's class simple name "ComputatePageLayout". 
- * This means that the newly created class org.computate.vertx.result.java.ComputateJavaClassPage extends org.computate.vertx.page.ComputatePageLayout. 
- * </p>
+ * Api: true
  * <p>This class contains a comment <b>"Api: true"</b>, which means this class will have Java Vert.x API backend code generated for these objects. 
  * </p>
+ * ApiTag.enUS: Java Class
  * <p>This class contains a comment <b>"ApiTag: Java Class"</b>, which groups all of the OpenAPIs for ComputateJavaClass objects under the tag "Java Class". 
  * </p>
+ * ApiUri.enUS: /api/java-class
  * <p>This class contains a comment <b>"ApiUri: /api/java-class"</b>, which defines the base API URI for ComputateJavaClass objects as "/api/java-class" in the OpenAPI spec. 
  * </p>
- * <p>This class contains a comment <b>"AName.enUS: a java class"</b>, which identifies the language context to describe a ComputateJavaClass as "a java class". 
- * </p>
+ * Color: blue
  * <p>This class contains a comment <b>"Color: blue"</b>, which styles the ComputateJavaClass page "blue". 
  * This will reference a CSS class defined by the stylesheets in the project that starts with "w3-". 
  * A css class of "w3-blue" is expected to exist in the project stylesheets, and is inspired by W3 CSS colors. 
  * See: <a href="https://www.w3schools.com/w3css/w3css_colors.asp">https://www.w3schools.com/w3css/w3css_colors.asp</a>. 
  * </p>
+ * IconGroup: duotone
  * <p>This class contains a comment <b>"IconGroup: duotone"</b>, which adds icons on the ComputateJavaClass page with a group of "duotone". 
- * This will reference a Font Awesome icon group defined by the stylesheets in the project that starts with "fa" followed by the first letter of the icon group, which is "fad". 
- * A Font Awesome icon group of "blue" is expected to exist. 
- * The Font Awesome groups currently supported include: solid, thin, duotone. 
- * See: <a href="https://www.w3schools.com/w3css/w3css_colors.asp">https://www.w3schools.com/w3css/w3css_colors.asp</a>. 
+ * This will reference a Font Awesome icon group that starts with "fa-" followed by the icon group "duotone", together is "fa-duotone". 
+ * A Font Awesome icon group of "duotone" is expected to exist. 
+ * The Font Awesome groups currently supported include: solid, regular, light, thin, duotone, and sharp. 
+ * See: <a href="https://fontawesome.com/docs/web/dig-deeper/styles">https://fontawesome.com/docs/web/dig-deeper/styles</a>. 
+ * </p>
+ * IconName: map-location-dot
+ * <p>This class contains a comment <b>"IconName: map-location-dot"</b>, which adds icons on the ComputateJavaClass page with a name of "map-location-dot". 
+ * This will reference a Font Awesome icon that starts with the icon group "fa-duotone fa-" followed by the icon name, which is "fa-duotone fa-map-location-dot". 
+ * A Font Awesome icon of "fa-duotone fa-map-location-dot" is expected to exist. 
+ * See: <a href="https://fontawesome.com/icons">https://fontawesome.com/icons</a>. 
+ * </p>
+ * Indexed: true
+ * <p>This class contains a comment <b>"Indexed: true"</b>, which means this class will be indexed in the search engine. 
+ * Every protected void method that begins with "_" that is marked to be searched with a comment like "Indexed: true", "Stored: true", or "DocValues: true" will be indexed in the search engine. 
+ * </p>
+ * {@inheritDoc}
+ * <p>By adding a class comment "{@inheritDoc}", the ComputateJavaClass class will inherit the helpful inherited class comments from the super class ComputateJavaClassGen. 
+ * </p>
+ * Rows: null
+ * Model: true
+ * Page: true
+ * <p>This class contains a comment <b>"Page: true"</b>, which means this class will have webpage code generated for these objects. 
+ * Java Vert.x backend API code, Handlebars HTML template frontend code, and JavaScript code will all generated and can be extended. 
+ * This creates a new Java class org.computate.vertx.result.java.ComputateJavaClassPage. 
+ * </p>
+ * SuperPage.enUS: null
+ * Promise: true
+ * <p>
+ *   This class contains a comment <b>"Promise: true"</b>
+ *   Sometimes a Java class must be initialized asynchronously when it involves calling a blocking API. 
+ *   This means that the ComputateJavaClass Java class has promiseDeep methods which must be initialized asynchronously as a Vert.x Promise  instead of initDeep methods which are a simple non-asynchronous method. 
+ * </p>
+ * <p>
+ *   Adding protected void methods beginning with an underscore with a Promise as the only parameter will automatically set `Promise: true`. 
+ * </p>
+ * <p>
+ *   <pre>
+ *   
+ *   	protected void _promiseBefore(Promise&lt;Void&gt; promise) {
+ *   		promise.complete();
+ *   	}
+ *   </pre>
+ * </p>
+ * <p>
+ *   Java classes with the `Model: true` will automatically set `Promise: true`. 
+ * </p>
+ * <p>
+ *   If a super class of this Java class with `Model: true`, then the child class will also inherit `Promise: true`. 
+ * </p>
+ * AName: a java class
+ * <p>This class contains a comment <b>"AName.enUS: a java class"</b>, which identifies the language context to describe a ComputateJavaClass as "a java class". 
  * </p>
  * <p>
  * Delete the class ComputateJavaClass in Solr: 
@@ -157,6 +211,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// siteRequest_ //
 	//////////////////
 
+
 	/**	 The entity siteRequest_
 	 *	 is defined as null before being initialized. 
 	 */
@@ -194,6 +249,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////
 	// promiseBefore //
 	///////////////////
+
 
 	/**	 The entity promiseBefore
 	 *	 is defined as null before being initialized. 
@@ -236,6 +292,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////
 	// inheritPk //
 	///////////////
+
 
 	/**	 The entity inheritPk
 	 *	 is defined as null before being initialized. 
@@ -289,6 +346,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////
 	// created //
 	/////////////
+
 
 	/**	 The entity created
 	 *	 is defined as null before being initialized. 
@@ -367,6 +425,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// archived //
 	//////////////
 
+
 	/**	 The entity archived
 	 *	 is defined as null before being initialized. 
 	 */
@@ -425,6 +484,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// deleted //
 	/////////////
 
+
 	/**	 The entity deleted
 	 *	 is defined as null before being initialized. 
 	 */
@@ -482,6 +542,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////////
 	// classCanonicalNames //
 	/////////////////////////
+
 
 	/**	 The entity classCanonicalNames
 	 *	 It is constructed before being initialized with the constructor by default. 
@@ -549,6 +610,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// sessionId //
 	///////////////
 
+
 	/**	 The entity sessionId
 	 *	 is defined as null before being initialized. 
 	 */
@@ -601,6 +663,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////
 	// userKey //
 	/////////////
+
 
 	/**	 The entity userKey
 	 *	 is defined as null before being initialized. 
@@ -662,6 +725,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////
 	// saves //
 	///////////
+
 
 	/**	 The entity saves
 	 *	 It is constructed before being initialized with the constructor by default. 
@@ -729,6 +793,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// objectTitle //
 	/////////////////
 
+
 	/**	 The entity objectTitle
 	 *	 is defined as null before being initialized. 
 	 */
@@ -777,6 +842,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	//////////////
 	// objectId //
 	//////////////
+
 
 	/**	 The entity objectId
 	 *	 is defined as null before being initialized. 
@@ -827,9 +893,11 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 		return objectId;
 	}
 
+
 	///////////////////
 	// objectSuggest //
 	///////////////////
+
 
 	/**	 The entity objectSuggest
 	 *	 is defined as null before being initialized. 
@@ -879,6 +947,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////
 	// objectText //
 	////////////////
+
 
 	/**	 The entity objectText
 	 *	 It is constructed before being initialized with the constructor by default. 
@@ -946,6 +1015,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// pageUrlId //
 	///////////////
 
+
 	/**	 The entity pageUrlId
 	 *	 is defined as null before being initialized. 
 	 */
@@ -994,6 +1064,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////
 	// pageUrlPk //
 	///////////////
+
 
 	/**	 The entity pageUrlPk
 	 *	 is defined as null before being initialized. 
@@ -1044,6 +1115,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// pageUrlApi //
 	////////////////
 
+
 	/**	 The entity pageUrlApi
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1092,6 +1164,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////
 	// doc //
 	/////////
+
 
 	/**	 The entity doc
 	 *	 is defined as null before being initialized. 
@@ -1150,6 +1223,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// sitePath //
 	//////////////
 
+
 	/**	 The entity sitePath
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1199,6 +1273,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// siteName //
 	//////////////
 
+
 	/**	 The entity siteName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1247,6 +1322,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	//////////////////////////////
 	// superClassParamsTypeName //
 	//////////////////////////////
+
 
 	/**	 The entity superClassParamsTypeName
 	 *	 is defined as null before being initialized. 
@@ -1318,6 +1394,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// superClassCompleteName //
 	////////////////////////////
 
+
 	/**	 The entity superClassCompleteName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1366,6 +1443,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////////////////////
 	// superClassGenericCompleteName //
 	///////////////////////////////////
+
 
 	/**	 The entity superClassGenericCompleteName
 	 *	 is defined as null before being initialized. 
@@ -1416,6 +1494,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// superClassGenericCanonicalName //
 	////////////////////////////////////
 
+
 	/**	 The entity superClassGenericCanonicalName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1465,6 +1544,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// superClassGenericSimpleName //
 	/////////////////////////////////
 
+
 	/**	 The entity superClassGenericSimpleName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1513,6 +1593,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////
 	// classIsBase //
 	/////////////////
+
 
 	/**	 The entity classIsBase
 	 *	 is defined as null before being initialized. 
@@ -1568,6 +1649,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classExtendsBase //
 	//////////////////////
 
+
 	/**	 The entity classExtendsBase
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1621,6 +1703,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////////
 	// classBaseExtendsGen //
 	/////////////////////////
+
 
 	/**	 The entity classBaseExtendsGen
 	 *	 is defined as null before being initialized. 
@@ -1676,6 +1759,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classContainsSiteRequest //
 	//////////////////////////////
 
+
 	/**	 The entity classContainsSiteRequest
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1729,6 +1813,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////////
 	// classTranslate //
 	////////////////////
+
 
 	/**	 The entity classTranslate
 	 *	 is defined as null before being initialized. 
@@ -1784,6 +1869,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classInitDeep //
 	///////////////////
 
+
 	/**	 The entity classInitDeep
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1837,6 +1923,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////
 	// classExtendsGen //
 	/////////////////////
+
 
 	/**	 The entity classExtendsGen
 	 *	 is defined as null before being initialized. 
@@ -1892,6 +1979,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// languageName //
 	//////////////////
 
+
 	/**	 The entity languageName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1940,6 +2028,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	//////////////
 	// modified //
 	//////////////
+
 
 	/**	 The entity modified
 	 *	 is defined as null before being initialized. 
@@ -1990,6 +2079,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classCanonicalName //
 	////////////////////////
 
+
 	/**	 The entity classCanonicalName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2038,6 +2128,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////
 	// classSimpleName //
 	/////////////////////
+
 
 	/**	 The entity classSimpleName
 	 *	 is defined as null before being initialized. 
@@ -2088,6 +2179,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classPackageName //
 	//////////////////////
 
+
 	/**	 The entity classPackageName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2136,6 +2228,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////////////
 	// classCanonicalNameGen //
 	///////////////////////////
+
 
 	/**	 The entity classCanonicalNameGen
 	 *	 is defined as null before being initialized. 
@@ -2186,6 +2279,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classSimpleNameGen //
 	////////////////////////
 
+
 	/**	 The entity classSimpleNameGen
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2234,6 +2328,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////////////
 	// superClassCanonicalName //
 	/////////////////////////////
+
 
 	/**	 The entity superClassCanonicalName
 	 *	 is defined as null before being initialized. 
@@ -2284,6 +2379,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// superClassSimpleName //
 	//////////////////////////
 
+
 	/**	 The entity superClassSimpleName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2332,6 +2428,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////////
 	// classAbsolutePath //
 	///////////////////////
+
 
 	/**	 The entity classAbsolutePath
 	 *	 is defined as null before being initialized. 
@@ -2382,6 +2479,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classPath //
 	///////////////
 
+
 	/**	 The entity classPath
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2430,6 +2528,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////////////
 	// classDirectoryPath //
 	////////////////////////
+
 
 	/**	 The entity classDirectoryPath
 	 *	 is defined as null before being initialized. 
@@ -2480,6 +2579,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classPathGen //
 	//////////////////
 
+
 	/**	 The entity classPathGen
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2528,6 +2628,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////////////
 	// classDirectoryPathGen //
 	///////////////////////////
+
 
 	/**	 The entity classDirectoryPathGen
 	 *	 is defined as null before being initialized. 
@@ -2578,6 +2679,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// domainPackageName //
 	///////////////////////
 
+
 	/**	 The entity domainPackageName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2626,6 +2728,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////////////////////////
 	// entityClassesSuperAndMeWithoutGen //
 	///////////////////////////////////////
+
 
 	/**	 The entity entityClassesSuperAndMeWithoutGen
 	 *	 is defined as null before being initialized. 
@@ -2697,6 +2800,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classIsAbstract //
 	/////////////////////
 
+
 	/**	 The entity classIsAbstract
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2750,6 +2854,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////
 	// classModel //
 	////////////////
+
 
 	/**	 The entity classModel
 	 *	 is defined as null before being initialized. 
@@ -2805,6 +2910,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classApi //
 	//////////////
 
+
 	/**	 The entity classApi
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2858,6 +2964,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////
 	// classSimplePage //
 	/////////////////////
+
 
 	/**	 The entity classSimplePage
 	 *	 is defined as null before being initialized. 
@@ -2913,6 +3020,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classSaved //
 	////////////////
 
+
 	/**	 The entity classSaved
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2967,6 +3075,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classSimpleNameApiPackageInfo //
 	///////////////////////////////////
 
+
 	/**	 The entity classSimpleNameApiPackageInfo
 	 *	 is defined as null before being initialized. 
 	 */
@@ -3015,6 +3124,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	//////////////////////////////////////
 	// classSimpleNameGenApiServiceImpl //
 	//////////////////////////////////////
+
 
 	/**	 The entity classSimpleNameGenApiServiceImpl
 	 *	 is defined as null before being initialized. 
@@ -3065,6 +3175,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classSimpleNameApiServiceImpl //
 	///////////////////////////////////
 
+
 	/**	 The entity classSimpleNameApiServiceImpl
 	 *	 is defined as null before being initialized. 
 	 */
@@ -3113,6 +3224,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	//////////////////////////////////
 	// classSimpleNameGenApiService //
 	//////////////////////////////////
+
 
 	/**	 The entity classSimpleNameGenApiService
 	 *	 is defined as null before being initialized. 
@@ -3163,6 +3275,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classCanonicalNameApiPackageInfo //
 	//////////////////////////////////////
 
+
 	/**	 The entity classCanonicalNameApiPackageInfo
 	 *	 is defined as null before being initialized. 
 	 */
@@ -3211,6 +3324,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////////////////////////
 	// classCanonicalNameGenApiServiceImpl //
 	/////////////////////////////////////////
+
 
 	/**	 The entity classCanonicalNameGenApiServiceImpl
 	 *	 is defined as null before being initialized. 
@@ -3261,6 +3375,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classCanonicalNameApiServiceImpl //
 	//////////////////////////////////////
 
+
 	/**	 The entity classCanonicalNameApiServiceImpl
 	 *	 is defined as null before being initialized. 
 	 */
@@ -3309,6 +3424,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////////////////////
 	// classCanonicalNameGenApiService //
 	/////////////////////////////////////
+
 
 	/**	 The entity classCanonicalNameGenApiService
 	 *	 is defined as null before being initialized. 
@@ -3359,6 +3475,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classPathApiPackageInfo //
 	/////////////////////////////
 
+
 	/**	 The entity classPathApiPackageInfo
 	 *	 is defined as null before being initialized. 
 	 */
@@ -3407,6 +3524,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////////////////////
 	// classPathGenApiServiceImpl //
 	////////////////////////////////
+
 
 	/**	 The entity classPathGenApiServiceImpl
 	 *	 is defined as null before being initialized. 
@@ -3457,6 +3575,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classPathApiServiceImpl //
 	/////////////////////////////
 
+
 	/**	 The entity classPathApiServiceImpl
 	 *	 is defined as null before being initialized. 
 	 */
@@ -3506,6 +3625,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classPathGenApiService //
 	////////////////////////////
 
+
 	/**	 The entity classPathGenApiService
 	 *	 is defined as null before being initialized. 
 	 */
@@ -3554,6 +3674,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////
 	// classPublicRead //
 	/////////////////////
+
 
 	/**	 The entity classPublicRead
 	 *	 is defined as null before being initialized. 
@@ -3609,6 +3730,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classRoleSession //
 	//////////////////////
 
+
 	/**	 The entity classRoleSession
 	 *	 is defined as null before being initialized. 
 	 */
@@ -3662,6 +3784,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////
 	// classRoleUser //
 	///////////////////
+
 
 	/**	 The entity classRoleUser
 	 *	 is defined as null before being initialized. 
@@ -3717,6 +3840,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classRoleEach //
 	///////////////////
 
+
 	/**	 The entity classRoleEach
 	 *	 is defined as null before being initialized. 
 	 */
@@ -3770,6 +3894,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////
 	// classRoles //
 	////////////////
+
 
 	/**	 The entity classRoles
 	 *	 is defined as null before being initialized. 
@@ -3841,6 +3966,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classRolesLanguage //
 	////////////////////////
 
+
 	/**	 The entity classRolesLanguage
 	 *	 is defined as null before being initialized. 
 	 */
@@ -3911,6 +4037,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classRolesFound //
 	/////////////////////
 
+
 	/**	 The entity classRolesFound
 	 *	 is defined as null before being initialized. 
 	 */
@@ -3964,6 +4091,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////////////
 	// classRoleReadFound //
 	////////////////////////
+
 
 	/**	 The entity classRoleReadFound
 	 *	 is defined as null before being initialized. 
@@ -4019,6 +4147,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classSessionWrite //
 	///////////////////////
 
+
 	/**	 The entity classSessionWrite
 	 *	 is defined as null before being initialized. 
 	 */
@@ -4072,6 +4201,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////////
 	// classUserWrite //
 	////////////////////
+
 
 	/**	 The entity classUserWrite
 	 *	 is defined as null before being initialized. 
@@ -4127,6 +4257,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classPublicWrite //
 	//////////////////////
 
+
 	/**	 The entity classPublicWrite
 	 *	 is defined as null before being initialized. 
 	 */
@@ -4180,6 +4311,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	//////////////////////
 	// classSessionRead //
 	//////////////////////
+
 
 	/**	 The entity classSessionRead
 	 *	 is defined as null before being initialized. 
@@ -4235,6 +4367,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classUserRead //
 	///////////////////
 
+
 	/**	 The entity classUserRead
 	 *	 is defined as null before being initialized. 
 	 */
@@ -4289,6 +4422,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classFiltersFound //
 	///////////////////////
 
+
 	/**	 The entity classFiltersFound
 	 *	 is defined as null before being initialized. 
 	 */
@@ -4342,6 +4476,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////
 	// sqlSort //
 	/////////////
+
 
 	/**	 The entity sqlSort
 	 *	 is defined as null before being initialized. 
@@ -4400,6 +4535,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// id //
 	////////
 
+
 	/**	 The entity id
 	 *	 is defined as null before being initialized. 
 	 */
@@ -4452,6 +4588,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////
 	// partIsClass //
 	/////////////////
+
 
 	/**	 The entity partIsClass
 	 *	 is defined as null before being initialized. 
@@ -4506,6 +4643,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////
 	// partNumber //
 	////////////////
+
 
 	/**	 The entity partNumber
 	 *	 is defined as null before being initialized. 
@@ -4563,6 +4701,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	//////////////////
 	// classImports //
 	//////////////////
+
 
 	/**	 The entity classImports
 	 *	 is defined as null before being initialized. 
@@ -4634,6 +4773,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classEntityVars //
 	/////////////////////
 
+
 	/**	 The entity classEntityVars
 	 *	 is defined as null before being initialized. 
 	 */
@@ -4703,6 +4843,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////////////
 	// classImportsGenApi //
 	////////////////////////
+
 
 	/**	 The entity classImportsGenApi
 	 *	 is defined as null before being initialized. 
@@ -4774,6 +4915,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classAttributeSimpleNamePages //
 	///////////////////////////////////
 
+
 	/**	 The entity classAttributeSimpleNamePages
 	 *	 is defined as null before being initialized. 
 	 */
@@ -4843,6 +4985,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////
 	// classMethodVars //
 	/////////////////////
+
 
 	/**	 The entity classMethodVars
 	 *	 is defined as null before being initialized. 
@@ -4914,6 +5057,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classVarSuggested //
 	///////////////////////
 
+
 	/**	 The entity classVarSuggested
 	 *	 is defined as null before being initialized. 
 	 */
@@ -4962,6 +5106,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	//////////////////
 	// classVarText //
 	//////////////////
+
 
 	/**	 The entity classVarText
 	 *	 is defined as null before being initialized. 
@@ -5012,6 +5157,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classVarPrimaryKey //
 	////////////////////////
 
+
 	/**	 The entity classVarPrimaryKey
 	 *	 is defined as null before being initialized. 
 	 */
@@ -5060,6 +5206,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////////////////
 	// classVarInheritPrimaryKey //
 	///////////////////////////////
+
 
 	/**	 The entity classVarInheritPrimaryKey
 	 *	 is defined as null before being initialized. 
@@ -5110,6 +5257,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classVarSaves //
 	///////////////////
 
+
 	/**	 The entity classVarSaves
 	 *	 is defined as null before being initialized. 
 	 */
@@ -5158,6 +5306,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////////
 	// classvarUniqueKey //
 	///////////////////////
+
 
 	/**	 The entity classvarUniqueKey
 	 *	 is defined as null before being initialized. 
@@ -5208,6 +5357,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classVarModified //
 	//////////////////////
 
+
 	/**	 The entity classVarModified
 	 *	 is defined as null before being initialized. 
 	 */
@@ -5256,6 +5406,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////
 	// classVarCreated //
 	/////////////////////
+
 
 	/**	 The entity classVarCreated
 	 *	 is defined as null before being initialized. 
@@ -5306,6 +5457,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classVarUrlId //
 	///////////////////
 
+
 	/**	 The entity classVarUrlId
 	 *	 is defined as null before being initialized. 
 	 */
@@ -5354,6 +5506,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////
 	// classVarUrlPk //
 	///////////////////
+
 
 	/**	 The entity classVarUrlPk
 	 *	 is defined as null before being initialized. 
@@ -5404,6 +5557,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classVarId //
 	////////////////
 
+
 	/**	 The entity classVarId
 	 *	 is defined as null before being initialized. 
 	 */
@@ -5453,6 +5607,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classVarTitle //
 	///////////////////
 
+
 	/**	 The entity classVarTitle
 	 *	 is defined as null before being initialized. 
 	 */
@@ -5501,6 +5656,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////////////
 	// classKeywordsFound //
 	////////////////////////
+
 
 	/**	 The entity classKeywordsFound
 	 *	 is defined as null before being initialized. 
@@ -5556,6 +5712,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classPageCanonicalName //
 	////////////////////////////
 
+
 	/**	 The entity classPageCanonicalName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -5604,6 +5761,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////////
 	// classPageSimpleName //
 	/////////////////////////
+
 
 	/**	 The entity classPageSimpleName
 	 *	 is defined as null before being initialized. 
@@ -5654,6 +5812,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classGenPageSimpleName //
 	////////////////////////////
 
+
 	/**	 The entity classGenPageSimpleName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -5702,6 +5861,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////////////////
 	// classGenPageCanonicalName //
 	///////////////////////////////
+
 
 	/**	 The entity classGenPageCanonicalName
 	 *	 is defined as null before being initialized. 
@@ -5752,6 +5912,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classGenPagePath //
 	//////////////////////
 
+
 	/**	 The entity classGenPagePath
 	 *	 is defined as null before being initialized. 
 	 */
@@ -5800,6 +5961,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////
 	// classPagePath //
 	///////////////////
+
 
 	/**	 The entity classPagePath
 	 *	 is defined as null before being initialized. 
@@ -5850,6 +6012,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classPagePathCss //
 	//////////////////////
 
+
 	/**	 The entity classPagePathCss
 	 *	 is defined as null before being initialized. 
 	 */
@@ -5898,6 +6061,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////
 	// classPagePathJs //
 	/////////////////////
+
 
 	/**	 The entity classPagePathJs
 	 *	 is defined as null before being initialized. 
@@ -5948,6 +6112,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classPagePathHbs //
 	//////////////////////
 
+
 	/**	 The entity classPagePathHbs
 	 *	 is defined as null before being initialized. 
 	 */
@@ -5996,6 +6161,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////////
 	// classGenPagePathHbs //
 	/////////////////////////
+
 
 	/**	 The entity classGenPagePathHbs
 	 *	 is defined as null before being initialized. 
@@ -6046,6 +6212,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classPageLanguageName //
 	///////////////////////////
 
+
 	/**	 The entity classPageLanguageName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -6094,6 +6261,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////////////////
 	// classPageSuperCanonicalName //
 	/////////////////////////////////
+
 
 	/**	 The entity classPageSuperCanonicalName
 	 *	 is defined as null before being initialized. 
@@ -6144,6 +6312,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classSuperPageSimpleName //
 	//////////////////////////////
 
+
 	/**	 The entity classSuperPageSimpleName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -6192,6 +6361,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////////
 	// classImportsGenPage //
 	/////////////////////////
+
 
 	/**	 The entity classImportsGenPage
 	 *	 is defined as null before being initialized. 
@@ -6263,6 +6433,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classApiUri //
 	/////////////////
 
+
 	/**	 The entity classApiUri
 	 *	 is defined as null before being initialized. 
 	 */
@@ -6312,6 +6483,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classApiTag //
 	/////////////////
 
+
 	/**	 The entity classApiTag
 	 *	 is defined as null before being initialized. 
 	 */
@@ -6360,6 +6532,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////
 	// classApiMethods //
 	/////////////////////
+
 
 	/**	 The entity classApiMethods
 	 *	 is defined as null before being initialized. 
@@ -6431,6 +6604,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classContext //
 	//////////////////
 
+
 	/**	 The entity classContext
 	 *	 is defined as null before being initialized. 
 	 */
@@ -6485,6 +6659,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// contextColor //
 	//////////////////
 
+
 	/**	 The entity contextColor
 	 *	 is defined as null before being initialized. 
 	 */
@@ -6533,6 +6708,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	//////////////////////
 	// contextIconGroup //
 	//////////////////////
+
 
 	/**	 The entity contextIconGroup
 	 *	 is defined as null before being initialized. 
@@ -6583,6 +6759,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// contextIconName //
 	/////////////////////
 
+
 	/**	 The entity contextIconName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -6631,6 +6808,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////
 	// contextRows //
 	/////////////////
+
 
 	/**	 The entity contextRows
 	 *	 is defined as null before being initialized. 
@@ -6689,6 +6867,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// contextAName //
 	//////////////////
 
+
 	/**	 The entity contextAName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -6737,6 +6916,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////////
 	// contextNameSingular //
 	/////////////////////////
+
 
 	/**	 The entity contextNameSingular
 	 *	 is defined as null before being initialized. 
@@ -6787,6 +6967,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// contextNamePlural //
 	///////////////////////
 
+
 	/**	 The entity contextNamePlural
 	 *	 is defined as null before being initialized. 
 	 */
@@ -6835,6 +7016,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////////
 	// contextNameVar //
 	////////////////////
+
 
 	/**	 The entity contextNameVar
 	 *	 is defined as null before being initialized. 
@@ -6885,6 +7067,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// contextTheNames //
 	/////////////////////
 
+
 	/**	 The entity contextTheNames
 	 *	 is defined as null before being initialized. 
 	 */
@@ -6933,6 +7116,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	//////////////////////////////////
 	// contextNameAdjectiveSingular //
 	//////////////////////////////////
+
 
 	/**	 The entity contextNameAdjectiveSingular
 	 *	 is defined as null before being initialized. 
@@ -6983,6 +7167,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// contextNameAdjectivePlural //
 	////////////////////////////////
 
+
 	/**	 The entity contextNameAdjectivePlural
 	 *	 is defined as null before being initialized. 
 	 */
@@ -7031,6 +7216,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////
 	// contextThis //
 	/////////////////
+
 
 	/**	 The entity contextThis
 	 *	 is defined as null before being initialized. 
@@ -7081,6 +7267,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// contextA //
 	//////////////
 
+
 	/**	 The entity contextA
 	 *	 is defined as null before being initialized. 
 	 */
@@ -7129,6 +7316,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////////
 	// contextCreated //
 	////////////////////
+
 
 	/**	 The entity contextCreated
 	 *	 is defined as null before being initialized. 
@@ -7179,6 +7367,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// contextModified //
 	/////////////////////
 
+
 	/**	 The entity contextModified
 	 *	 is defined as null before being initialized. 
 	 */
@@ -7227,6 +7416,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////////
 	// contextActualName //
 	///////////////////////
+
 
 	/**	 The entity contextActualName
 	 *	 is defined as null before being initialized. 
@@ -7277,6 +7467,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// contextAll //
 	////////////////
 
+
 	/**	 The entity contextAll
 	 *	 is defined as null before being initialized. 
 	 */
@@ -7325,6 +7516,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////////
 	// contextAllName //
 	////////////////////
+
 
 	/**	 The entity contextAllName
 	 *	 is defined as null before being initialized. 
@@ -7375,6 +7567,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// contextSearchAllNameBy //
 	////////////////////////////
 
+
 	/**	 The entity contextSearchAllNameBy
 	 *	 is defined as null before being initialized. 
 	 */
@@ -7423,6 +7616,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	//////////////////////////
 	// contextSearchAllName //
 	//////////////////////////
+
 
 	/**	 The entity contextSearchAllName
 	 *	 is defined as null before being initialized. 
@@ -7473,6 +7667,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// contextNoNameFound //
 	////////////////////////
 
+
 	/**	 The entity contextNoNameFound
 	 *	 is defined as null before being initialized. 
 	 */
@@ -7521,6 +7716,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////////////
 	// contextANameAdjective //
 	///////////////////////////
+
 
 	/**	 The entity contextANameAdjective
 	 *	 is defined as null before being initialized. 
@@ -7571,6 +7767,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// contextThisName //
 	/////////////////////
 
+
 	/**	 The entity contextThisName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -7619,6 +7816,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	////////////////////
 	// contextTheName //
 	////////////////////
+
 
 	/**	 The entity contextTheName
 	 *	 is defined as null before being initialized. 
@@ -7669,6 +7867,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// contextOfName //
 	///////////////////
 
+
 	/**	 The entity contextOfName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -7717,6 +7916,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	//////////////////////////
 	// contextThisLowercase //
 	//////////////////////////
+
 
 	/**	 The entity contextThisLowercase
 	 *	 is defined as null before being initialized. 
@@ -7767,6 +7967,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// contextTitle //
 	//////////////////
 
+
 	/**	 The entity contextTitle
 	 *	 is defined as null before being initialized. 
 	 */
@@ -7815,6 +8016,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	//////////////////
 	// classIndexed //
 	//////////////////
+
 
 	/**	 The entity classIndexed
 	 *	 is defined as null before being initialized. 
@@ -7870,6 +8072,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classImage //
 	////////////////
 
+
 	/**	 The entity classImage
 	 *	 is defined as null before being initialized. 
 	 */
@@ -7924,6 +8127,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classPromise //
 	//////////////////
 
+
 	/**	 The entity classPromise
 	 *	 is defined as null before being initialized. 
 	 */
@@ -7977,6 +8181,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////////////
 	// classImportsGen //
 	/////////////////////
+
 
 	/**	 The entity classImportsGen
 	 *	 is defined as null before being initialized. 
@@ -8048,6 +8253,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classSortsFound //
 	/////////////////////
 
+
 	/**	 The entity classSortsFound
 	 *	 is defined as null before being initialized. 
 	 */
@@ -8101,6 +8307,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	//////////////////////////
 	// classSortsSuffixType //
 	//////////////////////////
+
 
 	/**	 The entity classSortsSuffixType
 	 *	 is defined as null before being initialized. 
@@ -8172,6 +8379,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classSortsOrder //
 	/////////////////////
 
+
 	/**	 The entity classSortsOrder
 	 *	 is defined as null before being initialized. 
 	 */
@@ -8241,6 +8449,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	///////////////////
 	// classSortsVar //
 	///////////////////
+
 
 	/**	 The entity classSortsVar
 	 *	 is defined as null before being initialized. 
@@ -8312,6 +8521,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// classPage //
 	///////////////
 
+
 	/**	 The entity classPage
 	 *	 is defined as null before being initialized. 
 	 */
@@ -8365,6 +8575,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	/////////////
 	// version //
 	/////////////
+
 
 	/**	 The entity version
 	 *	 is defined as null before being initialized. 
@@ -10302,59 +10513,65 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 		return o != null;
 	}
 	public Object persistComputateJavaClass(String var, Object val) {
-		switch(var.toLowerCase()) {
-			case "inheritpk":
-				if(val instanceof String)
+		String varLower = var.toLowerCase();
+			if("inheritpk".equals(varLower)) {
+				if(val instanceof String) {
 					setInheritPk((String)val);
+				}
 				saves.add("inheritPk");
 				return val;
-			case "created":
-				if(val instanceof ZonedDateTime)
-					setCreated((ZonedDateTime)val);
-				else if(val instanceof String)
+			} else if("created".equals(varLower)) {
+				if(val instanceof String) {
 					setCreated((String)val);
-				else if(val instanceof OffsetDateTime)
+				} else if(val instanceof OffsetDateTime) {
 					setCreated(((OffsetDateTime)val).atZoneSameInstant(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))));
+				}
 				saves.add("created");
 				return val;
-			case "archived":
-				if(val instanceof Boolean)
+			} else if("archived".equals(varLower)) {
+				if(val instanceof Boolean) {
 					setArchived((Boolean)val);
-				else if(val instanceof String)
-					setArchived((String)val);
+				} else {
+					setArchived(val == null ? null : val.toString());
+				}
 				saves.add("archived");
 				return val;
-			case "deleted":
-				if(val instanceof Boolean)
+			} else if("deleted".equals(varLower)) {
+				if(val instanceof Boolean) {
 					setDeleted((Boolean)val);
-				else if(val instanceof String)
-					setDeleted((String)val);
+				} else {
+					setDeleted(val == null ? null : val.toString());
+				}
 				saves.add("deleted");
 				return val;
-			case "sessionid":
-				if(val instanceof String)
+			} else if("sessionid".equals(varLower)) {
+				if(val instanceof String) {
 					setSessionId((String)val);
+				}
 				saves.add("sessionId");
 				return val;
-			case "userkey":
-				if(val instanceof Long)
+			} else if("userkey".equals(varLower)) {
+				if(val instanceof Long) {
 					setUserKey((Long)val);
-				else if(val instanceof String)
-					setUserKey((String)val);
+				} else {
+					setUserKey(val == null ? null : val.toString());
+				}
 				saves.add("userKey");
 				return val;
-			case "objectid":
-				if(val instanceof String)
+			} else if("objectid".equals(varLower)) {
+				if(val instanceof String) {
 					setObjectId((String)val);
+				}
 				saves.add("objectId");
 				return val;
-			case "id":
-				if(val instanceof String)
+			} else if("id".equals(varLower)) {
+				if(val instanceof String) {
 					setId((String)val);
+				}
 				saves.add("id");
 				return val;
-			default:
-				return null;
+		} else {
+			return null;
 		}
 	}
 

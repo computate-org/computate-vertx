@@ -10,6 +10,7 @@ touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/model/user/
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/openapi/OpenApi3Generator.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/openapi/Swagger2Generator.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/request/ComputateSiteRequest.java
+touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/result/java/ComputateJavaClass.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/search/list/SearchList.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/search/list/SearchResult.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/serialize/pgclient/PgClientPointDeserializer.java

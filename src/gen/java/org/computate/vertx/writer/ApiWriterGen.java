@@ -57,14 +57,16 @@ import io.vertx.core.Promise;
 import io.vertx.core.Future;
 
 /**	
- * <h1>Suggestions that can generate more code for you: </h1>
- * <ol>
+<ol>
+<li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these ApiWriter objects in a RESTful API. 
+</li>
+0<h3>Suggestions that can generate more code for you: </h3></ol>
  * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these ApiWriter objects in a RESTful API. 
  * </li>
- * </ol>
- * <h1>About the ApiWriter class and it's generated class ApiWriterGen&lt;Object&gt;: </h1>
+ * 0<h3>Suggestions that can generate more code for you: </h3>
+ * <h3>About the ApiWriter class and it's generated class ApiWriterGen&lt;Object&gt;: </h3>extends ApiWriterGen
  * <p>
- * This Java class extends a generated Java class built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
+ * This Java class extends a generated Java class ApiWriterGen built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
@@ -73,6 +75,27 @@ import io.vertx.core.Future;
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
  * </p>
+ * extends ApiWriterGen<Object>
+ * <p>This <code>class ApiWriter extends ApiWriterGen&lt;Object&gt;</code>, which means it extends a newly generated ApiWriterGen. 
+ * The generated <code>class ApiWriterGen extends Object</code> which means that ApiWriter extends ApiWriterGen which extends Object. 
+ * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
+ * </p>
+ * Api: true
+ * ApiTag.enUS: null
+ * ApiUri.enUS: null
+ * Color: null
+ * IconGroup: null
+ * IconName: null
+ * Indexed: true
+ * {@inheritDoc}
+ * <p>By adding a class comment "{@inheritDoc}", the ApiWriter class will inherit the helpful inherited class comments from the super class ApiWriterGen. 
+ * </p>
+ * Rows: null
+ * Model: true
+ * Page: true
+ * SuperPage.enUS: null
+ * Promise: true
+ * AName: null
  * <p>
  * Delete the class ApiWriter in Solr: 
  * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
@@ -92,6 +115,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	//////////////////
 	// siteRequest_ //
 	//////////////////
+
 
 	/**	 The entity siteRequest_
 	 *	 is defined as null before being initialized. 
@@ -131,6 +155,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classDoc //
 	//////////////
 
+
 	/**	 The entity classDoc
 	 *	 is defined as null before being initialized. 
 	 */
@@ -169,6 +194,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classSolrDocument //
 	///////////////////////
 
+
 	/**	 The entity classSolrDocument
 	 *	 is defined as null before being initialized. 
 	 */
@@ -206,6 +232,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	/////////////////
 	// contextRows //
 	/////////////////
+
 
 	/**	 The entity contextRows
 	 *	 is defined as null before being initialized. 
@@ -264,6 +291,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classApiMethod //
 	////////////////////
 
+
 	/**	 The entity classApiMethod
 	 *	 is defined as null before being initialized. 
 	 */
@@ -313,6 +341,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// openApiVersion //
 	////////////////////
 
+
 	/**	 The entity openApiVersion
 	 *	 is defined as null before being initialized. 
 	 */
@@ -361,6 +390,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	///////////////
 	// classUris //
 	///////////////
+
 
 	/**	 The entity classUris
 	 *	 is defined as null before being initialized. 
@@ -432,6 +462,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// openApiVersionNumber //
 	//////////////////////////
 
+
 	/**	 The entity openApiVersionNumber
 	 *	 is defined as null before being initialized. 
 	 */
@@ -488,6 +519,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	////////////////
 	// tabsSchema //
 	////////////////
+
 
 	/**	 The entity tabsSchema
 	 *	 is defined as null before being initialized. 
@@ -546,6 +578,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// tabsResponses //
 	///////////////////
 
+
 	/**	 The entity tabsResponses
 	 *	 is defined as null before being initialized. 
 	 */
@@ -603,6 +636,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// wPaths //
 	////////////
 
+
 	/**	 The entity wPaths
 	 *	 is defined as null before being initialized. 
 	 */
@@ -642,6 +676,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	////////////////////
 	// wRequestBodies //
 	////////////////////
+
 
 	/**	 The entity wRequestBodies
 	 *	 is defined as null before being initialized. 
@@ -683,6 +718,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// wSchemas //
 	//////////////
 
+
 	/**	 The entity wSchemas
 	 *	 is defined as null before being initialized. 
 	 */
@@ -722,6 +758,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	////////////
 	// config //
 	////////////
+
 
 	/**	 The entity config
 	 *	 is defined as null before being initialized. 
@@ -780,6 +817,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// wRequestHeaders //
 	/////////////////////
 
+
 	/**	 The entity wRequestHeaders
 	 *	 is defined as null before being initialized. 
 	 */
@@ -819,6 +857,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	/////////////////////////
 	// wRequestDescription //
 	/////////////////////////
+
 
 	/**	 The entity wRequestDescription
 	 *	 is defined as null before being initialized. 
@@ -860,6 +899,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// wResponseDescription //
 	//////////////////////////
 
+
 	/**	 The entity wResponseDescription
 	 *	 is defined as null before being initialized. 
 	 */
@@ -899,6 +939,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	//////////////////
 	// wRequestBody //
 	//////////////////
+
 
 	/**	 The entity wRequestBody
 	 *	 is defined as null before being initialized. 
@@ -940,6 +981,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// wResponseBody //
 	///////////////////
 
+
 	/**	 The entity wResponseBody
 	 *	 is defined as null before being initialized. 
 	 */
@@ -979,6 +1021,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	////////////////////
 	// wRequestSchema //
 	////////////////////
+
 
 	/**	 The entity wRequestSchema
 	 *	 is defined as null before being initialized. 
@@ -1020,6 +1063,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// wResponseSchema //
 	/////////////////////
 
+
 	/**	 The entity wResponseSchema
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1060,6 +1104,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// writers //
 	/////////////
 
+
 	/**	 The entity writers
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1099,6 +1144,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	/////////////////
 	// classApiTag //
 	/////////////////
+
 
 	/**	 The entity classApiTag
 	 *	 is defined as null before being initialized. 
@@ -1148,6 +1194,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	//////////////////////
 	// classExtendsBase //
 	//////////////////////
+
 
 	/**	 The entity classExtendsBase
 	 *	 is defined as null before being initialized. 
@@ -1203,6 +1250,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classIsBase //
 	/////////////////
 
+
 	/**	 The entity classIsBase
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1257,6 +1305,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classSimpleName //
 	/////////////////////
 
+
 	/**	 The entity classSimpleName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1305,6 +1354,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	/////////////
 	// appName //
 	/////////////
+
 
 	/**	 The entity appName
 	 *	 is defined as null before being initialized. 
@@ -1355,6 +1405,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classAbsolutePath //
 	///////////////////////
 
+
 	/**	 The entity classAbsolutePath
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1404,6 +1455,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classApiUriMethod //
 	///////////////////////
 
+
 	/**	 The entity classApiUriMethod
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1452,6 +1504,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	/////////////////////////
 	// classRoleUserMethod //
 	/////////////////////////
+
 
 	/**	 The entity classRoleUserMethod
 	 *	 is defined as null before being initialized. 
@@ -1507,6 +1560,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classApiMethodMethod //
 	//////////////////////////
 
+
 	/**	 The entity classApiMethodMethod
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1555,6 +1609,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	////////////////////////////////////
 	// classApiMediaTypeRequestMethod //
 	////////////////////////////////////
+
 
 	/**	 The entity classApiMediaTypeRequestMethod
 	 *	 is defined as null before being initialized. 
@@ -1605,6 +1660,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classApiMediaType200Method //
 	////////////////////////////////
 
+
 	/**	 The entity classApiMediaType200Method
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1653,6 +1709,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	///////////////////////////////
 	// classApiOperationIdMethod //
 	///////////////////////////////
+
 
 	/**	 The entity classApiOperationIdMethod
 	 *	 is defined as null before being initialized. 
@@ -1703,6 +1760,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classApiOperationIdMethodRequest //
 	//////////////////////////////////////
 
+
 	/**	 The entity classApiOperationIdMethodRequest
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1751,6 +1809,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	///////////////////////////////////////
 	// classApiOperationIdMethodResponse //
 	///////////////////////////////////////
+
 
 	/**	 The entity classApiOperationIdMethodResponse
 	 *	 is defined as null before being initialized. 
@@ -1801,6 +1860,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classSuperApiOperationIdMethodRequest //
 	///////////////////////////////////////////
 
+
 	/**	 The entity classSuperApiOperationIdMethodRequest
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1849,6 +1909,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	////////////////////////////////////////////
 	// classSuperApiOperationIdMethodResponse //
 	////////////////////////////////////////////
+
 
 	/**	 The entity classSuperApiOperationIdMethodResponse
 	 *	 is defined as null before being initialized. 
@@ -1899,6 +1960,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classPageCanonicalNameMethod //
 	//////////////////////////////////
 
+
 	/**	 The entity classPageCanonicalNameMethod
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1947,6 +2009,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	////////////////////////
 	// classKeywordsFound //
 	////////////////////////
+
 
 	/**	 The entity classKeywordsFound
 	 *	 is defined as null before being initialized. 
@@ -2001,6 +2064,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	///////////////////
 	// classKeywords //
 	///////////////////
+
 
 	/**	 The entity classKeywords
 	 *	 is defined as null before being initialized. 
@@ -2072,6 +2136,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classPublicRead //
 	/////////////////////
 
+
 	/**	 The entity classPublicRead
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2125,6 +2190,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	//////////////////////
 	// classRoleSession //
 	//////////////////////
+
 
 	/**	 The entity classRoleSession
 	 *	 is defined as null before being initialized. 
@@ -2180,6 +2246,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classRoleUtilisateur //
 	//////////////////////////
 
+
 	/**	 The entity classRoleUtilisateur
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2233,6 +2300,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	//////////////////
 	// classRoleAll //
 	//////////////////
+
 
 	/**	 The entity classRoleAll
 	 *	 is defined as null before being initialized. 
@@ -2288,6 +2356,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classRolesFound //
 	/////////////////////
 
+
 	/**	 The entity classRolesFound
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2341,6 +2410,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	////////////////
 	// classRoles //
 	////////////////
+
 
 	/**	 The entity classRoles
 	 *	 is defined as null before being initialized. 
@@ -2412,6 +2482,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// classRolesLanguage //
 	////////////////////////
 
+
 	/**	 The entity classRolesLanguage
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2482,6 +2553,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// languageName //
 	//////////////////
 
+
 	/**	 The entity languageName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2531,6 +2603,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// entitySolrDocument //
 	////////////////////////
 
+
 	/**	 The entity entitySolrDocument
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2564,6 +2637,13 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		}
 		return (ApiWriter)this;
 	}
+
+
+
+
+
+
+
 
 	//////////////
 	// initDeep //

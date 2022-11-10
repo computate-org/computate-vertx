@@ -52,16 +52,20 @@ import io.vertx.core.Future;
 import io.vertx.core.json.JsonArray;
 
 /**	
- * <h1>Suggestions that can generate more code for you: </h1>
- * <ol>
- * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class SearchResultGen into the class SearchResult. 
- * </li>
+<ol>
+<li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these SearchResult objects in a RESTful API. 
+</li>
+<li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class SearchResultGen into the class SearchResult. 
+</li>
+0<h3>Suggestions that can generate more code for you: </h3></ol>
  * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these SearchResult objects in a RESTful API. 
  * </li>
- * </ol>
- * <h1>About the SearchResult class and it's generated class SearchResultGen&lt;Object&gt;: </h1>
+ * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class SearchResultGen into the class SearchResult. 
+ * </li>
+ * 0<h3>Suggestions that can generate more code for you: </h3>
+ * <h3>About the SearchResult class and it's generated class SearchResultGen&lt;Object&gt;: </h3>extends SearchResultGen
  * <p>
- * This Java class extends a generated Java class built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
+ * This Java class extends a generated Java class SearchResultGen built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
@@ -70,6 +74,27 @@ import io.vertx.core.json.JsonArray;
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
  * </p>
+ * extends SearchResultGen<Object>
+ * <p>This <code>class SearchResult extends SearchResultGen&lt;Object&gt;</code>, which means it extends a newly generated SearchResultGen. 
+ * The generated <code>class SearchResultGen extends Object</code> which means that SearchResult extends SearchResultGen which extends Object. 
+ * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
+ * </p>
+ * Api: true
+ * ApiTag.enUS: null
+ * ApiUri.enUS: null
+ * Color: null
+ * IconGroup: null
+ * IconName: null
+ * Indexed: true
+ * {@inheritDoc}
+ * <p>By adding a class comment "{@inheritDoc}", the SearchResult class will inherit the helpful inherited class comments from the super class SearchResultGen. 
+ * </p>
+ * Rows: null
+ * Model: true
+ * Page: true
+ * SuperPage.enUS: null
+ * Promise: true
+ * AName: null
  * <p>
  * Delete the class SearchResult in Solr: 
  * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
@@ -89,6 +114,7 @@ public abstract class SearchResultGen<DEV> extends Object {
 	//////////////////
 	// siteRequest_ //
 	//////////////////
+
 
 	/**	 The entity siteRequest_
 	 *	 is defined as null before being initialized. 
@@ -127,6 +153,7 @@ public abstract class SearchResultGen<DEV> extends Object {
 	//////////////////
 	// solrDocument //
 	//////////////////
+
 
 	/**	 The entity solrDocument
 	 *	 is defined as null before being initialized. 
@@ -184,6 +211,7 @@ public abstract class SearchResultGen<DEV> extends Object {
 	/////////////////
 	// resultIndex //
 	/////////////////
+
 
 	/**	 The entity resultIndex
 	 *	 is defined as null before being initialized. 

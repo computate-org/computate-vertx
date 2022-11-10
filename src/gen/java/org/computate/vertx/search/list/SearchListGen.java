@@ -55,16 +55,20 @@ import io.vertx.core.Future;
 import io.vertx.core.json.JsonArray;
 
 /**	
- * <h1>Suggestions that can generate more code for you: </h1>
- * <ol>
- * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class SearchListGen into the class SearchList. 
- * </li>
+<ol>
+<li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these SearchList objects in a RESTful API. 
+</li>
+<li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class SearchListGen into the class SearchList. 
+</li>
+0<h3>Suggestions that can generate more code for you: </h3></ol>
  * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these SearchList objects in a RESTful API. 
  * </li>
- * </ol>
- * <h1>About the SearchList class and it's generated class SearchListGen&lt;DEV&gt;: </h1>
+ * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class SearchListGen into the class SearchList. 
+ * </li>
+ * 0<h3>Suggestions that can generate more code for you: </h3>
+ * <h3>About the SearchList class and it's generated class SearchListGen&lt;DEV&gt;: </h3>extends SearchListGen
  * <p>
- * This Java class extends a generated Java class built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
+ * This Java class extends a generated Java class SearchListGen built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
@@ -73,6 +77,49 @@ import io.vertx.core.json.JsonArray;
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
  * </p>
+ * extends SearchListGen<DEV>
+ * <p>This <code>class SearchList extends SearchListGen&lt;DEV&gt;</code>, which means it extends a newly generated SearchListGen. 
+ * The generated <code>class SearchListGen extends DEV</code> which means that SearchList extends SearchListGen which extends DEV. 
+ * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
+ * </p>
+ * Api: true
+ * ApiTag.enUS: null
+ * ApiUri.enUS: null
+ * Color: null
+ * IconGroup: null
+ * IconName: null
+ * Indexed: true
+ * {@inheritDoc}
+ * <p>By adding a class comment "{@inheritDoc}", the SearchList class will inherit the helpful inherited class comments from the super class SearchListGen. 
+ * </p>
+ * Rows: null
+ * Model: true
+ * Page: true
+ * SuperPage.enUS: null
+ * Promise: true
+ * <p>
+ *   This class contains a comment <b>"Promise: true"</b>
+ *   Sometimes a Java class must be initialized asynchronously when it involves calling a blocking API. 
+ *   This means that the SearchList Java class has promiseDeep methods which must be initialized asynchronously as a Vert.x Promise  instead of initDeep methods which are a simple non-asynchronous method. 
+ * </p>
+ * <p>
+ *   Adding protected void methods beginning with an underscore with a Promise as the only parameter will automatically set `Promise: true`. 
+ * </p>
+ * <p>
+ *   <pre>
+ *   
+ *   	protected void _promiseBefore(Promise&lt;Void&gt; promise) {
+ *   		promise.complete();
+ *   	}
+ *   </pre>
+ * </p>
+ * <p>
+ *   Java classes with the `Model: true` will automatically set `Promise: true`. 
+ * </p>
+ * <p>
+ *   If a super class of this Java class with `Model: true`, then the child class will also inherit `Promise: true`. 
+ * </p>
+ * AName: null
  * <p>
  * Delete the class SearchList in Solr: 
  * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
@@ -89,9 +136,61 @@ import io.vertx.core.json.JsonArray;
 public abstract class SearchListGen<DEV> {
 	protected static final Logger LOG = LoggerFactory.getLogger(SearchList.class);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	///////
 	// c //
 	///////
+
 
 	/**	 The entity c
 	 *	 is defined as null before being initialized. 
@@ -131,6 +230,7 @@ public abstract class SearchListGen<DEV> {
 	// siteRequest_ //
 	//////////////////
 
+
 	/**	 The entity siteRequest_
 	 *	 is defined as null before being initialized. 
 	 */
@@ -168,6 +268,7 @@ public abstract class SearchListGen<DEV> {
 	///////////
 	// store //
 	///////////
+
 
 	/**	 The entity store
 	 *	 is defined as null before being initialized. 
@@ -223,6 +324,7 @@ public abstract class SearchListGen<DEV> {
 	// populate //
 	//////////////
 
+
 	/**	 The entity populate
 	 *	 is defined as null before being initialized. 
 	 */
@@ -273,9 +375,13 @@ public abstract class SearchListGen<DEV> {
 		return SearchList.staticSearchStrPopulate(siteRequest_, SearchList.staticSearchPopulate(siteRequest_, SearchList.staticSetPopulate(siteRequest_, o)));
 	}
 
+
+
+
 	/////////////
 	// request //
 	/////////////
+
 
 	/**	 The entity request
 	 *	 It is constructed before being initialized with the constructor by default. 
@@ -311,6 +417,7 @@ public abstract class SearchListGen<DEV> {
 	///////////////
 	// searchUrl //
 	///////////////
+
 
 	/**	 The entity searchUrl
 	 *	 is defined as null before being initialized. 
@@ -361,6 +468,7 @@ public abstract class SearchListGen<DEV> {
 	// response //
 	//////////////
 
+
 	/**	 The entity response
 	 *	 is defined as null before being initialized. 
 	 */
@@ -399,9 +507,11 @@ public abstract class SearchListGen<DEV> {
 		return promise.future();
 	}
 
+
 	//////////
 	// docs //
 	//////////
+
 
 	/**	 The entity docs
 	 *	 is defined as null before being initialized. 
@@ -452,6 +562,7 @@ public abstract class SearchListGen<DEV> {
 	// list //
 	//////////
 
+
 	/**	 The entity list
 	 *	 It is constructed before being initialized with the constructor by default. 
 	 */
@@ -495,6 +606,7 @@ public abstract class SearchListGen<DEV> {
 	// first //
 	///////////
 
+
 	/**	 The entity first
 	 *	 is defined as null before being initialized. 
 	 */
@@ -528,6 +640,14 @@ public abstract class SearchListGen<DEV> {
 		}
 		return (SearchList)this;
 	}
+
+
+
+
+
+
+
+
 
 	//////////////
 	// initDeep //

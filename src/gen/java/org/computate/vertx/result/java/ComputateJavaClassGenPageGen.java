@@ -29,42 +29,35 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
-import org.computate.vertx.page.ComputatePageLayout;
+import java.lang.Object;
 import org.computate.vertx.search.list.SearchList;
 import org.computate.vertx.result.java.ComputateJavaClass;
 import java.lang.String;
-import java.time.ZoneId;
-import java.util.Locale;
-import java.time.ZonedDateTime;
-import java.time.ZoneOffset;
-import java.time.LocalDateTime;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
-import java.time.format.DateTimeFormatter;
-import java.time.Instant;
-import java.time.OffsetDateTime;
-import java.lang.Integer;
-import io.vertx.core.json.JsonObject;
-import java.math.BigDecimal;
-import io.vertx.core.json.JsonArray;
 import org.computate.search.response.solr.SolrResponse.Stats;
 import org.computate.search.response.solr.SolrResponse.FacetCounts;
+import io.vertx.core.json.JsonObject;
+import io.vertx.core.json.JsonArray;
+import java.lang.Integer;
+import java.lang.Void;
 import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
 
 /**	
- * <h1>Suggestions that can generate more code for you: </h1>
- * <ol>
- * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ComputateJavaClassGenPageGen into the class ComputateJavaClassGenPage. 
- * </li>
+<ol>
+<li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these ComputateJavaClassGenPage objects in a RESTful API. 
+</li>
+<li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ComputateJavaClassGenPageGen into the class ComputateJavaClassGenPage. 
+</li>
+0<h3>Suggestions that can generate more code for you: </h3></ol>
  * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these ComputateJavaClassGenPage objects in a RESTful API. 
  * </li>
- * </ol>
- * <h1>About the ComputateJavaClassGenPage class and it's generated class ComputateJavaClassGenPageGen&lt;ComputatePageLayout&gt;: </h1>
+ * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ComputateJavaClassGenPageGen into the class ComputateJavaClassGenPage. 
+ * </li>
+ * 0<h3>Suggestions that can generate more code for you: </h3>
+ * <h3>About the ComputateJavaClassGenPage class and it's generated class ComputateJavaClassGenPageGen&lt;Object&gt;: </h3>extends ComputateJavaClassGenPageGen
  * <p>
- * This Java class extends a generated Java class built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
+ * This Java class extends a generated Java class ComputateJavaClassGenPageGen built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
@@ -73,6 +66,49 @@ import io.vertx.core.Future;
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
  * </p>
+ * extends ComputateJavaClassGenPageGen<Object>
+ * <p>This <code>class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen&lt;Object&gt;</code>, which means it extends a newly generated ComputateJavaClassGenPageGen. 
+ * The generated <code>class ComputateJavaClassGenPageGen extends Object</code> which means that ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen which extends Object. 
+ * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
+ * </p>
+ * Api: true
+ * ApiTag.enUS: null
+ * ApiUri.enUS: null
+ * Color: null
+ * IconGroup: null
+ * IconName: null
+ * Indexed: true
+ * {@inheritDoc}
+ * <p>By adding a class comment "{@inheritDoc}", the ComputateJavaClassGenPage class will inherit the helpful inherited class comments from the super class ComputateJavaClassGenPageGen. 
+ * </p>
+ * Rows: null
+ * Model: true
+ * Page: true
+ * SuperPage.enUS: null
+ * Promise: true
+ * <p>
+ *   This class contains a comment <b>"Promise: true"</b>
+ *   Sometimes a Java class must be initialized asynchronously when it involves calling a blocking API. 
+ *   This means that the ComputateJavaClassGenPage Java class has promiseDeep methods which must be initialized asynchronously as a Vert.x Promise  instead of initDeep methods which are a simple non-asynchronous method. 
+ * </p>
+ * <p>
+ *   Adding protected void methods beginning with an underscore with a Promise as the only parameter will automatically set `Promise: true`. 
+ * </p>
+ * <p>
+ *   <pre>
+ *   
+ *   	protected void _promiseBefore(Promise&lt;Void&gt; promise) {
+ *   		promise.complete();
+ *   	}
+ *   </pre>
+ * </p>
+ * <p>
+ *   Java classes with the `Model: true` will automatically set `Promise: true`. 
+ * </p>
+ * <p>
+ *   If a super class of this Java class with `Model: true`, then the child class will also inherit `Promise: true`. 
+ * </p>
+ * AName: null
  * <p>
  * Delete the class ComputateJavaClassGenPage in Solr: 
  * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
@@ -86,12 +122,52 @@ import io.vertx.core.Future;
  * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  **/
-public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLayout {
+public abstract class ComputateJavaClassGenPageGen<DEV> extends Object {
 	protected static final Logger LOG = LoggerFactory.getLogger(ComputateJavaClassGenPage.class);
+
+	//////////////////
+	// siteRequest_ //
+	//////////////////
+
+
+	/**	 The entity siteRequest_
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonIgnore
+	@JsonInclude(Include.NON_NULL)
+	protected ComputateSiteRequest siteRequest_;
+
+	/**	<br> The entity siteRequest_
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _siteRequest_(Wrap<ComputateSiteRequest> c);
+
+	public ComputateSiteRequest getSiteRequest_() {
+		return siteRequest_;
+	}
+
+	public void setSiteRequest_(ComputateSiteRequest siteRequest_) {
+		this.siteRequest_ = siteRequest_;
+	}
+	public static ComputateSiteRequest staticSetSiteRequest_(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected ComputateJavaClassGenPage siteRequest_Init() {
+		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
+		if(siteRequest_ == null) {
+			_siteRequest_(siteRequest_Wrap);
+			setSiteRequest_(siteRequest_Wrap.o);
+		}
+		return (ComputateJavaClassGenPage)this;
+	}
 
 	///////////////////////////////////
 	// searchListComputateJavaClass_ //
 	///////////////////////////////////
+
 
 	/**	 The entity searchListComputateJavaClass_
 	 *	 is defined as null before being initialized. 
@@ -130,6 +206,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	//////////////////
 	// pageResponse //
 	//////////////////
+
 
 	/**	 The entity pageResponse
 	 *	 is defined as null before being initialized. 
@@ -176,770 +253,416 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		return ComputateJavaClassGenPage.staticSearchStrPageResponse(siteRequest_, ComputateJavaClassGenPage.staticSearchPageResponse(siteRequest_, ComputateJavaClassGenPage.staticSetPageResponse(siteRequest_, o)));
 	}
 
-	///////////////////
-	// defaultZoneId //
-	///////////////////
+	///////////
+	// stats //
+	///////////
 
-	/**	 The entity defaultZoneId
+
+	/**	 The entity stats
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
 	@JsonInclude(Include.NON_NULL)
-	protected String defaultZoneId;
+	protected Stats stats;
 
-	/**	<br> The entity defaultZoneId
+	/**	<br> The entity stats
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:defaultZoneId">Find the entity defaultZoneId in Solr</a>
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:stats">Find the entity stats in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
-	protected abstract void _defaultZoneId(Wrap<String> w);
+	protected abstract void _stats(Wrap<Stats> w);
 
-	public String getDefaultZoneId() {
-		return defaultZoneId;
-	}
-	public void setDefaultZoneId(String o) {
-		this.defaultZoneId = ComputateJavaClassGenPage.staticSetDefaultZoneId(siteRequest_, o);
-	}
-	public static String staticSetDefaultZoneId(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-	protected ComputateJavaClassGenPage defaultZoneIdInit() {
-		Wrap<String> defaultZoneIdWrap = new Wrap<String>().var("defaultZoneId");
-		if(defaultZoneId == null) {
-			_defaultZoneId(defaultZoneIdWrap);
-			setDefaultZoneId(defaultZoneIdWrap.o);
-		}
-		return (ComputateJavaClassGenPage)this;
+	public Stats getStats() {
+		return stats;
 	}
 
-	public static String staticSearchDefaultZoneId(ComputateSiteRequest siteRequest_, String o) {
-		return o;
+	public void setStats(Stats stats) {
+		this.stats = stats;
 	}
-
-	public static String staticSearchStrDefaultZoneId(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqDefaultZoneId(ComputateSiteRequest siteRequest_, String o) {
-		return ComputateJavaClassGenPage.staticSearchStrDefaultZoneId(siteRequest_, ComputateJavaClassGenPage.staticSearchDefaultZoneId(siteRequest_, ComputateJavaClassGenPage.staticSetDefaultZoneId(siteRequest_, o)));
-	}
-
-	/////////////////////
-	// defaultTimeZone //
-	/////////////////////
-
-	/**	 The entity defaultTimeZone
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonIgnore
-	@JsonInclude(Include.NON_NULL)
-	protected ZoneId defaultTimeZone;
-
-	/**	<br> The entity defaultTimeZone
-	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:defaultTimeZone">Find the entity defaultTimeZone in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _defaultTimeZone(Wrap<ZoneId> w);
-
-	public ZoneId getDefaultTimeZone() {
-		return defaultTimeZone;
-	}
-
-	public void setDefaultTimeZone(ZoneId defaultTimeZone) {
-		this.defaultTimeZone = defaultTimeZone;
-	}
-	public static ZoneId staticSetDefaultTimeZone(ComputateSiteRequest siteRequest_, String o) {
+	public static Stats staticSetStats(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
-	protected ComputateJavaClassGenPage defaultTimeZoneInit() {
-		Wrap<ZoneId> defaultTimeZoneWrap = new Wrap<ZoneId>().var("defaultTimeZone");
-		if(defaultTimeZone == null) {
-			_defaultTimeZone(defaultTimeZoneWrap);
-			setDefaultTimeZone(defaultTimeZoneWrap.o);
+	protected ComputateJavaClassGenPage statsInit() {
+		Wrap<Stats> statsWrap = new Wrap<Stats>().var("stats");
+		if(stats == null) {
+			_stats(statsWrap);
+			setStats(statsWrap.o);
 		}
 		return (ComputateJavaClassGenPage)this;
 	}
 
-	/////////////////////
-	// defaultLocaleId //
-	/////////////////////
+	/////////////////
+	// facetCounts //
+	/////////////////
 
-	/**	 The entity defaultLocaleId
+
+	/**	 The entity facetCounts
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
 	@JsonInclude(Include.NON_NULL)
-	protected String defaultLocaleId;
+	protected FacetCounts facetCounts;
 
-	/**	<br> The entity defaultLocaleId
+	/**	<br> The entity facetCounts
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:defaultLocaleId">Find the entity defaultLocaleId in Solr</a>
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:facetCounts">Find the entity facetCounts in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
-	protected abstract void _defaultLocaleId(Wrap<String> w);
+	protected abstract void _facetCounts(Wrap<FacetCounts> w);
 
-	public String getDefaultLocaleId() {
-		return defaultLocaleId;
-	}
-	public void setDefaultLocaleId(String o) {
-		this.defaultLocaleId = ComputateJavaClassGenPage.staticSetDefaultLocaleId(siteRequest_, o);
-	}
-	public static String staticSetDefaultLocaleId(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-	protected ComputateJavaClassGenPage defaultLocaleIdInit() {
-		Wrap<String> defaultLocaleIdWrap = new Wrap<String>().var("defaultLocaleId");
-		if(defaultLocaleId == null) {
-			_defaultLocaleId(defaultLocaleIdWrap);
-			setDefaultLocaleId(defaultLocaleIdWrap.o);
-		}
-		return (ComputateJavaClassGenPage)this;
+	public FacetCounts getFacetCounts() {
+		return facetCounts;
 	}
 
-	public static String staticSearchDefaultLocaleId(ComputateSiteRequest siteRequest_, String o) {
-		return o;
+	public void setFacetCounts(FacetCounts facetCounts) {
+		this.facetCounts = facetCounts;
 	}
-
-	public static String staticSearchStrDefaultLocaleId(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqDefaultLocaleId(ComputateSiteRequest siteRequest_, String o) {
-		return ComputateJavaClassGenPage.staticSearchStrDefaultLocaleId(siteRequest_, ComputateJavaClassGenPage.staticSearchDefaultLocaleId(siteRequest_, ComputateJavaClassGenPage.staticSetDefaultLocaleId(siteRequest_, o)));
-	}
-
-	///////////////////
-	// defaultLocale //
-	///////////////////
-
-	/**	 The entity defaultLocale
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonIgnore
-	@JsonInclude(Include.NON_NULL)
-	protected Locale defaultLocale;
-
-	/**	<br> The entity defaultLocale
-	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:defaultLocale">Find the entity defaultLocale in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _defaultLocale(Wrap<Locale> w);
-
-	public Locale getDefaultLocale() {
-		return defaultLocale;
-	}
-
-	public void setDefaultLocale(Locale defaultLocale) {
-		this.defaultLocale = defaultLocale;
-	}
-	public static Locale staticSetDefaultLocale(ComputateSiteRequest siteRequest_, String o) {
+	public static FacetCounts staticSetFacetCounts(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
-	protected ComputateJavaClassGenPage defaultLocaleInit() {
-		Wrap<Locale> defaultLocaleWrap = new Wrap<Locale>().var("defaultLocale");
-		if(defaultLocale == null) {
-			_defaultLocale(defaultLocaleWrap);
-			setDefaultLocale(defaultLocaleWrap.o);
+	protected ComputateJavaClassGenPage facetCountsInit() {
+		Wrap<FacetCounts> facetCountsWrap = new Wrap<FacetCounts>().var("facetCounts");
+		if(facetCounts == null) {
+			_facetCounts(facetCountsWrap);
+			setFacetCounts(facetCountsWrap.o);
 		}
 		return (ComputateJavaClassGenPage)this;
 	}
 
-	/////////////////////
-	// defaultRangeGap //
-	/////////////////////
+	////////////////
+	// pagination //
+	////////////////
 
-	/**	 The entity defaultRangeGap
-	 *	 is defined as null before being initialized. 
+
+	/**	 The entity pagination
+	 *	 It is constructed before being initialized with the constructor by default. 
 	 */
 	@JsonProperty
 	@JsonInclude(Include.NON_NULL)
-	protected String defaultRangeGap;
+	protected JsonObject pagination = new JsonObject();
 
-	/**	<br> The entity defaultRangeGap
-	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:defaultRangeGap">Find the entity defaultRangeGap in Solr</a>
+	/**	<br> The entity pagination
+	 *  It is constructed before being initialized with the constructor by default. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:pagination">Find the entity pagination in Solr</a>
 	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 * @param pagination is the entity already constructed. 
 	 **/
-	protected abstract void _defaultRangeGap(Wrap<String> w);
+	protected abstract void _pagination(JsonObject pagination);
 
-	public String getDefaultRangeGap() {
-		return defaultRangeGap;
-	}
-	public void setDefaultRangeGap(String o) {
-		this.defaultRangeGap = ComputateJavaClassGenPage.staticSetDefaultRangeGap(siteRequest_, o);
-	}
-	public static String staticSetDefaultRangeGap(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-	protected ComputateJavaClassGenPage defaultRangeGapInit() {
-		Wrap<String> defaultRangeGapWrap = new Wrap<String>().var("defaultRangeGap");
-		if(defaultRangeGap == null) {
-			_defaultRangeGap(defaultRangeGapWrap);
-			setDefaultRangeGap(defaultRangeGapWrap.o);
-		}
-		return (ComputateJavaClassGenPage)this;
+	public JsonObject getPagination() {
+		return pagination;
 	}
 
-	public static String staticSearchDefaultRangeGap(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-
-	public static String staticSearchStrDefaultRangeGap(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqDefaultRangeGap(ComputateSiteRequest siteRequest_, String o) {
-		return ComputateJavaClassGenPage.staticSearchStrDefaultRangeGap(siteRequest_, ComputateJavaClassGenPage.staticSearchDefaultRangeGap(siteRequest_, ComputateJavaClassGenPage.staticSetDefaultRangeGap(siteRequest_, o)));
-	}
-
-	/////////////////////
-	// defaultRangeEnd //
-	/////////////////////
-
-	/**	 The entity defaultRangeEnd
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonDeserialize(using = ComputateZonedDateTimeDeserializer.class)
-	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
-	@JsonInclude(Include.NON_NULL)
-	protected ZonedDateTime defaultRangeEnd;
-
-	/**	<br> The entity defaultRangeEnd
-	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:defaultRangeEnd">Find the entity defaultRangeEnd in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _defaultRangeEnd(Wrap<ZonedDateTime> w);
-
-	public ZonedDateTime getDefaultRangeEnd() {
-		return defaultRangeEnd;
-	}
-
-	public void setDefaultRangeEnd(ZonedDateTime defaultRangeEnd) {
-		this.defaultRangeEnd = defaultRangeEnd;
+	public void setPagination(JsonObject pagination) {
+		this.pagination = pagination;
 	}
 	@JsonIgnore
-	public void setDefaultRangeEnd(Instant o) {
-		this.defaultRangeEnd = o == null ? null : ZonedDateTime.from(o).truncatedTo(ChronoUnit.MILLIS);
+	public void setPagination(String o) {
+		this.pagination = ComputateJavaClassGenPage.staticSetPagination(siteRequest_, o);
 	}
-	/** Example: 2011-12-03T10:15:30+01:00 **/
-	@JsonIgnore
-	public void setDefaultRangeEnd(String o) {
-		this.defaultRangeEnd = ComputateJavaClassGenPage.staticSetDefaultRangeEnd(siteRequest_, o);
-	}
-	public static ZonedDateTime staticSetDefaultRangeEnd(ComputateSiteRequest siteRequest_, String o) {
-		if(StringUtils.endsWith(o, "]"))
-			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
-		else if(StringUtils.endsWith(o, "Z"))
-			return o == null ? null : Instant.parse(o).atZone(Optional.ofNullable(siteRequest_).map(r -> r.getConfig()).map(config -> config.getString(ComputateConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))).truncatedTo(ChronoUnit.MILLIS);
-		else if(StringUtils.contains(o, "T"))
-			return o == null ? null : ZonedDateTime.parse(o, DateTimeFormatter.ISO_DATE_TIME).truncatedTo(ChronoUnit.MILLIS);
-		else
-			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
-	}
-	@JsonIgnore
-	public void setDefaultRangeEnd(Date o) {
-		this.defaultRangeEnd = o == null ? null : ZonedDateTime.ofInstant(o.toInstant(), ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
-	}
-	protected ComputateJavaClassGenPage defaultRangeEndInit() {
-		Wrap<ZonedDateTime> defaultRangeEndWrap = new Wrap<ZonedDateTime>().var("defaultRangeEnd");
-		if(defaultRangeEnd == null) {
-			_defaultRangeEnd(defaultRangeEndWrap);
-			setDefaultRangeEnd(defaultRangeEndWrap.o);
-		}
-		return (ComputateJavaClassGenPage)this;
-	}
-
-	public static Date staticSearchDefaultRangeEnd(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
-		return o == null ? null : Date.from(o.toInstant());
-	}
-
-	public static String staticSearchStrDefaultRangeEnd(ComputateSiteRequest siteRequest_, Date o) {
-		return "\"" + DateTimeFormatter.ISO_DATE_TIME.format(o.toInstant().atOffset(ZoneOffset.UTC)) + "\"";
-	}
-
-	public static String staticSearchFqDefaultRangeEnd(ComputateSiteRequest siteRequest_, String o) {
-		return ComputateJavaClassGenPage.staticSearchStrDefaultRangeEnd(siteRequest_, ComputateJavaClassGenPage.staticSearchDefaultRangeEnd(siteRequest_, ComputateJavaClassGenPage.staticSetDefaultRangeEnd(siteRequest_, o)));
-	}
-
-	///////////////////////
-	// defaultRangeStart //
-	///////////////////////
-
-	/**	 The entity defaultRangeStart
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonDeserialize(using = ComputateZonedDateTimeDeserializer.class)
-	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
-	@JsonInclude(Include.NON_NULL)
-	protected ZonedDateTime defaultRangeStart;
-
-	/**	<br> The entity defaultRangeStart
-	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:defaultRangeStart">Find the entity defaultRangeStart in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _defaultRangeStart(Wrap<ZonedDateTime> w);
-
-	public ZonedDateTime getDefaultRangeStart() {
-		return defaultRangeStart;
-	}
-
-	public void setDefaultRangeStart(ZonedDateTime defaultRangeStart) {
-		this.defaultRangeStart = defaultRangeStart;
-	}
-	@JsonIgnore
-	public void setDefaultRangeStart(Instant o) {
-		this.defaultRangeStart = o == null ? null : ZonedDateTime.from(o).truncatedTo(ChronoUnit.MILLIS);
-	}
-	/** Example: 2011-12-03T10:15:30+01:00 **/
-	@JsonIgnore
-	public void setDefaultRangeStart(String o) {
-		this.defaultRangeStart = ComputateJavaClassGenPage.staticSetDefaultRangeStart(siteRequest_, o);
-	}
-	public static ZonedDateTime staticSetDefaultRangeStart(ComputateSiteRequest siteRequest_, String o) {
-		if(StringUtils.endsWith(o, "]"))
-			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
-		else if(StringUtils.endsWith(o, "Z"))
-			return o == null ? null : Instant.parse(o).atZone(Optional.ofNullable(siteRequest_).map(r -> r.getConfig()).map(config -> config.getString(ComputateConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))).truncatedTo(ChronoUnit.MILLIS);
-		else if(StringUtils.contains(o, "T"))
-			return o == null ? null : ZonedDateTime.parse(o, DateTimeFormatter.ISO_DATE_TIME).truncatedTo(ChronoUnit.MILLIS);
-		else
-			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
-	}
-	@JsonIgnore
-	public void setDefaultRangeStart(Date o) {
-		this.defaultRangeStart = o == null ? null : ZonedDateTime.ofInstant(o.toInstant(), ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
-	}
-	protected ComputateJavaClassGenPage defaultRangeStartInit() {
-		Wrap<ZonedDateTime> defaultRangeStartWrap = new Wrap<ZonedDateTime>().var("defaultRangeStart");
-		if(defaultRangeStart == null) {
-			_defaultRangeStart(defaultRangeStartWrap);
-			setDefaultRangeStart(defaultRangeStartWrap.o);
-		}
-		return (ComputateJavaClassGenPage)this;
-	}
-
-	public static Date staticSearchDefaultRangeStart(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
-		return o == null ? null : Date.from(o.toInstant());
-	}
-
-	public static String staticSearchStrDefaultRangeStart(ComputateSiteRequest siteRequest_, Date o) {
-		return "\"" + DateTimeFormatter.ISO_DATE_TIME.format(o.toInstant().atOffset(ZoneOffset.UTC)) + "\"";
-	}
-
-	public static String staticSearchFqDefaultRangeStart(ComputateSiteRequest siteRequest_, String o) {
-		return ComputateJavaClassGenPage.staticSearchStrDefaultRangeStart(siteRequest_, ComputateJavaClassGenPage.staticSearchDefaultRangeStart(siteRequest_, ComputateJavaClassGenPage.staticSetDefaultRangeStart(siteRequest_, o)));
-	}
-
-	/////////////////////
-	// defaultRangeVar //
-	/////////////////////
-
-	/**	 The entity defaultRangeVar
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected String defaultRangeVar;
-
-	/**	<br> The entity defaultRangeVar
-	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:defaultRangeVar">Find the entity defaultRangeVar in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _defaultRangeVar(Wrap<String> w);
-
-	public String getDefaultRangeVar() {
-		return defaultRangeVar;
-	}
-	public void setDefaultRangeVar(String o) {
-		this.defaultRangeVar = ComputateJavaClassGenPage.staticSetDefaultRangeVar(siteRequest_, o);
-	}
-	public static String staticSetDefaultRangeVar(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-	protected ComputateJavaClassGenPage defaultRangeVarInit() {
-		Wrap<String> defaultRangeVarWrap = new Wrap<String>().var("defaultRangeVar");
-		if(defaultRangeVar == null) {
-			_defaultRangeVar(defaultRangeVarWrap);
-			setDefaultRangeVar(defaultRangeVarWrap.o);
-		}
-		return (ComputateJavaClassGenPage)this;
-	}
-
-	public static String staticSearchDefaultRangeVar(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-
-	public static String staticSearchStrDefaultRangeVar(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqDefaultRangeVar(ComputateSiteRequest siteRequest_, String o) {
-		return ComputateJavaClassGenPage.staticSearchStrDefaultRangeVar(siteRequest_, ComputateJavaClassGenPage.staticSearchDefaultRangeVar(siteRequest_, ComputateJavaClassGenPage.staticSetDefaultRangeVar(siteRequest_, o)));
-	}
-
-	//////////////////////
-	// defaultFacetSort //
-	//////////////////////
-
-	/**	 The entity defaultFacetSort
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected String defaultFacetSort;
-
-	/**	<br> The entity defaultFacetSort
-	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:defaultFacetSort">Find the entity defaultFacetSort in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _defaultFacetSort(Wrap<String> w);
-
-	public String getDefaultFacetSort() {
-		return defaultFacetSort;
-	}
-	public void setDefaultFacetSort(String o) {
-		this.defaultFacetSort = ComputateJavaClassGenPage.staticSetDefaultFacetSort(siteRequest_, o);
-	}
-	public static String staticSetDefaultFacetSort(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-	protected ComputateJavaClassGenPage defaultFacetSortInit() {
-		Wrap<String> defaultFacetSortWrap = new Wrap<String>().var("defaultFacetSort");
-		if(defaultFacetSort == null) {
-			_defaultFacetSort(defaultFacetSortWrap);
-			setDefaultFacetSort(defaultFacetSortWrap.o);
-		}
-		return (ComputateJavaClassGenPage)this;
-	}
-
-	public static String staticSearchDefaultFacetSort(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-
-	public static String staticSearchStrDefaultFacetSort(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqDefaultFacetSort(ComputateSiteRequest siteRequest_, String o) {
-		return ComputateJavaClassGenPage.staticSearchStrDefaultFacetSort(siteRequest_, ComputateJavaClassGenPage.staticSearchDefaultFacetSort(siteRequest_, ComputateJavaClassGenPage.staticSetDefaultFacetSort(siteRequest_, o)));
-	}
-
-	///////////////////////
-	// defaultFacetLimit //
-	///////////////////////
-
-	/**	 The entity defaultFacetLimit
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonSerialize(using = ToStringSerializer.class)
-	@JsonInclude(Include.NON_NULL)
-	protected Integer defaultFacetLimit;
-
-	/**	<br> The entity defaultFacetLimit
-	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:defaultFacetLimit">Find the entity defaultFacetLimit in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _defaultFacetLimit(Wrap<Integer> w);
-
-	public Integer getDefaultFacetLimit() {
-		return defaultFacetLimit;
-	}
-
-	public void setDefaultFacetLimit(Integer defaultFacetLimit) {
-		this.defaultFacetLimit = defaultFacetLimit;
-	}
-	@JsonIgnore
-	public void setDefaultFacetLimit(String o) {
-		this.defaultFacetLimit = ComputateJavaClassGenPage.staticSetDefaultFacetLimit(siteRequest_, o);
-	}
-	public static Integer staticSetDefaultFacetLimit(ComputateSiteRequest siteRequest_, String o) {
-		if(NumberUtils.isParsable(o))
-			return Integer.parseInt(o);
-		return null;
-	}
-	protected ComputateJavaClassGenPage defaultFacetLimitInit() {
-		Wrap<Integer> defaultFacetLimitWrap = new Wrap<Integer>().var("defaultFacetLimit");
-		if(defaultFacetLimit == null) {
-			_defaultFacetLimit(defaultFacetLimitWrap);
-			setDefaultFacetLimit(defaultFacetLimitWrap.o);
-		}
-		return (ComputateJavaClassGenPage)this;
-	}
-
-	public static Integer staticSearchDefaultFacetLimit(ComputateSiteRequest siteRequest_, Integer o) {
-		return o;
-	}
-
-	public static String staticSearchStrDefaultFacetLimit(ComputateSiteRequest siteRequest_, Integer o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqDefaultFacetLimit(ComputateSiteRequest siteRequest_, String o) {
-		return ComputateJavaClassGenPage.staticSearchStrDefaultFacetLimit(siteRequest_, ComputateJavaClassGenPage.staticSearchDefaultFacetLimit(siteRequest_, ComputateJavaClassGenPage.staticSetDefaultFacetLimit(siteRequest_, o)));
-	}
-
-	//////////////////////////
-	// defaultFacetMinCount //
-	//////////////////////////
-
-	/**	 The entity defaultFacetMinCount
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonSerialize(using = ToStringSerializer.class)
-	@JsonInclude(Include.NON_NULL)
-	protected Integer defaultFacetMinCount;
-
-	/**	<br> The entity defaultFacetMinCount
-	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:defaultFacetMinCount">Find the entity defaultFacetMinCount in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _defaultFacetMinCount(Wrap<Integer> w);
-
-	public Integer getDefaultFacetMinCount() {
-		return defaultFacetMinCount;
-	}
-
-	public void setDefaultFacetMinCount(Integer defaultFacetMinCount) {
-		this.defaultFacetMinCount = defaultFacetMinCount;
-	}
-	@JsonIgnore
-	public void setDefaultFacetMinCount(String o) {
-		this.defaultFacetMinCount = ComputateJavaClassGenPage.staticSetDefaultFacetMinCount(siteRequest_, o);
-	}
-	public static Integer staticSetDefaultFacetMinCount(ComputateSiteRequest siteRequest_, String o) {
-		if(NumberUtils.isParsable(o))
-			return Integer.parseInt(o);
-		return null;
-	}
-	protected ComputateJavaClassGenPage defaultFacetMinCountInit() {
-		Wrap<Integer> defaultFacetMinCountWrap = new Wrap<Integer>().var("defaultFacetMinCount");
-		if(defaultFacetMinCount == null) {
-			_defaultFacetMinCount(defaultFacetMinCountWrap);
-			setDefaultFacetMinCount(defaultFacetMinCountWrap.o);
-		}
-		return (ComputateJavaClassGenPage)this;
-	}
-
-	public static Integer staticSearchDefaultFacetMinCount(ComputateSiteRequest siteRequest_, Integer o) {
-		return o;
-	}
-
-	public static String staticSearchStrDefaultFacetMinCount(ComputateSiteRequest siteRequest_, Integer o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqDefaultFacetMinCount(ComputateSiteRequest siteRequest_, String o) {
-		return ComputateJavaClassGenPage.staticSearchStrDefaultFacetMinCount(siteRequest_, ComputateJavaClassGenPage.staticSearchDefaultFacetMinCount(siteRequest_, ComputateJavaClassGenPage.staticSetDefaultFacetMinCount(siteRequest_, o)));
-	}
-
-	//////////////////////////
-	// defaultPivotMinCount //
-	//////////////////////////
-
-	/**	 The entity defaultPivotMinCount
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonSerialize(using = ToStringSerializer.class)
-	@JsonInclude(Include.NON_NULL)
-	protected Integer defaultPivotMinCount;
-
-	/**	<br> The entity defaultPivotMinCount
-	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:defaultPivotMinCount">Find the entity defaultPivotMinCount in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _defaultPivotMinCount(Wrap<Integer> w);
-
-	public Integer getDefaultPivotMinCount() {
-		return defaultPivotMinCount;
-	}
-
-	public void setDefaultPivotMinCount(Integer defaultPivotMinCount) {
-		this.defaultPivotMinCount = defaultPivotMinCount;
-	}
-	@JsonIgnore
-	public void setDefaultPivotMinCount(String o) {
-		this.defaultPivotMinCount = ComputateJavaClassGenPage.staticSetDefaultPivotMinCount(siteRequest_, o);
-	}
-	public static Integer staticSetDefaultPivotMinCount(ComputateSiteRequest siteRequest_, String o) {
-		if(NumberUtils.isParsable(o))
-			return Integer.parseInt(o);
-		return null;
-	}
-	protected ComputateJavaClassGenPage defaultPivotMinCountInit() {
-		Wrap<Integer> defaultPivotMinCountWrap = new Wrap<Integer>().var("defaultPivotMinCount");
-		if(defaultPivotMinCount == null) {
-			_defaultPivotMinCount(defaultPivotMinCountWrap);
-			setDefaultPivotMinCount(defaultPivotMinCountWrap.o);
-		}
-		return (ComputateJavaClassGenPage)this;
-	}
-
-	public static Integer staticSearchDefaultPivotMinCount(ComputateSiteRequest siteRequest_, Integer o) {
-		return o;
-	}
-
-	public static String staticSearchStrDefaultPivotMinCount(ComputateSiteRequest siteRequest_, Integer o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqDefaultPivotMinCount(ComputateSiteRequest siteRequest_, String o) {
-		return ComputateJavaClassGenPage.staticSearchStrDefaultPivotMinCount(siteRequest_, ComputateJavaClassGenPage.staticSearchDefaultPivotMinCount(siteRequest_, ComputateJavaClassGenPage.staticSetDefaultPivotMinCount(siteRequest_, o)));
-	}
-
-	//////////////////////////
-	// DEFAULT_MAP_LOCATION //
-	//////////////////////////
-
-	/**	 The entity DEFAULT_MAP_LOCATION
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected JsonObject DEFAULT_MAP_LOCATION;
-
-	/**	<br> The entity DEFAULT_MAP_LOCATION
-	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:DEFAULT_MAP_LOCATION">Find the entity DEFAULT_MAP_LOCATION in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _DEFAULT_MAP_LOCATION(Wrap<JsonObject> w);
-
-	public JsonObject getDEFAULT_MAP_LOCATION() {
-		return DEFAULT_MAP_LOCATION;
-	}
-
-	public void setDEFAULT_MAP_LOCATION(JsonObject DEFAULT_MAP_LOCATION) {
-		this.DEFAULT_MAP_LOCATION = DEFAULT_MAP_LOCATION;
-	}
-	@JsonIgnore
-	public void setDEFAULT_MAP_LOCATION(String o) {
-		this.DEFAULT_MAP_LOCATION = ComputateJavaClassGenPage.staticSetDEFAULT_MAP_LOCATION(siteRequest_, o);
-	}
-	public static JsonObject staticSetDEFAULT_MAP_LOCATION(ComputateSiteRequest siteRequest_, String o) {
+	public static JsonObject staticSetPagination(ComputateSiteRequest siteRequest_, String o) {
 		if(o != null) {
 				return new JsonObject(o);
 		}
 		return null;
 	}
-	protected ComputateJavaClassGenPage DEFAULT_MAP_LOCATIONInit() {
-		Wrap<JsonObject> DEFAULT_MAP_LOCATIONWrap = new Wrap<JsonObject>().var("DEFAULT_MAP_LOCATION");
-		if(DEFAULT_MAP_LOCATION == null) {
-			_DEFAULT_MAP_LOCATION(DEFAULT_MAP_LOCATIONWrap);
-			setDEFAULT_MAP_LOCATION(DEFAULT_MAP_LOCATIONWrap.o);
-		}
+	protected ComputateJavaClassGenPage paginationInit() {
+		_pagination(pagination);
 		return (ComputateJavaClassGenPage)this;
 	}
 
-	public static JsonObject staticSearchDEFAULT_MAP_LOCATION(ComputateSiteRequest siteRequest_, JsonObject o) {
+	public static JsonObject staticSearchPagination(ComputateSiteRequest siteRequest_, JsonObject o) {
 		return o;
 	}
 
-	public static String staticSearchStrDEFAULT_MAP_LOCATION(ComputateSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrPagination(ComputateSiteRequest siteRequest_, JsonObject o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqDEFAULT_MAP_LOCATION(ComputateSiteRequest siteRequest_, String o) {
-		return ComputateJavaClassGenPage.staticSearchStrDEFAULT_MAP_LOCATION(siteRequest_, ComputateJavaClassGenPage.staticSearchDEFAULT_MAP_LOCATION(siteRequest_, ComputateJavaClassGenPage.staticSetDEFAULT_MAP_LOCATION(siteRequest_, o)));
+	public static String staticSearchFqPagination(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrPagination(siteRequest_, ComputateJavaClassGenPage.staticSearchPagination(siteRequest_, ComputateJavaClassGenPage.staticSetPagination(siteRequest_, o)));
 	}
 
-	//////////////////////
-	// DEFAULT_MAP_ZOOM //
-	//////////////////////
+	///////////
+	// varsQ //
+	///////////
 
-	/**	 The entity DEFAULT_MAP_ZOOM
+
+	/**	 The entity varsQ
+	 *	 It is constructed before being initialized with the constructor by default. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected JsonObject varsQ = new JsonObject();
+
+	/**	<br> The entity varsQ
+	 *  It is constructed before being initialized with the constructor by default. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:varsQ">Find the entity varsQ in Solr</a>
+	 * <br>
+	 * @param vars is the entity already constructed. 
+	 **/
+	protected abstract void _varsQ(JsonObject vars);
+
+	public JsonObject getVarsQ() {
+		return varsQ;
+	}
+
+	public void setVarsQ(JsonObject varsQ) {
+		this.varsQ = varsQ;
+	}
+	@JsonIgnore
+	public void setVarsQ(String o) {
+		this.varsQ = ComputateJavaClassGenPage.staticSetVarsQ(siteRequest_, o);
+	}
+	public static JsonObject staticSetVarsQ(ComputateSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonObject(o);
+		}
+		return null;
+	}
+	protected ComputateJavaClassGenPage varsQInit() {
+		_varsQ(varsQ);
+		return (ComputateJavaClassGenPage)this;
+	}
+
+	public static JsonObject staticSearchVarsQ(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o;
+	}
+
+	public static String staticSearchStrVarsQ(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqVarsQ(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrVarsQ(siteRequest_, ComputateJavaClassGenPage.staticSearchVarsQ(siteRequest_, ComputateJavaClassGenPage.staticSetVarsQ(siteRequest_, o)));
+	}
+
+	////////////
+	// varsFq //
+	////////////
+
+
+	/**	 The entity varsFq
+	 *	 It is constructed before being initialized with the constructor by default. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected JsonObject varsFq = new JsonObject();
+
+	/**	<br> The entity varsFq
+	 *  It is constructed before being initialized with the constructor by default. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:varsFq">Find the entity varsFq in Solr</a>
+	 * <br>
+	 * @param vars is the entity already constructed. 
+	 **/
+	protected abstract void _varsFq(JsonObject vars);
+
+	public JsonObject getVarsFq() {
+		return varsFq;
+	}
+
+	public void setVarsFq(JsonObject varsFq) {
+		this.varsFq = varsFq;
+	}
+	@JsonIgnore
+	public void setVarsFq(String o) {
+		this.varsFq = ComputateJavaClassGenPage.staticSetVarsFq(siteRequest_, o);
+	}
+	public static JsonObject staticSetVarsFq(ComputateSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonObject(o);
+		}
+		return null;
+	}
+	protected ComputateJavaClassGenPage varsFqInit() {
+		_varsFq(varsFq);
+		return (ComputateJavaClassGenPage)this;
+	}
+
+	public static JsonObject staticSearchVarsFq(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o;
+	}
+
+	public static String staticSearchStrVarsFq(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqVarsFq(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrVarsFq(siteRequest_, ComputateJavaClassGenPage.staticSearchVarsFq(siteRequest_, ComputateJavaClassGenPage.staticSetVarsFq(siteRequest_, o)));
+	}
+
+	///////////////
+	// varsRange //
+	///////////////
+
+
+	/**	 The entity varsRange
+	 *	 It is constructed before being initialized with the constructor by default. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected JsonObject varsRange = new JsonObject();
+
+	/**	<br> The entity varsRange
+	 *  It is constructed before being initialized with the constructor by default. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:varsRange">Find the entity varsRange in Solr</a>
+	 * <br>
+	 * @param vars is the entity already constructed. 
+	 **/
+	protected abstract void _varsRange(JsonObject vars);
+
+	public JsonObject getVarsRange() {
+		return varsRange;
+	}
+
+	public void setVarsRange(JsonObject varsRange) {
+		this.varsRange = varsRange;
+	}
+	@JsonIgnore
+	public void setVarsRange(String o) {
+		this.varsRange = ComputateJavaClassGenPage.staticSetVarsRange(siteRequest_, o);
+	}
+	public static JsonObject staticSetVarsRange(ComputateSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonObject(o);
+		}
+		return null;
+	}
+	protected ComputateJavaClassGenPage varsRangeInit() {
+		_varsRange(varsRange);
+		return (ComputateJavaClassGenPage)this;
+	}
+
+	public static JsonObject staticSearchVarsRange(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o;
+	}
+
+	public static String staticSearchStrVarsRange(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqVarsRange(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrVarsRange(siteRequest_, ComputateJavaClassGenPage.staticSearchVarsRange(siteRequest_, ComputateJavaClassGenPage.staticSetVarsRange(siteRequest_, o)));
+	}
+
+	///////////
+	// query //
+	///////////
+
+
+	/**	 The entity query
+	 *	 It is constructed before being initialized with the constructor by default. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected JsonObject query = new JsonObject();
+
+	/**	<br> The entity query
+	 *  It is constructed before being initialized with the constructor by default. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:query">Find the entity query in Solr</a>
+	 * <br>
+	 * @param query is the entity already constructed. 
+	 **/
+	protected abstract void _query(JsonObject query);
+
+	public JsonObject getQuery() {
+		return query;
+	}
+
+	public void setQuery(JsonObject query) {
+		this.query = query;
+	}
+	@JsonIgnore
+	public void setQuery(String o) {
+		this.query = ComputateJavaClassGenPage.staticSetQuery(siteRequest_, o);
+	}
+	public static JsonObject staticSetQuery(ComputateSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonObject(o);
+		}
+		return null;
+	}
+	protected ComputateJavaClassGenPage queryInit() {
+		_query(query);
+		return (ComputateJavaClassGenPage)this;
+	}
+
+	public static JsonObject staticSearchQuery(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o;
+	}
+
+	public static String staticSearchStrQuery(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqQuery(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrQuery(siteRequest_, ComputateJavaClassGenPage.staticSearchQuery(siteRequest_, ComputateJavaClassGenPage.staticSetQuery(siteRequest_, o)));
+	}
+
+	///////////////////////
+	// defaultRangeStats //
+	///////////////////////
+
+
+	/**	 The entity defaultRangeStats
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
-	@JsonSerialize(using = ToStringSerializer.class)
 	@JsonInclude(Include.NON_NULL)
-	protected BigDecimal DEFAULT_MAP_ZOOM;
+	protected JsonObject defaultRangeStats;
 
-	/**	<br> The entity DEFAULT_MAP_ZOOM
+	/**	<br> The entity defaultRangeStats
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:DEFAULT_MAP_ZOOM">Find the entity DEFAULT_MAP_ZOOM in Solr</a>
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:defaultRangeStats">Find the entity defaultRangeStats in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
-	protected abstract void _DEFAULT_MAP_ZOOM(Wrap<BigDecimal> w);
+	protected abstract void _defaultRangeStats(Wrap<JsonObject> w);
 
-	public BigDecimal getDEFAULT_MAP_ZOOM() {
-		return DEFAULT_MAP_ZOOM;
+	public JsonObject getDefaultRangeStats() {
+		return defaultRangeStats;
 	}
 
-	public void setDEFAULT_MAP_ZOOM(BigDecimal DEFAULT_MAP_ZOOM) {
-		this.DEFAULT_MAP_ZOOM = DEFAULT_MAP_ZOOM;
+	public void setDefaultRangeStats(JsonObject defaultRangeStats) {
+		this.defaultRangeStats = defaultRangeStats;
 	}
 	@JsonIgnore
-	public void setDEFAULT_MAP_ZOOM(String o) {
-		this.DEFAULT_MAP_ZOOM = ComputateJavaClassGenPage.staticSetDEFAULT_MAP_ZOOM(siteRequest_, o);
+	public void setDefaultRangeStats(String o) {
+		this.defaultRangeStats = ComputateJavaClassGenPage.staticSetDefaultRangeStats(siteRequest_, o);
 	}
-	public static BigDecimal staticSetDEFAULT_MAP_ZOOM(ComputateSiteRequest siteRequest_, String o) {
-		o = StringUtils.removeAll(o, "[^\\d\\.]");
-		if(NumberUtils.isParsable(o))
-			return new BigDecimal(o, MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP);
+	public static JsonObject staticSetDefaultRangeStats(ComputateSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonObject(o);
+		}
 		return null;
 	}
-	@JsonIgnore
-	public void setDEFAULT_MAP_ZOOM(Double o) {
-			this.DEFAULT_MAP_ZOOM = new BigDecimal(o, MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP);
-	}
-	@JsonIgnore
-	public void setDEFAULT_MAP_ZOOM(Integer o) {
-			this.DEFAULT_MAP_ZOOM = new BigDecimal(o, MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP);
-	}
-	protected ComputateJavaClassGenPage DEFAULT_MAP_ZOOMInit() {
-		Wrap<BigDecimal> DEFAULT_MAP_ZOOMWrap = new Wrap<BigDecimal>().var("DEFAULT_MAP_ZOOM");
-		if(DEFAULT_MAP_ZOOM == null) {
-			_DEFAULT_MAP_ZOOM(DEFAULT_MAP_ZOOMWrap);
-			setDEFAULT_MAP_ZOOM(DEFAULT_MAP_ZOOMWrap.o);
+	protected ComputateJavaClassGenPage defaultRangeStatsInit() {
+		Wrap<JsonObject> defaultRangeStatsWrap = new Wrap<JsonObject>().var("defaultRangeStats");
+		if(defaultRangeStats == null) {
+			_defaultRangeStats(defaultRangeStatsWrap);
+			setDefaultRangeStats(defaultRangeStatsWrap.o);
 		}
 		return (ComputateJavaClassGenPage)this;
 	}
 
-	public static Double staticSearchDEFAULT_MAP_ZOOM(ComputateSiteRequest siteRequest_, BigDecimal o) {
-		return o == null ? null : o.doubleValue();
+	public static JsonObject staticSearchDefaultRangeStats(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o;
 	}
 
-	public static String staticSearchStrDEFAULT_MAP_ZOOM(ComputateSiteRequest siteRequest_, Double o) {
+	public static String staticSearchStrDefaultRangeStats(ComputateSiteRequest siteRequest_, JsonObject o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqDEFAULT_MAP_ZOOM(ComputateSiteRequest siteRequest_, String o) {
-		return ComputateJavaClassGenPage.staticSearchStrDEFAULT_MAP_ZOOM(siteRequest_, ComputateJavaClassGenPage.staticSearchDEFAULT_MAP_ZOOM(siteRequest_, ComputateJavaClassGenPage.staticSetDEFAULT_MAP_ZOOM(siteRequest_, o)));
+	public static String staticSearchFqDefaultRangeStats(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrDefaultRangeStats(siteRequest_, ComputateJavaClassGenPage.staticSearchDefaultRangeStats(siteRequest_, ComputateJavaClassGenPage.staticSetDefaultRangeStats(siteRequest_, o)));
 	}
 
 	//////////////////////////
 	// defaultFieldListVars //
 	//////////////////////////
+
 
 	/**	 The entity defaultFieldListVars
 	 *	 It is constructed before being initialized with the constructor by default. 
@@ -1007,6 +730,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	// defaultStatsVars //
 	//////////////////////
 
+
 	/**	 The entity defaultStatsVars
 	 *	 It is constructed before being initialized with the constructor by default. 
 	 */
@@ -1072,6 +796,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	//////////////////////
 	// defaultPivotVars //
 	//////////////////////
+
 
 	/**	 The entity defaultPivotVars
 	 *	 It is constructed before being initialized with the constructor by default. 
@@ -1139,6 +864,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	// listComputateJavaClass //
 	////////////////////////////
 
+
 	/**	 The entity listComputateJavaClass
 	 *	 It is constructed before being initialized with the constructor by default. 
 	 */
@@ -1169,85 +895,10 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		return (ComputateJavaClassGenPage)this;
 	}
 
-	///////////
-	// stats //
-	///////////
-
-	/**	 The entity stats
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected Stats stats;
-
-	/**	<br> The entity stats
-	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:stats">Find the entity stats in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _stats(Wrap<Stats> w);
-
-	public Stats getStats() {
-		return stats;
-	}
-
-	public void setStats(Stats stats) {
-		this.stats = stats;
-	}
-	public static Stats staticSetStats(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected ComputateJavaClassGenPage statsInit() {
-		Wrap<Stats> statsWrap = new Wrap<Stats>().var("stats");
-		if(stats == null) {
-			_stats(statsWrap);
-			setStats(statsWrap.o);
-		}
-		return (ComputateJavaClassGenPage)this;
-	}
-
-	/////////////////
-	// facetCounts //
-	/////////////////
-
-	/**	 The entity facetCounts
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected FacetCounts facetCounts;
-
-	/**	<br> The entity facetCounts
-	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:facetCounts">Find the entity facetCounts in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _facetCounts(Wrap<FacetCounts> w);
-
-	public FacetCounts getFacetCounts() {
-		return facetCounts;
-	}
-
-	public void setFacetCounts(FacetCounts facetCounts) {
-		this.facetCounts = facetCounts;
-	}
-	public static FacetCounts staticSetFacetCounts(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected ComputateJavaClassGenPage facetCountsInit() {
-		Wrap<FacetCounts> facetCountsWrap = new Wrap<FacetCounts>().var("facetCounts");
-		if(facetCounts == null) {
-			_facetCounts(facetCountsWrap);
-			setFacetCounts(facetCountsWrap.o);
-		}
-		return (ComputateJavaClassGenPage)this;
-	}
-
 	/////////////////////////////
 	// computateJavaClassCount //
 	/////////////////////////////
+
 
 	/**	 The entity computateJavaClassCount
 	 *	 is defined as null before being initialized. 
@@ -1306,6 +957,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	// computateJavaClass_ //
 	/////////////////////////
 
+
 	/**	 The entity computateJavaClass_
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1343,6 +995,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	////////
 	// id //
 	////////
+
 
 	/**	 The entity id
 	 *	 is defined as null before being initialized. 
@@ -1389,9 +1042,513 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		return ComputateJavaClassGenPage.staticSearchStrId(siteRequest_, ComputateJavaClassGenPage.staticSearchId(siteRequest_, ComputateJavaClassGenPage.staticSetId(siteRequest_, o)));
 	}
 
+	///////////////////
+	// promiseBefore //
+	///////////////////
+
+
+	/**	 The entity promiseBefore
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonIgnore
+	@JsonInclude(Include.NON_NULL)
+	protected Void promiseBefore;
+
+	/**	<br> The entity promiseBefore
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:promiseBefore">Find the entity promiseBefore in Solr</a>
+	 * <br>
+	 * @param promise is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _promiseBefore(Promise<Void> promise);
+
+	public Void getPromiseBefore() {
+		return promiseBefore;
+	}
+
+	public void setPromiseBefore(Void promiseBefore) {
+		this.promiseBefore = promiseBefore;
+	}
+	public static Void staticSetPromiseBefore(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Future<Void> promiseBeforePromise() {
+		Promise<Void> promise = Promise.promise();
+		Promise<Void> promise2 = Promise.promise();
+		_promiseBefore(promise2);
+		promise2.future().onSuccess(o -> {
+			setPromiseBefore(o);
+			promise.complete(o);
+		}).onFailure(ex -> {
+			promise.fail(ex);
+		});
+		return promise.future();
+	}
+
+	/////////////////////
+	// classSimpleName //
+	/////////////////////
+
+
+	/**	 The entity classSimpleName
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String classSimpleName;
+
+	/**	<br> The entity classSimpleName
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:classSimpleName">Find the entity classSimpleName in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _classSimpleName(Wrap<String> w);
+
+	public String getClassSimpleName() {
+		return classSimpleName;
+	}
+	public void setClassSimpleName(String o) {
+		this.classSimpleName = ComputateJavaClassGenPage.staticSetClassSimpleName(siteRequest_, o);
+	}
+	public static String staticSetClassSimpleName(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputateJavaClassGenPage classSimpleNameInit() {
+		Wrap<String> classSimpleNameWrap = new Wrap<String>().var("classSimpleName");
+		if(classSimpleName == null) {
+			_classSimpleName(classSimpleNameWrap);
+			setClassSimpleName(classSimpleNameWrap.o);
+		}
+		return (ComputateJavaClassGenPage)this;
+	}
+
+	public static String staticSearchClassSimpleName(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrClassSimpleName(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqClassSimpleName(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrClassSimpleName(siteRequest_, ComputateJavaClassGenPage.staticSearchClassSimpleName(siteRequest_, ComputateJavaClassGenPage.staticSetClassSimpleName(siteRequest_, o)));
+	}
+
+	///////////////
+	// pageTitle //
+	///////////////
+
+
+	/**	 The entity pageTitle
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String pageTitle;
+
+	/**	<br> The entity pageTitle
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:pageTitle">Find the entity pageTitle in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _pageTitle(Wrap<String> c);
+
+	public String getPageTitle() {
+		return pageTitle;
+	}
+	public void setPageTitle(String o) {
+		this.pageTitle = ComputateJavaClassGenPage.staticSetPageTitle(siteRequest_, o);
+	}
+	public static String staticSetPageTitle(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputateJavaClassGenPage pageTitleInit() {
+		Wrap<String> pageTitleWrap = new Wrap<String>().var("pageTitle");
+		if(pageTitle == null) {
+			_pageTitle(pageTitleWrap);
+			setPageTitle(pageTitleWrap.o);
+		}
+		return (ComputateJavaClassGenPage)this;
+	}
+
+	public static String staticSearchPageTitle(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrPageTitle(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqPageTitle(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrPageTitle(siteRequest_, ComputateJavaClassGenPage.staticSearchPageTitle(siteRequest_, ComputateJavaClassGenPage.staticSetPageTitle(siteRequest_, o)));
+	}
+
+	/////////////
+	// pageUri //
+	/////////////
+
+
+	/**	 The entity pageUri
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String pageUri;
+
+	/**	<br> The entity pageUri
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:pageUri">Find the entity pageUri in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _pageUri(Wrap<String> c);
+
+	public String getPageUri() {
+		return pageUri;
+	}
+	public void setPageUri(String o) {
+		this.pageUri = ComputateJavaClassGenPage.staticSetPageUri(siteRequest_, o);
+	}
+	public static String staticSetPageUri(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputateJavaClassGenPage pageUriInit() {
+		Wrap<String> pageUriWrap = new Wrap<String>().var("pageUri");
+		if(pageUri == null) {
+			_pageUri(pageUriWrap);
+			setPageUri(pageUriWrap.o);
+		}
+		return (ComputateJavaClassGenPage)this;
+	}
+
+	public static String staticSearchPageUri(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrPageUri(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqPageUri(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrPageUri(siteRequest_, ComputateJavaClassGenPage.staticSearchPageUri(siteRequest_, ComputateJavaClassGenPage.staticSetPageUri(siteRequest_, o)));
+	}
+
+	////////////
+	// apiUri //
+	////////////
+
+
+	/**	 The entity apiUri
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String apiUri;
+
+	/**	<br> The entity apiUri
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:apiUri">Find the entity apiUri in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _apiUri(Wrap<String> c);
+
+	public String getApiUri() {
+		return apiUri;
+	}
+	public void setApiUri(String o) {
+		this.apiUri = ComputateJavaClassGenPage.staticSetApiUri(siteRequest_, o);
+	}
+	public static String staticSetApiUri(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputateJavaClassGenPage apiUriInit() {
+		Wrap<String> apiUriWrap = new Wrap<String>().var("apiUri");
+		if(apiUri == null) {
+			_apiUri(apiUriWrap);
+			setApiUri(apiUriWrap.o);
+		}
+		return (ComputateJavaClassGenPage)this;
+	}
+
+	public static String staticSearchApiUri(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrApiUri(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqApiUri(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrApiUri(siteRequest_, ComputateJavaClassGenPage.staticSearchApiUri(siteRequest_, ComputateJavaClassGenPage.staticSetApiUri(siteRequest_, o)));
+	}
+
+	///////////
+	// roles //
+	///////////
+
+
+	/**	 The entity roles
+	 *	 It is constructed before being initialized with the constructor by default. 
+	 */
+	@JsonProperty
+	@JsonFormat(shape = JsonFormat.Shape.ARRAY)
+	@JsonInclude(Include.NON_NULL)
+	protected List<String> roles = new ArrayList<String>();
+
+	/**	<br> The entity roles
+	 *  It is constructed before being initialized with the constructor by default. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:roles">Find the entity roles in Solr</a>
+	 * <br>
+	 * @param l is the entity already constructed. 
+	 **/
+	protected abstract void _roles(List<String> l);
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+	public static String staticSetRoles(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	public ComputateJavaClassGenPage addRoles(String...objects) {
+		for(String o : objects) {
+			addRoles(o);
+		}
+		return (ComputateJavaClassGenPage)this;
+	}
+	public ComputateJavaClassGenPage addRoles(String o) {
+		if(o != null)
+			this.roles.add(o);
+		return (ComputateJavaClassGenPage)this;
+	}
+	@JsonIgnore
+	public void setRoles(JsonArray objects) {
+		roles.clear();
+		for(int i = 0; i < objects.size(); i++) {
+			String o = objects.getString(i);
+			addRoles(o);
+		}
+	}
+	protected ComputateJavaClassGenPage rolesInit() {
+		_roles(roles);
+		return (ComputateJavaClassGenPage)this;
+	}
+
+	public static String staticSearchRoles(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrRoles(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqRoles(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrRoles(siteRequest_, ComputateJavaClassGenPage.staticSearchRoles(siteRequest_, ComputateJavaClassGenPage.staticSetRoles(siteRequest_, o)));
+	}
+
+	//////////////////
+	// promiseAfter //
+	//////////////////
+
+
+	/**	 The entity promiseAfter
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonIgnore
+	@JsonInclude(Include.NON_NULL)
+	protected Void promiseAfter;
+
+	/**	<br> The entity promiseAfter
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:promiseAfter">Find the entity promiseAfter in Solr</a>
+	 * <br>
+	 * @param promise is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _promiseAfter(Promise<Void> promise);
+
+	public Void getPromiseAfter() {
+		return promiseAfter;
+	}
+
+	public void setPromiseAfter(Void promiseAfter) {
+		this.promiseAfter = promiseAfter;
+	}
+	public static Void staticSetPromiseAfter(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Future<Void> promiseAfterPromise() {
+		Promise<Void> promise = Promise.promise();
+		Promise<Void> promise2 = Promise.promise();
+		_promiseAfter(promise2);
+		promise2.future().onSuccess(o -> {
+			setPromiseAfter(o);
+			promise.complete(o);
+		}).onFailure(ex -> {
+			promise.fail(ex);
+		});
+		return promise.future();
+	}
+
+	//////////////////
+	// pageImageUri //
+	//////////////////
+
+
+	/**	 The entity pageImageUri
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String pageImageUri;
+
+	/**	<br> The entity pageImageUri
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:pageImageUri">Find the entity pageImageUri in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _pageImageUri(Wrap<String> c);
+
+	public String getPageImageUri() {
+		return pageImageUri;
+	}
+	public void setPageImageUri(String o) {
+		this.pageImageUri = ComputateJavaClassGenPage.staticSetPageImageUri(siteRequest_, o);
+	}
+	public static String staticSetPageImageUri(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputateJavaClassGenPage pageImageUriInit() {
+		Wrap<String> pageImageUriWrap = new Wrap<String>().var("pageImageUri");
+		if(pageImageUri == null) {
+			_pageImageUri(pageImageUriWrap);
+			setPageImageUri(pageImageUriWrap.o);
+		}
+		return (ComputateJavaClassGenPage)this;
+	}
+
+	public static String staticSearchPageImageUri(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrPageImageUri(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqPageImageUri(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrPageImageUri(siteRequest_, ComputateJavaClassGenPage.staticSearchPageImageUri(siteRequest_, ComputateJavaClassGenPage.staticSetPageImageUri(siteRequest_, o)));
+	}
+
+	////////////////////
+	// classIconGroup //
+	////////////////////
+
+
+	/**	 The entity classIconGroup
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String classIconGroup;
+
+	/**	<br> The entity classIconGroup
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:classIconGroup">Find the entity classIconGroup in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _classIconGroup(Wrap<String> c);
+
+	public String getClassIconGroup() {
+		return classIconGroup;
+	}
+	public void setClassIconGroup(String o) {
+		this.classIconGroup = ComputateJavaClassGenPage.staticSetClassIconGroup(siteRequest_, o);
+	}
+	public static String staticSetClassIconGroup(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputateJavaClassGenPage classIconGroupInit() {
+		Wrap<String> classIconGroupWrap = new Wrap<String>().var("classIconGroup");
+		if(classIconGroup == null) {
+			_classIconGroup(classIconGroupWrap);
+			setClassIconGroup(classIconGroupWrap.o);
+		}
+		return (ComputateJavaClassGenPage)this;
+	}
+
+	public static String staticSearchClassIconGroup(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrClassIconGroup(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqClassIconGroup(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrClassIconGroup(siteRequest_, ComputateJavaClassGenPage.staticSearchClassIconGroup(siteRequest_, ComputateJavaClassGenPage.staticSetClassIconGroup(siteRequest_, o)));
+	}
+
+	///////////////////
+	// classIconName //
+	///////////////////
+
+
+	/**	 The entity classIconName
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String classIconName;
+
+	/**	<br> The entity classIconName
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:classIconName">Find the entity classIconName in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _classIconName(Wrap<String> c);
+
+	public String getClassIconName() {
+		return classIconName;
+	}
+	public void setClassIconName(String o) {
+		this.classIconName = ComputateJavaClassGenPage.staticSetClassIconName(siteRequest_, o);
+	}
+	public static String staticSetClassIconName(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputateJavaClassGenPage classIconNameInit() {
+		Wrap<String> classIconNameWrap = new Wrap<String>().var("classIconName");
+		if(classIconName == null) {
+			_classIconName(classIconNameWrap);
+			setClassIconName(classIconNameWrap.o);
+		}
+		return (ComputateJavaClassGenPage)this;
+	}
+
+	public static String staticSearchClassIconName(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrClassIconName(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqClassIconName(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrClassIconName(siteRequest_, ComputateJavaClassGenPage.staticSearchClassIconName(siteRequest_, ComputateJavaClassGenPage.staticSetClassIconName(siteRequest_, o)));
+	}
+
 	///////////////////////////////
 	// pageUriComputateJavaClass //
 	///////////////////////////////
+
 
 	/**	 The entity pageUriComputateJavaClass
 	 *	 is defined as null before being initialized. 
@@ -1452,11 +1609,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		Promise<Void> promise2 = Promise.promise();
 		promiseComputateJavaClassGenPage(promise2);
 		promise2.future().onSuccess(a -> {
-			super.promiseDeepComputatePageLayout(siteRequest_).onSuccess(b -> {
-				promise.complete();
-			}).onFailure(ex -> {
-				promise.fail(ex);
-			});
+			promise.complete();
 		}).onFailure(ex -> {
 			promise.fail(ex);
 		});
@@ -1467,31 +1620,64 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		Future.future(a -> a.complete()).compose(a -> {
 			Promise<Void> promise2 = Promise.promise();
 			try {
+				siteRequest_Init();
 				searchListComputateJavaClass_Init();
 				pageResponseInit();
-				defaultZoneIdInit();
-				defaultTimeZoneInit();
-				defaultLocaleIdInit();
-				defaultLocaleInit();
-				defaultRangeGapInit();
-				defaultRangeEndInit();
-				defaultRangeStartInit();
-				defaultRangeVarInit();
-				defaultFacetSortInit();
-				defaultFacetLimitInit();
-				defaultFacetMinCountInit();
-				defaultPivotMinCountInit();
-				DEFAULT_MAP_LOCATIONInit();
-				DEFAULT_MAP_ZOOMInit();
+				statsInit();
+				facetCountsInit();
+				paginationInit();
+				varsQInit();
+				varsFqInit();
+				varsRangeInit();
+				queryInit();
+				defaultRangeStatsInit();
 				defaultFieldListVarsInit();
 				defaultStatsVarsInit();
 				defaultPivotVarsInit();
 				listComputateJavaClassInit();
-				statsInit();
-				facetCountsInit();
 				computateJavaClassCountInit();
 				computateJavaClass_Init();
 				idInit();
+				promise2.complete();
+			} catch(Exception ex) {
+				promise2.fail(ex);
+			}
+			return promise2.future();
+		}).compose(a -> {
+			Promise<Void> promise2 = Promise.promise();
+			promiseBeforePromise().onSuccess(promiseBefore -> {
+				promise2.complete();
+			}).onFailure(ex -> {
+				promise2.fail(ex);
+			});
+			return promise2.future();
+		}).compose(a -> {
+			Promise<Void> promise2 = Promise.promise();
+			try {
+				classSimpleNameInit();
+				pageTitleInit();
+				pageUriInit();
+				apiUriInit();
+				rolesInit();
+				promise2.complete();
+			} catch(Exception ex) {
+				promise2.fail(ex);
+			}
+			return promise2.future();
+		}).compose(a -> {
+			Promise<Void> promise2 = Promise.promise();
+			promiseAfterPromise().onSuccess(promiseAfter -> {
+				promise2.complete();
+			}).onFailure(ex -> {
+				promise2.fail(ex);
+			});
+			return promise2.future();
+		}).compose(a -> {
+			Promise<Void> promise2 = Promise.promise();
+			try {
+				pageImageUriInit();
+				classIconGroupInit();
+				classIconNameInit();
 				pageUriComputateJavaClassInit();
 				promise2.complete();
 			} catch(Exception ex) {
@@ -1506,7 +1692,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		return promise.future();
 	}
 
-	@Override public Future<Void> promiseDeepForClass(ComputateSiteRequest siteRequest_) {
+	public Future<Void> promiseDeepForClass(ComputateSiteRequest siteRequest_) {
 		return promiseDeepComputateJavaClassGenPage(siteRequest_);
 	}
 
@@ -1515,7 +1701,6 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	/////////////////
 
 	public void siteRequestComputateJavaClassGenPage(ComputateSiteRequest siteRequest_) {
-			super.siteRequestComputatePageLayout(siteRequest_);
 	}
 
 	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
@@ -1526,7 +1711,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	// obtain //
 	/////////////
 
-	@Override public Object obtainForClass(String var) {
+	public Object obtainForClass(String var) {
 		String[] vars = StringUtils.split(var, ".");
 		Object o = null;
 		for(String v : vars) {
@@ -1542,38 +1727,28 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	public Object obtainComputateJavaClassGenPage(String var) {
 		ComputateJavaClassGenPage oComputateJavaClassGenPage = (ComputateJavaClassGenPage)this;
 		switch(var) {
+			case "siteRequest_":
+				return oComputateJavaClassGenPage.siteRequest_;
 			case "searchListComputateJavaClass_":
 				return oComputateJavaClassGenPage.searchListComputateJavaClass_;
 			case "pageResponse":
 				return oComputateJavaClassGenPage.pageResponse;
-			case "defaultZoneId":
-				return oComputateJavaClassGenPage.defaultZoneId;
-			case "defaultTimeZone":
-				return oComputateJavaClassGenPage.defaultTimeZone;
-			case "defaultLocaleId":
-				return oComputateJavaClassGenPage.defaultLocaleId;
-			case "defaultLocale":
-				return oComputateJavaClassGenPage.defaultLocale;
-			case "defaultRangeGap":
-				return oComputateJavaClassGenPage.defaultRangeGap;
-			case "defaultRangeEnd":
-				return oComputateJavaClassGenPage.defaultRangeEnd;
-			case "defaultRangeStart":
-				return oComputateJavaClassGenPage.defaultRangeStart;
-			case "defaultRangeVar":
-				return oComputateJavaClassGenPage.defaultRangeVar;
-			case "defaultFacetSort":
-				return oComputateJavaClassGenPage.defaultFacetSort;
-			case "defaultFacetLimit":
-				return oComputateJavaClassGenPage.defaultFacetLimit;
-			case "defaultFacetMinCount":
-				return oComputateJavaClassGenPage.defaultFacetMinCount;
-			case "defaultPivotMinCount":
-				return oComputateJavaClassGenPage.defaultPivotMinCount;
-			case "DEFAULT_MAP_LOCATION":
-				return oComputateJavaClassGenPage.DEFAULT_MAP_LOCATION;
-			case "DEFAULT_MAP_ZOOM":
-				return oComputateJavaClassGenPage.DEFAULT_MAP_ZOOM;
+			case "stats":
+				return oComputateJavaClassGenPage.stats;
+			case "facetCounts":
+				return oComputateJavaClassGenPage.facetCounts;
+			case "pagination":
+				return oComputateJavaClassGenPage.pagination;
+			case "varsQ":
+				return oComputateJavaClassGenPage.varsQ;
+			case "varsFq":
+				return oComputateJavaClassGenPage.varsFq;
+			case "varsRange":
+				return oComputateJavaClassGenPage.varsRange;
+			case "query":
+				return oComputateJavaClassGenPage.query;
+			case "defaultRangeStats":
+				return oComputateJavaClassGenPage.defaultRangeStats;
 			case "defaultFieldListVars":
 				return oComputateJavaClassGenPage.defaultFieldListVars;
 			case "defaultStatsVars":
@@ -1582,20 +1757,36 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 				return oComputateJavaClassGenPage.defaultPivotVars;
 			case "listComputateJavaClass":
 				return oComputateJavaClassGenPage.listComputateJavaClass;
-			case "stats":
-				return oComputateJavaClassGenPage.stats;
-			case "facetCounts":
-				return oComputateJavaClassGenPage.facetCounts;
 			case "computateJavaClassCount":
 				return oComputateJavaClassGenPage.computateJavaClassCount;
 			case "computateJavaClass_":
 				return oComputateJavaClassGenPage.computateJavaClass_;
 			case "id":
 				return oComputateJavaClassGenPage.id;
+			case "promiseBefore":
+				return oComputateJavaClassGenPage.promiseBefore;
+			case "classSimpleName":
+				return oComputateJavaClassGenPage.classSimpleName;
+			case "pageTitle":
+				return oComputateJavaClassGenPage.pageTitle;
+			case "pageUri":
+				return oComputateJavaClassGenPage.pageUri;
+			case "apiUri":
+				return oComputateJavaClassGenPage.apiUri;
+			case "roles":
+				return oComputateJavaClassGenPage.roles;
+			case "promiseAfter":
+				return oComputateJavaClassGenPage.promiseAfter;
+			case "pageImageUri":
+				return oComputateJavaClassGenPage.pageImageUri;
+			case "classIconGroup":
+				return oComputateJavaClassGenPage.classIconGroup;
+			case "classIconName":
+				return oComputateJavaClassGenPage.classIconName;
 			case "pageUriComputateJavaClass":
 				return oComputateJavaClassGenPage.pageUriComputateJavaClass;
 			default:
-				return super.obtainComputatePageLayout(var);
+				return null;
 		}
 	}
 
@@ -1603,7 +1794,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	// relate //
 	///////////////
 
-	@Override public boolean relateForClass(String var, Object val) {
+	public boolean relateForClass(String var, Object val) {
 		String[] vars = StringUtils.split(var, ".");
 		Object o = null;
 		for(String v : vars) {
@@ -1616,7 +1807,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		ComputateJavaClassGenPage oComputateJavaClassGenPage = (ComputateJavaClassGenPage)this;
 		switch(var) {
 			default:
-				return super.relateComputatePageLayout(var, val);
+				return null;
 		}
 	}
 
@@ -1631,30 +1822,18 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		switch(entityVar) {
 		case "pageResponse":
 			return ComputateJavaClassGenPage.staticSetPageResponse(siteRequest_, o);
-		case "defaultZoneId":
-			return ComputateJavaClassGenPage.staticSetDefaultZoneId(siteRequest_, o);
-		case "defaultLocaleId":
-			return ComputateJavaClassGenPage.staticSetDefaultLocaleId(siteRequest_, o);
-		case "defaultRangeGap":
-			return ComputateJavaClassGenPage.staticSetDefaultRangeGap(siteRequest_, o);
-		case "defaultRangeEnd":
-			return ComputateJavaClassGenPage.staticSetDefaultRangeEnd(siteRequest_, o);
-		case "defaultRangeStart":
-			return ComputateJavaClassGenPage.staticSetDefaultRangeStart(siteRequest_, o);
-		case "defaultRangeVar":
-			return ComputateJavaClassGenPage.staticSetDefaultRangeVar(siteRequest_, o);
-		case "defaultFacetSort":
-			return ComputateJavaClassGenPage.staticSetDefaultFacetSort(siteRequest_, o);
-		case "defaultFacetLimit":
-			return ComputateJavaClassGenPage.staticSetDefaultFacetLimit(siteRequest_, o);
-		case "defaultFacetMinCount":
-			return ComputateJavaClassGenPage.staticSetDefaultFacetMinCount(siteRequest_, o);
-		case "defaultPivotMinCount":
-			return ComputateJavaClassGenPage.staticSetDefaultPivotMinCount(siteRequest_, o);
-		case "DEFAULT_MAP_LOCATION":
-			return ComputateJavaClassGenPage.staticSetDEFAULT_MAP_LOCATION(siteRequest_, o);
-		case "DEFAULT_MAP_ZOOM":
-			return ComputateJavaClassGenPage.staticSetDEFAULT_MAP_ZOOM(siteRequest_, o);
+		case "pagination":
+			return ComputateJavaClassGenPage.staticSetPagination(siteRequest_, o);
+		case "varsQ":
+			return ComputateJavaClassGenPage.staticSetVarsQ(siteRequest_, o);
+		case "varsFq":
+			return ComputateJavaClassGenPage.staticSetVarsFq(siteRequest_, o);
+		case "varsRange":
+			return ComputateJavaClassGenPage.staticSetVarsRange(siteRequest_, o);
+		case "query":
+			return ComputateJavaClassGenPage.staticSetQuery(siteRequest_, o);
+		case "defaultRangeStats":
+			return ComputateJavaClassGenPage.staticSetDefaultRangeStats(siteRequest_, o);
 		case "defaultFieldListVars":
 			return ComputateJavaClassGenPage.staticSetDefaultFieldListVars(siteRequest_, o);
 		case "defaultStatsVars":
@@ -1665,10 +1844,26 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 			return ComputateJavaClassGenPage.staticSetComputateJavaClassCount(siteRequest_, o);
 		case "id":
 			return ComputateJavaClassGenPage.staticSetId(siteRequest_, o);
+		case "classSimpleName":
+			return ComputateJavaClassGenPage.staticSetClassSimpleName(siteRequest_, o);
+		case "pageTitle":
+			return ComputateJavaClassGenPage.staticSetPageTitle(siteRequest_, o);
+		case "pageUri":
+			return ComputateJavaClassGenPage.staticSetPageUri(siteRequest_, o);
+		case "apiUri":
+			return ComputateJavaClassGenPage.staticSetApiUri(siteRequest_, o);
+		case "roles":
+			return ComputateJavaClassGenPage.staticSetRoles(siteRequest_, o);
+		case "pageImageUri":
+			return ComputateJavaClassGenPage.staticSetPageImageUri(siteRequest_, o);
+		case "classIconGroup":
+			return ComputateJavaClassGenPage.staticSetClassIconGroup(siteRequest_, o);
+		case "classIconName":
+			return ComputateJavaClassGenPage.staticSetClassIconName(siteRequest_, o);
 		case "pageUriComputateJavaClass":
 			return ComputateJavaClassGenPage.staticSetPageUriComputateJavaClass(siteRequest_, o);
 			default:
-				return ComputatePageLayout.staticSetComputatePageLayout(entityVar,  siteRequest_, o);
+				return null;
 		}
 	}
 
@@ -1683,30 +1878,18 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		switch(entityVar) {
 		case "pageResponse":
 			return ComputateJavaClassGenPage.staticSearchPageResponse(siteRequest_, (String)o);
-		case "defaultZoneId":
-			return ComputateJavaClassGenPage.staticSearchDefaultZoneId(siteRequest_, (String)o);
-		case "defaultLocaleId":
-			return ComputateJavaClassGenPage.staticSearchDefaultLocaleId(siteRequest_, (String)o);
-		case "defaultRangeGap":
-			return ComputateJavaClassGenPage.staticSearchDefaultRangeGap(siteRequest_, (String)o);
-		case "defaultRangeEnd":
-			return ComputateJavaClassGenPage.staticSearchDefaultRangeEnd(siteRequest_, (ZonedDateTime)o);
-		case "defaultRangeStart":
-			return ComputateJavaClassGenPage.staticSearchDefaultRangeStart(siteRequest_, (ZonedDateTime)o);
-		case "defaultRangeVar":
-			return ComputateJavaClassGenPage.staticSearchDefaultRangeVar(siteRequest_, (String)o);
-		case "defaultFacetSort":
-			return ComputateJavaClassGenPage.staticSearchDefaultFacetSort(siteRequest_, (String)o);
-		case "defaultFacetLimit":
-			return ComputateJavaClassGenPage.staticSearchDefaultFacetLimit(siteRequest_, (Integer)o);
-		case "defaultFacetMinCount":
-			return ComputateJavaClassGenPage.staticSearchDefaultFacetMinCount(siteRequest_, (Integer)o);
-		case "defaultPivotMinCount":
-			return ComputateJavaClassGenPage.staticSearchDefaultPivotMinCount(siteRequest_, (Integer)o);
-		case "DEFAULT_MAP_LOCATION":
-			return ComputateJavaClassGenPage.staticSearchDEFAULT_MAP_LOCATION(siteRequest_, (JsonObject)o);
-		case "DEFAULT_MAP_ZOOM":
-			return ComputateJavaClassGenPage.staticSearchDEFAULT_MAP_ZOOM(siteRequest_, (BigDecimal)o);
+		case "pagination":
+			return ComputateJavaClassGenPage.staticSearchPagination(siteRequest_, (JsonObject)o);
+		case "varsQ":
+			return ComputateJavaClassGenPage.staticSearchVarsQ(siteRequest_, (JsonObject)o);
+		case "varsFq":
+			return ComputateJavaClassGenPage.staticSearchVarsFq(siteRequest_, (JsonObject)o);
+		case "varsRange":
+			return ComputateJavaClassGenPage.staticSearchVarsRange(siteRequest_, (JsonObject)o);
+		case "query":
+			return ComputateJavaClassGenPage.staticSearchQuery(siteRequest_, (JsonObject)o);
+		case "defaultRangeStats":
+			return ComputateJavaClassGenPage.staticSearchDefaultRangeStats(siteRequest_, (JsonObject)o);
 		case "defaultFieldListVars":
 			return ComputateJavaClassGenPage.staticSearchDefaultFieldListVars(siteRequest_, (String)o);
 		case "defaultStatsVars":
@@ -1717,10 +1900,26 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 			return ComputateJavaClassGenPage.staticSearchComputateJavaClassCount(siteRequest_, (Integer)o);
 		case "id":
 			return ComputateJavaClassGenPage.staticSearchId(siteRequest_, (String)o);
+		case "classSimpleName":
+			return ComputateJavaClassGenPage.staticSearchClassSimpleName(siteRequest_, (String)o);
+		case "pageTitle":
+			return ComputateJavaClassGenPage.staticSearchPageTitle(siteRequest_, (String)o);
+		case "pageUri":
+			return ComputateJavaClassGenPage.staticSearchPageUri(siteRequest_, (String)o);
+		case "apiUri":
+			return ComputateJavaClassGenPage.staticSearchApiUri(siteRequest_, (String)o);
+		case "roles":
+			return ComputateJavaClassGenPage.staticSearchRoles(siteRequest_, (String)o);
+		case "pageImageUri":
+			return ComputateJavaClassGenPage.staticSearchPageImageUri(siteRequest_, (String)o);
+		case "classIconGroup":
+			return ComputateJavaClassGenPage.staticSearchClassIconGroup(siteRequest_, (String)o);
+		case "classIconName":
+			return ComputateJavaClassGenPage.staticSearchClassIconName(siteRequest_, (String)o);
 		case "pageUriComputateJavaClass":
 			return ComputateJavaClassGenPage.staticSearchPageUriComputateJavaClass(siteRequest_, (String)o);
 			default:
-				return ComputatePageLayout.staticSearchComputatePageLayout(entityVar,  siteRequest_, o);
+				return null;
 		}
 	}
 
@@ -1735,30 +1934,18 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		switch(entityVar) {
 		case "pageResponse":
 			return ComputateJavaClassGenPage.staticSearchStrPageResponse(siteRequest_, (String)o);
-		case "defaultZoneId":
-			return ComputateJavaClassGenPage.staticSearchStrDefaultZoneId(siteRequest_, (String)o);
-		case "defaultLocaleId":
-			return ComputateJavaClassGenPage.staticSearchStrDefaultLocaleId(siteRequest_, (String)o);
-		case "defaultRangeGap":
-			return ComputateJavaClassGenPage.staticSearchStrDefaultRangeGap(siteRequest_, (String)o);
-		case "defaultRangeEnd":
-			return ComputateJavaClassGenPage.staticSearchStrDefaultRangeEnd(siteRequest_, (Date)o);
-		case "defaultRangeStart":
-			return ComputateJavaClassGenPage.staticSearchStrDefaultRangeStart(siteRequest_, (Date)o);
-		case "defaultRangeVar":
-			return ComputateJavaClassGenPage.staticSearchStrDefaultRangeVar(siteRequest_, (String)o);
-		case "defaultFacetSort":
-			return ComputateJavaClassGenPage.staticSearchStrDefaultFacetSort(siteRequest_, (String)o);
-		case "defaultFacetLimit":
-			return ComputateJavaClassGenPage.staticSearchStrDefaultFacetLimit(siteRequest_, (Integer)o);
-		case "defaultFacetMinCount":
-			return ComputateJavaClassGenPage.staticSearchStrDefaultFacetMinCount(siteRequest_, (Integer)o);
-		case "defaultPivotMinCount":
-			return ComputateJavaClassGenPage.staticSearchStrDefaultPivotMinCount(siteRequest_, (Integer)o);
-		case "DEFAULT_MAP_LOCATION":
-			return ComputateJavaClassGenPage.staticSearchStrDEFAULT_MAP_LOCATION(siteRequest_, (JsonObject)o);
-		case "DEFAULT_MAP_ZOOM":
-			return ComputateJavaClassGenPage.staticSearchStrDEFAULT_MAP_ZOOM(siteRequest_, (Double)o);
+		case "pagination":
+			return ComputateJavaClassGenPage.staticSearchStrPagination(siteRequest_, (JsonObject)o);
+		case "varsQ":
+			return ComputateJavaClassGenPage.staticSearchStrVarsQ(siteRequest_, (JsonObject)o);
+		case "varsFq":
+			return ComputateJavaClassGenPage.staticSearchStrVarsFq(siteRequest_, (JsonObject)o);
+		case "varsRange":
+			return ComputateJavaClassGenPage.staticSearchStrVarsRange(siteRequest_, (JsonObject)o);
+		case "query":
+			return ComputateJavaClassGenPage.staticSearchStrQuery(siteRequest_, (JsonObject)o);
+		case "defaultRangeStats":
+			return ComputateJavaClassGenPage.staticSearchStrDefaultRangeStats(siteRequest_, (JsonObject)o);
 		case "defaultFieldListVars":
 			return ComputateJavaClassGenPage.staticSearchStrDefaultFieldListVars(siteRequest_, (String)o);
 		case "defaultStatsVars":
@@ -1769,10 +1956,26 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 			return ComputateJavaClassGenPage.staticSearchStrComputateJavaClassCount(siteRequest_, (Integer)o);
 		case "id":
 			return ComputateJavaClassGenPage.staticSearchStrId(siteRequest_, (String)o);
+		case "classSimpleName":
+			return ComputateJavaClassGenPage.staticSearchStrClassSimpleName(siteRequest_, (String)o);
+		case "pageTitle":
+			return ComputateJavaClassGenPage.staticSearchStrPageTitle(siteRequest_, (String)o);
+		case "pageUri":
+			return ComputateJavaClassGenPage.staticSearchStrPageUri(siteRequest_, (String)o);
+		case "apiUri":
+			return ComputateJavaClassGenPage.staticSearchStrApiUri(siteRequest_, (String)o);
+		case "roles":
+			return ComputateJavaClassGenPage.staticSearchStrRoles(siteRequest_, (String)o);
+		case "pageImageUri":
+			return ComputateJavaClassGenPage.staticSearchStrPageImageUri(siteRequest_, (String)o);
+		case "classIconGroup":
+			return ComputateJavaClassGenPage.staticSearchStrClassIconGroup(siteRequest_, (String)o);
+		case "classIconName":
+			return ComputateJavaClassGenPage.staticSearchStrClassIconName(siteRequest_, (String)o);
 		case "pageUriComputateJavaClass":
 			return ComputateJavaClassGenPage.staticSearchStrPageUriComputateJavaClass(siteRequest_, (String)o);
 			default:
-				return ComputatePageLayout.staticSearchStrComputatePageLayout(entityVar,  siteRequest_, o);
+				return null;
 		}
 	}
 
@@ -1787,30 +1990,18 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		switch(entityVar) {
 		case "pageResponse":
 			return ComputateJavaClassGenPage.staticSearchFqPageResponse(siteRequest_, o);
-		case "defaultZoneId":
-			return ComputateJavaClassGenPage.staticSearchFqDefaultZoneId(siteRequest_, o);
-		case "defaultLocaleId":
-			return ComputateJavaClassGenPage.staticSearchFqDefaultLocaleId(siteRequest_, o);
-		case "defaultRangeGap":
-			return ComputateJavaClassGenPage.staticSearchFqDefaultRangeGap(siteRequest_, o);
-		case "defaultRangeEnd":
-			return ComputateJavaClassGenPage.staticSearchFqDefaultRangeEnd(siteRequest_, o);
-		case "defaultRangeStart":
-			return ComputateJavaClassGenPage.staticSearchFqDefaultRangeStart(siteRequest_, o);
-		case "defaultRangeVar":
-			return ComputateJavaClassGenPage.staticSearchFqDefaultRangeVar(siteRequest_, o);
-		case "defaultFacetSort":
-			return ComputateJavaClassGenPage.staticSearchFqDefaultFacetSort(siteRequest_, o);
-		case "defaultFacetLimit":
-			return ComputateJavaClassGenPage.staticSearchFqDefaultFacetLimit(siteRequest_, o);
-		case "defaultFacetMinCount":
-			return ComputateJavaClassGenPage.staticSearchFqDefaultFacetMinCount(siteRequest_, o);
-		case "defaultPivotMinCount":
-			return ComputateJavaClassGenPage.staticSearchFqDefaultPivotMinCount(siteRequest_, o);
-		case "DEFAULT_MAP_LOCATION":
-			return ComputateJavaClassGenPage.staticSearchFqDEFAULT_MAP_LOCATION(siteRequest_, o);
-		case "DEFAULT_MAP_ZOOM":
-			return ComputateJavaClassGenPage.staticSearchFqDEFAULT_MAP_ZOOM(siteRequest_, o);
+		case "pagination":
+			return ComputateJavaClassGenPage.staticSearchFqPagination(siteRequest_, o);
+		case "varsQ":
+			return ComputateJavaClassGenPage.staticSearchFqVarsQ(siteRequest_, o);
+		case "varsFq":
+			return ComputateJavaClassGenPage.staticSearchFqVarsFq(siteRequest_, o);
+		case "varsRange":
+			return ComputateJavaClassGenPage.staticSearchFqVarsRange(siteRequest_, o);
+		case "query":
+			return ComputateJavaClassGenPage.staticSearchFqQuery(siteRequest_, o);
+		case "defaultRangeStats":
+			return ComputateJavaClassGenPage.staticSearchFqDefaultRangeStats(siteRequest_, o);
 		case "defaultFieldListVars":
 			return ComputateJavaClassGenPage.staticSearchFqDefaultFieldListVars(siteRequest_, o);
 		case "defaultStatsVars":
@@ -1821,10 +2012,26 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 			return ComputateJavaClassGenPage.staticSearchFqComputateJavaClassCount(siteRequest_, o);
 		case "id":
 			return ComputateJavaClassGenPage.staticSearchFqId(siteRequest_, o);
+		case "classSimpleName":
+			return ComputateJavaClassGenPage.staticSearchFqClassSimpleName(siteRequest_, o);
+		case "pageTitle":
+			return ComputateJavaClassGenPage.staticSearchFqPageTitle(siteRequest_, o);
+		case "pageUri":
+			return ComputateJavaClassGenPage.staticSearchFqPageUri(siteRequest_, o);
+		case "apiUri":
+			return ComputateJavaClassGenPage.staticSearchFqApiUri(siteRequest_, o);
+		case "roles":
+			return ComputateJavaClassGenPage.staticSearchFqRoles(siteRequest_, o);
+		case "pageImageUri":
+			return ComputateJavaClassGenPage.staticSearchFqPageImageUri(siteRequest_, o);
+		case "classIconGroup":
+			return ComputateJavaClassGenPage.staticSearchFqClassIconGroup(siteRequest_, o);
+		case "classIconName":
+			return ComputateJavaClassGenPage.staticSearchFqClassIconName(siteRequest_, o);
 		case "pageUriComputateJavaClass":
 			return ComputateJavaClassGenPage.staticSearchFqPageUriComputateJavaClass(siteRequest_, o);
 			default:
-				return ComputatePageLayout.staticSearchFqComputatePageLayout(entityVar,  siteRequest_, o);
+				return null;
 		}
 	}
 
@@ -1834,63 +2041,68 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 
 	@Override public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(super.toString());
 		return sb.toString();
 	}
 
 	public static final String CLASS_SIMPLE_NAME = "ComputateJavaClassGenPage";
+	public static final String VAR_siteRequest_ = "siteRequest_";
 	public static final String VAR_searchListComputateJavaClass_ = "searchListComputateJavaClass_";
 	public static final String VAR_pageResponse = "pageResponse";
-	public static final String VAR_defaultZoneId = "defaultZoneId";
-	public static final String VAR_defaultTimeZone = "defaultTimeZone";
-	public static final String VAR_defaultLocaleId = "defaultLocaleId";
-	public static final String VAR_defaultLocale = "defaultLocale";
-	public static final String VAR_defaultRangeGap = "defaultRangeGap";
-	public static final String VAR_defaultRangeEnd = "defaultRangeEnd";
-	public static final String VAR_defaultRangeStart = "defaultRangeStart";
-	public static final String VAR_defaultRangeVar = "defaultRangeVar";
-	public static final String VAR_defaultFacetSort = "defaultFacetSort";
-	public static final String VAR_defaultFacetLimit = "defaultFacetLimit";
-	public static final String VAR_defaultFacetMinCount = "defaultFacetMinCount";
-	public static final String VAR_defaultPivotMinCount = "defaultPivotMinCount";
-	public static final String VAR_DEFAULT_MAP_LOCATION = "DEFAULT_MAP_LOCATION";
-	public static final String VAR_DEFAULT_MAP_ZOOM = "DEFAULT_MAP_ZOOM";
+	public static final String VAR_stats = "stats";
+	public static final String VAR_facetCounts = "facetCounts";
+	public static final String VAR_pagination = "pagination";
+	public static final String VAR_varsQ = "varsQ";
+	public static final String VAR_varsFq = "varsFq";
+	public static final String VAR_varsRange = "varsRange";
+	public static final String VAR_query = "query";
+	public static final String VAR_defaultRangeStats = "defaultRangeStats";
 	public static final String VAR_defaultFieldListVars = "defaultFieldListVars";
 	public static final String VAR_defaultStatsVars = "defaultStatsVars";
 	public static final String VAR_defaultPivotVars = "defaultPivotVars";
 	public static final String VAR_listComputateJavaClass = "listComputateJavaClass";
-	public static final String VAR_stats = "stats";
-	public static final String VAR_facetCounts = "facetCounts";
 	public static final String VAR_computateJavaClassCount = "computateJavaClassCount";
 	public static final String VAR_computateJavaClass_ = "computateJavaClass_";
 	public static final String VAR_id = "id";
+	public static final String VAR_promiseBefore = "promiseBefore";
+	public static final String VAR_classSimpleName = "classSimpleName";
+	public static final String VAR_pageTitle = "pageTitle";
+	public static final String VAR_pageUri = "pageUri";
+	public static final String VAR_apiUri = "apiUri";
+	public static final String VAR_roles = "roles";
+	public static final String VAR_promiseAfter = "promiseAfter";
+	public static final String VAR_pageImageUri = "pageImageUri";
+	public static final String VAR_classIconGroup = "classIconGroup";
+	public static final String VAR_classIconName = "classIconName";
 	public static final String VAR_pageUriComputateJavaClass = "pageUriComputateJavaClass";
 
+	public static final String DISPLAY_NAME_siteRequest_ = "";
 	public static final String DISPLAY_NAME_searchListComputateJavaClass_ = "";
 	public static final String DISPLAY_NAME_pageResponse = "";
-	public static final String DISPLAY_NAME_defaultZoneId = "";
-	public static final String DISPLAY_NAME_defaultTimeZone = "";
-	public static final String DISPLAY_NAME_defaultLocaleId = "";
-	public static final String DISPLAY_NAME_defaultLocale = "";
-	public static final String DISPLAY_NAME_defaultRangeGap = "";
-	public static final String DISPLAY_NAME_defaultRangeEnd = "";
-	public static final String DISPLAY_NAME_defaultRangeStart = "";
-	public static final String DISPLAY_NAME_defaultRangeVar = "";
-	public static final String DISPLAY_NAME_defaultFacetSort = "";
-	public static final String DISPLAY_NAME_defaultFacetLimit = "";
-	public static final String DISPLAY_NAME_defaultFacetMinCount = "";
-	public static final String DISPLAY_NAME_defaultPivotMinCount = "";
-	public static final String DISPLAY_NAME_DEFAULT_MAP_LOCATION = "";
-	public static final String DISPLAY_NAME_DEFAULT_MAP_ZOOM = "";
+	public static final String DISPLAY_NAME_stats = "";
+	public static final String DISPLAY_NAME_facetCounts = "";
+	public static final String DISPLAY_NAME_pagination = "";
+	public static final String DISPLAY_NAME_varsQ = "";
+	public static final String DISPLAY_NAME_varsFq = "";
+	public static final String DISPLAY_NAME_varsRange = "";
+	public static final String DISPLAY_NAME_query = "";
+	public static final String DISPLAY_NAME_defaultRangeStats = "";
 	public static final String DISPLAY_NAME_defaultFieldListVars = "";
 	public static final String DISPLAY_NAME_defaultStatsVars = "";
 	public static final String DISPLAY_NAME_defaultPivotVars = "";
 	public static final String DISPLAY_NAME_listComputateJavaClass = "";
-	public static final String DISPLAY_NAME_stats = "";
-	public static final String DISPLAY_NAME_facetCounts = "";
 	public static final String DISPLAY_NAME_computateJavaClassCount = "";
 	public static final String DISPLAY_NAME_computateJavaClass_ = "";
 	public static final String DISPLAY_NAME_id = "";
+	public static final String DISPLAY_NAME_promiseBefore = "";
+	public static final String DISPLAY_NAME_classSimpleName = "";
+	public static final String DISPLAY_NAME_pageTitle = "";
+	public static final String DISPLAY_NAME_pageUri = "";
+	public static final String DISPLAY_NAME_apiUri = "";
+	public static final String DISPLAY_NAME_roles = "";
+	public static final String DISPLAY_NAME_promiseAfter = "";
+	public static final String DISPLAY_NAME_pageImageUri = "";
+	public static final String DISPLAY_NAME_classIconGroup = "";
+	public static final String DISPLAY_NAME_classIconName = "";
 	public static final String DISPLAY_NAME_pageUriComputateJavaClass = "";
 
 	public static String displayNameForClass(String var) {
@@ -1898,38 +2110,28 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	}
 	public static String displayNameComputateJavaClassGenPage(String var) {
 		switch(var) {
+		case VAR_siteRequest_:
+			return DISPLAY_NAME_siteRequest_;
 		case VAR_searchListComputateJavaClass_:
 			return DISPLAY_NAME_searchListComputateJavaClass_;
 		case VAR_pageResponse:
 			return DISPLAY_NAME_pageResponse;
-		case VAR_defaultZoneId:
-			return DISPLAY_NAME_defaultZoneId;
-		case VAR_defaultTimeZone:
-			return DISPLAY_NAME_defaultTimeZone;
-		case VAR_defaultLocaleId:
-			return DISPLAY_NAME_defaultLocaleId;
-		case VAR_defaultLocale:
-			return DISPLAY_NAME_defaultLocale;
-		case VAR_defaultRangeGap:
-			return DISPLAY_NAME_defaultRangeGap;
-		case VAR_defaultRangeEnd:
-			return DISPLAY_NAME_defaultRangeEnd;
-		case VAR_defaultRangeStart:
-			return DISPLAY_NAME_defaultRangeStart;
-		case VAR_defaultRangeVar:
-			return DISPLAY_NAME_defaultRangeVar;
-		case VAR_defaultFacetSort:
-			return DISPLAY_NAME_defaultFacetSort;
-		case VAR_defaultFacetLimit:
-			return DISPLAY_NAME_defaultFacetLimit;
-		case VAR_defaultFacetMinCount:
-			return DISPLAY_NAME_defaultFacetMinCount;
-		case VAR_defaultPivotMinCount:
-			return DISPLAY_NAME_defaultPivotMinCount;
-		case VAR_DEFAULT_MAP_LOCATION:
-			return DISPLAY_NAME_DEFAULT_MAP_LOCATION;
-		case VAR_DEFAULT_MAP_ZOOM:
-			return DISPLAY_NAME_DEFAULT_MAP_ZOOM;
+		case VAR_stats:
+			return DISPLAY_NAME_stats;
+		case VAR_facetCounts:
+			return DISPLAY_NAME_facetCounts;
+		case VAR_pagination:
+			return DISPLAY_NAME_pagination;
+		case VAR_varsQ:
+			return DISPLAY_NAME_varsQ;
+		case VAR_varsFq:
+			return DISPLAY_NAME_varsFq;
+		case VAR_varsRange:
+			return DISPLAY_NAME_varsRange;
+		case VAR_query:
+			return DISPLAY_NAME_query;
+		case VAR_defaultRangeStats:
+			return DISPLAY_NAME_defaultRangeStats;
 		case VAR_defaultFieldListVars:
 			return DISPLAY_NAME_defaultFieldListVars;
 		case VAR_defaultStatsVars:
@@ -1938,20 +2140,36 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 			return DISPLAY_NAME_defaultPivotVars;
 		case VAR_listComputateJavaClass:
 			return DISPLAY_NAME_listComputateJavaClass;
-		case VAR_stats:
-			return DISPLAY_NAME_stats;
-		case VAR_facetCounts:
-			return DISPLAY_NAME_facetCounts;
 		case VAR_computateJavaClassCount:
 			return DISPLAY_NAME_computateJavaClassCount;
 		case VAR_computateJavaClass_:
 			return DISPLAY_NAME_computateJavaClass_;
 		case VAR_id:
 			return DISPLAY_NAME_id;
+		case VAR_promiseBefore:
+			return DISPLAY_NAME_promiseBefore;
+		case VAR_classSimpleName:
+			return DISPLAY_NAME_classSimpleName;
+		case VAR_pageTitle:
+			return DISPLAY_NAME_pageTitle;
+		case VAR_pageUri:
+			return DISPLAY_NAME_pageUri;
+		case VAR_apiUri:
+			return DISPLAY_NAME_apiUri;
+		case VAR_roles:
+			return DISPLAY_NAME_roles;
+		case VAR_promiseAfter:
+			return DISPLAY_NAME_promiseAfter;
+		case VAR_pageImageUri:
+			return DISPLAY_NAME_pageImageUri;
+		case VAR_classIconGroup:
+			return DISPLAY_NAME_classIconGroup;
+		case VAR_classIconName:
+			return DISPLAY_NAME_classIconName;
 		case VAR_pageUriComputateJavaClass:
 			return DISPLAY_NAME_pageUriComputateJavaClass;
 		default:
-			return ComputatePageLayout.displayNameComputatePageLayout(var);
+			return null;
 		}
 	}
 }
