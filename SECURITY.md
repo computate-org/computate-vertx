@@ -7,8 +7,9 @@ currently being supported with security updates.
 
 | Version   | Supported          |
 | --------- | ------------------ |
-| 4.2.5.x   | :white_check_mark: |
+| 4.3.3.x   | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
-You can report a vulnerability to vulnerability@computate.org
+You can report a vulnerability here https://github.com/computate-org/computate-vertx/security/advisories?state=Triage
+
