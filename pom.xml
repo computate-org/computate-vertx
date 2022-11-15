@@ -22,6 +22,26 @@
 		</license>
 	</licenses>
 
+	<mailingLists>
+		<mailingList>
+			<name>Users</name>
+			<subscribe>https://computate.topicbox.com/groups/computate-vertx</subscribe>
+			<unsubscribe>https://computate.topicbox.com/groups/computate-vertx</unsubscribe>
+			<post>mailto:computate-vertx@computate.topicbox.com</post>
+			<archive>https://computate.topicbox.com/groups/computate-vertx</archive>
+		</mailingList>
+	</mailingLists>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/computate-org/computate-vertx/issues</url>
+	</issueManagement>
+
+	<organization>
+		<name>computate.org</name>
+		<url>https://www.computate.org/</url>
+	</organization>
+
 	<developers>
 		<developer>
 			<name>Christopher Tate</name>
@@ -362,13 +382,6 @@
 	</build>
 
 	<distributionManagement>
-
-		<repository>
-			<id>github</id>
-			<name>GitHub OWNER Apache Maven Packages</name>
-			<url>https://maven.pkg.github.com/computate-org/computate-vertx</url>
-		</repository>
-
 		<!-- Central Repository -->
 		<snapshotRepository>
 			<id>ossrh</id>
