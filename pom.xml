@@ -4,12 +4,12 @@
 		<groupId>org.computate</groupId>
 		<artifactId>computate-base</artifactId>
 		<relativePath>../computate-base/pom.xml</relativePath>
-		<version>4.3.3.18</version>
+		<version>4.3.3.19</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>computate-vertx</artifactId>
-	<version>4.3.3.18</version>
+	<version>4.3.3.19</version>
 	<packaging>jar</packaging>
 	<name>Computate Tools for integrating with Vert.x</name>
 	<description>Tools for integrating with Vert.x for reactive, asynchronous programming. </description>
@@ -91,14 +91,6 @@
 			<groupId>org.computate</groupId>
 			<artifactId>computate-search</artifactId>
 			<version>4.3.3.18</version>
-		</dependency>
-
-		<!-- Apache Commons -->
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-collections4</artifactId>
-			<version>${commons-collections.version}</version>
 		</dependency>
 
 		<!-- Vert.x -->
@@ -215,8 +207,8 @@
 		<!-- Tests -->
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>

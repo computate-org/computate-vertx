@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.apache.commons.collections4.CollectionUtils;
-
 import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.Options;
 import com.github.jknack.handlebars.TagType;
@@ -28,7 +26,7 @@ public enum AuthHelpers implements Helper<Object> {
 
 			Boolean result = userKey != null && expectedUserKeys.contains(userKey) 
 					|| Objects.equals(sessionId, expectedSessionId)
-					|| CollectionUtils.containsAny(userRoles, requiredRoles)
+					|| userRoles.stream().anyMatch(requiredRoles::contains)
 					;
 			if (options.tagType == TagType.SECTION) {
 				return result ? options.fn() : options.inverse();
@@ -45,8 +43,7 @@ public enum AuthHelpers implements Helper<Object> {
 			List<String> userRoles = (List<String>)a;
 			List<String> requiredRoles = Optional.ofNullable(options.param(0, null)).map(o -> o instanceof List ? (List<String>)o : Arrays.asList(o.toString())).orElse(Arrays.asList());
 
-			Boolean result = CollectionUtils.containsAny(userRoles, requiredRoles)
-					;
+			Boolean result = userRoles.stream().anyMatch(requiredRoles::contains);
 			if (options.tagType == TagType.SECTION) {
 				return result ? options.fn() : options.inverse();
 			}

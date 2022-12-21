@@ -504,6 +504,17 @@ public class ComputateConfigKeys {
 	public static final String SITE_LOCALE = "SITE_LOCALE";
 
 	/**
+	 * The max read buffer size to load in a batch. 
+	 **/
+	public static final String READ_BUFFER_SIZE = "READ_BUFFER_SIZE";
+
+	/**
+	 * Periodically check the sync operations to check that they are still progressing. 
+	 * If not, fetch more data. 
+	 **/
+	public static final String API_CHECK_TIMER_MILLIS = "API_CHECK_TIMER_MILLIS";
+
+	/**
 	 * 
 	 **/
 	public static final String REFRESH_DATA_PAUSE_IN_SECONDS = "REFRESH_DATA_PAUSE_IN_SECONDS";
@@ -627,4 +638,14 @@ public class ComputateConfigKeys {
 	 * Map default zoom. 
 	 **/
 	public static final String DEFAULT_MAP_ZOOM = "DEFAULT_MAP_ZOOM";
+
+	/**
+	 * Facebook Graph Version
+	 **/
+	public static final String FACEBOOK_GRAPH_VERSION = "FACEBOOK_GRAPH_VERSION";
+
+	/**
+	 * Facebook App ID
+	 **/
+	public static final String FACEBOOK_APP_ID = "FACEBOOK_APP_ID";
 }
