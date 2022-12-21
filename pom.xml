@@ -90,7 +90,7 @@
 		<dependency>
 			<groupId>org.computate</groupId>
 			<artifactId>computate-search</artifactId>
-			<version>4.3.3.18</version>
+			<version>4.3.3.19</version>
 		</dependency>
 
 		<!-- Vert.x -->
