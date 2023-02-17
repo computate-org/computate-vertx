@@ -4,12 +4,12 @@
 		<groupId>org.computate</groupId>
 		<artifactId>computate-base</artifactId>
 		<relativePath>../computate-base/pom.xml</relativePath>
-		<version>4.3.3.19</version>
+		<version>4.2.7.20</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>computate-vertx</artifactId>
-	<version>4.3.3.19</version>
+	<version>4.2.7.20</version>
 	<packaging>jar</packaging>
 	<name>Computate Tools for integrating with Vert.x</name>
 	<description>Tools for integrating with Vert.x for reactive, asynchronous programming. </description>
@@ -80,6 +80,14 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>${quarkus.platform.group-id}</groupId>
+				<artifactId>${quarkus.platform.artifact-id}</artifactId>
+				<version>${quarkus.platform.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -90,7 +98,7 @@
 		<dependency>
 			<groupId>org.computate</groupId>
 			<artifactId>computate-search</artifactId>
-			<version>4.3.3.19</version>
+			<version>4.2.7.20</version>
 		</dependency>
 
 		<!-- Vert.x -->

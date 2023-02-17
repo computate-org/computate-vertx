@@ -42,16 +42,14 @@ import io.vertx.core.Promise;
 import io.vertx.core.Future;
 
 /**	
- * <h1>Suggestions that can generate more code for you: </h1>
- * <ol>
- * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ComputatePageLayoutGen into the class ComputatePageLayout. 
- * </li>
+<ol>
+0<h3>Suggestions that can generate more code for you: </h3></ol>
  * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these ComputatePageLayout objects in a RESTful API. 
+ * </li><li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ComputatePageLayoutGen into the class ComputatePageLayout. 
  * </li>
- * </ol>
- * <h1>About the ComputatePageLayout class and it's generated class ComputatePageLayoutGen&lt;Object&gt;: </h1>
+ * <h3>About the ComputatePageLayout class and it's generated class ComputatePageLayoutGen&lt;Object&gt;: </h3>extends ComputatePageLayoutGen
  * <p>
- * This Java class extends a generated Java class built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
+ * This Java class extends a generated Java class ComputatePageLayoutGen built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
@@ -60,6 +58,49 @@ import io.vertx.core.Future;
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
  * </p>
+ * extends ComputatePageLayoutGen<Object>
+ * <p>This <code>class ComputatePageLayout extends ComputatePageLayoutGen&lt;Object&gt;</code>, which means it extends a newly generated ComputatePageLayoutGen. 
+ * The generated <code>class ComputatePageLayoutGen extends Object</code> which means that ComputatePageLayout extends ComputatePageLayoutGen which extends Object. 
+ * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
+ * </p>
+ * Api: true
+ * ApiTag.enUS: null
+ * ApiUri.enUS: null
+ * Color: null
+ * IconGroup: null
+ * IconName: null
+ * Indexed: true
+ * {@inheritDoc}
+ * <p>By adding a class comment "{@inheritDoc}", the ComputatePageLayout class will inherit the helpful inherited class comments from the super class ComputatePageLayoutGen. 
+ * </p>
+ * Rows: null
+ * Model: true
+ * Page: true
+ * SuperPage.enUS: null
+ * Promise: true
+ * <p>
+ *   This class contains a comment <b>"Promise: true"</b>
+ *   Sometimes a Java class must be initialized asynchronously when it involves calling a blocking API. 
+ *   This means that the ComputatePageLayout Java class has promiseDeep methods which must be initialized asynchronously as a Vert.x Promise  instead of initDeep methods which are a simple non-asynchronous method. 
+ * </p>
+ * <p>
+ *   Adding protected void methods beginning with an underscore with a Promise as the only parameter will automatically set `Promise: true`. 
+ * </p>
+ * <p>
+ *   <pre>
+ *   
+ *   	protected void _promiseBefore(Promise&lt;Void&gt; promise) {
+ *   		promise.complete();
+ *   	}
+ *   </pre>
+ * </p>
+ * <p>
+ *   Java classes with the `Model: true` will automatically set `Promise: true`. 
+ * </p>
+ * <p>
+ *   If a super class of this Java class with `Model: true`, then the child class will also inherit `Promise: true`. 
+ * </p>
+ * AName.enUS: null
  * <p>
  * Delete the class ComputatePageLayout in Solr: 
  * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
@@ -79,6 +120,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	//////////////////
 	// siteRequest_ //
 	//////////////////
+
 
 	/**	 The entity siteRequest_
 	 *	 is defined as null before being initialized. 
@@ -117,6 +159,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	//////////
 	// lang //
 	//////////
+
 
 	/**	 The entity lang
 	 *	 is defined as null before being initialized. 
@@ -167,6 +210,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// requestVars //
 	/////////////////
 
+
 	/**	 The entity requestVars
 	 *	 is defined as null before being initialized. 
 	 */
@@ -204,6 +248,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	////////////
 	// config //
 	////////////
+
 
 	/**	 The entity config
 	 *	 is defined as null before being initialized. 
@@ -262,6 +307,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// serviceRequest //
 	////////////////////
 
+
 	/**	 The entity serviceRequest
 	 *	 is defined as null before being initialized. 
 	 */
@@ -299,6 +345,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	///////////////////
 	// staticBaseUrl //
 	///////////////////
+
 
 	/**	 The entity staticBaseUrl
 	 *	 is defined as null before being initialized. 
@@ -349,6 +396,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// siteBaseUrl //
 	/////////////////
 
+
 	/**	 The entity siteBaseUrl
 	 *	 is defined as null before being initialized. 
 	 */
@@ -397,6 +445,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	/////////////////
 	// siteAuthUrl //
 	/////////////////
+
 
 	/**	 The entity siteAuthUrl
 	 *	 is defined as null before being initialized. 
@@ -447,6 +496,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// siteAuthRealm //
 	///////////////////
 
+
 	/**	 The entity siteAuthRealm
 	 *	 is defined as null before being initialized. 
 	 */
@@ -495,6 +545,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	////////////////////
 	// fontAwesomeKit //
 	////////////////////
+
 
 	/**	 The entity fontAwesomeKit
 	 *	 is defined as null before being initialized. 
@@ -545,6 +596,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// pageUri //
 	/////////////
 
+
 	/**	 The entity pageUri
 	 *	 is defined as null before being initialized. 
 	 */
@@ -593,6 +645,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	////////////
 	// pageId //
 	////////////
+
 
 	/**	 The entity pageId
 	 *	 is defined as null before being initialized. 
@@ -643,6 +696,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// apiUri //
 	////////////
 
+
 	/**	 The entity apiUri
 	 *	 is defined as null before being initialized. 
 	 */
@@ -692,6 +746,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// pageMethod //
 	////////////////
 
+
 	/**	 The entity pageMethod
 	 *	 is defined as null before being initialized. 
 	 */
@@ -740,6 +795,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	////////////
 	// params //
 	////////////
+
 
 	/**	 The entity params
 	 *	 is defined as null before being initialized. 
@@ -798,6 +854,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// userKey //
 	/////////////
 
+
 	/**	 The entity userKey
 	 *	 is defined as null before being initialized. 
 	 */
@@ -855,6 +912,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// userFullName //
 	//////////////////
 
+
 	/**	 The entity userFullName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -903,6 +961,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	//////////////
 	// userName //
 	//////////////
+
 
 	/**	 The entity userName
 	 *	 is defined as null before being initialized. 
@@ -953,6 +1012,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// userEmail //
 	///////////////
 
+
 	/**	 The entity userEmail
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1002,6 +1062,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// logoutUrl //
 	///////////////
 
+
 	/**	 The entity logoutUrl
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1050,6 +1111,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	///////////
 	// long0 //
 	///////////
+
 
 	/**	 The entity long0
 	 *	 is defined as null before being initialized. 
@@ -1108,6 +1170,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// long1 //
 	///////////
 
+
 	/**	 The entity long1
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1164,6 +1227,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	//////////
 	// int0 //
 	//////////
+
 
 	/**	 The entity int0
 	 *	 is defined as null before being initialized. 
@@ -1222,6 +1286,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// int1 //
 	//////////
 
+
 	/**	 The entity int1
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1279,6 +1344,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// promiseBefore //
 	///////////////////
 
+
 	/**	 The entity promiseBefore
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1320,6 +1386,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	/////////////////////
 	// classSimpleName //
 	/////////////////////
+
 
 	/**	 The entity classSimpleName
 	 *	 is defined as null before being initialized. 
@@ -1370,6 +1437,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// pageTitle //
 	///////////////
 
+
 	/**	 The entity pageTitle
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1418,6 +1486,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	///////////
 	// roles //
 	///////////
+
 
 	/**	 The entity roles
 	 *	 It is constructed before being initialized with the constructor by default. 
@@ -1481,141 +1550,144 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		return ComputatePageLayout.staticSearchStrRoles(siteRequest_, ComputatePageLayout.staticSearchRoles(siteRequest_, ComputatePageLayout.staticSetRoles(siteRequest_, o)));
 	}
 
-	///////////////////
-	// rolesRequired //
-	///////////////////
+	//////////////////
+	// roleRequired //
+	//////////////////
 
-	/**	 The entity rolesRequired
+
+	/**	 The entity roleRequired
 	 *	 It is constructed before being initialized with the constructor by default. 
 	 */
 	@JsonProperty
 	@JsonFormat(shape = JsonFormat.Shape.ARRAY)
 	@JsonInclude(Include.NON_NULL)
-	protected List<String> rolesRequired = new ArrayList<String>();
+	protected List<String> roleRequired = new ArrayList<String>();
 
-	/**	<br> The entity rolesRequired
+	/**	<br> The entity roleRequired
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:rolesRequired">Find the entity rolesRequired in Solr</a>
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:roleRequired">Find the entity roleRequired in Solr</a>
 	 * <br>
 	 * @param l is the entity already constructed. 
 	 **/
-	protected abstract void _rolesRequired(List<String> l);
+	protected abstract void _roleRequired(List<String> l);
 
-	public List<String> getRolesRequired() {
-		return rolesRequired;
+	public List<String> getRoleRequired() {
+		return roleRequired;
 	}
 
-	public void setRolesRequired(List<String> rolesRequired) {
-		this.rolesRequired = rolesRequired;
+	public void setRoleRequired(List<String> roleRequired) {
+		this.roleRequired = roleRequired;
 	}
-	public static String staticSetRolesRequired(ComputateSiteRequest siteRequest_, String o) {
+	public static String staticSetRoleRequired(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
-	public ComputatePageLayout addRolesRequired(String...objects) {
+	public ComputatePageLayout addRoleRequired(String...objects) {
 		for(String o : objects) {
-			addRolesRequired(o);
+			addRoleRequired(o);
 		}
 		return (ComputatePageLayout)this;
 	}
-	public ComputatePageLayout addRolesRequired(String o) {
+	public ComputatePageLayout addRoleRequired(String o) {
 		if(o != null)
-			this.rolesRequired.add(o);
+			this.roleRequired.add(o);
 		return (ComputatePageLayout)this;
 	}
 	@JsonIgnore
-	public void setRolesRequired(JsonArray objects) {
-		rolesRequired.clear();
+	public void setRoleRequired(JsonArray objects) {
+		roleRequired.clear();
 		for(int i = 0; i < objects.size(); i++) {
 			String o = objects.getString(i);
-			addRolesRequired(o);
+			addRoleRequired(o);
 		}
 	}
-	protected ComputatePageLayout rolesRequiredInit() {
-		_rolesRequired(rolesRequired);
+	protected ComputatePageLayout roleRequiredInit() {
+		_roleRequired(roleRequired);
 		return (ComputatePageLayout)this;
 	}
 
-	public static String staticSearchRolesRequired(ComputateSiteRequest siteRequest_, String o) {
+	public static String staticSearchRoleRequired(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrRolesRequired(ComputateSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrRoleRequired(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqRolesRequired(ComputateSiteRequest siteRequest_, String o) {
-		return ComputatePageLayout.staticSearchStrRolesRequired(siteRequest_, ComputatePageLayout.staticSearchRolesRequired(siteRequest_, ComputatePageLayout.staticSetRolesRequired(siteRequest_, o)));
+	public static String staticSearchFqRoleRequired(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrRoleRequired(siteRequest_, ComputatePageLayout.staticSearchRoleRequired(siteRequest_, ComputatePageLayout.staticSetRoleRequired(siteRequest_, o)));
 	}
 
-	////////////////////
-	// authRolesAdmin //
-	////////////////////
+	///////////////////
+	// authRoleAdmin //
+	///////////////////
 
-	/**	 The entity authRolesAdmin
+
+	/**	 The entity authRoleAdmin
 	 *	 It is constructed before being initialized with the constructor by default. 
 	 */
 	@JsonProperty
 	@JsonFormat(shape = JsonFormat.Shape.ARRAY)
 	@JsonInclude(Include.NON_NULL)
-	protected List<String> authRolesAdmin = new ArrayList<String>();
+	protected List<String> authRoleAdmin = new ArrayList<String>();
 
-	/**	<br> The entity authRolesAdmin
+	/**	<br> The entity authRoleAdmin
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:authRolesAdmin">Find the entity authRolesAdmin in Solr</a>
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:authRoleAdmin">Find the entity authRoleAdmin in Solr</a>
 	 * <br>
 	 * @param l is the entity already constructed. 
 	 **/
-	protected abstract void _authRolesAdmin(List<String> l);
+	protected abstract void _authRoleAdmin(List<String> l);
 
-	public List<String> getAuthRolesAdmin() {
-		return authRolesAdmin;
+	public List<String> getAuthRoleAdmin() {
+		return authRoleAdmin;
 	}
 
-	public void setAuthRolesAdmin(List<String> authRolesAdmin) {
-		this.authRolesAdmin = authRolesAdmin;
+	public void setAuthRoleAdmin(List<String> authRoleAdmin) {
+		this.authRoleAdmin = authRoleAdmin;
 	}
-	public static String staticSetAuthRolesAdmin(ComputateSiteRequest siteRequest_, String o) {
+	public static String staticSetAuthRoleAdmin(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
-	public ComputatePageLayout addAuthRolesAdmin(String...objects) {
+	public ComputatePageLayout addAuthRoleAdmin(String...objects) {
 		for(String o : objects) {
-			addAuthRolesAdmin(o);
+			addAuthRoleAdmin(o);
 		}
 		return (ComputatePageLayout)this;
 	}
-	public ComputatePageLayout addAuthRolesAdmin(String o) {
+	public ComputatePageLayout addAuthRoleAdmin(String o) {
 		if(o != null)
-			this.authRolesAdmin.add(o);
+			this.authRoleAdmin.add(o);
 		return (ComputatePageLayout)this;
 	}
 	@JsonIgnore
-	public void setAuthRolesAdmin(JsonArray objects) {
-		authRolesAdmin.clear();
+	public void setAuthRoleAdmin(JsonArray objects) {
+		authRoleAdmin.clear();
 		for(int i = 0; i < objects.size(); i++) {
 			String o = objects.getString(i);
-			addAuthRolesAdmin(o);
+			addAuthRoleAdmin(o);
 		}
 	}
-	protected ComputatePageLayout authRolesAdminInit() {
-		_authRolesAdmin(authRolesAdmin);
+	protected ComputatePageLayout authRoleAdminInit() {
+		_authRoleAdmin(authRoleAdmin);
 		return (ComputatePageLayout)this;
 	}
 
-	public static String staticSearchAuthRolesAdmin(ComputateSiteRequest siteRequest_, String o) {
+	public static String staticSearchAuthRoleAdmin(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrAuthRolesAdmin(ComputateSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrAuthRoleAdmin(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqAuthRolesAdmin(ComputateSiteRequest siteRequest_, String o) {
-		return ComputatePageLayout.staticSearchStrAuthRolesAdmin(siteRequest_, ComputatePageLayout.staticSearchAuthRolesAdmin(siteRequest_, ComputatePageLayout.staticSetAuthRolesAdmin(siteRequest_, o)));
+	public static String staticSearchFqAuthRoleAdmin(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrAuthRoleAdmin(siteRequest_, ComputatePageLayout.staticSearchAuthRoleAdmin(siteRequest_, ComputatePageLayout.staticSetAuthRoleAdmin(siteRequest_, o)));
 	}
 
 	////////////////
 	// pagination //
 	////////////////
+
 
 	/**	 The entity pagination
 	 *	 It is constructed before being initialized with the constructor by default. 
@@ -1670,6 +1742,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// varsQ //
 	///////////
 
+
 	/**	 The entity varsQ
 	 *	 It is constructed before being initialized with the constructor by default. 
 	 */
@@ -1722,6 +1795,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	////////////
 	// varsFq //
 	////////////
+
 
 	/**	 The entity varsFq
 	 *	 It is constructed before being initialized with the constructor by default. 
@@ -1776,6 +1850,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// varsRange //
 	///////////////
 
+
 	/**	 The entity varsRange
 	 *	 It is constructed before being initialized with the constructor by default. 
 	 */
@@ -1828,6 +1903,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	///////////
 	// query //
 	///////////
+
 
 	/**	 The entity query
 	 *	 It is constructed before being initialized with the constructor by default. 
@@ -1882,6 +1958,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// queryStr //
 	//////////////
 
+
 	/**	 The entity queryStr
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1931,6 +2008,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// promiseAfter //
 	//////////////////
 
+
 	/**	 The entity promiseAfter
 	 *	 is defined as null before being initialized. 
 	 */
@@ -1972,6 +2050,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	//////////////////
 	// pageImageUri //
 	//////////////////
+
 
 	/**	 The entity pageImageUri
 	 *	 is defined as null before being initialized. 
@@ -2021,6 +2100,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	////////////////////
 	// pageImageWidth //
 	////////////////////
+
 
 	/**	 The entity pageImageWidth
 	 *	 is defined as null before being initialized. 
@@ -2079,6 +2159,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// pageImageHeight //
 	/////////////////////
 
+
 	/**	 The entity pageImageHeight
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2136,6 +2217,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// pageVideoId //
 	/////////////////
 
+
 	/**	 The entity pageVideoId
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2184,6 +2266,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	////////////////////
 	// classIconGroup //
 	////////////////////
+
 
 	/**	 The entity classIconGroup
 	 *	 is defined as null before being initialized. 
@@ -2234,6 +2317,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// classIconName //
 	///////////////////
 
+
 	/**	 The entity classIconName
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2283,6 +2367,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// classIconCssClasses //
 	/////////////////////////
 
+
 	/**	 The entity classIconCssClasses
 	 *	 is defined as null before being initialized. 
 	 */
@@ -2331,6 +2416,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	/////////////////////
 	// pageDescription //
 	/////////////////////
+
 
 	/**	 The entity pageDescription
 	 *	 is defined as null before being initialized. 
@@ -2445,8 +2531,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 				classSimpleNameInit();
 				pageTitleInit();
 				rolesInit();
-				rolesRequiredInit();
-				authRolesAdminInit();
+				roleRequiredInit();
+				authRoleAdminInit();
 				paginationInit();
 				varsQInit();
 				varsFqInit();
@@ -2581,10 +2667,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 				return oComputatePageLayout.pageTitle;
 			case "roles":
 				return oComputatePageLayout.roles;
-			case "rolesRequired":
-				return oComputatePageLayout.rolesRequired;
-			case "authRolesAdmin":
-				return oComputatePageLayout.authRolesAdmin;
+			case "roleRequired":
+				return oComputatePageLayout.roleRequired;
+			case "authRoleAdmin":
+				return oComputatePageLayout.authRoleAdmin;
 			case "pagination":
 				return oComputatePageLayout.pagination;
 			case "varsQ":
@@ -2698,10 +2784,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSetPageTitle(siteRequest_, o);
 		case "roles":
 			return ComputatePageLayout.staticSetRoles(siteRequest_, o);
-		case "rolesRequired":
-			return ComputatePageLayout.staticSetRolesRequired(siteRequest_, o);
-		case "authRolesAdmin":
-			return ComputatePageLayout.staticSetAuthRolesAdmin(siteRequest_, o);
+		case "roleRequired":
+			return ComputatePageLayout.staticSetRoleRequired(siteRequest_, o);
+		case "authRoleAdmin":
+			return ComputatePageLayout.staticSetAuthRoleAdmin(siteRequest_, o);
 		case "pagination":
 			return ComputatePageLayout.staticSetPagination(siteRequest_, o);
 		case "varsQ":
@@ -2792,10 +2878,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchPageTitle(siteRequest_, (String)o);
 		case "roles":
 			return ComputatePageLayout.staticSearchRoles(siteRequest_, (String)o);
-		case "rolesRequired":
-			return ComputatePageLayout.staticSearchRolesRequired(siteRequest_, (String)o);
-		case "authRolesAdmin":
-			return ComputatePageLayout.staticSearchAuthRolesAdmin(siteRequest_, (String)o);
+		case "roleRequired":
+			return ComputatePageLayout.staticSearchRoleRequired(siteRequest_, (String)o);
+		case "authRoleAdmin":
+			return ComputatePageLayout.staticSearchAuthRoleAdmin(siteRequest_, (String)o);
 		case "pagination":
 			return ComputatePageLayout.staticSearchPagination(siteRequest_, (JsonObject)o);
 		case "varsQ":
@@ -2886,10 +2972,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchStrPageTitle(siteRequest_, (String)o);
 		case "roles":
 			return ComputatePageLayout.staticSearchStrRoles(siteRequest_, (String)o);
-		case "rolesRequired":
-			return ComputatePageLayout.staticSearchStrRolesRequired(siteRequest_, (String)o);
-		case "authRolesAdmin":
-			return ComputatePageLayout.staticSearchStrAuthRolesAdmin(siteRequest_, (String)o);
+		case "roleRequired":
+			return ComputatePageLayout.staticSearchStrRoleRequired(siteRequest_, (String)o);
+		case "authRoleAdmin":
+			return ComputatePageLayout.staticSearchStrAuthRoleAdmin(siteRequest_, (String)o);
 		case "pagination":
 			return ComputatePageLayout.staticSearchStrPagination(siteRequest_, (JsonObject)o);
 		case "varsQ":
@@ -2980,10 +3066,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchFqPageTitle(siteRequest_, o);
 		case "roles":
 			return ComputatePageLayout.staticSearchFqRoles(siteRequest_, o);
-		case "rolesRequired":
-			return ComputatePageLayout.staticSearchFqRolesRequired(siteRequest_, o);
-		case "authRolesAdmin":
-			return ComputatePageLayout.staticSearchFqAuthRolesAdmin(siteRequest_, o);
+		case "roleRequired":
+			return ComputatePageLayout.staticSearchFqRoleRequired(siteRequest_, o);
+		case "authRoleAdmin":
+			return ComputatePageLayout.staticSearchFqAuthRoleAdmin(siteRequest_, o);
 		case "pagination":
 			return ComputatePageLayout.staticSearchFqPagination(siteRequest_, o);
 		case "varsQ":
@@ -3055,8 +3141,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public static final String VAR_classSimpleName = "classSimpleName";
 	public static final String VAR_pageTitle = "pageTitle";
 	public static final String VAR_roles = "roles";
-	public static final String VAR_rolesRequired = "rolesRequired";
-	public static final String VAR_authRolesAdmin = "authRolesAdmin";
+	public static final String VAR_roleRequired = "roleRequired";
+	public static final String VAR_authRoleAdmin = "authRoleAdmin";
 	public static final String VAR_pagination = "pagination";
 	public static final String VAR_varsQ = "varsQ";
 	public static final String VAR_varsFq = "varsFq";
@@ -3101,8 +3187,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_classSimpleName = "";
 	public static final String DISPLAY_NAME_pageTitle = "";
 	public static final String DISPLAY_NAME_roles = "";
-	public static final String DISPLAY_NAME_rolesRequired = "";
-	public static final String DISPLAY_NAME_authRolesAdmin = "";
+	public static final String DISPLAY_NAME_roleRequired = "";
+	public static final String DISPLAY_NAME_authRoleAdmin = "";
 	public static final String DISPLAY_NAME_pagination = "";
 	public static final String DISPLAY_NAME_varsQ = "";
 	public static final String DISPLAY_NAME_varsFq = "";
@@ -3180,10 +3266,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return DISPLAY_NAME_pageTitle;
 		case VAR_roles:
 			return DISPLAY_NAME_roles;
-		case VAR_rolesRequired:
-			return DISPLAY_NAME_rolesRequired;
-		case VAR_authRolesAdmin:
-			return DISPLAY_NAME_authRolesAdmin;
+		case VAR_roleRequired:
+			return DISPLAY_NAME_roleRequired;
+		case VAR_authRoleAdmin:
+			return DISPLAY_NAME_authRoleAdmin;
 		case VAR_pagination:
 			return DISPLAY_NAME_pagination;
 		case VAR_varsQ:

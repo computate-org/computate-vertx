@@ -234,15 +234,15 @@ public class ComputatePageLayout extends ComputatePageLayoutGen<Object> {
 	/**
 	 * Description: The required roles to access this page
 	 */
-	protected void _rolesRequired(List<String> l) {
-		l.addAll(siteRequest_.getConfig().getJsonArray(ComputateConfigKeys.AUTH_ROLES_ADMIN).stream().map(o -> o.toString()).collect(Collectors.toList()));
+	protected void _roleRequired(List<String> l) {
+		l.add(siteRequest_.getConfig().getString(ComputateConfigKeys.AUTH_ROLE_ADMIN));
 	}
 
 	/**
 	 * Description: The admin roles required to access this page
 	 */
-	protected void _authRolesAdmin(List<String> l) {
-		l.addAll(siteRequest_.getConfig().getJsonArray(ComputateConfigKeys.AUTH_ROLES_ADMIN).stream().map(o -> o.toString()).collect(Collectors.toList()));
+	protected void _authRoleAdmin(List<String> l) {
+		l.add(siteRequest_.getConfig().getString(ComputateConfigKeys.AUTH_ROLE_ADMIN));
 	}
 
 	/**

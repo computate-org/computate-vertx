@@ -146,12 +146,17 @@ public class ComputateConfigKeys {
 	/**
 	 * The Auth client ID of the site. 
 	 **/
-	public static final String AUTH_RESOURCE = "AUTH_RESOURCE";
+	public static final String AUTH_CLIENT = "AUTH_CLIENT";
 
 	/**
 	 * The Auth client secret of the site. 
 	 **/
 	public static final String AUTH_SECRET = "AUTH_SECRET";
+
+	/**
+	 * The Auth client secret of the site. 
+	 **/
+	public static final String AUTH_FINE_GRAINED_POLICY_PERMISSIONS = "AUTH_FINE_GRAINED_POLICY_PERMISSIONS";
 
 	/**
 	 * Whether SSL is required in Auth for the site. 
@@ -161,22 +166,27 @@ public class ComputateConfigKeys {
 	/**
 	 * JsonArray of user roles required for an action. 
 	 **/
-	public static final String AUTH_ROLES_REQUIRED = "AUTH_ROLES_REQUIRED";
+	public static final String AUTH_ROLE_REQUIRED = "AUTH_ROLE_REQUIRED";
 
 	/**
 	 * JsonArray of user roles required for read access. 
 	 **/
-	public static final String AUTH_ROLES_READ_REQUIRED = "AUTH_ROLES_READ_REQUIRED";
+	public static final String AUTH_ROLE_READ_REQUIRED = "AUTH_ROLE_READ_REQUIRED";
 
 	/**
 	 * JsonArray of admin user roles. 
 	 **/
-	public static final String AUTH_ROLES_ADMIN = "AUTH_ROLES_ADMIN";
+	public static final String AUTH_ROLE_ADMIN = "AUTH_ROLE_ADMIN";
 
 	/**
 	 * Enable SSL Passthrough. 
 	 **/
 	public static final String SSL_PASSTHROUGH = "SSL_PASSTHROUGH";
+
+	/**
+	 * Whether to enable host verification otherwise trust all SSL/TLS certificates. 
+	 **/
+	public static final String SSL_VERIFY = "SSL_VERIFY";
 
 	/**
 	 * The path to the Java keystore for the site. 
