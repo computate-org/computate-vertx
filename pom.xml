@@ -4,12 +4,12 @@
 		<groupId>org.computate</groupId>
 		<artifactId>computate-base</artifactId>
 		<relativePath>../computate-base/pom.xml</relativePath>
-		<version>4.2.7.20</version>
+		<version>4.2.7.21</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>computate-vertx</artifactId>
-	<version>4.2.7.20</version>
+	<version>4.2.7.21</version>
 	<packaging>jar</packaging>
 	<name>Computate Tools for integrating with Vert.x</name>
 	<description>Tools for integrating with Vert.x for reactive, asynchronous programming. </description>
@@ -98,7 +98,7 @@
 		<dependency>
 			<groupId>org.computate</groupId>
 			<artifactId>computate-search</artifactId>
-			<version>4.2.7.20</version>
+			<version>4.2.7.21</version>
 		</dependency>
 
 		<!-- Vert.x -->
@@ -196,6 +196,23 @@
 		<dependency>
 			<groupId>io.vertx</groupId>
 			<artifactId>vertx-health-check</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-kafka-client</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.kafka</groupId>
+					<artifactId>kafka-clients</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+			<version>2.6.0</version>
 		</dependency>
 
 		<!-- logging -->

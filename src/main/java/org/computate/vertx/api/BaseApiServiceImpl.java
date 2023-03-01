@@ -48,12 +48,12 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.json.impl.JsonUtil;
 import io.vertx.ext.auth.User;
 import io.vertx.ext.auth.authorization.AuthorizationProvider;
-import io.vertx.ext.auth.authorization.RoleBasedAuthorization;
 import io.vertx.ext.auth.oauth2.OAuth2Auth;
 import io.vertx.ext.web.api.service.ServiceRequest;
 import io.vertx.ext.web.api.service.ServiceResponse;
 import io.vertx.ext.web.client.WebClient;
 import io.vertx.ext.web.templ.handlebars.HandlebarsTemplateEngine;
+import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.pgclient.PgPool;
 import io.vertx.sqlclient.Tuple;
 
@@ -76,6 +76,8 @@ public abstract class BaseApiServiceImpl {
 
 	protected PgPool pgPool;
 
+	protected KafkaProducer<String, String> kafkaProducer;
+
 	protected WebClient webClient;
 
 	protected OAuth2Auth oauth2AuthenticationProvider;
@@ -84,29 +86,32 @@ public abstract class BaseApiServiceImpl {
 
 	protected HandlebarsTemplateEngine templateEngine;
 
-	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, WebClient webClient) {
+	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, WebClient webClient) {
 		this.eventBus = eventBus;
 		this.config = config;
 		this.workerExecutor = workerExecutor;
 		this.pgPool = pgPool;
+		this.kafkaProducer = kafkaProducer;
 		this.webClient = webClient;
 	}
 
-	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider) {
+	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider) {
 		this.eventBus = eventBus;
 		this.config = config;
 		this.workerExecutor = workerExecutor;
 		this.pgPool = pgPool;
+		this.kafkaProducer = kafkaProducer;
 		this.webClient = webClient;
 		this.oauth2AuthenticationProvider = oauth2AuthenticationProvider;
 		this.authorizationProvider = authorizationProvider;
 	}
 
-	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, HandlebarsTemplateEngine templateEngine) {
+	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, HandlebarsTemplateEngine templateEngine) {
 		this.eventBus = eventBus;
 		this.config = config;
 		this.workerExecutor = workerExecutor;
 		this.pgPool = pgPool;
+		this.kafkaProducer = kafkaProducer;
 		this.webClient = webClient;
 		this.oauth2AuthenticationProvider = oauth2AuthenticationProvider;
 		this.authorizationProvider = authorizationProvider;

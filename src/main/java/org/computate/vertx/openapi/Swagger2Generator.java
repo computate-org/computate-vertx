@@ -305,8 +305,9 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
 			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
 			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
+			Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
-			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
+			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).send().onSuccess(a -> {
 				try {
 					SolrResponse queryResponse = a.bodyAsJson(SolrResponse.class);
 					loadClass(queryResponse.getResponse().getDocs(), 0).onSuccess(b -> {
@@ -396,8 +397,9 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
 			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
 			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
+			Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchEntities.getQueryString());
-			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
+			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).send().onSuccess(a -> {
 				try {
 					SolrResponse queryResponse = a.bodyAsJson(SolrResponse.class);
 					List<SolrResponse.Doc> searchEntitiesResults = queryResponse.getResponse().getDocs();
@@ -449,8 +451,9 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
 			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
 			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
+			Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
-			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
+			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).send().onSuccess(a -> {
 				try {
 					SolrResponse queryResponse = a.bodyAsJson(SolrResponse.class);
 					loadSql1(queryResponse.getResponse().getDocs(), 0).onSuccess(b -> {
@@ -499,8 +502,9 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 				String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
 				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
 				String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
+			Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
 				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
-				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
+				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).send().onSuccess(a -> {
 					try {
 						SolrResponse queryResponse = a.bodyAsJson(SolrResponse.class);
 	
@@ -560,8 +564,9 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
 			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
 			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
+			Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
-			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
+			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).send().onSuccess(a -> {
 				try {
 					SolrResponse queryResponse = a.bodyAsJson(SolrResponse.class);
 					loadSql2(queryResponse.getResponse().getDocs(), 0).onSuccess(b -> {
@@ -664,8 +669,9 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
 			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
 			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
+			Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
-			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).send().onSuccess(a -> {
+			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).send().onSuccess(a -> {
 				try {
 					SolrResponse queryResponse = a.bodyAsJson(SolrResponse.class);
 					loadArticle(queryResponse.getResponse().getDocs(), 0).onSuccess(b -> {

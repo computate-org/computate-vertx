@@ -15,6 +15,7 @@ import io.vertx.pgclient.PgPool;
 import io.vertx.core.json.impl.JsonUtil;
 import io.vertx.ext.auth.authorization.AuthorizationProvider;
 import io.vertx.ext.web.templ.handlebars.HandlebarsTemplateEngine;
+import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.core.eventbus.DeliveryOptions;
 import java.io.IOException;
 import java.util.Collections;
@@ -97,8 +98,8 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 
 	protected static final Logger LOG = LoggerFactory.getLogger(ComputateJavaClassEnUSGenApiServiceImpl.class);
 
-	public ComputateJavaClassEnUSGenApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, HandlebarsTemplateEngine templateEngine) {
-		super(eventBus, config, workerExecutor, pgPool, webClient, oauth2AuthenticationProvider, authorizationProvider, templateEngine);
+	public ComputateJavaClassEnUSGenApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, HandlebarsTemplateEngine templateEngine) {
+		super(eventBus, config, workerExecutor, pgPool, kafkaProducer, webClient, oauth2AuthenticationProvider, authorizationProvider, templateEngine);
 	}
 
 	// Search //

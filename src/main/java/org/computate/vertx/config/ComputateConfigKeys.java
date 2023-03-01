@@ -374,6 +374,11 @@ public class ComputateConfigKeys {
 	public static final String SOLR_COLLECTION = "SOLR_COLLECTION";
 
 	/**
+	 * Whether Solr uses SSL. 
+	 **/
+	public static final String SOLR_SSL = "SOLR_SSL";
+
+	/**
 	 * The Solr computate collection. 
 	 **/
 	public static final String SOLR_COLLECTION_COMPUTATE = "SOLR_COLLECTION_COMPUTATE";

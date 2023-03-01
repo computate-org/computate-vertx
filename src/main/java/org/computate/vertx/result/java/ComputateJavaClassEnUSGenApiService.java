@@ -13,6 +13,7 @@ import io.vertx.ext.web.api.service.WebApiServiceGen;
 import io.vertx.ext.web.api.service.ServiceRequest;
 import io.vertx.ext.web.api.service.ServiceResponse;
 import io.vertx.ext.web.templ.handlebars.HandlebarsTemplateEngine;
+import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.core.WorkerExecutor;
 import io.vertx.pgclient.PgPool;
 import io.vertx.ext.auth.oauth2.OAuth2Auth;
@@ -25,8 +26,8 @@ import io.vertx.ext.auth.authorization.AuthorizationProvider;
 @WebApiServiceGen
 @ProxyGen
 public interface ComputateJavaClassEnUSGenApiService {
-	static void registerService(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, HandlebarsTemplateEngine templateEngine, Vertx vertx) {
-		new ServiceBinder(vertx).setAddress("computate-vertx-enUS-ComputateJavaClass").register(ComputateJavaClassEnUSGenApiService.class, new ComputateJavaClassEnUSApiServiceImpl(eventBus, config, workerExecutor, pgPool, webClient, oauth2AuthenticationProvider, authorizationProvider, templateEngine));
+	static void registerService(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, HandlebarsTemplateEngine templateEngine, Vertx vertx) {
+		new ServiceBinder(vertx).setAddress("computate-vertx-enUS-ComputateJavaClass").register(ComputateJavaClassEnUSGenApiService.class, new ComputateJavaClassEnUSApiServiceImpl(eventBus, config, workerExecutor, pgPool, kafkaProducer, webClient, oauth2AuthenticationProvider, authorizationProvider, templateEngine));
 	}
 
 	public void searchComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler);
