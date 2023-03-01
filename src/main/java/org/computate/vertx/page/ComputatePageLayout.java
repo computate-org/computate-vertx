@@ -1,7 +1,10 @@
 package org.computate.vertx.page;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +16,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.computate.search.response.solr.SolrResponse;
 import org.computate.search.tool.SearchTool;
 import org.computate.search.wrap.Wrap;
 import org.computate.vertx.config.ComputateConfigKeys;
@@ -97,6 +101,14 @@ public class ComputatePageLayout extends ComputatePageLayoutGen<Object> {
 
 	protected void _fontAwesomeKit(Wrap<String> w) {
 		w.o(siteRequest_.getConfig().getString(ComputateConfigKeys.FONTAWESOME_KIT));
+	}
+
+	protected void _facebookGraphVersion(Wrap<String> w) {
+		w.o(siteRequest_.getConfig().getString(ComputateConfigKeys.FACEBOOK_GRAPH_VERSION));
+	}
+
+	protected void _facebookAppId(Wrap<String> w) {
+		w.o(siteRequest_.getConfig().getString(ComputateConfigKeys.FACEBOOK_APP_ID));
 	}
 
 	/**
@@ -245,10 +257,25 @@ public class ComputatePageLayout extends ComputatePageLayoutGen<Object> {
 		l.add(siteRequest_.getConfig().getString(ComputateConfigKeys.AUTH_ROLE_ADMIN));
 	}
 
+	protected void _stats(Wrap<SolrResponse.Stats> w) {
+	}
+
+	protected void _facetCounts(Wrap<SolrResponse.FacetCounts> w) {
+	}
+
 	/**
 	 * Description: The pagination data about this request
 	 */
 	protected void _pagination(JsonObject pagination) {
+	}
+
+	protected void _defaultFieldListVars(List<String> l) {
+	}
+
+	protected void _defaultStatsVars(List<String> l) {
+	}
+
+	protected void _defaultPivotVars(List<String> l) {
 	}
 
 	protected void _varsQ(JsonObject vars) {
@@ -264,6 +291,73 @@ public class ComputatePageLayout extends ComputatePageLayoutGen<Object> {
 	 * Description: The query data about this request
 	 */
 	protected void _query(JsonObject query) {
+	}
+
+	protected void _pageResponse(Wrap<String> w) {
+	}
+
+	protected void _defaultZoneId(Wrap<String> w) {
+		w.o(Optional.ofNullable(siteRequest_.getRequestVars().get(VAR_defaultZoneId)).orElse(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE)));
+	}
+
+	/**
+	 * Ignore: true
+	 **/
+	protected void _defaultTimeZone(Wrap<ZoneId> w) {
+		w.o(ZoneId.of(defaultZoneId));
+	}
+
+	protected void _defaultLocaleId(Wrap<String> w) {
+		w.o(Optional.ofNullable(siteRequest_.getRequestHeaders().get("Accept-Language")).map(acceptLanguage -> StringUtils.substringBefore(acceptLanguage, ",")).orElse(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_LOCALE)));
+	}
+
+	/**
+	 * Ignore: true
+	 **/
+	protected void _defaultLocale(Wrap<Locale> w) {
+		w.o(Locale.forLanguageTag(defaultLocaleId));
+	}
+
+	protected void _rangeGap(Wrap<String> w) {
+	}
+
+	protected void _rangeEnd(Wrap<ZonedDateTime> w) {
+	}
+
+	protected void _rangeStart(Wrap<ZonedDateTime> w) {
+	}
+
+	protected void _defaultRangeStats(Wrap<JsonObject> w) {
+	}
+
+	protected void _defaultRangeGap(Wrap<String> w) {
+	}
+
+	protected void _defaultRangeEnd(Wrap<ZonedDateTime> w) {
+	}
+
+	protected void _defaultRangeStart(Wrap<ZonedDateTime> w) {
+	}
+
+	protected void _defaultRangeVar(Wrap<String> w) {
+	}
+
+	protected void _defaultFacetSort(Wrap<String> w) {
+	}
+
+	protected void _defaultFacetLimit(Wrap<Integer> w) {
+	}
+
+	protected void _defaultFacetMinCount(Wrap<Integer> w) {
+	}
+
+	protected void _defaultPivotMinCount(Wrap<Integer> w) {
+	}
+
+	protected void _DEFAULT_MAP_LOCATION(Wrap<JsonObject> w) {
+	}
+
+	protected void _DEFAULT_MAP_ZOOM(Wrap<BigDecimal> w) {
 	}
 
 	/**

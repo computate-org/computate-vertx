@@ -56,26 +56,17 @@ import org.computate.search.response.solr.SolrResponse;
 
 /**	
 <ol>
-<li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ComputateJavaClassGen into the class ComputateJavaClass. 
-</li>
-<li>You can add a class comment "Rows: 100" if you wish the ComputateJavaClass API to return more or less than 10 records by default. 
-In this case, the API will return 100 records from the API instead of 10 by default. 
-Each API has built in pagination of the search records to ensure a user can query all the data a page at a time without running the application out of memory. 
-</li>
-<li>You can add a class comment "Model: true" if you wish to persist these ComputateJavaClass objects in a relational PostgreSQL database transactionally in the RESTful API. 
-The code to persist and query the ComputateJavaClassGen data in the database will then be automatically generated. 
-</li>
 0<h3>Suggestions that can generate more code for you: </h3></ol>
  * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ComputateJavaClassGen into the class ComputateJavaClass. 
- * </li>
- * <li>You can add a class comment "Rows: 100" if you wish the ComputateJavaClass API to return more or less than 10 records by default. 
+ * </li><li>You can add a class comment "Rows: 100" if you wish the ComputateJavaClass API to return more or less than 10 records by default. 
  * In this case, the API will return 100 records from the API instead of 10 by default. 
  * Each API has built in pagination of the search records to ensure a user can query all the data a page at a time without running the application out of memory. 
- * </li>
- * <li>You can add a class comment "Model: true" if you wish to persist these ComputateJavaClass objects in a relational PostgreSQL database transactionally in the RESTful API. 
+ * </li><li>You can add a class comment "Order: " followed by an Integer to sort this class compared to other classes in the project. 
+ * There is code that is generated that queries several classes and writes code for each class in a sequence. 
+ * The Order comment allows you do define which order the class code is generated. 
+ * </li><li>You can add a class comment "Model: true" if you wish to persist these ComputateJavaClass objects in a relational PostgreSQL database transactionally in the RESTful API. 
  * The code to persist and query the ComputateJavaClassGen data in the database will then be automatically generated. 
  * </li>
- * 0<h3>Suggestions that can generate more code for you: </h3>
  * <h3>About the ComputateJavaClass class and it's generated class ComputateJavaClassGen&lt;Object&gt;: </h3>extends ComputateJavaClassGen
  * <p>
  * This Java class extends a generated Java class ComputateJavaClassGen built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
@@ -95,7 +86,16 @@ The code to persist and query the ComputateJavaClassGen data in the database wil
  * Api: true
  * <p>This class contains a comment <b>"Api: true"</b>, which means this class will have Java Vert.x API backend code generated for these objects. 
  * </p>
- * ApiTag.enUS: Java Class
+ * ApiMethode: Search
+ * <p>This class contains a comment <b>"ApiMethod: Search"</b>, which creates an API "Search". 
+ * </p>
+ * ApiMethode: GET
+ * <p>This class contains a comment <b>"ApiMethod: GET"</b>, which creates an API "GET". 
+ * </p>
+ * ApiMethode: SearchPage
+ * <p>This class contains a comment <b>"ApiMethod: SearchPage"</b>, which creates an API "SearchPage". 
+ * </p>
+ * ApiTag.enUS: true
  * <p>This class contains a comment <b>"ApiTag: Java Class"</b>, which groups all of the OpenAPIs for ComputateJavaClass objects under the tag "Java Class". 
  * </p>
  * ApiUri.enUS: /api/java-class
@@ -111,7 +111,7 @@ The code to persist and query the ComputateJavaClassGen data in the database wil
  * <p>This class contains a comment <b>"IconGroup: duotone"</b>, which adds icons on the ComputateJavaClass page with a group of "duotone". 
  * This will reference a Font Awesome icon group that starts with "fa-" followed by the icon group "duotone", together is "fa-duotone". 
  * A Font Awesome icon group of "duotone" is expected to exist. 
- * The Font Awesome groups currently supported include: solid, regular, light, thin, duotone, and sharp. 
+ * The Font Awesome groups currently supported include: solid, regular, light, thin, duotone, sharp, and kit. 
  * See: <a href="https://fontawesome.com/docs/web/dig-deeper/styles">https://fontawesome.com/docs/web/dig-deeper/styles</a>. 
  * </p>
  * IconName: map-location-dot
@@ -134,7 +134,10 @@ The code to persist and query the ComputateJavaClassGen data in the database wil
  * Java Vert.x backend API code, Handlebars HTML template frontend code, and JavaScript code will all generated and can be extended. 
  * This creates a new Java class org.computate.vertx.result.java.ComputateJavaClassPage. 
  * </p>
- * SuperPage.enUS: null
+ * SuperPage.enUS: ComputatePageLayout
+ * <p>This class contains a comment <b>"SuperPage.enUS: ComputatePageLayout"</b>, which identifies the Java super class of the page code by it's class simple name "ComputatePageLayout". 
+ * This means that the newly created class org.computate.vertx.result.java.ComputateJavaClassPage extends org.computate.vertx.page.ComputatePageLayout. 
+ * </p>
  * Promise: true
  * <p>
  *   This class contains a comment <b>"Promise: true"</b>
@@ -158,7 +161,7 @@ The code to persist and query the ComputateJavaClassGen data in the database wil
  * <p>
  *   If a super class of this Java class with `Model: true`, then the child class will also inherit `Promise: true`. 
  * </p>
- * AName: a java class
+ * AName.enUS: a java class
  * <p>This class contains a comment <b>"AName.enUS: a java class"</b>, which identifies the language context to describe a ComputateJavaClass as "a java class". 
  * </p>
  * <p>
@@ -892,7 +895,6 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public String sqlObjectId() {
 		return objectId;
 	}
-
 
 	///////////////////
 	// objectSuggest //

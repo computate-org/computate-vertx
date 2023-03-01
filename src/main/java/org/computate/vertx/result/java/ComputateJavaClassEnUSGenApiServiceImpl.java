@@ -12,10 +12,10 @@ import java.util.Objects;
 import io.vertx.core.WorkerExecutor;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.pgclient.PgPool;
+import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.core.json.impl.JsonUtil;
 import io.vertx.ext.auth.authorization.AuthorizationProvider;
 import io.vertx.ext.web.templ.handlebars.HandlebarsTemplateEngine;
-import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.core.eventbus.DeliveryOptions;
 import java.io.IOException;
 import java.util.Collections;
@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.time.Instant;
 import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import org.computate.search.response.solr.SolrResponse.StatsField;
 import java.util.stream.Collectors;
 import io.vertx.core.json.Json;
@@ -70,6 +71,7 @@ import io.vertx.core.buffer.Buffer;
 import io.vertx.core.CompositeFuture;
 import io.vertx.core.http.HttpHeaders;
 import java.nio.charset.Charset;
+import io.vertx.ext.auth.authorization.RoleBasedAuthorization;
 import io.vertx.ext.web.api.service.ServiceRequest;
 import io.vertx.ext.web.api.service.ServiceResponse;
 import io.vertx.ext.web.client.predicate.ResponsePredicate;
@@ -107,25 +109,25 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 	@Override
 	public void searchComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
 		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, "computate-vertx-enUS-ComputateSiteUser", "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
-			try {
-				{
-					searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
-						response200SearchComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
-							eventHandler.handle(Future.succeededFuture(response));
-							LOG.debug(String.format("searchComputateJavaClass succeeded. "));
+				try {
+					{
+						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
+							response200SearchComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
+								eventHandler.handle(Future.succeededFuture(response));
+								LOG.debug(String.format("searchComputateJavaClass succeeded. "));
+							}).onFailure(ex -> {
+								LOG.error(String.format("searchComputateJavaClass failed. "), ex);
+								error(siteRequest, eventHandler, ex);
+							});
 						}).onFailure(ex -> {
 							LOG.error(String.format("searchComputateJavaClass failed. "), ex);
 							error(siteRequest, eventHandler, ex);
 						});
-					}).onFailure(ex -> {
-						LOG.error(String.format("searchComputateJavaClass failed. "), ex);
-						error(siteRequest, eventHandler, ex);
-					});
+					}
+				} catch(Exception ex) {
+					LOG.error(String.format("searchComputateJavaClass failed. "), ex);
+					error(null, eventHandler, ex);
 				}
-			} catch(Exception ex) {
-				LOG.error(String.format("searchComputateJavaClass failed. "), ex);
-				error(null, eventHandler, ex);
-			}
 		}).onFailure(ex -> {
 			if("Inactive Token".equals(ex.getMessage()) || StringUtils.startsWith(ex.getMessage(), "invalid_grant:")) {
 				try {
@@ -134,6 +136,17 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 					LOG.error(String.format("searchComputateJavaClass failed. ", ex2));
 					error(null, eventHandler, ex2);
 				}
+			} else if(StringUtils.startsWith(ex.getMessage(), "401 UNAUTHORIZED ")) {
+				eventHandler.handle(Future.succeededFuture(
+					new ServiceResponse(401, "UNAUTHORIZED",
+						Buffer.buffer().appendString(
+							new JsonObject()
+								.put("errorCode", "401")
+								.put("errorMessage", "SSO Resource Permission check returned DENY")
+								.encodePrettily()
+							), MultiMap.caseInsensitiveMultiMap()
+							)
+					));
 			} else {
 				LOG.error(String.format("searchComputateJavaClass failed. "), ex);
 				error(null, eventHandler, ex);
@@ -222,25 +235,25 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 	@Override
 	public void getComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
 		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, "computate-vertx-enUS-ComputateSiteUser", "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
-			try {
-				{
-					searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
-						response200GETComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
-							eventHandler.handle(Future.succeededFuture(response));
-							LOG.debug(String.format("getComputateJavaClass succeeded. "));
+				try {
+					{
+						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
+							response200GETComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
+								eventHandler.handle(Future.succeededFuture(response));
+								LOG.debug(String.format("getComputateJavaClass succeeded. "));
+							}).onFailure(ex -> {
+								LOG.error(String.format("getComputateJavaClass failed. "), ex);
+								error(siteRequest, eventHandler, ex);
+							});
 						}).onFailure(ex -> {
 							LOG.error(String.format("getComputateJavaClass failed. "), ex);
 							error(siteRequest, eventHandler, ex);
 						});
-					}).onFailure(ex -> {
-						LOG.error(String.format("getComputateJavaClass failed. "), ex);
-						error(siteRequest, eventHandler, ex);
-					});
+					}
+				} catch(Exception ex) {
+					LOG.error(String.format("getComputateJavaClass failed. "), ex);
+					error(null, eventHandler, ex);
 				}
-			} catch(Exception ex) {
-				LOG.error(String.format("getComputateJavaClass failed. "), ex);
-				error(null, eventHandler, ex);
-			}
 		}).onFailure(ex -> {
 			if("Inactive Token".equals(ex.getMessage()) || StringUtils.startsWith(ex.getMessage(), "invalid_grant:")) {
 				try {
@@ -249,6 +262,17 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 					LOG.error(String.format("getComputateJavaClass failed. ", ex2));
 					error(null, eventHandler, ex2);
 				}
+			} else if(StringUtils.startsWith(ex.getMessage(), "401 UNAUTHORIZED ")) {
+				eventHandler.handle(Future.succeededFuture(
+					new ServiceResponse(401, "UNAUTHORIZED",
+						Buffer.buffer().appendString(
+							new JsonObject()
+								.put("errorCode", "401")
+								.put("errorMessage", "SSO Resource Permission check returned DENY")
+								.encodePrettily()
+							), MultiMap.caseInsensitiveMultiMap()
+							)
+					));
 			} else {
 				LOG.error(String.format("getComputateJavaClass failed. "), ex);
 				error(null, eventHandler, ex);
@@ -280,25 +304,25 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 	@Override
 	public void searchpageComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
 		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, "computate-vertx-enUS-ComputateSiteUser", "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
-			try {
-				{
-					searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
-						response200SearchPageComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
-							eventHandler.handle(Future.succeededFuture(response));
-							LOG.debug(String.format("searchpageComputateJavaClass succeeded. "));
+				try {
+					{
+						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
+							response200SearchPageComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
+								eventHandler.handle(Future.succeededFuture(response));
+								LOG.debug(String.format("searchpageComputateJavaClass succeeded. "));
+							}).onFailure(ex -> {
+								LOG.error(String.format("searchpageComputateJavaClass failed. "), ex);
+								error(siteRequest, eventHandler, ex);
+							});
 						}).onFailure(ex -> {
 							LOG.error(String.format("searchpageComputateJavaClass failed. "), ex);
 							error(siteRequest, eventHandler, ex);
 						});
-					}).onFailure(ex -> {
-						LOG.error(String.format("searchpageComputateJavaClass failed. "), ex);
-						error(siteRequest, eventHandler, ex);
-					});
+					}
+				} catch(Exception ex) {
+					LOG.error(String.format("searchpageComputateJavaClass failed. "), ex);
+					error(null, eventHandler, ex);
 				}
-			} catch(Exception ex) {
-				LOG.error(String.format("searchpageComputateJavaClass failed. "), ex);
-				error(null, eventHandler, ex);
-			}
 		}).onFailure(ex -> {
 			if("Inactive Token".equals(ex.getMessage()) || StringUtils.startsWith(ex.getMessage(), "invalid_grant:")) {
 				try {
@@ -307,6 +331,17 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 					LOG.error(String.format("searchpageComputateJavaClass failed. ", ex2));
 					error(null, eventHandler, ex2);
 				}
+			} else if(StringUtils.startsWith(ex.getMessage(), "401 UNAUTHORIZED ")) {
+				eventHandler.handle(Future.succeededFuture(
+					new ServiceResponse(401, "UNAUTHORIZED",
+						Buffer.buffer().appendString(
+							new JsonObject()
+								.put("errorCode", "401")
+								.put("errorMessage", "SSO Resource Permission check returned DENY")
+								.encodePrettily()
+							), MultiMap.caseInsensitiveMultiMap()
+							)
+					));
 			} else {
 				LOG.error(String.format("searchpageComputateJavaClass failed. "), ex);
 				error(null, eventHandler, ex);
@@ -602,8 +637,12 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 			searchList.promiseDeepForClass(siteRequest).onSuccess(a -> {
 				if(facetRange2 != null && statsField2 != null && facetRange2.equals(statsField2)) {
 					StatsField stats = searchList.getResponse().getStats().getStatsFields().get(statsFieldIndexed2);
-					Instant min = Instant.parse(stats.getMin().toString());
-					Instant max = Instant.parse(stats.getMax().toString());
+					Instant min = Optional.ofNullable(stats.getMin()).map(val -> Instant.parse(val.toString())).orElse(Instant.now());
+					Instant max = Optional.ofNullable(stats.getMax()).map(val -> Instant.parse(val.toString())).orElse(Instant.now());
+					if(min.equals(max)) {
+						min = min.minus(1, ChronoUnit.DAYS);
+						max = max.plus(2, ChronoUnit.DAYS);
+					}
 					Duration duration = Duration.between(min, max);
 					String gap = "DAY";
 					if(duration.toDays() >= 365)
@@ -700,6 +739,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 				String solrHostName = siteRequest.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
 				Integer solrPort = siteRequest.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
 				String solrCollection = siteRequest.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
+				Boolean solrSsl = siteRequest.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
 				Boolean softCommit = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getBoolean("softCommit")).orElse(null);
 				Integer commitWithin = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getInteger("commitWithin")).orElse(null);
 					if(softCommit == null && commitWithin == null)
@@ -707,7 +747,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 					else if(softCommit == null)
 						softCommit = false;
 				String solrRequestUri = String.format("/solr/%s/update%s%s%s", solrCollection, "?overwrite=true&wt=json", softCommit ? "&softCommit=true" : "", commitWithin != null ? ("&commitWithin=" + commitWithin) : "");
-				webClient.post(solrPort, solrHostName, solrRequestUri).putHeader("Content-Type", "application/json").expect(ResponsePredicate.SC_OK).sendBuffer(json.toBuffer()).onSuccess(b -> {
+				webClient.post(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).putHeader("Content-Type", "application/json").expect(ResponsePredicate.SC_OK).sendBuffer(json.toBuffer()).onSuccess(b -> {
 					promise.complete();
 				}).onFailure(ex -> {
 					LOG.error(String.format("indexComputateJavaClass failed. "), new RuntimeException(ex));

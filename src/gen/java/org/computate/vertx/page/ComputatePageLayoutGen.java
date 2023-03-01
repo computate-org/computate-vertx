@@ -37,6 +37,20 @@ import java.lang.Long;
 import java.lang.Integer;
 import java.lang.Void;
 import io.vertx.core.json.JsonArray;
+import org.computate.search.response.solr.SolrResponse.Stats;
+import org.computate.search.response.solr.SolrResponse.FacetCounts;
+import java.time.ZoneId;
+import java.util.Locale;
+import java.time.ZonedDateTime;
+import java.time.ZoneOffset;
+import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+import java.time.format.DateTimeFormatter;
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.math.BigDecimal;
 import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
@@ -64,7 +78,7 @@ import io.vertx.core.Future;
  * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
  * Api: true
- * ApiTag.enUS: null
+ * ApiTag.enUS: true
  * ApiUri.enUS: null
  * Color: null
  * IconGroup: null
@@ -590,6 +604,106 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	public static String staticSearchFqFontAwesomeKit(ComputateSiteRequest siteRequest_, String o) {
 		return ComputatePageLayout.staticSearchStrFontAwesomeKit(siteRequest_, ComputatePageLayout.staticSearchFontAwesomeKit(siteRequest_, ComputatePageLayout.staticSetFontAwesomeKit(siteRequest_, o)));
+	}
+
+	//////////////////////////
+	// facebookGraphVersion //
+	//////////////////////////
+
+
+	/**	 The entity facebookGraphVersion
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String facebookGraphVersion;
+
+	/**	<br> The entity facebookGraphVersion
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:facebookGraphVersion">Find the entity facebookGraphVersion in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _facebookGraphVersion(Wrap<String> w);
+
+	public String getFacebookGraphVersion() {
+		return facebookGraphVersion;
+	}
+	public void setFacebookGraphVersion(String o) {
+		this.facebookGraphVersion = ComputatePageLayout.staticSetFacebookGraphVersion(siteRequest_, o);
+	}
+	public static String staticSetFacebookGraphVersion(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputatePageLayout facebookGraphVersionInit() {
+		Wrap<String> facebookGraphVersionWrap = new Wrap<String>().var("facebookGraphVersion");
+		if(facebookGraphVersion == null) {
+			_facebookGraphVersion(facebookGraphVersionWrap);
+			setFacebookGraphVersion(facebookGraphVersionWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static String staticSearchFacebookGraphVersion(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrFacebookGraphVersion(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqFacebookGraphVersion(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrFacebookGraphVersion(siteRequest_, ComputatePageLayout.staticSearchFacebookGraphVersion(siteRequest_, ComputatePageLayout.staticSetFacebookGraphVersion(siteRequest_, o)));
+	}
+
+	///////////////////
+	// facebookAppId //
+	///////////////////
+
+
+	/**	 The entity facebookAppId
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String facebookAppId;
+
+	/**	<br> The entity facebookAppId
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:facebookAppId">Find the entity facebookAppId in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _facebookAppId(Wrap<String> w);
+
+	public String getFacebookAppId() {
+		return facebookAppId;
+	}
+	public void setFacebookAppId(String o) {
+		this.facebookAppId = ComputatePageLayout.staticSetFacebookAppId(siteRequest_, o);
+	}
+	public static String staticSetFacebookAppId(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputatePageLayout facebookAppIdInit() {
+		Wrap<String> facebookAppIdWrap = new Wrap<String>().var("facebookAppId");
+		if(facebookAppId == null) {
+			_facebookAppId(facebookAppIdWrap);
+			setFacebookAppId(facebookAppIdWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static String staticSearchFacebookAppId(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrFacebookAppId(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqFacebookAppId(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrFacebookAppId(siteRequest_, ComputatePageLayout.staticSearchFacebookAppId(siteRequest_, ComputatePageLayout.staticSetFacebookAppId(siteRequest_, o)));
 	}
 
 	/////////////
@@ -1684,6 +1798,84 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		return ComputatePageLayout.staticSearchStrAuthRoleAdmin(siteRequest_, ComputatePageLayout.staticSearchAuthRoleAdmin(siteRequest_, ComputatePageLayout.staticSetAuthRoleAdmin(siteRequest_, o)));
 	}
 
+	///////////
+	// stats //
+	///////////
+
+
+	/**	 The entity stats
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected Stats stats;
+
+	/**	<br> The entity stats
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:stats">Find the entity stats in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _stats(Wrap<Stats> w);
+
+	public Stats getStats() {
+		return stats;
+	}
+
+	public void setStats(Stats stats) {
+		this.stats = stats;
+	}
+	public static Stats staticSetStats(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected ComputatePageLayout statsInit() {
+		Wrap<Stats> statsWrap = new Wrap<Stats>().var("stats");
+		if(stats == null) {
+			_stats(statsWrap);
+			setStats(statsWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	/////////////////
+	// facetCounts //
+	/////////////////
+
+
+	/**	 The entity facetCounts
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected FacetCounts facetCounts;
+
+	/**	<br> The entity facetCounts
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:facetCounts">Find the entity facetCounts in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _facetCounts(Wrap<FacetCounts> w);
+
+	public FacetCounts getFacetCounts() {
+		return facetCounts;
+	}
+
+	public void setFacetCounts(FacetCounts facetCounts) {
+		this.facetCounts = facetCounts;
+	}
+	public static FacetCounts staticSetFacetCounts(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected ComputatePageLayout facetCountsInit() {
+		Wrap<FacetCounts> facetCountsWrap = new Wrap<FacetCounts>().var("facetCounts");
+		if(facetCounts == null) {
+			_facetCounts(facetCountsWrap);
+			setFacetCounts(facetCountsWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
 	////////////////
 	// pagination //
 	////////////////
@@ -1736,6 +1928,207 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	public static String staticSearchFqPagination(ComputateSiteRequest siteRequest_, String o) {
 		return ComputatePageLayout.staticSearchStrPagination(siteRequest_, ComputatePageLayout.staticSearchPagination(siteRequest_, ComputatePageLayout.staticSetPagination(siteRequest_, o)));
+	}
+
+	//////////////////////////
+	// defaultFieldListVars //
+	//////////////////////////
+
+
+	/**	 The entity defaultFieldListVars
+	 *	 It is constructed before being initialized with the constructor by default. 
+	 */
+	@JsonProperty
+	@JsonFormat(shape = JsonFormat.Shape.ARRAY)
+	@JsonInclude(Include.NON_NULL)
+	protected List<String> defaultFieldListVars = new ArrayList<String>();
+
+	/**	<br> The entity defaultFieldListVars
+	 *  It is constructed before being initialized with the constructor by default. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultFieldListVars">Find the entity defaultFieldListVars in Solr</a>
+	 * <br>
+	 * @param l is the entity already constructed. 
+	 **/
+	protected abstract void _defaultFieldListVars(List<String> l);
+
+	public List<String> getDefaultFieldListVars() {
+		return defaultFieldListVars;
+	}
+
+	public void setDefaultFieldListVars(List<String> defaultFieldListVars) {
+		this.defaultFieldListVars = defaultFieldListVars;
+	}
+	public static String staticSetDefaultFieldListVars(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	public ComputatePageLayout addDefaultFieldListVars(String...objects) {
+		for(String o : objects) {
+			addDefaultFieldListVars(o);
+		}
+		return (ComputatePageLayout)this;
+	}
+	public ComputatePageLayout addDefaultFieldListVars(String o) {
+		if(o != null)
+			this.defaultFieldListVars.add(o);
+		return (ComputatePageLayout)this;
+	}
+	@JsonIgnore
+	public void setDefaultFieldListVars(JsonArray objects) {
+		defaultFieldListVars.clear();
+		for(int i = 0; i < objects.size(); i++) {
+			String o = objects.getString(i);
+			addDefaultFieldListVars(o);
+		}
+	}
+	protected ComputatePageLayout defaultFieldListVarsInit() {
+		_defaultFieldListVars(defaultFieldListVars);
+		return (ComputatePageLayout)this;
+	}
+
+	public static String staticSearchDefaultFieldListVars(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrDefaultFieldListVars(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDefaultFieldListVars(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDefaultFieldListVars(siteRequest_, ComputatePageLayout.staticSearchDefaultFieldListVars(siteRequest_, ComputatePageLayout.staticSetDefaultFieldListVars(siteRequest_, o)));
+	}
+
+	//////////////////////
+	// defaultStatsVars //
+	//////////////////////
+
+
+	/**	 The entity defaultStatsVars
+	 *	 It is constructed before being initialized with the constructor by default. 
+	 */
+	@JsonProperty
+	@JsonFormat(shape = JsonFormat.Shape.ARRAY)
+	@JsonInclude(Include.NON_NULL)
+	protected List<String> defaultStatsVars = new ArrayList<String>();
+
+	/**	<br> The entity defaultStatsVars
+	 *  It is constructed before being initialized with the constructor by default. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultStatsVars">Find the entity defaultStatsVars in Solr</a>
+	 * <br>
+	 * @param l is the entity already constructed. 
+	 **/
+	protected abstract void _defaultStatsVars(List<String> l);
+
+	public List<String> getDefaultStatsVars() {
+		return defaultStatsVars;
+	}
+
+	public void setDefaultStatsVars(List<String> defaultStatsVars) {
+		this.defaultStatsVars = defaultStatsVars;
+	}
+	public static String staticSetDefaultStatsVars(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	public ComputatePageLayout addDefaultStatsVars(String...objects) {
+		for(String o : objects) {
+			addDefaultStatsVars(o);
+		}
+		return (ComputatePageLayout)this;
+	}
+	public ComputatePageLayout addDefaultStatsVars(String o) {
+		if(o != null)
+			this.defaultStatsVars.add(o);
+		return (ComputatePageLayout)this;
+	}
+	@JsonIgnore
+	public void setDefaultStatsVars(JsonArray objects) {
+		defaultStatsVars.clear();
+		for(int i = 0; i < objects.size(); i++) {
+			String o = objects.getString(i);
+			addDefaultStatsVars(o);
+		}
+	}
+	protected ComputatePageLayout defaultStatsVarsInit() {
+		_defaultStatsVars(defaultStatsVars);
+		return (ComputatePageLayout)this;
+	}
+
+	public static String staticSearchDefaultStatsVars(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrDefaultStatsVars(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDefaultStatsVars(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDefaultStatsVars(siteRequest_, ComputatePageLayout.staticSearchDefaultStatsVars(siteRequest_, ComputatePageLayout.staticSetDefaultStatsVars(siteRequest_, o)));
+	}
+
+	//////////////////////
+	// defaultPivotVars //
+	//////////////////////
+
+
+	/**	 The entity defaultPivotVars
+	 *	 It is constructed before being initialized with the constructor by default. 
+	 */
+	@JsonProperty
+	@JsonFormat(shape = JsonFormat.Shape.ARRAY)
+	@JsonInclude(Include.NON_NULL)
+	protected List<String> defaultPivotVars = new ArrayList<String>();
+
+	/**	<br> The entity defaultPivotVars
+	 *  It is constructed before being initialized with the constructor by default. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultPivotVars">Find the entity defaultPivotVars in Solr</a>
+	 * <br>
+	 * @param l is the entity already constructed. 
+	 **/
+	protected abstract void _defaultPivotVars(List<String> l);
+
+	public List<String> getDefaultPivotVars() {
+		return defaultPivotVars;
+	}
+
+	public void setDefaultPivotVars(List<String> defaultPivotVars) {
+		this.defaultPivotVars = defaultPivotVars;
+	}
+	public static String staticSetDefaultPivotVars(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	public ComputatePageLayout addDefaultPivotVars(String...objects) {
+		for(String o : objects) {
+			addDefaultPivotVars(o);
+		}
+		return (ComputatePageLayout)this;
+	}
+	public ComputatePageLayout addDefaultPivotVars(String o) {
+		if(o != null)
+			this.defaultPivotVars.add(o);
+		return (ComputatePageLayout)this;
+	}
+	@JsonIgnore
+	public void setDefaultPivotVars(JsonArray objects) {
+		defaultPivotVars.clear();
+		for(int i = 0; i < objects.size(); i++) {
+			String o = objects.getString(i);
+			addDefaultPivotVars(o);
+		}
+	}
+	protected ComputatePageLayout defaultPivotVarsInit() {
+		_defaultPivotVars(defaultPivotVars);
+		return (ComputatePageLayout)this;
+	}
+
+	public static String staticSearchDefaultPivotVars(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrDefaultPivotVars(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDefaultPivotVars(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDefaultPivotVars(siteRequest_, ComputatePageLayout.staticSearchDefaultPivotVars(siteRequest_, ComputatePageLayout.staticSetDefaultPivotVars(siteRequest_, o)));
 	}
 
 	///////////
@@ -1952,6 +2345,1087 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	public static String staticSearchFqQuery(ComputateSiteRequest siteRequest_, String o) {
 		return ComputatePageLayout.staticSearchStrQuery(siteRequest_, ComputatePageLayout.staticSearchQuery(siteRequest_, ComputatePageLayout.staticSetQuery(siteRequest_, o)));
+	}
+
+	//////////////////
+	// pageResponse //
+	//////////////////
+
+
+	/**	 The entity pageResponse
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String pageResponse;
+
+	/**	<br> The entity pageResponse
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageResponse">Find the entity pageResponse in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _pageResponse(Wrap<String> w);
+
+	public String getPageResponse() {
+		return pageResponse;
+	}
+	public void setPageResponse(String o) {
+		this.pageResponse = ComputatePageLayout.staticSetPageResponse(siteRequest_, o);
+	}
+	public static String staticSetPageResponse(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputatePageLayout pageResponseInit() {
+		Wrap<String> pageResponseWrap = new Wrap<String>().var("pageResponse");
+		if(pageResponse == null) {
+			_pageResponse(pageResponseWrap);
+			setPageResponse(pageResponseWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static String staticSearchPageResponse(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrPageResponse(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqPageResponse(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrPageResponse(siteRequest_, ComputatePageLayout.staticSearchPageResponse(siteRequest_, ComputatePageLayout.staticSetPageResponse(siteRequest_, o)));
+	}
+
+	///////////////////
+	// defaultZoneId //
+	///////////////////
+
+
+	/**	 The entity defaultZoneId
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String defaultZoneId;
+
+	/**	<br> The entity defaultZoneId
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultZoneId">Find the entity defaultZoneId in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultZoneId(Wrap<String> w);
+
+	public String getDefaultZoneId() {
+		return defaultZoneId;
+	}
+	public void setDefaultZoneId(String o) {
+		this.defaultZoneId = ComputatePageLayout.staticSetDefaultZoneId(siteRequest_, o);
+	}
+	public static String staticSetDefaultZoneId(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputatePageLayout defaultZoneIdInit() {
+		Wrap<String> defaultZoneIdWrap = new Wrap<String>().var("defaultZoneId");
+		if(defaultZoneId == null) {
+			_defaultZoneId(defaultZoneIdWrap);
+			setDefaultZoneId(defaultZoneIdWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static String staticSearchDefaultZoneId(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrDefaultZoneId(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDefaultZoneId(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDefaultZoneId(siteRequest_, ComputatePageLayout.staticSearchDefaultZoneId(siteRequest_, ComputatePageLayout.staticSetDefaultZoneId(siteRequest_, o)));
+	}
+
+	/////////////////////
+	// defaultTimeZone //
+	/////////////////////
+
+
+	/**	 The entity defaultTimeZone
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonIgnore
+	@JsonInclude(Include.NON_NULL)
+	protected ZoneId defaultTimeZone;
+
+	/**	<br> The entity defaultTimeZone
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultTimeZone">Find the entity defaultTimeZone in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultTimeZone(Wrap<ZoneId> w);
+
+	public ZoneId getDefaultTimeZone() {
+		return defaultTimeZone;
+	}
+
+	public void setDefaultTimeZone(ZoneId defaultTimeZone) {
+		this.defaultTimeZone = defaultTimeZone;
+	}
+	public static ZoneId staticSetDefaultTimeZone(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected ComputatePageLayout defaultTimeZoneInit() {
+		Wrap<ZoneId> defaultTimeZoneWrap = new Wrap<ZoneId>().var("defaultTimeZone");
+		if(defaultTimeZone == null) {
+			_defaultTimeZone(defaultTimeZoneWrap);
+			setDefaultTimeZone(defaultTimeZoneWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	/////////////////////
+	// defaultLocaleId //
+	/////////////////////
+
+
+	/**	 The entity defaultLocaleId
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String defaultLocaleId;
+
+	/**	<br> The entity defaultLocaleId
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultLocaleId">Find the entity defaultLocaleId in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultLocaleId(Wrap<String> w);
+
+	public String getDefaultLocaleId() {
+		return defaultLocaleId;
+	}
+	public void setDefaultLocaleId(String o) {
+		this.defaultLocaleId = ComputatePageLayout.staticSetDefaultLocaleId(siteRequest_, o);
+	}
+	public static String staticSetDefaultLocaleId(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputatePageLayout defaultLocaleIdInit() {
+		Wrap<String> defaultLocaleIdWrap = new Wrap<String>().var("defaultLocaleId");
+		if(defaultLocaleId == null) {
+			_defaultLocaleId(defaultLocaleIdWrap);
+			setDefaultLocaleId(defaultLocaleIdWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static String staticSearchDefaultLocaleId(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrDefaultLocaleId(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDefaultLocaleId(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDefaultLocaleId(siteRequest_, ComputatePageLayout.staticSearchDefaultLocaleId(siteRequest_, ComputatePageLayout.staticSetDefaultLocaleId(siteRequest_, o)));
+	}
+
+	///////////////////
+	// defaultLocale //
+	///////////////////
+
+
+	/**	 The entity defaultLocale
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonIgnore
+	@JsonInclude(Include.NON_NULL)
+	protected Locale defaultLocale;
+
+	/**	<br> The entity defaultLocale
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultLocale">Find the entity defaultLocale in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultLocale(Wrap<Locale> w);
+
+	public Locale getDefaultLocale() {
+		return defaultLocale;
+	}
+
+	public void setDefaultLocale(Locale defaultLocale) {
+		this.defaultLocale = defaultLocale;
+	}
+	public static Locale staticSetDefaultLocale(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected ComputatePageLayout defaultLocaleInit() {
+		Wrap<Locale> defaultLocaleWrap = new Wrap<Locale>().var("defaultLocale");
+		if(defaultLocale == null) {
+			_defaultLocale(defaultLocaleWrap);
+			setDefaultLocale(defaultLocaleWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	//////////////
+	// rangeGap //
+	//////////////
+
+
+	/**	 The entity rangeGap
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String rangeGap;
+
+	/**	<br> The entity rangeGap
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:rangeGap">Find the entity rangeGap in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _rangeGap(Wrap<String> w);
+
+	public String getRangeGap() {
+		return rangeGap;
+	}
+	public void setRangeGap(String o) {
+		this.rangeGap = ComputatePageLayout.staticSetRangeGap(siteRequest_, o);
+	}
+	public static String staticSetRangeGap(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputatePageLayout rangeGapInit() {
+		Wrap<String> rangeGapWrap = new Wrap<String>().var("rangeGap");
+		if(rangeGap == null) {
+			_rangeGap(rangeGapWrap);
+			setRangeGap(rangeGapWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static String staticSearchRangeGap(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrRangeGap(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqRangeGap(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrRangeGap(siteRequest_, ComputatePageLayout.staticSearchRangeGap(siteRequest_, ComputatePageLayout.staticSetRangeGap(siteRequest_, o)));
+	}
+
+	//////////////
+	// rangeEnd //
+	//////////////
+
+
+	/**	 The entity rangeEnd
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonDeserialize(using = ComputateZonedDateTimeDeserializer.class)
+	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
+	@JsonInclude(Include.NON_NULL)
+	protected ZonedDateTime rangeEnd;
+
+	/**	<br> The entity rangeEnd
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:rangeEnd">Find the entity rangeEnd in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _rangeEnd(Wrap<ZonedDateTime> w);
+
+	public ZonedDateTime getRangeEnd() {
+		return rangeEnd;
+	}
+
+	public void setRangeEnd(ZonedDateTime rangeEnd) {
+		this.rangeEnd = rangeEnd;
+	}
+	@JsonIgnore
+	public void setRangeEnd(Instant o) {
+		this.rangeEnd = o == null ? null : ZonedDateTime.from(o).truncatedTo(ChronoUnit.MILLIS);
+	}
+	/** Example: 2011-12-03T10:15:30+01:00 **/
+	@JsonIgnore
+	public void setRangeEnd(String o) {
+		this.rangeEnd = ComputatePageLayout.staticSetRangeEnd(siteRequest_, o);
+	}
+	public static ZonedDateTime staticSetRangeEnd(ComputateSiteRequest siteRequest_, String o) {
+		if(StringUtils.endsWith(o, "]"))
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
+		else if(StringUtils.endsWith(o, "Z"))
+			return o == null ? null : Instant.parse(o).atZone(Optional.ofNullable(siteRequest_).map(r -> r.getConfig()).map(config -> config.getString(ComputateConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))).truncatedTo(ChronoUnit.MILLIS);
+		else if(StringUtils.contains(o, "T"))
+			return o == null ? null : ZonedDateTime.parse(o, DateTimeFormatter.ISO_DATE_TIME).truncatedTo(ChronoUnit.MILLIS);
+		else
+			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
+	}
+	@JsonIgnore
+	public void setRangeEnd(Date o) {
+		this.rangeEnd = o == null ? null : ZonedDateTime.ofInstant(o.toInstant(), ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
+	}
+	protected ComputatePageLayout rangeEndInit() {
+		Wrap<ZonedDateTime> rangeEndWrap = new Wrap<ZonedDateTime>().var("rangeEnd");
+		if(rangeEnd == null) {
+			_rangeEnd(rangeEndWrap);
+			setRangeEnd(rangeEndWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static Date staticSearchRangeEnd(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
+		return o == null ? null : Date.from(o.toInstant());
+	}
+
+	public static String staticSearchStrRangeEnd(ComputateSiteRequest siteRequest_, Date o) {
+		return "\"" + DateTimeFormatter.ISO_DATE_TIME.format(o.toInstant().atOffset(ZoneOffset.UTC)) + "\"";
+	}
+
+	public static String staticSearchFqRangeEnd(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrRangeEnd(siteRequest_, ComputatePageLayout.staticSearchRangeEnd(siteRequest_, ComputatePageLayout.staticSetRangeEnd(siteRequest_, o)));
+	}
+
+	////////////////
+	// rangeStart //
+	////////////////
+
+
+	/**	 The entity rangeStart
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonDeserialize(using = ComputateZonedDateTimeDeserializer.class)
+	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
+	@JsonInclude(Include.NON_NULL)
+	protected ZonedDateTime rangeStart;
+
+	/**	<br> The entity rangeStart
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:rangeStart">Find the entity rangeStart in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _rangeStart(Wrap<ZonedDateTime> w);
+
+	public ZonedDateTime getRangeStart() {
+		return rangeStart;
+	}
+
+	public void setRangeStart(ZonedDateTime rangeStart) {
+		this.rangeStart = rangeStart;
+	}
+	@JsonIgnore
+	public void setRangeStart(Instant o) {
+		this.rangeStart = o == null ? null : ZonedDateTime.from(o).truncatedTo(ChronoUnit.MILLIS);
+	}
+	/** Example: 2011-12-03T10:15:30+01:00 **/
+	@JsonIgnore
+	public void setRangeStart(String o) {
+		this.rangeStart = ComputatePageLayout.staticSetRangeStart(siteRequest_, o);
+	}
+	public static ZonedDateTime staticSetRangeStart(ComputateSiteRequest siteRequest_, String o) {
+		if(StringUtils.endsWith(o, "]"))
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
+		else if(StringUtils.endsWith(o, "Z"))
+			return o == null ? null : Instant.parse(o).atZone(Optional.ofNullable(siteRequest_).map(r -> r.getConfig()).map(config -> config.getString(ComputateConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))).truncatedTo(ChronoUnit.MILLIS);
+		else if(StringUtils.contains(o, "T"))
+			return o == null ? null : ZonedDateTime.parse(o, DateTimeFormatter.ISO_DATE_TIME).truncatedTo(ChronoUnit.MILLIS);
+		else
+			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
+	}
+	@JsonIgnore
+	public void setRangeStart(Date o) {
+		this.rangeStart = o == null ? null : ZonedDateTime.ofInstant(o.toInstant(), ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
+	}
+	protected ComputatePageLayout rangeStartInit() {
+		Wrap<ZonedDateTime> rangeStartWrap = new Wrap<ZonedDateTime>().var("rangeStart");
+		if(rangeStart == null) {
+			_rangeStart(rangeStartWrap);
+			setRangeStart(rangeStartWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static Date staticSearchRangeStart(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
+		return o == null ? null : Date.from(o.toInstant());
+	}
+
+	public static String staticSearchStrRangeStart(ComputateSiteRequest siteRequest_, Date o) {
+		return "\"" + DateTimeFormatter.ISO_DATE_TIME.format(o.toInstant().atOffset(ZoneOffset.UTC)) + "\"";
+	}
+
+	public static String staticSearchFqRangeStart(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrRangeStart(siteRequest_, ComputatePageLayout.staticSearchRangeStart(siteRequest_, ComputatePageLayout.staticSetRangeStart(siteRequest_, o)));
+	}
+
+	///////////////////////
+	// defaultRangeStats //
+	///////////////////////
+
+
+	/**	 The entity defaultRangeStats
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected JsonObject defaultRangeStats;
+
+	/**	<br> The entity defaultRangeStats
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeStats">Find the entity defaultRangeStats in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultRangeStats(Wrap<JsonObject> w);
+
+	public JsonObject getDefaultRangeStats() {
+		return defaultRangeStats;
+	}
+
+	public void setDefaultRangeStats(JsonObject defaultRangeStats) {
+		this.defaultRangeStats = defaultRangeStats;
+	}
+	@JsonIgnore
+	public void setDefaultRangeStats(String o) {
+		this.defaultRangeStats = ComputatePageLayout.staticSetDefaultRangeStats(siteRequest_, o);
+	}
+	public static JsonObject staticSetDefaultRangeStats(ComputateSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonObject(o);
+		}
+		return null;
+	}
+	protected ComputatePageLayout defaultRangeStatsInit() {
+		Wrap<JsonObject> defaultRangeStatsWrap = new Wrap<JsonObject>().var("defaultRangeStats");
+		if(defaultRangeStats == null) {
+			_defaultRangeStats(defaultRangeStatsWrap);
+			setDefaultRangeStats(defaultRangeStatsWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static JsonObject staticSearchDefaultRangeStats(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o;
+	}
+
+	public static String staticSearchStrDefaultRangeStats(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDefaultRangeStats(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDefaultRangeStats(siteRequest_, ComputatePageLayout.staticSearchDefaultRangeStats(siteRequest_, ComputatePageLayout.staticSetDefaultRangeStats(siteRequest_, o)));
+	}
+
+	/////////////////////
+	// defaultRangeGap //
+	/////////////////////
+
+
+	/**	 The entity defaultRangeGap
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String defaultRangeGap;
+
+	/**	<br> The entity defaultRangeGap
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeGap">Find the entity defaultRangeGap in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultRangeGap(Wrap<String> w);
+
+	public String getDefaultRangeGap() {
+		return defaultRangeGap;
+	}
+	public void setDefaultRangeGap(String o) {
+		this.defaultRangeGap = ComputatePageLayout.staticSetDefaultRangeGap(siteRequest_, o);
+	}
+	public static String staticSetDefaultRangeGap(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputatePageLayout defaultRangeGapInit() {
+		Wrap<String> defaultRangeGapWrap = new Wrap<String>().var("defaultRangeGap");
+		if(defaultRangeGap == null) {
+			_defaultRangeGap(defaultRangeGapWrap);
+			setDefaultRangeGap(defaultRangeGapWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static String staticSearchDefaultRangeGap(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrDefaultRangeGap(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDefaultRangeGap(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDefaultRangeGap(siteRequest_, ComputatePageLayout.staticSearchDefaultRangeGap(siteRequest_, ComputatePageLayout.staticSetDefaultRangeGap(siteRequest_, o)));
+	}
+
+	/////////////////////
+	// defaultRangeEnd //
+	/////////////////////
+
+
+	/**	 The entity defaultRangeEnd
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonDeserialize(using = ComputateZonedDateTimeDeserializer.class)
+	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
+	@JsonInclude(Include.NON_NULL)
+	protected ZonedDateTime defaultRangeEnd;
+
+	/**	<br> The entity defaultRangeEnd
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeEnd">Find the entity defaultRangeEnd in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultRangeEnd(Wrap<ZonedDateTime> w);
+
+	public ZonedDateTime getDefaultRangeEnd() {
+		return defaultRangeEnd;
+	}
+
+	public void setDefaultRangeEnd(ZonedDateTime defaultRangeEnd) {
+		this.defaultRangeEnd = defaultRangeEnd;
+	}
+	@JsonIgnore
+	public void setDefaultRangeEnd(Instant o) {
+		this.defaultRangeEnd = o == null ? null : ZonedDateTime.from(o).truncatedTo(ChronoUnit.MILLIS);
+	}
+	/** Example: 2011-12-03T10:15:30+01:00 **/
+	@JsonIgnore
+	public void setDefaultRangeEnd(String o) {
+		this.defaultRangeEnd = ComputatePageLayout.staticSetDefaultRangeEnd(siteRequest_, o);
+	}
+	public static ZonedDateTime staticSetDefaultRangeEnd(ComputateSiteRequest siteRequest_, String o) {
+		if(StringUtils.endsWith(o, "]"))
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
+		else if(StringUtils.endsWith(o, "Z"))
+			return o == null ? null : Instant.parse(o).atZone(Optional.ofNullable(siteRequest_).map(r -> r.getConfig()).map(config -> config.getString(ComputateConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))).truncatedTo(ChronoUnit.MILLIS);
+		else if(StringUtils.contains(o, "T"))
+			return o == null ? null : ZonedDateTime.parse(o, DateTimeFormatter.ISO_DATE_TIME).truncatedTo(ChronoUnit.MILLIS);
+		else
+			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
+	}
+	@JsonIgnore
+	public void setDefaultRangeEnd(Date o) {
+		this.defaultRangeEnd = o == null ? null : ZonedDateTime.ofInstant(o.toInstant(), ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
+	}
+	protected ComputatePageLayout defaultRangeEndInit() {
+		Wrap<ZonedDateTime> defaultRangeEndWrap = new Wrap<ZonedDateTime>().var("defaultRangeEnd");
+		if(defaultRangeEnd == null) {
+			_defaultRangeEnd(defaultRangeEndWrap);
+			setDefaultRangeEnd(defaultRangeEndWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static Date staticSearchDefaultRangeEnd(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
+		return o == null ? null : Date.from(o.toInstant());
+	}
+
+	public static String staticSearchStrDefaultRangeEnd(ComputateSiteRequest siteRequest_, Date o) {
+		return "\"" + DateTimeFormatter.ISO_DATE_TIME.format(o.toInstant().atOffset(ZoneOffset.UTC)) + "\"";
+	}
+
+	public static String staticSearchFqDefaultRangeEnd(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDefaultRangeEnd(siteRequest_, ComputatePageLayout.staticSearchDefaultRangeEnd(siteRequest_, ComputatePageLayout.staticSetDefaultRangeEnd(siteRequest_, o)));
+	}
+
+	///////////////////////
+	// defaultRangeStart //
+	///////////////////////
+
+
+	/**	 The entity defaultRangeStart
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonDeserialize(using = ComputateZonedDateTimeDeserializer.class)
+	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
+	@JsonInclude(Include.NON_NULL)
+	protected ZonedDateTime defaultRangeStart;
+
+	/**	<br> The entity defaultRangeStart
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeStart">Find the entity defaultRangeStart in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultRangeStart(Wrap<ZonedDateTime> w);
+
+	public ZonedDateTime getDefaultRangeStart() {
+		return defaultRangeStart;
+	}
+
+	public void setDefaultRangeStart(ZonedDateTime defaultRangeStart) {
+		this.defaultRangeStart = defaultRangeStart;
+	}
+	@JsonIgnore
+	public void setDefaultRangeStart(Instant o) {
+		this.defaultRangeStart = o == null ? null : ZonedDateTime.from(o).truncatedTo(ChronoUnit.MILLIS);
+	}
+	/** Example: 2011-12-03T10:15:30+01:00 **/
+	@JsonIgnore
+	public void setDefaultRangeStart(String o) {
+		this.defaultRangeStart = ComputatePageLayout.staticSetDefaultRangeStart(siteRequest_, o);
+	}
+	public static ZonedDateTime staticSetDefaultRangeStart(ComputateSiteRequest siteRequest_, String o) {
+		if(StringUtils.endsWith(o, "]"))
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
+		else if(StringUtils.endsWith(o, "Z"))
+			return o == null ? null : Instant.parse(o).atZone(Optional.ofNullable(siteRequest_).map(r -> r.getConfig()).map(config -> config.getString(ComputateConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))).truncatedTo(ChronoUnit.MILLIS);
+		else if(StringUtils.contains(o, "T"))
+			return o == null ? null : ZonedDateTime.parse(o, DateTimeFormatter.ISO_DATE_TIME).truncatedTo(ChronoUnit.MILLIS);
+		else
+			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
+	}
+	@JsonIgnore
+	public void setDefaultRangeStart(Date o) {
+		this.defaultRangeStart = o == null ? null : ZonedDateTime.ofInstant(o.toInstant(), ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
+	}
+	protected ComputatePageLayout defaultRangeStartInit() {
+		Wrap<ZonedDateTime> defaultRangeStartWrap = new Wrap<ZonedDateTime>().var("defaultRangeStart");
+		if(defaultRangeStart == null) {
+			_defaultRangeStart(defaultRangeStartWrap);
+			setDefaultRangeStart(defaultRangeStartWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static Date staticSearchDefaultRangeStart(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
+		return o == null ? null : Date.from(o.toInstant());
+	}
+
+	public static String staticSearchStrDefaultRangeStart(ComputateSiteRequest siteRequest_, Date o) {
+		return "\"" + DateTimeFormatter.ISO_DATE_TIME.format(o.toInstant().atOffset(ZoneOffset.UTC)) + "\"";
+	}
+
+	public static String staticSearchFqDefaultRangeStart(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDefaultRangeStart(siteRequest_, ComputatePageLayout.staticSearchDefaultRangeStart(siteRequest_, ComputatePageLayout.staticSetDefaultRangeStart(siteRequest_, o)));
+	}
+
+	/////////////////////
+	// defaultRangeVar //
+	/////////////////////
+
+
+	/**	 The entity defaultRangeVar
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String defaultRangeVar;
+
+	/**	<br> The entity defaultRangeVar
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeVar">Find the entity defaultRangeVar in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultRangeVar(Wrap<String> w);
+
+	public String getDefaultRangeVar() {
+		return defaultRangeVar;
+	}
+	public void setDefaultRangeVar(String o) {
+		this.defaultRangeVar = ComputatePageLayout.staticSetDefaultRangeVar(siteRequest_, o);
+	}
+	public static String staticSetDefaultRangeVar(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputatePageLayout defaultRangeVarInit() {
+		Wrap<String> defaultRangeVarWrap = new Wrap<String>().var("defaultRangeVar");
+		if(defaultRangeVar == null) {
+			_defaultRangeVar(defaultRangeVarWrap);
+			setDefaultRangeVar(defaultRangeVarWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static String staticSearchDefaultRangeVar(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrDefaultRangeVar(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDefaultRangeVar(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDefaultRangeVar(siteRequest_, ComputatePageLayout.staticSearchDefaultRangeVar(siteRequest_, ComputatePageLayout.staticSetDefaultRangeVar(siteRequest_, o)));
+	}
+
+	//////////////////////
+	// defaultFacetSort //
+	//////////////////////
+
+
+	/**	 The entity defaultFacetSort
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String defaultFacetSort;
+
+	/**	<br> The entity defaultFacetSort
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultFacetSort">Find the entity defaultFacetSort in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultFacetSort(Wrap<String> w);
+
+	public String getDefaultFacetSort() {
+		return defaultFacetSort;
+	}
+	public void setDefaultFacetSort(String o) {
+		this.defaultFacetSort = ComputatePageLayout.staticSetDefaultFacetSort(siteRequest_, o);
+	}
+	public static String staticSetDefaultFacetSort(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ComputatePageLayout defaultFacetSortInit() {
+		Wrap<String> defaultFacetSortWrap = new Wrap<String>().var("defaultFacetSort");
+		if(defaultFacetSort == null) {
+			_defaultFacetSort(defaultFacetSortWrap);
+			setDefaultFacetSort(defaultFacetSortWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static String staticSearchDefaultFacetSort(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrDefaultFacetSort(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDefaultFacetSort(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDefaultFacetSort(siteRequest_, ComputatePageLayout.staticSearchDefaultFacetSort(siteRequest_, ComputatePageLayout.staticSetDefaultFacetSort(siteRequest_, o)));
+	}
+
+	///////////////////////
+	// defaultFacetLimit //
+	///////////////////////
+
+
+	/**	 The entity defaultFacetLimit
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonSerialize(using = ToStringSerializer.class)
+	@JsonInclude(Include.NON_NULL)
+	protected Integer defaultFacetLimit;
+
+	/**	<br> The entity defaultFacetLimit
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultFacetLimit">Find the entity defaultFacetLimit in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultFacetLimit(Wrap<Integer> w);
+
+	public Integer getDefaultFacetLimit() {
+		return defaultFacetLimit;
+	}
+
+	public void setDefaultFacetLimit(Integer defaultFacetLimit) {
+		this.defaultFacetLimit = defaultFacetLimit;
+	}
+	@JsonIgnore
+	public void setDefaultFacetLimit(String o) {
+		this.defaultFacetLimit = ComputatePageLayout.staticSetDefaultFacetLimit(siteRequest_, o);
+	}
+	public static Integer staticSetDefaultFacetLimit(ComputateSiteRequest siteRequest_, String o) {
+		if(NumberUtils.isParsable(o))
+			return Integer.parseInt(o);
+		return null;
+	}
+	protected ComputatePageLayout defaultFacetLimitInit() {
+		Wrap<Integer> defaultFacetLimitWrap = new Wrap<Integer>().var("defaultFacetLimit");
+		if(defaultFacetLimit == null) {
+			_defaultFacetLimit(defaultFacetLimitWrap);
+			setDefaultFacetLimit(defaultFacetLimitWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static Integer staticSearchDefaultFacetLimit(ComputateSiteRequest siteRequest_, Integer o) {
+		return o;
+	}
+
+	public static String staticSearchStrDefaultFacetLimit(ComputateSiteRequest siteRequest_, Integer o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDefaultFacetLimit(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDefaultFacetLimit(siteRequest_, ComputatePageLayout.staticSearchDefaultFacetLimit(siteRequest_, ComputatePageLayout.staticSetDefaultFacetLimit(siteRequest_, o)));
+	}
+
+	//////////////////////////
+	// defaultFacetMinCount //
+	//////////////////////////
+
+
+	/**	 The entity defaultFacetMinCount
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonSerialize(using = ToStringSerializer.class)
+	@JsonInclude(Include.NON_NULL)
+	protected Integer defaultFacetMinCount;
+
+	/**	<br> The entity defaultFacetMinCount
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultFacetMinCount">Find the entity defaultFacetMinCount in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultFacetMinCount(Wrap<Integer> w);
+
+	public Integer getDefaultFacetMinCount() {
+		return defaultFacetMinCount;
+	}
+
+	public void setDefaultFacetMinCount(Integer defaultFacetMinCount) {
+		this.defaultFacetMinCount = defaultFacetMinCount;
+	}
+	@JsonIgnore
+	public void setDefaultFacetMinCount(String o) {
+		this.defaultFacetMinCount = ComputatePageLayout.staticSetDefaultFacetMinCount(siteRequest_, o);
+	}
+	public static Integer staticSetDefaultFacetMinCount(ComputateSiteRequest siteRequest_, String o) {
+		if(NumberUtils.isParsable(o))
+			return Integer.parseInt(o);
+		return null;
+	}
+	protected ComputatePageLayout defaultFacetMinCountInit() {
+		Wrap<Integer> defaultFacetMinCountWrap = new Wrap<Integer>().var("defaultFacetMinCount");
+		if(defaultFacetMinCount == null) {
+			_defaultFacetMinCount(defaultFacetMinCountWrap);
+			setDefaultFacetMinCount(defaultFacetMinCountWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static Integer staticSearchDefaultFacetMinCount(ComputateSiteRequest siteRequest_, Integer o) {
+		return o;
+	}
+
+	public static String staticSearchStrDefaultFacetMinCount(ComputateSiteRequest siteRequest_, Integer o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDefaultFacetMinCount(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDefaultFacetMinCount(siteRequest_, ComputatePageLayout.staticSearchDefaultFacetMinCount(siteRequest_, ComputatePageLayout.staticSetDefaultFacetMinCount(siteRequest_, o)));
+	}
+
+	//////////////////////////
+	// defaultPivotMinCount //
+	//////////////////////////
+
+
+	/**	 The entity defaultPivotMinCount
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonSerialize(using = ToStringSerializer.class)
+	@JsonInclude(Include.NON_NULL)
+	protected Integer defaultPivotMinCount;
+
+	/**	<br> The entity defaultPivotMinCount
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultPivotMinCount">Find the entity defaultPivotMinCount in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultPivotMinCount(Wrap<Integer> w);
+
+	public Integer getDefaultPivotMinCount() {
+		return defaultPivotMinCount;
+	}
+
+	public void setDefaultPivotMinCount(Integer defaultPivotMinCount) {
+		this.defaultPivotMinCount = defaultPivotMinCount;
+	}
+	@JsonIgnore
+	public void setDefaultPivotMinCount(String o) {
+		this.defaultPivotMinCount = ComputatePageLayout.staticSetDefaultPivotMinCount(siteRequest_, o);
+	}
+	public static Integer staticSetDefaultPivotMinCount(ComputateSiteRequest siteRequest_, String o) {
+		if(NumberUtils.isParsable(o))
+			return Integer.parseInt(o);
+		return null;
+	}
+	protected ComputatePageLayout defaultPivotMinCountInit() {
+		Wrap<Integer> defaultPivotMinCountWrap = new Wrap<Integer>().var("defaultPivotMinCount");
+		if(defaultPivotMinCount == null) {
+			_defaultPivotMinCount(defaultPivotMinCountWrap);
+			setDefaultPivotMinCount(defaultPivotMinCountWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static Integer staticSearchDefaultPivotMinCount(ComputateSiteRequest siteRequest_, Integer o) {
+		return o;
+	}
+
+	public static String staticSearchStrDefaultPivotMinCount(ComputateSiteRequest siteRequest_, Integer o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDefaultPivotMinCount(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDefaultPivotMinCount(siteRequest_, ComputatePageLayout.staticSearchDefaultPivotMinCount(siteRequest_, ComputatePageLayout.staticSetDefaultPivotMinCount(siteRequest_, o)));
+	}
+
+	//////////////////////////
+	// DEFAULT_MAP_LOCATION //
+	//////////////////////////
+
+
+	/**	 The entity DEFAULT_MAP_LOCATION
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected JsonObject DEFAULT_MAP_LOCATION;
+
+	/**	<br> The entity DEFAULT_MAP_LOCATION
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:DEFAULT_MAP_LOCATION">Find the entity DEFAULT_MAP_LOCATION in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _DEFAULT_MAP_LOCATION(Wrap<JsonObject> w);
+
+	public JsonObject getDEFAULT_MAP_LOCATION() {
+		return DEFAULT_MAP_LOCATION;
+	}
+
+	public void setDEFAULT_MAP_LOCATION(JsonObject DEFAULT_MAP_LOCATION) {
+		this.DEFAULT_MAP_LOCATION = DEFAULT_MAP_LOCATION;
+	}
+	@JsonIgnore
+	public void setDEFAULT_MAP_LOCATION(String o) {
+		this.DEFAULT_MAP_LOCATION = ComputatePageLayout.staticSetDEFAULT_MAP_LOCATION(siteRequest_, o);
+	}
+	public static JsonObject staticSetDEFAULT_MAP_LOCATION(ComputateSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonObject(o);
+		}
+		return null;
+	}
+	protected ComputatePageLayout DEFAULT_MAP_LOCATIONInit() {
+		Wrap<JsonObject> DEFAULT_MAP_LOCATIONWrap = new Wrap<JsonObject>().var("DEFAULT_MAP_LOCATION");
+		if(DEFAULT_MAP_LOCATION == null) {
+			_DEFAULT_MAP_LOCATION(DEFAULT_MAP_LOCATIONWrap);
+			setDEFAULT_MAP_LOCATION(DEFAULT_MAP_LOCATIONWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static JsonObject staticSearchDEFAULT_MAP_LOCATION(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o;
+	}
+
+	public static String staticSearchStrDEFAULT_MAP_LOCATION(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDEFAULT_MAP_LOCATION(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDEFAULT_MAP_LOCATION(siteRequest_, ComputatePageLayout.staticSearchDEFAULT_MAP_LOCATION(siteRequest_, ComputatePageLayout.staticSetDEFAULT_MAP_LOCATION(siteRequest_, o)));
+	}
+
+	//////////////////////
+	// DEFAULT_MAP_ZOOM //
+	//////////////////////
+
+
+	/**	 The entity DEFAULT_MAP_ZOOM
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonSerialize(using = ToStringSerializer.class)
+	@JsonInclude(Include.NON_NULL)
+	protected BigDecimal DEFAULT_MAP_ZOOM;
+
+	/**	<br> The entity DEFAULT_MAP_ZOOM
+	 *  is defined as null before being initialized. 
+	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:DEFAULT_MAP_ZOOM">Find the entity DEFAULT_MAP_ZOOM in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _DEFAULT_MAP_ZOOM(Wrap<BigDecimal> w);
+
+	public BigDecimal getDEFAULT_MAP_ZOOM() {
+		return DEFAULT_MAP_ZOOM;
+	}
+
+	public void setDEFAULT_MAP_ZOOM(BigDecimal DEFAULT_MAP_ZOOM) {
+		this.DEFAULT_MAP_ZOOM = DEFAULT_MAP_ZOOM;
+	}
+	@JsonIgnore
+	public void setDEFAULT_MAP_ZOOM(String o) {
+		this.DEFAULT_MAP_ZOOM = ComputatePageLayout.staticSetDEFAULT_MAP_ZOOM(siteRequest_, o);
+	}
+	public static BigDecimal staticSetDEFAULT_MAP_ZOOM(ComputateSiteRequest siteRequest_, String o) {
+		o = StringUtils.removeAll(o, "[^\\d\\.]");
+		if(NumberUtils.isParsable(o))
+			return new BigDecimal(o, MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP);
+		return null;
+	}
+	@JsonIgnore
+	public void setDEFAULT_MAP_ZOOM(Double o) {
+			this.DEFAULT_MAP_ZOOM = new BigDecimal(o, MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP);
+	}
+	@JsonIgnore
+	public void setDEFAULT_MAP_ZOOM(Integer o) {
+			this.DEFAULT_MAP_ZOOM = new BigDecimal(o, MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP);
+	}
+	protected ComputatePageLayout DEFAULT_MAP_ZOOMInit() {
+		Wrap<BigDecimal> DEFAULT_MAP_ZOOMWrap = new Wrap<BigDecimal>().var("DEFAULT_MAP_ZOOM");
+		if(DEFAULT_MAP_ZOOM == null) {
+			_DEFAULT_MAP_ZOOM(DEFAULT_MAP_ZOOMWrap);
+			setDEFAULT_MAP_ZOOM(DEFAULT_MAP_ZOOMWrap.o);
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static Double staticSearchDEFAULT_MAP_ZOOM(ComputateSiteRequest siteRequest_, BigDecimal o) {
+		return o == null ? null : o.doubleValue();
+	}
+
+	public static String staticSearchStrDEFAULT_MAP_ZOOM(ComputateSiteRequest siteRequest_, Double o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDEFAULT_MAP_ZOOM(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrDEFAULT_MAP_ZOOM(siteRequest_, ComputatePageLayout.staticSearchDEFAULT_MAP_ZOOM(siteRequest_, ComputatePageLayout.staticSetDEFAULT_MAP_ZOOM(siteRequest_, o)));
 	}
 
 	//////////////
@@ -2498,6 +3972,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 				siteAuthUrlInit();
 				siteAuthRealmInit();
 				fontAwesomeKitInit();
+				facebookGraphVersionInit();
+				facebookAppIdInit();
 				pageUriInit();
 				pageIdInit();
 				apiUriInit();
@@ -2533,11 +4009,35 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 				rolesInit();
 				roleRequiredInit();
 				authRoleAdminInit();
+				statsInit();
+				facetCountsInit();
 				paginationInit();
+				defaultFieldListVarsInit();
+				defaultStatsVarsInit();
+				defaultPivotVarsInit();
 				varsQInit();
 				varsFqInit();
 				varsRangeInit();
 				queryInit();
+				pageResponseInit();
+				defaultZoneIdInit();
+				defaultTimeZoneInit();
+				defaultLocaleIdInit();
+				defaultLocaleInit();
+				rangeGapInit();
+				rangeEndInit();
+				rangeStartInit();
+				defaultRangeStatsInit();
+				defaultRangeGapInit();
+				defaultRangeEndInit();
+				defaultRangeStartInit();
+				defaultRangeVarInit();
+				defaultFacetSortInit();
+				defaultFacetLimitInit();
+				defaultFacetMinCountInit();
+				defaultPivotMinCountInit();
+				DEFAULT_MAP_LOCATIONInit();
+				DEFAULT_MAP_ZOOMInit();
 				queryStrInit();
 				promise2.complete();
 			} catch(Exception ex) {
@@ -2631,6 +4131,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 				return oComputatePageLayout.siteAuthRealm;
 			case "fontAwesomeKit":
 				return oComputatePageLayout.fontAwesomeKit;
+			case "facebookGraphVersion":
+				return oComputatePageLayout.facebookGraphVersion;
+			case "facebookAppId":
+				return oComputatePageLayout.facebookAppId;
 			case "pageUri":
 				return oComputatePageLayout.pageUri;
 			case "pageId":
@@ -2671,8 +4175,18 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 				return oComputatePageLayout.roleRequired;
 			case "authRoleAdmin":
 				return oComputatePageLayout.authRoleAdmin;
+			case "stats":
+				return oComputatePageLayout.stats;
+			case "facetCounts":
+				return oComputatePageLayout.facetCounts;
 			case "pagination":
 				return oComputatePageLayout.pagination;
+			case "defaultFieldListVars":
+				return oComputatePageLayout.defaultFieldListVars;
+			case "defaultStatsVars":
+				return oComputatePageLayout.defaultStatsVars;
+			case "defaultPivotVars":
+				return oComputatePageLayout.defaultPivotVars;
 			case "varsQ":
 				return oComputatePageLayout.varsQ;
 			case "varsFq":
@@ -2681,6 +4195,44 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 				return oComputatePageLayout.varsRange;
 			case "query":
 				return oComputatePageLayout.query;
+			case "pageResponse":
+				return oComputatePageLayout.pageResponse;
+			case "defaultZoneId":
+				return oComputatePageLayout.defaultZoneId;
+			case "defaultTimeZone":
+				return oComputatePageLayout.defaultTimeZone;
+			case "defaultLocaleId":
+				return oComputatePageLayout.defaultLocaleId;
+			case "defaultLocale":
+				return oComputatePageLayout.defaultLocale;
+			case "rangeGap":
+				return oComputatePageLayout.rangeGap;
+			case "rangeEnd":
+				return oComputatePageLayout.rangeEnd;
+			case "rangeStart":
+				return oComputatePageLayout.rangeStart;
+			case "defaultRangeStats":
+				return oComputatePageLayout.defaultRangeStats;
+			case "defaultRangeGap":
+				return oComputatePageLayout.defaultRangeGap;
+			case "defaultRangeEnd":
+				return oComputatePageLayout.defaultRangeEnd;
+			case "defaultRangeStart":
+				return oComputatePageLayout.defaultRangeStart;
+			case "defaultRangeVar":
+				return oComputatePageLayout.defaultRangeVar;
+			case "defaultFacetSort":
+				return oComputatePageLayout.defaultFacetSort;
+			case "defaultFacetLimit":
+				return oComputatePageLayout.defaultFacetLimit;
+			case "defaultFacetMinCount":
+				return oComputatePageLayout.defaultFacetMinCount;
+			case "defaultPivotMinCount":
+				return oComputatePageLayout.defaultPivotMinCount;
+			case "DEFAULT_MAP_LOCATION":
+				return oComputatePageLayout.DEFAULT_MAP_LOCATION;
+			case "DEFAULT_MAP_ZOOM":
+				return oComputatePageLayout.DEFAULT_MAP_ZOOM;
 			case "queryStr":
 				return oComputatePageLayout.queryStr;
 			case "promiseAfter":
@@ -2750,6 +4302,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSetSiteAuthRealm(siteRequest_, o);
 		case "fontAwesomeKit":
 			return ComputatePageLayout.staticSetFontAwesomeKit(siteRequest_, o);
+		case "facebookGraphVersion":
+			return ComputatePageLayout.staticSetFacebookGraphVersion(siteRequest_, o);
+		case "facebookAppId":
+			return ComputatePageLayout.staticSetFacebookAppId(siteRequest_, o);
 		case "pageUri":
 			return ComputatePageLayout.staticSetPageUri(siteRequest_, o);
 		case "pageId":
@@ -2790,6 +4346,12 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSetAuthRoleAdmin(siteRequest_, o);
 		case "pagination":
 			return ComputatePageLayout.staticSetPagination(siteRequest_, o);
+		case "defaultFieldListVars":
+			return ComputatePageLayout.staticSetDefaultFieldListVars(siteRequest_, o);
+		case "defaultStatsVars":
+			return ComputatePageLayout.staticSetDefaultStatsVars(siteRequest_, o);
+		case "defaultPivotVars":
+			return ComputatePageLayout.staticSetDefaultPivotVars(siteRequest_, o);
 		case "varsQ":
 			return ComputatePageLayout.staticSetVarsQ(siteRequest_, o);
 		case "varsFq":
@@ -2798,6 +4360,40 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSetVarsRange(siteRequest_, o);
 		case "query":
 			return ComputatePageLayout.staticSetQuery(siteRequest_, o);
+		case "pageResponse":
+			return ComputatePageLayout.staticSetPageResponse(siteRequest_, o);
+		case "defaultZoneId":
+			return ComputatePageLayout.staticSetDefaultZoneId(siteRequest_, o);
+		case "defaultLocaleId":
+			return ComputatePageLayout.staticSetDefaultLocaleId(siteRequest_, o);
+		case "rangeGap":
+			return ComputatePageLayout.staticSetRangeGap(siteRequest_, o);
+		case "rangeEnd":
+			return ComputatePageLayout.staticSetRangeEnd(siteRequest_, o);
+		case "rangeStart":
+			return ComputatePageLayout.staticSetRangeStart(siteRequest_, o);
+		case "defaultRangeStats":
+			return ComputatePageLayout.staticSetDefaultRangeStats(siteRequest_, o);
+		case "defaultRangeGap":
+			return ComputatePageLayout.staticSetDefaultRangeGap(siteRequest_, o);
+		case "defaultRangeEnd":
+			return ComputatePageLayout.staticSetDefaultRangeEnd(siteRequest_, o);
+		case "defaultRangeStart":
+			return ComputatePageLayout.staticSetDefaultRangeStart(siteRequest_, o);
+		case "defaultRangeVar":
+			return ComputatePageLayout.staticSetDefaultRangeVar(siteRequest_, o);
+		case "defaultFacetSort":
+			return ComputatePageLayout.staticSetDefaultFacetSort(siteRequest_, o);
+		case "defaultFacetLimit":
+			return ComputatePageLayout.staticSetDefaultFacetLimit(siteRequest_, o);
+		case "defaultFacetMinCount":
+			return ComputatePageLayout.staticSetDefaultFacetMinCount(siteRequest_, o);
+		case "defaultPivotMinCount":
+			return ComputatePageLayout.staticSetDefaultPivotMinCount(siteRequest_, o);
+		case "DEFAULT_MAP_LOCATION":
+			return ComputatePageLayout.staticSetDEFAULT_MAP_LOCATION(siteRequest_, o);
+		case "DEFAULT_MAP_ZOOM":
+			return ComputatePageLayout.staticSetDEFAULT_MAP_ZOOM(siteRequest_, o);
 		case "queryStr":
 			return ComputatePageLayout.staticSetQueryStr(siteRequest_, o);
 		case "pageImageUri":
@@ -2844,6 +4440,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchSiteAuthRealm(siteRequest_, (String)o);
 		case "fontAwesomeKit":
 			return ComputatePageLayout.staticSearchFontAwesomeKit(siteRequest_, (String)o);
+		case "facebookGraphVersion":
+			return ComputatePageLayout.staticSearchFacebookGraphVersion(siteRequest_, (String)o);
+		case "facebookAppId":
+			return ComputatePageLayout.staticSearchFacebookAppId(siteRequest_, (String)o);
 		case "pageUri":
 			return ComputatePageLayout.staticSearchPageUri(siteRequest_, (String)o);
 		case "pageId":
@@ -2884,6 +4484,12 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchAuthRoleAdmin(siteRequest_, (String)o);
 		case "pagination":
 			return ComputatePageLayout.staticSearchPagination(siteRequest_, (JsonObject)o);
+		case "defaultFieldListVars":
+			return ComputatePageLayout.staticSearchDefaultFieldListVars(siteRequest_, (String)o);
+		case "defaultStatsVars":
+			return ComputatePageLayout.staticSearchDefaultStatsVars(siteRequest_, (String)o);
+		case "defaultPivotVars":
+			return ComputatePageLayout.staticSearchDefaultPivotVars(siteRequest_, (String)o);
 		case "varsQ":
 			return ComputatePageLayout.staticSearchVarsQ(siteRequest_, (JsonObject)o);
 		case "varsFq":
@@ -2892,6 +4498,40 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchVarsRange(siteRequest_, (JsonObject)o);
 		case "query":
 			return ComputatePageLayout.staticSearchQuery(siteRequest_, (JsonObject)o);
+		case "pageResponse":
+			return ComputatePageLayout.staticSearchPageResponse(siteRequest_, (String)o);
+		case "defaultZoneId":
+			return ComputatePageLayout.staticSearchDefaultZoneId(siteRequest_, (String)o);
+		case "defaultLocaleId":
+			return ComputatePageLayout.staticSearchDefaultLocaleId(siteRequest_, (String)o);
+		case "rangeGap":
+			return ComputatePageLayout.staticSearchRangeGap(siteRequest_, (String)o);
+		case "rangeEnd":
+			return ComputatePageLayout.staticSearchRangeEnd(siteRequest_, (ZonedDateTime)o);
+		case "rangeStart":
+			return ComputatePageLayout.staticSearchRangeStart(siteRequest_, (ZonedDateTime)o);
+		case "defaultRangeStats":
+			return ComputatePageLayout.staticSearchDefaultRangeStats(siteRequest_, (JsonObject)o);
+		case "defaultRangeGap":
+			return ComputatePageLayout.staticSearchDefaultRangeGap(siteRequest_, (String)o);
+		case "defaultRangeEnd":
+			return ComputatePageLayout.staticSearchDefaultRangeEnd(siteRequest_, (ZonedDateTime)o);
+		case "defaultRangeStart":
+			return ComputatePageLayout.staticSearchDefaultRangeStart(siteRequest_, (ZonedDateTime)o);
+		case "defaultRangeVar":
+			return ComputatePageLayout.staticSearchDefaultRangeVar(siteRequest_, (String)o);
+		case "defaultFacetSort":
+			return ComputatePageLayout.staticSearchDefaultFacetSort(siteRequest_, (String)o);
+		case "defaultFacetLimit":
+			return ComputatePageLayout.staticSearchDefaultFacetLimit(siteRequest_, (Integer)o);
+		case "defaultFacetMinCount":
+			return ComputatePageLayout.staticSearchDefaultFacetMinCount(siteRequest_, (Integer)o);
+		case "defaultPivotMinCount":
+			return ComputatePageLayout.staticSearchDefaultPivotMinCount(siteRequest_, (Integer)o);
+		case "DEFAULT_MAP_LOCATION":
+			return ComputatePageLayout.staticSearchDEFAULT_MAP_LOCATION(siteRequest_, (JsonObject)o);
+		case "DEFAULT_MAP_ZOOM":
+			return ComputatePageLayout.staticSearchDEFAULT_MAP_ZOOM(siteRequest_, (BigDecimal)o);
 		case "queryStr":
 			return ComputatePageLayout.staticSearchQueryStr(siteRequest_, (String)o);
 		case "pageImageUri":
@@ -2938,6 +4578,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchStrSiteAuthRealm(siteRequest_, (String)o);
 		case "fontAwesomeKit":
 			return ComputatePageLayout.staticSearchStrFontAwesomeKit(siteRequest_, (String)o);
+		case "facebookGraphVersion":
+			return ComputatePageLayout.staticSearchStrFacebookGraphVersion(siteRequest_, (String)o);
+		case "facebookAppId":
+			return ComputatePageLayout.staticSearchStrFacebookAppId(siteRequest_, (String)o);
 		case "pageUri":
 			return ComputatePageLayout.staticSearchStrPageUri(siteRequest_, (String)o);
 		case "pageId":
@@ -2978,6 +4622,12 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchStrAuthRoleAdmin(siteRequest_, (String)o);
 		case "pagination":
 			return ComputatePageLayout.staticSearchStrPagination(siteRequest_, (JsonObject)o);
+		case "defaultFieldListVars":
+			return ComputatePageLayout.staticSearchStrDefaultFieldListVars(siteRequest_, (String)o);
+		case "defaultStatsVars":
+			return ComputatePageLayout.staticSearchStrDefaultStatsVars(siteRequest_, (String)o);
+		case "defaultPivotVars":
+			return ComputatePageLayout.staticSearchStrDefaultPivotVars(siteRequest_, (String)o);
 		case "varsQ":
 			return ComputatePageLayout.staticSearchStrVarsQ(siteRequest_, (JsonObject)o);
 		case "varsFq":
@@ -2986,6 +4636,40 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchStrVarsRange(siteRequest_, (JsonObject)o);
 		case "query":
 			return ComputatePageLayout.staticSearchStrQuery(siteRequest_, (JsonObject)o);
+		case "pageResponse":
+			return ComputatePageLayout.staticSearchStrPageResponse(siteRequest_, (String)o);
+		case "defaultZoneId":
+			return ComputatePageLayout.staticSearchStrDefaultZoneId(siteRequest_, (String)o);
+		case "defaultLocaleId":
+			return ComputatePageLayout.staticSearchStrDefaultLocaleId(siteRequest_, (String)o);
+		case "rangeGap":
+			return ComputatePageLayout.staticSearchStrRangeGap(siteRequest_, (String)o);
+		case "rangeEnd":
+			return ComputatePageLayout.staticSearchStrRangeEnd(siteRequest_, (Date)o);
+		case "rangeStart":
+			return ComputatePageLayout.staticSearchStrRangeStart(siteRequest_, (Date)o);
+		case "defaultRangeStats":
+			return ComputatePageLayout.staticSearchStrDefaultRangeStats(siteRequest_, (JsonObject)o);
+		case "defaultRangeGap":
+			return ComputatePageLayout.staticSearchStrDefaultRangeGap(siteRequest_, (String)o);
+		case "defaultRangeEnd":
+			return ComputatePageLayout.staticSearchStrDefaultRangeEnd(siteRequest_, (Date)o);
+		case "defaultRangeStart":
+			return ComputatePageLayout.staticSearchStrDefaultRangeStart(siteRequest_, (Date)o);
+		case "defaultRangeVar":
+			return ComputatePageLayout.staticSearchStrDefaultRangeVar(siteRequest_, (String)o);
+		case "defaultFacetSort":
+			return ComputatePageLayout.staticSearchStrDefaultFacetSort(siteRequest_, (String)o);
+		case "defaultFacetLimit":
+			return ComputatePageLayout.staticSearchStrDefaultFacetLimit(siteRequest_, (Integer)o);
+		case "defaultFacetMinCount":
+			return ComputatePageLayout.staticSearchStrDefaultFacetMinCount(siteRequest_, (Integer)o);
+		case "defaultPivotMinCount":
+			return ComputatePageLayout.staticSearchStrDefaultPivotMinCount(siteRequest_, (Integer)o);
+		case "DEFAULT_MAP_LOCATION":
+			return ComputatePageLayout.staticSearchStrDEFAULT_MAP_LOCATION(siteRequest_, (JsonObject)o);
+		case "DEFAULT_MAP_ZOOM":
+			return ComputatePageLayout.staticSearchStrDEFAULT_MAP_ZOOM(siteRequest_, (Double)o);
 		case "queryStr":
 			return ComputatePageLayout.staticSearchStrQueryStr(siteRequest_, (String)o);
 		case "pageImageUri":
@@ -3032,6 +4716,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchFqSiteAuthRealm(siteRequest_, o);
 		case "fontAwesomeKit":
 			return ComputatePageLayout.staticSearchFqFontAwesomeKit(siteRequest_, o);
+		case "facebookGraphVersion":
+			return ComputatePageLayout.staticSearchFqFacebookGraphVersion(siteRequest_, o);
+		case "facebookAppId":
+			return ComputatePageLayout.staticSearchFqFacebookAppId(siteRequest_, o);
 		case "pageUri":
 			return ComputatePageLayout.staticSearchFqPageUri(siteRequest_, o);
 		case "pageId":
@@ -3072,6 +4760,12 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchFqAuthRoleAdmin(siteRequest_, o);
 		case "pagination":
 			return ComputatePageLayout.staticSearchFqPagination(siteRequest_, o);
+		case "defaultFieldListVars":
+			return ComputatePageLayout.staticSearchFqDefaultFieldListVars(siteRequest_, o);
+		case "defaultStatsVars":
+			return ComputatePageLayout.staticSearchFqDefaultStatsVars(siteRequest_, o);
+		case "defaultPivotVars":
+			return ComputatePageLayout.staticSearchFqDefaultPivotVars(siteRequest_, o);
 		case "varsQ":
 			return ComputatePageLayout.staticSearchFqVarsQ(siteRequest_, o);
 		case "varsFq":
@@ -3080,6 +4774,40 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchFqVarsRange(siteRequest_, o);
 		case "query":
 			return ComputatePageLayout.staticSearchFqQuery(siteRequest_, o);
+		case "pageResponse":
+			return ComputatePageLayout.staticSearchFqPageResponse(siteRequest_, o);
+		case "defaultZoneId":
+			return ComputatePageLayout.staticSearchFqDefaultZoneId(siteRequest_, o);
+		case "defaultLocaleId":
+			return ComputatePageLayout.staticSearchFqDefaultLocaleId(siteRequest_, o);
+		case "rangeGap":
+			return ComputatePageLayout.staticSearchFqRangeGap(siteRequest_, o);
+		case "rangeEnd":
+			return ComputatePageLayout.staticSearchFqRangeEnd(siteRequest_, o);
+		case "rangeStart":
+			return ComputatePageLayout.staticSearchFqRangeStart(siteRequest_, o);
+		case "defaultRangeStats":
+			return ComputatePageLayout.staticSearchFqDefaultRangeStats(siteRequest_, o);
+		case "defaultRangeGap":
+			return ComputatePageLayout.staticSearchFqDefaultRangeGap(siteRequest_, o);
+		case "defaultRangeEnd":
+			return ComputatePageLayout.staticSearchFqDefaultRangeEnd(siteRequest_, o);
+		case "defaultRangeStart":
+			return ComputatePageLayout.staticSearchFqDefaultRangeStart(siteRequest_, o);
+		case "defaultRangeVar":
+			return ComputatePageLayout.staticSearchFqDefaultRangeVar(siteRequest_, o);
+		case "defaultFacetSort":
+			return ComputatePageLayout.staticSearchFqDefaultFacetSort(siteRequest_, o);
+		case "defaultFacetLimit":
+			return ComputatePageLayout.staticSearchFqDefaultFacetLimit(siteRequest_, o);
+		case "defaultFacetMinCount":
+			return ComputatePageLayout.staticSearchFqDefaultFacetMinCount(siteRequest_, o);
+		case "defaultPivotMinCount":
+			return ComputatePageLayout.staticSearchFqDefaultPivotMinCount(siteRequest_, o);
+		case "DEFAULT_MAP_LOCATION":
+			return ComputatePageLayout.staticSearchFqDEFAULT_MAP_LOCATION(siteRequest_, o);
+		case "DEFAULT_MAP_ZOOM":
+			return ComputatePageLayout.staticSearchFqDEFAULT_MAP_ZOOM(siteRequest_, o);
 		case "queryStr":
 			return ComputatePageLayout.staticSearchFqQueryStr(siteRequest_, o);
 		case "pageImageUri":
@@ -3123,6 +4851,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public static final String VAR_siteAuthUrl = "siteAuthUrl";
 	public static final String VAR_siteAuthRealm = "siteAuthRealm";
 	public static final String VAR_fontAwesomeKit = "fontAwesomeKit";
+	public static final String VAR_facebookGraphVersion = "facebookGraphVersion";
+	public static final String VAR_facebookAppId = "facebookAppId";
 	public static final String VAR_pageUri = "pageUri";
 	public static final String VAR_pageId = "pageId";
 	public static final String VAR_apiUri = "apiUri";
@@ -3143,11 +4873,35 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public static final String VAR_roles = "roles";
 	public static final String VAR_roleRequired = "roleRequired";
 	public static final String VAR_authRoleAdmin = "authRoleAdmin";
+	public static final String VAR_stats = "stats";
+	public static final String VAR_facetCounts = "facetCounts";
 	public static final String VAR_pagination = "pagination";
+	public static final String VAR_defaultFieldListVars = "defaultFieldListVars";
+	public static final String VAR_defaultStatsVars = "defaultStatsVars";
+	public static final String VAR_defaultPivotVars = "defaultPivotVars";
 	public static final String VAR_varsQ = "varsQ";
 	public static final String VAR_varsFq = "varsFq";
 	public static final String VAR_varsRange = "varsRange";
 	public static final String VAR_query = "query";
+	public static final String VAR_pageResponse = "pageResponse";
+	public static final String VAR_defaultZoneId = "defaultZoneId";
+	public static final String VAR_defaultTimeZone = "defaultTimeZone";
+	public static final String VAR_defaultLocaleId = "defaultLocaleId";
+	public static final String VAR_defaultLocale = "defaultLocale";
+	public static final String VAR_rangeGap = "rangeGap";
+	public static final String VAR_rangeEnd = "rangeEnd";
+	public static final String VAR_rangeStart = "rangeStart";
+	public static final String VAR_defaultRangeStats = "defaultRangeStats";
+	public static final String VAR_defaultRangeGap = "defaultRangeGap";
+	public static final String VAR_defaultRangeEnd = "defaultRangeEnd";
+	public static final String VAR_defaultRangeStart = "defaultRangeStart";
+	public static final String VAR_defaultRangeVar = "defaultRangeVar";
+	public static final String VAR_defaultFacetSort = "defaultFacetSort";
+	public static final String VAR_defaultFacetLimit = "defaultFacetLimit";
+	public static final String VAR_defaultFacetMinCount = "defaultFacetMinCount";
+	public static final String VAR_defaultPivotMinCount = "defaultPivotMinCount";
+	public static final String VAR_DEFAULT_MAP_LOCATION = "DEFAULT_MAP_LOCATION";
+	public static final String VAR_DEFAULT_MAP_ZOOM = "DEFAULT_MAP_ZOOM";
 	public static final String VAR_queryStr = "queryStr";
 	public static final String VAR_promiseAfter = "promiseAfter";
 	public static final String VAR_pageImageUri = "pageImageUri";
@@ -3169,6 +4923,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_siteAuthUrl = "";
 	public static final String DISPLAY_NAME_siteAuthRealm = "";
 	public static final String DISPLAY_NAME_fontAwesomeKit = "";
+	public static final String DISPLAY_NAME_facebookGraphVersion = "";
+	public static final String DISPLAY_NAME_facebookAppId = "";
 	public static final String DISPLAY_NAME_pageUri = "";
 	public static final String DISPLAY_NAME_pageId = "";
 	public static final String DISPLAY_NAME_apiUri = "";
@@ -3189,11 +4945,35 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_roles = "";
 	public static final String DISPLAY_NAME_roleRequired = "";
 	public static final String DISPLAY_NAME_authRoleAdmin = "";
+	public static final String DISPLAY_NAME_stats = "";
+	public static final String DISPLAY_NAME_facetCounts = "";
 	public static final String DISPLAY_NAME_pagination = "";
+	public static final String DISPLAY_NAME_defaultFieldListVars = "";
+	public static final String DISPLAY_NAME_defaultStatsVars = "";
+	public static final String DISPLAY_NAME_defaultPivotVars = "";
 	public static final String DISPLAY_NAME_varsQ = "";
 	public static final String DISPLAY_NAME_varsFq = "";
 	public static final String DISPLAY_NAME_varsRange = "";
 	public static final String DISPLAY_NAME_query = "";
+	public static final String DISPLAY_NAME_pageResponse = "";
+	public static final String DISPLAY_NAME_defaultZoneId = "";
+	public static final String DISPLAY_NAME_defaultTimeZone = "";
+	public static final String DISPLAY_NAME_defaultLocaleId = "";
+	public static final String DISPLAY_NAME_defaultLocale = "";
+	public static final String DISPLAY_NAME_rangeGap = "";
+	public static final String DISPLAY_NAME_rangeEnd = "";
+	public static final String DISPLAY_NAME_rangeStart = "";
+	public static final String DISPLAY_NAME_defaultRangeStats = "";
+	public static final String DISPLAY_NAME_defaultRangeGap = "";
+	public static final String DISPLAY_NAME_defaultRangeEnd = "";
+	public static final String DISPLAY_NAME_defaultRangeStart = "";
+	public static final String DISPLAY_NAME_defaultRangeVar = "";
+	public static final String DISPLAY_NAME_defaultFacetSort = "";
+	public static final String DISPLAY_NAME_defaultFacetLimit = "";
+	public static final String DISPLAY_NAME_defaultFacetMinCount = "";
+	public static final String DISPLAY_NAME_defaultPivotMinCount = "";
+	public static final String DISPLAY_NAME_DEFAULT_MAP_LOCATION = "";
+	public static final String DISPLAY_NAME_DEFAULT_MAP_ZOOM = "";
 	public static final String DISPLAY_NAME_queryStr = "";
 	public static final String DISPLAY_NAME_promiseAfter = "";
 	public static final String DISPLAY_NAME_pageImageUri = "";
@@ -3230,6 +5010,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return DISPLAY_NAME_siteAuthRealm;
 		case VAR_fontAwesomeKit:
 			return DISPLAY_NAME_fontAwesomeKit;
+		case VAR_facebookGraphVersion:
+			return DISPLAY_NAME_facebookGraphVersion;
+		case VAR_facebookAppId:
+			return DISPLAY_NAME_facebookAppId;
 		case VAR_pageUri:
 			return DISPLAY_NAME_pageUri;
 		case VAR_pageId:
@@ -3270,8 +5054,18 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return DISPLAY_NAME_roleRequired;
 		case VAR_authRoleAdmin:
 			return DISPLAY_NAME_authRoleAdmin;
+		case VAR_stats:
+			return DISPLAY_NAME_stats;
+		case VAR_facetCounts:
+			return DISPLAY_NAME_facetCounts;
 		case VAR_pagination:
 			return DISPLAY_NAME_pagination;
+		case VAR_defaultFieldListVars:
+			return DISPLAY_NAME_defaultFieldListVars;
+		case VAR_defaultStatsVars:
+			return DISPLAY_NAME_defaultStatsVars;
+		case VAR_defaultPivotVars:
+			return DISPLAY_NAME_defaultPivotVars;
 		case VAR_varsQ:
 			return DISPLAY_NAME_varsQ;
 		case VAR_varsFq:
@@ -3280,6 +5074,44 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return DISPLAY_NAME_varsRange;
 		case VAR_query:
 			return DISPLAY_NAME_query;
+		case VAR_pageResponse:
+			return DISPLAY_NAME_pageResponse;
+		case VAR_defaultZoneId:
+			return DISPLAY_NAME_defaultZoneId;
+		case VAR_defaultTimeZone:
+			return DISPLAY_NAME_defaultTimeZone;
+		case VAR_defaultLocaleId:
+			return DISPLAY_NAME_defaultLocaleId;
+		case VAR_defaultLocale:
+			return DISPLAY_NAME_defaultLocale;
+		case VAR_rangeGap:
+			return DISPLAY_NAME_rangeGap;
+		case VAR_rangeEnd:
+			return DISPLAY_NAME_rangeEnd;
+		case VAR_rangeStart:
+			return DISPLAY_NAME_rangeStart;
+		case VAR_defaultRangeStats:
+			return DISPLAY_NAME_defaultRangeStats;
+		case VAR_defaultRangeGap:
+			return DISPLAY_NAME_defaultRangeGap;
+		case VAR_defaultRangeEnd:
+			return DISPLAY_NAME_defaultRangeEnd;
+		case VAR_defaultRangeStart:
+			return DISPLAY_NAME_defaultRangeStart;
+		case VAR_defaultRangeVar:
+			return DISPLAY_NAME_defaultRangeVar;
+		case VAR_defaultFacetSort:
+			return DISPLAY_NAME_defaultFacetSort;
+		case VAR_defaultFacetLimit:
+			return DISPLAY_NAME_defaultFacetLimit;
+		case VAR_defaultFacetMinCount:
+			return DISPLAY_NAME_defaultFacetMinCount;
+		case VAR_defaultPivotMinCount:
+			return DISPLAY_NAME_defaultPivotMinCount;
+		case VAR_DEFAULT_MAP_LOCATION:
+			return DISPLAY_NAME_DEFAULT_MAP_LOCATION;
+		case VAR_DEFAULT_MAP_ZOOM:
+			return DISPLAY_NAME_DEFAULT_MAP_ZOOM;
 		case VAR_queryStr:
 			return DISPLAY_NAME_queryStr;
 		case VAR_promiseAfter:

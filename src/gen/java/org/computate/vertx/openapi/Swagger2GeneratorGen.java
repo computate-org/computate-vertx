@@ -56,12 +56,9 @@ import io.vertx.core.json.JsonArray;
 
 /**	
 <ol>
-<li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these Swagger2Generator objects in a RESTful API. 
-</li>
 0<h3>Suggestions that can generate more code for you: </h3></ol>
  * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these Swagger2Generator objects in a RESTful API. 
  * </li>
- * 0<h3>Suggestions that can generate more code for you: </h3>
  * <h3>About the Swagger2Generator class and it's generated class Swagger2GeneratorGen&lt;Object&gt;: </h3>extends Swagger2GeneratorGen
  * <p>
  * This Java class extends a generated Java class Swagger2GeneratorGen built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
@@ -79,7 +76,7 @@ import io.vertx.core.json.JsonArray;
  * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
  * Api: true
- * ApiTag.enUS: null
+ * ApiTag.enUS: true
  * ApiUri.enUS: null
  * Color: null
  * IconGroup: null
@@ -93,7 +90,7 @@ import io.vertx.core.json.JsonArray;
  * Page: true
  * SuperPage.enUS: null
  * Promise: true
- * AName: null
+ * AName.enUS: null
  * <p>
  * Delete the class Swagger2Generator in Solr: 
  * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
@@ -1259,23 +1256,10 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			wSchemas.initDeepForClass(siteRequest_);
 		return (Swagger2Generator)this;
 	}
-
-
 	public static final String writeApiError1 = "An error occured while writing the API. ";
 	public static final String writeApiError = writeApiError1;
 	public static final String writeApiError21 = "An error occured while writing the API. ";
 	public static final String writeApiError2 = writeApiError21;
-
-
-
-
-
-
-
-
-
-
-
 
 
 	//////////////

@@ -1,5 +1,6 @@
 package org.computate.vertx.result.java;
 
+import org.computate.vertx.page.ComputatePageLayout;
 import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.model.user.ComputateSiteUser;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Locale;
@@ -42,13 +44,7 @@ import java.time.ZoneId;
 /**
  * Translate: false
  **/
-public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Object> {
-
-	/**
-	 * Ignore: true
-	**/
-	protected void _siteRequest_(Wrap<ComputateSiteRequest> c) {
-	}
+public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<ComputatePageLayout> {
 
 	/**
 	 * {@inheritDoc}
@@ -57,19 +53,23 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Obje
 	protected void _searchListComputateJavaClass_(Wrap<SearchList<ComputateJavaClass>> w) {
 	}
 
+	@Override
 	protected void _pageResponse(Wrap<String> w) {
 		if(searchListComputateJavaClass_ != null)
 			w.o(JsonObject.mapFrom(searchListComputateJavaClass_.getResponse()).toString());
 	}
 
+	@Override
 	protected void _stats(Wrap<SolrResponse.Stats> w) {
 		w.o(searchListComputateJavaClass_.getResponse().getStats());
 	}
 
+	@Override
 	protected void _facetCounts(Wrap<SolrResponse.FacetCounts> w) {
 		w.o(searchListComputateJavaClass_.getResponse().getFacetCounts());
 	}
 
+	@Override
 	protected void _pagination(JsonObject pagination) {
 		JsonArray pages = new JsonArray();
 		Long start = searchListComputateJavaClass_.getStart().longValue();
@@ -114,6 +114,7 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Obje
 		}
 	}
 
+	@Override
 	protected void _varsQ(JsonObject vars) {
 		ComputateJavaClass.varsQForClass().forEach(var -> {
 			JsonObject json = new JsonObject();
@@ -125,6 +126,7 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Obje
 		});
 	}
 
+	@Override
 	protected void _varsFq(JsonObject vars) {
 		Map<String, SolrResponse.FacetField> facetFields = Optional.ofNullable(facetCounts).map(c -> c.getFacetFields()).map(f -> f.getFacets()).orElse(new HashMap<String,SolrResponse.FacetField>());
 		ComputateJavaClass.varsFqForClass().forEach(var -> {
@@ -156,8 +158,12 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Obje
 			}
 			if(StringUtils.equalsAny(type, "date") && json.containsKey("stats")) {
 				JsonObject stats = json.getJsonObject("stats");
-				Instant min = Instant.parse(stats.getString("min"));
-				Instant max = Instant.parse(stats.getString("max"));
+				Instant min = Optional.ofNullable(stats.getString("min")).map(val -> Instant.parse(val.toString())).orElse(Instant.now());
+				Instant max = Optional.ofNullable(stats.getString("max")).map(val -> Instant.parse(val.toString())).orElse(Instant.now());
+				if(min.equals(max)) {
+					min = min.minus(1, ChronoUnit.DAYS);
+					max = max.plus(2, ChronoUnit.DAYS);
+				}
 				Duration duration = Duration.between(min, max);
 				String gap = "DAY";
 				if(duration.toDays() >= 365)
@@ -175,8 +181,8 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Obje
 				else if(duration.toMillis() >= 1)
 					gap = "MILLI";
 				json.put("defaultRangeGap", String.format("+1%s", gap));
-				json.put("defaultRangeEnd", stats.getString("max"));
-				json.put("defaultRangeStart", stats.getString("min"));
+				json.put("defaultRangeEnd", max.toString());
+				json.put("defaultRangeStart", min.toString());
 				json.put("enableCalendar", true);
 				setDefaultRangeStats(json);
 			}
@@ -193,6 +199,7 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Obje
 		});
 	}
 
+	@Override
 	protected void _varsRange(JsonObject vars) {
 		ComputateJavaClass.varsRangeForClass().forEach(var -> {
 			String varIndexed = ComputateJavaClass.varIndexedComputateJavaClass(var);
@@ -205,6 +212,7 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Obje
 		});
 	}
 
+	@Override
 	protected void _query(JsonObject query) {
 		ServiceRequest serviceRequest = siteRequest_.getServiceRequest();
 		JsonObject params = serviceRequest.getParams();
@@ -264,9 +272,108 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Obje
 		query.put("sort", sorts);
 	}
 
-	protected void _defaultRangeStats(Wrap<JsonObject> w) {
+	@Override
+	protected void _defaultZoneId(Wrap<String> w) {
+		w.o(Optional.ofNullable(siteRequest_.getRequestVars().get(VAR_defaultZoneId)).orElse(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE)));
 	}
 
+	/**
+	 * Ignore: true
+	 **/
+	@Override
+	protected void _defaultTimeZone(Wrap<ZoneId> w) {
+		w.o(ZoneId.of(defaultZoneId));
+	}
+
+	@Override
+	protected void _defaultLocaleId(Wrap<String> w) {
+		w.o(Optional.ofNullable(siteRequest_.getRequestHeaders().get("Accept-Language")).map(acceptLanguage -> StringUtils.substringBefore(acceptLanguage, ",")).orElse(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_LOCALE)));
+	}
+
+	/**
+	 * Ignore: true
+	 **/
+	@Override
+	protected void _defaultLocale(Wrap<Locale> w) {
+		w.o(Locale.forLanguageTag(defaultLocaleId));
+	}
+
+	@Override
+	protected void _rangeGap(Wrap<String> w) {
+		if(serviceRequest.getParams().getJsonObject("query").getString("facet.range.gap", null) != null)
+			w.o(Optional.ofNullable(searchListComputateJavaClass_.getFacetRangeGap()).orElse(null));
+	}
+
+	@Override
+	protected void _rangeEnd(Wrap<ZonedDateTime> w) {
+		if(serviceRequest.getParams().getJsonObject("query").getString("facet.range.end", null) != null)
+			w.o(Optional.ofNullable(searchListComputateJavaClass_.getFacetRangeEnd()).map(s -> TimeTool.parseZonedDateTime(defaultTimeZone, s)).orElse(null));
+	}
+
+	@Override
+	protected void _rangeStart(Wrap<ZonedDateTime> w) {
+		if(serviceRequest.getParams().getJsonObject("query").getString("facet.range.start", null) != null)
+			w.o(Optional.ofNullable(searchListComputateJavaClass_.getFacetRangeStart()).map(s -> TimeTool.parseZonedDateTime(defaultTimeZone, s)).orElse(null));
+	}
+
+	@Override
+	protected void _defaultRangeGap(Wrap<String> w) {
+		w.o(Optional.ofNullable(rangeGap).orElse(Optional.ofNullable(defaultRangeStats).map(s -> s.getString("defaultRangeGap")).orElse("+1DAY")));
+	}
+
+	@Override
+	protected void _defaultRangeEnd(Wrap<ZonedDateTime> w) {
+		w.o(Optional.ofNullable(rangeEnd).orElse(Optional.ofNullable(defaultRangeStats).map(s -> Instant.parse(s.getString("defaultRangeEnd")).atZone(defaultTimeZone)).orElse(ZonedDateTime.now(defaultTimeZone).toLocalDate().atStartOfDay(defaultTimeZone).plusDays(1))));
+	}
+
+	@Override
+	protected void _defaultRangeStart(Wrap<ZonedDateTime> w) {
+		w.o(Optional.ofNullable(rangeStart).orElse(Optional.ofNullable(defaultRangeStats).map(s -> Instant.parse(s.getString("defaultRangeStart")).atZone(defaultTimeZone)).orElse(defaultRangeEnd.minusDays(7).toLocalDate().atStartOfDay(defaultTimeZone))));
+	}
+
+	@Override
+	protected void _defaultRangeVar(Wrap<String> w) {
+		w.o(Optional.ofNullable(searchListComputateJavaClass_.getFacetRanges()).orElse(Optional.ofNullable(defaultRangeStats).map(s -> Arrays.asList(s.getString("defaultRangeVar"))).orElse(Arrays.asList())).stream().findFirst().map(v -> { if(v.contains("}")) return StringUtils.substringBefore(StringUtils.substringAfterLast(v, "}"), "_"); else return ComputateJavaClass.searchVarComputateJavaClass(v); }).orElse("created"));
+	}
+
+	@Override
+	protected void _defaultFacetSort(Wrap<String> w) {
+		w.o(Optional.ofNullable(searchListComputateJavaClass_.getFacetSort()).orElse("index"));
+	}
+
+	@Override
+	protected void _defaultFacetLimit(Wrap<Integer> w) {
+		w.o(Optional.ofNullable(searchListComputateJavaClass_.getFacetLimit()).orElse(1));
+	}
+
+	@Override
+	protected void _defaultFacetMinCount(Wrap<Integer> w) {
+		w.o(Optional.ofNullable(searchListComputateJavaClass_.getFacetMinCount()).orElse(1));
+	}
+
+	@Override
+	protected void _defaultPivotMinCount(Wrap<Integer> w) {
+		w.o(Optional.ofNullable(searchListComputateJavaClass_.getFacetPivotMinCount()).orElse(0));
+	}
+
+	@Override
+	protected void _DEFAULT_MAP_LOCATION(Wrap<JsonObject> w) {
+		String pointStr = Optional.ofNullable(siteRequest_.getRequestVars().get(VAR_DEFAULT_MAP_LOCATION)).orElse(siteRequest_.getConfig().getString(ComputateConfigKeys.DEFAULT_MAP_LOCATION));
+		if(pointStr != null) {
+			String[] parts = pointStr.replace("[", "").replace("]", "").replace("\"", "").split(",");
+			JsonObject point = new JsonObject().put("lat", Double.parseDouble(parts[0])).put("lon", Double.parseDouble(parts[1]));
+			w.o(point);
+		}
+	}
+
+	@Override
+	protected void _DEFAULT_MAP_ZOOM(Wrap<BigDecimal> w) {
+		String s = Optional.ofNullable(siteRequest_.getRequestVars().get(VAR_DEFAULT_MAP_ZOOM)).orElse(siteRequest_.getConfig().getString(ComputateConfigKeys.DEFAULT_MAP_ZOOM));
+		if(s != null)
+			w.o(new BigDecimal(s));
+	}
+
+	@Override
 	protected void _defaultFieldListVars(List<String> l) {
 		Optional.ofNullable(searchListComputateJavaClass_.getFields()).orElse(Arrays.asList()).forEach(varStored -> {
 			String varStored2 = varStored;
@@ -283,6 +390,7 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Obje
 		});
 	}
 
+	@Override
 	protected void _defaultStatsVars(List<String> l) {
 		Optional.ofNullable(searchListComputateJavaClass_.getStatsFields()).orElse(Arrays.asList()).forEach(varIndexed -> {
 			String varIndexed2 = varIndexed;
@@ -299,6 +407,7 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Obje
 		});
 	}
 
+	@Override
 	protected void _defaultPivotVars(List<String> l) {
 		Optional.ofNullable(searchListComputateJavaClass_.getFacetPivots()).orElse(Arrays.asList()).forEach(facetPivot -> {
 			String facetPivot2 = facetPivot;
@@ -336,17 +445,17 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Obje
 			w.o(computateJavaClass_.getId());
 	}
 
-	/**
-	 * Ignore: true
-	**/
+	@Override
 	protected void _promiseBefore(Promise<Void> promise) {
 		promise.complete();
 	}
 
+	@Override
 	protected void _classSimpleName(Wrap<String> w) {
 		w.o("ComputateJavaClass");
 	}
 
+	@Override
 	protected void _pageTitle(Wrap<String> c) {
 		if(computateJavaClass_ != null && computateJavaClass_.getObjectTitle() != null)
 			c.o(computateJavaClass_.getObjectTitle());
@@ -358,35 +467,39 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Obje
 			c.o("java classs");
 	}
 
+	@Override
 	protected void _pageUri(Wrap<String> c) {
 		c.o("/java-class");
 	}
 
+	@Override
 	protected void _apiUri(Wrap<String> c) {
 		c.o("/api/java-class");
 	}
 
+	@Override
 	protected void _roles(List<String> l) {
 		if(siteRequest_ != null) {
 			l.addAll(Stream.concat(siteRequest_.getUserResourceRoles().stream(), siteRequest_.getUserRealmRoles().stream()).distinct().collect(Collectors.toList()));
 		}
 	}
 
-	/**
-	 * Ignore: true
-	**/
+	@Override
 	protected void _promiseAfter(Promise<Void> promise) {
 		promise.complete();
 	}
 
+	@Override
 	protected void _pageImageUri(Wrap<String> c) {
 			c.o("/png/java-class-999.png");
 	}
 
+	@Override
 	protected void _classIconGroup(Wrap<String> c) {
 			c.o("duotone");
 	}
 
+	@Override
 	protected void _classIconName(Wrap<String> c) {
 			c.o("map-location-dot");
 	}

@@ -13,9 +13,9 @@ import io.vertx.ext.web.api.service.WebApiServiceGen;
 import io.vertx.ext.web.api.service.ServiceRequest;
 import io.vertx.ext.web.api.service.ServiceResponse;
 import io.vertx.ext.web.templ.handlebars.HandlebarsTemplateEngine;
-import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.core.WorkerExecutor;
 import io.vertx.pgclient.PgPool;
+import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.ext.auth.oauth2.OAuth2Auth;
 import io.vertx.ext.auth.authorization.AuthorizationProvider;
 

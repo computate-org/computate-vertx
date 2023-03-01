@@ -56,16 +56,10 @@ import io.vertx.core.json.JsonArray;
 
 /**	
 <ol>
-<li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these AllWriter objects in a RESTful API. 
-</li>
-<li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class AllWriterGen into the class AllWriter. 
-</li>
 0<h3>Suggestions that can generate more code for you: </h3></ol>
  * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these AllWriter objects in a RESTful API. 
+ * </li><li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class AllWriterGen into the class AllWriter. 
  * </li>
- * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class AllWriterGen into the class AllWriter. 
- * </li>
- * 0<h3>Suggestions that can generate more code for you: </h3>
  * <h3>About the AllWriter class and it's generated class AllWriterGen&lt;Object&gt;: </h3>extends AllWriterGen
  * <p>
  * This Java class extends a generated Java class AllWriterGen built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
@@ -83,7 +77,7 @@ import io.vertx.core.json.JsonArray;
  * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
  * Api: true
- * ApiTag.enUS: null
+ * ApiTag.enUS: true
  * ApiUri.enUS: null
  * Color: null
  * IconGroup: null
@@ -97,7 +91,7 @@ import io.vertx.core.json.JsonArray;
  * Page: true
  * SuperPage.enUS: null
  * Promise: true
- * AName: null
+ * AName.enUS: null
  * <p>
  * Delete the class AllWriter in Solr: 
  * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
@@ -202,12 +196,6 @@ public abstract class AllWriterGen<DEV> extends Object {
 	public static String staticSearchFqTabStr(ComputateSiteRequest siteRequest_, String o) {
 		return AllWriter.staticSearchStrTabStr(siteRequest_, AllWriter.staticSearchTabStr(siteRequest_, AllWriter.staticSetTabStr(siteRequest_, o)));
 	}
-
-
-
-
-
-
 
 	//////////
 	// file //
@@ -419,17 +407,6 @@ public abstract class AllWriterGen<DEV> extends Object {
 	public static String staticSearchFqEmpty(ComputateSiteRequest siteRequest_, String o) {
 		return AllWriter.staticSearchStrEmpty(siteRequest_, AllWriter.staticSearchEmpty(siteRequest_, AllWriter.staticSetEmpty(siteRequest_, o)));
 	}
-
-
-
-
-
-
-
-
-
-
-
 
 	//////////////
 	// initDeep //
