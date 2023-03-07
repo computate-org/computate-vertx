@@ -493,7 +493,7 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 				searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
 				searchClasses.fq("classeNomCanonique_" + langueNom + "_indexed_string:" + fqClassesSuperEtMoi);
 				searchClasses.fq("partEstEntite_indexed_boolean:true");
-				searchClasses.fq("-entiteTypeJson_indexed_string:array");
+				searchClasses.fq("-(entiteAttribuer_indexed_boolean:true AND entiteTypeJson_indexed_string:array)");
 				searchClasses.fq("(entiteAttribuer_indexed_boolean:true OR entiteDefinir_indexed_boolean:true OR entiteClePrimaire_indexed_boolean:true)");
 				searchClasses.sortAsc("classeEstBase_indexed_boolean");
 				searchClasses.sortAsc("partNumero_indexed_int");
@@ -502,7 +502,7 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 				String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
 				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
 				String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
-			Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
+				Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
 				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
 				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).send().onSuccess(a -> {
 					try {
