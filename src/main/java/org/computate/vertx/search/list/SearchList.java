@@ -391,8 +391,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 				String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
 				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
 				String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
-				Boolean solrSsl = true;
-//				Boolean solrSsl = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_SSL);
+				Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
 				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
 				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).send().onSuccess(a -> {
 					try {
