@@ -44,7 +44,7 @@ public enum DateHelpers implements Helper<Object> {
 			else
 				d = str == null ? null : LocalDate.parse(str, DateTimeFormatter.ISO_DATE).atStartOfDay(zoneId).truncatedTo(ChronoUnit.MILLIS);
 
-			return DateTimeFormatter.ofPattern(pattern, locale).format(d.withZoneSameInstant(zoneId));
+			return d == null ? null : DateTimeFormatter.ofPattern(pattern, locale).format(d.withZoneSameInstant(zoneId));
 		}
 	}
 	;
