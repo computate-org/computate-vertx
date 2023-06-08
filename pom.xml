@@ -4,12 +4,12 @@
 		<groupId>org.computate</groupId>
 		<artifactId>computate-base</artifactId>
 		<relativePath>../computate-base/pom.xml</relativePath>
-		<version>4.2.7.22</version>
+		<version>4.2.7.23</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>computate-vertx</artifactId>
-	<version>4.2.7.22</version>
+	<version>4.2.7.23</version>
 	<packaging>jar</packaging>
 	<name>Computate Tools for integrating with Vert.x</name>
 	<description>Tools for integrating with Vert.x for reactive, asynchronous programming. </description>
@@ -90,7 +90,7 @@
 		<dependency>
 			<groupId>org.computate</groupId>
 			<artifactId>computate-search</artifactId>
-			<version>4.2.7.22</version>
+			<version>4.2.7.23</version>
 		</dependency>
 
 		<!-- Vert.x -->
