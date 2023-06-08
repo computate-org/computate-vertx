@@ -1,8 +1,10 @@
 package org.computate.vertx.tool;
 
+import java.text.Normalizer;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,5 +42,21 @@ public class VertxTool {
 			promise.fail(ex);
 		}
 		return promise.future();
+	}
+
+	/**
+	 * Description: A helper method for generating a URL friendly unique ID for this object
+	 */
+	public String toId(String s) {
+		if(s != null) {
+			s = Normalizer.normalize(s, Normalizer.Form.NFD);
+			s = StringUtils.lowerCase(s);
+			s = StringUtils.trim(s);
+			s = StringUtils.replacePattern(s, "\\s{1,}", "-");
+			s = StringUtils.replacePattern(s, "[^\\w-]", "");
+			s = StringUtils.replacePattern(s, "-{2,}", "-");
+		}
+
+		return s;
 	}
 }

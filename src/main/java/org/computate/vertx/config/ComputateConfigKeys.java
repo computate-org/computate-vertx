@@ -19,6 +19,16 @@ package org.computate.vertx.config;
 public class ComputateConfigKeys {
 
 	/**
+	 * API counter fetch SitePage
+	 */
+	public static final String API_COUNTER_FETCH_SitePage = "API_COUNTER_FETCH_SitePage";
+
+	/**
+	 * API counter fetch SiteHtm
+	 */
+	public static final String API_COUNTER_FETCH_SiteHtm = "API_COUNTER_FETCH_SiteHtm";
+
+	/**
 	 * 
 	 **/
 	public static final String QUAYIO_ORG = "QUAYIO_ORG";
@@ -379,9 +389,24 @@ public class ComputateConfigKeys {
 	public static final String SOLR_SSL = "SOLR_SSL";
 
 	/**
-	 * The Solr computate collection. 
+	 * The hostname to the computate SOLR search engine. 
+	 **/
+	public static final String SOLR_HOST_NAME_COMPUTATE = "SOLR_HOST_NAME_COMPUTATE";
+
+	/**
+	 * The port to the computate SOLR search engine. 
+	 **/
+	public static final String SOLR_PORT_COMPUTATE = "SOLR_PORT_COMPUTATE";
+
+	/**
+	 * The computate Solr collection. 
 	 **/
 	public static final String SOLR_COLLECTION_COMPUTATE = "SOLR_COLLECTION_COMPUTATE";
+
+	/**
+	 * Whether computate Solr uses SSL. 
+	 **/
+	public static final String SOLR_SSL_COMPUTATE = "SOLR_SSL_COMPUTATE";
 
 	/**
 	 * The path to the computate source code. 
@@ -573,6 +598,11 @@ public class ComputateConfigKeys {
 	 * 
 	 **/
 	public static final String VERTX_MAX_EVENT_LOOP_EXECUTE_TIME = "VERTX_MAX_EVENT_LOOP_EXECUTE_TIME";
+
+	/**
+	 * 
+	 **/
+	public static final String VERTX_MAX_WORKER_EXECUTE_TIME = "VERTX_MAX_WORKER_EXECUTE_TIME";
 
 	/**
 	 * 
