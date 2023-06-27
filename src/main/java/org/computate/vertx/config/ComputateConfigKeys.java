@@ -189,6 +189,11 @@ public class ComputateConfigKeys {
 	public static final String AUTH_ROLE_ADMIN = "AUTH_ROLE_ADMIN";
 
 	/**
+	 * JsonArray of super admin user roles. 
+	 **/
+	public static final String AUTH_ROLE_SUPER_ADMIN = "AUTH_ROLE_SUPER_ADMIN";
+
+	/**
 	 * Enable SSL Passthrough. 
 	 **/
 	public static final String SSL_PASSTHROUGH = "SSL_PASSTHROUGH";
@@ -422,6 +427,11 @@ public class ComputateConfigKeys {
 	 * The OpenID Connect role for an administrator. 
 	 **/
 	public static final String ROLE_ADMIN = "ROLE_ADMIN";
+
+	/**
+	 * The OpenID Connect role for a super administrator. 
+	 **/
+	public static final String ROLE_SUPER_ADMIN = "ROLE_SUPER_ADMIN";
 
 	/**
 	 * The email address for the administrator of the site for the error reports. 

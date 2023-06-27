@@ -68,7 +68,7 @@ public class EmailVerticle extends EmailVerticleGen<AbstractVerticle> {
 			public void handle(Message<Object> event) {
 
 				try {
-					JsonObject params = ((JsonObject)event.body()).getJsonObject("context").getJsonObject("params");
+					JsonObject params = new JsonObject(event.body().toString()).getJsonObject("error").getJsonObject("params");
 					JsonObject body = params.getJsonObject("body");
 					JsonObject headers = params.getJsonObject("header");
 					String mailTemplate = headers.getString(MAIL_HEADER_TEMPLATE);
