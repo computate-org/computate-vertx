@@ -109,8 +109,8 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 	@Override
 	public void searchComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
 		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, "computate-vertx-enUS-ComputateSiteUser", "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
-				try {
-					{
+				{
+					try {
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
 							response200SearchComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
 								eventHandler.handle(Future.succeededFuture(response));
@@ -123,10 +123,10 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 							LOG.error(String.format("searchComputateJavaClass failed. "), ex);
 							error(siteRequest, eventHandler, ex);
 						});
+					} catch(Exception ex) {
+						LOG.error(String.format("searchComputateJavaClass failed. "), ex);
+						error(null, eventHandler, ex);
 					}
-				} catch(Exception ex) {
-					LOG.error(String.format("searchComputateJavaClass failed. "), ex);
-					error(null, eventHandler, ex);
 				}
 		}).onFailure(ex -> {
 			if("Inactive Token".equals(ex.getMessage()) || StringUtils.startsWith(ex.getMessage(), "invalid_grant:")) {
@@ -235,8 +235,8 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 	@Override
 	public void getComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
 		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, "computate-vertx-enUS-ComputateSiteUser", "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
-				try {
-					{
+				{
+					try {
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
 							response200GETComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
 								eventHandler.handle(Future.succeededFuture(response));
@@ -249,10 +249,10 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 							LOG.error(String.format("getComputateJavaClass failed. "), ex);
 							error(siteRequest, eventHandler, ex);
 						});
+					} catch(Exception ex) {
+						LOG.error(String.format("getComputateJavaClass failed. "), ex);
+						error(null, eventHandler, ex);
 					}
-				} catch(Exception ex) {
-					LOG.error(String.format("getComputateJavaClass failed. "), ex);
-					error(null, eventHandler, ex);
 				}
 		}).onFailure(ex -> {
 			if("Inactive Token".equals(ex.getMessage()) || StringUtils.startsWith(ex.getMessage(), "invalid_grant:")) {
@@ -304,8 +304,8 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 	@Override
 	public void searchpageComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
 		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, "computate-vertx-enUS-ComputateSiteUser", "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
-				try {
-					{
+				{
+					try {
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
 							response200SearchPageComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
 								eventHandler.handle(Future.succeededFuture(response));
@@ -318,10 +318,10 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 							LOG.error(String.format("searchpageComputateJavaClass failed. "), ex);
 							error(siteRequest, eventHandler, ex);
 						});
+					} catch(Exception ex) {
+						LOG.error(String.format("searchpageComputateJavaClass failed. "), ex);
+						error(null, eventHandler, ex);
 					}
-				} catch(Exception ex) {
-					LOG.error(String.format("searchpageComputateJavaClass failed. "), ex);
-					error(null, eventHandler, ex);
 				}
 		}).onFailure(ex -> {
 			if("Inactive Token".equals(ex.getMessage()) || StringUtils.startsWith(ex.getMessage(), "invalid_grant:")) {

@@ -302,7 +302,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 					setResponse(response);
 					Wrap<List<SolrResponse.Doc>> docsWrap = new Wrap<List<SolrResponse.Doc>>().var("docs").o(response.getResponse().getDocs());
 					_docs(docsWrap);
-					setDocs(docsWrap.o);
+					setDocs(docsWrap.getO());
 					list.clear();
 					_list(list);
 
@@ -338,7 +338,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 				setResponse(response);
 				Wrap<List<SolrResponse.Doc>> docsWrap = new Wrap<List<SolrResponse.Doc>>().var("docs").o(response.getResponse().getDocs());
 				_docs(docsWrap);
-				setDocs(docsWrap.o);
+				setDocs(docsWrap.getO());
 				list.clear();
 				_list(list);
 

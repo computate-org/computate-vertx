@@ -19,3 +19,4 @@ touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/verticle/Em
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/writer/AllWriter.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/writer/AllWriters.java
 touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/writer/ApiWriter.java
+touch ~/.local/src/computate-vertx/src/main/java/org/computate/vertx/page/ComputatePageLayout.java

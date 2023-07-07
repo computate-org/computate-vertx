@@ -436,12 +436,12 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Comp
 	}
 
 	protected void _computateJavaClass_(Wrap<ComputateJavaClass> w) {
-		if(computateJavaClassCount == 1)
+		if(computateJavaClassCount == 1 && Optional.ofNullable(siteRequest_.getServiceRequest().getParams().getJsonObject("path")).map(o -> o.getString("id")).orElse(null) != null)
 			w.o(searchListComputateJavaClass_.get(0));
 	}
 
 	protected void _id(Wrap<String> w) {
-		if(computateJavaClassCount == 1)
+		if(computateJavaClass_ != null)
 			w.o(computateJavaClass_.getId());
 	}
 

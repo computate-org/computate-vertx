@@ -67,7 +67,7 @@ import io.vertx.core.Future;
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
- * <p><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter">Find the class ApiWriter in Solr. </a></p>
+ * <p><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter">Find the class ApiWriter in Solr. </a></p>
  * <p>
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
@@ -95,15 +95,15 @@ import io.vertx.core.Future;
  * AName.enUS: null
  * <p>
  * Delete the class ApiWriter in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.writer in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.writer&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.writer&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  **/
 public abstract class ApiWriterGen<DEV> extends Object {
@@ -123,7 +123,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -143,7 +143,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
 		if(siteRequest_ == null) {
 			_siteRequest_(siteRequest_Wrap);
-			setSiteRequest_(siteRequest_Wrap.o);
+			Optional.ofNullable(siteRequest_Wrap.getO()).ifPresent(o -> {
+				setSiteRequest_(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -162,7 +164,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classDoc
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classDoc">Find the entity classDoc in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classDoc">Find the entity classDoc in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -182,7 +184,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<ComputateEnUSClass> classDocWrap = new Wrap<ComputateEnUSClass>().var("classDoc");
 		if(classDoc == null) {
 			_classDoc(classDocWrap);
-			setClassDoc(classDocWrap.o);
+			Optional.ofNullable(classDocWrap.getO()).ifPresent(o -> {
+				setClassDoc(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -201,7 +205,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classSolrDocument
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classSolrDocument">Find the entity classSolrDocument in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classSolrDocument">Find the entity classSolrDocument in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -221,7 +225,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Doc> classSolrDocumentWrap = new Wrap<Doc>().var("classSolrDocument");
 		if(classSolrDocument == null) {
 			_classSolrDocument(classSolrDocumentWrap);
-			setClassSolrDocument(classSolrDocumentWrap.o);
+			Optional.ofNullable(classSolrDocumentWrap.getO()).ifPresent(o -> {
+				setClassSolrDocument(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -241,7 +247,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity contextRows
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:contextRows">Find the entity contextRows in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:contextRows">Find the entity contextRows in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -267,7 +273,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Integer> contextRowsWrap = new Wrap<Integer>().var("contextRows");
 		if(contextRows == null) {
 			_contextRows(contextRowsWrap);
-			setContextRows(contextRowsWrap.o);
+			Optional.ofNullable(contextRowsWrap.getO()).ifPresent(o -> {
+				setContextRows(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -298,7 +306,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classApiMethod
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiMethod">Find the entity classApiMethod in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiMethod">Find the entity classApiMethod in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -317,7 +325,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> classApiMethodWrap = new Wrap<String>().var("classApiMethod");
 		if(classApiMethod == null) {
 			_classApiMethod(classApiMethodWrap);
-			setClassApiMethod(classApiMethodWrap.o);
+			Optional.ofNullable(classApiMethodWrap.getO()).ifPresent(o -> {
+				setClassApiMethod(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -348,7 +358,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity openApiVersion
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:openApiVersion">Find the entity openApiVersion in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:openApiVersion">Find the entity openApiVersion in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -367,7 +377,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> openApiVersionWrap = new Wrap<String>().var("openApiVersion");
 		if(openApiVersion == null) {
 			_openApiVersion(openApiVersionWrap);
-			setOpenApiVersion(openApiVersionWrap.o);
+			Optional.ofNullable(openApiVersionWrap.getO()).ifPresent(o -> {
+				setOpenApiVersion(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -399,7 +411,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classUris
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classUris">Find the entity classUris in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classUris">Find the entity classUris in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -411,6 +423,11 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	public void setClassUris(List<String> classUris) {
 		this.classUris = classUris;
+	}
+	public void setClassUris(String o) {
+		String l = ApiWriter.staticSetClassUris(siteRequest_, o);
+		if(l != null)
+			addClassUris(l);
 	}
 	public static String staticSetClassUris(ComputateSiteRequest siteRequest_, String o) {
 		return o;
@@ -429,6 +446,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	@JsonIgnore
 	public void setClassUris(JsonArray objects) {
 		classUris.clear();
+		if(objects == null)
+			return;
 		for(int i = 0; i < objects.size(); i++) {
 			String o = objects.getString(i);
 			addClassUris(o);
@@ -438,7 +457,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<List<String>> classUrisWrap = new Wrap<List<String>>().var("classUris");
 		if(classUris == null) {
 			_classUris(classUrisWrap);
-			setClassUris(classUrisWrap.o);
+			Optional.ofNullable(classUrisWrap.getO()).ifPresent(o -> {
+				setClassUris(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -470,7 +491,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity openApiVersionNumber
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:openApiVersionNumber">Find the entity openApiVersionNumber in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:openApiVersionNumber">Find the entity openApiVersionNumber in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -496,7 +517,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Integer> openApiVersionNumberWrap = new Wrap<Integer>().var("openApiVersionNumber");
 		if(openApiVersionNumber == null) {
 			_openApiVersionNumber(openApiVersionNumberWrap);
-			setOpenApiVersionNumber(openApiVersionNumberWrap.o);
+			Optional.ofNullable(openApiVersionNumberWrap.getO()).ifPresent(o -> {
+				setOpenApiVersionNumber(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -528,7 +551,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity tabsSchema
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:tabsSchema">Find the entity tabsSchema in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:tabsSchema">Find the entity tabsSchema in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -554,7 +577,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Integer> tabsSchemaWrap = new Wrap<Integer>().var("tabsSchema");
 		if(tabsSchema == null) {
 			_tabsSchema(tabsSchemaWrap);
-			setTabsSchema(tabsSchemaWrap.o);
+			Optional.ofNullable(tabsSchemaWrap.getO()).ifPresent(o -> {
+				setTabsSchema(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -586,7 +611,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity tabsResponses
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:tabsResponses">Find the entity tabsResponses in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:tabsResponses">Find the entity tabsResponses in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -612,7 +637,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Integer> tabsResponsesWrap = new Wrap<Integer>().var("tabsResponses");
 		if(tabsResponses == null) {
 			_tabsResponses(tabsResponsesWrap);
-			setTabsResponses(tabsResponsesWrap.o);
+			Optional.ofNullable(tabsResponsesWrap.getO()).ifPresent(o -> {
+				setTabsResponses(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -643,7 +670,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity wPaths
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wPaths">Find the entity wPaths in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wPaths">Find the entity wPaths in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -663,7 +690,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<AllWriter> wPathsWrap = new Wrap<AllWriter>().var("wPaths");
 		if(wPaths == null) {
 			_wPaths(wPathsWrap);
-			setWPaths(wPathsWrap.o);
+			Optional.ofNullable(wPathsWrap.getO()).ifPresent(o -> {
+				setWPaths(o);
+			});
 		}
 		if(wPaths != null)
 			wPaths.initDeepForClass(siteRequest_);
@@ -684,7 +713,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity wRequestBodies
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wRequestBodies">Find the entity wRequestBodies in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wRequestBodies">Find the entity wRequestBodies in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -704,7 +733,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<AllWriter> wRequestBodiesWrap = new Wrap<AllWriter>().var("wRequestBodies");
 		if(wRequestBodies == null) {
 			_wRequestBodies(wRequestBodiesWrap);
-			setWRequestBodies(wRequestBodiesWrap.o);
+			Optional.ofNullable(wRequestBodiesWrap.getO()).ifPresent(o -> {
+				setWRequestBodies(o);
+			});
 		}
 		if(wRequestBodies != null)
 			wRequestBodies.initDeepForClass(siteRequest_);
@@ -725,7 +756,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity wSchemas
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wSchemas">Find the entity wSchemas in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wSchemas">Find the entity wSchemas in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -745,7 +776,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<AllWriter> wSchemasWrap = new Wrap<AllWriter>().var("wSchemas");
 		if(wSchemas == null) {
 			_wSchemas(wSchemasWrap);
-			setWSchemas(wSchemasWrap.o);
+			Optional.ofNullable(wSchemasWrap.getO()).ifPresent(o -> {
+				setWSchemas(o);
+			});
 		}
 		if(wSchemas != null)
 			wSchemas.initDeepForClass(siteRequest_);
@@ -766,7 +799,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity config
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:config">Find the entity config in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:config">Find the entity config in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -793,16 +826,18 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<JsonObject> configWrap = new Wrap<JsonObject>().var("config");
 		if(config == null) {
 			_config(configWrap);
-			setConfig(configWrap.o);
+			Optional.ofNullable(configWrap.getO()).ifPresent(o -> {
+				setConfig(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
 
-	public static JsonObject staticSearchConfig(ComputateSiteRequest siteRequest_, JsonObject o) {
-		return o;
+	public static String staticSearchConfig(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
 	}
 
-	public static String staticSearchStrConfig(ComputateSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrConfig(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
@@ -824,7 +859,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity wRequestHeaders
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wRequestHeaders">Find the entity wRequestHeaders in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wRequestHeaders">Find the entity wRequestHeaders in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -844,7 +879,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<AllWriter> wRequestHeadersWrap = new Wrap<AllWriter>().var("wRequestHeaders");
 		if(wRequestHeaders == null) {
 			_wRequestHeaders(wRequestHeadersWrap);
-			setWRequestHeaders(wRequestHeadersWrap.o);
+			Optional.ofNullable(wRequestHeadersWrap.getO()).ifPresent(o -> {
+				setWRequestHeaders(o);
+			});
 		}
 		if(wRequestHeaders != null)
 			wRequestHeaders.initDeepForClass(siteRequest_);
@@ -865,7 +902,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity wRequestDescription
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wRequestDescription">Find the entity wRequestDescription in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wRequestDescription">Find the entity wRequestDescription in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -885,7 +922,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<AllWriter> wRequestDescriptionWrap = new Wrap<AllWriter>().var("wRequestDescription");
 		if(wRequestDescription == null) {
 			_wRequestDescription(wRequestDescriptionWrap);
-			setWRequestDescription(wRequestDescriptionWrap.o);
+			Optional.ofNullable(wRequestDescriptionWrap.getO()).ifPresent(o -> {
+				setWRequestDescription(o);
+			});
 		}
 		if(wRequestDescription != null)
 			wRequestDescription.initDeepForClass(siteRequest_);
@@ -906,7 +945,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity wResponseDescription
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wResponseDescription">Find the entity wResponseDescription in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wResponseDescription">Find the entity wResponseDescription in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -926,7 +965,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<AllWriter> wResponseDescriptionWrap = new Wrap<AllWriter>().var("wResponseDescription");
 		if(wResponseDescription == null) {
 			_wResponseDescription(wResponseDescriptionWrap);
-			setWResponseDescription(wResponseDescriptionWrap.o);
+			Optional.ofNullable(wResponseDescriptionWrap.getO()).ifPresent(o -> {
+				setWResponseDescription(o);
+			});
 		}
 		if(wResponseDescription != null)
 			wResponseDescription.initDeepForClass(siteRequest_);
@@ -947,7 +988,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity wRequestBody
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wRequestBody">Find the entity wRequestBody in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wRequestBody">Find the entity wRequestBody in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -967,7 +1008,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<AllWriter> wRequestBodyWrap = new Wrap<AllWriter>().var("wRequestBody");
 		if(wRequestBody == null) {
 			_wRequestBody(wRequestBodyWrap);
-			setWRequestBody(wRequestBodyWrap.o);
+			Optional.ofNullable(wRequestBodyWrap.getO()).ifPresent(o -> {
+				setWRequestBody(o);
+			});
 		}
 		if(wRequestBody != null)
 			wRequestBody.initDeepForClass(siteRequest_);
@@ -988,7 +1031,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity wResponseBody
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wResponseBody">Find the entity wResponseBody in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wResponseBody">Find the entity wResponseBody in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1008,7 +1051,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<AllWriter> wResponseBodyWrap = new Wrap<AllWriter>().var("wResponseBody");
 		if(wResponseBody == null) {
 			_wResponseBody(wResponseBodyWrap);
-			setWResponseBody(wResponseBodyWrap.o);
+			Optional.ofNullable(wResponseBodyWrap.getO()).ifPresent(o -> {
+				setWResponseBody(o);
+			});
 		}
 		if(wResponseBody != null)
 			wResponseBody.initDeepForClass(siteRequest_);
@@ -1029,7 +1074,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity wRequestSchema
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wRequestSchema">Find the entity wRequestSchema in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wRequestSchema">Find the entity wRequestSchema in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1049,7 +1094,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<AllWriter> wRequestSchemaWrap = new Wrap<AllWriter>().var("wRequestSchema");
 		if(wRequestSchema == null) {
 			_wRequestSchema(wRequestSchemaWrap);
-			setWRequestSchema(wRequestSchemaWrap.o);
+			Optional.ofNullable(wRequestSchemaWrap.getO()).ifPresent(o -> {
+				setWRequestSchema(o);
+			});
 		}
 		if(wRequestSchema != null)
 			wRequestSchema.initDeepForClass(siteRequest_);
@@ -1070,7 +1117,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity wResponseSchema
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wResponseSchema">Find the entity wResponseSchema in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:wResponseSchema">Find the entity wResponseSchema in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1090,7 +1137,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<AllWriter> wResponseSchemaWrap = new Wrap<AllWriter>().var("wResponseSchema");
 		if(wResponseSchema == null) {
 			_wResponseSchema(wResponseSchemaWrap);
-			setWResponseSchema(wResponseSchemaWrap.o);
+			Optional.ofNullable(wResponseSchemaWrap.getO()).ifPresent(o -> {
+				setWResponseSchema(o);
+			});
 		}
 		if(wResponseSchema != null)
 			wResponseSchema.initDeepForClass(siteRequest_);
@@ -1111,7 +1160,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity writers
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:writers">Find the entity writers in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:writers">Find the entity writers in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1131,7 +1180,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<AllWriters> writersWrap = new Wrap<AllWriters>().var("writers");
 		if(writers == null) {
 			_writers(writersWrap);
-			setWriters(writersWrap.o);
+			Optional.ofNullable(writersWrap.getO()).ifPresent(o -> {
+				setWriters(o);
+			});
 		}
 		if(writers != null)
 			writers.initDeepForClass(siteRequest_);
@@ -1152,7 +1203,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classApiTag
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiTag">Find the entity classApiTag in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiTag">Find the entity classApiTag in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1171,7 +1222,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> classApiTagWrap = new Wrap<String>().var("classApiTag");
 		if(classApiTag == null) {
 			_classApiTag(classApiTagWrap);
-			setClassApiTag(classApiTagWrap.o);
+			Optional.ofNullable(classApiTagWrap.getO()).ifPresent(o -> {
+				setClassApiTag(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1202,7 +1255,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classExtendsBase
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classExtendsBase">Find the entity classExtendsBase in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classExtendsBase">Find the entity classExtendsBase in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1226,7 +1279,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Boolean> classExtendsBaseWrap = new Wrap<Boolean>().var("classExtendsBase");
 		if(classExtendsBase == null) {
 			_classExtendsBase(classExtendsBaseWrap);
-			setClassExtendsBase(classExtendsBaseWrap.o);
+			Optional.ofNullable(classExtendsBaseWrap.getO()).ifPresent(o -> {
+				setClassExtendsBase(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1257,7 +1312,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classIsBase
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classIsBase">Find the entity classIsBase in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classIsBase">Find the entity classIsBase in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1281,7 +1336,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Boolean> classIsBaseWrap = new Wrap<Boolean>().var("classIsBase");
 		if(classIsBase == null) {
 			_classIsBase(classIsBaseWrap);
-			setClassIsBase(classIsBaseWrap.o);
+			Optional.ofNullable(classIsBaseWrap.getO()).ifPresent(o -> {
+				setClassIsBase(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1312,7 +1369,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classSimpleName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classSimpleName">Find the entity classSimpleName in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classSimpleName">Find the entity classSimpleName in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1331,7 +1388,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> classSimpleNameWrap = new Wrap<String>().var("classSimpleName");
 		if(classSimpleName == null) {
 			_classSimpleName(classSimpleNameWrap);
-			setClassSimpleName(classSimpleNameWrap.o);
+			Optional.ofNullable(classSimpleNameWrap.getO()).ifPresent(o -> {
+				setClassSimpleName(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1362,7 +1421,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity appName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:appName">Find the entity appName in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:appName">Find the entity appName in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1381,7 +1440,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> appNameWrap = new Wrap<String>().var("appName");
 		if(appName == null) {
 			_appName(appNameWrap);
-			setAppName(appNameWrap.o);
+			Optional.ofNullable(appNameWrap.getO()).ifPresent(o -> {
+				setAppName(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1412,7 +1473,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classAbsolutePath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classAbsolutePath">Find the entity classAbsolutePath in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classAbsolutePath">Find the entity classAbsolutePath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1431,7 +1492,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> classAbsolutePathWrap = new Wrap<String>().var("classAbsolutePath");
 		if(classAbsolutePath == null) {
 			_classAbsolutePath(classAbsolutePathWrap);
-			setClassAbsolutePath(classAbsolutePathWrap.o);
+			Optional.ofNullable(classAbsolutePathWrap.getO()).ifPresent(o -> {
+				setClassAbsolutePath(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1462,7 +1525,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classApiUriMethod
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiUriMethod">Find the entity classApiUriMethod in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiUriMethod">Find the entity classApiUriMethod in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1481,7 +1544,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> classApiUriMethodWrap = new Wrap<String>().var("classApiUriMethod");
 		if(classApiUriMethod == null) {
 			_classApiUriMethod(classApiUriMethodWrap);
-			setClassApiUriMethod(classApiUriMethodWrap.o);
+			Optional.ofNullable(classApiUriMethodWrap.getO()).ifPresent(o -> {
+				setClassApiUriMethod(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1512,7 +1577,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classRoleUserMethod
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classRoleUserMethod">Find the entity classRoleUserMethod in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classRoleUserMethod">Find the entity classRoleUserMethod in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1536,7 +1601,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Boolean> classRoleUserMethodWrap = new Wrap<Boolean>().var("classRoleUserMethod");
 		if(classRoleUserMethod == null) {
 			_classRoleUserMethod(classRoleUserMethodWrap);
-			setClassRoleUserMethod(classRoleUserMethodWrap.o);
+			Optional.ofNullable(classRoleUserMethodWrap.getO()).ifPresent(o -> {
+				setClassRoleUserMethod(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1567,7 +1634,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classApiMethodMethod
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiMethodMethod">Find the entity classApiMethodMethod in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiMethodMethod">Find the entity classApiMethodMethod in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1586,7 +1653,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> classApiMethodMethodWrap = new Wrap<String>().var("classApiMethodMethod");
 		if(classApiMethodMethod == null) {
 			_classApiMethodMethod(classApiMethodMethodWrap);
-			setClassApiMethodMethod(classApiMethodMethodWrap.o);
+			Optional.ofNullable(classApiMethodMethodWrap.getO()).ifPresent(o -> {
+				setClassApiMethodMethod(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1617,7 +1686,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classApiMediaTypeRequestMethod
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiMediaTypeRequestMethod">Find the entity classApiMediaTypeRequestMethod in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiMediaTypeRequestMethod">Find the entity classApiMediaTypeRequestMethod in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1636,7 +1705,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> classApiMediaTypeRequestMethodWrap = new Wrap<String>().var("classApiMediaTypeRequestMethod");
 		if(classApiMediaTypeRequestMethod == null) {
 			_classApiMediaTypeRequestMethod(classApiMediaTypeRequestMethodWrap);
-			setClassApiMediaTypeRequestMethod(classApiMediaTypeRequestMethodWrap.o);
+			Optional.ofNullable(classApiMediaTypeRequestMethodWrap.getO()).ifPresent(o -> {
+				setClassApiMediaTypeRequestMethod(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1667,7 +1738,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classApiMediaType200Method
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiMediaType200Method">Find the entity classApiMediaType200Method in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiMediaType200Method">Find the entity classApiMediaType200Method in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1686,7 +1757,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> classApiMediaType200MethodWrap = new Wrap<String>().var("classApiMediaType200Method");
 		if(classApiMediaType200Method == null) {
 			_classApiMediaType200Method(classApiMediaType200MethodWrap);
-			setClassApiMediaType200Method(classApiMediaType200MethodWrap.o);
+			Optional.ofNullable(classApiMediaType200MethodWrap.getO()).ifPresent(o -> {
+				setClassApiMediaType200Method(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1717,7 +1790,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classApiOperationIdMethod
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiOperationIdMethod">Find the entity classApiOperationIdMethod in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiOperationIdMethod">Find the entity classApiOperationIdMethod in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1736,7 +1809,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> classApiOperationIdMethodWrap = new Wrap<String>().var("classApiOperationIdMethod");
 		if(classApiOperationIdMethod == null) {
 			_classApiOperationIdMethod(classApiOperationIdMethodWrap);
-			setClassApiOperationIdMethod(classApiOperationIdMethodWrap.o);
+			Optional.ofNullable(classApiOperationIdMethodWrap.getO()).ifPresent(o -> {
+				setClassApiOperationIdMethod(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1767,7 +1842,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classApiOperationIdMethodRequest
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiOperationIdMethodRequest">Find the entity classApiOperationIdMethodRequest in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiOperationIdMethodRequest">Find the entity classApiOperationIdMethodRequest in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1786,7 +1861,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> classApiOperationIdMethodRequestWrap = new Wrap<String>().var("classApiOperationIdMethodRequest");
 		if(classApiOperationIdMethodRequest == null) {
 			_classApiOperationIdMethodRequest(classApiOperationIdMethodRequestWrap);
-			setClassApiOperationIdMethodRequest(classApiOperationIdMethodRequestWrap.o);
+			Optional.ofNullable(classApiOperationIdMethodRequestWrap.getO()).ifPresent(o -> {
+				setClassApiOperationIdMethodRequest(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1817,7 +1894,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classApiOperationIdMethodResponse
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiOperationIdMethodResponse">Find the entity classApiOperationIdMethodResponse in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiOperationIdMethodResponse">Find the entity classApiOperationIdMethodResponse in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1836,7 +1913,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> classApiOperationIdMethodResponseWrap = new Wrap<String>().var("classApiOperationIdMethodResponse");
 		if(classApiOperationIdMethodResponse == null) {
 			_classApiOperationIdMethodResponse(classApiOperationIdMethodResponseWrap);
-			setClassApiOperationIdMethodResponse(classApiOperationIdMethodResponseWrap.o);
+			Optional.ofNullable(classApiOperationIdMethodResponseWrap.getO()).ifPresent(o -> {
+				setClassApiOperationIdMethodResponse(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1867,7 +1946,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classSuperApiOperationIdMethodRequest
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classSuperApiOperationIdMethodRequest">Find the entity classSuperApiOperationIdMethodRequest in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classSuperApiOperationIdMethodRequest">Find the entity classSuperApiOperationIdMethodRequest in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1886,7 +1965,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> classSuperApiOperationIdMethodRequestWrap = new Wrap<String>().var("classSuperApiOperationIdMethodRequest");
 		if(classSuperApiOperationIdMethodRequest == null) {
 			_classSuperApiOperationIdMethodRequest(classSuperApiOperationIdMethodRequestWrap);
-			setClassSuperApiOperationIdMethodRequest(classSuperApiOperationIdMethodRequestWrap.o);
+			Optional.ofNullable(classSuperApiOperationIdMethodRequestWrap.getO()).ifPresent(o -> {
+				setClassSuperApiOperationIdMethodRequest(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1917,7 +1998,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classSuperApiOperationIdMethodResponse
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classSuperApiOperationIdMethodResponse">Find the entity classSuperApiOperationIdMethodResponse in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classSuperApiOperationIdMethodResponse">Find the entity classSuperApiOperationIdMethodResponse in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1936,7 +2017,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> classSuperApiOperationIdMethodResponseWrap = new Wrap<String>().var("classSuperApiOperationIdMethodResponse");
 		if(classSuperApiOperationIdMethodResponse == null) {
 			_classSuperApiOperationIdMethodResponse(classSuperApiOperationIdMethodResponseWrap);
-			setClassSuperApiOperationIdMethodResponse(classSuperApiOperationIdMethodResponseWrap.o);
+			Optional.ofNullable(classSuperApiOperationIdMethodResponseWrap.getO()).ifPresent(o -> {
+				setClassSuperApiOperationIdMethodResponse(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -1967,7 +2050,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classPageCanonicalNameMethod
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classPageCanonicalNameMethod">Find the entity classPageCanonicalNameMethod in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classPageCanonicalNameMethod">Find the entity classPageCanonicalNameMethod in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1986,7 +2069,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> classPageCanonicalNameMethodWrap = new Wrap<String>().var("classPageCanonicalNameMethod");
 		if(classPageCanonicalNameMethod == null) {
 			_classPageCanonicalNameMethod(classPageCanonicalNameMethodWrap);
-			setClassPageCanonicalNameMethod(classPageCanonicalNameMethodWrap.o);
+			Optional.ofNullable(classPageCanonicalNameMethodWrap.getO()).ifPresent(o -> {
+				setClassPageCanonicalNameMethod(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -2017,7 +2102,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classKeywordsFound
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classKeywordsFound">Find the entity classKeywordsFound in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classKeywordsFound">Find the entity classKeywordsFound in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2041,7 +2126,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Boolean> classKeywordsFoundWrap = new Wrap<Boolean>().var("classKeywordsFound");
 		if(classKeywordsFound == null) {
 			_classKeywordsFound(classKeywordsFoundWrap);
-			setClassKeywordsFound(classKeywordsFoundWrap.o);
+			Optional.ofNullable(classKeywordsFoundWrap.getO()).ifPresent(o -> {
+				setClassKeywordsFound(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -2073,7 +2160,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classKeywords
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classKeywords">Find the entity classKeywords in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classKeywords">Find the entity classKeywords in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2085,6 +2172,11 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	public void setClassKeywords(List<String> classKeywords) {
 		this.classKeywords = classKeywords;
+	}
+	public void setClassKeywords(String o) {
+		String l = ApiWriter.staticSetClassKeywords(siteRequest_, o);
+		if(l != null)
+			addClassKeywords(l);
 	}
 	public static String staticSetClassKeywords(ComputateSiteRequest siteRequest_, String o) {
 		return o;
@@ -2103,6 +2195,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	@JsonIgnore
 	public void setClassKeywords(JsonArray objects) {
 		classKeywords.clear();
+		if(objects == null)
+			return;
 		for(int i = 0; i < objects.size(); i++) {
 			String o = objects.getString(i);
 			addClassKeywords(o);
@@ -2112,7 +2206,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<List<String>> classKeywordsWrap = new Wrap<List<String>>().var("classKeywords");
 		if(classKeywords == null) {
 			_classKeywords(classKeywordsWrap);
-			setClassKeywords(classKeywordsWrap.o);
+			Optional.ofNullable(classKeywordsWrap.getO()).ifPresent(o -> {
+				setClassKeywords(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -2143,7 +2239,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classPublicRead
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classPublicRead">Find the entity classPublicRead in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classPublicRead">Find the entity classPublicRead in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2167,7 +2263,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Boolean> classPublicReadWrap = new Wrap<Boolean>().var("classPublicRead");
 		if(classPublicRead == null) {
 			_classPublicRead(classPublicReadWrap);
-			setClassPublicRead(classPublicReadWrap.o);
+			Optional.ofNullable(classPublicReadWrap.getO()).ifPresent(o -> {
+				setClassPublicRead(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -2198,7 +2296,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classRoleSession
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classRoleSession">Find the entity classRoleSession in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classRoleSession">Find the entity classRoleSession in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2222,7 +2320,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Boolean> classRoleSessionWrap = new Wrap<Boolean>().var("classRoleSession");
 		if(classRoleSession == null) {
 			_classRoleSession(classRoleSessionWrap);
-			setClassRoleSession(classRoleSessionWrap.o);
+			Optional.ofNullable(classRoleSessionWrap.getO()).ifPresent(o -> {
+				setClassRoleSession(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -2253,7 +2353,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classRoleUtilisateur
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classRoleUtilisateur">Find the entity classRoleUtilisateur in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classRoleUtilisateur">Find the entity classRoleUtilisateur in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2277,7 +2377,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Boolean> classRoleUtilisateurWrap = new Wrap<Boolean>().var("classRoleUtilisateur");
 		if(classRoleUtilisateur == null) {
 			_classRoleUtilisateur(classRoleUtilisateurWrap);
-			setClassRoleUtilisateur(classRoleUtilisateurWrap.o);
+			Optional.ofNullable(classRoleUtilisateurWrap.getO()).ifPresent(o -> {
+				setClassRoleUtilisateur(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -2308,7 +2410,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classRoleAll
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classRoleAll">Find the entity classRoleAll in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classRoleAll">Find the entity classRoleAll in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2332,7 +2434,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Boolean> classRoleAllWrap = new Wrap<Boolean>().var("classRoleAll");
 		if(classRoleAll == null) {
 			_classRoleAll(classRoleAllWrap);
-			setClassRoleAll(classRoleAllWrap.o);
+			Optional.ofNullable(classRoleAllWrap.getO()).ifPresent(o -> {
+				setClassRoleAll(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -2363,7 +2467,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classRolesFound
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classRolesFound">Find the entity classRolesFound in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classRolesFound">Find the entity classRolesFound in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2387,7 +2491,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Boolean> classRolesFoundWrap = new Wrap<Boolean>().var("classRolesFound");
 		if(classRolesFound == null) {
 			_classRolesFound(classRolesFoundWrap);
-			setClassRolesFound(classRolesFoundWrap.o);
+			Optional.ofNullable(classRolesFoundWrap.getO()).ifPresent(o -> {
+				setClassRolesFound(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -2419,7 +2525,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classRoles
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classRoles">Find the entity classRoles in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classRoles">Find the entity classRoles in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2431,6 +2537,11 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	public void setClassRoles(List<String> classRoles) {
 		this.classRoles = classRoles;
+	}
+	public void setClassRoles(String o) {
+		String l = ApiWriter.staticSetClassRoles(siteRequest_, o);
+		if(l != null)
+			addClassRoles(l);
 	}
 	public static String staticSetClassRoles(ComputateSiteRequest siteRequest_, String o) {
 		return o;
@@ -2449,6 +2560,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	@JsonIgnore
 	public void setClassRoles(JsonArray objects) {
 		classRoles.clear();
+		if(objects == null)
+			return;
 		for(int i = 0; i < objects.size(); i++) {
 			String o = objects.getString(i);
 			addClassRoles(o);
@@ -2458,7 +2571,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<List<String>> classRolesWrap = new Wrap<List<String>>().var("classRoles");
 		if(classRoles == null) {
 			_classRoles(classRolesWrap);
-			setClassRoles(classRolesWrap.o);
+			Optional.ofNullable(classRolesWrap.getO()).ifPresent(o -> {
+				setClassRoles(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -2490,7 +2605,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity classRolesLanguage
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classRolesLanguage">Find the entity classRolesLanguage in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classRolesLanguage">Find the entity classRolesLanguage in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2502,6 +2617,11 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	public void setClassRolesLanguage(List<String> classRolesLanguage) {
 		this.classRolesLanguage = classRolesLanguage;
+	}
+	public void setClassRolesLanguage(String o) {
+		String l = ApiWriter.staticSetClassRolesLanguage(siteRequest_, o);
+		if(l != null)
+			addClassRolesLanguage(l);
 	}
 	public static String staticSetClassRolesLanguage(ComputateSiteRequest siteRequest_, String o) {
 		return o;
@@ -2520,6 +2640,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	@JsonIgnore
 	public void setClassRolesLanguage(JsonArray objects) {
 		classRolesLanguage.clear();
+		if(objects == null)
+			return;
 		for(int i = 0; i < objects.size(); i++) {
 			String o = objects.getString(i);
 			addClassRolesLanguage(o);
@@ -2529,7 +2651,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<List<String>> classRolesLanguageWrap = new Wrap<List<String>>().var("classRolesLanguage");
 		if(classRolesLanguage == null) {
 			_classRolesLanguage(classRolesLanguageWrap);
-			setClassRolesLanguage(classRolesLanguageWrap.o);
+			Optional.ofNullable(classRolesLanguageWrap.getO()).ifPresent(o -> {
+				setClassRolesLanguage(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -2560,7 +2684,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity languageName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:languageName">Find the entity languageName in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:languageName">Find the entity languageName in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2579,7 +2703,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<String> languageNameWrap = new Wrap<String>().var("languageName");
 		if(languageName == null) {
 			_languageName(languageNameWrap);
-			setLanguageName(languageNameWrap.o);
+			Optional.ofNullable(languageNameWrap.getO()).ifPresent(o -> {
+				setLanguageName(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -2610,7 +2736,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	/**	<br> The entity entitySolrDocument
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:entitySolrDocument">Find the entity entitySolrDocument in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:entitySolrDocument">Find the entity entitySolrDocument in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2630,7 +2756,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		Wrap<Doc> entitySolrDocumentWrap = new Wrap<Doc>().var("entitySolrDocument");
 		if(entitySolrDocument == null) {
 			_entitySolrDocument(entitySolrDocumentWrap);
-			setEntitySolrDocument(entitySolrDocumentWrap.o);
+			Optional.ofNullable(entitySolrDocumentWrap.getO()).ifPresent(o -> {
+				setEntitySolrDocument(o);
+			});
 		}
 		return (ApiWriter)this;
 	}
@@ -3077,7 +3205,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		case "tabsResponses":
 			return ApiWriter.staticSearchStrTabsResponses(siteRequest_, (Integer)o);
 		case "config":
-			return ApiWriter.staticSearchStrConfig(siteRequest_, (JsonObject)o);
+			return ApiWriter.staticSearchStrConfig(siteRequest_, (String)o);
 		case "classApiTag":
 			return ApiWriter.staticSearchStrClassApiTag(siteRequest_, (String)o);
 		case "classExtendsBase":

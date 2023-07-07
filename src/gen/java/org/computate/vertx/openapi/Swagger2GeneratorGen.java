@@ -65,7 +65,7 @@ import io.vertx.core.json.JsonArray;
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
- * <p><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator">Find the class Swagger2Generator in Solr. </a></p>
+ * <p><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator">Find the class Swagger2Generator in Solr. </a></p>
  * <p>
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
@@ -93,15 +93,15 @@ import io.vertx.core.json.JsonArray;
  * AName.enUS: null
  * <p>
  * Delete the class Swagger2Generator in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.openapi in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  **/
 public abstract class Swagger2GeneratorGen<DEV> extends Object {
@@ -126,7 +126,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity webClient
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:webClient">Find the entity webClient in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:webClient">Find the entity webClient in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -146,7 +146,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<WebClient> webClientWrap = new Wrap<WebClient>().var("webClient");
 		if(webClient == null) {
 			_webClient(webClientWrap);
-			setWebClient(webClientWrap.o);
+			Optional.ofNullable(webClientWrap.getO()).ifPresent(o -> {
+				setWebClient(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -165,7 +167,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -185,7 +187,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
 		if(siteRequest_ == null) {
 			_siteRequest_(siteRequest_Wrap);
-			setSiteRequest_(siteRequest_Wrap.o);
+			Optional.ofNullable(siteRequest_Wrap.getO()).ifPresent(o -> {
+				setSiteRequest_(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -204,7 +208,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity config
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:config">Find the entity config in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:config">Find the entity config in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -231,16 +235,18 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<JsonObject> configWrap = new Wrap<JsonObject>().var("config");
 		if(config == null) {
 			_config(configWrap);
-			setConfig(configWrap.o);
+			Optional.ofNullable(configWrap.getO()).ifPresent(o -> {
+				setConfig(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
 
-	public static JsonObject staticSearchConfig(ComputateSiteRequest siteRequest_, JsonObject o) {
-		return o;
+	public static String staticSearchConfig(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
 	}
 
-	public static String staticSearchStrConfig(ComputateSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrConfig(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
@@ -262,7 +268,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity appName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:appName">Find the entity appName in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:appName">Find the entity appName in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -281,7 +287,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<String> appNameWrap = new Wrap<String>().var("appName");
 		if(appName == null) {
 			_appName(appNameWrap);
-			setAppName(appNameWrap.o);
+			Optional.ofNullable(appNameWrap.getO()).ifPresent(o -> {
+				setAppName(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -312,7 +320,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity languageName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:languageName">Find the entity languageName in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:languageName">Find the entity languageName in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -331,7 +339,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<String> languageNameWrap = new Wrap<String>().var("languageName");
 		if(languageName == null) {
 			_languageName(languageNameWrap);
-			setLanguageName(languageNameWrap.o);
+			Optional.ofNullable(languageNameWrap.getO()).ifPresent(o -> {
+				setLanguageName(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -362,7 +372,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity appPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:appPath">Find the entity appPath in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:appPath">Find the entity appPath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -381,7 +391,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<String> appPathWrap = new Wrap<String>().var("appPath");
 		if(appPath == null) {
 			_appPath(appPathWrap);
-			setAppPath(appPathWrap.o);
+			Optional.ofNullable(appPathWrap.getO()).ifPresent(o -> {
+				setAppPath(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -412,7 +424,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity openApiVersion
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:openApiVersion">Find the entity openApiVersion in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:openApiVersion">Find the entity openApiVersion in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -431,7 +443,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<String> openApiVersionWrap = new Wrap<String>().var("openApiVersion");
 		if(openApiVersion == null) {
 			_openApiVersion(openApiVersionWrap);
-			setOpenApiVersion(openApiVersionWrap.o);
+			Optional.ofNullable(openApiVersionWrap.getO()).ifPresent(o -> {
+				setOpenApiVersion(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -463,7 +477,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity openApiVersionNumber
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:openApiVersionNumber">Find the entity openApiVersionNumber in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:openApiVersionNumber">Find the entity openApiVersionNumber in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -489,7 +503,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<Integer> openApiVersionNumberWrap = new Wrap<Integer>().var("openApiVersionNumber");
 		if(openApiVersionNumber == null) {
 			_openApiVersionNumber(openApiVersionNumberWrap);
-			setOpenApiVersionNumber(openApiVersionNumberWrap.o);
+			Optional.ofNullable(openApiVersionNumberWrap.getO()).ifPresent(o -> {
+				setOpenApiVersionNumber(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -521,7 +537,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity tabsSchema
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:tabsSchema">Find the entity tabsSchema in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:tabsSchema">Find the entity tabsSchema in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -547,7 +563,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<Integer> tabsSchemaWrap = new Wrap<Integer>().var("tabsSchema");
 		if(tabsSchema == null) {
 			_tabsSchema(tabsSchemaWrap);
-			setTabsSchema(tabsSchemaWrap.o);
+			Optional.ofNullable(tabsSchemaWrap.getO()).ifPresent(o -> {
+				setTabsSchema(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -578,7 +596,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity apiVersion
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:apiVersion">Find the entity apiVersion in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:apiVersion">Find the entity apiVersion in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -597,7 +615,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<String> apiVersionWrap = new Wrap<String>().var("apiVersion");
 		if(apiVersion == null) {
 			_apiVersion(apiVersionWrap);
-			setApiVersion(apiVersionWrap.o);
+			Optional.ofNullable(apiVersionWrap.getO()).ifPresent(o -> {
+				setApiVersion(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -628,7 +648,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity openApiYamlPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:openApiYamlPath">Find the entity openApiYamlPath in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:openApiYamlPath">Find the entity openApiYamlPath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -647,7 +667,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<String> openApiYamlPathWrap = new Wrap<String>().var("openApiYamlPath");
 		if(openApiYamlPath == null) {
 			_openApiYamlPath(openApiYamlPathWrap);
-			setOpenApiYamlPath(openApiYamlPathWrap.o);
+			Optional.ofNullable(openApiYamlPathWrap.getO()).ifPresent(o -> {
+				setOpenApiYamlPath(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -678,7 +700,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity openApiYamlFile
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:openApiYamlFile">Find the entity openApiYamlFile in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:openApiYamlFile">Find the entity openApiYamlFile in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -698,7 +720,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<File> openApiYamlFileWrap = new Wrap<File>().var("openApiYamlFile");
 		if(openApiYamlFile == null) {
 			_openApiYamlFile(openApiYamlFileWrap);
-			setOpenApiYamlFile(openApiYamlFileWrap.o);
+			Optional.ofNullable(openApiYamlFileWrap.getO()).ifPresent(o -> {
+				setOpenApiYamlFile(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -717,7 +741,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity sqlCreatePath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:sqlCreatePath">Find the entity sqlCreatePath in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:sqlCreatePath">Find the entity sqlCreatePath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -736,7 +760,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<String> sqlCreatePathWrap = new Wrap<String>().var("sqlCreatePath");
 		if(sqlCreatePath == null) {
 			_sqlCreatePath(sqlCreatePathWrap);
-			setSqlCreatePath(sqlCreatePathWrap.o);
+			Optional.ofNullable(sqlCreatePathWrap.getO()).ifPresent(o -> {
+				setSqlCreatePath(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -767,7 +793,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity sqlCreateFile
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:sqlCreateFile">Find the entity sqlCreateFile in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:sqlCreateFile">Find the entity sqlCreateFile in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -787,7 +813,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<File> sqlCreateFileWrap = new Wrap<File>().var("sqlCreateFile");
 		if(sqlCreateFile == null) {
 			_sqlCreateFile(sqlCreateFileWrap);
-			setSqlCreateFile(sqlCreateFileWrap.o);
+			Optional.ofNullable(sqlCreateFileWrap.getO()).ifPresent(o -> {
+				setSqlCreateFile(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -806,7 +834,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity sqlDropPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:sqlDropPath">Find the entity sqlDropPath in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:sqlDropPath">Find the entity sqlDropPath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -825,7 +853,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<String> sqlDropPathWrap = new Wrap<String>().var("sqlDropPath");
 		if(sqlDropPath == null) {
 			_sqlDropPath(sqlDropPathWrap);
-			setSqlDropPath(sqlDropPathWrap.o);
+			Optional.ofNullable(sqlDropPathWrap.getO()).ifPresent(o -> {
+				setSqlDropPath(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -856,7 +886,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity sqlDropFile
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:sqlDropFile">Find the entity sqlDropFile in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:sqlDropFile">Find the entity sqlDropFile in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -876,7 +906,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<File> sqlDropFileWrap = new Wrap<File>().var("sqlDropFile");
 		if(sqlDropFile == null) {
 			_sqlDropFile(sqlDropFileWrap);
-			setSqlDropFile(sqlDropFileWrap.o);
+			Optional.ofNullable(sqlDropFileWrap.getO()).ifPresent(o -> {
+				setSqlDropFile(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -895,7 +927,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity articleYamlPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:articleYamlPath">Find the entity articleYamlPath in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:articleYamlPath">Find the entity articleYamlPath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -914,7 +946,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<String> articleYamlPathWrap = new Wrap<String>().var("articleYamlPath");
 		if(articleYamlPath == null) {
 			_articleYamlPath(articleYamlPathWrap);
-			setArticleYamlPath(articleYamlPathWrap.o);
+			Optional.ofNullable(articleYamlPathWrap.getO()).ifPresent(o -> {
+				setArticleYamlPath(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -945,7 +979,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity articleYamlFile
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:articleYamlFile">Find the entity articleYamlFile in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:articleYamlFile">Find the entity articleYamlFile in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -965,7 +999,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<File> articleYamlFileWrap = new Wrap<File>().var("articleYamlFile");
 		if(articleYamlFile == null) {
 			_articleYamlFile(articleYamlFileWrap);
-			setArticleYamlFile(articleYamlFileWrap.o);
+			Optional.ofNullable(articleYamlFileWrap.getO()).ifPresent(o -> {
+				setArticleYamlFile(o);
+			});
 		}
 		return (Swagger2Generator)this;
 	}
@@ -984,7 +1020,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity w
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:w">Find the entity w in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:w">Find the entity w in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1004,7 +1040,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<AllWriter> wWrap = new Wrap<AllWriter>().var("w");
 		if(w == null) {
 			_w(wWrap);
-			setW(wWrap.o);
+			Optional.ofNullable(wWrap.getO()).ifPresent(o -> {
+				setW(o);
+			});
 		}
 		if(w != null)
 			w.initDeepForClass(siteRequest_);
@@ -1025,7 +1063,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity wSqlCreate
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wSqlCreate">Find the entity wSqlCreate in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wSqlCreate">Find the entity wSqlCreate in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1045,7 +1083,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<AllWriter> wSqlCreateWrap = new Wrap<AllWriter>().var("wSqlCreate");
 		if(wSqlCreate == null) {
 			_wSqlCreate(wSqlCreateWrap);
-			setWSqlCreate(wSqlCreateWrap.o);
+			Optional.ofNullable(wSqlCreateWrap.getO()).ifPresent(o -> {
+				setWSqlCreate(o);
+			});
 		}
 		if(wSqlCreate != null)
 			wSqlCreate.initDeepForClass(siteRequest_);
@@ -1066,7 +1106,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity wSqlDrop
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wSqlDrop">Find the entity wSqlDrop in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wSqlDrop">Find the entity wSqlDrop in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1086,7 +1126,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<AllWriter> wSqlDropWrap = new Wrap<AllWriter>().var("wSqlDrop");
 		if(wSqlDrop == null) {
 			_wSqlDrop(wSqlDropWrap);
-			setWSqlDrop(wSqlDropWrap.o);
+			Optional.ofNullable(wSqlDropWrap.getO()).ifPresent(o -> {
+				setWSqlDrop(o);
+			});
 		}
 		if(wSqlDrop != null)
 			wSqlDrop.initDeepForClass(siteRequest_);
@@ -1107,7 +1149,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity wArticle
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wArticle">Find the entity wArticle in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wArticle">Find the entity wArticle in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1127,7 +1169,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<AllWriter> wArticleWrap = new Wrap<AllWriter>().var("wArticle");
 		if(wArticle == null) {
 			_wArticle(wArticleWrap);
-			setWArticle(wArticleWrap.o);
+			Optional.ofNullable(wArticleWrap.getO()).ifPresent(o -> {
+				setWArticle(o);
+			});
 		}
 		if(wArticle != null)
 			wArticle.initDeepForClass(siteRequest_);
@@ -1148,7 +1192,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity wPaths
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wPaths">Find the entity wPaths in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wPaths">Find the entity wPaths in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1168,7 +1212,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<AllWriter> wPathsWrap = new Wrap<AllWriter>().var("wPaths");
 		if(wPaths == null) {
 			_wPaths(wPathsWrap);
-			setWPaths(wPathsWrap.o);
+			Optional.ofNullable(wPathsWrap.getO()).ifPresent(o -> {
+				setWPaths(o);
+			});
 		}
 		if(wPaths != null)
 			wPaths.initDeepForClass(siteRequest_);
@@ -1189,7 +1235,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity wRequestBodies
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wRequestBodies">Find the entity wRequestBodies in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wRequestBodies">Find the entity wRequestBodies in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1209,7 +1255,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<AllWriter> wRequestBodiesWrap = new Wrap<AllWriter>().var("wRequestBodies");
 		if(wRequestBodies == null) {
 			_wRequestBodies(wRequestBodiesWrap);
-			setWRequestBodies(wRequestBodiesWrap.o);
+			Optional.ofNullable(wRequestBodiesWrap.getO()).ifPresent(o -> {
+				setWRequestBodies(o);
+			});
 		}
 		if(wRequestBodies != null)
 			wRequestBodies.initDeepForClass(siteRequest_);
@@ -1230,7 +1278,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity wSchemas
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wSchemas">Find the entity wSchemas in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wSchemas">Find the entity wSchemas in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1250,7 +1298,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		Wrap<AllWriter> wSchemasWrap = new Wrap<AllWriter>().var("wSchemas");
 		if(wSchemas == null) {
 			_wSchemas(wSchemasWrap);
-			setWSchemas(wSchemasWrap.o);
+			Optional.ofNullable(wSchemasWrap.getO()).ifPresent(o -> {
+				setWSchemas(o);
+			});
 		}
 		if(wSchemas != null)
 			wSchemas.initDeepForClass(siteRequest_);
@@ -1515,7 +1565,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public static String staticSearchStrSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 		case "config":
-			return Swagger2Generator.staticSearchStrConfig(siteRequest_, (JsonObject)o);
+			return Swagger2Generator.staticSearchStrConfig(siteRequest_, (String)o);
 		case "appName":
 			return Swagger2Generator.staticSearchStrAppName(siteRequest_, (String)o);
 		case "languageName":

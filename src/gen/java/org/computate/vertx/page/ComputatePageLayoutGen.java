@@ -67,7 +67,7 @@ import io.vertx.core.Future;
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
- * <p><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout">Find the class ComputatePageLayout in Solr. </a></p>
+ * <p><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout">Find the class ComputatePageLayout in Solr. </a></p>
  * <p>
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
@@ -117,15 +117,15 @@ import io.vertx.core.Future;
  * AName.enUS: null
  * <p>
  * Delete the class ComputatePageLayout in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.page in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.page&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.page&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  **/
 public abstract class ComputatePageLayoutGen<DEV> extends Object {
@@ -145,7 +145,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -165,7 +165,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
 		if(siteRequest_ == null) {
 			_siteRequest_(siteRequest_Wrap);
-			setSiteRequest_(siteRequest_Wrap.o);
+			Optional.ofNullable(siteRequest_Wrap.getO()).ifPresent(o -> {
+				setSiteRequest_(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -184,7 +186,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity lang
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:lang">Find the entity lang in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:lang">Find the entity lang in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -203,7 +205,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> langWrap = new Wrap<String>().var("lang");
 		if(lang == null) {
 			_lang(langWrap);
-			setLang(langWrap.o);
+			Optional.ofNullable(langWrap.getO()).ifPresent(o -> {
+				setLang(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -234,7 +238,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity requestVars
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:requestVars">Find the entity requestVars in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:requestVars">Find the entity requestVars in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -254,7 +258,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<Map<String, String>> requestVarsWrap = new Wrap<Map<String, String>>().var("requestVars");
 		if(requestVars == null) {
 			_requestVars(requestVarsWrap);
-			setRequestVars(requestVarsWrap.o);
+			Optional.ofNullable(requestVarsWrap.getO()).ifPresent(o -> {
+				setRequestVars(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -273,7 +279,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity config
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:config">Find the entity config in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:config">Find the entity config in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -300,16 +306,18 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<JsonObject> configWrap = new Wrap<JsonObject>().var("config");
 		if(config == null) {
 			_config(configWrap);
-			setConfig(configWrap.o);
+			Optional.ofNullable(configWrap.getO()).ifPresent(o -> {
+				setConfig(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
 
-	public static JsonObject staticSearchConfig(ComputateSiteRequest siteRequest_, JsonObject o) {
-		return o;
+	public static String staticSearchConfig(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
 	}
 
-	public static String staticSearchStrConfig(ComputateSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrConfig(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
@@ -331,7 +339,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity serviceRequest
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:serviceRequest">Find the entity serviceRequest in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:serviceRequest">Find the entity serviceRequest in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -351,7 +359,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<ServiceRequest> serviceRequestWrap = new Wrap<ServiceRequest>().var("serviceRequest");
 		if(serviceRequest == null) {
 			_serviceRequest(serviceRequestWrap);
-			setServiceRequest(serviceRequestWrap.o);
+			Optional.ofNullable(serviceRequestWrap.getO()).ifPresent(o -> {
+				setServiceRequest(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -370,7 +380,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity staticBaseUrl
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:staticBaseUrl">Find the entity staticBaseUrl in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:staticBaseUrl">Find the entity staticBaseUrl in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -389,7 +399,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> staticBaseUrlWrap = new Wrap<String>().var("staticBaseUrl");
 		if(staticBaseUrl == null) {
 			_staticBaseUrl(staticBaseUrlWrap);
-			setStaticBaseUrl(staticBaseUrlWrap.o);
+			Optional.ofNullable(staticBaseUrlWrap.getO()).ifPresent(o -> {
+				setStaticBaseUrl(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -420,7 +432,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity siteBaseUrl
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:siteBaseUrl">Find the entity siteBaseUrl in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:siteBaseUrl">Find the entity siteBaseUrl in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -439,7 +451,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> siteBaseUrlWrap = new Wrap<String>().var("siteBaseUrl");
 		if(siteBaseUrl == null) {
 			_siteBaseUrl(siteBaseUrlWrap);
-			setSiteBaseUrl(siteBaseUrlWrap.o);
+			Optional.ofNullable(siteBaseUrlWrap.getO()).ifPresent(o -> {
+				setSiteBaseUrl(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -470,7 +484,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity siteAuthUrl
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:siteAuthUrl">Find the entity siteAuthUrl in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:siteAuthUrl">Find the entity siteAuthUrl in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -489,7 +503,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> siteAuthUrlWrap = new Wrap<String>().var("siteAuthUrl");
 		if(siteAuthUrl == null) {
 			_siteAuthUrl(siteAuthUrlWrap);
-			setSiteAuthUrl(siteAuthUrlWrap.o);
+			Optional.ofNullable(siteAuthUrlWrap.getO()).ifPresent(o -> {
+				setSiteAuthUrl(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -520,7 +536,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity siteAuthRealm
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:siteAuthRealm">Find the entity siteAuthRealm in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:siteAuthRealm">Find the entity siteAuthRealm in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -539,7 +555,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> siteAuthRealmWrap = new Wrap<String>().var("siteAuthRealm");
 		if(siteAuthRealm == null) {
 			_siteAuthRealm(siteAuthRealmWrap);
-			setSiteAuthRealm(siteAuthRealmWrap.o);
+			Optional.ofNullable(siteAuthRealmWrap.getO()).ifPresent(o -> {
+				setSiteAuthRealm(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -570,7 +588,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity fontAwesomeKit
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:fontAwesomeKit">Find the entity fontAwesomeKit in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:fontAwesomeKit">Find the entity fontAwesomeKit in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -589,7 +607,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> fontAwesomeKitWrap = new Wrap<String>().var("fontAwesomeKit");
 		if(fontAwesomeKit == null) {
 			_fontAwesomeKit(fontAwesomeKitWrap);
-			setFontAwesomeKit(fontAwesomeKitWrap.o);
+			Optional.ofNullable(fontAwesomeKitWrap.getO()).ifPresent(o -> {
+				setFontAwesomeKit(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -620,7 +640,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity facebookGraphVersion
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:facebookGraphVersion">Find the entity facebookGraphVersion in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:facebookGraphVersion">Find the entity facebookGraphVersion in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -639,7 +659,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> facebookGraphVersionWrap = new Wrap<String>().var("facebookGraphVersion");
 		if(facebookGraphVersion == null) {
 			_facebookGraphVersion(facebookGraphVersionWrap);
-			setFacebookGraphVersion(facebookGraphVersionWrap.o);
+			Optional.ofNullable(facebookGraphVersionWrap.getO()).ifPresent(o -> {
+				setFacebookGraphVersion(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -670,7 +692,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity facebookAppId
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:facebookAppId">Find the entity facebookAppId in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:facebookAppId">Find the entity facebookAppId in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -689,7 +711,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> facebookAppIdWrap = new Wrap<String>().var("facebookAppId");
 		if(facebookAppId == null) {
 			_facebookAppId(facebookAppIdWrap);
-			setFacebookAppId(facebookAppIdWrap.o);
+			Optional.ofNullable(facebookAppIdWrap.getO()).ifPresent(o -> {
+				setFacebookAppId(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -720,7 +744,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity pageUri
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageUri">Find the entity pageUri in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageUri">Find the entity pageUri in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -739,7 +763,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> pageUriWrap = new Wrap<String>().var("pageUri");
 		if(pageUri == null) {
 			_pageUri(pageUriWrap);
-			setPageUri(pageUriWrap.o);
+			Optional.ofNullable(pageUriWrap.getO()).ifPresent(o -> {
+				setPageUri(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -770,7 +796,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity pageId
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageId">Find the entity pageId in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageId">Find the entity pageId in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -789,7 +815,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> pageIdWrap = new Wrap<String>().var("pageId");
 		if(pageId == null) {
 			_pageId(pageIdWrap);
-			setPageId(pageIdWrap.o);
+			Optional.ofNullable(pageIdWrap.getO()).ifPresent(o -> {
+				setPageId(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -820,7 +848,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity apiUri
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:apiUri">Find the entity apiUri in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:apiUri">Find the entity apiUri in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -839,7 +867,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> apiUriWrap = new Wrap<String>().var("apiUri");
 		if(apiUri == null) {
 			_apiUri(apiUriWrap);
-			setApiUri(apiUriWrap.o);
+			Optional.ofNullable(apiUriWrap.getO()).ifPresent(o -> {
+				setApiUri(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -870,7 +900,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity pageMethod
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageMethod">Find the entity pageMethod in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageMethod">Find the entity pageMethod in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -889,7 +919,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> pageMethodWrap = new Wrap<String>().var("pageMethod");
 		if(pageMethod == null) {
 			_pageMethod(pageMethodWrap);
-			setPageMethod(pageMethodWrap.o);
+			Optional.ofNullable(pageMethodWrap.getO()).ifPresent(o -> {
+				setPageMethod(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -920,7 +952,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity params
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:params">Find the entity params in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:params">Find the entity params in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -947,16 +979,18 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<JsonObject> paramsWrap = new Wrap<JsonObject>().var("params");
 		if(params == null) {
 			_params(paramsWrap);
-			setParams(paramsWrap.o);
+			Optional.ofNullable(paramsWrap.getO()).ifPresent(o -> {
+				setParams(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
 
-	public static JsonObject staticSearchParams(ComputateSiteRequest siteRequest_, JsonObject o) {
-		return o;
+	public static String staticSearchParams(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
 	}
 
-	public static String staticSearchStrParams(ComputateSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrParams(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
@@ -979,7 +1013,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity userKey
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:userKey">Find the entity userKey in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:userKey">Find the entity userKey in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1005,7 +1039,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<Long> userKeyWrap = new Wrap<Long>().var("userKey");
 		if(userKey == null) {
 			_userKey(userKeyWrap);
-			setUserKey(userKeyWrap.o);
+			Optional.ofNullable(userKeyWrap.getO()).ifPresent(o -> {
+				setUserKey(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -1036,7 +1072,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity userFullName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:userFullName">Find the entity userFullName in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:userFullName">Find the entity userFullName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1055,7 +1091,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> userFullNameWrap = new Wrap<String>().var("userFullName");
 		if(userFullName == null) {
 			_userFullName(userFullNameWrap);
-			setUserFullName(userFullNameWrap.o);
+			Optional.ofNullable(userFullNameWrap.getO()).ifPresent(o -> {
+				setUserFullName(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -1086,7 +1124,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity userName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:userName">Find the entity userName in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:userName">Find the entity userName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1105,7 +1143,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> userNameWrap = new Wrap<String>().var("userName");
 		if(userName == null) {
 			_userName(userNameWrap);
-			setUserName(userNameWrap.o);
+			Optional.ofNullable(userNameWrap.getO()).ifPresent(o -> {
+				setUserName(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -1136,7 +1176,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity userEmail
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:userEmail">Find the entity userEmail in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:userEmail">Find the entity userEmail in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1155,7 +1195,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> userEmailWrap = new Wrap<String>().var("userEmail");
 		if(userEmail == null) {
 			_userEmail(userEmailWrap);
-			setUserEmail(userEmailWrap.o);
+			Optional.ofNullable(userEmailWrap.getO()).ifPresent(o -> {
+				setUserEmail(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -1186,7 +1228,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity logoutUrl
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:logoutUrl">Find the entity logoutUrl in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:logoutUrl">Find the entity logoutUrl in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1205,7 +1247,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> logoutUrlWrap = new Wrap<String>().var("logoutUrl");
 		if(logoutUrl == null) {
 			_logoutUrl(logoutUrlWrap);
-			setLogoutUrl(logoutUrlWrap.o);
+			Optional.ofNullable(logoutUrlWrap.getO()).ifPresent(o -> {
+				setLogoutUrl(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -1237,7 +1281,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity long0
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:long0">Find the entity long0 in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:long0">Find the entity long0 in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1263,7 +1307,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<Long> long0Wrap = new Wrap<Long>().var("long0");
 		if(long0 == null) {
 			_long0(long0Wrap);
-			setLong0(long0Wrap.o);
+			Optional.ofNullable(long0Wrap.getO()).ifPresent(o -> {
+				setLong0(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -1295,7 +1341,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity long1
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:long1">Find the entity long1 in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:long1">Find the entity long1 in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1321,7 +1367,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<Long> long1Wrap = new Wrap<Long>().var("long1");
 		if(long1 == null) {
 			_long1(long1Wrap);
-			setLong1(long1Wrap.o);
+			Optional.ofNullable(long1Wrap.getO()).ifPresent(o -> {
+				setLong1(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -1353,7 +1401,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity int0
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:int0">Find the entity int0 in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:int0">Find the entity int0 in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1379,7 +1427,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<Integer> int0Wrap = new Wrap<Integer>().var("int0");
 		if(int0 == null) {
 			_int0(int0Wrap);
-			setInt0(int0Wrap.o);
+			Optional.ofNullable(int0Wrap.getO()).ifPresent(o -> {
+				setInt0(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -1411,7 +1461,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity int1
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:int1">Find the entity int1 in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:int1">Find the entity int1 in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1437,7 +1487,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<Integer> int1Wrap = new Wrap<Integer>().var("int1");
 		if(int1 == null) {
 			_int1(int1Wrap);
-			setInt1(int1Wrap.o);
+			Optional.ofNullable(int1Wrap.getO()).ifPresent(o -> {
+				setInt1(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -1468,7 +1520,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity promiseBefore
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:promiseBefore">Find the entity promiseBefore in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:promiseBefore">Find the entity promiseBefore in Solr</a>
 	 * <br>
 	 * @param promise is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1511,7 +1563,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity classSimpleName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:classSimpleName">Find the entity classSimpleName in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:classSimpleName">Find the entity classSimpleName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1530,7 +1582,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> classSimpleNameWrap = new Wrap<String>().var("classSimpleName");
 		if(classSimpleName == null) {
 			_classSimpleName(classSimpleNameWrap);
-			setClassSimpleName(classSimpleNameWrap.o);
+			Optional.ofNullable(classSimpleNameWrap.getO()).ifPresent(o -> {
+				setClassSimpleName(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -1561,7 +1615,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity pageTitle
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageTitle">Find the entity pageTitle in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageTitle">Find the entity pageTitle in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1580,7 +1634,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> pageTitleWrap = new Wrap<String>().var("pageTitle");
 		if(pageTitle == null) {
 			_pageTitle(pageTitleWrap);
-			setPageTitle(pageTitleWrap.o);
+			Optional.ofNullable(pageTitleWrap.getO()).ifPresent(o -> {
+				setPageTitle(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -1612,7 +1668,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity roles
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:roles">Find the entity roles in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:roles">Find the entity roles in Solr</a>
 	 * <br>
 	 * @param l is the entity already constructed. 
 	 **/
@@ -1621,9 +1677,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public List<String> getRoles() {
 		return roles;
 	}
-
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
+	public void setRoles(String o) {
+		String l = ComputatePageLayout.staticSetRoles(siteRequest_, o);
+		if(l != null)
+			addRoles(l);
 	}
 	public static String staticSetRoles(ComputateSiteRequest siteRequest_, String o) {
 		return o;
@@ -1642,6 +1699,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	@JsonIgnore
 	public void setRoles(JsonArray objects) {
 		roles.clear();
+		if(objects == null)
+			return;
 		for(int i = 0; i < objects.size(); i++) {
 			String o = objects.getString(i);
 			addRoles(o);
@@ -1679,7 +1738,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity roleRequired
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:roleRequired">Find the entity roleRequired in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:roleRequired">Find the entity roleRequired in Solr</a>
 	 * <br>
 	 * @param l is the entity already constructed. 
 	 **/
@@ -1688,9 +1747,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public List<String> getRoleRequired() {
 		return roleRequired;
 	}
-
-	public void setRoleRequired(List<String> roleRequired) {
-		this.roleRequired = roleRequired;
+	public void setRoleRequired(String o) {
+		String l = ComputatePageLayout.staticSetRoleRequired(siteRequest_, o);
+		if(l != null)
+			addRoleRequired(l);
 	}
 	public static String staticSetRoleRequired(ComputateSiteRequest siteRequest_, String o) {
 		return o;
@@ -1709,6 +1769,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	@JsonIgnore
 	public void setRoleRequired(JsonArray objects) {
 		roleRequired.clear();
+		if(objects == null)
+			return;
 		for(int i = 0; i < objects.size(); i++) {
 			String o = objects.getString(i);
 			addRoleRequired(o);
@@ -1746,7 +1808,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity authRoleAdmin
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:authRoleAdmin">Find the entity authRoleAdmin in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:authRoleAdmin">Find the entity authRoleAdmin in Solr</a>
 	 * <br>
 	 * @param l is the entity already constructed. 
 	 **/
@@ -1755,9 +1817,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public List<String> getAuthRoleAdmin() {
 		return authRoleAdmin;
 	}
-
-	public void setAuthRoleAdmin(List<String> authRoleAdmin) {
-		this.authRoleAdmin = authRoleAdmin;
+	public void setAuthRoleAdmin(String o) {
+		String l = ComputatePageLayout.staticSetAuthRoleAdmin(siteRequest_, o);
+		if(l != null)
+			addAuthRoleAdmin(l);
 	}
 	public static String staticSetAuthRoleAdmin(ComputateSiteRequest siteRequest_, String o) {
 		return o;
@@ -1776,6 +1839,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	@JsonIgnore
 	public void setAuthRoleAdmin(JsonArray objects) {
 		authRoleAdmin.clear();
+		if(objects == null)
+			return;
 		for(int i = 0; i < objects.size(); i++) {
 			String o = objects.getString(i);
 			addAuthRoleAdmin(o);
@@ -1812,7 +1877,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity stats
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:stats">Find the entity stats in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:stats">Find the entity stats in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1832,7 +1897,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<Stats> statsWrap = new Wrap<Stats>().var("stats");
 		if(stats == null) {
 			_stats(statsWrap);
-			setStats(statsWrap.o);
+			Optional.ofNullable(statsWrap.getO()).ifPresent(o -> {
+				setStats(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -1851,7 +1918,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity facetCounts
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:facetCounts">Find the entity facetCounts in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:facetCounts">Find the entity facetCounts in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1871,7 +1938,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<FacetCounts> facetCountsWrap = new Wrap<FacetCounts>().var("facetCounts");
 		if(facetCounts == null) {
 			_facetCounts(facetCountsWrap);
-			setFacetCounts(facetCountsWrap.o);
+			Optional.ofNullable(facetCountsWrap.getO()).ifPresent(o -> {
+				setFacetCounts(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -1890,7 +1959,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity pagination
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pagination">Find the entity pagination in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pagination">Find the entity pagination in Solr</a>
 	 * <br>
 	 * @param pagination is the entity already constructed. 
 	 **/
@@ -1918,11 +1987,11 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		return (ComputatePageLayout)this;
 	}
 
-	public static JsonObject staticSearchPagination(ComputateSiteRequest siteRequest_, JsonObject o) {
-		return o;
+	public static String staticSearchPagination(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
 	}
 
-	public static String staticSearchStrPagination(ComputateSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrPagination(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
@@ -1945,7 +2014,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultFieldListVars
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultFieldListVars">Find the entity defaultFieldListVars in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultFieldListVars">Find the entity defaultFieldListVars in Solr</a>
 	 * <br>
 	 * @param l is the entity already constructed. 
 	 **/
@@ -1954,9 +2023,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public List<String> getDefaultFieldListVars() {
 		return defaultFieldListVars;
 	}
-
-	public void setDefaultFieldListVars(List<String> defaultFieldListVars) {
-		this.defaultFieldListVars = defaultFieldListVars;
+	public void setDefaultFieldListVars(String o) {
+		String l = ComputatePageLayout.staticSetDefaultFieldListVars(siteRequest_, o);
+		if(l != null)
+			addDefaultFieldListVars(l);
 	}
 	public static String staticSetDefaultFieldListVars(ComputateSiteRequest siteRequest_, String o) {
 		return o;
@@ -1975,6 +2045,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	@JsonIgnore
 	public void setDefaultFieldListVars(JsonArray objects) {
 		defaultFieldListVars.clear();
+		if(objects == null)
+			return;
 		for(int i = 0; i < objects.size(); i++) {
 			String o = objects.getString(i);
 			addDefaultFieldListVars(o);
@@ -2012,7 +2084,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultStatsVars
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultStatsVars">Find the entity defaultStatsVars in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultStatsVars">Find the entity defaultStatsVars in Solr</a>
 	 * <br>
 	 * @param l is the entity already constructed. 
 	 **/
@@ -2021,9 +2093,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public List<String> getDefaultStatsVars() {
 		return defaultStatsVars;
 	}
-
-	public void setDefaultStatsVars(List<String> defaultStatsVars) {
-		this.defaultStatsVars = defaultStatsVars;
+	public void setDefaultStatsVars(String o) {
+		String l = ComputatePageLayout.staticSetDefaultStatsVars(siteRequest_, o);
+		if(l != null)
+			addDefaultStatsVars(l);
 	}
 	public static String staticSetDefaultStatsVars(ComputateSiteRequest siteRequest_, String o) {
 		return o;
@@ -2042,6 +2115,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	@JsonIgnore
 	public void setDefaultStatsVars(JsonArray objects) {
 		defaultStatsVars.clear();
+		if(objects == null)
+			return;
 		for(int i = 0; i < objects.size(); i++) {
 			String o = objects.getString(i);
 			addDefaultStatsVars(o);
@@ -2079,7 +2154,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultPivotVars
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultPivotVars">Find the entity defaultPivotVars in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultPivotVars">Find the entity defaultPivotVars in Solr</a>
 	 * <br>
 	 * @param l is the entity already constructed. 
 	 **/
@@ -2088,9 +2163,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public List<String> getDefaultPivotVars() {
 		return defaultPivotVars;
 	}
-
-	public void setDefaultPivotVars(List<String> defaultPivotVars) {
-		this.defaultPivotVars = defaultPivotVars;
+	public void setDefaultPivotVars(String o) {
+		String l = ComputatePageLayout.staticSetDefaultPivotVars(siteRequest_, o);
+		if(l != null)
+			addDefaultPivotVars(l);
 	}
 	public static String staticSetDefaultPivotVars(ComputateSiteRequest siteRequest_, String o) {
 		return o;
@@ -2109,6 +2185,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	@JsonIgnore
 	public void setDefaultPivotVars(JsonArray objects) {
 		defaultPivotVars.clear();
+		if(objects == null)
+			return;
 		for(int i = 0; i < objects.size(); i++) {
 			String o = objects.getString(i);
 			addDefaultPivotVars(o);
@@ -2145,7 +2223,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity varsQ
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:varsQ">Find the entity varsQ in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:varsQ">Find the entity varsQ in Solr</a>
 	 * <br>
 	 * @param vars is the entity already constructed. 
 	 **/
@@ -2173,11 +2251,11 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		return (ComputatePageLayout)this;
 	}
 
-	public static JsonObject staticSearchVarsQ(ComputateSiteRequest siteRequest_, JsonObject o) {
-		return o;
+	public static String staticSearchVarsQ(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
 	}
 
-	public static String staticSearchStrVarsQ(ComputateSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrVarsQ(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
@@ -2199,7 +2277,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity varsFq
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:varsFq">Find the entity varsFq in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:varsFq">Find the entity varsFq in Solr</a>
 	 * <br>
 	 * @param vars is the entity already constructed. 
 	 **/
@@ -2227,11 +2305,11 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		return (ComputatePageLayout)this;
 	}
 
-	public static JsonObject staticSearchVarsFq(ComputateSiteRequest siteRequest_, JsonObject o) {
-		return o;
+	public static String staticSearchVarsFq(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
 	}
 
-	public static String staticSearchStrVarsFq(ComputateSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrVarsFq(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
@@ -2253,7 +2331,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity varsRange
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:varsRange">Find the entity varsRange in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:varsRange">Find the entity varsRange in Solr</a>
 	 * <br>
 	 * @param vars is the entity already constructed. 
 	 **/
@@ -2281,11 +2359,11 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		return (ComputatePageLayout)this;
 	}
 
-	public static JsonObject staticSearchVarsRange(ComputateSiteRequest siteRequest_, JsonObject o) {
-		return o;
+	public static String staticSearchVarsRange(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
 	}
 
-	public static String staticSearchStrVarsRange(ComputateSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrVarsRange(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
@@ -2307,7 +2385,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity query
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:query">Find the entity query in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:query">Find the entity query in Solr</a>
 	 * <br>
 	 * @param query is the entity already constructed. 
 	 **/
@@ -2335,11 +2413,11 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		return (ComputatePageLayout)this;
 	}
 
-	public static JsonObject staticSearchQuery(ComputateSiteRequest siteRequest_, JsonObject o) {
-		return o;
+	public static String staticSearchQuery(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
 	}
 
-	public static String staticSearchStrQuery(ComputateSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrQuery(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
@@ -2361,7 +2439,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity pageResponse
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageResponse">Find the entity pageResponse in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageResponse">Find the entity pageResponse in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2380,7 +2458,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> pageResponseWrap = new Wrap<String>().var("pageResponse");
 		if(pageResponse == null) {
 			_pageResponse(pageResponseWrap);
-			setPageResponse(pageResponseWrap.o);
+			Optional.ofNullable(pageResponseWrap.getO()).ifPresent(o -> {
+				setPageResponse(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -2411,7 +2491,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultZoneId
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultZoneId">Find the entity defaultZoneId in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultZoneId">Find the entity defaultZoneId in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2430,7 +2510,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> defaultZoneIdWrap = new Wrap<String>().var("defaultZoneId");
 		if(defaultZoneId == null) {
 			_defaultZoneId(defaultZoneIdWrap);
-			setDefaultZoneId(defaultZoneIdWrap.o);
+			Optional.ofNullable(defaultZoneIdWrap.getO()).ifPresent(o -> {
+				setDefaultZoneId(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -2461,7 +2543,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultTimeZone
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultTimeZone">Find the entity defaultTimeZone in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultTimeZone">Find the entity defaultTimeZone in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2481,7 +2563,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<ZoneId> defaultTimeZoneWrap = new Wrap<ZoneId>().var("defaultTimeZone");
 		if(defaultTimeZone == null) {
 			_defaultTimeZone(defaultTimeZoneWrap);
-			setDefaultTimeZone(defaultTimeZoneWrap.o);
+			Optional.ofNullable(defaultTimeZoneWrap.getO()).ifPresent(o -> {
+				setDefaultTimeZone(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -2500,7 +2584,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultLocaleId
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultLocaleId">Find the entity defaultLocaleId in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultLocaleId">Find the entity defaultLocaleId in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2519,7 +2603,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> defaultLocaleIdWrap = new Wrap<String>().var("defaultLocaleId");
 		if(defaultLocaleId == null) {
 			_defaultLocaleId(defaultLocaleIdWrap);
-			setDefaultLocaleId(defaultLocaleIdWrap.o);
+			Optional.ofNullable(defaultLocaleIdWrap.getO()).ifPresent(o -> {
+				setDefaultLocaleId(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -2550,7 +2636,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultLocale
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultLocale">Find the entity defaultLocale in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultLocale">Find the entity defaultLocale in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2570,7 +2656,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<Locale> defaultLocaleWrap = new Wrap<Locale>().var("defaultLocale");
 		if(defaultLocale == null) {
 			_defaultLocale(defaultLocaleWrap);
-			setDefaultLocale(defaultLocaleWrap.o);
+			Optional.ofNullable(defaultLocaleWrap.getO()).ifPresent(o -> {
+				setDefaultLocale(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -2589,7 +2677,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity rangeGap
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:rangeGap">Find the entity rangeGap in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:rangeGap">Find the entity rangeGap in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2608,7 +2696,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> rangeGapWrap = new Wrap<String>().var("rangeGap");
 		if(rangeGap == null) {
 			_rangeGap(rangeGapWrap);
-			setRangeGap(rangeGapWrap.o);
+			Optional.ofNullable(rangeGapWrap.getO()).ifPresent(o -> {
+				setRangeGap(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -2642,7 +2732,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity rangeEnd
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:rangeEnd">Find the entity rangeEnd in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:rangeEnd">Find the entity rangeEnd in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2682,7 +2772,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<ZonedDateTime> rangeEndWrap = new Wrap<ZonedDateTime>().var("rangeEnd");
 		if(rangeEnd == null) {
 			_rangeEnd(rangeEndWrap);
-			setRangeEnd(rangeEndWrap.o);
+			Optional.ofNullable(rangeEndWrap.getO()).ifPresent(o -> {
+				setRangeEnd(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -2716,7 +2808,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity rangeStart
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:rangeStart">Find the entity rangeStart in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:rangeStart">Find the entity rangeStart in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2756,7 +2848,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<ZonedDateTime> rangeStartWrap = new Wrap<ZonedDateTime>().var("rangeStart");
 		if(rangeStart == null) {
 			_rangeStart(rangeStartWrap);
-			setRangeStart(rangeStartWrap.o);
+			Optional.ofNullable(rangeStartWrap.getO()).ifPresent(o -> {
+				setRangeStart(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -2787,7 +2881,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultRangeStats
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeStats">Find the entity defaultRangeStats in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeStats">Find the entity defaultRangeStats in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2814,16 +2908,18 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<JsonObject> defaultRangeStatsWrap = new Wrap<JsonObject>().var("defaultRangeStats");
 		if(defaultRangeStats == null) {
 			_defaultRangeStats(defaultRangeStatsWrap);
-			setDefaultRangeStats(defaultRangeStatsWrap.o);
+			Optional.ofNullable(defaultRangeStatsWrap.getO()).ifPresent(o -> {
+				setDefaultRangeStats(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
 
-	public static JsonObject staticSearchDefaultRangeStats(ComputateSiteRequest siteRequest_, JsonObject o) {
-		return o;
+	public static String staticSearchDefaultRangeStats(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
 	}
 
-	public static String staticSearchStrDefaultRangeStats(ComputateSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrDefaultRangeStats(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
@@ -2845,7 +2941,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultRangeGap
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeGap">Find the entity defaultRangeGap in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeGap">Find the entity defaultRangeGap in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2864,7 +2960,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> defaultRangeGapWrap = new Wrap<String>().var("defaultRangeGap");
 		if(defaultRangeGap == null) {
 			_defaultRangeGap(defaultRangeGapWrap);
-			setDefaultRangeGap(defaultRangeGapWrap.o);
+			Optional.ofNullable(defaultRangeGapWrap.getO()).ifPresent(o -> {
+				setDefaultRangeGap(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -2898,7 +2996,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultRangeEnd
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeEnd">Find the entity defaultRangeEnd in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeEnd">Find the entity defaultRangeEnd in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2938,7 +3036,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<ZonedDateTime> defaultRangeEndWrap = new Wrap<ZonedDateTime>().var("defaultRangeEnd");
 		if(defaultRangeEnd == null) {
 			_defaultRangeEnd(defaultRangeEndWrap);
-			setDefaultRangeEnd(defaultRangeEndWrap.o);
+			Optional.ofNullable(defaultRangeEndWrap.getO()).ifPresent(o -> {
+				setDefaultRangeEnd(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -2972,7 +3072,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultRangeStart
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeStart">Find the entity defaultRangeStart in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeStart">Find the entity defaultRangeStart in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3012,7 +3112,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<ZonedDateTime> defaultRangeStartWrap = new Wrap<ZonedDateTime>().var("defaultRangeStart");
 		if(defaultRangeStart == null) {
 			_defaultRangeStart(defaultRangeStartWrap);
-			setDefaultRangeStart(defaultRangeStartWrap.o);
+			Optional.ofNullable(defaultRangeStartWrap.getO()).ifPresent(o -> {
+				setDefaultRangeStart(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3043,7 +3145,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultRangeVar
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeVar">Find the entity defaultRangeVar in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultRangeVar">Find the entity defaultRangeVar in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3062,7 +3164,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> defaultRangeVarWrap = new Wrap<String>().var("defaultRangeVar");
 		if(defaultRangeVar == null) {
 			_defaultRangeVar(defaultRangeVarWrap);
-			setDefaultRangeVar(defaultRangeVarWrap.o);
+			Optional.ofNullable(defaultRangeVarWrap.getO()).ifPresent(o -> {
+				setDefaultRangeVar(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3093,7 +3197,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultFacetSort
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultFacetSort">Find the entity defaultFacetSort in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultFacetSort">Find the entity defaultFacetSort in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3112,7 +3216,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> defaultFacetSortWrap = new Wrap<String>().var("defaultFacetSort");
 		if(defaultFacetSort == null) {
 			_defaultFacetSort(defaultFacetSortWrap);
-			setDefaultFacetSort(defaultFacetSortWrap.o);
+			Optional.ofNullable(defaultFacetSortWrap.getO()).ifPresent(o -> {
+				setDefaultFacetSort(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3144,7 +3250,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultFacetLimit
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultFacetLimit">Find the entity defaultFacetLimit in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultFacetLimit">Find the entity defaultFacetLimit in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3170,7 +3276,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<Integer> defaultFacetLimitWrap = new Wrap<Integer>().var("defaultFacetLimit");
 		if(defaultFacetLimit == null) {
 			_defaultFacetLimit(defaultFacetLimitWrap);
-			setDefaultFacetLimit(defaultFacetLimitWrap.o);
+			Optional.ofNullable(defaultFacetLimitWrap.getO()).ifPresent(o -> {
+				setDefaultFacetLimit(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3202,7 +3310,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultFacetMinCount
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultFacetMinCount">Find the entity defaultFacetMinCount in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultFacetMinCount">Find the entity defaultFacetMinCount in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3228,7 +3336,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<Integer> defaultFacetMinCountWrap = new Wrap<Integer>().var("defaultFacetMinCount");
 		if(defaultFacetMinCount == null) {
 			_defaultFacetMinCount(defaultFacetMinCountWrap);
-			setDefaultFacetMinCount(defaultFacetMinCountWrap.o);
+			Optional.ofNullable(defaultFacetMinCountWrap.getO()).ifPresent(o -> {
+				setDefaultFacetMinCount(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3260,7 +3370,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity defaultPivotMinCount
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultPivotMinCount">Find the entity defaultPivotMinCount in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:defaultPivotMinCount">Find the entity defaultPivotMinCount in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3286,7 +3396,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<Integer> defaultPivotMinCountWrap = new Wrap<Integer>().var("defaultPivotMinCount");
 		if(defaultPivotMinCount == null) {
 			_defaultPivotMinCount(defaultPivotMinCountWrap);
-			setDefaultPivotMinCount(defaultPivotMinCountWrap.o);
+			Optional.ofNullable(defaultPivotMinCountWrap.getO()).ifPresent(o -> {
+				setDefaultPivotMinCount(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3317,7 +3429,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity DEFAULT_MAP_LOCATION
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:DEFAULT_MAP_LOCATION">Find the entity DEFAULT_MAP_LOCATION in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:DEFAULT_MAP_LOCATION">Find the entity DEFAULT_MAP_LOCATION in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3344,16 +3456,18 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<JsonObject> DEFAULT_MAP_LOCATIONWrap = new Wrap<JsonObject>().var("DEFAULT_MAP_LOCATION");
 		if(DEFAULT_MAP_LOCATION == null) {
 			_DEFAULT_MAP_LOCATION(DEFAULT_MAP_LOCATIONWrap);
-			setDEFAULT_MAP_LOCATION(DEFAULT_MAP_LOCATIONWrap.o);
+			Optional.ofNullable(DEFAULT_MAP_LOCATIONWrap.getO()).ifPresent(o -> {
+				setDEFAULT_MAP_LOCATION(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
 
-	public static JsonObject staticSearchDEFAULT_MAP_LOCATION(ComputateSiteRequest siteRequest_, JsonObject o) {
-		return o;
+	public static String staticSearchDEFAULT_MAP_LOCATION(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
 	}
 
-	public static String staticSearchStrDEFAULT_MAP_LOCATION(ComputateSiteRequest siteRequest_, JsonObject o) {
+	public static String staticSearchStrDEFAULT_MAP_LOCATION(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
@@ -3376,7 +3490,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity DEFAULT_MAP_ZOOM
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:DEFAULT_MAP_ZOOM">Find the entity DEFAULT_MAP_ZOOM in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:DEFAULT_MAP_ZOOM">Find the entity DEFAULT_MAP_ZOOM in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3401,17 +3515,23 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	}
 	@JsonIgnore
 	public void setDEFAULT_MAP_ZOOM(Double o) {
-			this.DEFAULT_MAP_ZOOM = new BigDecimal(o, MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP);
+		setDEFAULT_MAP_ZOOM(new BigDecimal(o, MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP));
 	}
 	@JsonIgnore
 	public void setDEFAULT_MAP_ZOOM(Integer o) {
-			this.DEFAULT_MAP_ZOOM = new BigDecimal(o, MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP);
+		setDEFAULT_MAP_ZOOM(new BigDecimal(o, MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP));
+	}
+	@JsonIgnore
+	public void setDEFAULT_MAP_ZOOM(Number o) {
+		setDEFAULT_MAP_ZOOM(new BigDecimal(o.doubleValue(), MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP));
 	}
 	protected ComputatePageLayout DEFAULT_MAP_ZOOMInit() {
 		Wrap<BigDecimal> DEFAULT_MAP_ZOOMWrap = new Wrap<BigDecimal>().var("DEFAULT_MAP_ZOOM");
 		if(DEFAULT_MAP_ZOOM == null) {
 			_DEFAULT_MAP_ZOOM(DEFAULT_MAP_ZOOMWrap);
-			setDEFAULT_MAP_ZOOM(DEFAULT_MAP_ZOOMWrap.o);
+			Optional.ofNullable(DEFAULT_MAP_ZOOMWrap.getO()).ifPresent(o -> {
+				setDEFAULT_MAP_ZOOM(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3442,7 +3562,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity queryStr
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:queryStr">Find the entity queryStr in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:queryStr">Find the entity queryStr in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3461,7 +3581,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> queryStrWrap = new Wrap<String>().var("queryStr");
 		if(queryStr == null) {
 			_queryStr(queryStrWrap);
-			setQueryStr(queryStrWrap.o);
+			Optional.ofNullable(queryStrWrap.getO()).ifPresent(o -> {
+				setQueryStr(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3492,7 +3614,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity promiseAfter
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:promiseAfter">Find the entity promiseAfter in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:promiseAfter">Find the entity promiseAfter in Solr</a>
 	 * <br>
 	 * @param promise is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3535,7 +3657,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity pageImageUri
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageImageUri">Find the entity pageImageUri in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageImageUri">Find the entity pageImageUri in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3554,7 +3676,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> pageImageUriWrap = new Wrap<String>().var("pageImageUri");
 		if(pageImageUri == null) {
 			_pageImageUri(pageImageUriWrap);
-			setPageImageUri(pageImageUriWrap.o);
+			Optional.ofNullable(pageImageUriWrap.getO()).ifPresent(o -> {
+				setPageImageUri(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3586,7 +3710,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity pageImageWidth
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageImageWidth">Find the entity pageImageWidth in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageImageWidth">Find the entity pageImageWidth in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3612,7 +3736,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<Integer> pageImageWidthWrap = new Wrap<Integer>().var("pageImageWidth");
 		if(pageImageWidth == null) {
 			_pageImageWidth(pageImageWidthWrap);
-			setPageImageWidth(pageImageWidthWrap.o);
+			Optional.ofNullable(pageImageWidthWrap.getO()).ifPresent(o -> {
+				setPageImageWidth(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3644,7 +3770,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity pageImageHeight
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageImageHeight">Find the entity pageImageHeight in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageImageHeight">Find the entity pageImageHeight in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3670,7 +3796,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<Integer> pageImageHeightWrap = new Wrap<Integer>().var("pageImageHeight");
 		if(pageImageHeight == null) {
 			_pageImageHeight(pageImageHeightWrap);
-			setPageImageHeight(pageImageHeightWrap.o);
+			Optional.ofNullable(pageImageHeightWrap.getO()).ifPresent(o -> {
+				setPageImageHeight(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3701,7 +3829,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity pageVideoId
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageVideoId">Find the entity pageVideoId in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageVideoId">Find the entity pageVideoId in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3720,7 +3848,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> pageVideoIdWrap = new Wrap<String>().var("pageVideoId");
 		if(pageVideoId == null) {
 			_pageVideoId(pageVideoIdWrap);
-			setPageVideoId(pageVideoIdWrap.o);
+			Optional.ofNullable(pageVideoIdWrap.getO()).ifPresent(o -> {
+				setPageVideoId(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3751,7 +3881,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity classIconGroup
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:classIconGroup">Find the entity classIconGroup in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:classIconGroup">Find the entity classIconGroup in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3770,7 +3900,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> classIconGroupWrap = new Wrap<String>().var("classIconGroup");
 		if(classIconGroup == null) {
 			_classIconGroup(classIconGroupWrap);
-			setClassIconGroup(classIconGroupWrap.o);
+			Optional.ofNullable(classIconGroupWrap.getO()).ifPresent(o -> {
+				setClassIconGroup(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3801,7 +3933,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity classIconName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:classIconName">Find the entity classIconName in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:classIconName">Find the entity classIconName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3820,7 +3952,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> classIconNameWrap = new Wrap<String>().var("classIconName");
 		if(classIconName == null) {
 			_classIconName(classIconNameWrap);
-			setClassIconName(classIconNameWrap.o);
+			Optional.ofNullable(classIconNameWrap.getO()).ifPresent(o -> {
+				setClassIconName(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3851,7 +3985,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity classIconCssClasses
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:classIconCssClasses">Find the entity classIconCssClasses in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:classIconCssClasses">Find the entity classIconCssClasses in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3870,7 +4004,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> classIconCssClassesWrap = new Wrap<String>().var("classIconCssClasses");
 		if(classIconCssClasses == null) {
 			_classIconCssClasses(classIconCssClassesWrap);
-			setClassIconCssClasses(classIconCssClassesWrap.o);
+			Optional.ofNullable(classIconCssClassesWrap.getO()).ifPresent(o -> {
+				setClassIconCssClasses(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -3901,7 +4037,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	/**	<br> The entity pageDescription
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageDescription">Find the entity pageDescription in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:pageDescription">Find the entity pageDescription in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3920,7 +4056,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		Wrap<String> pageDescriptionWrap = new Wrap<String>().var("pageDescription");
 		if(pageDescription == null) {
 			_pageDescription(pageDescriptionWrap);
-			setPageDescription(pageDescriptionWrap.o);
+			Optional.ofNullable(pageDescriptionWrap.getO()).ifPresent(o -> {
+				setPageDescription(o);
+			});
 		}
 		return (ComputatePageLayout)this;
 	}
@@ -4567,7 +4705,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		case "lang":
 			return ComputatePageLayout.staticSearchStrLang(siteRequest_, (String)o);
 		case "config":
-			return ComputatePageLayout.staticSearchStrConfig(siteRequest_, (JsonObject)o);
+			return ComputatePageLayout.staticSearchStrConfig(siteRequest_, (String)o);
 		case "staticBaseUrl":
 			return ComputatePageLayout.staticSearchStrStaticBaseUrl(siteRequest_, (String)o);
 		case "siteBaseUrl":
@@ -4591,7 +4729,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		case "pageMethod":
 			return ComputatePageLayout.staticSearchStrPageMethod(siteRequest_, (String)o);
 		case "params":
-			return ComputatePageLayout.staticSearchStrParams(siteRequest_, (JsonObject)o);
+			return ComputatePageLayout.staticSearchStrParams(siteRequest_, (String)o);
 		case "userKey":
 			return ComputatePageLayout.staticSearchStrUserKey(siteRequest_, (Long)o);
 		case "userFullName":
@@ -4621,7 +4759,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		case "authRoleAdmin":
 			return ComputatePageLayout.staticSearchStrAuthRoleAdmin(siteRequest_, (String)o);
 		case "pagination":
-			return ComputatePageLayout.staticSearchStrPagination(siteRequest_, (JsonObject)o);
+			return ComputatePageLayout.staticSearchStrPagination(siteRequest_, (String)o);
 		case "defaultFieldListVars":
 			return ComputatePageLayout.staticSearchStrDefaultFieldListVars(siteRequest_, (String)o);
 		case "defaultStatsVars":
@@ -4629,13 +4767,13 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		case "defaultPivotVars":
 			return ComputatePageLayout.staticSearchStrDefaultPivotVars(siteRequest_, (String)o);
 		case "varsQ":
-			return ComputatePageLayout.staticSearchStrVarsQ(siteRequest_, (JsonObject)o);
+			return ComputatePageLayout.staticSearchStrVarsQ(siteRequest_, (String)o);
 		case "varsFq":
-			return ComputatePageLayout.staticSearchStrVarsFq(siteRequest_, (JsonObject)o);
+			return ComputatePageLayout.staticSearchStrVarsFq(siteRequest_, (String)o);
 		case "varsRange":
-			return ComputatePageLayout.staticSearchStrVarsRange(siteRequest_, (JsonObject)o);
+			return ComputatePageLayout.staticSearchStrVarsRange(siteRequest_, (String)o);
 		case "query":
-			return ComputatePageLayout.staticSearchStrQuery(siteRequest_, (JsonObject)o);
+			return ComputatePageLayout.staticSearchStrQuery(siteRequest_, (String)o);
 		case "pageResponse":
 			return ComputatePageLayout.staticSearchStrPageResponse(siteRequest_, (String)o);
 		case "defaultZoneId":
@@ -4649,7 +4787,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		case "rangeStart":
 			return ComputatePageLayout.staticSearchStrRangeStart(siteRequest_, (Date)o);
 		case "defaultRangeStats":
-			return ComputatePageLayout.staticSearchStrDefaultRangeStats(siteRequest_, (JsonObject)o);
+			return ComputatePageLayout.staticSearchStrDefaultRangeStats(siteRequest_, (String)o);
 		case "defaultRangeGap":
 			return ComputatePageLayout.staticSearchStrDefaultRangeGap(siteRequest_, (String)o);
 		case "defaultRangeEnd":
@@ -4667,7 +4805,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		case "defaultPivotMinCount":
 			return ComputatePageLayout.staticSearchStrDefaultPivotMinCount(siteRequest_, (Integer)o);
 		case "DEFAULT_MAP_LOCATION":
-			return ComputatePageLayout.staticSearchStrDEFAULT_MAP_LOCATION(siteRequest_, (JsonObject)o);
+			return ComputatePageLayout.staticSearchStrDEFAULT_MAP_LOCATION(siteRequest_, (String)o);
 		case "DEFAULT_MAP_ZOOM":
 			return ComputatePageLayout.staticSearchStrDEFAULT_MAP_ZOOM(siteRequest_, (Double)o);
 		case "queryStr":

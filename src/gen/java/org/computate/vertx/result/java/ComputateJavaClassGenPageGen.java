@@ -51,7 +51,7 @@ import io.vertx.core.Future;
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
- * <p><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage">Find the class ComputateJavaClassGenPage in Solr. </a></p>
+ * <p><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage">Find the class ComputateJavaClassGenPage in Solr. </a></p>
  * <p>
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
@@ -101,15 +101,15 @@ import io.vertx.core.Future;
  * AName.enUS: null
  * <p>
  * Delete the class ComputateJavaClassGenPage in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.result.java in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.result.java&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.result.java&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  **/
 public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLayout {
@@ -129,7 +129,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 
 	/**	<br> The entity searchListComputateJavaClass_
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:searchListComputateJavaClass_">Find the entity searchListComputateJavaClass_ in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:searchListComputateJavaClass_">Find the entity searchListComputateJavaClass_ in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -149,7 +149,9 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		Wrap<SearchList<ComputateJavaClass>> searchListComputateJavaClass_Wrap = new Wrap<SearchList<ComputateJavaClass>>().var("searchListComputateJavaClass_");
 		if(searchListComputateJavaClass_ == null) {
 			_searchListComputateJavaClass_(searchListComputateJavaClass_Wrap);
-			setSearchListComputateJavaClass_(searchListComputateJavaClass_Wrap.o);
+			Optional.ofNullable(searchListComputateJavaClass_Wrap.getO()).ifPresent(o -> {
+				setSearchListComputateJavaClass_(o);
+			});
 		}
 		return (ComputateJavaClassGenPage)this;
 	}
@@ -168,7 +170,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 
 	/**	<br> The entity listComputateJavaClass
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:listComputateJavaClass">Find the entity listComputateJavaClass in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:listComputateJavaClass">Find the entity listComputateJavaClass in Solr</a>
 	 * <br>
 	 * @param l is the entity already constructed. 
 	 **/
@@ -181,12 +183,31 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	public void setListComputateJavaClass(JsonArray listComputateJavaClass) {
 		this.listComputateJavaClass = listComputateJavaClass;
 	}
+	@JsonIgnore
+	public void setListComputateJavaClass(String o) {
+		this.listComputateJavaClass = ComputateJavaClassGenPage.staticSetListComputateJavaClass(siteRequest_, o);
+	}
 	public static JsonArray staticSetListComputateJavaClass(ComputateSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonArray(o);
+		}
 		return null;
 	}
 	protected ComputateJavaClassGenPage listComputateJavaClassInit() {
 		_listComputateJavaClass(listComputateJavaClass);
 		return (ComputateJavaClassGenPage)this;
+	}
+
+	public static String staticSearchListComputateJavaClass(ComputateSiteRequest siteRequest_, JsonArray o) {
+		return o.toString();
+	}
+
+	public static String staticSearchStrListComputateJavaClass(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqListComputateJavaClass(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateJavaClassGenPage.staticSearchStrListComputateJavaClass(siteRequest_, ComputateJavaClassGenPage.staticSearchListComputateJavaClass(siteRequest_, ComputateJavaClassGenPage.staticSetListComputateJavaClass(siteRequest_, o)));
 	}
 
 	/////////////////////////////
@@ -204,7 +225,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 
 	/**	<br> The entity computateJavaClassCount
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:computateJavaClassCount">Find the entity computateJavaClassCount in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:computateJavaClassCount">Find the entity computateJavaClassCount in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -230,7 +251,9 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		Wrap<Integer> computateJavaClassCountWrap = new Wrap<Integer>().var("computateJavaClassCount");
 		if(computateJavaClassCount == null) {
 			_computateJavaClassCount(computateJavaClassCountWrap);
-			setComputateJavaClassCount(computateJavaClassCountWrap.o);
+			Optional.ofNullable(computateJavaClassCountWrap.getO()).ifPresent(o -> {
+				setComputateJavaClassCount(o);
+			});
 		}
 		return (ComputateJavaClassGenPage)this;
 	}
@@ -261,7 +284,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 
 	/**	<br> The entity computateJavaClass_
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:computateJavaClass_">Find the entity computateJavaClass_ in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:computateJavaClass_">Find the entity computateJavaClass_ in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -281,7 +304,9 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		Wrap<ComputateJavaClass> computateJavaClass_Wrap = new Wrap<ComputateJavaClass>().var("computateJavaClass_");
 		if(computateJavaClass_ == null) {
 			_computateJavaClass_(computateJavaClass_Wrap);
-			setComputateJavaClass_(computateJavaClass_Wrap.o);
+			Optional.ofNullable(computateJavaClass_Wrap.getO()).ifPresent(o -> {
+				setComputateJavaClass_(o);
+			});
 		}
 		return (ComputateJavaClassGenPage)this;
 	}
@@ -300,7 +325,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 
 	/**	<br> The entity id
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:id">Find the entity id in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:id">Find the entity id in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -319,7 +344,9 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		Wrap<String> idWrap = new Wrap<String>().var("id");
 		if(id == null) {
 			_id(idWrap);
-			setId(idWrap.o);
+			Optional.ofNullable(idWrap.getO()).ifPresent(o -> {
+				setId(o);
+			});
 		}
 		return (ComputateJavaClassGenPage)this;
 	}
@@ -350,7 +377,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 
 	/**	<br> The entity pageUriComputateJavaClass
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:pageUriComputateJavaClass">Find the entity pageUriComputateJavaClass in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&fq=entiteVar_enUS_indexed_string:pageUriComputateJavaClass">Find the entity pageUriComputateJavaClass in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -369,7 +396,9 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 		Wrap<String> pageUriComputateJavaClassWrap = new Wrap<String>().var("pageUriComputateJavaClass");
 		if(pageUriComputateJavaClass == null) {
 			_pageUriComputateJavaClass(pageUriComputateJavaClassWrap);
-			setPageUriComputateJavaClass(pageUriComputateJavaClassWrap.o);
+			Optional.ofNullable(pageUriComputateJavaClassWrap.getO()).ifPresent(o -> {
+				setPageUriComputateJavaClass(o);
+			});
 		}
 		return (ComputateJavaClassGenPage)this;
 	}
@@ -517,6 +546,8 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	}
 	public static Object staticSetComputateJavaClassGenPage(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
+		case "listComputateJavaClass":
+			return ComputateJavaClassGenPage.staticSetListComputateJavaClass(siteRequest_, o);
 		case "computateJavaClassCount":
 			return ComputateJavaClassGenPage.staticSetComputateJavaClassCount(siteRequest_, o);
 		case "id":
@@ -537,6 +568,8 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	}
 	public static Object staticSearchComputateJavaClassGenPage(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
+		case "listComputateJavaClass":
+			return ComputateJavaClassGenPage.staticSearchListComputateJavaClass(siteRequest_, (JsonArray)o);
 		case "computateJavaClassCount":
 			return ComputateJavaClassGenPage.staticSearchComputateJavaClassCount(siteRequest_, (Integer)o);
 		case "id":
@@ -557,6 +590,8 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	}
 	public static String staticSearchStrComputateJavaClassGenPage(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
+		case "listComputateJavaClass":
+			return ComputateJavaClassGenPage.staticSearchStrListComputateJavaClass(siteRequest_, (String)o);
 		case "computateJavaClassCount":
 			return ComputateJavaClassGenPage.staticSearchStrComputateJavaClassCount(siteRequest_, (Integer)o);
 		case "id":
@@ -577,6 +612,8 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	}
 	public static String staticSearchFqComputateJavaClassGenPage(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
+		case "listComputateJavaClass":
+			return ComputateJavaClassGenPage.staticSearchFqListComputateJavaClass(siteRequest_, o);
 		case "computateJavaClassCount":
 			return ComputateJavaClassGenPage.staticSearchFqComputateJavaClassCount(siteRequest_, o);
 		case "id":

@@ -73,7 +73,7 @@ import io.vertx.core.Future;
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
- * <p><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest">Find the class ApiRequest in Solr. </a></p>
+ * <p><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest">Find the class ApiRequest in Solr. </a></p>
  * <p>
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
@@ -101,15 +101,15 @@ import io.vertx.core.Future;
  * AName.enUS: null
  * <p>
  * Delete the class ApiRequest in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.api in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.api&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.api&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl 'http://localhost:8983/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  **/
 public abstract class ApiRequestGen<DEV> extends Object {
@@ -129,7 +129,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -149,7 +149,9 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
 		if(siteRequest_ == null) {
 			_siteRequest_(siteRequest_Wrap);
-			setSiteRequest_(siteRequest_Wrap.o);
+			Optional.ofNullable(siteRequest_Wrap.getO()).ifPresent(o -> {
+				setSiteRequest_(o);
+			});
 		}
 		return (ApiRequest)this;
 	}
@@ -171,7 +173,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	/**	<br> The entity created
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:created">Find the entity created in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:created">Find the entity created in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -211,7 +213,9 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		Wrap<ZonedDateTime> createdWrap = new Wrap<ZonedDateTime>().var("created");
 		if(created == null) {
 			_created(createdWrap);
-			setCreated(createdWrap.o);
+			Optional.ofNullable(createdWrap.getO()).ifPresent(o -> {
+				setCreated(o);
+			});
 		}
 		return (ApiRequest)this;
 	}
@@ -243,7 +247,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	/**	<br> The entity rows
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:rows">Find the entity rows in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:rows">Find the entity rows in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -269,7 +273,9 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		Wrap<Long> rowsWrap = new Wrap<Long>().var("rows");
 		if(rows == null) {
 			_rows(rowsWrap);
-			setRows(rowsWrap.o);
+			Optional.ofNullable(rowsWrap.getO()).ifPresent(o -> {
+				setRows(o);
+			});
 		}
 		return (ApiRequest)this;
 	}
@@ -301,7 +307,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	/**	<br> The entity numFound
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:numFound">Find the entity numFound in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:numFound">Find the entity numFound in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -327,7 +333,9 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		Wrap<Long> numFoundWrap = new Wrap<Long>().var("numFound");
 		if(numFound == null) {
 			_numFound(numFoundWrap);
-			setNumFound(numFoundWrap.o);
+			Optional.ofNullable(numFoundWrap.getO()).ifPresent(o -> {
+				setNumFound(o);
+			});
 		}
 		return (ApiRequest)this;
 	}
@@ -359,7 +367,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	/**	<br> The entity numPATCH
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:numPATCH">Find the entity numPATCH in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:numPATCH">Find the entity numPATCH in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -385,7 +393,9 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		Wrap<Long> numPATCHWrap = new Wrap<Long>().var("numPATCH");
 		if(numPATCH == null) {
 			_numPATCH(numPATCHWrap);
-			setNumPATCH(numPATCHWrap.o);
+			Optional.ofNullable(numPATCHWrap.getO()).ifPresent(o -> {
+				setNumPATCH(o);
+			});
 		}
 		return (ApiRequest)this;
 	}
@@ -416,7 +426,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	/**	<br> The entity uuid
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:uuid">Find the entity uuid in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:uuid">Find the entity uuid in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -435,7 +445,9 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		Wrap<String> uuidWrap = new Wrap<String>().var("uuid");
 		if(uuid == null) {
 			_uuid(uuidWrap);
-			setUuid(uuidWrap.o);
+			Optional.ofNullable(uuidWrap.getO()).ifPresent(o -> {
+				setUuid(o);
+			});
 		}
 		return (ApiRequest)this;
 	}
@@ -466,7 +478,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	/**	<br> The entity id
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:id">Find the entity id in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:id">Find the entity id in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -485,7 +497,9 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		Wrap<String> idWrap = new Wrap<String>().var("id");
 		if(id == null) {
 			_id(idWrap);
-			setId(idWrap.o);
+			Optional.ofNullable(idWrap.getO()).ifPresent(o -> {
+				setId(o);
+			});
 		}
 		return (ApiRequest)this;
 	}
@@ -517,7 +531,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	/**	<br> The entity pk
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:pk">Find the entity pk in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:pk">Find the entity pk in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -543,7 +557,9 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		Wrap<Long> pkWrap = new Wrap<Long>().var("pk");
 		if(pk == null) {
 			_pk(pkWrap);
-			setPk(pkWrap.o);
+			Optional.ofNullable(pkWrap.getO()).ifPresent(o -> {
+				setPk(o);
+			});
 		}
 		return (ApiRequest)this;
 	}
@@ -574,7 +590,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	/**	<br> The entity original
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:original">Find the entity original in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:original">Find the entity original in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -594,7 +610,9 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		Wrap<Object> originalWrap = new Wrap<Object>().var("original");
 		if(original == null) {
 			_original(originalWrap);
-			setOriginal(originalWrap.o);
+			Optional.ofNullable(originalWrap.getO()).ifPresent(o -> {
+				setOriginal(o);
+			});
 		}
 		return (ApiRequest)this;
 	}
@@ -615,7 +633,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	/**	<br> The entity pks
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:pks">Find the entity pks in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:pks">Find the entity pks in Solr</a>
 	 * <br>
 	 * @param c is the entity already constructed. 
 	 **/
@@ -653,9 +671,11 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	@JsonIgnore
 	public void setPks(JsonArray objects) {
 		pks.clear();
+		if(objects == null)
+			return;
 		for(int i = 0; i < objects.size(); i++) {
-			Long o = objects.getLong(i);
-			addPks(o);
+			String o = objects.getString(i);
+			setPks(o);
 		}
 	}
 	public ApiRequest addPks(String o) {
@@ -697,7 +717,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	/**	<br> The entity classes
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:classes">Find the entity classes in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:classes">Find the entity classes in Solr</a>
 	 * <br>
 	 * @param c is the entity already constructed. 
 	 **/
@@ -706,9 +726,10 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public List<String> getClasses() {
 		return classes;
 	}
-
-	public void setClasses(List<String> classes) {
-		this.classes = classes;
+	public void setClasses(String o) {
+		String l = ApiRequest.staticSetClasses(siteRequest_, o);
+		if(l != null)
+			addClasses(l);
 	}
 	public static String staticSetClasses(ComputateSiteRequest siteRequest_, String o) {
 		return o;
@@ -727,6 +748,8 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	@JsonIgnore
 	public void setClasses(JsonArray objects) {
 		classes.clear();
+		if(objects == null)
+			return;
 		for(int i = 0; i < objects.size(); i++) {
 			String o = objects.getString(i);
 			addClasses(o);
@@ -764,7 +787,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	/**	<br> The entity vars
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:vars">Find the entity vars in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:vars">Find the entity vars in Solr</a>
 	 * <br>
 	 * @param c is the entity already constructed. 
 	 **/
@@ -773,9 +796,10 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public List<String> getVars() {
 		return vars;
 	}
-
-	public void setVars(List<String> vars) {
-		this.vars = vars;
+	public void setVars(String o) {
+		String l = ApiRequest.staticSetVars(siteRequest_, o);
+		if(l != null)
+			addVars(l);
 	}
 	public static String staticSetVars(ComputateSiteRequest siteRequest_, String o) {
 		return o;
@@ -794,6 +818,8 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	@JsonIgnore
 	public void setVars(JsonArray objects) {
 		vars.clear();
+		if(objects == null)
+			return;
 		for(int i = 0; i < objects.size(); i++) {
 			String o = objects.getString(i);
 			addVars(o);
@@ -830,7 +856,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	/**	<br> The entity timeRemaining
 	 *  is defined as null before being initialized. 
-	 * <br><a href="http://localhost:8983/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:timeRemaining">Find the entity timeRemaining in Solr</a>
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:timeRemaining">Find the entity timeRemaining in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -849,7 +875,9 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		Wrap<String> timeRemainingWrap = new Wrap<String>().var("timeRemaining");
 		if(timeRemaining == null) {
 			_timeRemaining(timeRemainingWrap);
-			setTimeRemaining(timeRemainingWrap.o);
+			Optional.ofNullable(timeRemainingWrap.getO()).ifPresent(o -> {
+				setTimeRemaining(o);
+			});
 		}
 		return (ApiRequest)this;
 	}

@@ -1,5 +1,5 @@
 {{#*inline "htmTitleComputateJavaClassPage"}}		<!-- inline "htmTitleComputateJavaClassPage" -->
-		<title>{{#if searchListComputateJavaClass_}}{{#eq computateJavaClassCount int1}}{{#eq params.query.q "*:*"}}java class{{else}}java class{{/eq}}{{else}}no java class found{{/eq}}{{else}}java classs{{/if}}</title>
+		<title>{{#if searchListComputateJavaClass_}}{{#eq computateJavaClassCount int1}}{{#if id}}java class{{else}}java class{{/if}}{{else}}no java class found{{/eq}}{{else}}java classs{{/if}}</title>
 {{/inline}}
 {{#*inline "htmMetaComputateJavaClassPage"}}{{> "htmMetaComputatePageLayout"}}{{/inline}}
 {{#*inline "htmStyleComputateJavaClassPage"}}{{> "htmStyleComputatePageLayout"}}{{/inline}}
@@ -8,6 +8,14 @@
 {{/inline}}
 {{#*inline "htmScriptComputateJavaClassPage"}}		<!-- inline "htmScriptComputateJavaClassPage" -->
 		<script>
+			$('#site-calendar-box').accordion({ collapsible: true, active: false });
+{{#if DEFAULT_MAP_LOCATION }}
+			window.DEFAULT_MAP_LOCATION = { lat: {{ DEFAULT_MAP_LOCATION.lat }}, lon: {{ DEFAULT_MAP_LOCATION.lon }} };
+{{/if}}
+{{#if DEFAULT_MAP_ZOOM }}
+			window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{{/if}}
+			window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
 			$(document).ready(function() {
 				document.onkeydown = function(evt) {
 					evt = evt || window.event;
@@ -25,27 +33,23 @@
 				var pk = {{#if pk}}{{pk}}{{else}}null{{/if}};
 				if(pk != null) {
 				}
-				websocketComputateJavaClass(websocketComputateJavaClassInner);
 				window.varsFq = JSON.parse('{{{toJsonObjectStringInApostrophes varsFq}}}');
 				window.varsRange = JSON.parse('{{{toJsonObjectStringInApostrophes varsRange}}}');
 				window.defaultRangeVar = '{{ defaultRangeVar }}';
-				pageGraph();
+				pageGraphComputateJavaClass();
 
 				var calendarEl = document.getElementById('site-calendar');
 				var calendar = new FullCalendar.Calendar(calendarEl, {
 					initialView: 'dayGridMonth'
 				});
 				//calendar.render();
+{{#block "websocket"}}{{/block}}
 			});
-			$('#site-calendar-box').accordion({ collapsible: true, active: false });
-{{#if DEFAULT_MAP_LOCATION }}
-			window.DEFAULT_MAP_LOCATION = { lat: {{ DEFAULT_MAP_LOCATION.lat }}, lon: {{ DEFAULT_MAP_LOCATION.lon }} };
-{{/if}}
-{{#if DEFAULT_MAP_ZOOM }}
-			window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
-{{/if}}
-			window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
 		</script>
+{{/inline}}
+{{#*inline "websocketComputateJavaClassPage"}}
+				<!-- inline "websocketComputateJavaClassPage" -->
+				websocketComputateJavaClass(websocketComputateJavaClassInner);
 {{/inline}}
 {{#*inline "htmUrlComputateJavaClass"}}{{pageUri}}?q={{query.q}}&amp;rows={{#if rows}}{{rows}}{{else}}{{pagination.rows}}{{/if}}&amp;rows={{#if start}}{{start}}{{else}}{{pagination.start}}{{/if}}{{#each query.fq}}{{#eq fq this}}{{else}}&fq={{fq}}:{{val}}{{/eq}}{{/each}}{{#each query.sort}}{{#eq sort this}}{{else}}&sort={{var}} {{order}}{{/eq}}{{/each}}{{/inline}}
 {{#*inline "htmHeadComputateJavaClassPage"}}{{#block "htmTitle"}}{{/block}}{{#block "htmMeta"}}{{/block}}{{#block "htmStyle"}}{{/block}}{{#block "htmScripts"}}{{/block}}{{#block "htmScript"}}{{/block}}{{/inline}}
@@ -59,7 +63,7 @@
 									</div>
 									<div class="w3-cell-row ">
 										<div class="w3-cell w3-cell-top ">
-											<input id="qComputateJavaClass_{{ @key }}" placeholder="{{ displayName }}" class="" {{#eq ../var 'objectSuggest' }}onkeyup{{else}}onchange{{/eq}}="qChange(this); " data-var="{{ var }}" autocomplete="off="/>
+											<input id="qComputateJavaClass_{{ @key }}" placeholder="{{ displayName }}" class="" {{#eq ../var 'objectSuggest' }}onkeyup{{else}}onchange{{/eq}}="qChange('ComputateJavaClass', this); " data-var="{{ var }}" autocomplete="off="/>
 											<div class="pageSearchVal w3-tiny "></div>
 										</div>
 									</div>
@@ -71,7 +75,7 @@
 									</div>
 									<div class="w3-cell-row ">
 										<div class="w3-cell w3-cell-top ">
-											<input id="qComputateJavaClass_start" placeholder="{{ displayName }}" class="" onchange="paramChange(this); " data-var="start" autocomplete="off="/>
+											<input id="qComputateJavaClass_start" placeholder="{{ displayName }}" class="" onchange="paramChange('ComputateJavaClass', this); " data-var="start" autocomplete="off="/>
 											<div class="pageSearchVal w3-tiny "></div>
 										</div>
 									</div>
@@ -82,7 +86,7 @@
 									</div>
 									<div class="w3-cell-row ">
 										<div class="w3-cell w3-cell-top ">
-											<input id="qComputateJavaClass_rows" placeholder="{{ displayName }}" class="" onchange="paramChange(this); " data-var="rows" autocomplete="off="/>
+											<input id="qComputateJavaClass_rows" placeholder="{{ displayName }}" class="" onchange="paramChange('ComputateJavaClass', this); " data-var="rows" autocomplete="off="/>
 											<div class="pageSearchVal w3-tiny "></div>
 										</div>
 									</div>
@@ -95,10 +99,10 @@
 										<label for="fqComputateJavaClass_{{ @key }}">{{ displayName }}<sup class="w3-tiny "> ({{ classSimpleName }})</sup></label>
 										<div class="w3-cell-row ">
 											<div class="w3-cell w3-cell-top ">
-												<button id="buttonFacetComputateJavaClass_{{ @key }}" class="" onclick="facetFieldChange(this); " title="see values " data-var="{{ var }}" data-clear="{{#if facetField }}true{{else}}false{{/if}}"><i class="fas fa-list "></i></button>
+												<button id="buttonFacetComputateJavaClass_{{ @key }}" class="" onclick="facetFieldChange('ComputateJavaClass', this); " title="see values " data-var="{{ var }}" data-clear="{{#if facetField }}true{{else}}false{{/if}}"><i class="fas fa-list "></i></button>
 											</div>
 											<div class="w3-cell w3-cell-top ">
-												<input id="fqComputateJavaClass_{{ @key }}" placeholder="{{ displayName }}" class="" onchange="fqChange(this); " data-var="{{ var }}" autocomplete="off=" value="{{ val }}"/>
+												<input id="fqComputateJavaClass_{{ @key }}" placeholder="{{ displayName }}" class="" onchange="fqChange('ComputateJavaClass', this); " data-var="{{ var }}" autocomplete="off=" value="{{ val }}"/>
 											</div>
 										</div>
 									</div>
@@ -107,7 +111,7 @@
 										<div class="pageSearchVal " id="pageSearchVal-buttonFacetComputateJavaClass_{{ @key }}">{{#if facetField.var }}facet.field={{ facetField.var }}{{/if}}</div>
 										<ol class="pageFacetField w3-small pageFacetFieldComputateJavaClass_{{ @key }} " id="pageFacetFieldComputateJavaClass_{{ @key }}">
 {{#each facetField.counts }}
-											<li class="cursor-pointer " data-class="ComputateJavaClass" data-var="{{ ../var }}" data-val="{{ @key }}" onclick="fqReplace(this); ">{{ @key }}: {{ this }}</li>
+											<li class="cursor-pointer " data-class="ComputateJavaClass" data-var="{{ ../var }}" data-val="{{ @key }}" onclick="fqReplace('ComputateJavaClass', this); ">{{ @key }}: {{ this }}</li>
 {{/each}}
 										</ol>
 									</div>
@@ -131,7 +135,7 @@
 											<span>Range Gap</span>
 										</td>
 										<td class="">
-											<select name="facet.range.gap" id="pageFacetRangeGap-ComputateJavaClass" onchange="facetRangeGapChange(this, 'ComputateJavaClass'); ">
+											<select name="facet.range.gap" id="pageFacetRangeGap-ComputateJavaClass" onchange="facetRangeGapChange('ComputateJavaClass', this); ">
 												<option value="+1YEAR"{{#eq defaultRangeGap '+1YEAR'}} selected="selected"{{else}}{{/eq}}>Year</option>
 												<option value="+1MONTH"{{#eq defaultRangeGap '+1MONTH'}} selected="selected"{{else}}{{/eq}}>Month</option>
 												<option value="+1WEEK"{{#eq defaultRangeGap '+1WEEK'}} selected="selected"{{else}}{{/eq}}>Week</option>
@@ -149,7 +153,7 @@
 									</tr>
 									<tr class="">
 										<td class="" colspan="2">
-											<span><input type="datetime-local" name="facetRangeStart" id="pageFacetRangeStart-ComputateJavaClass" value="{{formatZonedDateTime defaultRangeStart "yyyy-MM-dd'T'HH:mm" defaultLocaleId defaultZoneId}}" onclick="facetRangeStartChange(this, 'ComputateJavaClass'); "/></span>
+											<span><input type="datetime-local" name="facetRangeStart" id="pageFacetRangeStart-ComputateJavaClass" value="{{formatZonedDateTime defaultRangeStart "yyyy-MM-dd'T'HH:mm" defaultLocaleId defaultZoneId}}" onclick="facetRangeStartChange('ComputateJavaClass', this); "/></span>
 										</td>
 									</tr>
 									<tr class="">
@@ -159,7 +163,7 @@
 									</tr>
 									<tr class="">
 										<td class="" colspan="2">
-											<span><input type="datetime-local" name="facetRangeEnd" id="pageFacetRangeEnd-ComputateJavaClass" value="{{formatZonedDateTime defaultRangeEnd "yyyy-MM-dd'T'HH:mm" defaultLocaleId defaultZoneId}}" onclick="facetRangeEndChange(this, 'ComputateJavaClass'); "/></span>
+											<span><input type="datetime-local" name="facetRangeEnd" id="pageFacetRangeEnd-ComputateJavaClass" value="{{formatZonedDateTime defaultRangeEnd "yyyy-MM-dd'T'HH:mm" defaultLocaleId defaultZoneId}}" onclick="facetRangeEndChange('ComputateJavaClass', this); "/></span>
 										</td>
 									</tr>
 								</table>
@@ -167,7 +171,7 @@
 {{#each varsRange }}
 									<tr class="">
 										<td class="">
-											<span><input type="radio" name="pageFacetRange" class="pageFacetRange " id="pageFacetRangeComputateJavaClass_{{ @key }}" value="{{ var }}"{{#eq defaultRangeVar var }} checked="checked"{{/eq}} onclick="facetRangeChange(this, 'ComputateJavaClass'); "/></span>
+											<span><input type="radio" name="pageFacetRange" class="pageFacetRange " id="pageFacetRangeComputateJavaClass_{{ @key }}" value="{{ var }}"{{#eq defaultRangeVar var }} checked="checked"{{/eq}} onclick="facetRangeChange('ComputateJavaClass', this); "/></span>
 										</td>
 										<td class="">
 											<label for="pageFacetRangeComputateJavaClass_{{ @key }}">{{ displayName }}</label>
@@ -191,7 +195,7 @@
 {{#each varsFq }}
 									<tr class="">
 										<td class="">
-											<span><input type="checkbox" name="pageFacetPivot" class="pageFacetPivot " id="pageFacetPivotComputateJavaClass_{{ @key }}" value="{{ var }}"{{#if pivot }} checked="checked"{{/if}} onclick="facetPivotChange(this, 'ComputateJavaClass'); "/></span>
+											<span><input type="checkbox" name="pageFacetPivot" class="pageFacetPivot " id="pageFacetPivotComputateJavaClass_{{ @key }}" value="{{ var }}"{{#if pivot }} checked="checked"{{/if}} onclick="facetPivotChange('ComputateJavaClass', this); "/></span>
 										</td>
 										<td class="w3-cell ">
 											<label for="pageFacetPivotComputateJavaClass_{{ @key }}">{{ displayName }}</label>
@@ -215,7 +219,7 @@
 {{#each varsFq }}
 									<tr class="">
 										<td class="">
-											<span><input type="checkbox" name="pageFieldList" class="pageFieldList " id="pageFieldListComputateJavaClass_{{ @key }}" value="{{ var }}"{{#if fieldList }} checked="checked"{{/if}} onclick="facetFieldListChange(this, 'ComputateJavaClass'); "/></span>
+											<span><input type="checkbox" name="pageFieldList" class="pageFieldList " id="pageFieldListComputateJavaClass_{{ @key }}" value="{{ var }}"{{#if fieldList }} checked="checked"{{/if}} onclick="facetFieldListChange('ComputateJavaClass', this); "/></span>
 										</td>
 										<td class="w3-cell ">
 											<label for="pageFieldListComputateJavaClass_{{ @key }}">{{ displayName }}</label>
@@ -240,7 +244,7 @@
 {{#if enableStats }}
 									<tr class="">
 										<td class="">
-											<span><input type="checkbox" name="pageStats" class="pageStats " id="pageStatsComputateJavaClass_{{ @key }}" value="{{ var }}"{{#if ./stats }} checked="checked"{{/if}} onclick="facetStatsChange(this, 'ComputateJavaClass'); "/></span>
+											<span><input type="checkbox" name="pageStats" class="pageStats " id="pageStatsComputateJavaClass_{{ @key }}" value="{{ var }}"{{#if ./stats }} checked="checked"{{/if}} onclick="facetStatsChange('ComputateJavaClass', this); "/></span>
 										</td>
 										<td class="w3-cell ">
 											<div>
@@ -306,37 +310,14 @@
 	{{#if classIconCssClasses}}
 				<i class="{{ classIconCssClasses }} site-menu-icon "></i>
 	{{/if}}
-				<span class="">java classs</span>
+				<span class="">java class</span>
 			</a>
 		</h1>
-		<div>
-	{{#if pagination.pagePrevious}}
-			<a href="{{pageUri}}?start={{pagination.pagePrevious.start}}&amp;rows={{pagination.rows}}">
-				<i class="fas fa-arrow-square-left "></i>
-			</a>
-	{{else}}
-			<i class="fas fa-arrow-square-left w3-opacity "></i>
-	{{/if}}
-	{{#gte pagination.rowsPrevious pagination.1L}}
-			<a href="{{pageUri}}?start={{pagination.start}}&amp;rows={{ pagination.rowsPrevious }}">
-				<i class="fas fa-minus-square "></i>
-			</a>
-	{{else}}
-			<i class="fas fa-minus-square w3-opacity "></i>
-	{{/gte}}
-			<a href="{{pageUri}}?start={{pagination.start}}&amp;rows={{ pagination.rowsNext }}">
-				<i class="fas fa-plus-square "></i>
-			</a>
-	{{#if pagination.pageNext}}
-			<a href="{{pageUri}}?start={{pagination.pageNext.start}}&amp;rows={{pagination.rows}}">
-				<i class="fas fa-arrow-square-right "></i>
-			</a>
-	{{else}}
-			<i class="fas fa-arrow-square-right w3-opacity "></i>
-	{{/if}}
-			<span>{{ pagination.startNum }} - {{ pagination.endNum }} of {{ pagination.foundNum }}</span>
-		</div>
-{{> "table1ComputateJavaClassPage"}}
+		<h2 class="w3-center ">
+			<span class="w3-bar-item w3-padding w3-center w3-block w3-blue">
+				<span class="">{{computateJavaClass_.objectTitle}}</span>
+			</span>
+		</h2>
 {{/inline}}
 {{#*inline "htmBodyAllComputateJavaClassPage"}}		<!-- #*inline "htmBodyAllComputateJavaClassPage" -->
 		<h1>
@@ -388,8 +369,17 @@
 			<input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{{toJsonObjectStringInApostrophes pageResponse }}}' type="hidden"/>
 		</form>
 {{#if id}}
+{{#block "htmButton_searchpageComputateJavaClass"}}{{/block}}
 {{#block "htmForm_searchpageComputateJavaClass"}}{{/block}}
 {{/if}}
+{{/inline}}
+{{#*inline "htmButtonComputateJavaClassPage_searchpageComputateJavaClass"}}
+{{/inline}}
+{{#*inline "htmFormButtonComputateJavaClassPage_searchpageComputateJavaClass"}}
+						<button
+							class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-margin w3-blue "
+							onclick="searchpageComputateJavaClass(); "
+							>Search java classs</button>
 {{/inline}}
 {{#*inline "htmFormComputateJavaClassPage_searchpageComputateJavaClass"}}
 		<div id="searchpageComputateJavaClassModal" class="">
@@ -397,10 +387,6 @@
 				<div class="w3-card-4 ">
 					<div class="" id="searchpageComputateJavaClassFormValues">
 						<div id="searchpageComputateJavaClassForm">
-							<div class="w3-cell-row ">
-							</div>
-							<div class="w3-cell-row ">
-							</div>
 						</div>
 					</div>
 				</div>
@@ -503,11 +489,11 @@
 {{#block "htmBodyCount0"}}{{/block}}
 	{{else}}
 		{{#eq computateJavaClassCount int1}}
-			{{#eq params.query.q "*:*"}}
-{{#block "htmBodyCount1All"}}{{/block}}
-			{{else}}
+			{{#if id}}
 {{#block "htmBodyCount1"}}{{/block}}
-			{{/eq}}
+			{{else}}
+{{#block "htmBodyAll"}}{{/block}}
+			{{/if}}
 		{{else}}
 {{#block "htmBodyAll"}}{{/block}}
 		{{/eq}}
@@ -535,8 +521,6 @@
 {{/inline}}
 {{#*inline "thead2ComputateJavaClassPage"}}
 			<tr>
-						<th>created</th>
-						<th></th>
 			</tr>
 {{/inline}}
 {{#*inline "tbody1ComputateJavaClassPage"}}
@@ -547,17 +531,6 @@
 {{#*inline "tbody2ComputateJavaClassPage"}}
 		{{#each listComputateJavaClass}}
 					<tr>
-						<td>
-							<a href="{{pageUrlPk}}">
-								<span class="white-space-pre-wrap ">{{siteZonedDateTimeFormat created "MMM d, yyyy h:mm:ss a" siteLocale}}</span>
-							</a>
-						</td>
-						<td>
-							<a href="{{pageUrlPk}}">
-								<i class="fad fa-map-location-dot "></i>
-								<span class="white-space-pre-wrap ">{{objectTitle}}</span>
-							</a>
-						</td>
 					</tr>
 		{{/each}}
 {{/inline}}
@@ -568,18 +541,10 @@
 {{/inline}}
 {{#*inline "tfoot2ComputateJavaClassPage"}}
 			<tr>
-			{{#if getColumnCreated}}
-				<td>
-				</td>
-			{{/if}}
-			{{#if getColumnObjectTitle}}
-				<td>
-				</td>
-			{{/if}}
 			</tr>
 	{{/inline}}
 {{#*inline "htmFormsComputateJavaClassPage"}}
-	{{#ifContainsAnyRoles roles roleRequired}}
+{{#ifContainsAnyRoles roles authRoleSuperAdmin}}
 		{{#eq computateJavaClassCount int1}}
 		<button
 			class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-blue "
@@ -589,9 +554,7 @@
 			refresh this java class
 		</button>
 		{{/eq}}
-	{{/ifContainsAnyRoles}}
-	{{#ifContainsAnyRoles roles authRoleAdmin}}
-	{{/ifContainsAnyRoles}}
+{{/ifContainsAnyRoles}}
 {{#block "htmSuggested"}}{{/block}}
 {{/inline}}
 {{#*inline "htmSuggestedComputateJavaClassPage"}}
@@ -903,32 +866,6 @@
 	{{/eq}}
 {{/inline}}
 
-{{#*inline "htmObjectTitle"}}
-								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
-									{{#eq 'Page' classApiMethodMethod}}
-										<div class="w3-padding ">
-											<div class="w3-card ">
-												<div class="w3-cell-row  ">
-													<div class="w3-cell ">
-														<div class="w3-rest ">
-															<span class="">
-																{{> "inputObjectTitle" roleRequired=roleRequired}}
-															</span>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-	{{/eq}}
-								</div>
-{{/inline}}
-
-{{#*inline "inputObjectTitle"}}
-	{{#eq 'Page' classApiMethodMethod}}
-														<span class="varComputateJavaClass{{id}}ObjectTitle ">{{computateJavaClass_.objectTitle}}</span>
-	{{/eq}}
-{{/inline}}
-
 {{#*inline "htmObjectId"}}
 								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
 									<div class="w3-padding ">
@@ -992,35 +929,6 @@
 		{{else}}
 														<span class="varComputateJavaClass{{id}}ObjectId ">{{computateJavaClass_.objectId}}</span>
 		{{/eq}}
-{{/inline}}
-
-{{#*inline "htmModified"}}
-								<div class="w3-cell w3-cell-top w3-center w3-mobile ">
-									{{#eq 'Page' classApiMethodMethod}}
-										<div class="w3-padding ">
-											<div class="w3-card ">
-												<div class="w3-cell-row w3-blue">
-													<label>modified</label>
-												</div>
-												<div class="w3-cell-row  ">
-													<div class="w3-cell ">
-														<div class="w3-rest ">
-															<span class="">
-																{{> "inputModified" roleRequired=roleRequired}}
-															</span>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-	{{/eq}}
-								</div>
-{{/inline}}
-
-{{#*inline "inputModified"}}
-	{{#eq 'Page' classApiMethodMethod}}
-														<span class="varComputateJavaClass{{id}}Modified ">{{computateJavaClass_.modified}}</span>
-	{{/eq}}
 {{/inline}}
 
 {{#*inline "htmId"}}
