@@ -54,6 +54,11 @@ public class ComputateConfigKeys {
 	public static final String RUN_ARTICLE_GENERATOR = "RUN_ARTICLE_GENERATOR";
 
 	/**
+	 * Run the FIWARE Generator to generate Smart Model Data when this environment variable is set to true. 
+	 **/
+	public static final String RUN_FIWARE_GENERATOR = "RUN_FIWARE_GENERATOR";
+
+	/**
 	 * The path to the config file of the site. 
 	 **/
 	public static final String CONFIG_PATH = "CONFIG_PATH";

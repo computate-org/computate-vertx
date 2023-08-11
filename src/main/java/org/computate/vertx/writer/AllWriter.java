@@ -206,6 +206,9 @@ public class AllWriter extends AllWriterGen<Object> {
 	}
 
 	public AllWriter yamlStr(int tabNumber, Object...objects) {
+		return yamlStr(">+", tabNumber, objects);
+	}
+	public AllWriter yamlStr(String indicator, int tabNumber, Object...objects) {
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 		for(Object object : objects) {
@@ -224,7 +227,7 @@ public class AllWriter extends AllWriterGen<Object> {
 			}
 		}
 		String[] lines = StringUtils.splitPreserveAllTokens(stringWriter.toString(), "\n");
-		l(">+");
+		l(indicator);
 		for(int i = 0; i < lines.length; i++) {
 			boolean last = i == (lines.length -1);
 			String line = lines[i];

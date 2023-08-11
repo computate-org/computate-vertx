@@ -43,6 +43,7 @@ import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
 import java.lang.Object;
+import io.vertx.core.Vertx;
 import io.vertx.ext.web.client.WebClient;
 import io.vertx.core.json.JsonObject;
 import java.lang.String;
@@ -111,6 +112,47 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public static final String configureConfigFail1 = "Could not configure the config(). ";
 	public static final String configureConfigFail = configureConfigFail1;
 
+
+	////////////
+	// vertx_ //
+	////////////
+
+
+	/**	 The entity vertx_
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected Vertx vertx_;
+
+	/**	<br> The entity vertx_
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:vertx_">Find the entity vertx_ in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _vertx_(Wrap<Vertx> w);
+
+	public Vertx getVertx_() {
+		return vertx_;
+	}
+
+	public void setVertx_(Vertx vertx_) {
+		this.vertx_ = vertx_;
+	}
+	public static Vertx staticSetVertx_(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Swagger2Generator vertx_Init() {
+		Wrap<Vertx> vertx_Wrap = new Wrap<Vertx>().var("vertx_");
+		if(vertx_ == null) {
+			_vertx_(vertx_Wrap);
+			Optional.ofNullable(vertx_Wrap.getO()).ifPresent(o -> {
+				setVertx_(o);
+			});
+		}
+		return (Swagger2Generator)this;
+	}
 
 	///////////////
 	// webClient //
@@ -1178,6 +1220,418 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 		return (Swagger2Generator)this;
 	}
 
+	///////////////////////////
+	// fiwareSwaggerYamlPath //
+	///////////////////////////
+
+
+	/**	 The entity fiwareSwaggerYamlPath
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String fiwareSwaggerYamlPath;
+
+	/**	<br> The entity fiwareSwaggerYamlPath
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:fiwareSwaggerYamlPath">Find the entity fiwareSwaggerYamlPath in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _fiwareSwaggerYamlPath(Wrap<String> c);
+
+	public String getFiwareSwaggerYamlPath() {
+		return fiwareSwaggerYamlPath;
+	}
+	public void setFiwareSwaggerYamlPath(String o) {
+		this.fiwareSwaggerYamlPath = Swagger2Generator.staticSetFiwareSwaggerYamlPath(siteRequest_, o);
+	}
+	public static String staticSetFiwareSwaggerYamlPath(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected Swagger2Generator fiwareSwaggerYamlPathInit() {
+		Wrap<String> fiwareSwaggerYamlPathWrap = new Wrap<String>().var("fiwareSwaggerYamlPath");
+		if(fiwareSwaggerYamlPath == null) {
+			_fiwareSwaggerYamlPath(fiwareSwaggerYamlPathWrap);
+			Optional.ofNullable(fiwareSwaggerYamlPathWrap.getO()).ifPresent(o -> {
+				setFiwareSwaggerYamlPath(o);
+			});
+		}
+		return (Swagger2Generator)this;
+	}
+
+	public static String staticSearchFiwareSwaggerYamlPath(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrFiwareSwaggerYamlPath(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqFiwareSwaggerYamlPath(ComputateSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrFiwareSwaggerYamlPath(siteRequest_, Swagger2Generator.staticSearchFiwareSwaggerYamlPath(siteRequest_, Swagger2Generator.staticSetFiwareSwaggerYamlPath(siteRequest_, o)));
+	}
+
+	///////////////////////////
+	// fiwareSwaggerYamlFile //
+	///////////////////////////
+
+
+	/**	 The entity fiwareSwaggerYamlFile
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected File fiwareSwaggerYamlFile;
+
+	/**	<br> The entity fiwareSwaggerYamlFile
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:fiwareSwaggerYamlFile">Find the entity fiwareSwaggerYamlFile in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _fiwareSwaggerYamlFile(Wrap<File> c);
+
+	public File getFiwareSwaggerYamlFile() {
+		return fiwareSwaggerYamlFile;
+	}
+
+	public void setFiwareSwaggerYamlFile(File fiwareSwaggerYamlFile) {
+		this.fiwareSwaggerYamlFile = fiwareSwaggerYamlFile;
+	}
+	public static File staticSetFiwareSwaggerYamlFile(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Swagger2Generator fiwareSwaggerYamlFileInit() {
+		Wrap<File> fiwareSwaggerYamlFileWrap = new Wrap<File>().var("fiwareSwaggerYamlFile");
+		if(fiwareSwaggerYamlFile == null) {
+			_fiwareSwaggerYamlFile(fiwareSwaggerYamlFileWrap);
+			Optional.ofNullable(fiwareSwaggerYamlFileWrap.getO()).ifPresent(o -> {
+				setFiwareSwaggerYamlFile(o);
+			});
+		}
+		return (Swagger2Generator)this;
+	}
+
+	////////////////////
+	// wFiwareSwagger //
+	////////////////////
+
+
+	/**	 The entity wFiwareSwagger
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected AllWriter wFiwareSwagger;
+
+	/**	<br> The entity wFiwareSwagger
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wFiwareSwagger">Find the entity wFiwareSwagger in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _wFiwareSwagger(Wrap<AllWriter> c);
+
+	public AllWriter getWFiwareSwagger() {
+		return wFiwareSwagger;
+	}
+
+	public void setWFiwareSwagger(AllWriter wFiwareSwagger) {
+		this.wFiwareSwagger = wFiwareSwagger;
+	}
+	public static AllWriter staticSetWFiwareSwagger(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Swagger2Generator wFiwareSwaggerInit() {
+		Wrap<AllWriter> wFiwareSwaggerWrap = new Wrap<AllWriter>().var("wFiwareSwagger");
+		if(wFiwareSwagger == null) {
+			_wFiwareSwagger(wFiwareSwaggerWrap);
+			Optional.ofNullable(wFiwareSwaggerWrap.getO()).ifPresent(o -> {
+				setWFiwareSwagger(o);
+			});
+		}
+		if(wFiwareSwagger != null)
+			wFiwareSwagger.initDeepForClass(siteRequest_);
+		return (Swagger2Generator)this;
+	}
+
+	/////////////////////
+	// wFiwareExamples //
+	/////////////////////
+
+
+	/**	 The entity wFiwareExamples
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected AllWriter wFiwareExamples;
+
+	/**	<br> The entity wFiwareExamples
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wFiwareExamples">Find the entity wFiwareExamples in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _wFiwareExamples(Wrap<AllWriter> c);
+
+	public AllWriter getWFiwareExamples() {
+		return wFiwareExamples;
+	}
+
+	public void setWFiwareExamples(AllWriter wFiwareExamples) {
+		this.wFiwareExamples = wFiwareExamples;
+	}
+	public static AllWriter staticSetWFiwareExamples(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Swagger2Generator wFiwareExamplesInit() {
+		Wrap<AllWriter> wFiwareExamplesWrap = new Wrap<AllWriter>().var("wFiwareExamples");
+		if(wFiwareExamples == null) {
+			_wFiwareExamples(wFiwareExamplesWrap);
+			Optional.ofNullable(wFiwareExamplesWrap.getO()).ifPresent(o -> {
+				setWFiwareExamples(o);
+			});
+		}
+		if(wFiwareExamples != null)
+			wFiwareExamples.initDeepForClass(siteRequest_);
+		return (Swagger2Generator)this;
+	}
+
+	///////////////////////////////
+	// wFiwareExamplesNormalized //
+	///////////////////////////////
+
+
+	/**	 The entity wFiwareExamplesNormalized
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected AllWriter wFiwareExamplesNormalized;
+
+	/**	<br> The entity wFiwareExamplesNormalized
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wFiwareExamplesNormalized">Find the entity wFiwareExamplesNormalized in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _wFiwareExamplesNormalized(Wrap<AllWriter> c);
+
+	public AllWriter getWFiwareExamplesNormalized() {
+		return wFiwareExamplesNormalized;
+	}
+
+	public void setWFiwareExamplesNormalized(AllWriter wFiwareExamplesNormalized) {
+		this.wFiwareExamplesNormalized = wFiwareExamplesNormalized;
+	}
+	public static AllWriter staticSetWFiwareExamplesNormalized(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Swagger2Generator wFiwareExamplesNormalizedInit() {
+		Wrap<AllWriter> wFiwareExamplesNormalizedWrap = new Wrap<AllWriter>().var("wFiwareExamplesNormalized");
+		if(wFiwareExamplesNormalized == null) {
+			_wFiwareExamplesNormalized(wFiwareExamplesNormalizedWrap);
+			Optional.ofNullable(wFiwareExamplesNormalizedWrap.getO()).ifPresent(o -> {
+				setWFiwareExamplesNormalized(o);
+			});
+		}
+		if(wFiwareExamplesNormalized != null)
+			wFiwareExamplesNormalized.initDeepForClass(siteRequest_);
+		return (Swagger2Generator)this;
+	}
+
+	///////////////////
+	// fiwareContext //
+	///////////////////
+
+
+	/**	 The entity fiwareContext
+	 *	 It is constructed before being initialized with the constructor by default. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected JsonObject fiwareContext = new JsonObject();
+
+	/**	<br> The entity fiwareContext
+	 *  It is constructed before being initialized with the constructor by default. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:fiwareContext">Find the entity fiwareContext in Solr</a>
+	 * <br>
+	 * @param o is the entity already constructed. 
+	 **/
+	protected abstract void _fiwareContext(JsonObject o);
+
+	public JsonObject getFiwareContext() {
+		return fiwareContext;
+	}
+
+	public void setFiwareContext(JsonObject fiwareContext) {
+		this.fiwareContext = fiwareContext;
+	}
+	@JsonIgnore
+	public void setFiwareContext(String o) {
+		this.fiwareContext = Swagger2Generator.staticSetFiwareContext(siteRequest_, o);
+	}
+	public static JsonObject staticSetFiwareContext(ComputateSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonObject(o);
+		}
+		return null;
+	}
+	protected Swagger2Generator fiwareContextInit() {
+		_fiwareContext(fiwareContext);
+		return (Swagger2Generator)this;
+	}
+
+	public static String staticSearchFiwareContext(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
+	}
+
+	public static String staticSearchStrFiwareContext(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqFiwareContext(ComputateSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrFiwareContext(siteRequest_, Swagger2Generator.staticSearchFiwareContext(siteRequest_, Swagger2Generator.staticSetFiwareContext(siteRequest_, o)));
+	}
+
+	/////////////////////////////
+	// fiwareContextJsonldPath //
+	/////////////////////////////
+
+
+	/**	 The entity fiwareContextJsonldPath
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String fiwareContextJsonldPath;
+
+	/**	<br> The entity fiwareContextJsonldPath
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:fiwareContextJsonldPath">Find the entity fiwareContextJsonldPath in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _fiwareContextJsonldPath(Wrap<String> c);
+
+	public String getFiwareContextJsonldPath() {
+		return fiwareContextJsonldPath;
+	}
+	public void setFiwareContextJsonldPath(String o) {
+		this.fiwareContextJsonldPath = Swagger2Generator.staticSetFiwareContextJsonldPath(siteRequest_, o);
+	}
+	public static String staticSetFiwareContextJsonldPath(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected Swagger2Generator fiwareContextJsonldPathInit() {
+		Wrap<String> fiwareContextJsonldPathWrap = new Wrap<String>().var("fiwareContextJsonldPath");
+		if(fiwareContextJsonldPath == null) {
+			_fiwareContextJsonldPath(fiwareContextJsonldPathWrap);
+			Optional.ofNullable(fiwareContextJsonldPathWrap.getO()).ifPresent(o -> {
+				setFiwareContextJsonldPath(o);
+			});
+		}
+		return (Swagger2Generator)this;
+	}
+
+	public static String staticSearchFiwareContextJsonldPath(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrFiwareContextJsonldPath(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqFiwareContextJsonldPath(ComputateSiteRequest siteRequest_, String o) {
+		return Swagger2Generator.staticSearchStrFiwareContextJsonldPath(siteRequest_, Swagger2Generator.staticSearchFiwareContextJsonldPath(siteRequest_, Swagger2Generator.staticSetFiwareContextJsonldPath(siteRequest_, o)));
+	}
+
+	/////////////////////////////
+	// fiwareContextJsonldFile //
+	/////////////////////////////
+
+
+	/**	 The entity fiwareContextJsonldFile
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected File fiwareContextJsonldFile;
+
+	/**	<br> The entity fiwareContextJsonldFile
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:fiwareContextJsonldFile">Find the entity fiwareContextJsonldFile in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _fiwareContextJsonldFile(Wrap<File> c);
+
+	public File getFiwareContextJsonldFile() {
+		return fiwareContextJsonldFile;
+	}
+
+	public void setFiwareContextJsonldFile(File fiwareContextJsonldFile) {
+		this.fiwareContextJsonldFile = fiwareContextJsonldFile;
+	}
+	public static File staticSetFiwareContextJsonldFile(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Swagger2Generator fiwareContextJsonldFileInit() {
+		Wrap<File> fiwareContextJsonldFileWrap = new Wrap<File>().var("fiwareContextJsonldFile");
+		if(fiwareContextJsonldFile == null) {
+			_fiwareContextJsonldFile(fiwareContextJsonldFileWrap);
+			Optional.ofNullable(fiwareContextJsonldFileWrap.getO()).ifPresent(o -> {
+				setFiwareContextJsonldFile(o);
+			});
+		}
+		return (Swagger2Generator)this;
+	}
+
+	////////////////////
+	// wFiwareContext //
+	////////////////////
+
+
+	/**	 The entity wFiwareContext
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected AllWriter wFiwareContext;
+
+	/**	<br> The entity wFiwareContext
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&fq=entiteVar_enUS_indexed_string:wFiwareContext">Find the entity wFiwareContext in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _wFiwareContext(Wrap<AllWriter> c);
+
+	public AllWriter getWFiwareContext() {
+		return wFiwareContext;
+	}
+
+	public void setWFiwareContext(AllWriter wFiwareContext) {
+		this.wFiwareContext = wFiwareContext;
+	}
+	public static AllWriter staticSetWFiwareContext(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected Swagger2Generator wFiwareContextInit() {
+		Wrap<AllWriter> wFiwareContextWrap = new Wrap<AllWriter>().var("wFiwareContext");
+		if(wFiwareContext == null) {
+			_wFiwareContext(wFiwareContextWrap);
+			Optional.ofNullable(wFiwareContextWrap.getO()).ifPresent(o -> {
+				setWFiwareContext(o);
+			});
+		}
+		if(wFiwareContext != null)
+			wFiwareContext.initDeepForClass(siteRequest_);
+		return (Swagger2Generator)this;
+	}
+
 	////////////
 	// wPaths //
 	////////////
@@ -1327,6 +1781,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	}
 
 	public void initSwagger2Generator() {
+				vertx_Init();
 				webClientInit();
 				siteRequest_Init();
 				configInit();
@@ -1349,6 +1804,15 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 				wSqlCreateInit();
 				wSqlDropInit();
 				wArticleInit();
+				fiwareSwaggerYamlPathInit();
+				fiwareSwaggerYamlFileInit();
+				wFiwareSwaggerInit();
+				wFiwareExamplesInit();
+				wFiwareExamplesNormalizedInit();
+				fiwareContextInit();
+				fiwareContextJsonldPathInit();
+				fiwareContextJsonldFileInit();
+				wFiwareContextInit();
 				wPathsInit();
 				wRequestBodiesInit();
 				wSchemasInit();
@@ -1371,6 +1835,14 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			wSqlDrop.setSiteRequest_(siteRequest_);
 		if(wArticle != null)
 			wArticle.setSiteRequest_(siteRequest_);
+		if(wFiwareSwagger != null)
+			wFiwareSwagger.setSiteRequest_(siteRequest_);
+		if(wFiwareExamples != null)
+			wFiwareExamples.setSiteRequest_(siteRequest_);
+		if(wFiwareExamplesNormalized != null)
+			wFiwareExamplesNormalized.setSiteRequest_(siteRequest_);
+		if(wFiwareContext != null)
+			wFiwareContext.setSiteRequest_(siteRequest_);
 		if(wPaths != null)
 			wPaths.setSiteRequest_(siteRequest_);
 		if(wRequestBodies != null)
@@ -1403,6 +1875,8 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public Object obtainSwagger2Generator(String var) {
 		Swagger2Generator oSwagger2Generator = (Swagger2Generator)this;
 		switch(var) {
+			case "vertx_":
+				return oSwagger2Generator.vertx_;
 			case "webClient":
 				return oSwagger2Generator.webClient;
 			case "siteRequest_":
@@ -1447,6 +1921,24 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 				return oSwagger2Generator.wSqlDrop;
 			case "wArticle":
 				return oSwagger2Generator.wArticle;
+			case "fiwareSwaggerYamlPath":
+				return oSwagger2Generator.fiwareSwaggerYamlPath;
+			case "fiwareSwaggerYamlFile":
+				return oSwagger2Generator.fiwareSwaggerYamlFile;
+			case "wFiwareSwagger":
+				return oSwagger2Generator.wFiwareSwagger;
+			case "wFiwareExamples":
+				return oSwagger2Generator.wFiwareExamples;
+			case "wFiwareExamplesNormalized":
+				return oSwagger2Generator.wFiwareExamplesNormalized;
+			case "fiwareContext":
+				return oSwagger2Generator.fiwareContext;
+			case "fiwareContextJsonldPath":
+				return oSwagger2Generator.fiwareContextJsonldPath;
+			case "fiwareContextJsonldFile":
+				return oSwagger2Generator.fiwareContextJsonldFile;
+			case "wFiwareContext":
+				return oSwagger2Generator.wFiwareContext;
 			case "wPaths":
 				return oSwagger2Generator.wPaths;
 			case "wRequestBodies":
@@ -1512,6 +2004,12 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			return Swagger2Generator.staticSetSqlDropPath(siteRequest_, o);
 		case "articleYamlPath":
 			return Swagger2Generator.staticSetArticleYamlPath(siteRequest_, o);
+		case "fiwareSwaggerYamlPath":
+			return Swagger2Generator.staticSetFiwareSwaggerYamlPath(siteRequest_, o);
+		case "fiwareContext":
+			return Swagger2Generator.staticSetFiwareContext(siteRequest_, o);
+		case "fiwareContextJsonldPath":
+			return Swagger2Generator.staticSetFiwareContextJsonldPath(siteRequest_, o);
 			default:
 				return null;
 		}
@@ -1550,6 +2048,12 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			return Swagger2Generator.staticSearchSqlDropPath(siteRequest_, (String)o);
 		case "articleYamlPath":
 			return Swagger2Generator.staticSearchArticleYamlPath(siteRequest_, (String)o);
+		case "fiwareSwaggerYamlPath":
+			return Swagger2Generator.staticSearchFiwareSwaggerYamlPath(siteRequest_, (String)o);
+		case "fiwareContext":
+			return Swagger2Generator.staticSearchFiwareContext(siteRequest_, (JsonObject)o);
+		case "fiwareContextJsonldPath":
+			return Swagger2Generator.staticSearchFiwareContextJsonldPath(siteRequest_, (String)o);
 			default:
 				return null;
 		}
@@ -1588,6 +2092,12 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			return Swagger2Generator.staticSearchStrSqlDropPath(siteRequest_, (String)o);
 		case "articleYamlPath":
 			return Swagger2Generator.staticSearchStrArticleYamlPath(siteRequest_, (String)o);
+		case "fiwareSwaggerYamlPath":
+			return Swagger2Generator.staticSearchStrFiwareSwaggerYamlPath(siteRequest_, (String)o);
+		case "fiwareContext":
+			return Swagger2Generator.staticSearchStrFiwareContext(siteRequest_, (String)o);
+		case "fiwareContextJsonldPath":
+			return Swagger2Generator.staticSearchStrFiwareContextJsonldPath(siteRequest_, (String)o);
 			default:
 				return null;
 		}
@@ -1626,6 +2136,12 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			return Swagger2Generator.staticSearchFqSqlDropPath(siteRequest_, o);
 		case "articleYamlPath":
 			return Swagger2Generator.staticSearchFqArticleYamlPath(siteRequest_, o);
+		case "fiwareSwaggerYamlPath":
+			return Swagger2Generator.staticSearchFqFiwareSwaggerYamlPath(siteRequest_, o);
+		case "fiwareContext":
+			return Swagger2Generator.staticSearchFqFiwareContext(siteRequest_, o);
+		case "fiwareContextJsonldPath":
+			return Swagger2Generator.staticSearchFqFiwareContextJsonldPath(siteRequest_, o);
 			default:
 				return null;
 		}
@@ -1643,6 +2159,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public static final String[] Swagger2GeneratorVals = new String[] { configureConfigComplete1, configureConfigFail1, writeApiError1, writeApiError21 };
 
 	public static final String CLASS_SIMPLE_NAME = "Swagger2Generator";
+	public static final String VAR_vertx_ = "vertx_";
 	public static final String VAR_webClient = "webClient";
 	public static final String VAR_siteRequest_ = "siteRequest_";
 	public static final String VAR_config = "config";
@@ -1665,10 +2182,20 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public static final String VAR_wSqlCreate = "wSqlCreate";
 	public static final String VAR_wSqlDrop = "wSqlDrop";
 	public static final String VAR_wArticle = "wArticle";
+	public static final String VAR_fiwareSwaggerYamlPath = "fiwareSwaggerYamlPath";
+	public static final String VAR_fiwareSwaggerYamlFile = "fiwareSwaggerYamlFile";
+	public static final String VAR_wFiwareSwagger = "wFiwareSwagger";
+	public static final String VAR_wFiwareExamples = "wFiwareExamples";
+	public static final String VAR_wFiwareExamplesNormalized = "wFiwareExamplesNormalized";
+	public static final String VAR_fiwareContext = "fiwareContext";
+	public static final String VAR_fiwareContextJsonldPath = "fiwareContextJsonldPath";
+	public static final String VAR_fiwareContextJsonldFile = "fiwareContextJsonldFile";
+	public static final String VAR_wFiwareContext = "wFiwareContext";
 	public static final String VAR_wPaths = "wPaths";
 	public static final String VAR_wRequestBodies = "wRequestBodies";
 	public static final String VAR_wSchemas = "wSchemas";
 
+	public static final String DISPLAY_NAME_vertx_ = "";
 	public static final String DISPLAY_NAME_webClient = "";
 	public static final String DISPLAY_NAME_siteRequest_ = "";
 	public static final String DISPLAY_NAME_config = "";
@@ -1691,6 +2218,15 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_wSqlCreate = "";
 	public static final String DISPLAY_NAME_wSqlDrop = "";
 	public static final String DISPLAY_NAME_wArticle = "";
+	public static final String DISPLAY_NAME_fiwareSwaggerYamlPath = "";
+	public static final String DISPLAY_NAME_fiwareSwaggerYamlFile = "";
+	public static final String DISPLAY_NAME_wFiwareSwagger = "";
+	public static final String DISPLAY_NAME_wFiwareExamples = "";
+	public static final String DISPLAY_NAME_wFiwareExamplesNormalized = "";
+	public static final String DISPLAY_NAME_fiwareContext = "";
+	public static final String DISPLAY_NAME_fiwareContextJsonldPath = "";
+	public static final String DISPLAY_NAME_fiwareContextJsonldFile = "";
+	public static final String DISPLAY_NAME_wFiwareContext = "";
 	public static final String DISPLAY_NAME_wPaths = "";
 	public static final String DISPLAY_NAME_wRequestBodies = "";
 	public static final String DISPLAY_NAME_wSchemas = "";
@@ -1700,6 +2236,8 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 	}
 	public static String displayNameSwagger2Generator(String var) {
 		switch(var) {
+		case VAR_vertx_:
+			return DISPLAY_NAME_vertx_;
 		case VAR_webClient:
 			return DISPLAY_NAME_webClient;
 		case VAR_siteRequest_:
@@ -1744,6 +2282,24 @@ public abstract class Swagger2GeneratorGen<DEV> extends Object {
 			return DISPLAY_NAME_wSqlDrop;
 		case VAR_wArticle:
 			return DISPLAY_NAME_wArticle;
+		case VAR_fiwareSwaggerYamlPath:
+			return DISPLAY_NAME_fiwareSwaggerYamlPath;
+		case VAR_fiwareSwaggerYamlFile:
+			return DISPLAY_NAME_fiwareSwaggerYamlFile;
+		case VAR_wFiwareSwagger:
+			return DISPLAY_NAME_wFiwareSwagger;
+		case VAR_wFiwareExamples:
+			return DISPLAY_NAME_wFiwareExamples;
+		case VAR_wFiwareExamplesNormalized:
+			return DISPLAY_NAME_wFiwareExamplesNormalized;
+		case VAR_fiwareContext:
+			return DISPLAY_NAME_fiwareContext;
+		case VAR_fiwareContextJsonldPath:
+			return DISPLAY_NAME_fiwareContextJsonldPath;
+		case VAR_fiwareContextJsonldFile:
+			return DISPLAY_NAME_fiwareContextJsonldFile;
+		case VAR_wFiwareContext:
+			return DISPLAY_NAME_wFiwareContext;
 		case VAR_wPaths:
 			return DISPLAY_NAME_wPaths;
 		case VAR_wRequestBodies:
