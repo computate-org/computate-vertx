@@ -844,6 +844,12 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 				try {
 					SolrResponse queryResponse = a.bodyAsJson(SolrResponse.class);
 					vertx_.fileSystem().mkdirs(fiwareSwaggerYamlFile.getParent()).onComplete(b -> {
+
+						fiwareContext.put("ngsi-ld", "https://uri.etsi.org/ngsi-ld/");
+						fiwareContext.put("fiware", "https://uri.fiware.org/ns/data-models#");
+						fiwareContext.put("schema", "https://schema.org/");
+						fiwareContext.put("smartvillage", "https://raw.githubusercontent.com/" + config.getString(ComputateConfigKeys.GITHUB_ORG) + "/" + config.getString(ComputateConfigKeys.SITE_NAME) + "-static/main/fiware/");
+
 						loadSmartDataModel(queryResponse.getResponse().getDocs(), 0).onSuccess(c -> {
 							promise.complete();
 						}).onFailure(ex -> {
@@ -949,7 +955,8 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 			wDoc.l("## Attributes of the entity");
 			wDoc.l();
 
-			fiwareContext.put(classDoc.getClassSimpleName(), "https://github.com/" + config.getString(ComputateConfigKeys.GITHUB_ORG) + "/" + config.getString(ComputateConfigKeys.SITE_NAME) + "-static/blob/main/fiware/" + classDoc.getClassSimpleName() + "/");
+//			fiwareContext.put(classDoc.getClassSimpleName(), "https://github.com/" + config.getString(ComputateConfigKeys.GITHUB_ORG) + "/" + config.getString(ComputateConfigKeys.SITE_NAME) + "-static/blob/main/fiware/" + classDoc.getClassSimpleName() + "/");
+			fiwareContext.put(classDoc.getClassSimpleName(), "smartvillage:" + classDoc.getClassSimpleName());
 
 			vertx_.fileSystem().mkdirs(exampleFile.getParent()).onComplete(a -> {
 				loadSmartDataModelEntities(classDoc, properties, required, wDoc, wModel, wExample, wExampleNormalized, wExampleLd, wExampleNormalizedLd).onSuccess(b -> {
