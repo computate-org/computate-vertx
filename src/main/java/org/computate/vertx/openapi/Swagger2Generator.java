@@ -18,6 +18,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -1033,6 +1034,7 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 							List<String> entityOptionsDescription = (List<String>)entityDoc.get("entiteOptionsDescription_stored_strings");
 							String entityUnitLabel = (String)entityDoc.get("entiteUniteLabel_enUS_stored_string");
 							String entityNgsiType = (String)entityDoc.get("entiteNgsiType_stored_string");
+							String entityFiwareContext = (String)entityDoc.get("entiteFiwareContexte_stored_string");
 							String entityFiwareType = (String)entityDoc.get("entiteFiwareType_stored_string");
 							String entityListeFiwareType = (String)entityDoc.get("entiteListeFiwareType_stored_string");
 							String entityMin = (String)entityDoc.get("entiteMin_stored_string");
@@ -1115,7 +1117,7 @@ public class Swagger2Generator extends Swagger2GeneratorGen<Object> {
 								}
 							}
 
-							fiwareContext.put(entityVar, "https://github.com/" + config.getString(ComputateConfigKeys.GITHUB_ORG) + "/" + config.getString(ComputateConfigKeys.SITE_NAME) + "-static/blob/main/fiware/" + classDoc.getClassSimpleName() + "/attributes/" + entityVar + ".md");
+							fiwareContext.put(entityVar, Optional.ofNullable(entityFiwareContext).orElse("https://github.com/" + config.getString(ComputateConfigKeys.GITHUB_ORG) + "/" + config.getString(ComputateConfigKeys.SITE_NAME) + "-static/blob/main/fiware/" + classDoc.getClassSimpleName() + "/attributes/" + entityVar + ".md"));
 
 							wDoc.l("- [", entityVar, "](https://github.com/", config.getString(ComputateConfigKeys.GITHUB_ORG), "/", config.getString(ComputateConfigKeys.SITE_NAME), "-static/blob/main/fiware/", classDoc.getClassSimpleName(), "/attributes/", entityVar, ".md)");
 
