@@ -20,6 +20,8 @@ import java.util.Optional;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -184,7 +186,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	}
 
 	public void setCreated(ZonedDateTime created) {
-		this.created = created;
+		this.created = Optional.ofNullable(created).map(v -> v.truncatedTo(ChronoUnit.MILLIS)).orElse(null);
 	}
 	@JsonIgnore
 	public void setCreated(Instant o) {
@@ -584,7 +586,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	/**	 The entity original
 	 *	 is defined as null before being initialized. 
 	 */
-	@JsonProperty
+	@JsonIgnore
 	@JsonInclude(Include.NON_NULL)
 	protected Object original;
 
@@ -726,6 +728,10 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public List<String> getClasses() {
 		return classes;
 	}
+
+	public void setClasses(List<String> classes) {
+		this.classes = classes;
+	}
 	public void setClasses(String o) {
 		String l = ApiRequest.staticSetClasses(siteRequest_, o);
 		if(l != null)
@@ -795,6 +801,10 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	public List<String> getVars() {
 		return vars;
+	}
+
+	public void setVars(List<String> vars) {
+		this.vars = vars;
 	}
 	public void setVars(String o) {
 		String l = ApiRequest.staticSetVars(siteRequest_, o);

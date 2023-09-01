@@ -59,6 +59,10 @@ public class ApiRequest extends ApiRequestGen<Object> {
 	protected void _pk(Wrap<Long> c) {
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * Ignore: true
+	 */
 	protected void _original(Wrap<Object> c) {
 	}
 
