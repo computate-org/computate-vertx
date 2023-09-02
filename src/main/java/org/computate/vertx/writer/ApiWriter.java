@@ -526,7 +526,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: string");
 			}
-			if(classApiMethod.contains("Search") || classApiMethod.contains("PATCH")) {
+			if(classApiMethod.contains("Search") || classApiMethod.contains("PATCH") || classApiMethod.contains("PUT")) {
 				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: q");
 				wPaths.tl(5, "description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'");
