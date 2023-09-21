@@ -172,115 +172,111 @@ public abstract class BaseApiServiceImpl {
 		return siteRequest;
 	}
 
-	public <T extends ComputateSiteRequest> Future<T> user(ServiceRequest serviceRequest, Class<T> cSiteRequest, Class<?> cSiteUser, String vertxAddress, String postAction, String patchAction) {
-		Promise<T> promise = Promise.promise();
+	public <T extends ComputateSiteRequest> Future<JsonObject> getUserPrincipal(ServiceRequest serviceRequest, Class<T> cSiteRequest, Class<?> cSiteUser, String vertxAddress, String postAction, String patchAction) {
+		Promise<JsonObject> promise = Promise.promise();
 		try {
 			JsonObject userPrincipal = serviceRequest.getUser();
 			if(userPrincipal == null) {
-				ComputateSiteRequest siteRequest = generateSiteRequest(null, null, serviceRequest, cSiteRequest);
-				promise.complete((T)siteRequest);
+				promise.complete();
 			} else {
-				User token = User.create(userPrincipal);
-				oauth2AuthenticationProvider.authenticate(token.principal()).onSuccess(user -> {
+				String accessToken = userPrincipal.getString("access_token");
+				if(accessToken == null) {
+					JsonObject result = new JsonObject();
+					result.put("access_token", accessToken);
+					promise.complete(result);
+				} else {
+					promise.complete(userPrincipal);
+				}
+			}
+		} catch(Exception ex) {
+			LOG.error(String.format("user failed. "), ex);
+			promise.fail(ex);
+		}
+		return promise.future();
+	}
+
+	public <T extends ComputateSiteRequest> Future<User> getTokenUser(ServiceRequest serviceRequest, Class<T> cSiteRequest, Class<?> cSiteUser, String vertxAddress, String postAction, String patchAction) {
+		Promise<User> promise = Promise.promise();
+		try {
+			JsonObject userPrincipal = serviceRequest.getUser();
+			if(userPrincipal == null) {
+				promise.complete();
+			} else {
+				String accessToken = userPrincipal.getString("access_token");
+				if(accessToken == null) {
+						promise.complete(User.create(userPrincipal));
+				} else {
+					User token = User.create(userPrincipal);
+					oauth2AuthenticationProvider.authenticate(token.principal()).onSuccess(user -> {
+						promise.complete(user);
+					}).onFailure(ex -> {
+						oauth2AuthenticationProvider.refresh(token).onSuccess(user -> {
+							serviceRequest.setUser(user.principal());
+							getTokenUser(serviceRequest, cSiteRequest, cSiteUser, vertxAddress, postAction, patchAction).onSuccess(user2 -> {
+								promise.complete(user2);
+							}).onFailure(ex2 -> {
+								promise.fail(ex2);
+							});
+						}).onFailure(ex2 -> {
+							LOG.error(String.format("user failed. ", ex2));
+							promise.fail(ex2);
+						});
+					});
+				}
+			}
+		} catch(Exception ex) {
+			LOG.error(String.format("user failed. "), ex);
+			promise.fail(ex);
+		}
+		return promise.future();
+	}
+
+	public <T extends ComputateSiteRequest> Future<T> user(ServiceRequest serviceRequest, Class<T> cSiteRequest, Class<?> cSiteUser, String vertxAddress, String postAction, String patchAction) {
+		Promise<T> promise = Promise.promise();
+		try {
+			getUserPrincipal(serviceRequest, cSiteRequest, cSiteUser, vertxAddress, postAction, patchAction).onSuccess(userPrincipal -> {
+				getTokenUser(serviceRequest, cSiteRequest, cSiteUser, vertxAddress, postAction, patchAction).onSuccess(user -> {
 					try {
-						user.attributes().put("principal", user.principal());
-						JsonObject userAttributes = user.attributes();
-						JsonObject accessToken = userAttributes.getJsonObject("accessToken");
-						String userId = accessToken.getString("sub");
-						T siteRequest = generateSiteRequest(user, userPrincipal, serviceRequest, cSiteRequest);
-						SearchList<ComputateSiteUser> searchList = new SearchList<ComputateSiteUser>();
-						searchList.q("*:*");
-						searchList.setStore(true);
-						searchList.setC(cSiteUser);
-						searchList.fq("userId_docvalues_string:" + SearchTool.escapeQueryChars(userId));
-						searchList.promiseDeepSearchList(siteRequest).onSuccess(c -> {
-							ComputateSiteUser siteUser1 = searchList.getList().stream().findFirst().orElse(null);
-
-							if(siteUser1 == null) {
-								JsonObject jsonObject = new JsonObject();
-								jsonObject.put("userName", accessToken.getString("preferred_username"));
-								jsonObject.put("userFirstName", accessToken.getString("given_name"));
-								jsonObject.put("userLastName", accessToken.getString("family_name"));
-								jsonObject.put("userFullName", accessToken.getString("name"));
-								jsonObject.put("userId", accessToken.getString("sub"));
-								jsonObject.put("userEmail", accessToken.getString("email"));
-								userDefine(siteRequest, jsonObject, false);
-
-								ComputateSiteRequest siteRequest2 = siteRequest.copy();
-								siteRequest2.setJsonObject(jsonObject);
-								siteRequest2.setSiteRequest_(siteRequest);
-								siteRequest2.initDeepForClass();
-
-								ApiRequest apiRequest = new ApiRequest();
-								apiRequest.setRows(1L);
-								apiRequest.setNumFound(1L);
-								apiRequest.setNumPATCH(0L);
-								apiRequest.initDeepApiRequest(siteRequest2);
-								siteRequest2.setApiRequest_(apiRequest);
-
-								JsonObject params = new JsonObject();
-								params.put("body", jsonObject);
-								params.put("path", new JsonObject());
-								params.put("cookie", new JsonObject());
-								params.put("header", new JsonObject());
-								params.put("form", new JsonObject());
-								JsonObject query = new JsonObject();
-								Boolean softCommit = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getBoolean("softCommit")).orElse(null);
-								Integer commitWithin = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getInteger("commitWithin")).orElse(null);
-								if(softCommit == null && commitWithin == null)
-									softCommit = true;
-								if(softCommit)
-									query.put("softCommit", softCommit);
-								if(commitWithin != null)
-									query.put("commitWithin", commitWithin);
-								params.put("query", query);
-								JsonObject context = new JsonObject().put("params", params).put("user", Optional.ofNullable(siteRequest.getUser()).map(u -> u.attributes().getJsonObject("tokenPrincipal")).orElse(null));
-								JsonObject json = new JsonObject().put("context", context);
-								eventBus.request(vertxAddress, json, new DeliveryOptions().addHeader("action", postAction)).onSuccess(a -> {
-									JsonObject responseMessage = (JsonObject)a.body();
-									JsonObject responseBody = new JsonObject(Buffer.buffer(JsonUtil.BASE64_DECODER.decode(responseMessage.getString("payload"))));
-									Long pk = Long.parseLong(responseBody.getString("pk"));
-									siteRequest.setUserName(accessToken.getString("preferred_username"));
-									siteRequest.setUserFirstName(accessToken.getString("given_name"));
-									siteRequest.setUserLastName(accessToken.getString("family_name"));
-									siteRequest.setUserEmail(accessToken.getString("email"));
-									siteRequest.setUserId(accessToken.getString("sub"));
-									apiRequest.setPk(pk);
-									siteRequest.setUserKey(pk);
-									siteRequest.setApiRequest_(apiRequest);
-									siteRequest.setUserPrincipal(userPrincipal);
-									siteRequest.setSiteUser(siteUser1);
-									promise.complete(siteRequest);
-								}).onFailure(ex -> {
-									LOG.error(String.format("postSiteUser failed. "), ex);
-									promise.fail(ex);
-								});
-							} else {
-								JsonObject jsonObject = new JsonObject();
-								jsonObject.put("setUserName", accessToken.getString("preferred_username"));
-								jsonObject.put("setUserFirstName", accessToken.getString("given_name"));
-								jsonObject.put("setUserLastName", accessToken.getString("family_name"));
-								jsonObject.put("setUserCompleteName", accessToken.getString("name"));
-								jsonObject.put("setUserId", accessToken.getString("sub"));
-								jsonObject.put("setUserEmail", accessToken.getString("email"));
-								jsonObject.put("setSeeDeleted", siteUser1.getSeeDeleted());
-								jsonObject.put("setSeeArchived", siteUser1.getSeeArchived());
-								Boolean define = userDefine(siteRequest, jsonObject, true);
-								if(define) {
-
+						if(user == null) {
+							ComputateSiteRequest siteRequest = generateSiteRequest(null, null, serviceRequest, cSiteRequest);
+							promise.complete((T)siteRequest);
+						} else {
+							user.attributes().put("principal", user.principal());
+							JsonObject userAttributes = user.attributes();
+							JsonObject accessToken = Optional.ofNullable(userAttributes.getJsonObject("accessToken")).orElse(user.principal());
+							user.attributes().put("accessToken", accessToken);
+							String userId = accessToken.getString("sub");
+							T siteRequest = generateSiteRequest(user, userPrincipal, serviceRequest, cSiteRequest);
+							SearchList<ComputateSiteUser> searchList = new SearchList<ComputateSiteUser>();
+							searchList.q("*:*");
+							searchList.setStore(true);
+							searchList.setC(cSiteUser);
+							searchList.fq("userId_docvalues_string:" + SearchTool.escapeQueryChars(userId));
+							searchList.promiseDeepSearchList(siteRequest).onSuccess(c -> {
+								ComputateSiteUser siteUser1 = searchList.getList().stream().findFirst().orElse(null);
+	
+								if(siteUser1 == null) {
+									JsonObject jsonObject = new JsonObject();
+									jsonObject.put("userName", accessToken.getString("preferred_username"));
+									jsonObject.put("userFirstName", accessToken.getString("given_name"));
+									jsonObject.put("userLastName", accessToken.getString("family_name"));
+									jsonObject.put("userFullName", accessToken.getString("name"));
+									jsonObject.put("userId", accessToken.getString("sub"));
+									jsonObject.put("userEmail", accessToken.getString("email"));
+									userDefine(siteRequest, jsonObject, false);
+	
 									ComputateSiteRequest siteRequest2 = siteRequest.copy();
 									siteRequest2.setJsonObject(jsonObject);
 									siteRequest2.setSiteRequest_(siteRequest);
 									siteRequest2.initDeepForClass();
-									siteUser1.setSiteRequest_(siteRequest2);
-
+	
 									ApiRequest apiRequest = new ApiRequest();
 									apiRequest.setRows(1L);
 									apiRequest.setNumFound(1L);
 									apiRequest.setNumPATCH(0L);
 									apiRequest.initDeepApiRequest(siteRequest2);
 									siteRequest2.setApiRequest_(apiRequest);
-
+	
 									JsonObject params = new JsonObject();
 									params.put("body", jsonObject);
 									params.put("path", new JsonObject());
@@ -296,18 +292,20 @@ public abstract class BaseApiServiceImpl {
 										query.put("softCommit", softCommit);
 									if(commitWithin != null)
 										query.put("commitWithin", commitWithin);
-									query.put("q", "*:*").put("fq", new JsonArray().add("pk:" + siteUser1.getPk())).put("var", new JsonArray().add("refresh:false"));
 									params.put("query", query);
 									JsonObject context = new JsonObject().put("params", params).put("user", Optional.ofNullable(siteRequest.getUser()).map(u -> u.attributes().getJsonObject("tokenPrincipal")).orElse(null));
 									JsonObject json = new JsonObject().put("context", context);
 									eventBus.request(vertxAddress, json, new DeliveryOptions().addHeader("action", postAction)).onSuccess(a -> {
-										JsonObject responseBody = (JsonObject)a.body();
+										JsonObject responseMessage = (JsonObject)a.body();
+										JsonObject responseBody = new JsonObject(Buffer.buffer(JsonUtil.BASE64_DECODER.decode(responseMessage.getString("payload"))));
+										Long pk = Long.parseLong(responseBody.getString("pk"));
 										siteRequest.setUserName(accessToken.getString("preferred_username"));
 										siteRequest.setUserFirstName(accessToken.getString("given_name"));
 										siteRequest.setUserLastName(accessToken.getString("family_name"));
 										siteRequest.setUserEmail(accessToken.getString("email"));
 										siteRequest.setUserId(accessToken.getString("sub"));
-										siteRequest.setUserKey(siteUser1.getPk());
+										apiRequest.setPk(pk);
+										siteRequest.setUserKey(pk);
 										siteRequest.setApiRequest_(apiRequest);
 										siteRequest.setUserPrincipal(userPrincipal);
 										siteRequest.setSiteUser(siteUser1);
@@ -317,37 +315,93 @@ public abstract class BaseApiServiceImpl {
 										promise.fail(ex);
 									});
 								} else {
-									siteRequest.setUserName(siteUser1.getUserName());
-									siteRequest.setUserFirstName(siteUser1.getUserFirstName());
-									siteRequest.setUserLastName(siteUser1.getUserLastName());
-									siteRequest.setUserKey(siteUser1.getPk());
-									siteRequest.setUserPrincipal(userPrincipal);
-									siteRequest.setSiteUser(siteUser1);
-									promise.complete((T)siteRequest);
+									JsonObject jsonObject = new JsonObject();
+									jsonObject.put("setUserName", accessToken.getString("preferred_username"));
+									jsonObject.put("setUserFirstName", accessToken.getString("given_name"));
+									jsonObject.put("setUserLastName", accessToken.getString("family_name"));
+									jsonObject.put("setUserCompleteName", accessToken.getString("name"));
+									jsonObject.put("setUserId", accessToken.getString("sub"));
+									jsonObject.put("setUserEmail", accessToken.getString("email"));
+									jsonObject.put("setSeeDeleted", siteUser1.getSeeDeleted());
+									jsonObject.put("setSeeArchived", siteUser1.getSeeArchived());
+									Boolean define = userDefine(siteRequest, jsonObject, true);
+									if(define) {
+	
+										ComputateSiteRequest siteRequest2 = siteRequest.copy();
+										siteRequest2.setJsonObject(jsonObject);
+										siteRequest2.setSiteRequest_(siteRequest);
+										siteRequest2.initDeepForClass();
+										siteUser1.setSiteRequest_(siteRequest2);
+	
+										ApiRequest apiRequest = new ApiRequest();
+										apiRequest.setRows(1L);
+										apiRequest.setNumFound(1L);
+										apiRequest.setNumPATCH(0L);
+										apiRequest.initDeepApiRequest(siteRequest2);
+										siteRequest2.setApiRequest_(apiRequest);
+	
+										JsonObject params = new JsonObject();
+										params.put("body", jsonObject);
+										params.put("path", new JsonObject());
+										params.put("cookie", new JsonObject());
+										params.put("header", new JsonObject());
+										params.put("form", new JsonObject());
+										JsonObject query = new JsonObject();
+										Boolean softCommit = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getBoolean("softCommit")).orElse(null);
+										Integer commitWithin = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getInteger("commitWithin")).orElse(null);
+										if(softCommit == null && commitWithin == null)
+											softCommit = true;
+										if(softCommit)
+											query.put("softCommit", softCommit);
+										if(commitWithin != null)
+											query.put("commitWithin", commitWithin);
+										query.put("q", "*:*").put("fq", new JsonArray().add("pk:" + siteUser1.getPk())).put("var", new JsonArray().add("refresh:false"));
+										params.put("query", query);
+										JsonObject context = new JsonObject().put("params", params).put("user", Optional.ofNullable(siteRequest.getUser()).map(u -> u.attributes().getJsonObject("tokenPrincipal")).orElse(null));
+										JsonObject json = new JsonObject().put("context", context);
+										eventBus.request(vertxAddress, json, new DeliveryOptions().addHeader("action", postAction)).onSuccess(a -> {
+											JsonObject responseBody = (JsonObject)a.body();
+											siteRequest.setUserName(accessToken.getString("preferred_username"));
+											siteRequest.setUserFirstName(accessToken.getString("given_name"));
+											siteRequest.setUserLastName(accessToken.getString("family_name"));
+											siteRequest.setUserEmail(accessToken.getString("email"));
+											siteRequest.setUserId(accessToken.getString("sub"));
+											siteRequest.setUserKey(siteUser1.getPk());
+											siteRequest.setApiRequest_(apiRequest);
+											siteRequest.setUserPrincipal(userPrincipal);
+											siteRequest.setSiteUser(siteUser1);
+											promise.complete(siteRequest);
+										}).onFailure(ex -> {
+											LOG.error(String.format("postSiteUser failed. "), ex);
+											promise.fail(ex);
+										});
+									} else {
+										siteRequest.setUserName(siteUser1.getUserName());
+										siteRequest.setUserFirstName(siteUser1.getUserFirstName());
+										siteRequest.setUserLastName(siteUser1.getUserLastName());
+										siteRequest.setUserKey(siteUser1.getPk());
+										siteRequest.setUserPrincipal(userPrincipal);
+										siteRequest.setSiteUser(siteUser1);
+										promise.complete((T)siteRequest);
+									}
 								}
-							}
-						}).onFailure(ex -> {
-							LOG.error(String.format("user failed. "), ex);
-							promise.fail(ex);
-						});
+							}).onFailure(ex -> {
+								LOG.error(String.format("user failed. "), ex);
+								promise.fail(ex);
+							});
+						}
 					} catch(Exception ex) {
 						LOG.error(String.format("user failed. "), ex);
 						promise.fail(ex);
 					}
 				}).onFailure(ex -> {
-					oauth2AuthenticationProvider.refresh(token).onSuccess(user -> {
-						serviceRequest.setUser(user.principal());
-						user(serviceRequest, cSiteRequest, cSiteUser, vertxAddress, postAction, patchAction).onSuccess(siteRequest -> {
-							promise.complete((T)siteRequest);
-						}).onFailure(ex2 -> {
-							promise.fail(ex2);
-						});
-					}).onFailure(ex2 -> {
-						LOG.error(String.format("user failed. ", ex2));
-						promise.fail(ex2);
-					});
+					LOG.error(String.format("user failed. "), ex);
+					promise.fail(ex);
 				});
-			}
+			}).onFailure(ex -> {
+				LOG.error(String.format("user failed. "), ex);
+				promise.fail(ex);
+			});
 		} catch(Exception ex) {
 			LOG.error(String.format("user failed. "), ex);
 			promise.fail(ex);

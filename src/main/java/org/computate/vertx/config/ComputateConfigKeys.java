@@ -708,4 +708,6 @@ public class ComputateConfigKeys {
 	 * Facebook App ID
 	 **/
 	public static final String FACEBOOK_APP_ID = "FACEBOOK_APP_ID";
+
+	public static final String OPEN_TELEMETRY_ENABLED = "OPEN_TELEMETRY_ENABLED";
 }
