@@ -181,11 +181,11 @@ public abstract class BaseApiServiceImpl {
 			} else {
 				String accessToken = userPrincipal.getString("access_token");
 				if(accessToken == null) {
+					promise.complete(userPrincipal);
+				} else {
 					JsonObject result = new JsonObject();
 					result.put("access_token", accessToken);
 					promise.complete(result);
-				} else {
-					promise.complete(userPrincipal);
 				}
 			}
 		} catch(Exception ex) {
