@@ -30,9 +30,9 @@ import io.vertx.pgclient.data.Path;
 public class PgClientPathSerializer extends JsonSerializer<Path> {
 
 	@Override()
-	public void  serialize(Path o, JsonGenerator generator, SerializerProvider provider) throws IOException, IOException {
+	public void serialize(Path o, JsonGenerator generator, SerializerProvider provider) throws IOException, IOException {
 		JsonArray pointsArray = new JsonArray();
 		o.getPoints().stream().map(point -> new JsonArray().add(Double.valueOf(point.getX())).add(Double.valueOf(point.getY()))).collect(Collectors.toList()).forEach(pointArray -> pointsArray.add(pointArray));
-		generator.writeString(new JsonObject().put("type", "MultiPoint").put("coordinates", pointsArray).toString());
+		generator.writeObject(new JsonObject().put("type", "LineString").put("coordinates", pointsArray));
 	}
 }
