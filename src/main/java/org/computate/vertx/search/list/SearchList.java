@@ -32,12 +32,15 @@ import org.computate.vertx.config.ComputateConfigKeys;
 import org.computate.vertx.model.user.ComputateSiteUser;
 import org.computate.vertx.request.ComputateSiteRequest;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
 
 /** 
  * Keyword: classSimpleNameSearchList
  */
+@JsonSerialize(using = SearchListSerializer.class)
 public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV> {
 
 	public SearchList<DEV> q(String s) {
