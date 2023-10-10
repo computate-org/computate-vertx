@@ -183,9 +183,10 @@ public abstract class BaseApiServiceImpl {
 				if(accessToken == null) {
 					promise.complete(userPrincipal);
 				} else {
-					JsonObject result = new JsonObject();
-					result.put("access_token", accessToken);
-					promise.complete(result);
+					promise.complete(userPrincipal);
+//					JsonObject result = new JsonObject();
+//					result.put("access_token", accessToken);
+//					promise.complete(result);
 				}
 			}
 		} catch(Exception ex) {
@@ -241,7 +242,7 @@ public abstract class BaseApiServiceImpl {
 							ComputateSiteRequest siteRequest = generateSiteRequest(null, null, serviceRequest, cSiteRequest);
 							promise.complete((T)siteRequest);
 						} else {
-							user.attributes().put("principal", user.principal());
+							user.attributes().put("principal", userPrincipal);
 							JsonObject userAttributes = user.attributes();
 							JsonObject accessToken = Optional.ofNullable(userAttributes.getJsonObject("accessToken")).orElse(user.principal());
 							user.attributes().put("accessToken", accessToken);
