@@ -12,6 +12,7 @@ import java.text.NumberFormat;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
@@ -23,6 +24,7 @@ import com.github.jknack.handlebars.Options;
 import com.github.jknack.handlebars.TagType;
 import com.github.jknack.handlebars.internal.lang3.LocaleUtils;
 
+import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
 public enum SiteHelpers implements Helper<Object> {
@@ -71,6 +73,28 @@ public enum SiteHelpers implements Helper<Object> {
 					return new JsonObject((Map<String, Object>)originalValue).toString().replace("'", "&apos;");
 				}
 			}
+		}
+	},
+
+
+	/**
+	 * Call the toString method on an object and replace apostrophes. 
+	 */
+	toJsonArrayStringInApostrophes {
+		@Override
+		public CharSequence apply(final Object originalValue, final Options options) throws IOException {
+			if(originalValue == null) {
+				return "";
+			} else {
+				if(originalValue instanceof String) {
+					return new JsonArray((String)originalValue).toString().replace("'", "&apos;");
+				} else if(originalValue instanceof List){
+					JsonArray result = new JsonArray();
+					((List<?>)originalValue).forEach(o -> result.add(new JsonObject((Map)o)));
+					return result.toString().replace("'", "&apos;");
+				}
+			}
+			return null;
 		}
 	},
 

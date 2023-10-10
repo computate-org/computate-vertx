@@ -15,6 +15,9 @@ package org.computate.vertx.openapi;
 
 import org.computate.search.wrap.Wrap;
 
+/**
+ * InitDeepBefore: true
+ */
 public class OpenApi3Generator extends OpenApi3GeneratorGen<Swagger2Generator> {
 
 	@Override()
