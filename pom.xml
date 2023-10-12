@@ -93,6 +93,14 @@
 			<version>4.2.7.28</version>
 		</dependency>
 
+		<!-- Apache Commons -->
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>${commons-text.version}</version>
+		</dependency>
+
 		<!-- Vert.x -->
 
 		<dependency>

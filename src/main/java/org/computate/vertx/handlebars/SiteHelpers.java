@@ -23,6 +23,7 @@ import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.Options;
 import com.github.jknack.handlebars.TagType;
 import com.github.jknack.handlebars.internal.lang3.LocaleUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
@@ -54,6 +55,21 @@ public enum SiteHelpers implements Helper<Object> {
 				return "";
 			else
 				return new JsonObject((Map<String, Object>)originalValue).toString();
+		}
+	},
+
+
+	/**
+	 * Escape HTML in quotes
+	 */
+	escapeHtmlInQuotes {
+		@Override
+		public CharSequence apply(final Object originalValue, final Options options) throws IOException {
+			if(originalValue == null) {
+				return "";
+			} else {
+				return StringEscapeUtils.escapeHtml4(originalValue.toString());
+			}
 		}
 	},
 
