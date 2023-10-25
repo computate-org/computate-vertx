@@ -640,6 +640,18 @@ public class ComputateConfigKeys {
 	public static final String ZOOKEEPER_HOSTS = "ZOOKEEPER_HOSTS";
 
 	/**
+	 * 
+	 * The possible value for the policy are:
+	 * - exponential_backoff (default)
+	 * - bounded_exponential_backoff
+	 * - one_time
+	 * - n_times
+	 * - forever
+	 * - until_elapsed
+	 */
+	public static final String ZOOKEEPER_RETRY_POLICY = "ZOOKEEPER_RETRY_POLICY";
+
+	/**
 	 * max number of times to retry
 	 */
 	public static final String ZOOKEEPER_MAX_RETRIES = "ZOOKEEPER_MAX_RETRIES";
