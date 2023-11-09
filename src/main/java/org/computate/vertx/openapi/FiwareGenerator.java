@@ -134,7 +134,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<BaseGenerator> {
 			SearchRequest searchClasses = new SearchRequest();
 			searchClasses.q("*:*");
 			searchClasses.rows(1000000);
-			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
+			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath) + (platformPomArtifactId == null ? "" : (" OR siteNom_indexed_string:" + SearchTool.escapeQueryChars(platformPomArtifactId))));
 			searchClasses.fq("classeFiware_indexed_boolean:true");
 			searchClasses.fq("partEstClasse_indexed_boolean:true");
 			searchClasses.sortAsc("classeNomCanonique_enUS_indexed_string");
@@ -444,7 +444,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<BaseGenerator> {
 			SearchRequest searchEntities = new SearchRequest();
 			searchEntities.q("*:*");
 			searchEntities.rows(1000000);
-			searchEntities.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
+			searchEntities.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath) + (platformPomArtifactId == null ? "" : (" OR siteNom_indexed_string:" + SearchTool.escapeQueryChars(platformPomArtifactId))));
 			searchEntities.fq("classeCheminAbsolu_indexed_string:" + SearchTool.escapeQueryChars(classDoc.getClassAbsolutePath()));
 			searchEntities.fq("partEstEntite_indexed_boolean:true");
 			searchEntities.fq("entiteDefinir_indexed_boolean:true");

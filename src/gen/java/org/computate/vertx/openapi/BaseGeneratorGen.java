@@ -456,6 +456,58 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 		return BaseGenerator.staticSearchStrAppPath(siteRequest_, BaseGenerator.staticSearchAppPath(siteRequest_, BaseGenerator.staticSetAppPath(siteRequest_, o)));
 	}
 
+	///////////////////////////
+	// platformPomArtifactId //
+	///////////////////////////
+
+
+	/**	 The entity platformPomArtifactId
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String platformPomArtifactId;
+
+	/**	<br> The entity platformPomArtifactId
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:platformPomArtifactId">Find the entity platformPomArtifactId in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _platformPomArtifactId(Wrap<String> w);
+
+	public String getPlatformPomArtifactId() {
+		return platformPomArtifactId;
+	}
+	public void setPlatformPomArtifactId(String o) {
+		this.platformPomArtifactId = BaseGenerator.staticSetPlatformPomArtifactId(siteRequest_, o);
+	}
+	public static String staticSetPlatformPomArtifactId(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected BaseGenerator platformPomArtifactIdInit() {
+		Wrap<String> platformPomArtifactIdWrap = new Wrap<String>().var("platformPomArtifactId");
+		if(platformPomArtifactId == null) {
+			_platformPomArtifactId(platformPomArtifactIdWrap);
+			Optional.ofNullable(platformPomArtifactIdWrap.getO()).ifPresent(o -> {
+				setPlatformPomArtifactId(o);
+			});
+		}
+		return (BaseGenerator)this;
+	}
+
+	public static String staticSearchPlatformPomArtifactId(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrPlatformPomArtifactId(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqPlatformPomArtifactId(ComputateSiteRequest siteRequest_, String o) {
+		return BaseGenerator.staticSearchStrPlatformPomArtifactId(siteRequest_, BaseGenerator.staticSearchPlatformPomArtifactId(siteRequest_, BaseGenerator.staticSetPlatformPomArtifactId(siteRequest_, o)));
+	}
+
 	////////////////////
 	// openApiVersion //
 	////////////////////
@@ -1375,6 +1427,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 				appNameInit();
 				languageNameInit();
 				appPathInit();
+				platformPomArtifactIdInit();
 				openApiVersionInit();
 				openApiVersionNumberInit();
 				tabsSchemaInit();
@@ -1459,6 +1512,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 				return oBaseGenerator.languageName;
 			case "appPath":
 				return oBaseGenerator.appPath;
+			case "platformPomArtifactId":
+				return oBaseGenerator.platformPomArtifactId;
 			case "openApiVersion":
 				return oBaseGenerator.openApiVersion;
 			case "openApiVersionNumber":
@@ -1540,6 +1595,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSetLanguageName(siteRequest_, o);
 		case "appPath":
 			return BaseGenerator.staticSetAppPath(siteRequest_, o);
+		case "platformPomArtifactId":
+			return BaseGenerator.staticSetPlatformPomArtifactId(siteRequest_, o);
 		case "openApiVersion":
 			return BaseGenerator.staticSetOpenApiVersion(siteRequest_, o);
 		case "openApiVersionNumber":
@@ -1578,6 +1635,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSearchLanguageName(siteRequest_, (String)o);
 		case "appPath":
 			return BaseGenerator.staticSearchAppPath(siteRequest_, (String)o);
+		case "platformPomArtifactId":
+			return BaseGenerator.staticSearchPlatformPomArtifactId(siteRequest_, (String)o);
 		case "openApiVersion":
 			return BaseGenerator.staticSearchOpenApiVersion(siteRequest_, (String)o);
 		case "openApiVersionNumber":
@@ -1616,6 +1675,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSearchStrLanguageName(siteRequest_, (String)o);
 		case "appPath":
 			return BaseGenerator.staticSearchStrAppPath(siteRequest_, (String)o);
+		case "platformPomArtifactId":
+			return BaseGenerator.staticSearchStrPlatformPomArtifactId(siteRequest_, (String)o);
 		case "openApiVersion":
 			return BaseGenerator.staticSearchStrOpenApiVersion(siteRequest_, (String)o);
 		case "openApiVersionNumber":
@@ -1654,6 +1715,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSearchFqLanguageName(siteRequest_, o);
 		case "appPath":
 			return BaseGenerator.staticSearchFqAppPath(siteRequest_, o);
+		case "platformPomArtifactId":
+			return BaseGenerator.staticSearchFqPlatformPomArtifactId(siteRequest_, o);
 		case "openApiVersion":
 			return BaseGenerator.staticSearchFqOpenApiVersion(siteRequest_, o);
 		case "openApiVersionNumber":
@@ -1694,6 +1757,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 	public static final String VAR_appName = "appName";
 	public static final String VAR_languageName = "languageName";
 	public static final String VAR_appPath = "appPath";
+	public static final String VAR_platformPomArtifactId = "platformPomArtifactId";
 	public static final String VAR_openApiVersion = "openApiVersion";
 	public static final String VAR_openApiVersionNumber = "openApiVersionNumber";
 	public static final String VAR_tabsSchema = "tabsSchema";
@@ -1721,6 +1785,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_appName = "";
 	public static final String DISPLAY_NAME_languageName = "";
 	public static final String DISPLAY_NAME_appPath = "";
+	public static final String DISPLAY_NAME_platformPomArtifactId = "";
 	public static final String DISPLAY_NAME_openApiVersion = "";
 	public static final String DISPLAY_NAME_openApiVersionNumber = "";
 	public static final String DISPLAY_NAME_tabsSchema = "";
@@ -1760,6 +1825,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return DISPLAY_NAME_languageName;
 		case VAR_appPath:
 			return DISPLAY_NAME_appPath;
+		case VAR_platformPomArtifactId:
+			return DISPLAY_NAME_platformPomArtifactId;
 		case VAR_openApiVersion:
 			return DISPLAY_NAME_openApiVersion;
 		case VAR_openApiVersionNumber:

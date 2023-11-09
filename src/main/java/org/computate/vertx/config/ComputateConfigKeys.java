@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2018-2022 Computate Limited Liability Company in Utah, USA. 
+
  *
  * This program and the accompanying materials are made available under the
  * terms of the GNU GENERAL PUBLIC LICENSE Version 3 which is available at
@@ -292,6 +293,21 @@ public class ComputateConfigKeys {
 	 * 
 	 **/
 	public static final String SITE_POM_GROUP_ID = "SITE_POM_GROUP_ID";
+
+	/**
+	 * 
+	 **/
+	public static final String SITE_POM_ARTIFACT_ID = "SITE_POM_ARTIFACT_ID";
+
+	/**
+	 * 
+	 **/
+	public static final String PLATFORM_POM_GROUP_ID = "PLATFORM_POM_GROUP_ID";
+
+	/**
+	 * 
+	 **/
+	public static final String PLATFORM_POM_ARTIFACT_ID = "PLATFORM_POM_ARTIFACT_ID";
 
 	/**
 	 * The name Github organization for the site. 

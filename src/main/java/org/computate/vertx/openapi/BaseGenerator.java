@@ -124,6 +124,10 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 		c.o(config.getString(ComputateConfigKeys.SITE_PATH + "_" + languageName));
 	}
 
+	protected void _platformPomArtifactId(Wrap<String> w) {
+		w.o(config.getString(ComputateConfigKeys.PLATFORM_POM_ARTIFACT_ID));
+	}
+
 	protected void _openApiVersion(Wrap<String> c) {
 		c.o(config.getString(ComputateConfigKeys.OPEN_API_VERSION, "3.0"));
 	}
@@ -210,7 +214,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 			SearchRequest searchClasses = new SearchRequest();
 			searchClasses.q("*:*");
 			searchClasses.rows(1000000);
-			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
+			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath) + (platformPomArtifactId == null ? "" : (" OR siteNom_indexed_string:" + SearchTool.escapeQueryChars(platformPomArtifactId))));
 			searchClasses.fq("classeApi_indexed_boolean:true");
 			searchClasses.fq("classeEtendGen_indexed_boolean:true");
 			searchClasses.fq("partEstClasse_indexed_boolean:true");
@@ -304,7 +308,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 			SearchRequest searchEntities = new SearchRequest();
 			searchEntities.q("*:*");
 			searchEntities.rows(1000000);
-			searchEntities.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
+			searchEntities.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath) + (platformPomArtifactId == null ? "" : (" OR siteNom_indexed_string:" + SearchTool.escapeQueryChars(platformPomArtifactId))));
 			searchEntities.fq("classeCheminAbsolu_indexed_string:" + SearchTool.escapeQueryChars(classDoc.getClassAbsolutePath()));
 			searchEntities.fq("partEstEntite_indexed_boolean:true");
 			searchEntities.sortAsc("partNumero_indexed_int");
@@ -357,7 +361,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 			SearchRequest searchClasses = new SearchRequest();
 			searchClasses.q("*:*");
 			searchClasses.rows(1000000);
-			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
+			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath) + (platformPomArtifactId == null ? "" : (" OR siteNom_indexed_string:" + SearchTool.escapeQueryChars(platformPomArtifactId))));
 			searchClasses.fq("classeSauvegarde_indexed_boolean:true");
 			searchClasses.fq("partEstClasse_indexed_boolean:true");
 			searchClasses.fq("classeEstBase_indexed_boolean:false");
@@ -406,7 +410,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 				SearchRequest searchClasses = new SearchRequest();
 				searchClasses.q("*:*");
 				searchClasses.rows(1000000);
-				searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
+				searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath) + (platformPomArtifactId == null ? "" : (" OR siteNom_indexed_string:" + SearchTool.escapeQueryChars(platformPomArtifactId))));
 				searchClasses.fq("classeNomCanonique_" + langueNom + "_indexed_string:" + fqClassesSuperEtMoi);
 				searchClasses.fq("partEstEntite_indexed_boolean:true");
 				searchClasses.fq("-(entiteAttribuer_indexed_boolean:true AND entiteTypeJson_indexed_string:array)");
@@ -471,7 +475,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 			SearchRequest searchClasses = new SearchRequest();
 			searchClasses.q("*:*");
 			searchClasses.rows(1000000);
-			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
+			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath) + (platformPomArtifactId == null ? "" : (" OR siteNom_indexed_string:" + SearchTool.escapeQueryChars(platformPomArtifactId))));
 			searchClasses.fq("partEstEntite_indexed_boolean:true");
 			searchClasses.fq("entiteTypeJson_indexed_string:array");
 			searchClasses.fq("entiteAttribuerTypeJson_indexed_string:array");
@@ -575,7 +579,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 			SearchRequest searchClasses = new SearchRequest();
 			searchClasses.q("*:*");
 			searchClasses.rows(1000000);
-			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath));
+			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath) + (platformPomArtifactId == null ? "" : (" OR siteNom_indexed_string:" + SearchTool.escapeQueryChars(platformPomArtifactId))));
 			searchClasses.fq("article_indexed_boolean:true");
 			searchClasses.fq("partEstClasse_indexed_boolean:true");
 			searchClasses.sortAsc("classeNomCanonique_enUS_indexed_string");
