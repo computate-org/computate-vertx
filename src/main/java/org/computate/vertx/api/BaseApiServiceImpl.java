@@ -30,7 +30,6 @@ import org.computate.vertx.model.base.ComputateBaseModel;
 import org.computate.vertx.model.user.ComputateSiteUser;
 import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.search.list.SearchList;
-import org.computate.vertx.verticle.EmailVerticle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -137,16 +136,8 @@ public abstract class BaseApiServiceImpl {
 				Buffer.buffer().appendString(json.encodePrettily())
 				, MultiMap.caseInsensitiveMultiMap().add("Content-Type", "application/json")
 		);
-		if(siteRequest != null) {
-			DeliveryOptions options = new DeliveryOptions();
-			options.addHeader(EmailVerticle.MAIL_HEADER_SUBJECT, String.format("%s %s", config.getString(ComputateConfigKeys.SITE_BASE_URL), Optional.ofNullable(ex).map(Throwable::getMessage).orElse(null)));
-			eventBus.publish(EmailVerticle.MAIL_EVENTBUS_ADDRESS, String.format("%s\n\n%s", json.encodePrettily(), ExceptionUtils.getStackTrace(ex)));
-			if(eventHandler != null)
-				eventHandler.handle(Future.succeededFuture(responseOperation));
-		} else {
-			if(eventHandler != null)
-				eventHandler.handle(Future.succeededFuture(responseOperation));
-		}
+		if(eventHandler != null)
+			eventHandler.handle(Future.succeededFuture(responseOperation));
 	}
 
 	public <T extends ComputateSiteRequest> T generateSiteRequest(User user, JsonObject userPrincipal, ServiceRequest serviceRequest, Class<T> clazz) {
