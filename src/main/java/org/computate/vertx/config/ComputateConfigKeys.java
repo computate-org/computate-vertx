@@ -638,6 +638,11 @@ public class ComputateConfigKeys {
 	/**
 	 * 
 	 **/
+	public static final String ENABLE_KAFKA = "ENABLE_KAFKA";
+
+	/**
+	 * 
+	 **/
 	public static final String ENABLE_ZOOKEEPER_CLUSTER = "ENABLE_ZOOKEEPER_CLUSTER";
 
 	/**
