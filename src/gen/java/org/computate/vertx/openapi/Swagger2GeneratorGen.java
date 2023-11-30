@@ -259,6 +259,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
 	public static final String[] Swagger2GeneratorVals = new String[] { writeApiError1, writeApiError21 };
 
 	public static final String CLASS_SIMPLE_NAME = "Swagger2Generator";
+	public static final String CLASS_API_ADDRESS = "computate-vertx-enUS-Swagger2Generator";
 
 
 	public static String displayNameForClass(String var) {

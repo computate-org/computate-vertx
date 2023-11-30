@@ -160,6 +160,11 @@ public class ComputateConfigKeys {
 	public static final String AUTH_REALM = "AUTH_REALM";
 
 	/**
+	 * The Auth clients of the site. 
+	 **/
+	public static final String AUTH_CLIENTS = "AUTH_CLIENTS";
+
+	/**
 	 * The Auth client ID of the site. 
 	 **/
 	public static final String AUTH_CLIENT = "AUTH_CLIENT";
@@ -168,6 +173,21 @@ public class ComputateConfigKeys {
 	 * The Auth client secret of the site. 
 	 **/
 	public static final String AUTH_SECRET = "AUTH_SECRET";
+
+	/**
+	 * The Auth Client callback URI
+	 **/
+	public static final String AUTH_CALLBACK_URI = "AUTH_CALLBACK_URI";
+
+	/**
+	 * The Auth Client logout URI
+	 **/
+	public static final String AUTH_LOGOUT_URI = "AUTH_LOGOUT_URI";
+
+	/**
+	 * The Auth Client OpenAPI ID
+	 **/
+	public static final String AUTH_OPEN_API_ID = "AUTH_OPEN_API_ID";
 
 	/**
 	 * The Auth client secret of the site. 

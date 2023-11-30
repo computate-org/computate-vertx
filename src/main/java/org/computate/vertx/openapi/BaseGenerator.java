@@ -18,6 +18,7 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -269,6 +270,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 				apiWriter.setWSchemas(wSchemas);
 				apiWriter.setOpenApiVersion(openApiVersion);
 				apiWriter.setClassUris(classUris);
+				apiWriter.setAuthClients(Optional.ofNullable(config.getValue(ComputateConfigKeys.AUTH_CLIENTS)).map(v -> v instanceof JsonObject ? (JsonObject)v : new JsonObject(v.toString())).orElse(new JsonObject()));
 				apiWriter.initDeepApiWriter(siteRequest_);
 				apiWriters.add(apiWriter);
 			}

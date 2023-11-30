@@ -13,10 +13,13 @@
  */
 package org.computate.vertx.openapi;
 
+import java.util.Optional;
+
 import org.computate.vertx.config.ComputateConfigKeys;
 
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
+import io.vertx.core.json.JsonObject;
 
 /**
  * InitDeepBefore: true
@@ -69,45 +72,56 @@ public class Swagger2Generator extends Swagger2GeneratorGen<FiwareGenerator> {
 		Promise<Void> promise = Promise.promise();
 
 		try {
+			JsonObject authClients = Optional.ofNullable(config.getValue(ComputateConfigKeys.AUTH_CLIENTS)).map(v -> v instanceof JsonObject ? (JsonObject)v : new JsonObject(v.toString())).orElse(new JsonObject());
+
 			wPaths.tl(0, "paths:");
-			wPaths.l();
-			wPaths.tl(1, "/callback:");
-			wPaths.tl(2, "get:");
-			wPaths.tl(3, "operationId: callback");
-			wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-callback");
-			wPaths.tl(3, "description: >+");
-			wPaths.tl(3, "responses:");
-			wPaths.tl(4, "'200':");
-			wPaths.tl(5, "description: >+");
-			wPaths.tl(5, "content:");
-			wPaths.tl(6, "application/json; charset=utf-8:");
-			wPaths.tl(7, "schema:");
-			wPaths.tl(8, "type: string");
-			wPaths.l();
-			wPaths.tl(1, "/logout:");
-			wPaths.tl(2, "get:");
-			wPaths.tl(3, "operationId: logout");
-			wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-logout");
-			wPaths.tl(3, "description: >+");
-			wPaths.tl(3, "responses:");
-			wPaths.tl(4, "'200':");
-			wPaths.tl(5, "description: >+");
-			wPaths.tl(5, "content:");
-			wPaths.tl(6, "application/json; charset=utf-8:");
-			wPaths.tl(7, "schema:");
-			wPaths.tl(8, "type: string");
-			wPaths.l();
+			authClients.fieldNames().forEach(authClientOpenApiId -> {
+				JsonObject authClient = authClients.getJsonObject(authClientOpenApiId);
+				String authCallbackUri = authClient.getString(ComputateConfigKeys.AUTH_CALLBACK_URI);
+				String authLogoutUri = authClient.getString(ComputateConfigKeys.AUTH_LOGOUT_URI);
+
+				wPaths.l();
+				wPaths.tl(1, authCallbackUri, ":");
+				wPaths.tl(2, "get:");
+				wPaths.tl(3, "operationId: callback");
+				wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-", authClientOpenApiId, "-callback");
+				wPaths.tl(3, "description: >+");
+				wPaths.tl(3, "responses:");
+				wPaths.tl(4, "'200':");
+				wPaths.tl(5, "description: >+");
+				wPaths.tl(5, "content:");
+				wPaths.tl(6, "application/json; charset=utf-8:");
+				wPaths.tl(7, "schema:");
+				wPaths.tl(8, "type: string");
+				wPaths.l();
+				wPaths.tl(1, authLogoutUri, ":");
+				wPaths.tl(2, "get:");
+				wPaths.tl(3, "operationId: logout");
+				wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-", authClientOpenApiId, "-logout");
+				wPaths.tl(3, "description: >+");
+				wPaths.tl(3, "responses:");
+				wPaths.tl(4, "'200':");
+				wPaths.tl(5, "description: >+");
+				wPaths.tl(5, "content:");
+				wPaths.tl(6, "application/json; charset=utf-8:");
+				wPaths.tl(7, "schema:");
+				wPaths.tl(8, "type: string");
+				wPaths.l();
+			});
 
 			if(openApiVersionNumber == 2) {
 				wSchemas.tl(0, "definitions:");
 			}
 			else {
 				wRequestBodies.tl(0, "components:");
-				if(config.getString(ComputateConfigKeys.AUTH_URL) != null) {
-					wRequestBodies.tl(1, "securitySchemes:");
-						wRequestBodies.tl(2, "openIdConnect:");
-						wRequestBodies.tl(3, "type: openIdConnect");
-						wRequestBodies.tl(3, "openIdConnectUrl: ", config.getString(ComputateConfigKeys.AUTH_URL), "/realms/", config.getString(ComputateConfigKeys.AUTH_REALM), "/.well-known/openid-configuration");
+				if(authClients.size() > 0) {
+					authClients.fieldNames().forEach(authClientOpenApiId -> {
+						JsonObject authClient = authClients.getJsonObject(authClientOpenApiId);
+							wRequestBodies.tl(1, "securitySchemes:");
+								wRequestBodies.tl(2, authClientOpenApiId, ":");
+								wRequestBodies.tl(3, "type: openIdConnect");
+								wRequestBodies.tl(3, "openIdConnectUrl: ", authClient.getString(ComputateConfigKeys.AUTH_URL), "/realms/", authClient.getString(ComputateConfigKeys.AUTH_REALM), "/.well-known/openid-configuration");
+					});
 				}
 				wRequestBodies.tl(1, "requestBodies:");
 

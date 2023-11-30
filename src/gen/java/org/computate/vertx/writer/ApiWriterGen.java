@@ -58,9 +58,9 @@ import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
 
-/**	
-<ol>
-0<h3>Suggestions that can generate more code for you: </h3></ol>
+/**
+ * <ol>
+<h3>Suggestions that can generate more code for you: </h3> * </ol>
  * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these ApiWriter objects in a RESTful API. 
  * </li>
  * <h3>About the ApiWriter class and it's generated class ApiWriterGen&lt;Object&gt;: </h3>extends ApiWriterGen
@@ -79,22 +79,22 @@ import io.vertx.core.Future;
  * The generated <code>class ApiWriterGen extends Object</code> which means that ApiWriter extends ApiWriterGen which extends Object. 
  * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
- * Api: true
- * ApiTag.enUS: true
- * ApiUri.enUS: null
- * Color: null
- * IconGroup: null
- * IconName: null
- * Indexed: true
- * {@inheritDoc}
+ * <h2>Api: true</h2>
+ * <h2>ApiTag.enUS: true</h2>
+ * <h2>ApiUri.enUS: null</h2>
+ * <h2>Color: null</h2>
+ * <h2>IconGroup: null</h2>
+ * <h2>IconName: null</h2>
+ * <h2>Indexed: true</h2>
+ * <h2>{@inheritDoc}</h2>
  * <p>By adding a class comment "{@inheritDoc}", the ApiWriter class will inherit the helpful inherited class comments from the super class ApiWriterGen. 
  * </p>
- * Rows: null
- * Model: true
- * Page: true
- * SuperPage.enUS: null
- * Promise: true
- * AName.enUS: null
+ * <h2>Rows: null</h2>
+ * <h2>Model: true</h2>
+ * <h2>Page: true</h2>
+ * <h2>SuperPage.enUS: null</h2>
+ * <h2>Promise: true</h2>
+ * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class ApiWriter in Solr: 
  * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
@@ -107,6 +107,7 @@ import io.vertx.core.Future;
  * Delete  the project computate-vertx in Solr: 
  * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
+ * Generated: true
  **/
 public abstract class ApiWriterGen<DEV> extends Object {
 	protected static final Logger LOG = LoggerFactory.getLogger(ApiWriter.class);
@@ -845,6 +846,66 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	public static String staticSearchFqConfig(ComputateSiteRequest siteRequest_, String o) {
 		return ApiWriter.staticSearchStrConfig(siteRequest_, ApiWriter.staticSearchConfig(siteRequest_, ApiWriter.staticSetConfig(siteRequest_, o)));
+	}
+
+	/////////////////
+	// authClients //
+	/////////////////
+
+
+	/**	 The entity authClients
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected JsonObject authClients;
+
+	/**	<br> The entity authClients
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:authClients">Find the entity authClients in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _authClients(Wrap<JsonObject> c);
+
+	public JsonObject getAuthClients() {
+		return authClients;
+	}
+
+	public void setAuthClients(JsonObject authClients) {
+		this.authClients = authClients;
+	}
+	@JsonIgnore
+	public void setAuthClients(String o) {
+		this.authClients = ApiWriter.staticSetAuthClients(siteRequest_, o);
+	}
+	public static JsonObject staticSetAuthClients(ComputateSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonObject(o);
+		}
+		return null;
+	}
+	protected ApiWriter authClientsInit() {
+		Wrap<JsonObject> authClientsWrap = new Wrap<JsonObject>().var("authClients");
+		if(authClients == null) {
+			_authClients(authClientsWrap);
+			Optional.ofNullable(authClientsWrap.getO()).ifPresent(o -> {
+				setAuthClients(o);
+			});
+		}
+		return (ApiWriter)this;
+	}
+
+	public static String staticSearchAuthClients(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
+	}
+
+	public static String staticSearchStrAuthClients(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqAuthClients(ComputateSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrAuthClients(siteRequest_, ApiWriter.staticSearchAuthClients(siteRequest_, ApiWriter.staticSetAuthClients(siteRequest_, o)));
 	}
 
 	/////////////////////
@@ -2794,6 +2855,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				wRequestBodiesInit();
 				wSchemasInit();
 				configInit();
+				authClientsInit();
 				wRequestHeadersInit();
 				wRequestDescriptionInit();
 				wResponseDescriptionInit();
@@ -2917,6 +2979,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				return oApiWriter.wSchemas;
 			case "config":
 				return oApiWriter.config;
+			case "authClients":
+				return oApiWriter.authClients;
 			case "wRequestHeaders":
 				return oApiWriter.wRequestHeaders;
 			case "wRequestDescription":
@@ -3040,6 +3104,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSetTabsResponses(siteRequest_, o);
 		case "config":
 			return ApiWriter.staticSetConfig(siteRequest_, o);
+		case "authClients":
+			return ApiWriter.staticSetAuthClients(siteRequest_, o);
 		case "classApiTag":
 			return ApiWriter.staticSetClassApiTag(siteRequest_, o);
 		case "classExtendsBase":
@@ -3124,6 +3190,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchTabsResponses(siteRequest_, (Integer)o);
 		case "config":
 			return ApiWriter.staticSearchConfig(siteRequest_, (JsonObject)o);
+		case "authClients":
+			return ApiWriter.staticSearchAuthClients(siteRequest_, (JsonObject)o);
 		case "classApiTag":
 			return ApiWriter.staticSearchClassApiTag(siteRequest_, (String)o);
 		case "classExtendsBase":
@@ -3208,6 +3276,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchStrTabsResponses(siteRequest_, (Integer)o);
 		case "config":
 			return ApiWriter.staticSearchStrConfig(siteRequest_, (String)o);
+		case "authClients":
+			return ApiWriter.staticSearchStrAuthClients(siteRequest_, (String)o);
 		case "classApiTag":
 			return ApiWriter.staticSearchStrClassApiTag(siteRequest_, (String)o);
 		case "classExtendsBase":
@@ -3292,6 +3362,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchFqTabsResponses(siteRequest_, o);
 		case "config":
 			return ApiWriter.staticSearchFqConfig(siteRequest_, o);
+		case "authClients":
+			return ApiWriter.staticSearchFqAuthClients(siteRequest_, o);
 		case "classApiTag":
 			return ApiWriter.staticSearchFqClassApiTag(siteRequest_, o);
 		case "classExtendsBase":
@@ -3361,6 +3433,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	}
 
 	public static final String CLASS_SIMPLE_NAME = "ApiWriter";
+	public static final String CLASS_API_ADDRESS = "computate-vertx-enUS-ApiWriter";
 	public static final String VAR_siteRequest_ = "siteRequest_";
 	public static final String VAR_classDoc = "classDoc";
 	public static final String VAR_classSolrDocument = "classSolrDocument";
@@ -3375,6 +3448,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String VAR_wRequestBodies = "wRequestBodies";
 	public static final String VAR_wSchemas = "wSchemas";
 	public static final String VAR_config = "config";
+	public static final String VAR_authClients = "authClients";
 	public static final String VAR_wRequestHeaders = "wRequestHeaders";
 	public static final String VAR_wRequestDescription = "wRequestDescription";
 	public static final String VAR_wResponseDescription = "wResponseDescription";
@@ -3426,6 +3500,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_wRequestBodies = "";
 	public static final String DISPLAY_NAME_wSchemas = "";
 	public static final String DISPLAY_NAME_config = "";
+	public static final String DISPLAY_NAME_authClients = "";
 	public static final String DISPLAY_NAME_wRequestHeaders = "";
 	public static final String DISPLAY_NAME_wRequestDescription = "";
 	public static final String DISPLAY_NAME_wResponseDescription = "";
@@ -3496,6 +3571,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return DISPLAY_NAME_wSchemas;
 		case VAR_config:
 			return DISPLAY_NAME_config;
+		case VAR_authClients:
+			return DISPLAY_NAME_authClients;
 		case VAR_wRequestHeaders:
 			return DISPLAY_NAME_wRequestHeaders;
 		case VAR_wRequestDescription:

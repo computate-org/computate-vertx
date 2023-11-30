@@ -79,6 +79,9 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 	protected void _config(Wrap<JsonObject> c) {
 	}
 
+	protected void _authClients(Wrap<JsonObject> c) {
+	}
+
 	protected void _wRequestHeaders(Wrap<AllWriter> c) {
 		c.o(AllWriter.create(siteRequest_, "  "));
 	}
@@ -486,8 +489,10 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 			if(roleSecurity == null || roleSecurity.equals("true")) {
 				wPaths.tl(3, "security:");
 	//			wPaths.tl(4, "- basicAuth: []");
-				wPaths.tl(4, "- openIdConnect:");
-				wPaths.tl(5, "- profile");
+				authClients.fieldNames().forEach(authClientOpenApiId -> {
+					wPaths.tl(4, "- ", authClientOpenApiId, ":");
+					wPaths.tl(5, "- profile");
+				});
 			} else {
 				roleSecurity.toString();
 			}

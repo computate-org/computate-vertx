@@ -1750,6 +1750,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 	public static final String[] BaseGeneratorVals = new String[] { configureConfigComplete1, configureConfigFail1 };
 
 	public static final String CLASS_SIMPLE_NAME = "BaseGenerator";
+	public static final String CLASS_API_ADDRESS = "computate-vertx-enUS-BaseGenerator";
 	public static final String VAR_vertx_ = "vertx_";
 	public static final String VAR_webClient = "webClient";
 	public static final String VAR_siteRequest_ = "siteRequest_";
