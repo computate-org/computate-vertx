@@ -75,39 +75,6 @@ public class Swagger2Generator extends Swagger2GeneratorGen<FiwareGenerator> {
 			JsonObject authClients = Optional.ofNullable(config.getValue(ComputateConfigKeys.AUTH_CLIENTS)).map(v -> v instanceof JsonObject ? (JsonObject)v : new JsonObject(v.toString())).orElse(new JsonObject());
 
 			wPaths.tl(0, "paths:");
-			authClients.fieldNames().forEach(authClientOpenApiId -> {
-				JsonObject authClient = authClients.getJsonObject(authClientOpenApiId);
-				String authCallbackUri = authClient.getString(ComputateConfigKeys.AUTH_CALLBACK_URI);
-				String authLogoutUri = authClient.getString(ComputateConfigKeys.AUTH_LOGOUT_URI);
-
-				wPaths.l();
-				wPaths.tl(1, authCallbackUri, ":");
-				wPaths.tl(2, "get:");
-				wPaths.tl(3, "operationId: callback");
-				wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-", authClientOpenApiId, "-callback");
-				wPaths.tl(3, "description: >+");
-				wPaths.tl(3, "responses:");
-				wPaths.tl(4, "'200':");
-				wPaths.tl(5, "description: >+");
-				wPaths.tl(5, "content:");
-				wPaths.tl(6, "application/json; charset=utf-8:");
-				wPaths.tl(7, "schema:");
-				wPaths.tl(8, "type: string");
-				wPaths.l();
-				wPaths.tl(1, authLogoutUri, ":");
-				wPaths.tl(2, "get:");
-				wPaths.tl(3, "operationId: logout");
-				wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-", authClientOpenApiId, "-logout");
-				wPaths.tl(3, "description: >+");
-				wPaths.tl(3, "responses:");
-				wPaths.tl(4, "'200':");
-				wPaths.tl(5, "description: >+");
-				wPaths.tl(5, "content:");
-				wPaths.tl(6, "application/json; charset=utf-8:");
-				wPaths.tl(7, "schema:");
-				wPaths.tl(8, "type: string");
-				wPaths.l();
-			});
 
 			if(openApiVersionNumber == 2) {
 				wSchemas.tl(0, "definitions:");
@@ -129,6 +96,45 @@ public class Swagger2Generator extends Swagger2GeneratorGen<FiwareGenerator> {
 			}
 
 			loadClasses().onSuccess(classDoc -> {
+				authClients.fieldNames().forEach(authClientOpenApiId -> {
+					JsonObject authClient = authClients.getJsonObject(authClientOpenApiId);
+					String authCallbackUri = authClient.getString(ComputateConfigKeys.AUTH_CALLBACK_URI);
+					String authLogoutUri = authClient.getString(ComputateConfigKeys.AUTH_LOGOUT_URI);
+	
+					wPaths.l();
+					wPaths.tl(1, authLogoutUri, ":");
+					wPaths.tl(2, "get:");
+					wPaths.tl(3, "operationId: logout");
+					wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-", authClientOpenApiId, "-logout");
+					wPaths.tl(3, "description: >+");
+					wPaths.tl(3, "responses:");
+					wPaths.tl(4, "'200':");
+					wPaths.tl(5, "description: >+");
+					wPaths.tl(5, "content:");
+					wPaths.tl(6, "application/json; charset=utf-8:");
+					wPaths.tl(7, "schema:");
+					wPaths.tl(8, "type: string");
+				});
+				authClients.fieldNames().forEach(authClientOpenApiId -> {
+					JsonObject authClient = authClients.getJsonObject(authClientOpenApiId);
+					String authCallbackUri = authClient.getString(ComputateConfigKeys.AUTH_CALLBACK_URI);
+					String authLogoutUri = authClient.getString(ComputateConfigKeys.AUTH_LOGOUT_URI);
+	
+					wPaths.l();
+					wPaths.tl(1, authCallbackUri, ":");
+					wPaths.tl(2, "get:");
+					wPaths.tl(3, "operationId: callback");
+					wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-", authClientOpenApiId, "-callback");
+					wPaths.tl(3, "description: >+");
+					wPaths.tl(3, "responses:");
+					wPaths.tl(4, "'200':");
+					wPaths.tl(5, "description: >+");
+					wPaths.tl(5, "content:");
+					wPaths.tl(6, "application/json; charset=utf-8:");
+					wPaths.tl(7, "schema:");
+					wPaths.tl(8, "type: string");
+				});
+
 				LOG.info("Write OpenAPI completed. ");
 				promise.complete();
 			}).onFailure(ex -> {

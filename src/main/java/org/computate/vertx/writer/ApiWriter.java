@@ -126,6 +126,10 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 		c.o((Boolean)classSolrDocument.get("classeEstBase_stored_boolean"));
 	}
 
+	protected void _classFiware(Wrap<Boolean> c) {
+		c.o((Boolean)classSolrDocument.get("classeFiware_stored_boolean"));
+	}
+
 	protected void _classSimpleName(Wrap<String> c) {
 		c.o((String)classSolrDocument.get("classeNomSimple_enUS_stored_string"));
 	}
@@ -508,6 +512,24 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 		if(openApiVersionNumber == 2) {
 			wPaths.tl(3, "produces:");
 			wPaths.tl(4, "- ", classApiMediaType200Method);
+		}
+		if(!id && classFiware) {
+			wRequestHeaders.tl(4, "- name: Fiware-Service");
+			wRequestHeaders.tl(5, "in: header");
+			wRequestHeaders.tl(5, "schema:");
+			wRequestHeaders.tl(6, "type: string");
+			wRequestHeaders.tl(4, "- name: Fiware-ServicePath");
+			wRequestHeaders.tl(5, "in: header");
+			wRequestHeaders.tl(5, "schema:");
+			wRequestHeaders.tl(6, "type: string");
+			wRequestHeaders.tl(4, "- name: NGSILD-Tenant");
+			wRequestHeaders.tl(5, "in: header");
+			wRequestHeaders.tl(5, "schema:");
+			wRequestHeaders.tl(6, "type: string");
+			wRequestHeaders.tl(4, "- name: NGSILD-Path");
+			wRequestHeaders.tl(5, "in: header");
+			wRequestHeaders.tl(5, "schema:");
+			wRequestHeaders.tl(6, "type: string");
 		}
 	
 		if(!wRequestHeaders.getEmpty() || "GET".equals(classApiMethodMethod) || "DELETE".equals(classApiMethodMethod) || "PUT".equals(classApiMethodMethod) || "PATCH".equals(classApiMethodMethod)) {

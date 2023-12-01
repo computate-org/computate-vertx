@@ -1418,6 +1418,63 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return ApiWriter.staticSearchStrClassIsBase(siteRequest_, ApiWriter.staticSearchClassIsBase(siteRequest_, ApiWriter.staticSetClassIsBase(siteRequest_, o)));
 	}
 
+	/////////////////
+	// classFiware //
+	/////////////////
+
+
+	/**	 The entity classFiware
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected Boolean classFiware;
+
+	/**	<br> The entity classFiware
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classFiware">Find the entity classFiware in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _classFiware(Wrap<Boolean> c);
+
+	public Boolean getClassFiware() {
+		return classFiware;
+	}
+
+	public void setClassFiware(Boolean classFiware) {
+		this.classFiware = classFiware;
+	}
+	@JsonIgnore
+	public void setClassFiware(String o) {
+		this.classFiware = ApiWriter.staticSetClassFiware(siteRequest_, o);
+	}
+	public static Boolean staticSetClassFiware(ComputateSiteRequest siteRequest_, String o) {
+		return Boolean.parseBoolean(o);
+	}
+	protected ApiWriter classFiwareInit() {
+		Wrap<Boolean> classFiwareWrap = new Wrap<Boolean>().var("classFiware");
+		if(classFiware == null) {
+			_classFiware(classFiwareWrap);
+			Optional.ofNullable(classFiwareWrap.getO()).ifPresent(o -> {
+				setClassFiware(o);
+			});
+		}
+		return (ApiWriter)this;
+	}
+
+	public static Boolean staticSearchClassFiware(ComputateSiteRequest siteRequest_, Boolean o) {
+		return o;
+	}
+
+	public static String staticSearchStrClassFiware(ComputateSiteRequest siteRequest_, Boolean o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqClassFiware(ComputateSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchStrClassFiware(siteRequest_, ApiWriter.staticSearchClassFiware(siteRequest_, ApiWriter.staticSetClassFiware(siteRequest_, o)));
+	}
+
 	/////////////////////
 	// classSimpleName //
 	/////////////////////
@@ -2867,6 +2924,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				classApiTagInit();
 				classExtendsBaseInit();
 				classIsBaseInit();
+				classFiwareInit();
 				classSimpleNameInit();
 				appNameInit();
 				classAbsolutePathInit();
@@ -3003,6 +3061,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				return oApiWriter.classExtendsBase;
 			case "classIsBase":
 				return oApiWriter.classIsBase;
+			case "classFiware":
+				return oApiWriter.classFiware;
 			case "classSimpleName":
 				return oApiWriter.classSimpleName;
 			case "appName":
@@ -3112,6 +3172,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSetClassExtendsBase(siteRequest_, o);
 		case "classIsBase":
 			return ApiWriter.staticSetClassIsBase(siteRequest_, o);
+		case "classFiware":
+			return ApiWriter.staticSetClassFiware(siteRequest_, o);
 		case "classSimpleName":
 			return ApiWriter.staticSetClassSimpleName(siteRequest_, o);
 		case "appName":
@@ -3198,6 +3260,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchClassExtendsBase(siteRequest_, (Boolean)o);
 		case "classIsBase":
 			return ApiWriter.staticSearchClassIsBase(siteRequest_, (Boolean)o);
+		case "classFiware":
+			return ApiWriter.staticSearchClassFiware(siteRequest_, (Boolean)o);
 		case "classSimpleName":
 			return ApiWriter.staticSearchClassSimpleName(siteRequest_, (String)o);
 		case "appName":
@@ -3284,6 +3348,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchStrClassExtendsBase(siteRequest_, (Boolean)o);
 		case "classIsBase":
 			return ApiWriter.staticSearchStrClassIsBase(siteRequest_, (Boolean)o);
+		case "classFiware":
+			return ApiWriter.staticSearchStrClassFiware(siteRequest_, (Boolean)o);
 		case "classSimpleName":
 			return ApiWriter.staticSearchStrClassSimpleName(siteRequest_, (String)o);
 		case "appName":
@@ -3370,6 +3436,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchFqClassExtendsBase(siteRequest_, o);
 		case "classIsBase":
 			return ApiWriter.staticSearchFqClassIsBase(siteRequest_, o);
+		case "classFiware":
+			return ApiWriter.staticSearchFqClassFiware(siteRequest_, o);
 		case "classSimpleName":
 			return ApiWriter.staticSearchFqClassSimpleName(siteRequest_, o);
 		case "appName":
@@ -3460,6 +3528,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String VAR_classApiTag = "classApiTag";
 	public static final String VAR_classExtendsBase = "classExtendsBase";
 	public static final String VAR_classIsBase = "classIsBase";
+	public static final String VAR_classFiware = "classFiware";
 	public static final String VAR_classSimpleName = "classSimpleName";
 	public static final String VAR_appName = "appName";
 	public static final String VAR_classAbsolutePath = "classAbsolutePath";
@@ -3512,6 +3581,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_classApiTag = "";
 	public static final String DISPLAY_NAME_classExtendsBase = "";
 	public static final String DISPLAY_NAME_classIsBase = "";
+	public static final String DISPLAY_NAME_classFiware = "";
 	public static final String DISPLAY_NAME_classSimpleName = "";
 	public static final String DISPLAY_NAME_appName = "";
 	public static final String DISPLAY_NAME_classAbsolutePath = "";
@@ -3595,6 +3665,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return DISPLAY_NAME_classExtendsBase;
 		case VAR_classIsBase:
 			return DISPLAY_NAME_classIsBase;
+		case VAR_classFiware:
+			return DISPLAY_NAME_classFiware;
 		case VAR_classSimpleName:
 			return DISPLAY_NAME_classSimpleName;
 		case VAR_appName:
