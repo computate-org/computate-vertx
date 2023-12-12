@@ -270,7 +270,9 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 				apiWriter.setWSchemas(wSchemas);
 				apiWriter.setOpenApiVersion(openApiVersion);
 				apiWriter.setClassUris(classUris);
-				apiWriter.setAuthClients(Optional.ofNullable(config.getValue(ComputateConfigKeys.AUTH_CLIENTS)).map(v -> v instanceof JsonObject ? (JsonObject)v : new JsonObject(v.toString())).orElse(new JsonObject()));
+				apiWriter.setAuthClients(Optional.ofNullable(config.getValue(ComputateConfigKeys.AUTH_CLIENTS))
+						.map(v -> v instanceof JsonObject ? (JsonObject)v : new JsonObject(v.toString()))
+						.orElse(new JsonObject().put(Optional.ofNullable(config.getString(ComputateConfigKeys.AUTH_OPEN_API_ID)).orElse("openIdConnect"), config)));
 				apiWriter.initDeepApiWriter(siteRequest_);
 				apiWriters.add(apiWriter);
 			}

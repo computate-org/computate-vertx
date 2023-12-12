@@ -72,7 +72,10 @@ public class Swagger2Generator extends Swagger2GeneratorGen<FiwareGenerator> {
 		Promise<Void> promise = Promise.promise();
 
 		try {
-			JsonObject authClients = Optional.ofNullable(config.getValue(ComputateConfigKeys.AUTH_CLIENTS)).map(v -> v instanceof JsonObject ? (JsonObject)v : new JsonObject(v.toString())).orElse(new JsonObject());
+			JsonObject authClients = Optional.ofNullable(config.getValue(ComputateConfigKeys.AUTH_CLIENTS))
+					.map(v -> v instanceof JsonObject ? (JsonObject)v : new JsonObject(v.toString()))
+					.orElse(new JsonObject().put(Optional.ofNullable(config.getString(ComputateConfigKeys.AUTH_OPEN_API_ID)).orElse("openIdConnect"), config))
+					;
 
 			wPaths.tl(0, "paths:");
 
