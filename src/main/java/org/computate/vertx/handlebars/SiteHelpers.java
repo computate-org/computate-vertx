@@ -60,6 +60,20 @@ public enum SiteHelpers implements Helper<Object> {
 
 
 	/**
+	 * Call the toString method on an object. 
+	 */
+	toJsonArrayString {
+		@Override
+		public CharSequence apply(final Object originalValue, final Options options) throws IOException {
+			if(originalValue == null)
+				return "";
+			else
+				return new JsonArray((List<Object>)originalValue).toString();
+		}
+	},
+
+
+	/**
 	 * Escape HTML in quotes
 	 */
 	escapeHtmlInQuotes {
