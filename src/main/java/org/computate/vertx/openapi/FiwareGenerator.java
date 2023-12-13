@@ -350,7 +350,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<BaseGenerator> {
 			wFiwareOperatorVars.tl(4, "properties:");
 			wFiwareOperatorVars.tl(5, "name:");
 			wFiwareOperatorVars.tl(6, "type: string");
-			wFiwareOperatorVars.tl(5, "property:");
+			wFiwareOperatorVars.tl(5, "key:");
 			wFiwareOperatorVars.tl(6, "type: string");
 			wFiwareOperatorVars.tl(3, "port:");
 			wFiwareOperatorVars.tl(4, "type: number");
@@ -363,7 +363,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<BaseGenerator> {
 			wFiwareOperatorVars.tl(3, "subscription_url:");
 			wFiwareOperatorVars.tl(4, "type: string");
 			wFiwareOperatorVars.tl(4, "default: \"http://orionld-smartvillage-sync:8080\"");
-			wFiwareOperatorVars.tl(1, "smartabyar_smartvillage:");
+			wFiwareOperatorVars.tl(1, "smartvillage:");
 			wFiwareOperatorVars.tl(2, "type: object");
 			wFiwareOperatorVars.tl(2, "properties:");
 			wFiwareOperatorVars.tl(3, "enabled:");
@@ -391,9 +391,6 @@ public class FiwareGenerator extends FiwareGeneratorGen<BaseGenerator> {
 				wFiwareOperatorVars.tl(3, "id:");
 				wFiwareOperatorVars.tl(4, "type: string");
 				wFiwareOperatorVars.tl(4, "default: ", toId(classDoc.getClassAlternateModel()));
-				wFiwareOperatorVars.tl(3, "enabled:");
-				wFiwareOperatorVars.tl(4, "type: string");
-				wFiwareOperatorVars.tl(4, "default: ", classDoc.getClassAlternateModel());
 			}
 			wFiwareOperatorVars.tl(0, "smart_data_model:");
 			wFiwareOperatorVars.tl(1, "attributes:");
