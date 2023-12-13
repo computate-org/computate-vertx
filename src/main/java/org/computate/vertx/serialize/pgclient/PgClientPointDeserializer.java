@@ -20,7 +20,10 @@ import org.apache.commons.lang3.math.NumberUtils;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.github.jknack.handlebars.internal.lang3.StringUtils;
 
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
 import io.vertx.pgclient.data.Point;
 
 /**
@@ -32,9 +35,25 @@ public class PgClientPointDeserializer extends JsonDeserializer<Point> {
 	public Point deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
 			throws IOException {
 
-		String[] vals = jsonParser.getText().split(",");
-		if(vals.length == 2 && NumberUtils.isParsable(vals[0]) && NumberUtils.isParsable(vals[1]))
-			return new Point(Double.parseDouble(vals[0]), Double.parseDouble(vals[1]));
-		return null;
+
+		String text = jsonParser.getText().strip();
+
+		if(StringUtils.startsWith(text, "{")) {
+			JsonObject json = new JsonObject(text);
+			Point point = new Point();
+			JsonArray points = json.getJsonArray("coordinates");
+
+			if(points.size() == 2) {
+				point.setX(Double.parseDouble(points.getString(0)));
+				point.setY(Double.parseDouble(points.getString(1)));
+				return point;
+			}
+			return null;
+		} else {
+			String[] vals = jsonParser.getText().split(",");
+			if(vals.length == 2 && NumberUtils.isParsable(vals[0]) && NumberUtils.isParsable(vals[1]))
+				return new Point(Double.parseDouble(vals[0]), Double.parseDouble(vals[1]));
+			return null;
+		}
 	}
 }

@@ -16,6 +16,8 @@ package org.computate.vertx.serialize.pgclient;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
+import org.computate.vertx.tool.VertxTool;
+
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
@@ -31,8 +33,6 @@ public class PgClientPathSerializer extends JsonSerializer<Path> {
 
 	@Override()
 	public void serialize(Path o, JsonGenerator generator, SerializerProvider provider) throws IOException, IOException {
-		JsonArray pointsArray = new JsonArray();
-		o.getPoints().stream().map(point -> new JsonArray().add(Double.valueOf(point.getX())).add(Double.valueOf(point.getY()))).collect(Collectors.toList()).forEach(pointArray -> pointsArray.add(pointArray));
-		generator.writeObject(new JsonObject().put("type", "LineString").put("coordinates", pointsArray));
+		generator.writeObject(VertxTool.toGeoJson(o));
 	}
 }

@@ -14,6 +14,7 @@ import io.vertx.core.Promise;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.pgclient.data.Path;
+import io.vertx.pgclient.data.Point;
 
 public class VertxTool {
 	protected static final Logger LOG = LoggerFactory.getLogger(VertxTool.class);
@@ -61,6 +62,20 @@ public class VertxTool {
 		}
 
 		return s;
+	}
+
+	/**
+	 * Description: A helper method to convert a Postgres Point to GeoJSON. 
+	 */
+	public static JsonObject toGeoJson(Point point) {
+		JsonObject result = null;
+		if(point != null) {
+			JsonArray pointsArray = new JsonArray();
+			pointsArray.add(Double.valueOf(point.getX()));
+			pointsArray.add(Double.valueOf(point.getY()));
+			result = new JsonObject().put("type", "Point").put("coordinates", pointsArray);
+		}
+		return result;
 	}
 
 	/**

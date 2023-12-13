@@ -14,7 +14,8 @@
 package org.computate.vertx.serialize.pgclient;
 
 import java.io.IOException;
-import java.time.LocalDate;
+
+import org.computate.vertx.tool.VertxTool;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -31,6 +32,6 @@ public class PgClientPointSerializer extends JsonSerializer<Point> {
 
 	@Override()
 	public void  serialize(Point o, JsonGenerator generator, SerializerProvider provider) throws IOException, IOException {
-		generator.writeString(String.format(POINT_FORMAT, o.getX(), o.getY()));
+		generator.writeObject(VertxTool.toGeoJson(o));
 	}
 }
