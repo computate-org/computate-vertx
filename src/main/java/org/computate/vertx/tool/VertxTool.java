@@ -11,6 +11,9 @@ import org.slf4j.LoggerFactory;
 import io.vertx.core.CompositeFuture;
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
+import io.vertx.pgclient.data.Path;
 
 public class VertxTool {
 	protected static final Logger LOG = LoggerFactory.getLogger(VertxTool.class);
@@ -58,5 +61,18 @@ public class VertxTool {
 		}
 
 		return s;
+	}
+
+	/**
+	 * Description: A helper method to convert a Postgres Path to GeoJSON. 
+	 */
+	public static JsonObject toGeoJson(Path path) {
+		JsonObject result = null;
+		if(path != null) {
+			JsonArray pointsArray = new JsonArray();
+			path.getPoints().stream().map(point -> new JsonArray().add(Double.valueOf(point.getX())).add(Double.valueOf(point.getY()))).collect(Collectors.toList()).forEach(pointArray -> pointsArray.add(pointArray));
+			result = new JsonObject().put("type", "LineString").put("coordinates", pointsArray);
+		}
+		return result;
 	}
 }
