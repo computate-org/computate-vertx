@@ -22,12 +22,13 @@ import io.vertx.ext.auth.authorization.AuthorizationProvider;
 /**
  * Translate: false
  * Gen: false
+ * Generated: true
  **/
 @WebApiServiceGen
 @ProxyGen
 public interface ComputateJavaClassEnUSGenApiService {
 	static void registerService(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, HandlebarsTemplateEngine templateEngine, Vertx vertx) {
-		new ServiceBinder(vertx).setAddress("computate-vertx-enUS-ComputateJavaClass").register(ComputateJavaClassEnUSGenApiService.class, new ComputateJavaClassEnUSApiServiceImpl(eventBus, config, workerExecutor, pgPool, kafkaProducer, webClient, oauth2AuthenticationProvider, authorizationProvider, templateEngine));
+		new ServiceBinder(vertx).setAddress(ComputateJavaClass.CLASS_API_ADDRESS).register(ComputateJavaClassEnUSGenApiService.class, new ComputateJavaClassEnUSApiServiceImpl(eventBus, config, workerExecutor, pgPool, kafkaProducer, webClient, oauth2AuthenticationProvider, authorizationProvider, templateEngine));
 	}
 
 	public void searchComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler);

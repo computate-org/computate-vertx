@@ -14,6 +14,7 @@
 package org.computate.vertx.openapi;
 
 import org.computate.vertx.request.ComputateSiteRequest;
+import org.computate.vertx.openapi.ProjectGenerator;
 import org.computate.vertx.api.ApiRequest;
 import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
@@ -44,7 +45,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
-import org.computate.vertx.openapi.BaseGenerator;
 import java.lang.String;
 import java.io.File;
 import org.computate.vertx.writer.AllWriter;
@@ -60,7 +60,7 @@ import io.vertx.core.json.JsonArray;
  * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these FiwareGenerator objects in a RESTful API. 
  * </li><li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class FiwareGeneratorGen into the class FiwareGenerator. 
  * </li>
- * <h3>About the FiwareGenerator class and it's generated class FiwareGeneratorGen&lt;BaseGenerator&gt;: </h3>extends FiwareGeneratorGen
+ * <h3>About the FiwareGenerator class and it's generated class FiwareGeneratorGen&lt;ProjectGenerator&gt;: </h3>extends FiwareGeneratorGen
  * <p>
  * This Java class extends a generated Java class FiwareGeneratorGen built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
@@ -71,9 +71,9 @@ import io.vertx.core.json.JsonArray;
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
  * </p>
- * extends FiwareGeneratorGen<BaseGenerator>
- * <p>This <code>class FiwareGenerator extends FiwareGeneratorGen&lt;BaseGenerator&gt;</code>, which means it extends a newly generated FiwareGeneratorGen. 
- * The generated <code>class FiwareGeneratorGen extends BaseGenerator</code> which means that FiwareGenerator extends FiwareGeneratorGen which extends BaseGenerator. 
+ * extends FiwareGeneratorGen<ProjectGenerator>
+ * <p>This <code>class FiwareGenerator extends FiwareGeneratorGen&lt;ProjectGenerator&gt;</code>, which means it extends a newly generated FiwareGeneratorGen. 
+ * The generated <code>class FiwareGeneratorGen extends ProjectGenerator</code> which means that FiwareGenerator extends FiwareGeneratorGen which extends ProjectGenerator. 
  * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
  * <h2>Api: true</h2>
@@ -106,7 +106,7 @@ import io.vertx.core.json.JsonArray;
  * </p>
  * Generated: true
  **/
-public abstract class FiwareGeneratorGen<DEV> extends BaseGenerator {
+public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 	protected static final Logger LOG = LoggerFactory.getLogger(FiwareGenerator.class);
 
 	///////////////////////////
@@ -532,7 +532,7 @@ public abstract class FiwareGeneratorGen<DEV> extends BaseGenerator {
 	}
 
 	public void initDeepFiwareGenerator() {
-		super.initDeepBaseGenerator(siteRequest_);
+		super.initDeepProjectGenerator(siteRequest_);
 		initFiwareGenerator();
 	}
 
@@ -557,7 +557,7 @@ public abstract class FiwareGeneratorGen<DEV> extends BaseGenerator {
 	/////////////////
 
 	public void siteRequestFiwareGenerator(ComputateSiteRequest siteRequest_) {
-			super.siteRequestBaseGenerator(siteRequest_);
+			super.siteRequestProjectGenerator(siteRequest_);
 		if(wFiwareSwagger != null)
 			wFiwareSwagger.setSiteRequest_(siteRequest_);
 		if(wFiwareExamples != null)
@@ -611,7 +611,7 @@ public abstract class FiwareGeneratorGen<DEV> extends BaseGenerator {
 			case "wFiwareContext":
 				return oFiwareGenerator.wFiwareContext;
 			default:
-				return super.obtainBaseGenerator(var);
+				return super.obtainProjectGenerator(var);
 		}
 	}
 
@@ -632,7 +632,7 @@ public abstract class FiwareGeneratorGen<DEV> extends BaseGenerator {
 		FiwareGenerator oFiwareGenerator = (FiwareGenerator)this;
 		switch(var) {
 			default:
-				return super.relateBaseGenerator(var, val);
+				return super.relateProjectGenerator(var, val);
 		}
 	}
 
@@ -652,7 +652,7 @@ public abstract class FiwareGeneratorGen<DEV> extends BaseGenerator {
 		case "fiwareContextJsonldPath":
 			return FiwareGenerator.staticSetFiwareContextJsonldPath(siteRequest_, o);
 			default:
-				return BaseGenerator.staticSetBaseGenerator(entityVar,  siteRequest_, o);
+				return ProjectGenerator.staticSetProjectGenerator(entityVar,  siteRequest_, o);
 		}
 	}
 
@@ -672,7 +672,7 @@ public abstract class FiwareGeneratorGen<DEV> extends BaseGenerator {
 		case "fiwareContextJsonldPath":
 			return FiwareGenerator.staticSearchFiwareContextJsonldPath(siteRequest_, (String)o);
 			default:
-				return BaseGenerator.staticSearchBaseGenerator(entityVar,  siteRequest_, o);
+				return ProjectGenerator.staticSearchProjectGenerator(entityVar,  siteRequest_, o);
 		}
 	}
 
@@ -692,7 +692,7 @@ public abstract class FiwareGeneratorGen<DEV> extends BaseGenerator {
 		case "fiwareContextJsonldPath":
 			return FiwareGenerator.staticSearchStrFiwareContextJsonldPath(siteRequest_, (String)o);
 			default:
-				return BaseGenerator.staticSearchStrBaseGenerator(entityVar,  siteRequest_, o);
+				return ProjectGenerator.staticSearchStrProjectGenerator(entityVar,  siteRequest_, o);
 		}
 	}
 
@@ -712,7 +712,7 @@ public abstract class FiwareGeneratorGen<DEV> extends BaseGenerator {
 		case "fiwareContextJsonldPath":
 			return FiwareGenerator.staticSearchFqFiwareContextJsonldPath(siteRequest_, o);
 			default:
-				return BaseGenerator.staticSearchFqBaseGenerator(entityVar,  siteRequest_, o);
+				return ProjectGenerator.staticSearchFqProjectGenerator(entityVar,  siteRequest_, o);
 		}
 	}
 
@@ -772,7 +772,7 @@ public abstract class FiwareGeneratorGen<DEV> extends BaseGenerator {
 		case VAR_wFiwareContext:
 			return DISPLAY_NAME_wFiwareContext;
 		default:
-			return BaseGenerator.displayNameBaseGenerator(var);
+			return ProjectGenerator.displayNameProjectGenerator(var);
 		}
 	}
 }

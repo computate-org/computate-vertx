@@ -464,7 +464,7 @@ public class ComputateJavaClass extends ComputateJavaClassGen<Object> {
 	 * "org.choicehumanitarian.reports.enus.base.BaseModel" ]
 	 **/
 	protected void _entityClassesSuperAndMeWithoutGen(Wrap<List<String>> w) {
-		w.o(doc.getJsonArray("entiteClassesSuperEtMoiSansGen_stored_strings").getList());
+		w.o(doc.getJsonArray("classesSuperEtMoiSansGen_stored_strings").getList());
 	}
 	/**
 	 * Example: false

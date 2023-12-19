@@ -1,12 +1,15 @@
 package org.computate.vertx.page;
 
 import org.computate.vertx.request.ComputateSiteRequest;
+import java.lang.Object;
 import org.computate.vertx.api.ApiRequest;
 import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -29,7 +32,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
-import java.lang.Object;
 import java.lang.String;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.api.service.ServiceRequest;
@@ -55,9 +57,9 @@ import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
 
-/**	
-<ol>
-0<h3>Suggestions that can generate more code for you: </h3></ol>
+/**
+ * <ol>
+<h3>Suggestions that can generate more code for you: </h3> * </ol>
  * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these ComputatePageLayout objects in a RESTful API. 
  * </li><li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ComputatePageLayoutGen into the class ComputatePageLayout. 
  * </li>
@@ -77,21 +79,21 @@ import io.vertx.core.Future;
  * The generated <code>class ComputatePageLayoutGen extends Object</code> which means that ComputatePageLayout extends ComputatePageLayoutGen which extends Object. 
  * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
- * Api: true
- * ApiTag.enUS: true
- * ApiUri.enUS: null
- * Color: null
- * IconGroup: null
- * IconName: null
- * Indexed: true
- * {@inheritDoc}
+ * <h2>Api: true</h2>
+ * <h2>ApiTag.enUS: true</h2>
+ * <h2>ApiUri.enUS: null</h2>
+ * <h2>Color: null</h2>
+ * <h2>IconGroup: null</h2>
+ * <h2>IconName: null</h2>
+ * <h2>Indexed: true</h2>
+ * <h2>{@inheritDoc}</h2>
  * <p>By adding a class comment "{@inheritDoc}", the ComputatePageLayout class will inherit the helpful inherited class comments from the super class ComputatePageLayoutGen. 
  * </p>
- * Rows: null
- * Model: true
- * Page: true
- * SuperPage.enUS: null
- * Promise: true
+ * <h2>Rows: null</h2>
+ * <h2>Model: true</h2>
+ * <h2>Page: true</h2>
+ * <h2>SuperPage.enUS: null</h2>
+ * <h2>Promise: true</h2>
  * <p>
  *   This class contains a comment <b>"Promise: true"</b>
  *   Sometimes a Java class must be initialized asynchronously when it involves calling a blocking API. 
@@ -114,7 +116,7 @@ import io.vertx.core.Future;
  * <p>
  *   If a super class of this Java class with `Model: true`, then the child class will also inherit `Promise: true`. 
  * </p>
- * AName.enUS: null
+ * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class ComputatePageLayout in Solr: 
  * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
@@ -127,6 +129,7 @@ import io.vertx.core.Future;
  * Delete  the project computate-vertx in Solr: 
  * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
+ * Generated: true
  **/
 public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	protected static final Logger LOG = LoggerFactory.getLogger(ComputatePageLayout.class);
@@ -1677,6 +1680,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public List<String> getRoles() {
 		return roles;
 	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
 	public void setRoles(String o) {
 		String l = ComputatePageLayout.staticSetRoles(siteRequest_, o);
 		if(l != null)
@@ -1747,6 +1754,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public List<String> getRoleRequired() {
 		return roleRequired;
 	}
+
+	public void setRoleRequired(List<String> roleRequired) {
+		this.roleRequired = roleRequired;
+	}
 	public void setRoleRequired(String o) {
 		String l = ComputatePageLayout.staticSetRoleRequired(siteRequest_, o);
 		if(l != null)
@@ -1816,6 +1827,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	public List<String> getAuthRoleAdmin() {
 		return authRoleAdmin;
+	}
+
+	public void setAuthRoleAdmin(List<String> authRoleAdmin) {
+		this.authRoleAdmin = authRoleAdmin;
 	}
 	public void setAuthRoleAdmin(String o) {
 		String l = ComputatePageLayout.staticSetAuthRoleAdmin(siteRequest_, o);
@@ -2023,6 +2038,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public List<String> getDefaultFieldListVars() {
 		return defaultFieldListVars;
 	}
+
+	public void setDefaultFieldListVars(List<String> defaultFieldListVars) {
+		this.defaultFieldListVars = defaultFieldListVars;
+	}
 	public void setDefaultFieldListVars(String o) {
 		String l = ComputatePageLayout.staticSetDefaultFieldListVars(siteRequest_, o);
 		if(l != null)
@@ -2093,6 +2112,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public List<String> getDefaultStatsVars() {
 		return defaultStatsVars;
 	}
+
+	public void setDefaultStatsVars(List<String> defaultStatsVars) {
+		this.defaultStatsVars = defaultStatsVars;
+	}
 	public void setDefaultStatsVars(String o) {
 		String l = ComputatePageLayout.staticSetDefaultStatsVars(siteRequest_, o);
 		if(l != null)
@@ -2162,6 +2185,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	public List<String> getDefaultPivotVars() {
 		return defaultPivotVars;
+	}
+
+	public void setDefaultPivotVars(List<String> defaultPivotVars) {
+		this.defaultPivotVars = defaultPivotVars;
 	}
 	public void setDefaultPivotVars(String o) {
 		String l = ComputatePageLayout.staticSetDefaultPivotVars(siteRequest_, o);
@@ -2622,6 +2649,126 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		return ComputatePageLayout.staticSearchStrDefaultLocaleId(siteRequest_, ComputatePageLayout.staticSearchDefaultLocaleId(siteRequest_, ComputatePageLayout.staticSetDefaultLocaleId(siteRequest_, o)));
 	}
 
+	//////////
+	// rows //
+	//////////
+
+
+	/**	 The entity rows
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonSerialize(using = ToStringSerializer.class)
+	@JsonInclude(Include.NON_NULL)
+	protected Long rows;
+
+	/**	<br> The entity rows
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:rows">Find the entity rows in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _rows(Wrap<Long> w);
+
+	public Long getRows() {
+		return rows;
+	}
+
+	public void setRows(Long rows) {
+		this.rows = rows;
+	}
+	@JsonIgnore
+	public void setRows(String o) {
+		this.rows = ComputatePageLayout.staticSetRows(siteRequest_, o);
+	}
+	public static Long staticSetRows(ComputateSiteRequest siteRequest_, String o) {
+		if(NumberUtils.isParsable(o))
+			return Long.parseLong(o);
+		return null;
+	}
+	protected ComputatePageLayout rowsInit() {
+		Wrap<Long> rowsWrap = new Wrap<Long>().var("rows");
+		if(rows == null) {
+			_rows(rowsWrap);
+			Optional.ofNullable(rowsWrap.getO()).ifPresent(o -> {
+				setRows(o);
+			});
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static Long staticSearchRows(ComputateSiteRequest siteRequest_, Long o) {
+		return o;
+	}
+
+	public static String staticSearchStrRows(ComputateSiteRequest siteRequest_, Long o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqRows(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrRows(siteRequest_, ComputatePageLayout.staticSearchRows(siteRequest_, ComputatePageLayout.staticSetRows(siteRequest_, o)));
+	}
+
+	///////////
+	// start //
+	///////////
+
+
+	/**	 The entity start
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonSerialize(using = ToStringSerializer.class)
+	@JsonInclude(Include.NON_NULL)
+	protected Long start;
+
+	/**	<br> The entity start
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:start">Find the entity start in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _start(Wrap<Long> w);
+
+	public Long getStart() {
+		return start;
+	}
+
+	public void setStart(Long start) {
+		this.start = start;
+	}
+	@JsonIgnore
+	public void setStart(String o) {
+		this.start = ComputatePageLayout.staticSetStart(siteRequest_, o);
+	}
+	public static Long staticSetStart(ComputateSiteRequest siteRequest_, String o) {
+		if(NumberUtils.isParsable(o))
+			return Long.parseLong(o);
+		return null;
+	}
+	protected ComputatePageLayout startInit() {
+		Wrap<Long> startWrap = new Wrap<Long>().var("start");
+		if(start == null) {
+			_start(startWrap);
+			Optional.ofNullable(startWrap.getO()).ifPresent(o -> {
+				setStart(o);
+			});
+		}
+		return (ComputatePageLayout)this;
+	}
+
+	public static Long staticSearchStart(ComputateSiteRequest siteRequest_, Long o) {
+		return o;
+	}
+
+	public static String staticSearchStrStart(ComputateSiteRequest siteRequest_, Long o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqStart(ComputateSiteRequest siteRequest_, String o) {
+		return ComputatePageLayout.staticSearchStrStart(siteRequest_, ComputatePageLayout.staticSearchStart(siteRequest_, ComputatePageLayout.staticSetStart(siteRequest_, o)));
+	}
+
 	///////////////////
 	// defaultLocale //
 	///////////////////
@@ -2743,7 +2890,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	}
 
 	public void setRangeEnd(ZonedDateTime rangeEnd) {
-		this.rangeEnd = rangeEnd;
+		this.rangeEnd = Optional.ofNullable(rangeEnd).map(v -> v.truncatedTo(ChronoUnit.MILLIS)).orElse(null);
 	}
 	@JsonIgnore
 	public void setRangeEnd(Instant o) {
@@ -2760,7 +2907,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		else if(StringUtils.endsWith(o, "Z"))
 			return o == null ? null : Instant.parse(o).atZone(Optional.ofNullable(siteRequest_).map(r -> r.getConfig()).map(config -> config.getString(ComputateConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))).truncatedTo(ChronoUnit.MILLIS);
 		else if(StringUtils.contains(o, "T"))
-			return o == null ? null : ZonedDateTime.parse(o, DateTimeFormatter.ISO_DATE_TIME).truncatedTo(ChronoUnit.MILLIS);
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER).truncatedTo(ChronoUnit.MILLIS);
 		else
 			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
 	}
@@ -2779,12 +2926,12 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		return (ComputatePageLayout)this;
 	}
 
-	public static Date staticSearchRangeEnd(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
-		return o == null ? null : Date.from(o.toInstant());
+	public static String staticSearchRangeEnd(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
+		return o == null ? null : Date.from(o.toInstant()).toString();
 	}
 
-	public static String staticSearchStrRangeEnd(ComputateSiteRequest siteRequest_, Date o) {
-		return "\"" + DateTimeFormatter.ISO_DATE_TIME.format(o.toInstant().atOffset(ZoneOffset.UTC)) + "\"";
+	public static String staticSearchStrRangeEnd(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER.format(ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER).toInstant().atOffset(ZoneOffset.UTC));
 	}
 
 	public static String staticSearchFqRangeEnd(ComputateSiteRequest siteRequest_, String o) {
@@ -2819,7 +2966,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	}
 
 	public void setRangeStart(ZonedDateTime rangeStart) {
-		this.rangeStart = rangeStart;
+		this.rangeStart = Optional.ofNullable(rangeStart).map(v -> v.truncatedTo(ChronoUnit.MILLIS)).orElse(null);
 	}
 	@JsonIgnore
 	public void setRangeStart(Instant o) {
@@ -2836,7 +2983,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		else if(StringUtils.endsWith(o, "Z"))
 			return o == null ? null : Instant.parse(o).atZone(Optional.ofNullable(siteRequest_).map(r -> r.getConfig()).map(config -> config.getString(ComputateConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))).truncatedTo(ChronoUnit.MILLIS);
 		else if(StringUtils.contains(o, "T"))
-			return o == null ? null : ZonedDateTime.parse(o, DateTimeFormatter.ISO_DATE_TIME).truncatedTo(ChronoUnit.MILLIS);
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER).truncatedTo(ChronoUnit.MILLIS);
 		else
 			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
 	}
@@ -2855,12 +3002,12 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		return (ComputatePageLayout)this;
 	}
 
-	public static Date staticSearchRangeStart(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
-		return o == null ? null : Date.from(o.toInstant());
+	public static String staticSearchRangeStart(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
+		return o == null ? null : Date.from(o.toInstant()).toString();
 	}
 
-	public static String staticSearchStrRangeStart(ComputateSiteRequest siteRequest_, Date o) {
-		return "\"" + DateTimeFormatter.ISO_DATE_TIME.format(o.toInstant().atOffset(ZoneOffset.UTC)) + "\"";
+	public static String staticSearchStrRangeStart(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER.format(ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER).toInstant().atOffset(ZoneOffset.UTC));
 	}
 
 	public static String staticSearchFqRangeStart(ComputateSiteRequest siteRequest_, String o) {
@@ -3007,7 +3154,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	}
 
 	public void setDefaultRangeEnd(ZonedDateTime defaultRangeEnd) {
-		this.defaultRangeEnd = defaultRangeEnd;
+		this.defaultRangeEnd = Optional.ofNullable(defaultRangeEnd).map(v -> v.truncatedTo(ChronoUnit.MILLIS)).orElse(null);
 	}
 	@JsonIgnore
 	public void setDefaultRangeEnd(Instant o) {
@@ -3024,7 +3171,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		else if(StringUtils.endsWith(o, "Z"))
 			return o == null ? null : Instant.parse(o).atZone(Optional.ofNullable(siteRequest_).map(r -> r.getConfig()).map(config -> config.getString(ComputateConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))).truncatedTo(ChronoUnit.MILLIS);
 		else if(StringUtils.contains(o, "T"))
-			return o == null ? null : ZonedDateTime.parse(o, DateTimeFormatter.ISO_DATE_TIME).truncatedTo(ChronoUnit.MILLIS);
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER).truncatedTo(ChronoUnit.MILLIS);
 		else
 			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
 	}
@@ -3043,12 +3190,12 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		return (ComputatePageLayout)this;
 	}
 
-	public static Date staticSearchDefaultRangeEnd(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
-		return o == null ? null : Date.from(o.toInstant());
+	public static String staticSearchDefaultRangeEnd(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
+		return o == null ? null : Date.from(o.toInstant()).toString();
 	}
 
-	public static String staticSearchStrDefaultRangeEnd(ComputateSiteRequest siteRequest_, Date o) {
-		return "\"" + DateTimeFormatter.ISO_DATE_TIME.format(o.toInstant().atOffset(ZoneOffset.UTC)) + "\"";
+	public static String staticSearchStrDefaultRangeEnd(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER.format(ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER).toInstant().atOffset(ZoneOffset.UTC));
 	}
 
 	public static String staticSearchFqDefaultRangeEnd(ComputateSiteRequest siteRequest_, String o) {
@@ -3083,7 +3230,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	}
 
 	public void setDefaultRangeStart(ZonedDateTime defaultRangeStart) {
-		this.defaultRangeStart = defaultRangeStart;
+		this.defaultRangeStart = Optional.ofNullable(defaultRangeStart).map(v -> v.truncatedTo(ChronoUnit.MILLIS)).orElse(null);
 	}
 	@JsonIgnore
 	public void setDefaultRangeStart(Instant o) {
@@ -3100,7 +3247,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		else if(StringUtils.endsWith(o, "Z"))
 			return o == null ? null : Instant.parse(o).atZone(Optional.ofNullable(siteRequest_).map(r -> r.getConfig()).map(config -> config.getString(ComputateConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))).truncatedTo(ChronoUnit.MILLIS);
 		else if(StringUtils.contains(o, "T"))
-			return o == null ? null : ZonedDateTime.parse(o, DateTimeFormatter.ISO_DATE_TIME).truncatedTo(ChronoUnit.MILLIS);
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER).truncatedTo(ChronoUnit.MILLIS);
 		else
 			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
 	}
@@ -3119,12 +3266,12 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		return (ComputatePageLayout)this;
 	}
 
-	public static Date staticSearchDefaultRangeStart(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
-		return o == null ? null : Date.from(o.toInstant());
+	public static String staticSearchDefaultRangeStart(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
+		return o == null ? null : Date.from(o.toInstant()).toString();
 	}
 
-	public static String staticSearchStrDefaultRangeStart(ComputateSiteRequest siteRequest_, Date o) {
-		return "\"" + DateTimeFormatter.ISO_DATE_TIME.format(o.toInstant().atOffset(ZoneOffset.UTC)) + "\"";
+	public static String staticSearchStrDefaultRangeStart(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER.format(ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER).toInstant().atOffset(ZoneOffset.UTC));
 	}
 
 	public static String staticSearchFqDefaultRangeStart(ComputateSiteRequest siteRequest_, String o) {
@@ -4161,6 +4308,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 				defaultZoneIdInit();
 				defaultTimeZoneInit();
 				defaultLocaleIdInit();
+				rowsInit();
+				startInit();
 				defaultLocaleInit();
 				rangeGapInit();
 				rangeEndInit();
@@ -4341,6 +4490,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 				return oComputatePageLayout.defaultTimeZone;
 			case "defaultLocaleId":
 				return oComputatePageLayout.defaultLocaleId;
+			case "rows":
+				return oComputatePageLayout.rows;
+			case "start":
+				return oComputatePageLayout.start;
 			case "defaultLocale":
 				return oComputatePageLayout.defaultLocale;
 			case "rangeGap":
@@ -4504,6 +4657,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSetDefaultZoneId(siteRequest_, o);
 		case "defaultLocaleId":
 			return ComputatePageLayout.staticSetDefaultLocaleId(siteRequest_, o);
+		case "rows":
+			return ComputatePageLayout.staticSetRows(siteRequest_, o);
+		case "start":
+			return ComputatePageLayout.staticSetStart(siteRequest_, o);
 		case "rangeGap":
 			return ComputatePageLayout.staticSetRangeGap(siteRequest_, o);
 		case "rangeEnd":
@@ -4642,6 +4799,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchDefaultZoneId(siteRequest_, (String)o);
 		case "defaultLocaleId":
 			return ComputatePageLayout.staticSearchDefaultLocaleId(siteRequest_, (String)o);
+		case "rows":
+			return ComputatePageLayout.staticSearchRows(siteRequest_, (Long)o);
+		case "start":
+			return ComputatePageLayout.staticSearchStart(siteRequest_, (Long)o);
 		case "rangeGap":
 			return ComputatePageLayout.staticSearchRangeGap(siteRequest_, (String)o);
 		case "rangeEnd":
@@ -4780,20 +4941,24 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchStrDefaultZoneId(siteRequest_, (String)o);
 		case "defaultLocaleId":
 			return ComputatePageLayout.staticSearchStrDefaultLocaleId(siteRequest_, (String)o);
+		case "rows":
+			return ComputatePageLayout.staticSearchStrRows(siteRequest_, (Long)o);
+		case "start":
+			return ComputatePageLayout.staticSearchStrStart(siteRequest_, (Long)o);
 		case "rangeGap":
 			return ComputatePageLayout.staticSearchStrRangeGap(siteRequest_, (String)o);
 		case "rangeEnd":
-			return ComputatePageLayout.staticSearchStrRangeEnd(siteRequest_, (Date)o);
+			return ComputatePageLayout.staticSearchStrRangeEnd(siteRequest_, (String)o);
 		case "rangeStart":
-			return ComputatePageLayout.staticSearchStrRangeStart(siteRequest_, (Date)o);
+			return ComputatePageLayout.staticSearchStrRangeStart(siteRequest_, (String)o);
 		case "defaultRangeStats":
 			return ComputatePageLayout.staticSearchStrDefaultRangeStats(siteRequest_, (String)o);
 		case "defaultRangeGap":
 			return ComputatePageLayout.staticSearchStrDefaultRangeGap(siteRequest_, (String)o);
 		case "defaultRangeEnd":
-			return ComputatePageLayout.staticSearchStrDefaultRangeEnd(siteRequest_, (Date)o);
+			return ComputatePageLayout.staticSearchStrDefaultRangeEnd(siteRequest_, (String)o);
 		case "defaultRangeStart":
-			return ComputatePageLayout.staticSearchStrDefaultRangeStart(siteRequest_, (Date)o);
+			return ComputatePageLayout.staticSearchStrDefaultRangeStart(siteRequest_, (String)o);
 		case "defaultRangeVar":
 			return ComputatePageLayout.staticSearchStrDefaultRangeVar(siteRequest_, (String)o);
 		case "defaultFacetSort":
@@ -4918,6 +5083,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchFqDefaultZoneId(siteRequest_, o);
 		case "defaultLocaleId":
 			return ComputatePageLayout.staticSearchFqDefaultLocaleId(siteRequest_, o);
+		case "rows":
+			return ComputatePageLayout.staticSearchFqRows(siteRequest_, o);
+		case "start":
+			return ComputatePageLayout.staticSearchFqStart(siteRequest_, o);
 		case "rangeGap":
 			return ComputatePageLayout.staticSearchFqRangeGap(siteRequest_, o);
 		case "rangeEnd":
@@ -4979,6 +5148,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	}
 
 	public static final String CLASS_SIMPLE_NAME = "ComputatePageLayout";
+	public static final String CLASS_API_ADDRESS = "computate-vertx-enUS-ComputatePageLayout";
 	public static final String VAR_siteRequest_ = "siteRequest_";
 	public static final String VAR_lang = "lang";
 	public static final String VAR_requestVars = "requestVars";
@@ -5025,6 +5195,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public static final String VAR_defaultZoneId = "defaultZoneId";
 	public static final String VAR_defaultTimeZone = "defaultTimeZone";
 	public static final String VAR_defaultLocaleId = "defaultLocaleId";
+	public static final String VAR_rows = "rows";
+	public static final String VAR_start = "start";
 	public static final String VAR_defaultLocale = "defaultLocale";
 	public static final String VAR_rangeGap = "rangeGap";
 	public static final String VAR_rangeEnd = "rangeEnd";
@@ -5097,6 +5269,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_defaultZoneId = "";
 	public static final String DISPLAY_NAME_defaultTimeZone = "";
 	public static final String DISPLAY_NAME_defaultLocaleId = "";
+	public static final String DISPLAY_NAME_rows = "";
+	public static final String DISPLAY_NAME_start = "";
 	public static final String DISPLAY_NAME_defaultLocale = "";
 	public static final String DISPLAY_NAME_rangeGap = "";
 	public static final String DISPLAY_NAME_rangeEnd = "";
@@ -5220,6 +5394,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return DISPLAY_NAME_defaultTimeZone;
 		case VAR_defaultLocaleId:
 			return DISPLAY_NAME_defaultLocaleId;
+		case VAR_rows:
+			return DISPLAY_NAME_rows;
+		case VAR_start:
+			return DISPLAY_NAME_start;
 		case VAR_defaultLocale:
 			return DISPLAY_NAME_defaultLocale;
 		case VAR_rangeGap:

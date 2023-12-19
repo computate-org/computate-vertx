@@ -408,7 +408,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 				SolrResponse.Doc doc1 = docs.get(i);
 				String langueNom = "enUS";
 	
-				List<String> classeEntiteClassesSuperEtMoiSansGen = doc1.get("entiteClassesSuperEtMoiSansGen_stored_strings");
+				List<String> classeEntiteClassesSuperEtMoiSansGen = doc1.get("classesSuperEtMoiSansGen_stored_strings");
 				String fqClassesSuperEtMoi = "(" + classeEntiteClassesSuperEtMoiSansGen.stream().map(c -> SearchTool.escapeQueryChars(c)).collect(Collectors.joining(" OR ")) + ")";
 
 				SearchRequest searchClasses = new SearchRequest();

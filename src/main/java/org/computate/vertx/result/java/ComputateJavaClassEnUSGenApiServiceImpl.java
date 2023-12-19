@@ -95,6 +95,7 @@ import org.computate.vertx.result.java.ComputateJavaClassPage;
 
 /**
  * Translate: false
+ * Generated: true
  **/
 public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl implements ComputateJavaClassEnUSGenApiService {
 
@@ -108,7 +109,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 
 	@Override
 	public void searchComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
-		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, "computate-vertx-enUS-ComputateSiteUser", "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
+		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, ComputateSiteUser.CLASS_API_ADDRESS, "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
 				{
 					try {
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
@@ -234,7 +235,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 
 	@Override
 	public void getComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
-		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, "computate-vertx-enUS-ComputateSiteUser", "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
+		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, ComputateSiteUser.CLASS_API_ADDRESS, "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
 				{
 					try {
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
@@ -303,7 +304,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 
 	@Override
 	public void searchpageComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
-		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, "computate-vertx-enUS-ComputateSiteUser", "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
+		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, ComputateSiteUser.CLASS_API_ADDRESS, "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
 				{
 					try {
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
@@ -402,7 +403,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 		if(varIndexed == null)
 			throw new RuntimeException(String.format("\"%s\" is not an indexed entity. ", entityVar));
 		if(StringUtils.startsWith(valueIndexed, "[")) {
-			String[] fqs = StringUtils.substringBefore(StringUtils.substringAfter(valueIndexed, "["), "]").split(" TO ");
+			String[] fqs = StringUtils.substringAfter(StringUtils.substringBeforeLast(valueIndexed, "]"), "[").split(" TO ");
 			if(fqs.length != 2)
 				throw new RuntimeException(String.format("\"%s\" invalid range query. ", valueIndexed));
 			String fq1 = fqs[0].equals("*") ? fqs[0] : ComputateJavaClass.staticSearchFqForClass(entityVar, searchList.getSiteRequest_(ComputateSiteRequest.class), fqs[0]);
@@ -724,8 +725,8 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 		return promise.future();
 	}
 
-	public Future<Void> indexComputateJavaClass(ComputateJavaClass o) {
-		Promise<Void> promise = Promise.promise();
+	public Future<ComputateJavaClass> indexComputateJavaClass(ComputateJavaClass o) {
+		Promise<ComputateJavaClass> promise = Promise.promise();
 		try {
 			ComputateSiteRequest siteRequest = o.getSiteRequest_();
 			ApiRequest apiRequest = siteRequest.getApiRequest_();
@@ -748,7 +749,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 						softCommit = false;
 				String solrRequestUri = String.format("/solr/%s/update%s%s%s", solrCollection, "?overwrite=true&wt=json", softCommit ? "&softCommit=true" : "", commitWithin != null ? ("&commitWithin=" + commitWithin) : "");
 				webClient.post(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).putHeader("Content-Type", "application/json").expect(ResponsePredicate.SC_OK).sendBuffer(json.toBuffer()).onSuccess(b -> {
-					promise.complete();
+					promise.complete(o);
 				}).onFailure(ex -> {
 					LOG.error(String.format("indexComputateJavaClass failed. "), new RuntimeException(ex));
 					promise.fail(ex);

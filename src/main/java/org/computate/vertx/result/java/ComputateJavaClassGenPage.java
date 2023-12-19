@@ -38,11 +38,13 @@ import org.computate.vertx.config.ComputateConfigKeys;
 import org.computate.search.response.solr.SolrResponse;
 import java.util.HashMap;
 import org.computate.search.tool.TimeTool;
+import org.computate.search.tool.SearchTool;
 import java.time.ZoneId;
 
 
 /**
  * Translate: false
+ * Generated: true
  **/
 public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<ComputatePageLayout> {
 
@@ -121,7 +123,7 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Comp
 			json.put("var", var);
 			json.put("displayName", Optional.ofNullable(ComputateJavaClass.displayNameComputateJavaClass(var)).map(d -> StringUtils.isBlank(d) ? var : d).orElse(var));
 			json.put("classSimpleName", Optional.ofNullable(ComputateJavaClass.classSimpleNameComputateJavaClass(var)).map(d -> StringUtils.isBlank(d) ? var : d).orElse(var));
-			json.put("val", Optional.ofNullable(searchListComputateJavaClass_.getRequest().getQuery()).filter(fq -> fq.startsWith(ComputateJavaClass.varIndexedComputateJavaClass(var) + ":")).map(s -> StringUtils.substringAfter(s, ":")).orElse(null));
+			json.put("val", Optional.ofNullable(searchListComputateJavaClass_.getRequest().getQuery()).filter(fq -> fq.startsWith(ComputateJavaClass.varIndexedComputateJavaClass(var) + ":")).map(s -> SearchTool.unescapeQueryChars(StringUtils.substringAfter(s, ":"))).orElse(null));
 			vars.put(var, json);
 		});
 	}
@@ -139,7 +141,7 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Comp
 			String type = StringUtils.substringAfterLast(varIndexed, "_");
 			json.put("displayName", Optional.ofNullable(ComputateJavaClass.displayNameComputateJavaClass(var)).map(d -> StringUtils.isBlank(d) ? var : d).orElse(var));
 			json.put("classSimpleName", Optional.ofNullable(ComputateJavaClass.classSimpleNameComputateJavaClass(var)).map(d -> StringUtils.isBlank(d) ? var : d).orElse(var));
-			json.put("val", searchListComputateJavaClass_.getRequest().getFilterQueries().stream().filter(fq -> fq.startsWith(ComputateJavaClass.varIndexedComputateJavaClass(var) + ":")).findFirst().map(s -> StringUtils.substringAfter(s, ":")).orElse(null));
+			json.put("val", searchListComputateJavaClass_.getRequest().getFilterQueries().stream().filter(fq -> fq.startsWith(ComputateJavaClass.varIndexedComputateJavaClass(var) + ":")).findFirst().map(s -> SearchTool.unescapeQueryChars(StringUtils.substringAfter(s, ":"))).orElse(null));
 			Optional.ofNullable(stats).map(s -> s.get(varIndexed)).ifPresent(stat -> {
 				json.put("stats", JsonObject.mapFrom(stat));
 			});
@@ -207,7 +209,7 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Comp
 			json.put("var", var);
 			json.put("displayName", Optional.ofNullable(ComputateJavaClass.displayNameComputateJavaClass(var)).map(d -> StringUtils.isBlank(d) ? var : d).orElse(var));
 			json.put("classSimpleName", Optional.ofNullable(ComputateJavaClass.classSimpleNameComputateJavaClass(var)).map(d -> StringUtils.isBlank(d) ? var : d).orElse(var));
-			json.put("val", searchListComputateJavaClass_.getRequest().getFilterQueries().stream().filter(fq -> fq.startsWith(ComputateJavaClass.varIndexedComputateJavaClass(var) + ":")).findFirst().map(s -> StringUtils.substringAfter(s, ":")).orElse(null));
+			json.put("val", searchListComputateJavaClass_.getRequest().getFilterQueries().stream().filter(fq -> fq.startsWith(ComputateJavaClass.varIndexedComputateJavaClass(var) + ":")).findFirst().map(s -> SearchTool.unescapeQueryChars(StringUtils.substringAfter(s, ":"))).orElse(null));
 			vars.put(var, json);
 		});
 	}
@@ -296,6 +298,18 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Comp
 	@Override
 	protected void _defaultLocale(Wrap<Locale> w) {
 		w.o(Locale.forLanguageTag(defaultLocaleId));
+	}
+
+	@Override
+	protected void _rows(Wrap<Long> w) {
+		if(serviceRequest.getParams().getJsonObject("query").getString("rows", null) != null)
+			w.o(searchListComputateJavaClass_.getRows());
+	}
+
+	@Override
+	protected void _start(Wrap<Long> w) {
+		if(serviceRequest.getParams().getJsonObject("query").getString("start", null) != null)
+			w.o(searchListComputateJavaClass_.getStart());
 	}
 
 	@Override

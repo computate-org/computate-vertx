@@ -1,12 +1,15 @@
 package org.computate.vertx.result.java;
 
 import org.computate.vertx.request.ComputateSiteRequest;
+import org.computate.vertx.page.ComputatePageLayout;
 import org.computate.vertx.api.ApiRequest;
 import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -29,7 +32,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
-import org.computate.vertx.page.ComputatePageLayout;
 import org.computate.vertx.search.list.SearchList;
 import org.computate.vertx.result.java.ComputateJavaClass;
 import io.vertx.core.json.JsonArray;
@@ -39,9 +41,9 @@ import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
 
-/**	
-<ol>
-0<h3>Suggestions that can generate more code for you: </h3></ol>
+/**
+ * <ol>
+<h3>Suggestions that can generate more code for you: </h3> * </ol>
  * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these ComputateJavaClassGenPage objects in a RESTful API. 
  * </li><li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ComputateJavaClassGenPageGen into the class ComputateJavaClassGenPage. 
  * </li>
@@ -61,21 +63,21 @@ import io.vertx.core.Future;
  * The generated <code>class ComputateJavaClassGenPageGen extends ComputatePageLayout</code> which means that ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen which extends ComputatePageLayout. 
  * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
- * Api: true
- * ApiTag.enUS: true
- * ApiUri.enUS: null
- * Color: null
- * IconGroup: null
- * IconName: null
- * Indexed: true
- * {@inheritDoc}
+ * <h2>Api: true</h2>
+ * <h2>ApiTag.enUS: true</h2>
+ * <h2>ApiUri.enUS: null</h2>
+ * <h2>Color: null</h2>
+ * <h2>IconGroup: null</h2>
+ * <h2>IconName: null</h2>
+ * <h2>Indexed: true</h2>
+ * <h2>{@inheritDoc}</h2>
  * <p>By adding a class comment "{@inheritDoc}", the ComputateJavaClassGenPage class will inherit the helpful inherited class comments from the super class ComputateJavaClassGenPageGen. 
  * </p>
- * Rows: null
- * Model: true
- * Page: true
- * SuperPage.enUS: null
- * Promise: true
+ * <h2>Rows: null</h2>
+ * <h2>Model: true</h2>
+ * <h2>Page: true</h2>
+ * <h2>SuperPage.enUS: null</h2>
+ * <h2>Promise: true</h2>
  * <p>
  *   This class contains a comment <b>"Promise: true"</b>
  *   Sometimes a Java class must be initialized asynchronously when it involves calling a blocking API. 
@@ -98,7 +100,7 @@ import io.vertx.core.Future;
  * <p>
  *   If a super class of this Java class with `Model: true`, then the child class will also inherit `Promise: true`. 
  * </p>
- * AName.enUS: null
+ * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class ComputateJavaClassGenPage in Solr: 
  * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClassGenPage&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
@@ -111,6 +113,7 @@ import io.vertx.core.Future;
  * Delete  the project computate-vertx in Solr: 
  * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
+ * Generated: true
  **/
 public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLayout {
 	protected static final Logger LOG = LoggerFactory.getLogger(ComputateJavaClassGenPage.class);
@@ -636,6 +639,7 @@ public abstract class ComputateJavaClassGenPageGen<DEV> extends ComputatePageLay
 	}
 
 	public static final String CLASS_SIMPLE_NAME = "ComputateJavaClassGenPage";
+	public static final String CLASS_API_ADDRESS = "computate-vertx-enUS-ComputateJavaClassGenPage";
 	public static final String VAR_searchListComputateJavaClass_ = "searchListComputateJavaClass_";
 	public static final String VAR_listComputateJavaClass = "listComputateJavaClass";
 	public static final String VAR_computateJavaClassCount = "computateJavaClassCount";

@@ -311,6 +311,12 @@ public class ComputatePageLayout extends ComputatePageLayoutGen<Object> {
 		w.o(Optional.ofNullable(siteRequest_.getRequestHeaders().get("Accept-Language")).map(acceptLanguage -> StringUtils.substringBefore(acceptLanguage, ",")).orElse(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_LOCALE)));
 	}
 
+	protected void _rows(Wrap<Long> w) {
+	}
+
+	protected void _start(Wrap<Long> w) {
+	}
+
 	/**
 	 * Ignore: true
 	 **/

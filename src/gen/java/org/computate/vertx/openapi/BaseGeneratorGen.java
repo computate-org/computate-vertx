@@ -14,6 +14,7 @@
 package org.computate.vertx.openapi;
 
 import org.computate.vertx.request.ComputateSiteRequest;
+import java.lang.Object;
 import org.computate.vertx.api.ApiRequest;
 import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
@@ -44,7 +45,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
-import java.lang.Object;
 import io.vertx.core.Vertx;
 import io.vertx.ext.web.client.WebClient;
 import io.vertx.core.json.JsonObject;

@@ -55,6 +55,11 @@ public class ComputateConfigKeys {
 	public static final String RUN_ARTICLE_GENERATOR = "RUN_ARTICLE_GENERATOR";
 
 	/**
+	 * Run the project Generator to copy platform static files and resources to the project. 
+	 **/
+	public static final String RUN_PROJECT_GENERATOR = "RUN_PROJECT_GENERATOR";
+
+	/**
 	 * Run the FIWARE Generator to generate Smart Model Data when this environment variable is set to true. 
 	 **/
 	public static final String RUN_FIWARE_GENERATOR = "RUN_FIWARE_GENERATOR";

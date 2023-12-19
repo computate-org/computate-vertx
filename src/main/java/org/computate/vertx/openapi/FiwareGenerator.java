@@ -36,7 +36,7 @@ import io.vertx.core.json.JsonObject;
 /**
  * InitDeepBefore: true
  */
-public class FiwareGenerator extends FiwareGeneratorGen<BaseGenerator> {
+public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 
 	protected void _fiwareSwaggerYamlPath(Wrap<String> c) {
 		c.o(appPath + "-static/fiware/swagger.yaml");

@@ -1,12 +1,15 @@
 package org.computate.vertx.result.java;
 
 import org.computate.vertx.request.ComputateSiteRequest;
+import java.lang.Object;
 import org.computate.vertx.api.ApiRequest;
 import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -29,7 +32,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
-import java.lang.Object;
 import java.lang.Void;
 import java.lang.String;
 import java.time.ZonedDateTime;
@@ -54,9 +56,9 @@ import io.vertx.core.Future;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.computate.search.response.solr.SolrResponse;
 
-/**	
-<ol>
-0<h3>Suggestions that can generate more code for you: </h3></ol>
+/**
+ * <ol>
+<h3>Suggestions that can generate more code for you: </h3> * </ol>
  * <li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ComputateJavaClassGen into the class ComputateJavaClass. 
  * </li><li>You can add a class comment "Rows: 100" if you wish the ComputateJavaClass API to return more or less than 10 records by default. 
  * In this case, the API will return 100 records from the API instead of 10 by default. 
@@ -83,62 +85,62 @@ import org.computate.search.response.solr.SolrResponse;
  * The generated <code>class ComputateJavaClassGen extends Object</code> which means that ComputateJavaClass extends ComputateJavaClassGen which extends Object. 
  * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
- * Api: true
+ * <h2>Api: true</h2>
  * <p>This class contains a comment <b>"Api: true"</b>, which means this class will have Java Vert.x API backend code generated for these objects. 
  * </p>
- * ApiMethode: Search
+ * <h2>ApiMethode: Search</h2>
  * <p>This class contains a comment <b>"ApiMethod: Search"</b>, which creates an API "Search". 
  * </p>
- * ApiMethode: GET
+ * <h2>ApiMethode: GET</h2>
  * <p>This class contains a comment <b>"ApiMethod: GET"</b>, which creates an API "GET". 
  * </p>
- * ApiMethode: SearchPage
+ * <h2>ApiMethode: SearchPage</h2>
  * <p>This class contains a comment <b>"ApiMethod: SearchPage"</b>, which creates an API "SearchPage". 
  * </p>
- * ApiTag.enUS: true
+ * <h2>ApiTag.enUS: true</h2>
  * <p>This class contains a comment <b>"ApiTag: Java Class"</b>, which groups all of the OpenAPIs for ComputateJavaClass objects under the tag "Java Class". 
  * </p>
- * ApiUri.enUS: /api/java-class
+ * <h2>ApiUri.enUS: /api/java-class</h2>
  * <p>This class contains a comment <b>"ApiUri: /api/java-class"</b>, which defines the base API URI for ComputateJavaClass objects as "/api/java-class" in the OpenAPI spec. 
  * </p>
- * Color: blue
+ * <h2>Color: blue</h2>
  * <p>This class contains a comment <b>"Color: blue"</b>, which styles the ComputateJavaClass page "blue". 
  * This will reference a CSS class defined by the stylesheets in the project that starts with "w3-". 
  * A css class of "w3-blue" is expected to exist in the project stylesheets, and is inspired by W3 CSS colors. 
  * See: <a href="https://www.w3schools.com/w3css/w3css_colors.asp">https://www.w3schools.com/w3css/w3css_colors.asp</a>. 
  * </p>
- * IconGroup: duotone
+ * <h2>IconGroup: duotone</h2>
  * <p>This class contains a comment <b>"IconGroup: duotone"</b>, which adds icons on the ComputateJavaClass page with a group of "duotone". 
  * This will reference a Font Awesome icon group that starts with "fa-" followed by the icon group "duotone", together is "fa-duotone". 
  * A Font Awesome icon group of "duotone" is expected to exist. 
  * The Font Awesome groups currently supported include: solid, regular, light, thin, duotone, sharp, and kit. 
  * See: <a href="https://fontawesome.com/docs/web/dig-deeper/styles">https://fontawesome.com/docs/web/dig-deeper/styles</a>. 
  * </p>
- * IconName: map-location-dot
+ * <h2>IconName: map-location-dot</h2>
  * <p>This class contains a comment <b>"IconName: map-location-dot"</b>, which adds icons on the ComputateJavaClass page with a name of "map-location-dot". 
  * This will reference a Font Awesome icon that starts with the icon group "fa-duotone fa-" followed by the icon name, which is "fa-duotone fa-map-location-dot". 
  * A Font Awesome icon of "fa-duotone fa-map-location-dot" is expected to exist. 
  * See: <a href="https://fontawesome.com/icons">https://fontawesome.com/icons</a>. 
  * </p>
- * Indexed: true
+ * <h2>Indexed: true</h2>
  * <p>This class contains a comment <b>"Indexed: true"</b>, which means this class will be indexed in the search engine. 
  * Every protected void method that begins with "_" that is marked to be searched with a comment like "Indexed: true", "Stored: true", or "DocValues: true" will be indexed in the search engine. 
  * </p>
- * {@inheritDoc}
+ * <h2>{@inheritDoc}</h2>
  * <p>By adding a class comment "{@inheritDoc}", the ComputateJavaClass class will inherit the helpful inherited class comments from the super class ComputateJavaClassGen. 
  * </p>
- * Rows: null
- * Model: true
- * Page: true
+ * <h2>Rows: null</h2>
+ * <h2>Model: true</h2>
+ * <h2>Page: true</h2>
  * <p>This class contains a comment <b>"Page: true"</b>, which means this class will have webpage code generated for these objects. 
  * Java Vert.x backend API code, Handlebars HTML template frontend code, and JavaScript code will all generated and can be extended. 
  * This creates a new Java class org.computate.vertx.result.java.ComputateJavaClassPage. 
  * </p>
- * SuperPage.enUS: ComputatePageLayout
+ * <h2>SuperPage.enUS: ComputatePageLayout</h2>
  * <p>This class contains a comment <b>"SuperPage.enUS: ComputatePageLayout"</b>, which identifies the Java super class of the page code by it's class simple name "ComputatePageLayout". 
  * This means that the newly created class org.computate.vertx.result.java.ComputateJavaClassPage extends org.computate.vertx.page.ComputatePageLayout. 
  * </p>
- * Promise: true
+ * <h2>Promise: true</h2>
  * <p>
  *   This class contains a comment <b>"Promise: true"</b>
  *   Sometimes a Java class must be initialized asynchronously when it involves calling a blocking API. 
@@ -161,7 +163,7 @@ import org.computate.search.response.solr.SolrResponse;
  * <p>
  *   If a super class of this Java class with `Model: true`, then the child class will also inherit `Promise: true`. 
  * </p>
- * AName.enUS: a java class
+ * <h2>AName.enUS: a java class</h2>
  * <p>This class contains a comment <b>"AName.enUS: a java class"</b>, which identifies the language context to describe a ComputateJavaClass as "a java class". 
  * </p>
  * <p>
@@ -176,6 +178,7 @@ import org.computate.search.response.solr.SolrResponse;
  * Delete  the project computate-vertx in Solr: 
  * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
+ * Generated: true
  **/
 public abstract class ComputateJavaClassGen<DEV> extends Object {
 	protected static final Logger LOG = LoggerFactory.getLogger(ComputateJavaClass.class);
@@ -378,7 +381,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	}
 
 	public void setCreated(ZonedDateTime created) {
-		this.created = created;
+		this.created = Optional.ofNullable(created).map(v -> v.truncatedTo(ChronoUnit.MILLIS)).orElse(null);
 	}
 	@JsonIgnore
 	public void setCreated(Instant o) {
@@ -395,7 +398,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 		else if(StringUtils.endsWith(o, "Z"))
 			return o == null ? null : Instant.parse(o).atZone(Optional.ofNullable(siteRequest_).map(r -> r.getConfig()).map(config -> config.getString(ComputateConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))).truncatedTo(ChronoUnit.MILLIS);
 		else if(StringUtils.contains(o, "T"))
-			return o == null ? null : ZonedDateTime.parse(o, DateTimeFormatter.ISO_DATE_TIME).truncatedTo(ChronoUnit.MILLIS);
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER).truncatedTo(ChronoUnit.MILLIS);
 		else
 			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
 	}
@@ -414,12 +417,12 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 		return (ComputateJavaClass)this;
 	}
 
-	public static Date staticSearchCreated(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
-		return o == null ? null : Date.from(o.toInstant());
+	public static String staticSearchCreated(ComputateSiteRequest siteRequest_, ZonedDateTime o) {
+		return o == null ? null : Date.from(o.toInstant()).toString();
 	}
 
-	public static String staticSearchStrCreated(ComputateSiteRequest siteRequest_, Date o) {
-		return "\"" + DateTimeFormatter.ISO_DATE_TIME.format(o.toInstant().atOffset(ZoneOffset.UTC)) + "\"";
+	public static String staticSearchStrCreated(ComputateSiteRequest siteRequest_, String o) {
+		return ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER.format(ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER).toInstant().atOffset(ZoneOffset.UTC));
 	}
 
 	public static String staticSearchFqCreated(ComputateSiteRequest siteRequest_, String o) {
@@ -10297,7 +10300,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 		case "inheritPk":
 			return ComputateJavaClass.staticSearchStrInheritPk(siteRequest_, (String)o);
 		case "created":
-			return ComputateJavaClass.staticSearchStrCreated(siteRequest_, (Date)o);
+			return ComputateJavaClass.staticSearchStrCreated(siteRequest_, (String)o);
 		case "archived":
 			return ComputateJavaClass.staticSearchStrArchived(siteRequest_, (Boolean)o);
 		case "deleted":
@@ -11016,7 +11019,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	}
 	public void populateComputateJavaClass(SolrResponse.Doc doc) {
 		ComputateJavaClass oComputateJavaClass = (ComputateJavaClass)this;
-		saves = doc.get("saves_docvalues_strings");
+		saves = Optional.ofNullable((ArrayList<String>)doc.get("saves_docvalues_strings")).orElse(new ArrayList<String>());
 		if(saves != null) {
 
 			if(saves.contains("inheritPk")) {
@@ -11026,7 +11029,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 			}
 
 			if(saves.contains("created")) {
-				Date created = (Date)doc.get("created_docvalues_date");
+				String created = (String)doc.get("created_docvalues_date");
 				if(created != null)
 					oComputateJavaClass.setCreated(created);
 			}
@@ -11355,24 +11358,25 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	}
 	public void storeComputateJavaClass(SolrResponse.Doc doc) {
 		ComputateJavaClass oComputateJavaClass = (ComputateJavaClass)this;
+		ComputateSiteRequest siteRequest = oComputateJavaClass.getSiteRequest_();
 
 		oComputateJavaClass.setInheritPk(Optional.ofNullable(doc.get("inheritPk_docvalues_string")).map(v -> v.toString()).orElse(null));
 		oComputateJavaClass.setCreated(Optional.ofNullable(doc.get("created_docvalues_date")).map(v -> v.toString()).orElse(null));
 		oComputateJavaClass.setArchived(Optional.ofNullable(doc.get("archived_docvalues_boolean")).map(v -> v.toString()).orElse(null));
 		oComputateJavaClass.setDeleted(Optional.ofNullable(doc.get("deleted_docvalues_boolean")).map(v -> v.toString()).orElse(null));
 		Optional.ofNullable((List<?>)doc.get("classCanonicalNames_docvalues_strings")).orElse(Arrays.asList()).stream().filter(v -> v != null).forEach(v -> {
-			oComputateJavaClass.addClassCanonicalNames(v.toString());
+			oComputateJavaClass.addClassCanonicalNames(ComputateJavaClass.staticSetClassCanonicalNames(siteRequest, v.toString()));
 		});
 		oComputateJavaClass.setSessionId(Optional.ofNullable(doc.get("sessionId_docvalues_string")).map(v -> v.toString()).orElse(null));
 		oComputateJavaClass.setUserKey(Optional.ofNullable(doc.get("userKey_docvalues_long")).map(v -> v.toString()).orElse(null));
 		Optional.ofNullable((List<?>)doc.get("saves_docvalues_strings")).orElse(Arrays.asList()).stream().filter(v -> v != null).forEach(v -> {
-			oComputateJavaClass.addSaves(v.toString());
+			oComputateJavaClass.addSaves(ComputateJavaClass.staticSetSaves(siteRequest, v.toString()));
 		});
 		oComputateJavaClass.setObjectTitle(Optional.ofNullable(doc.get("objectTitle_docvalues_string")).map(v -> v.toString()).orElse(null));
 		oComputateJavaClass.setObjectId(Optional.ofNullable(doc.get("objectId_docvalues_string")).map(v -> v.toString()).orElse(null));
 		oComputateJavaClass.setObjectSuggest(Optional.ofNullable(doc.get("objectSuggest_suggested")).map(v -> v.toString()).orElse(null));
 		Optional.ofNullable((List<?>)doc.get("objectText_text_enUS")).orElse(Arrays.asList()).stream().filter(v -> v != null).forEach(v -> {
-			oComputateJavaClass.addObjectText(v.toString());
+			oComputateJavaClass.addObjectText(ComputateJavaClass.staticSetObjectText(siteRequest, v.toString()));
 		});
 		oComputateJavaClass.setPageUrlId(Optional.ofNullable(doc.get("pageUrlId_docvalues_string")).map(v -> v.toString()).orElse(null));
 		oComputateJavaClass.setPageUrlPk(Optional.ofNullable(doc.get("pageUrlPk_docvalues_string")).map(v -> v.toString()).orElse(null));
@@ -11463,6 +11467,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	}
 
 	public static final String CLASS_SIMPLE_NAME = "ComputateJavaClass";
+	public static final String CLASS_API_ADDRESS = "computate-vertx-enUS-ComputateJavaClass";
 	public static final String VAR_siteRequest_ = "siteRequest_";
 	public static final String VAR_promiseBefore = "promiseBefore";
 	public static final String VAR_inheritPk = "inheritPk";
