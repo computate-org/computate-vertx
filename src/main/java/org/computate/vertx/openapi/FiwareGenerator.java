@@ -340,6 +340,9 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 			wFiwareOperatorVars.tl(4, "enum:");
 			wFiwareOperatorVars.tl(5, "- MQTT");
 			wFiwareOperatorVars.tl(5, "- AMQP");
+			wFiwareOperatorVars.tl(3, "namespace:");
+			wFiwareOperatorVars.tl(4, "type: string");
+			wFiwareOperatorVars.tl(4, "default: amqbroker");
 			wFiwareOperatorVars.tl(3, "host:");
 			wFiwareOperatorVars.tl(4, "type: string");
 			wFiwareOperatorVars.tl(4, "default: default-mqtt-0-svc.amqbroker.svc");

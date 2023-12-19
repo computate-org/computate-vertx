@@ -727,7 +727,6 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 	}
 
 	public static final String CLASS_SIMPLE_NAME = "FiwareGenerator";
-	public static final String CLASS_API_ADDRESS = "computate-vertx-enUS-FiwareGenerator";
 	public static final String VAR_fiwareSwaggerYamlPath = "fiwareSwaggerYamlPath";
 	public static final String VAR_fiwareSwaggerYamlFile = "fiwareSwaggerYamlFile";
 	public static final String VAR_wFiwareSwagger = "wFiwareSwagger";
