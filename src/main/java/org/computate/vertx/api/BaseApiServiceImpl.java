@@ -747,6 +747,8 @@ public abstract class BaseApiServiceImpl {
 
 	public abstract String searchVar(String varIndexed);
 
+	public abstract String getClassApiAddress();
+
 	public void calendarStuff() {
 		
 	}

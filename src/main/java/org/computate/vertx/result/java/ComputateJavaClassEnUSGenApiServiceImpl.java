@@ -109,7 +109,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 
 	@Override
 	public void searchComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
-		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, ComputateSiteUser.CLASS_API_ADDRESS, "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
+		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, getClassApiAddress(), "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
 				{
 					try {
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
@@ -235,7 +235,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 
 	@Override
 	public void getComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
-		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, ComputateSiteUser.CLASS_API_ADDRESS, "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
+		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, getClassApiAddress(), "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
 				{
 					try {
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
@@ -304,7 +304,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 
 	@Override
 	public void searchpageComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
-		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, ComputateSiteUser.CLASS_API_ADDRESS, "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
+		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, getClassApiAddress(), "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
 				{
 					try {
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
@@ -767,5 +767,10 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 
 	public String searchVar(String varIndexed) {
 		return ComputateJavaClass.searchVarComputateJavaClass(varIndexed);
+	}
+
+	@Override
+	public String getClassApiAddress() {
+		return ComputateSiteUser.CLASS_API_ADDRESS_ComputateSiteUser;
 	}
 }
