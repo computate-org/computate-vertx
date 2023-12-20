@@ -290,7 +290,6 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 			wFiwareOperatorVars.tl(4, "default: iotagent-json");
 			wFiwareOperatorVars.tl(3, "namespace:");
 			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: iotagent");
 			wFiwareOperatorVars.tl(3, "service_name:");
 			wFiwareOperatorVars.tl(4, "type: string");
 			wFiwareOperatorVars.tl(4, "default: iotagent-json");
@@ -304,7 +303,6 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 			wFiwareOperatorVars.tl(4, "default: scorpiobroker");
 			wFiwareOperatorVars.tl(3, "namespace:");
 			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: scorpiobroker");
 			wFiwareOperatorVars.tl(3, "service_name:");
 			wFiwareOperatorVars.tl(4, "type: string");
 			wFiwareOperatorVars.tl(4, "default: scorpiobroker");
@@ -342,7 +340,6 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 			wFiwareOperatorVars.tl(5, "- AMQP");
 			wFiwareOperatorVars.tl(3, "namespace:");
 			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: amqbroker");
 			wFiwareOperatorVars.tl(3, "host:");
 			wFiwareOperatorVars.tl(4, "type: string");
 			wFiwareOperatorVars.tl(4, "default: default-mqtt-0-svc.amqbroker.svc");
