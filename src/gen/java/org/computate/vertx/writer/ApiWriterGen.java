@@ -14,6 +14,7 @@
 package org.computate.vertx.writer;
 
 import org.computate.vertx.request.ComputateSiteRequest;
+import java.lang.Object;
 import org.computate.vertx.api.ApiRequest;
 import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
@@ -44,7 +45,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
-import java.lang.Object;
 import org.computate.search.computate.enus.ComputateEnUSClass;
 import org.computate.search.response.solr.SolrResponse.Doc;
 import java.lang.Integer;
@@ -3501,7 +3501,6 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	}
 
 	public static final String CLASS_SIMPLE_NAME = "ApiWriter";
-	public static final String CLASS_API_ADDRESS = "computate-vertx-enUS-ApiWriter";
 	public static final String VAR_siteRequest_ = "siteRequest_";
 	public static final String VAR_classDoc = "classDoc";
 	public static final String VAR_classSolrDocument = "classSolrDocument";

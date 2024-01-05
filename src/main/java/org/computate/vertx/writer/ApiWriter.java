@@ -319,7 +319,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 	}
 
 	public void  writeEntitySchema(Integer numberTabs, AllWriter w, String apiRequestOrResponse) throws Exception, Exception {
-		numberTabs = numberTabs == null ? (classApiMethod.contains("Search") && "response".equals(apiRequestOrResponse) ? 3 : 0) : numberTabs;
+		numberTabs = numberTabs == null ? (classApiMethod.contains("Search") && "response".equals(apiRequestOrResponse) ? 3 : ("PUT".equals(classApiMethodMethod) ? 3 : 0)) : numberTabs;
 		if(entityJsonType != null) {
 
 			if("PATCH".equals(classApiMethodMethod)) {
@@ -788,6 +788,14 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				}
 				wSchemas.tl(tabsSchema + 2, "- type: object");
 				wSchemas.tl(tabsSchema + 3, "properties:");
+				if("PUT".equals(classApiMethodMethod)) {
+					wSchemas.tl(tabsSchema + 4, "list:");
+					wSchemas.tl(tabsSchema + 5, "type: array");
+					wSchemas.tl(tabsSchema + 5, "items:");
+					wSchemas.tl(tabsSchema + 6, "type: object");
+					wSchemas.tl(tabsSchema + 6, "properties:");
+					
+				}
 				wSchemas.s(wRequestSchema.toString());
 			}
 
