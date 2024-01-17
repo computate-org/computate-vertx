@@ -2,8 +2,31 @@
 ENABLE_STATIC: false
 ENABLE_ANSIBLE: false
 ENABLE_LAUNCH: false
-ENABLE_CONFIG_TEMPLATE: false
+ENABLE_CONFIG_TEMPLATE: true
 SITE_NAME: computate-vertx
 SITE_SERVICES:
   - SITE_NAME: "computate-vertx"
-    SITE_SRC: "/home/ctate/.local/src/computate-vertx"
+    SITE_SRC: "{{ SITE_PREFIX }}/computate-vertx"
+DOMAIN_NAME: computate.org
+DOMAIN_PACKAGE_NAME: org.computate.vertx
+SITE_BASE_URL: https://www.computate.org
+SITE_ZONE: America/Denver
+SITE_LOCALE: en-US
+# The Auth roles required to be a super admin in the site. 
+AUTH_ROLE_SUPER_ADMIN: SiteAdmin
+# The Auth roles required to be an admin in the site. 
+AUTH_ROLE_ADMIN: SiteAdmin
+AUTH_FINE_GRAINED_POLICY_PERMISSIONS: false
+# Write API code into the project. 
+WRITE_API: false
+# Write code comments into generated code. 
+WRITE_COMMENTS: true
+ENABLE_LOG: false
+ENABLE_DELETED: false
+ENABLE_ARCHIVED: false
+ENABLE_USER_KEY: false
+ENABLE_SESSION_ID: false
+ENABLE_ROLE_ADMIN: false
+ENABLE_OPENID_CONNECT: false
+ENABLE_QUARKUS: false
+ENABLE_VERTX: false
