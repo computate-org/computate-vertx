@@ -626,7 +626,7 @@ public class ComputateConfigKeys {
 	public static final String ENABLE_IMPORT_DATA = "ENABLE_IMPORT_DATA";
 
 	/**
-	 * 
+	 * Parse a zoned time (HH:mm VV, example: 18:12 UTC, 13:12 America/New_York, 12:12 America/Chicago). 
 	 **/
 	public static final String IMPORT_DATA_START_TIME = "IMPORT_DATA_START_TIME";
 
@@ -636,7 +636,16 @@ public class ComputateConfigKeys {
 	public static final String IMPORT_DATA = "IMPORT_DATA";
 
 	/**
-	 * 
+	 * Parse a duration case-insensitive and add the duration to the given startDateTime. Examples:
+	 * 1 YEAR, 2 Years, 3 years
+	 * 1 MONTH, 2 Months, 3 months
+	 * 1 WEEK, 2 Weeks, 3 weeks
+	 * 1 DAY, 2 Days, 3 days
+	 * 1 HOUR, 2 Hours, 3 hours
+	 * 1 MINUTE, 2 Minutes, 3 minutes
+	 * 1 SECONDS, 2 Seconds, 3 seconds
+	 * 1 MILLISECOND, 1 milli, 2 Milliseconds, 3 millis
+	 * 1 NANOSECOND, 1 nano, 2 Nanoseconds, 3 nanos
 	 **/
 	public static final String IMPORT_DATA_PERIOD = "IMPORT_DATA_PERIOD";
 
