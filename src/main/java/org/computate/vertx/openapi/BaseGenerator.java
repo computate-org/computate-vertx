@@ -74,7 +74,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 		try {
 			ConfigRetrieverOptions retrieverOptions = new ConfigRetrieverOptions();
 
-			retrieverOptions.addStore(new ConfigStoreOptions().setType("file").setFormat("yaml").setConfig(new JsonObject().put("path", Thread.currentThread().getContextClassLoader().getResource("application.yml").getPath())));
+			retrieverOptions.addStore(new ConfigStoreOptions().setType("file").setFormat("yaml").setConfig(new JsonObject().put("path", Thread.currentThread().getContextClassLoader().getResource("application.yaml").getPath())));
 
 			String configPath = System.getenv(ComputateConfigKeys.CONFIG_PATH);
 			if(StringUtils.isNotBlank(configPath)) {
@@ -149,7 +149,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 	}
 
 	protected void _openApiYamlPath(Wrap<String> c) {
-		c.o(appPath + "/src/main/resources/webroot/" + ("2.0".equals(apiVersion) ? "swagger2" : "openapi3") + "-enUS.yml");
+		c.o(appPath + "/src/main/resources/webroot/" + ("2.0".equals(apiVersion) ? "swagger2" : "openapi3") + "-enUS.yaml");
 	}
 
 	protected void _openApiYamlFile(Wrap<File> c) {
@@ -173,7 +173,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 	}
 
 	protected void _articleYamlPath(Wrap<String> c) {
-		c.o(appPath + "/src/main/resources/article.yml");
+		c.o(appPath + "/src/main/resources/article.yaml");
 	}
 
 	protected void _articleYamlFile(Wrap<File> c) {

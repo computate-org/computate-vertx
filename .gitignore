@@ -16,7 +16,7 @@ buildNumber.properties
 *.p12
 *.jceks
 .vertx
-src/main/fabric8/*.yml
+src/main/fabric8/*.yaml
 **/*.swp
 .niogit*
 .index
