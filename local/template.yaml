@@ -1,8 +1,9 @@
 ---
-SITE_NAME: "{{ SITE_NAME }}"
-SITE_SRC: "{{ SITE_SRC }}"  
-DOMAIN_NAME: "{{ DOMAIN_NAME }}"
+SITE_NAME: computate-vertx
+DOMAIN_NAME: computate.org
+SITE_POM_ARTIFACT_ID: vertx
 DOMAIN_PACKAGE_NAME: "{{ DOMAIN_PACKAGE_NAME }}"
+RELATIVE_PATHS_TO_WATCH: "src/main/java/org/computate/search"
 SITE_BASE_URL: "{{ SITE_BASE_URL }}"
 SITE_ZONE: "{{ SITE_ZONE }}"
 SITE_LOCALE: "{{ SITE_LOCALE }}"
