@@ -14,10 +14,102 @@
  */
 package org.computate.vertx.config;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.yaml.snakeyaml.Yaml;
+
+import com.hubspot.jinjava.Jinjava;
+import com.hubspot.jinjava.JinjavaConfig;
+import com.hubspot.jinjava.lib.fn.ELFunctionDefinition;
+
+import io.kubernetes.client.common.KubernetesObject;
+import io.kubernetes.client.openapi.ApiClient;
+import io.kubernetes.client.openapi.Configuration;
+import io.kubernetes.client.openapi.apis.CoreV1Api;
+import io.kubernetes.client.openapi.models.V1Secret;
+import io.kubernetes.client.util.Config;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
+
 /**
  * Keyword: classSimpleNameConfigKeys
  */
 public class ComputateConfigKeys {
+
+	public static String lookup(String type, String arg1) {
+		if("env".equals(type))
+			return System.getenv(arg1);
+		return null;
+	}
+
+	public static KubernetesObject query(String type, String kind, String resource_name, String namespace) {
+		try {
+			if("kubernetes.core.k8s".equals(type)) {
+				ApiClient client = Config.defaultClient();
+				Configuration.setDefaultApiClient(client);
+				CoreV1Api api = new CoreV1Api();
+				if("Secret".equals(kind)) {
+					V1Secret secret = api.readNamespacedSecret(resource_name, namespace, "false");
+					return secret;
+				}
+			}
+		} catch(Exception ex) {
+			ExceptionUtils.rethrow(ex);
+		}
+		return null;
+	}
+
+	public static JsonObject getConfig() {
+		JsonObject configuration = null;
+
+		try {
+			String configChemin = System.getenv(CONFIG_VARS_PATH);
+			JinjavaConfig jinjavaConfig = new JinjavaConfig();
+			Jinjava jinjava = new Jinjava(jinjavaConfig);
+			
+			jinjava.registerFunction(new ELFunctionDefinition("", "lookup", ComputateConfigKeys.class, "lookup", String.class, String.class));
+			jinjava.registerFunction(new ELFunctionDefinition("", "query", ComputateConfigKeys.class, "query", String.class, String.class, String.class, String.class));
+
+			File configFichier = new File(configChemin);
+			String template = Files.readString(configFichier.toPath());
+			HashMap<String, Object> ctx = new HashMap<>();
+			configuration = new JsonObject();
+			Yaml yaml = new Yaml();
+			Map<String, Object> map = yaml.load(template);
+			for(String key : map.keySet()) {
+				Object val = map.get(key);
+				if(val instanceof String) {
+					String rendered = jinjava.render(val.toString(), ctx);
+					ctx.put(key, rendered);
+					configuration.put(key, rendered);
+				} else if(val instanceof ArrayList) {
+					List<Object> list1 = (List<Object>)val;
+					JsonArray list2 = new JsonArray();
+					for(Object item : list1) {
+						if(item instanceof String) {
+							String rendered = jinjava.render(item.toString(), ctx);
+							list2.add(rendered);
+						} else {
+							list2.add(item);
+						}
+						configuration.put(key, list2);
+					}
+				} else {
+					ctx.put(key, val);
+					configuration.put(key, val);
+				}
+			}
+		} catch(Exception ex) {
+			ExceptionUtils.rethrow(ex);
+		}
+		return configuration;
+	}
 
 	/**
 	 * API counter fetch SitePage
@@ -67,7 +159,7 @@ public class ComputateConfigKeys {
 	/**
 	 * The path to the config file of the site. 
 	 **/
-	public static final String CONFIG_PATH = "CONFIG_PATH";
+	public static final String CONFIG_VARS_PATH = "CONFIG_VARS_PATH";
 
 	/**
 	 * The INI Configuration Object for the config file. 
@@ -672,7 +764,12 @@ public class ComputateConfigKeys {
 	/**
 	 * 
 	 **/
-	public static final String ENABLE_KAFKA = "ENABLE_KAFKA";
+	public static final String KAFKA_ENABLED = "KAFKA_ENABLED";
+
+	/**
+	 * 
+	 **/
+	public static final String POSTGRES_ENABLED = "POSTGRES_ENABLED";
 
 	/**
 	 * 

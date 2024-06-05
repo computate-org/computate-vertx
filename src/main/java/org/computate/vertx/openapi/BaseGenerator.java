@@ -74,12 +74,11 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 		try {
 			ConfigRetrieverOptions retrieverOptions = new ConfigRetrieverOptions();
 
-			retrieverOptions.addStore(new ConfigStoreOptions().setType("file").setFormat("yaml").setConfig(new JsonObject().put("path", Thread.currentThread().getContextClassLoader().getResource("application.yaml").getPath())));
-
-			String configPath = System.getenv(ComputateConfigKeys.CONFIG_PATH);
-			if(StringUtils.isNotBlank(configPath)) {
-				ConfigStoreOptions configIni = new ConfigStoreOptions().setType("file").setFormat("yaml").setConfig(new JsonObject().put("path", configPath));
-				retrieverOptions.addStore(configIni);
+			String configVarsPath = System.getenv(ComputateConfigKeys.CONFIG_VARS_PATH);
+			if(StringUtils.isNotBlank(configVarsPath)) {
+				JsonObject config = ComputateConfigKeys.getConfig();
+				ConfigStoreOptions configOptions = new ConfigStoreOptions().setConfig(config);
+				retrieverOptions.addStore(configOptions);
 			}
 
 			ConfigStoreOptions storeEnv = new ConfigStoreOptions().setType("env");
