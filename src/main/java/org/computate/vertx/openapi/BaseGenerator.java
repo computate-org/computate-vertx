@@ -77,6 +77,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 			String configVarsPath = System.getenv(ComputateConfigKeys.CONFIG_VARS_PATH);
 			if(StringUtils.isNotBlank(configVarsPath)) {
 				JsonObject config = ComputateConfigKeys.getConfig();
+				LOG.info(config.encodePrettily());
 				ConfigStoreOptions configOptions = new ConfigStoreOptions().setConfig(config);
 				retrieverOptions.addStore(configOptions);
 			}
@@ -121,7 +122,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 	}
 
 	protected void _appPath(Wrap<String> c) {
-		c.o(config.getString(ComputateConfigKeys.SITE_PATH + "_" + languageName));
+		c.o(config.getString(ComputateConfigKeys.SITE_SRC));
 	}
 
 	protected void _platformPomArtifactId(Wrap<String> w) {

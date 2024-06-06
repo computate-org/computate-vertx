@@ -50,25 +50,24 @@ public class ComputateConfigKeys {
 
 
 	public static String lookup(String type, String arg1) {
-			System.out.println("JUNK");
 		if("env".equals(type))
 			return System.getenv(arg1);
 		return null;
 	}
 
 	public static KubernetesObject[] query(String type, String kind, String resource_name, String namespace) {
+		Logger LOG = LoggerFactory.getLogger(ComputateConfigKeys.class);
 		try {
 			if("kubernetes.core.k8s".equals(type)) {
 				ApiClient client = Config.defaultClient();
 				Configuration.setDefaultApiClient(client);
 				CoreV1Api api = new CoreV1Api();
 				if("Secret".equals(kind)) {
-					V1Secret secret = api.readNamespacedSecret(resource_name, namespace, "false");
+					V1Secret secret = api.readNamespacedSecret(resource_name, namespace).execute();
 					return new KubernetesObject[] {secret};
 				}
 			}
-		} catch(Exception ex) {
-			Logger LOG = LoggerFactory.getLogger(ComputateConfigKeys.class);
+		} catch(Throwable ex) {
 			LOG.error("kubernetes.core.k8s error", ex);
 			return null;
 		}
@@ -76,6 +75,7 @@ public class ComputateConfigKeys {
 	}
 
 	public static JsonObject getConfig() {
+		Logger LOG = LoggerFactory.getLogger(ComputateConfigKeys.class);
 		JsonObject configuration = null;
 
 		try {
@@ -182,6 +182,7 @@ public class ComputateConfigKeys {
 				}
 			}
 		} catch(Exception ex) {
+			LOG.error("configuration error", ex);
 			ExceptionUtils.rethrow(ex);
 		}
 		return configuration;
@@ -276,11 +277,6 @@ public class ComputateConfigKeys {
 	 * The name of the principal group of settings of the config for this website. 
 	 **/
 	public static final String SITE_IDENTIFIER = "SITE_IDENTIFIER";
-
-	/**
-	 * The path to the project of the site cloned from git. 
-	 **/
-	public static final String SITE_PATH = "SITE_PATH";
 
 	/**
 	 * The path to the basic authentication properties file with users and passwords. 
