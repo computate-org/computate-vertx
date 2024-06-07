@@ -110,7 +110,7 @@ public class ProjectGenerator extends ProjectGeneratorGen<BaseGenerator> {
 			} else {
 				vertx_.fileSystem().mkdirs(siteStaticJsDir.getAbsolutePath()).onComplete(a -> {
 					copyRecursive(vertx_, platformStaticJsDir.getAbsolutePath(), siteStaticJsDir.getAbsolutePath()).onComplete(b -> {
-						LOG.error(String.format(copyPlatformStaticFilesSuccess, platformStaticJsDir.getAbsolutePath(), siteStaticJsDir.getAbsolutePath()));
+						LOG.info(String.format(copyPlatformStaticFilesSuccess, platformStaticJsDir.getAbsolutePath(), siteStaticJsDir.getAbsolutePath()));
 						promise.complete();
 					}).onFailure(ex -> {
 						LOG.error(String.format(copyPlatformStaticFilesFail, platformStaticJsDir.getAbsolutePath(), siteStaticJsDir.getAbsolutePath()), ex);

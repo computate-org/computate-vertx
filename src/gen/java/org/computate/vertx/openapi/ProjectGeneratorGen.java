@@ -64,7 +64,7 @@ import io.vertx.core.json.JsonArray;
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
- * <p><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator">Find the class ProjectGenerator in Solr. </a></p>
+ * <p><a href="https://solr-solr-solrcloud.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator">Find the class ProjectGenerator in Solr. </a></p>
  * <p>
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
@@ -92,15 +92,15 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class ProjectGenerator in Solr: 
- * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr-solrcloud.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.openapi in Solr: 
- * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr-solrcloud.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr-solr-solrcloud.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * Generated: true
  **/
@@ -121,7 +121,7 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
 
 	/**	<br> The entity siteStaticPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteStaticPath">Find the entity siteStaticPath in Solr</a>
+	 * <br><a href="https://solr-solr-solrcloud.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteStaticPath">Find the entity siteStaticPath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -156,7 +156,7 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
 	}
 
 	public static String staticSearchFqSiteStaticPath(ComputateSiteRequest siteRequest_, String o) {
-		return ProjectGenerator.staticSearchStrSiteStaticPath(siteRequest_, ProjectGenerator.staticSearchSiteStaticPath(siteRequest_, ProjectGenerator.staticSetSiteStaticPath(siteRequest_, o)));
+		return ProjectGenerator.staticSearchSiteStaticPath(siteRequest_, ProjectGenerator.staticSetSiteStaticPath(siteRequest_, o)).toString();
 	}
 
 	/////////////////////
@@ -173,7 +173,7 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
 
 	/**	<br> The entity siteStaticJsDir
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteStaticJsDir">Find the entity siteStaticJsDir in Solr</a>
+	 * <br><a href="https://solr-solr-solrcloud.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteStaticJsDir">Find the entity siteStaticJsDir in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -214,7 +214,7 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
 
 	/**	<br> The entity platformStaticPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformStaticPath">Find the entity platformStaticPath in Solr</a>
+	 * <br><a href="https://solr-solr-solrcloud.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformStaticPath">Find the entity platformStaticPath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -249,7 +249,7 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
 	}
 
 	public static String staticSearchFqPlatformStaticPath(ComputateSiteRequest siteRequest_, String o) {
-		return ProjectGenerator.staticSearchStrPlatformStaticPath(siteRequest_, ProjectGenerator.staticSearchPlatformStaticPath(siteRequest_, ProjectGenerator.staticSetPlatformStaticPath(siteRequest_, o)));
+		return ProjectGenerator.staticSearchPlatformStaticPath(siteRequest_, ProjectGenerator.staticSetPlatformStaticPath(siteRequest_, o)).toString();
 	}
 
 	/////////////////////////
@@ -266,7 +266,7 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
 
 	/**	<br> The entity platformStaticJsDir
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformStaticJsDir">Find the entity platformStaticJsDir in Solr</a>
+	 * <br><a href="https://solr-solr-solrcloud.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformStaticJsDir">Find the entity platformStaticJsDir in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -307,7 +307,7 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
 
 	/**	<br> The entity siteResourcesPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteResourcesPath">Find the entity siteResourcesPath in Solr</a>
+	 * <br><a href="https://solr-solr-solrcloud.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteResourcesPath">Find the entity siteResourcesPath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -342,7 +342,7 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
 	}
 
 	public static String staticSearchFqSiteResourcesPath(ComputateSiteRequest siteRequest_, String o) {
-		return ProjectGenerator.staticSearchStrSiteResourcesPath(siteRequest_, ProjectGenerator.staticSearchSiteResourcesPath(siteRequest_, ProjectGenerator.staticSetSiteResourcesPath(siteRequest_, o)));
+		return ProjectGenerator.staticSearchSiteResourcesPath(siteRequest_, ProjectGenerator.staticSetSiteResourcesPath(siteRequest_, o)).toString();
 	}
 
 	//////////////////////
@@ -359,7 +359,7 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
 
 	/**	<br> The entity siteTemplatesDir
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteTemplatesDir">Find the entity siteTemplatesDir in Solr</a>
+	 * <br><a href="https://solr-solr-solrcloud.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteTemplatesDir">Find the entity siteTemplatesDir in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -400,7 +400,7 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
 
 	/**	<br> The entity platformResourcesPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformResourcesPath">Find the entity platformResourcesPath in Solr</a>
+	 * <br><a href="https://solr-solr-solrcloud.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformResourcesPath">Find the entity platformResourcesPath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -435,7 +435,7 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
 	}
 
 	public static String staticSearchFqPlatformResourcesPath(ComputateSiteRequest siteRequest_, String o) {
-		return ProjectGenerator.staticSearchStrPlatformResourcesPath(siteRequest_, ProjectGenerator.staticSearchPlatformResourcesPath(siteRequest_, ProjectGenerator.staticSetPlatformResourcesPath(siteRequest_, o)));
+		return ProjectGenerator.staticSearchPlatformResourcesPath(siteRequest_, ProjectGenerator.staticSetPlatformResourcesPath(siteRequest_, o)).toString();
 	}
 
 	//////////////////////////
@@ -452,7 +452,7 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
 
 	/**	<br> The entity platformTemplatesDir
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformTemplatesDir">Find the entity platformTemplatesDir in Solr</a>
+	 * <br><a href="https://solr-solr-solrcloud.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformTemplatesDir">Find the entity platformTemplatesDir in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
