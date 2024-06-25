@@ -74,7 +74,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 		try {
 			ConfigRetrieverOptions retrieverOptions = new ConfigRetrieverOptions();
 
-			String configVarsPath = System.getenv(ComputateConfigKeys.CONFIG_VARS_PATH);
+			String configVarsPath = System.getenv(ComputateConfigKeys.VARS_PATH);
 			if(StringUtils.isNotBlank(configVarsPath)) {
 				JsonObject config = ComputateConfigKeys.getConfig();
 				LOG.info(config.encodePrettily());

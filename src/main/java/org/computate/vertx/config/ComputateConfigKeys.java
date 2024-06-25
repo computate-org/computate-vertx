@@ -82,7 +82,7 @@ public class ComputateConfigKeys {
 		JsonObject configuration = null;
 
 		try {
-			String configChemin = System.getenv(CONFIG_VARS_PATH);
+			String configChemin = System.getenv(VARS_PATH);
 			JinjavaConfig jinjavaConfig = new JinjavaConfig();
 			Jinjava jinjava = new Jinjava(jinjavaConfig);
 			
@@ -162,30 +162,35 @@ public class ComputateConfigKeys {
 			Yaml yaml = new Yaml();
 			Map<String, Object> map = yaml.load(template);
 			for(String key : map.keySet()) {
-				Object val = map.get(key);
-				if(val instanceof String) {
-					String rendered = jinjava.render(val.toString(), ctx);
-					ctx.put(key, rendered);
-					configuration.put(key, rendered);
-				} else if(val instanceof ArrayList) {
-					List<Object> list1 = (List<Object>)val;
-					JsonArray list2 = new JsonArray();
-					for(Object item : list1) {
-						if(item instanceof String) {
-							String rendered = jinjava.render(item.toString(), ctx);
-							list2.add(rendered);
-						} else {
-							list2.add(item);
+				try {
+					Object val = map.get(key);
+					if(val instanceof String) {
+						String rendered = jinjava.render(val.toString(), ctx);
+						ctx.put(key, rendered);
+						configuration.put(key, rendered);
+					} else if(val instanceof ArrayList) {
+						List<Object> list1 = (List<Object>)val;
+						JsonArray list2 = new JsonArray();
+						for(Object item : list1) {
+							if(item instanceof String) {
+								String rendered = jinjava.render(item.toString(), ctx);
+								list2.add(rendered);
+							} else {
+								list2.add(item);
+							}
+							configuration.put(key, list2);
 						}
-						configuration.put(key, list2);
+					} else {
+						ctx.put(key, val);
+						configuration.put(key, val);
 					}
-				} else {
-					ctx.put(key, val);
-					configuration.put(key, val);
+				} catch(Throwable ex) {
+					LOG.error(String.format("var error %s - %s", key, ex.getMessage()), ex);
+					ExceptionUtils.rethrow(ex);
 				}
 			}
-		} catch(Exception ex) {
-			LOG.error("configuration error", ex);
+		} catch(Throwable ex) {
+			LOG.error(String.format("configuration error: %s", ex.getMessage()), ex);
 			ExceptionUtils.rethrow(ex);
 		}
 		return configuration;
@@ -239,7 +244,7 @@ public class ComputateConfigKeys {
 	/**
 	 * The path to the config file of the site. 
 	 **/
-	public static final String CONFIG_VARS_PATH = "CONFIG_VARS_PATH";
+	public static final String VARS_PATH = "VARS_PATH";
 
 	/**
 	 * The INI Configuration Object for the config file. 
@@ -524,67 +529,67 @@ public class ComputateConfigKeys {
 	/**
 	 * The class name of the JDBC driver class for the database. 
 	 **/
-	public static final String JDBC_DRIVER_CLASS = "JDBC_DRIVER_CLASS";
+	public static final String DATABASE_DRIVER_CLASS = "DATABASE_DRIVER_CLASS";
 
 	/**
 	 * The username for the database. 
 	 **/
-	public static final String JDBC_USERNAME = "JDBC_USERNAME";
+	public static final String DATABASE_USERNAME = "DATABASE_USERNAME";
 
 	/**
 	 * The password for the database. 
 	 **/
-	public static final String JDBC_PASSWORD = "JDBC_PASSWORD";
+	public static final String DATABASE_PASSWORD = "DATABASE_PASSWORD";
 
 	/**
 	 * The max pool size for the database. 
 	 **/
-	public static final String JDBC_MAX_POOL_SIZE = "JDBC_MAX_POOL_SIZE";
+	public static final String DATABASE_MAX_POOL_SIZE = "DATABASE_MAX_POOL_SIZE";
 
 	/**
 	 * Set the maximum connection request allowed in the wait queue, any requests beyond the max size will result in an failure. If the value is set to a negative number then the queue will be unbounded. 
 	 **/
-	public static final String JDBC_MAX_WAIT_QUEUE_SIZE = "JDBC_MAX_WAIT_QUEUE_SIZE";
+	public static final String DATABASE_MAX_WAIT_QUEUE_SIZE = "DATABASE_MAX_WAIT_QUEUE_SIZE";
 
 	/**
 	 * The max pool size for the database. 
 	 **/
-	public static final String JDBC_MIN_POOL_SIZE = "JDBC_MIN_POOL_SIZE";
+	public static final String DATABASE_MIN_POOL_SIZE = "DATABASE_MIN_POOL_SIZE";
 
 	/**
 	 * The max statements for the database. 
 	 **/
-	public static final String JDBC_MAX_STATEMENTS = "JDBC_MAX_STATEMENTS";
+	public static final String DATABASE_MAX_STATEMENTS = "DATABASE_MAX_STATEMENTS";
 
 	/**
 	 * The max statements per connection for the database. 
 	 **/
-	public static final String JDBC_MAX_STATEMENTS_PER_CONNECTION = "JDBC_MAX_STATEMENTS_PER_CONNECTION";
+	public static final String DATABASE_MAX_STATEMENTS_PER_CONNECTION = "DATABASE_MAX_STATEMENTS_PER_CONNECTION";
 
 	/**
 	 * The max idle time for the database. 
 	 **/
-	public static final String JDBC_MAX_IDLE_TIME = "JDBC_MAX_IDLE_TIME";
+	public static final String DATABASE_MAX_IDLE_TIME = "DATABASE_MAX_IDLE_TIME";
 
 	/**
 	 * The max idle time for the connection to the database. 
 	 **/
-	public static final String JDBC_CONNECT_TIMEOUT = "JDBC_CONNECT_TIMEOUT";
+	public static final String DATABASE_CONNECT_TIMEOUT = "DATABASE_CONNECT_TIMEOUT";
 
 	/**
 	 * The JDBC URL to the database. 
 	 **/
-	public static final String JDBC_HOST = "JDBC_HOST";
+	public static final String DATABASE_HOST = "DATABASE_HOST";
 
 	/**
 	 * The JDBC URL to the database. 
 	 **/
-	public static final String JDBC_PORT = "JDBC_PORT";
+	public static final String DATABASE_PORT = "DATABASE_PORT";
 
 	/**
 	 * The JDBC URL to the database. 
 	 **/
-	public static final String JDBC_DATABASE = "JDBC_DATABASE";
+	public static final String DATABASE_DATABASE = "DATABASE_DATABASE";
 
 	/**
 	 * The Solr admin username
@@ -854,7 +859,7 @@ public class ComputateConfigKeys {
 	/**
 	 * 
 	 **/
-	public static final String POSTGRES_ENABLED = "POSTGRES_ENABLED";
+	public static final String DATABASE_ENABLED = "DATABASE_ENABLED";
 
 	/**
 	 * 
@@ -963,5 +968,7 @@ public class ComputateConfigKeys {
 	public static final String MQTT_PORT = "MQTT_PORT";
 	public static final String MQTT_IOT_SUBSCRIBE_TOPIC = "MQTT_IOT_SUBSCRIBE_TOPIC";
 
-	public static final String OPEN_TELEMETRY_ENABLED = "OPEN_TELEMETRY_ENABLED";
+	public static final String ENABLE_OPEN_TELEMETRY = "ENABLE_OPEN_TELEMETRY";
+	public static final String ENABLE_KAFKA = "ENABLE_KAFKA";
+	public static final String ENABLE_MQTT = "ENABLE_MQTT";
 }
