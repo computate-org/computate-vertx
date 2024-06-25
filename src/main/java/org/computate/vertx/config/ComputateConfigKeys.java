@@ -64,6 +64,9 @@ public class ComputateConfigKeys {
 				CoreV1Api api = new CoreV1Api();
 				if("Secret".equals(kind)) {
 					V1Secret secret = api.readNamespacedSecret(resource_name, namespace).execute();
+					secret.getData().keySet().forEach(key -> {
+						secret.getData().put(key, Base64.getEncoder().encode(secret.getData().get(key)));
+					});
 					return new KubernetesObject[] {secret};
 				}
 			}
@@ -582,6 +585,16 @@ public class ComputateConfigKeys {
 	 * The JDBC URL to the database. 
 	 **/
 	public static final String JDBC_DATABASE = "JDBC_DATABASE";
+
+	/**
+	 * The Solr admin username
+	 **/
+	public static final String SOLR_USERNAME = "SOLR_USERNAME";
+
+	/**
+	 * The Solr admin password
+	 **/
+	public static final String SOLR_PASSWORD = "SOLR_PASSWORD";
 
 	/**
 	 * The hostname to the SOLR search engine. 
