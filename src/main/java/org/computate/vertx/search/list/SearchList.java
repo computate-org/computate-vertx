@@ -36,6 +36,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
+import io.vertx.ext.auth.authentication.UsernamePasswordCredentials;
 
 /** 
  * Keyword: classSimpleNameSearchList
@@ -291,6 +292,8 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 			Long numFound = Optional.ofNullable(response).map(r -> r.getResponse()).map(r -> r.getNumFound()).orElse(0L);
 			if(rows > 0 && (start + rows) < numFound) {
 				request.setStart(start + rows);
+				String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
+				String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
 				String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
 				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
 				String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
@@ -300,7 +303,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 				request.initDeepForClass(siteRequest_);
 
 				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
-				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).send().onSuccess(a -> {
+				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).send().onSuccess(a -> {
 					SolrResponse response = a.bodyAsJson(SolrResponse.class);
 					setResponse(response);
 					Wrap<List<SolrResponse.Doc>> docsWrap = new Wrap<List<SolrResponse.Doc>>().var("docs").o(response.getResponse().getDocs());
@@ -327,6 +330,8 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 	public Future<Boolean> query() {
 		Promise<Boolean> promise = Promise.promise();
 		try {
+			String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
+			String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
 			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
 			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
 			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
@@ -336,7 +341,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 			request.initDeepForClass(siteRequest_);
 
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
-			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).send().onSuccess(a -> {
+			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).send().onSuccess(a -> {
 				SolrResponse response = a.bodyAsJson(SolrResponse.class);
 				setResponse(response);
 				Wrap<List<SolrResponse.Doc>> docsWrap = new Wrap<List<SolrResponse.Doc>>().var("docs").o(response.getResponse().getDocs());
@@ -391,12 +396,14 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		try {
 			if(request.getQuery() != null) {
 				request.initDeepForClass(siteRequest_);
+				String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
+				String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
 				String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
 				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
 				String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
 				Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
 				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
-				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).send().onSuccess(a -> {
+				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).send().onSuccess(a -> {
 					try {
 						SolrResponse response = a.bodyAsJson(SolrResponse.class);
 						setResponse(response);
