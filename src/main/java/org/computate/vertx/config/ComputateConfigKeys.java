@@ -875,7 +875,7 @@ public class ComputateConfigKeys {
 	/**
 	 * 
 	 **/
-	public static final String DATABASE_ENABLED = "DATABASE_ENABLED";
+	public static final String ENABLE_DATABASE = "ENABLE_DATABASE";
 
 	/**
 	 * 
