@@ -25,13 +25,13 @@ import io.vertx.core.json.JsonObject;
  * ApiTag.enUS: Java Class
  * ApiUri.enUS: /api/java-class
  * 
- * ApiMethod.enUS: Search
- * ApiMethod: GET
- * 
- * ApiMethod.enUS: SearchPage
- * Page.SearchPage.enUS: ComputateJavaClassPage
- * ApiUri.SearchPage.enUS: /java-class
- * 
+ * ApiMethod:
+ *   Search:
+ *   GET:
+ *   SearchPage:
+ *     Page: ComputateJavaClassPage
+ *     ApiUri: /java-class
+ *
  * AName.enUS: a java class
  * Color: blue
  * IconGroup: duotone

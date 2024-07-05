@@ -33,6 +33,8 @@ import org.computate.vertx.search.list.SearchList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hubspot.jinjava.Jinjava;
+
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
@@ -51,7 +53,6 @@ import io.vertx.ext.auth.oauth2.OAuth2Auth;
 import io.vertx.ext.web.api.service.ServiceRequest;
 import io.vertx.ext.web.api.service.ServiceResponse;
 import io.vertx.ext.web.client.WebClient;
-import io.vertx.ext.web.templ.handlebars.HandlebarsTemplateEngine;
 import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.pgclient.PgPool;
 import io.vertx.sqlclient.Tuple;
@@ -83,7 +84,7 @@ public abstract class BaseApiServiceImpl {
 
 	protected AuthorizationProvider authorizationProvider;
 
-	protected HandlebarsTemplateEngine templateEngine;
+	protected Jinjava jinjava;
 
 	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, WebClient webClient) {
 		this.eventBus = eventBus;
@@ -105,7 +106,7 @@ public abstract class BaseApiServiceImpl {
 		this.authorizationProvider = authorizationProvider;
 	}
 
-	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, HandlebarsTemplateEngine templateEngine) {
+	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, Jinjava jinjava) {
 		this.eventBus = eventBus;
 		this.config = config;
 		this.workerExecutor = workerExecutor;
@@ -114,7 +115,7 @@ public abstract class BaseApiServiceImpl {
 		this.webClient = webClient;
 		this.oauth2AuthenticationProvider = oauth2AuthenticationProvider;
 		this.authorizationProvider = authorizationProvider;
-		this.templateEngine = templateEngine;
+		this.jinjava = jinjava;
 	}
 
 	// General //

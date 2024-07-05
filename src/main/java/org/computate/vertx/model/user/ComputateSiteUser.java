@@ -22,6 +22,9 @@ import org.computate.vertx.request.ComputateSiteRequest;
 public interface ComputateSiteUser extends ComputateBaseModel {
 
 	public static final String CLASS_API_ADDRESS_ComputateSiteUser = "computate-vertx-enUS-ComputateSiteUser";
+	public static String getClassApiAddress() {
+		return CLASS_API_ADDRESS_ComputateSiteUser;
+	}
 
 	void setUserName(String userName);
 
