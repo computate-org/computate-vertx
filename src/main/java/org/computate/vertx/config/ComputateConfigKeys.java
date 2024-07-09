@@ -43,6 +43,32 @@ import io.kubernetes.client.util.Config;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.net.URLEncoder;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TimeZone;
+
+import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+
+import com.github.jknack.handlebars.Helper;
+import com.github.jknack.handlebars.Options;
+import com.github.jknack.handlebars.TagType;
+import com.github.jknack.handlebars.internal.lang3.LocaleUtils;
+import org.apache.commons.text.StringEscapeUtils;
+
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
+
 /**
  * Keyword: classSimpleNameConfigKeys
  */
@@ -77,17 +103,58 @@ public class ComputateConfigKeys {
 		return null;
 	}
 
-	public static JsonObject getConfig() {
-		Logger LOG = LoggerFactory.getLogger(ComputateConfigKeys.class);
-		JsonObject configuration = null;
+	/**
+	 * Call the toString method on an object and replace apostrophes. 
+	 */
+	public static String toJsonObjectStringInApostrophes(Object originalValue) {
+		if(originalValue == null) {
+			return "";
+		} else {
+			if(originalValue instanceof String) {
+				return new JsonObject((String)originalValue).toString().replace("'", "&apos;");
+			} else {
+				return new JsonObject((Map<String, Object>)originalValue).toString().replace("'", "&apos;");
+			}
+		}
+	}
 
+	/**
+	 * Call the toString method on an object and replace apostrophes. 
+	 */
+	public static String toJsonArrayStringInApostrophes(Object originalValue) {
+		if(originalValue == null) {
+			return "";
+		} else {
+			if(originalValue instanceof String) {
+				return new JsonArray((String)originalValue).toString().replace("'", "&apos;");
+			} else if(originalValue instanceof List){
+				JsonArray result = new JsonArray();
+				((List<?>)originalValue).forEach(o -> result.add(new JsonObject((Map)o)));
+				return result.toString().replace("'", "&apos;");
+			}
+		}
+		return null;
+	}
+
+	public static String formatZonedDateTime(String str, String pattern, String localeId, String zone) {
+		Locale locale = Locale.forLanguageTag(localeId);
+		ZoneId zoneId = ZoneId.of(zone);
+		ZonedDateTime d = ZonedDateTime.parse(str, ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
+		return DateTimeFormatter.ofPattern(pattern, locale).format(d.withZoneSameInstant(zoneId));
+	}
+
+	public static Jinjava getJinjava() {
+		Logger LOG = LoggerFactory.getLogger(ComputateConfigKeys.class);
+		Jinjava jinjava = null;
 		try {
-			String configChemin = System.getenv(VARS_PATH);
 			JinjavaConfig jinjavaConfig = new JinjavaConfig();
-			Jinjava jinjava = new Jinjava(jinjavaConfig);
+			jinjava = new Jinjava(jinjavaConfig);
 			
 			jinjava.registerFunction(new ELFunctionDefinition("", "lookup", ComputateConfigKeys.class, "lookup", String.class, String.class));
 			jinjava.registerFunction(new ELFunctionDefinition("", "query", ComputateConfigKeys.class, "query", String.class, String.class, String.class, String.class));
+			jinjava.registerFunction(new ELFunctionDefinition("", "toJsonObjectStringInApostrophes", ComputateConfigKeys.class, "toJsonObjectStringInApostrophes", Object.class));
+			jinjava.registerFunction(new ELFunctionDefinition("", "toJsonArrayStringInApostrophes", ComputateConfigKeys.class, "toJsonArrayStringInApostrophes", Object.class));
+			jinjava.registerFunction(new ELFunctionDefinition("", "formatZonedDateTime", ComputateConfigKeys.class, "formatZonedDateTime", String.class, String.class, String.class, String.class));
 
 			jinjava.registerFilter(new Filter() {
 				@Override
@@ -154,6 +221,19 @@ public class ComputateConfigKeys {
 					return null;
 				}
 			});
+		} catch(Throwable ex) {
+			LOG.error(String.format("configuration error: %s", ex.getMessage()), ex);
+			ExceptionUtils.rethrow(ex);
+		}
+		return jinjava;
+	}
+
+	public static JsonObject getConfig(Jinjava jinjava) {
+		Logger LOG = LoggerFactory.getLogger(ComputateConfigKeys.class);
+		JsonObject configuration = null;
+
+		try {
+			String configChemin = System.getenv(VARS_PATH);
 
 			File configFichier = new File(configChemin);
 			String template = Files.readString(configFichier.toPath());
@@ -387,14 +467,14 @@ public class ComputateConfigKeys {
 	public static final String AUTH_ROLE_READ_REQUIRED = "AUTH_ROLE_READ_REQUIRED";
 
 	/**
-	 * JsonArray of admin user roles. 
+	 * admin user auth scope. 
 	 **/
-	public static final String AUTH_ROLE_ADMIN = "AUTH_ROLE_ADMIN";
+	public static final String AUTH_SCOPE_ADMIN = "AUTH_SCOPE_ADMIN";
 
 	/**
-	 * JsonArray of super admin user roles. 
+	 * super admin user auth scope. 
 	 **/
-	public static final String AUTH_ROLE_SUPER_ADMIN = "AUTH_ROLE_SUPER_ADMIN";
+	public static final String AUTH_SCOPE_SUPER_ADMIN = "AUTH_SCOPE_SUPER_ADMIN";
 
 	/**
 	 * Enable SSL Passthrough. 

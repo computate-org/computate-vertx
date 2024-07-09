@@ -237,24 +237,28 @@ public class ComputatePageLayout extends ComputatePageLayoutGen<Object> {
 	/**
 	 * Description: The user's roles
 	 */
-	protected void _roles(List<String> l) {
-		if(siteRequest_ != null) {
-			l.addAll(Stream.concat(siteRequest_.getUserResourceRoles().stream(), siteRequest_.getUserResourceRoles().stream()).collect(Collectors.toList()));
-		}
+	protected void _scopes(List<String> l) {
 	}
 
 	/**
 	 * Description: The required roles to access this page
 	 */
 	protected void _roleRequired(List<String> l) {
-		l.add(siteRequest_.getConfig().getString(ComputateConfigKeys.AUTH_ROLE_ADMIN));
+		// l.add(siteRequest_.getConfig().getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN));
 	}
 
 	/**
 	 * Description: The admin roles required to access this page
 	 */
 	protected void _authRoleAdmin(List<String> l) {
-		l.add(siteRequest_.getConfig().getString(ComputateConfigKeys.AUTH_ROLE_ADMIN));
+		l.add(siteRequest_.getConfig().getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN));
+	}
+
+	/**
+	 * Description: The super-admin roles required to access this page
+	 */
+	protected void _authRoleSuperAdmin(List<String> l) {
+		l.add(siteRequest_.getConfig().getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN));
 	}
 
 	protected void _stats(Wrap<SolrResponse.Stats> w) {

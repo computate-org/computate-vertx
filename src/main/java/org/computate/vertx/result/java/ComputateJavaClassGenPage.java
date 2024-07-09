@@ -492,13 +492,6 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Comp
 	}
 
 	@Override
-	protected void _roles(List<String> l) {
-		if(siteRequest_ != null) {
-			l.addAll(Stream.concat(siteRequest_.getUserResourceRoles().stream(), siteRequest_.getUserRealmRoles().stream()).distinct().collect(Collectors.toList()));
-		}
-	}
-
-	@Override
 	protected void _promiseAfter(Promise<Void> promise) {
 		promise.complete();
 	}

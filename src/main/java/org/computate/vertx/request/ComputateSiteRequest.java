@@ -62,9 +62,9 @@ public interface ComputateSiteRequest extends ComputateSearchSiteRequest {
 
 	SqlConnection getSqlConnection();
 
-	List<String> getUserResourceRoles();
+	List<String> getScopes();
 
-	List<String> getUserRealmRoles();
+	void setScopes(List<String> l);
 
 	Map<String, String> getRequestVars();
 

@@ -15,7 +15,7 @@ import io.vertx.pgclient.PgPool;
 import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.core.json.impl.JsonUtil;
 import io.vertx.ext.auth.authorization.AuthorizationProvider;
-import io.vertx.ext.web.templ.handlebars.HandlebarsTemplateEngine;
+import com.hubspot.jinjava.Jinjava;
 import io.vertx.core.eventbus.DeliveryOptions;
 import java.io.IOException;
 import java.util.Collections;
@@ -47,7 +47,6 @@ import io.vertx.core.Handler;
 import io.vertx.ext.web.RoutingContext;
 import org.apache.commons.lang3.math.NumberUtils;
 import io.vertx.ext.web.Router;
-import com.hubspot.jinjava.Jinjava;
 import java.nio.file.Path;
 import java.nio.file.Files;
 import com.google.common.io.Resources;
@@ -127,8 +126,12 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 					.sendForm(MultiMap.caseInsensitiveMultiMap()
 							.add("grant_type", "urn:ietf:params:oauth:grant-type:uma-ticket")
 							.add("audience", config.getString(ComputateConfigKeys.AUTH_CLIENT))
-							.add("response_mode", "decision")
-							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "Search"))
+							.add("response_mode", "permissions")
+							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN)))
+							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN)))
+							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "GET"))
+							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "POST"))
+							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "PATCH"))
 			).onFailure(ex -> {
 				String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
 				eventHandler.handle(Future.succeededFuture(
@@ -143,7 +146,8 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 				));
 			}).onSuccess(authorizationDecision -> {
 				try {
-					if(!authorizationDecision.bodyAsJsonObject().getBoolean("result")) {
+					JsonArray scopes = authorizationDecision.bodyAsJsonArray().stream().findFirst().map(decision -> ((JsonObject)decision).getJsonArray("scopes")).orElse(new JsonArray());
+					if(!scopes.contains("GET")) {
 						String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
 						eventHandler.handle(Future.succeededFuture(
 							new ServiceResponse(403, "FORBIDDEN",
@@ -156,6 +160,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 							)
 						));
 					} else {
+						siteRequest.setScopes(scopes.stream().map(o -> o.toString()).collect(Collectors.toList()));
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
 							response200SearchComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
 								eventHandler.handle(Future.succeededFuture(response));
@@ -292,7 +297,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 					.sendForm(MultiMap.caseInsensitiveMultiMap()
 							.add("grant_type", "urn:ietf:params:oauth:grant-type:uma-ticket")
 							.add("audience", config.getString(ComputateConfigKeys.AUTH_CLIENT))
-							.add("response_mode", "decision")
+							.add("response_mode", "permissions")
 							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "GET"))
 			).onFailure(ex -> {
 				String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
@@ -308,7 +313,8 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 				));
 			}).onSuccess(authorizationDecision -> {
 				try {
-					if(!authorizationDecision.bodyAsJsonObject().getBoolean("result")) {
+					JsonArray scopes = authorizationDecision.bodyAsJsonArray().stream().findFirst().map(decision -> ((JsonObject)decision).getJsonArray("scopes")).orElse(new JsonArray());
+					if(!scopes.contains("GET")) {
 						String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
 						eventHandler.handle(Future.succeededFuture(
 							new ServiceResponse(403, "FORBIDDEN",
@@ -321,6 +327,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 							)
 						));
 					} else {
+						siteRequest.setScopes(scopes.stream().map(o -> o.toString()).collect(Collectors.toList()));
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
 							response200GETComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
 								eventHandler.handle(Future.succeededFuture(response));
@@ -400,8 +407,12 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 					.sendForm(MultiMap.caseInsensitiveMultiMap()
 							.add("grant_type", "urn:ietf:params:oauth:grant-type:uma-ticket")
 							.add("audience", config.getString(ComputateConfigKeys.AUTH_CLIENT))
-							.add("response_mode", "decision")
-							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "SearchPage"))
+							.add("response_mode", "permissions")
+							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN)))
+							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN)))
+							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "GET"))
+							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "POST"))
+							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "PATCH"))
 			).onFailure(ex -> {
 				String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
 				eventHandler.handle(Future.succeededFuture(
@@ -416,7 +427,8 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 				));
 			}).onSuccess(authorizationDecision -> {
 				try {
-					if(!authorizationDecision.bodyAsJsonObject().getBoolean("result")) {
+					JsonArray scopes = authorizationDecision.bodyAsJsonArray().stream().findFirst().map(decision -> ((JsonObject)decision).getJsonArray("scopes")).orElse(new JsonArray());
+					if(!scopes.contains("GET")) {
 						String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
 						eventHandler.handle(Future.succeededFuture(
 							new ServiceResponse(403, "FORBIDDEN",
@@ -429,6 +441,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 							)
 						));
 					} else {
+						siteRequest.setScopes(scopes.stream().map(o -> o.toString()).collect(Collectors.toList()));
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
 							response200SearchPageComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
 								eventHandler.handle(Future.succeededFuture(response));
@@ -478,7 +491,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 	}
 
 	public String templateSearchPageComputateJavaClass() {
-		return Optional.ofNullable(config.getString(ComputateConfigKeys.TEMPLATE_PATH)).orElse("templates") + "/enUS/ComputateJavaClassPage";
+		return "/enUS/ComputateJavaClassPage.htm";
 	}
 	public Future<ServiceResponse> response200SearchPageComputateJavaClass(SearchList<ComputateJavaClass> listComputateJavaClass) {
 		Promise<ServiceResponse> promise = Promise.promise();
@@ -487,7 +500,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 			String pageTemplateUri = templateSearchPageComputateJavaClass();
 			String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
 			Path resourceTemplatePath = Path.of(siteTemplatePath, pageTemplateUri);
-			String template = siteTemplatePath == null ? Files.readString(resourceTemplatePath, Charset.forName("UTF-8")) : Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8);
+			String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8) : Files.readString(resourceTemplatePath, Charset.forName("UTF-8"));
 			ComputateJavaClassPage page = new ComputateJavaClassPage();
 			MultiMap requestHeaders = MultiMap.caseInsensitiveMultiMap();
 			siteRequest.setRequestHeaders(requestHeaders);

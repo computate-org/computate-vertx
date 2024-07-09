@@ -34,6 +34,8 @@ import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.writer.AllWriter;
 import org.computate.vertx.writer.ApiWriter;
 
+import com.hubspot.jinjava.Jinjava;
+
 import io.vertx.config.ConfigRetriever;
 import io.vertx.config.ConfigRetrieverOptions;
 import io.vertx.config.ConfigStoreOptions;
@@ -77,7 +79,8 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 
 			String configVarsPath = System.getenv(ComputateConfigKeys.VARS_PATH);
 			if(StringUtils.isNotBlank(configVarsPath)) {
-				JsonObject config = ComputateConfigKeys.getConfig();
+				Jinjava jinjava = ComputateConfigKeys.getJinjava();
+				JsonObject config = ComputateConfigKeys.getConfig(jinjava);
 				LOG.info(config.encodePrettily());
 				ConfigStoreOptions configOptions = new ConfigStoreOptions().setConfig(config);
 				retrieverOptions.addStore(configOptions);

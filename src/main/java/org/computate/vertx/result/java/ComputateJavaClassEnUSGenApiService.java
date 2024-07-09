@@ -1,9 +1,6 @@
 package org.computate.vertx.result.java;
 
 import io.vertx.ext.web.client.WebClient;
-
-import com.hubspot.jinjava.Jinjava;
-
 import io.vertx.codegen.annotations.ProxyGen;
 import io.vertx.serviceproxy.ServiceBinder;
 import io.vertx.core.AsyncResult;
@@ -15,7 +12,7 @@ import io.vertx.core.json.JsonArray;
 import io.vertx.ext.web.api.service.WebApiServiceGen;
 import io.vertx.ext.web.api.service.ServiceRequest;
 import io.vertx.ext.web.api.service.ServiceResponse;
-import io.vertx.ext.web.templ.handlebars.HandlebarsTemplateEngine;
+import com.hubspot.jinjava.Jinjava;
 import io.vertx.core.WorkerExecutor;
 import io.vertx.pgclient.PgPool;
 import io.vertx.kafka.client.producer.KafkaProducer;
