@@ -35,7 +35,6 @@ import java.lang.String;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.api.service.ServiceRequest;
 import java.lang.Long;
-import java.lang.Integer;
 import java.lang.Void;
 import io.vertx.core.json.JsonArray;
 import org.computate.search.response.solr.SolrResponse.Stats;
@@ -51,6 +50,7 @@ import java.util.Date;
 import java.time.format.DateTimeFormatter;
 import java.time.Instant;
 import java.time.OffsetDateTime;
+import java.lang.Integer;
 import java.math.BigDecimal;
 import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
@@ -1266,246 +1266,6 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 
 	public static String staticSearchFqLogoutUrl(ComputateSiteRequest siteRequest_, String o) {
 		return ComputatePageLayout.staticSearchLogoutUrl(siteRequest_, ComputatePageLayout.staticSetLogoutUrl(siteRequest_, o)).toString();
-	}
-
-	///////////
-	// long0 //
-	///////////
-
-
-	/**	 The entity long0
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonSerialize(using = ToStringSerializer.class)
-	@JsonInclude(Include.NON_NULL)
-	protected Long long0;
-
-	/**	<br> The entity long0
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:long0">Find the entity long0 in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _long0(Wrap<Long> w);
-
-	public Long getLong0() {
-		return long0;
-	}
-
-	public void setLong0(Long long0) {
-		this.long0 = long0;
-	}
-	@JsonIgnore
-	public void setLong0(String o) {
-		this.long0 = ComputatePageLayout.staticSetLong0(siteRequest_, o);
-	}
-	public static Long staticSetLong0(ComputateSiteRequest siteRequest_, String o) {
-		if(NumberUtils.isParsable(o))
-			return Long.parseLong(o);
-		return null;
-	}
-	protected ComputatePageLayout long0Init() {
-		Wrap<Long> long0Wrap = new Wrap<Long>().var("long0");
-		if(long0 == null) {
-			_long0(long0Wrap);
-			Optional.ofNullable(long0Wrap.getO()).ifPresent(o -> {
-				setLong0(o);
-			});
-		}
-		return (ComputatePageLayout)this;
-	}
-
-	public static Long staticSearchLong0(ComputateSiteRequest siteRequest_, Long o) {
-		return o;
-	}
-
-	public static String staticSearchStrLong0(ComputateSiteRequest siteRequest_, Long o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqLong0(ComputateSiteRequest siteRequest_, String o) {
-		return ComputatePageLayout.staticSearchLong0(siteRequest_, ComputatePageLayout.staticSetLong0(siteRequest_, o)).toString();
-	}
-
-	///////////
-	// long1 //
-	///////////
-
-
-	/**	 The entity long1
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonSerialize(using = ToStringSerializer.class)
-	@JsonInclude(Include.NON_NULL)
-	protected Long long1;
-
-	/**	<br> The entity long1
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:long1">Find the entity long1 in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _long1(Wrap<Long> w);
-
-	public Long getLong1() {
-		return long1;
-	}
-
-	public void setLong1(Long long1) {
-		this.long1 = long1;
-	}
-	@JsonIgnore
-	public void setLong1(String o) {
-		this.long1 = ComputatePageLayout.staticSetLong1(siteRequest_, o);
-	}
-	public static Long staticSetLong1(ComputateSiteRequest siteRequest_, String o) {
-		if(NumberUtils.isParsable(o))
-			return Long.parseLong(o);
-		return null;
-	}
-	protected ComputatePageLayout long1Init() {
-		Wrap<Long> long1Wrap = new Wrap<Long>().var("long1");
-		if(long1 == null) {
-			_long1(long1Wrap);
-			Optional.ofNullable(long1Wrap.getO()).ifPresent(o -> {
-				setLong1(o);
-			});
-		}
-		return (ComputatePageLayout)this;
-	}
-
-	public static Long staticSearchLong1(ComputateSiteRequest siteRequest_, Long o) {
-		return o;
-	}
-
-	public static String staticSearchStrLong1(ComputateSiteRequest siteRequest_, Long o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqLong1(ComputateSiteRequest siteRequest_, String o) {
-		return ComputatePageLayout.staticSearchLong1(siteRequest_, ComputatePageLayout.staticSetLong1(siteRequest_, o)).toString();
-	}
-
-	//////////
-	// int0 //
-	//////////
-
-
-	/**	 The entity int0
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonSerialize(using = ToStringSerializer.class)
-	@JsonInclude(Include.NON_NULL)
-	protected Integer int0;
-
-	/**	<br> The entity int0
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:int0">Find the entity int0 in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _int0(Wrap<Integer> w);
-
-	public Integer getInt0() {
-		return int0;
-	}
-
-	public void setInt0(Integer int0) {
-		this.int0 = int0;
-	}
-	@JsonIgnore
-	public void setInt0(String o) {
-		this.int0 = ComputatePageLayout.staticSetInt0(siteRequest_, o);
-	}
-	public static Integer staticSetInt0(ComputateSiteRequest siteRequest_, String o) {
-		if(NumberUtils.isParsable(o))
-			return Integer.parseInt(o);
-		return null;
-	}
-	protected ComputatePageLayout int0Init() {
-		Wrap<Integer> int0Wrap = new Wrap<Integer>().var("int0");
-		if(int0 == null) {
-			_int0(int0Wrap);
-			Optional.ofNullable(int0Wrap.getO()).ifPresent(o -> {
-				setInt0(o);
-			});
-		}
-		return (ComputatePageLayout)this;
-	}
-
-	public static Integer staticSearchInt0(ComputateSiteRequest siteRequest_, Integer o) {
-		return o;
-	}
-
-	public static String staticSearchStrInt0(ComputateSiteRequest siteRequest_, Integer o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqInt0(ComputateSiteRequest siteRequest_, String o) {
-		return ComputatePageLayout.staticSearchInt0(siteRequest_, ComputatePageLayout.staticSetInt0(siteRequest_, o)).toString();
-	}
-
-	//////////
-	// int1 //
-	//////////
-
-
-	/**	 The entity int1
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonSerialize(using = ToStringSerializer.class)
-	@JsonInclude(Include.NON_NULL)
-	protected Integer int1;
-
-	/**	<br> The entity int1
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:int1">Find the entity int1 in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _int1(Wrap<Integer> w);
-
-	public Integer getInt1() {
-		return int1;
-	}
-
-	public void setInt1(Integer int1) {
-		this.int1 = int1;
-	}
-	@JsonIgnore
-	public void setInt1(String o) {
-		this.int1 = ComputatePageLayout.staticSetInt1(siteRequest_, o);
-	}
-	public static Integer staticSetInt1(ComputateSiteRequest siteRequest_, String o) {
-		if(NumberUtils.isParsable(o))
-			return Integer.parseInt(o);
-		return null;
-	}
-	protected ComputatePageLayout int1Init() {
-		Wrap<Integer> int1Wrap = new Wrap<Integer>().var("int1");
-		if(int1 == null) {
-			_int1(int1Wrap);
-			Optional.ofNullable(int1Wrap.getO()).ifPresent(o -> {
-				setInt1(o);
-			});
-		}
-		return (ComputatePageLayout)this;
-	}
-
-	public static Integer staticSearchInt1(ComputateSiteRequest siteRequest_, Integer o) {
-		return o;
-	}
-
-	public static String staticSearchStrInt1(ComputateSiteRequest siteRequest_, Integer o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqInt1(ComputateSiteRequest siteRequest_, String o) {
-		return ComputatePageLayout.staticSearchInt1(siteRequest_, ComputatePageLayout.staticSetInt1(siteRequest_, o)).toString();
 	}
 
 	///////////////////
@@ -4342,10 +4102,6 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 				userNameInit();
 				userEmailInit();
 				logoutUrlInit();
-				long0Init();
-				long1Init();
-				int0Init();
-				int1Init();
 				promise2.complete();
 			} catch(Exception ex) {
 				promise2.fail(ex);
@@ -4516,14 +4272,6 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 				return oComputatePageLayout.userEmail;
 			case "logoutUrl":
 				return oComputatePageLayout.logoutUrl;
-			case "long0":
-				return oComputatePageLayout.long0;
-			case "long1":
-				return oComputatePageLayout.long1;
-			case "int0":
-				return oComputatePageLayout.int0;
-			case "int1":
-				return oComputatePageLayout.int1;
 			case "promiseBefore":
 				return oComputatePageLayout.promiseBefore;
 			case "classSimpleName":
@@ -4693,14 +4441,6 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSetUserEmail(siteRequest_, o);
 		case "logoutUrl":
 			return ComputatePageLayout.staticSetLogoutUrl(siteRequest_, o);
-		case "long0":
-			return ComputatePageLayout.staticSetLong0(siteRequest_, o);
-		case "long1":
-			return ComputatePageLayout.staticSetLong1(siteRequest_, o);
-		case "int0":
-			return ComputatePageLayout.staticSetInt0(siteRequest_, o);
-		case "int1":
-			return ComputatePageLayout.staticSetInt1(siteRequest_, o);
 		case "classSimpleName":
 			return ComputatePageLayout.staticSetClassSimpleName(siteRequest_, o);
 		case "pageTitle":
@@ -4837,14 +4577,6 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchUserEmail(siteRequest_, (String)o);
 		case "logoutUrl":
 			return ComputatePageLayout.staticSearchLogoutUrl(siteRequest_, (String)o);
-		case "long0":
-			return ComputatePageLayout.staticSearchLong0(siteRequest_, (Long)o);
-		case "long1":
-			return ComputatePageLayout.staticSearchLong1(siteRequest_, (Long)o);
-		case "int0":
-			return ComputatePageLayout.staticSearchInt0(siteRequest_, (Integer)o);
-		case "int1":
-			return ComputatePageLayout.staticSearchInt1(siteRequest_, (Integer)o);
 		case "classSimpleName":
 			return ComputatePageLayout.staticSearchClassSimpleName(siteRequest_, (String)o);
 		case "pageTitle":
@@ -4981,14 +4713,6 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchStrUserEmail(siteRequest_, (String)o);
 		case "logoutUrl":
 			return ComputatePageLayout.staticSearchStrLogoutUrl(siteRequest_, (String)o);
-		case "long0":
-			return ComputatePageLayout.staticSearchStrLong0(siteRequest_, (Long)o);
-		case "long1":
-			return ComputatePageLayout.staticSearchStrLong1(siteRequest_, (Long)o);
-		case "int0":
-			return ComputatePageLayout.staticSearchStrInt0(siteRequest_, (Integer)o);
-		case "int1":
-			return ComputatePageLayout.staticSearchStrInt1(siteRequest_, (Integer)o);
 		case "classSimpleName":
 			return ComputatePageLayout.staticSearchStrClassSimpleName(siteRequest_, (String)o);
 		case "pageTitle":
@@ -5125,14 +4849,6 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return ComputatePageLayout.staticSearchFqUserEmail(siteRequest_, o);
 		case "logoutUrl":
 			return ComputatePageLayout.staticSearchFqLogoutUrl(siteRequest_, o);
-		case "long0":
-			return ComputatePageLayout.staticSearchFqLong0(siteRequest_, o);
-		case "long1":
-			return ComputatePageLayout.staticSearchFqLong1(siteRequest_, o);
-		case "int0":
-			return ComputatePageLayout.staticSearchFqInt0(siteRequest_, o);
-		case "int1":
-			return ComputatePageLayout.staticSearchFqInt1(siteRequest_, o);
 		case "classSimpleName":
 			return ComputatePageLayout.staticSearchFqClassSimpleName(siteRequest_, o);
 		case "pageTitle":
@@ -5254,10 +4970,6 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public static final String VAR_userName = "userName";
 	public static final String VAR_userEmail = "userEmail";
 	public static final String VAR_logoutUrl = "logoutUrl";
-	public static final String VAR_long0 = "long0";
-	public static final String VAR_long1 = "long1";
-	public static final String VAR_int0 = "int0";
-	public static final String VAR_int1 = "int1";
 	public static final String VAR_promiseBefore = "promiseBefore";
 	public static final String VAR_classSimpleName = "classSimpleName";
 	public static final String VAR_pageTitle = "pageTitle";
@@ -5329,10 +5041,6 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_userName = "";
 	public static final String DISPLAY_NAME_userEmail = "";
 	public static final String DISPLAY_NAME_logoutUrl = "";
-	public static final String DISPLAY_NAME_long0 = "";
-	public static final String DISPLAY_NAME_long1 = "";
-	public static final String DISPLAY_NAME_int0 = "";
-	public static final String DISPLAY_NAME_int1 = "";
 	public static final String DISPLAY_NAME_promiseBefore = "";
 	public static final String DISPLAY_NAME_classSimpleName = "";
 	public static final String DISPLAY_NAME_pageTitle = "";
@@ -5431,14 +5139,6 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return DISPLAY_NAME_userEmail;
 		case VAR_logoutUrl:
 			return DISPLAY_NAME_logoutUrl;
-		case VAR_long0:
-			return DISPLAY_NAME_long0;
-		case VAR_long1:
-			return DISPLAY_NAME_long1;
-		case VAR_int0:
-			return DISPLAY_NAME_int0;
-		case VAR_int1:
-			return DISPLAY_NAME_int1;
 		case VAR_promiseBefore:
 			return DISPLAY_NAME_promiseBefore;
 		case VAR_classSimpleName:

@@ -187,34 +187,6 @@ public class ComputatePageLayout extends ComputatePageLayoutGen<Object> {
 	}
 
 	/**
-	 * Description: A helper field for the long number 0
-	 */
-	protected void _long0(Wrap<Long> w) {
-		w.o(0L);
-	}
-
-	/**
-	 * Description: A helper field for the long number 1
-	 */
-	protected void _long1(Wrap<Long> w) {
-		w.o(1L);
-	}
-
-	/**
-	 * Description: A helper field for the integer number 0
-	 */
-	protected void _int0(Wrap<Integer> w) {
-		w.o(0);
-	}
-
-	/**
-	 * Description: A helper field for the integer number 1
-	 */
-	protected void _int1(Wrap<Integer> w) {
-		w.o(1);
-	}
-
-	/**
 	 * Ignore: true
 	 * Description: A method that can be overridden at the start of the request that makes this main template be initialized with a Vert.x promise for reactive initialization
 	**/

@@ -276,6 +276,24 @@ public class ComputateConfigKeys {
 		return configuration;
 	}
 
+	public static JsonObject getPageContext(JsonObject config) {
+		JsonObject ctx = new JsonObject();
+		ctx.put(STATIC_BASE_URL, config.getString(STATIC_BASE_URL));
+		ctx.put(SITE_BASE_URL, config.getString(SITE_BASE_URL));
+		ctx.put(GITHUB_ORG, config.getString(GITHUB_ORG));
+		ctx.put(SITE_NAME, config.getString(SITE_NAME));
+		ctx.put(SITE_DISPLAY_NAME, config.getString(SITE_DISPLAY_NAME));
+		ctx.put(SITE_POWERED_BY_URL, config.getString(SITE_POWERED_BY_URL));
+		ctx.put(SITE_POWERED_BY_NAME, config.getString(SITE_POWERED_BY_NAME));
+		ctx.put(SITE_POWERED_BY_IMAGE_URI, config.getString(SITE_POWERED_BY_IMAGE_URI));
+		ctx.put(FONTAWESOME_KIT, config.getString(FONTAWESOME_KIT));
+		ctx.put(SITE_LOCALE, config.getString(SITE_LOCALE));
+		ctx.put(SITE_THEME, config.getString(SITE_THEME));
+		ctx.put(AUTH_SCOPE_ADMIN, config.getString(AUTH_SCOPE_ADMIN));
+		ctx.put(AUTH_SCOPE_SUPER_ADMIN, config.getString(AUTH_SCOPE_SUPER_ADMIN));
+		return ctx;
+	}
+
 	/**
 	 * API counter fetch SitePage
 	 */
@@ -555,6 +573,11 @@ public class ComputateConfigKeys {
 	 * The path to the source code of the site. 
 	 **/
 	public static final String SITE_SRC = "SITE_SRC";
+
+	/**
+	 * The site default theme, light or dark. 
+	 **/
+	public static final String SITE_THEME = "SITE_THEME";
 
 	/**
 	 * The display name of the site. 
