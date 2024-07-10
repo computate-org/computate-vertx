@@ -22,6 +22,13 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+import static org.apache.commons.lang3.Validate.isTrue;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
@@ -143,6 +150,80 @@ public class ComputateConfigKeys {
 		return DateTimeFormatter.ofPattern(pattern, locale).format(d.withZoneSameInstant(zoneId));
 	}
 
+	public static String formatZonedDateTime(String str, String pattern, String localeId) {
+		return formatZonedDateTime(str, pattern, localeId, null);
+	}
+
+		/**
+		 * Build a number format from options.
+		 *
+		 * @param options The helper options.
+		 * @return The number format to use.
+		 */
+		private static NumberFormat build(String format, String localeStr) {
+			if (format == null) {
+				return NumberStyle.DEFAULT.numberFormat(Locale.getDefault());
+			}
+			isTrue(format instanceof String, "found '%s', expected 'string'", format);
+			Locale locale = LocaleUtils.toLocale(localeStr);
+			try {
+				NumberStyle style = NumberStyle.valueOf(format.toUpperCase().trim());
+				return style.numberFormat(locale);
+			} catch (ArrayIndexOutOfBoundsException ex) {
+				return NumberStyle.DEFAULT.numberFormat(locale);
+			} catch (IllegalArgumentException ex) {
+				return new DecimalFormat(format, new DecimalFormatSymbols(locale));
+			}
+		}
+
+	public static String numberFormat(Object value, String format, String localeStr, Boolean groupingUsed, Integer maximumFractionDigits, Integer maximumIntegerDigits, Integer minimumFractionDigits, Integer minimumIntegerDigits, Boolean parseIntegerOnly, String roundingMode) {
+			isTrue(value instanceof Number, "found '%s', expected 'number'", value);
+			Number number = (Number) value;
+			final NumberFormat numberFormat = build(format, localeStr);
+
+			if (groupingUsed != null) {
+				numberFormat.setGroupingUsed(groupingUsed);
+			}
+
+			if (maximumFractionDigits != null) {
+				numberFormat.setMaximumFractionDigits(maximumFractionDigits);
+			}
+
+			if (maximumIntegerDigits != null) {
+				numberFormat.setMaximumIntegerDigits(maximumIntegerDigits);
+			}
+
+			if (minimumFractionDigits != null) {
+				numberFormat.setMinimumFractionDigits(minimumFractionDigits);
+			}
+
+			if (minimumIntegerDigits != null) {
+				numberFormat.setMinimumIntegerDigits(minimumIntegerDigits);
+			}
+
+			if (parseIntegerOnly != null) {
+				numberFormat.setParseIntegerOnly(parseIntegerOnly);
+			}
+
+			if (roundingMode != null) {
+				numberFormat.setRoundingMode(RoundingMode.valueOf(roundingMode.toUpperCase().trim()));
+			}
+
+			return numberFormat.format(number);
+	}
+
+	public static String siteZonedDateTimeFormat(ZonedDateTime value, String pattern, String localeStr, Object tz) {
+		final DateTimeFormatter dateFormatter;
+		Locale locale = LocaleUtils.toLocale(localeStr);
+		dateFormatter = DateTimeFormatter.ofPattern(pattern.toString(), locale);
+		if (tz != null) {
+			final TimeZone timeZone = tz instanceof TimeZone ? (TimeZone) tz : TimeZone.getTimeZone(tz.toString());
+			dateFormatter.withZone(timeZone.toZoneId());
+		}
+		ZonedDateTime date = value instanceof ZonedDateTime ? (ZonedDateTime)value : ZonedDateTime.parse(value.toString(), DateTimeFormatter.ofPattern(ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMAT, locale));
+		return dateFormatter.format(date);
+	}
+
 	public static Jinjava getJinjava() {
 		Logger LOG = LoggerFactory.getLogger(ComputateConfigKeys.class);
 		Jinjava jinjava = null;
@@ -155,6 +236,9 @@ public class ComputateConfigKeys {
 			jinjava.registerFunction(new ELFunctionDefinition("", "toJsonObjectStringInApostrophes", ComputateConfigKeys.class, "toJsonObjectStringInApostrophes", Object.class));
 			jinjava.registerFunction(new ELFunctionDefinition("", "toJsonArrayStringInApostrophes", ComputateConfigKeys.class, "toJsonArrayStringInApostrophes", Object.class));
 			jinjava.registerFunction(new ELFunctionDefinition("", "formatZonedDateTime", ComputateConfigKeys.class, "formatZonedDateTime", String.class, String.class, String.class, String.class));
+			jinjava.registerFunction(new ELFunctionDefinition("", "formatZonedDateTime", ComputateConfigKeys.class, "formatZonedDateTime", String.class, String.class, String.class));
+			jinjava.registerFunction(new ELFunctionDefinition("", "siteZonedDateTimeFormat", ComputateConfigKeys.class, "siteZonedDateTimeFormat", ZonedDateTime.class, String.class, String.class, Object.class));
+			jinjava.registerFunction(new ELFunctionDefinition("", "numberFormat", ComputateConfigKeys.class, "numberFormat", Object.class, String.class, String.class, Boolean.class, Integer.class, Integer.class, Integer.class, Integer.class, Boolean.class, String.class));
 
 			jinjava.registerFilter(new Filter() {
 				@Override
@@ -1090,4 +1174,61 @@ public class ComputateConfigKeys {
 	public static final String ENABLE_OPEN_TELEMETRY = "ENABLE_OPEN_TELEMETRY";
 	public static final String ENABLE_KAFKA = "ENABLE_KAFKA";
 	public static final String ENABLE_MQTT = "ENABLE_MQTT";
+}
+
+/**
+ * Number format styles.
+ *
+ * @author edgar.espina
+ * @since 1.0.1
+ */
+enum NumberStyle {
+
+	/**
+	 * The default number format.
+	 */
+	DEFAULT {
+	 @Override
+		public NumberFormat numberFormat(final Locale locale) {
+			return NumberFormat.getInstance(locale);
+		}
+	},
+
+	/**
+	 * The integer number format.
+	 */
+	INTEGER {
+		@Override
+		public NumberFormat numberFormat(final Locale locale) {
+			return NumberFormat.getIntegerInstance(locale);
+		}
+	},
+
+	/**
+	 * The currency number format.
+	 */
+	CURRENCY {
+		@Override
+		public NumberFormat numberFormat(final Locale locale) {
+			return NumberFormat.getCurrencyInstance(locale);
+		}
+	},
+
+	/**
+	 * The percent number format.
+	 */
+	PERCENT {
+		@Override
+		public NumberFormat numberFormat(final Locale locale) {
+			return NumberFormat.getPercentInstance(locale);
+		}
+	};
+
+	/**
+	 * Build a new number format.
+	 *
+	 * @param locale The locale to use.
+	 * @return A new number format.
+	 */
+	public abstract NumberFormat numberFormat(Locale locale);
 }
