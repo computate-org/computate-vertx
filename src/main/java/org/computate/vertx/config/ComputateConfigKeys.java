@@ -143,15 +143,15 @@ public class ComputateConfigKeys {
 		return null;
 	}
 
-	public static String formatZonedDateTime(String str, String pattern, String localeId, String zone) {
+	public static String formatZonedDateTimeTz(Object o, String pattern, String localeId, String zone) {
 		Locale locale = Locale.forLanguageTag(localeId);
 		ZoneId zoneId = ZoneId.of(zone);
-		ZonedDateTime d = ZonedDateTime.parse(str, ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
+		ZonedDateTime d = ZonedDateTime.parse(o.toString(), ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
 		return DateTimeFormatter.ofPattern(pattern, locale).format(d.withZoneSameInstant(zoneId));
 	}
 
-	public static String formatZonedDateTime(String str, String pattern, String localeId) {
-		return formatZonedDateTime(str, pattern, localeId, null);
+	public static String formatZonedDateTime(Object o, String pattern, String localeId) {
+		return formatZonedDateTimeTz(o, pattern, localeId, null);
 	}
 
 		/**
@@ -212,9 +212,13 @@ public class ComputateConfigKeys {
 			return numberFormat.format(number);
 	}
 
-	public static String siteZonedDateTimeFormat(ZonedDateTime value, String pattern, String localeStr, Object tz) {
+	public static String siteZonedDateTimeFormat(Object value, String pattern, String localeStr) {
+		return siteZonedDateTimeFormatTz(value, pattern, localeStr, null);
+	}
+
+	public static String siteZonedDateTimeFormatTz(Object value, String pattern, String localeStr, Object tz) {
 		final DateTimeFormatter dateFormatter;
-		Locale locale = LocaleUtils.toLocale(localeStr);
+		Locale locale = LocaleUtils.toLocale(localeStr.replace("-", "_"));
 		dateFormatter = DateTimeFormatter.ofPattern(pattern.toString(), locale);
 		if (tz != null) {
 			final TimeZone timeZone = tz instanceof TimeZone ? (TimeZone) tz : TimeZone.getTimeZone(tz.toString());
@@ -235,9 +239,10 @@ public class ComputateConfigKeys {
 			jinjava.registerFunction(new ELFunctionDefinition("", "query", ComputateConfigKeys.class, "query", String.class, String.class, String.class, String.class));
 			jinjava.registerFunction(new ELFunctionDefinition("", "toJsonObjectStringInApostrophes", ComputateConfigKeys.class, "toJsonObjectStringInApostrophes", Object.class));
 			jinjava.registerFunction(new ELFunctionDefinition("", "toJsonArrayStringInApostrophes", ComputateConfigKeys.class, "toJsonArrayStringInApostrophes", Object.class));
-			jinjava.registerFunction(new ELFunctionDefinition("", "formatZonedDateTime", ComputateConfigKeys.class, "formatZonedDateTime", String.class, String.class, String.class, String.class));
-			jinjava.registerFunction(new ELFunctionDefinition("", "formatZonedDateTime", ComputateConfigKeys.class, "formatZonedDateTime", String.class, String.class, String.class));
-			jinjava.registerFunction(new ELFunctionDefinition("", "siteZonedDateTimeFormat", ComputateConfigKeys.class, "siteZonedDateTimeFormat", ZonedDateTime.class, String.class, String.class, Object.class));
+			jinjava.registerFunction(new ELFunctionDefinition("", "formatZonedDateTimeTz", ComputateConfigKeys.class, "formatZonedDateTimeTz", Object.class, String.class, String.class, String.class));
+			jinjava.registerFunction(new ELFunctionDefinition("", "formatZonedDateTime", ComputateConfigKeys.class, "formatZonedDateTime", Object.class, String.class, String.class));
+			jinjava.registerFunction(new ELFunctionDefinition("", "siteZonedDateTimeFormatTz", ComputateConfigKeys.class, "siteZonedDateTimeFormatTz", Object.class, String.class, String.class, Object.class));
+			jinjava.registerFunction(new ELFunctionDefinition("", "siteZonedDateTimeFormat", ComputateConfigKeys.class, "siteZonedDateTimeFormat", Object.class, String.class, String.class));
 			jinjava.registerFunction(new ELFunctionDefinition("", "numberFormat", ComputateConfigKeys.class, "numberFormat", Object.class, String.class, String.class, Boolean.class, Integer.class, Integer.class, Integer.class, Integer.class, Boolean.class, String.class));
 
 			jinjava.registerFilter(new Filter() {
