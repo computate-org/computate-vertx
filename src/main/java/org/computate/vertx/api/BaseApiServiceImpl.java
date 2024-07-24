@@ -13,17 +13,22 @@
  */
 package org.computate.vertx.api;
 
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.computate.search.request.SearchRequest;
 import org.computate.search.response.solr.SolrResponse;
+import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
 import org.computate.search.tool.SearchTool;
 import org.computate.vertx.config.ComputateConfigKeys;
 import org.computate.vertx.model.base.ComputateBaseModel;
@@ -33,6 +38,7 @@ import org.computate.vertx.search.list.SearchList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.io.Resources;
 import com.hubspot.jinjava.Jinjava;
 
 import io.vertx.core.AsyncResult;
@@ -56,7 +62,46 @@ import io.vertx.ext.web.client.WebClient;
 import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.pgclient.PgPool;
 import io.vertx.sqlclient.Tuple;
+import jinjava.org.jsoup.Jsoup;
+import jinjava.org.jsoup.nodes.Document;
+import io.vertx.ext.auth.authorization.AuthorizationProvider;
+import io.vertx.ext.auth.oauth2.OAuth2Auth;
+import io.vertx.ext.web.client.WebClient;
+import io.vertx.core.eventbus.EventBus;
+import io.vertx.config.yaml.YamlProcessor;
+import io.vertx.core.Future;
+import io.vertx.core.Promise;
+import io.vertx.core.Vertx;
+import io.vertx.core.WorkerExecutor;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
+import io.vertx.pgclient.PgPool;
+import io.vertx.kafka.client.producer.KafkaProducer;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.computate.search.tool.TimeTool;
+import org.computate.vertx.config.ComputateConfigKeys;
+
+import com.hubspot.jinjava.Jinjava;
 
 /**
  * Keyword: classSimpleNameBaseApiServiceImpl
@@ -67,6 +112,13 @@ import io.vertx.sqlclient.Tuple;
 public abstract class BaseApiServiceImpl {
 
 	protected static final Logger LOG = LoggerFactory.getLogger(BaseApiServiceImpl.class);
+
+	public final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm:ss VV");
+	public static final String importTimerScheduling = "Scheduling the %s import at %s";
+	public static final String importDataModelFail = "Importing all %s data failed. ";
+	public static final String importDataModelComplete = "Importing all %s data completed. ";
+	public static final String importModelComplete = "Importing page completed: %s";
+	public static final String importModelFail = "Importing page failed: %s";
 
 	protected EventBus eventBus;
 
@@ -744,6 +796,257 @@ public abstract class BaseApiServiceImpl {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Description: Import initial data
+	 * Val.Complete.enUS:Configuring the import of %s data completed. 
+	 * Val.Fail.enUS:Configuring the import of %s data failed. 
+	 **/
+	public Future<Object> importModel(Promise<Object> promise, Vertx vertx, ComputateSiteRequest siteRequest, ZonedDateTime startDateTime, String classSimpleName, String classApiAddress) {
+		importDataModel(vertx, siteRequest, classSimpleName, classApiAddress).onComplete(a -> {
+			String importPeriod = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_PERIOD, classSimpleName));
+			if(importPeriod != null && startDateTime != null) {
+				Duration duration = TimeTool.parseNextDuration(importPeriod);
+				ZonedDateTime nextStartTime = startDateTime.plus(duration);
+				LOG.info(String.format(importTimerScheduling, classSimpleName, nextStartTime.format(TIME_FORMAT)));
+				Duration nextStartDuration = Duration.between(Instant.now(), nextStartTime);
+				vertx.setTimer(nextStartDuration.toMillis(), b -> {
+					workerExecutor.executeBlocking(promise2 -> {
+						importModel(promise2, vertx, siteRequest, nextStartTime, classSimpleName, classApiAddress).onSuccess(c -> {
+							promise2.complete();
+						}).onFailure(ex -> {
+							promise2.fail(ex);
+						});
+					});
+				});
+				promise.complete();
+			} else {
+				promise.complete();
+			}
+		});
+		return promise.future();
+	}
+
+	private static String staticSearchZonedDateTime(ZonedDateTime o) {
+		return o == null ? null : ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER.format(o.toInstant().atOffset(ZoneOffset.UTC));
+	}
+
+	private static String staticSearchStr(ComputateSiteRequest siteRequest, String o) {
+		return staticSearchZonedDateTime(staticSetDateTime(siteRequest, o));
+	}
+	
+	private static ZonedDateTime staticSetDateTime(ComputateSiteRequest siteRequest, String o) {
+		if(StringUtils.endsWith(o, "]"))
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
+		else if(StringUtils.endsWith(o, "Z"))
+			return o == null ? null : Instant.parse(o).atZone(Optional.ofNullable(siteRequest).map(r -> r.getConfig()).map(config -> config.getString(ComputateConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))).truncatedTo(ChronoUnit.MILLIS);
+		else if(StringUtils.contains(o, "T"))
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER).truncatedTo(ChronoUnit.MILLIS);
+		else
+			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
+	}
+
+	/**
+	 * Description: Delete page data
+	 * Val.Complete.enUS:Importing %s data completed. 
+	 * Val.Fail.enUS:Importing %s data failed. 
+	 */
+	private Future<Void> deletePageData(ComputateSiteRequest siteRequest, ZonedDateTime now, String classSimpleName) {
+		Promise<Void> promise = Promise.promise();
+		String solrHostName = config.getString(ComputateConfigKeys.SOLR_HOST_NAME);
+		Integer solrPort = config.getInteger(ComputateConfigKeys.SOLR_PORT);
+		String solrCollection = config.getString(ComputateConfigKeys.SOLR_COLLECTION);
+		Boolean solrSsl = config.getBoolean(ComputateConfigKeys.SOLR_SSL);
+		String solrRequestUri = String.format("/solr/%s/update%s", solrCollection, "?softCommit=true&overwrite=true&wt=json");
+		String deleteQuery = String.format("classSimpleName_docvalues_string:(%s) AND created_docvalues_date:[* TO %s]", classSimpleName, staticSearchStr(siteRequest, staticSearchZonedDateTime(now)));
+		String deleteXml = String.format("<delete><query>%s</query></delete>", deleteQuery);
+		webClient.post(solrPort, solrHostName, solrRequestUri)
+				.ssl(solrSsl)
+				.putHeader("Content-Type", "text/xml")
+				.sendBuffer(Buffer.buffer().appendString(deleteXml))
+				.onSuccess(d -> {
+			try {
+				promise.complete();
+			} catch(Exception ex) {
+				LOG.error(String.format("Could not read response from Solr: http://%s:%s%s", solrHostName, solrPort, solrRequestUri), ex);
+				promise.fail(ex);
+			}
+		}).onFailure(ex -> {
+			LOG.error(String.format("Search failed. "), new RuntimeException(ex));
+			promise.fail(ex);
+		});
+		return promise.future();
+	}
+
+	/**
+	 * Description: Import all Site HTML data
+	 */
+	private Future<Void> importDataModel(Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress) {
+		Promise<Void> promise = Promise.promise();
+		ZonedDateTime now = ZonedDateTime.now(ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE)));
+		// i18nGenerator().onSuccess(i18n -> {
+		try {
+			String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
+			List<String> dynamicPagePaths = Optional.ofNullable(config.getValue(ComputateConfigKeys.DYNAMIC_PAGE_PATHS)).map(v -> v instanceof JsonArray ? (JsonArray)v : new JsonArray(v.toString())).orElse(new JsonArray()).stream().map(o -> o.toString()).collect(Collectors.toList());
+			List<String> pageResourcePaths = new ArrayList<>();
+			List<String> pageTemplatePaths = new ArrayList<>();
+			dynamicPagePaths.forEach(dynamicPagePath -> {
+				try {
+					try(Stream<Path> stream = Files.walk(Paths.get(config.getString(ComputateConfigKeys.TEMPLATE_PATH), dynamicPagePath))) {
+						stream.filter(Files::isRegularFile).filter(p -> 
+								p.getFileName().toString().endsWith(".htm")
+								|| p.getFileName().toString().endsWith(".html")
+								).forEach(path -> {
+							pageResourcePaths.add(StringUtils.substringAfter(path.toAbsolutePath().toString(), "/src/main/resources/"));
+							pageTemplatePaths.add(StringUtils.substringAfter(path.toAbsolutePath().toString(), siteTemplatePath + "/"));
+						});
+					}
+				} catch(Exception ex) {
+					LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+					ExceptionUtils.rethrow(ex);
+				}
+			});
+			YamlProcessor yamlProcessor = new YamlProcessor();
+	
+			importDataModel(vertx, siteRequest, null, yamlProcessor, pageResourcePaths, pageTemplatePaths, 0, classSimpleName, classApiAddress).onSuccess(a -> {
+				deletePageData(siteRequest, now, classSimpleName).onSuccess(b -> {
+					LOG.info(String.format(importDataModelComplete, classSimpleName));
+					promise.complete();
+				}).onFailure(ex -> {
+					LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+					promise.fail(ex);
+				});
+			}).onFailure(ex -> {
+				LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+				promise.fail(ex);
+			});
+		} catch(Throwable ex) {
+			LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+			promise.fail(ex);
+		}
+		// }).onFailure(ex -> {
+		// 	LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+		// 	promise.fail(ex);
+		// });
+		return promise.future();
+	}
+
+	/**
+	 * Description: Import Site HTML data
+	 * Val.Complete.enUS:Importing %s data completed. 
+	 * Val.Fail.enUS:Importing %s data failed. 
+	 */
+	private Future<Void> importDataModel(Vertx vertx, ComputateSiteRequest siteRequest, JsonObject i18n, YamlProcessor yamlProcessor, List<String> pageResourcePaths, List<String> pageTemplatePaths, Integer i, String classSimpleName, String classApiAddress) {
+		Promise<Void> promise = Promise.promise();
+		try {
+			if(i < pageResourcePaths.size()) {
+				String pageResourcePath = pageResourcePaths.get(i);
+				String pageTemplatePath = pageTemplatePaths.get(i);
+				importModel(vertx, siteRequest, i18n, yamlProcessor, pageResourcePath, pageTemplatePath, classSimpleName, classApiAddress).onSuccess(a -> {
+					importDataModel(vertx, siteRequest, i18n, yamlProcessor, pageResourcePaths, pageTemplatePaths, i + 1, classSimpleName, classApiAddress).onSuccess(b -> {
+						promise.complete();
+					}).onFailure(ex -> {
+						LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+						promise.fail(ex);
+					});
+				}).onFailure(ex -> {
+					LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+					promise.fail(ex);
+				});
+			} else {
+				promise.complete();
+			}
+		} catch(Exception ex) {
+			LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+			promise.fail(ex);
+		}
+		return promise.future();
+	}
+
+	public Future<JsonObject> generatePageBody(ComputateSiteRequest siteRequest, JsonObject ctx, String resourceUri, String templateUri, String classSimpleName) {
+		Promise<JsonObject> promise = Promise.promise();
+		promise.complete(new JsonObject());
+		return promise.future();
+	}
+
+	/**
+	 * Description: Import page
+	 */
+	private Future<Void> importModel(Vertx vertx, ComputateSiteRequest siteRequest, JsonObject i18n, YamlProcessor yamlProcessor, String resourceUri, String templateUri, String classSimpleName, String classApiAddress) {
+		Promise<Void> promise = Promise.promise();
+		vertx.fileSystem().readFile(resourceUri).onSuccess(buffer -> {
+			try {
+				// Jinjava template rendering
+				String template = Resources.toString(Resources.getResource(resourceUri), StandardCharsets.UTF_8);
+
+				String siteBaseUrl = config.getString(ComputateConfigKeys.SITE_BASE_URL);
+				JsonObject ctx = new JsonObject();
+				ctx.put(ComputateConfigKeys.STATIC_BASE_URL, config.getString(ComputateConfigKeys.STATIC_BASE_URL));
+				ctx.put(ComputateConfigKeys.SITE_BASE_URL, config.getString(ComputateConfigKeys.SITE_BASE_URL));
+				ctx.put(ComputateConfigKeys.GITHUB_ORG, config.getString(ComputateConfigKeys.GITHUB_ORG));
+				ctx.put(ComputateConfigKeys.SITE_NAME, config.getString(ComputateConfigKeys.SITE_NAME));
+				ctx.put(ComputateConfigKeys.SITE_DISPLAY_NAME, config.getString(ComputateConfigKeys.SITE_DISPLAY_NAME));
+				ctx.put(ComputateConfigKeys.SITE_POWERED_BY_URL, config.getString(ComputateConfigKeys.SITE_POWERED_BY_URL));
+				ctx.put(ComputateConfigKeys.SITE_POWERED_BY_NAME, config.getString(ComputateConfigKeys.SITE_POWERED_BY_NAME));
+				ctx.put(ComputateConfigKeys.SITE_POWERED_BY_IMAGE_URI, config.getString(ComputateConfigKeys.SITE_POWERED_BY_IMAGE_URI));
+				ctx.put(ComputateConfigKeys.FONTAWESOME_KIT, config.getString(ComputateConfigKeys.FONTAWESOME_KIT));
+
+				Matcher m = Pattern.compile("<meta property=\"([^\"]+)\"\\s+content=\"([^\"]*)\"/>", Pattern.MULTILINE).matcher(template);
+				boolean trouve = m.find();
+				while (trouve) {
+					String siteKey = m.group(1);
+					if(siteKey.startsWith("site:")) {
+						String key = StringUtils.substringAfter(siteKey, "site:");
+						String val = m.group(2);
+						if(val instanceof String) {
+							String rendered = jinjava.render(val, ctx.getMap());
+							ctx.put(key, rendered);
+						} else {
+							ctx.put(key, val);
+						}
+					}
+					trouve = m.find();
+				}
+
+				// JSoup HTML parsing
+				String renderedTemplate = jinjava.render(template, ctx.getMap());
+
+				Document htmDoc = Jsoup.parse(renderedTemplate);
+				String pageId = StringUtils.substringBeforeLast(StringUtils.substringAfterLast(resourceUri, "/"), ".");
+
+				generatePageBody(siteRequest, ctx, resourceUri, templateUri, classSimpleName).onSuccess(pageBody -> {
+					try {
+						JsonObject pageParams = new JsonObject();
+						pageParams.put("body", pageBody);
+						pageParams.put("path", new JsonObject());
+						pageParams.put("cookie", new JsonObject());
+						pageParams.put("query", new JsonObject().put("softCommit", true).put("q", "*:*").put("var", new JsonArray().add("refresh:false")));
+						JsonObject pageContext = new JsonObject().put("params", pageParams);
+						JsonObject pageRequest = new JsonObject().put("context", pageContext);
+
+						vertx.eventBus().request(classApiAddress, pageRequest, new DeliveryOptions().setSendTimeout(config.getLong(ComputateConfigKeys.VERTX_MAX_EVENT_LOOP_EXECUTE_TIME) * 1000).addHeader("action", String.format("putimport%sFuture", classSimpleName))).onSuccess(message -> {
+							promise.complete();
+						}).onFailure(ex -> {
+							promise.fail(ex);
+						});
+					} catch(Exception ex) {
+						LOG.error(String.format(importModelFail, classSimpleName), ex);
+						promise.fail(ex);
+					}
+				}).onFailure(ex -> {
+					LOG.error(String.format(importModelFail, classSimpleName), ex);
+					promise.fail(ex);
+				});
+			} catch(Exception ex) {
+				LOG.error(String.format(importModelFail, classSimpleName), ex);
+				promise.fail(ex);
+			}
+		}).onFailure(ex -> {
+			LOG.error(String.format(importModelFail, classSimpleName), ex);
+			promise.fail(ex);
+		});
+		return promise.future();
 	}
 
 	public abstract String searchVar(String varIndexed);

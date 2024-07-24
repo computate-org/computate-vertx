@@ -205,7 +205,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 		c.o((Boolean)classSolrDocument.get("classeRoleSession_stored_boolean"));
 	}
 
-	protected void _classRoleUtilisateur(Wrap<Boolean> c) {
+	protected void _classRoleUser(Wrap<Boolean> c) {
 		c.o((Boolean)classSolrDocument.get("classeRoleUtilisateur_stored_boolean"));
 	}
 
@@ -219,6 +219,13 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 
 	protected void _classRoles(Wrap<List<String>> c) {
 		List<String> o = (List<String>)classSolrDocument.get("classeRoles_stored_strings");
+		if(o == null)
+			o = new ArrayList<>();
+		c.o(o);
+	}
+
+	protected void _classRoleReads(Wrap<List<String>> c) {
+		List<String> o = (List<String>)classSolrDocument.get("classeRoleLires_stored_strings");
 		if(o == null)
 			o = new ArrayList<>();
 		c.o(o);
@@ -484,11 +491,23 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 		wPaths.tl(3, "operationId: ", classApiOperationIdMethod, (id ? "Id" : ""));
 		wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-", classSimpleName);
 
-		if(classRoleAll 
-				|| classRoleUserMethod 
-				|| classRolesFound && BooleanUtils.isNotTrue(classRoleSession) && BooleanUtils.isNotTrue(classPublicRead)
-				|| classRolesFound && BooleanUtils.isNotTrue(classRoleSession) && BooleanUtils.isTrue(classPublicRead) && StringUtils.equalsAny(classApiMethodMethod, "POST", "PUT", "PATCH", "DELETE")
+		if(
+				StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH") 
+					&& !(classRoleSession || classRoleUser || classRoleAll)
+					&& (
+					classRoles.size() > 0
+				)
+				|| !StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH") && (
+					BooleanUtils.isNotTrue(classRoleSession) 
+					&& BooleanUtils.isNotTrue(classPublicRead) 
+					&& ( classRoles.size() > 0 || classRoleReads.size() > 0)
+				)
 				) {
+		// if(classRoleAll 
+		// 		|| classRoleUserMethod 
+		// 		|| classRolesFound && BooleanUtils.isNotTrue(classRoleSession) && BooleanUtils.isNotTrue(classPublicRead)
+		// 		|| classRolesFound && BooleanUtils.isNotTrue(classRoleSession) && BooleanUtils.isTrue(classPublicRead) && StringUtils.equalsAny(classApiMethodMethod, "POST", "PUT", "PATCH", "DELETE")
+		// 		) {
 			String roleSecurity = (String)classSolrDocument.get(String.format("RoleSecurity_%s_stored_string", classApiMethod));
 			if(roleSecurity == null || roleSecurity.equals("true")) {
 				wPaths.tl(3, "security:");
