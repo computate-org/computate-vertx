@@ -79,6 +79,7 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.pgclient.PgPool;
 import io.vertx.kafka.client.producer.KafkaProducer;
 
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -115,6 +116,8 @@ public abstract class BaseApiServiceImpl {
 
 	public final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm:ss VV");
 	public static final String importTimerScheduling = "Scheduling the %s import at %s";
+	public static final String importTimerSkip = "Skip importing %s data. ";
+	public static final String importTimerFail = "Scheduling the import of %s data failed. ";
 	public static final String importDataModelFail = "Importing all %s data failed. ";
 	public static final String importDataModelComplete = "Importing all %s data completed. ";
 	public static final String importModelComplete = "Importing page completed: %s";
@@ -798,12 +801,104 @@ public abstract class BaseApiServiceImpl {
 		}
 	}
 
+	protected Future<Object> importDataClass(Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress, ZonedDateTime startDateTime) {
+		Promise<Object> promise = Promise.promise();
+
+		importModel(vertx, siteRequest, classSimpleName, classApiAddress, startDateTime).onSuccess(a -> {
+			promise.complete();
+		}).onFailure(ex -> {
+			LOG.error(String.format("Import failed. "), ex);
+			promise.fail(ex);
+		});
+
+		return promise.future();
+	}
+
+	/**
+	 * Val.Scheduling.enUS:Scheduling the %s import at %s
+	 * Val.Skip.enUS:Skip importing %s data. 
+	 * Val.Fail.enUS:Scheduling the import of %s data failed. 
+	 */
+	public Future<Void> importTimer(Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress) {
+		Promise<Void> promise = Promise.promise();
+		if(config.getBoolean(String.format("%s_%s", ComputateConfigKeys.ENABLE_IMPORT_DATA, classSimpleName), true)) {
+			// Load the import start time and period configuration. 
+			String importStartTime = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_START_TIME, classSimpleName));
+			String importPeriod = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_PERIOD, classSimpleName));
+			// Get the duration of the import period. 
+			// Calculate the next start time, or the next start time after that, if the start time is in less than a minute, 
+			// to give the following code enough time to complete it's calculations to ensure the import starts correctly. 
+
+			Duration nextStartDuration = null;
+			ZonedDateTime nextStartTime = null;
+			if(importPeriod != null) {
+				Duration duration = TimeTool.parseNextDuration(importPeriod);
+				if(importStartTime == null) {
+					nextStartTime = Optional.of(ZonedDateTime.now(ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE))))
+							.map(t -> Duration.between(Instant.now(), t).toMinutes() < 1L ? t.plus(duration) : t).get();
+				} else {
+					nextStartTime = TimeTool.parseNextZonedTime(importStartTime);
+				}
+
+				// Get the time now for the import start time zone. 
+				ZonedDateTime now = ZonedDateTime.now(nextStartTime.getZone());
+				BigDecimal[] divideAndRemainder = BigDecimal.valueOf(Duration.between(now, nextStartTime).toMillis())
+						.divideAndRemainder(BigDecimal.valueOf(duration.toMillis()));
+				nextStartDuration = Duration.between(now, nextStartTime);
+				if(divideAndRemainder[0].compareTo(BigDecimal.ONE) >= 0) {
+					nextStartDuration = Duration.ofMillis(divideAndRemainder[1].longValueExact());
+					nextStartTime = now.plus(nextStartDuration);
+				}
+				LOG.info(String.format(importTimerScheduling, classSimpleName, nextStartTime.format(TIME_FORMAT)));
+			}
+			ZonedDateTime nextStartTime2 = nextStartTime;
+
+			if(importStartTime == null) {
+				try {
+					vertx.setTimer(1, a -> {
+						workerExecutor.executeBlocking(promise2 -> {
+							importDataClass(vertx, siteRequest, classSimpleName, classApiAddress, null).onSuccess(b -> {
+								promise2.complete();
+							}).onFailure(ex -> {
+								promise2.fail(ex);
+							});
+						});
+					});
+					promise.complete();
+				} catch(Exception ex) {
+					LOG.error(String.format(importTimerFail, classSimpleName), ex);
+					promise.fail(ex);
+				}
+			} else {
+				try {
+					vertx.setTimer(nextStartDuration.toMillis(), a -> {
+						workerExecutor.executeBlocking(promise2 -> {
+							importDataClass(vertx, siteRequest, classSimpleName, classApiAddress, nextStartTime2).onSuccess(b -> {
+								promise2.complete();
+							}).onFailure(ex -> {
+								promise2.fail(ex);
+							});
+						});
+					});
+					promise.complete();
+				} catch(Exception ex) {
+					LOG.error(String.format(importTimerFail, classSimpleName), ex);
+					promise.fail(ex);
+				}
+			}
+		} else {
+			LOG.info(String.format(importTimerSkip, classSimpleName));
+			promise.complete();
+		}
+		return promise.future();
+	}
 	/**
 	 * Description: Import initial data
 	 * Val.Complete.enUS:Configuring the import of %s data completed. 
 	 * Val.Fail.enUS:Configuring the import of %s data failed. 
 	 **/
-	public Future<Object> importModel(Promise<Object> promise, Vertx vertx, ComputateSiteRequest siteRequest, ZonedDateTime startDateTime, String classSimpleName, String classApiAddress) {
+	public Future<Object> importModel(Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress, ZonedDateTime startDateTime) {
+		Promise<Object> promise = Promise.promise();
 		importDataModel(vertx, siteRequest, classSimpleName, classApiAddress).onComplete(a -> {
 			String importPeriod = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_PERIOD, classSimpleName));
 			if(importPeriod != null && startDateTime != null) {
@@ -813,7 +908,7 @@ public abstract class BaseApiServiceImpl {
 				Duration nextStartDuration = Duration.between(Instant.now(), nextStartTime);
 				vertx.setTimer(nextStartDuration.toMillis(), b -> {
 					workerExecutor.executeBlocking(promise2 -> {
-						importModel(promise2, vertx, siteRequest, nextStartTime, classSimpleName, classApiAddress).onSuccess(c -> {
+						importModel(vertx, siteRequest, classSimpleName, classApiAddress, nextStartTime).onSuccess(c -> {
 							promise2.complete();
 						}).onFailure(ex -> {
 							promise2.fail(ex);
@@ -943,7 +1038,7 @@ public abstract class BaseApiServiceImpl {
 			if(i < pageResourcePaths.size()) {
 				String pageResourcePath = pageResourcePaths.get(i);
 				String pageTemplatePath = pageTemplatePaths.get(i);
-				importModel(vertx, siteRequest, i18n, yamlProcessor, pageResourcePath, pageTemplatePath, classSimpleName, classApiAddress).onSuccess(a -> {
+				importModelFromFile(vertx, siteRequest, i18n, yamlProcessor, pageResourcePath, pageTemplatePath, classSimpleName, classApiAddress).onSuccess(a -> {
 					importDataModel(vertx, siteRequest, i18n, yamlProcessor, pageResourcePaths, pageTemplatePaths, i + 1, classSimpleName, classApiAddress).onSuccess(b -> {
 						promise.complete();
 					}).onFailure(ex -> {
@@ -973,7 +1068,7 @@ public abstract class BaseApiServiceImpl {
 	/**
 	 * Description: Import page
 	 */
-	private Future<Void> importModel(Vertx vertx, ComputateSiteRequest siteRequest, JsonObject i18n, YamlProcessor yamlProcessor, String resourceUri, String templateUri, String classSimpleName, String classApiAddress) {
+	private Future<Void> importModelFromFile(Vertx vertx, ComputateSiteRequest siteRequest, JsonObject i18n, YamlProcessor yamlProcessor, String resourceUri, String templateUri, String classSimpleName, String classApiAddress) {
 		Promise<Void> promise = Promise.promise();
 		vertx.fileSystem().readFile(resourceUri).onSuccess(buffer -> {
 			try {
