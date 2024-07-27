@@ -801,10 +801,10 @@ public abstract class BaseApiServiceImpl {
 		}
 	}
 
-	protected Future<Object> importDataClass(Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress, ZonedDateTime startDateTime) {
+	protected Future<Object> importDataClass(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress, ZonedDateTime startDateTime) {
 		Promise<Object> promise = Promise.promise();
 
-		importModel(vertx, siteRequest, classSimpleName, classApiAddress, startDateTime).onSuccess(a -> {
+		importModel(pagePath, vertx, siteRequest, classSimpleName, classApiAddress, startDateTime).onSuccess(a -> {
 			promise.complete();
 		}).onFailure(ex -> {
 			LOG.error(String.format("Import failed. "), ex);
@@ -819,9 +819,9 @@ public abstract class BaseApiServiceImpl {
 	 * Val.Skip.enUS:Skip importing %s data. 
 	 * Val.Fail.enUS:Scheduling the import of %s data failed. 
 	 */
-	public Future<Void> importTimer(Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress) {
+	public Future<Void> importTimer(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress) {
 		Promise<Void> promise = Promise.promise();
-		if(config.getBoolean(String.format("%s_%s", ComputateConfigKeys.ENABLE_IMPORT_DATA, classSimpleName), true)) {
+		if(config.getBoolean(String.format("%s_%s", ComputateConfigKeys.ENABLE_IMPORT_DATA, classSimpleName), false)) {
 			// Load the import start time and period configuration. 
 			String importStartTime = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_START_TIME, classSimpleName));
 			String importPeriod = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_PERIOD, classSimpleName));
@@ -857,7 +857,7 @@ public abstract class BaseApiServiceImpl {
 				try {
 					vertx.setTimer(1, a -> {
 						workerExecutor.executeBlocking(promise2 -> {
-							importDataClass(vertx, siteRequest, classSimpleName, classApiAddress, null).onSuccess(b -> {
+							importDataClass(pagePath, vertx, siteRequest, classSimpleName, classApiAddress, null).onSuccess(b -> {
 								promise2.complete();
 							}).onFailure(ex -> {
 								promise2.fail(ex);
@@ -873,7 +873,7 @@ public abstract class BaseApiServiceImpl {
 				try {
 					vertx.setTimer(nextStartDuration.toMillis(), a -> {
 						workerExecutor.executeBlocking(promise2 -> {
-							importDataClass(vertx, siteRequest, classSimpleName, classApiAddress, nextStartTime2).onSuccess(b -> {
+							importDataClass(pagePath, vertx, siteRequest, classSimpleName, classApiAddress, nextStartTime2).onSuccess(b -> {
 								promise2.complete();
 							}).onFailure(ex -> {
 								promise2.fail(ex);
@@ -897,9 +897,9 @@ public abstract class BaseApiServiceImpl {
 	 * Val.Complete.enUS:Configuring the import of %s data completed. 
 	 * Val.Fail.enUS:Configuring the import of %s data failed. 
 	 **/
-	public Future<Object> importModel(Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress, ZonedDateTime startDateTime) {
+	public Future<Object> importModel(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress, ZonedDateTime startDateTime) {
 		Promise<Object> promise = Promise.promise();
-		importDataModel(vertx, siteRequest, classSimpleName, classApiAddress).onComplete(a -> {
+		importDataModel(pagePath, vertx, siteRequest, classSimpleName, classApiAddress).onComplete(a -> {
 			String importPeriod = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_PERIOD, classSimpleName));
 			if(importPeriod != null && startDateTime != null) {
 				Duration duration = TimeTool.parseNextDuration(importPeriod);
@@ -908,7 +908,7 @@ public abstract class BaseApiServiceImpl {
 				Duration nextStartDuration = Duration.between(Instant.now(), nextStartTime);
 				vertx.setTimer(nextStartDuration.toMillis(), b -> {
 					workerExecutor.executeBlocking(promise2 -> {
-						importModel(vertx, siteRequest, classSimpleName, classApiAddress, nextStartTime).onSuccess(c -> {
+						importModel(pagePath, vertx, siteRequest, classSimpleName, classApiAddress, nextStartTime).onSuccess(c -> {
 							promise2.complete();
 						}).onFailure(ex -> {
 							promise2.fail(ex);
@@ -977,31 +977,23 @@ public abstract class BaseApiServiceImpl {
 	/**
 	 * Description: Import all Site HTML data
 	 */
-	private Future<Void> importDataModel(Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress) {
+	private Future<Void> importDataModel(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress) {
 		Promise<Void> promise = Promise.promise();
 		ZonedDateTime now = ZonedDateTime.now(ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE)));
 		// i18nGenerator().onSuccess(i18n -> {
 		try {
 			String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
-			List<String> dynamicPagePaths = Optional.ofNullable(config.getValue(ComputateConfigKeys.DYNAMIC_PAGE_PATHS)).map(v -> v instanceof JsonArray ? (JsonArray)v : new JsonArray(v.toString())).orElse(new JsonArray()).stream().map(o -> o.toString()).collect(Collectors.toList());
 			List<String> pageResourcePaths = new ArrayList<>();
 			List<String> pageTemplatePaths = new ArrayList<>();
-			dynamicPagePaths.forEach(dynamicPagePath -> {
-				try {
-					try(Stream<Path> stream = Files.walk(Paths.get(config.getString(ComputateConfigKeys.TEMPLATE_PATH), dynamicPagePath))) {
-						stream.filter(Files::isRegularFile).filter(p -> 
-								p.getFileName().toString().endsWith(".htm")
-								|| p.getFileName().toString().endsWith(".html")
-								).forEach(path -> {
-							pageResourcePaths.add(StringUtils.substringAfter(path.toAbsolutePath().toString(), "/src/main/resources/"));
-							pageTemplatePaths.add(StringUtils.substringAfter(path.toAbsolutePath().toString(), siteTemplatePath + "/"));
-						});
-					}
-				} catch(Exception ex) {
-					LOG.error(String.format(importDataModelFail, classSimpleName), ex);
-					ExceptionUtils.rethrow(ex);
-				}
-			});
+			try(Stream<Path> stream = Files.walk(pagePath)) {
+				stream.filter(Files::isRegularFile).filter(p -> 
+						p.getFileName().toString().endsWith(".htm")
+						|| p.getFileName().toString().endsWith(".html")
+						).forEach(path -> {
+					pageResourcePaths.add(StringUtils.substringAfter(path.toAbsolutePath().toString(), "/src/main/resources/"));
+					pageTemplatePaths.add(StringUtils.substringAfter(path.toAbsolutePath().toString(), siteTemplatePath + "/"));
+				});
+			}
 			YamlProcessor yamlProcessor = new YamlProcessor();
 	
 			importDataModel(vertx, siteRequest, null, yamlProcessor, pageResourcePaths, pageTemplatePaths, 0, classSimpleName, classApiAddress).onSuccess(a -> {
