@@ -56,6 +56,8 @@ import io.vertx.core.json.impl.JsonUtil;
 import io.vertx.ext.auth.User;
 import io.vertx.ext.auth.authorization.AuthorizationProvider;
 import io.vertx.ext.auth.oauth2.OAuth2Auth;
+import io.vertx.ext.web.Router;
+import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.api.service.ServiceRequest;
 import io.vertx.ext.web.api.service.ServiceResponse;
 import io.vertx.ext.web.client.WebClient;
@@ -80,6 +82,7 @@ import io.vertx.pgclient.PgPool;
 import io.vertx.kafka.client.producer.KafkaProducer;
 
 import java.math.BigDecimal;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -194,6 +197,16 @@ public abstract class BaseApiServiceImpl {
 		);
 		if(eventHandler != null)
 			eventHandler.handle(Future.succeededFuture(responseOperation));
+	}
+
+	public ServiceRequest generateServiceRequest(RoutingContext ctx) {
+		ServiceRequest serviceRequest = new ServiceRequest(
+				new JsonObject().put("path", JsonObject.mapFrom(ctx.pathParams())).put("query", ctx.queryParams()).put("cookie", JsonObject.mapFrom(ctx.cookieMap()))
+						, ctx.request().headers()
+						, Optional.ofNullable(ctx.user()).map(u -> u.principal()).orElse(null)
+						, new JsonObject()
+				);
+		return serviceRequest;
 	}
 
 	public <T extends ComputateSiteRequest> T generateSiteRequest(User user, JsonObject userPrincipal, ServiceRequest serviceRequest, Class<T> clazz) {
@@ -1134,6 +1147,74 @@ public abstract class BaseApiServiceImpl {
 			promise.fail(ex);
 		});
 		return promise.future();
+	}
+
+	public <Q, R extends ComputateSiteRequest> void configureUi(Router router, Class<Q> classResult, Class<R> classSiteRequest, String uriPrefix, String pageTemplateUri) {
+		router.getWithRegex("(?<uri>" + uriPrefix.replace("/", "\\/") + "\\/.*)").handler(handler -> {
+			ServiceRequest serviceRequest = generateServiceRequest(handler);
+			R siteRequest = generateSiteRequest(null, null, serviceRequest, classSiteRequest);
+
+			String uri = handler.pathParam("uri");
+			String url = String.format("%s%s", config.getString(ComputateConfigKeys.SITE_BASE_URL), uri);
+			String lang = String.format("%s%s", handler.pathParam("lang1"), handler.pathParam("lang2").toUpperCase());
+			JsonObject query = new JsonObject();
+			MultiMap queryParams = handler.queryParams();
+			for(String name : queryParams.names()) {
+				JsonArray array = query.getJsonArray(name);
+				List<String> vals = queryParams.getAll(name);
+				if(array == null) {
+					array = new JsonArray();
+					query.put(name, array);
+				}
+				for(String val : vals) {
+					array.add(val);
+				}
+			}
+			SearchList<Q> l = new SearchList<>();
+			l.q("*:*");
+			l.setC(classResult);
+			l.fq(String.format("%s_docvalues_string:%s", "uri", SearchTool.escapeQueryChars(uri)));
+			l.setStore(true);
+			handler.response().headers().add("Content-Type", "text/html");
+			l.promiseDeepForClass(siteRequest).onSuccess(a -> {
+				Q result = l.first();
+				try {
+					String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
+					Path resourceTemplatePath = Path.of(siteTemplatePath, pageTemplateUri);
+					String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8) : Files.readString(resourceTemplatePath, Charset.forName("UTF-8"));
+					JsonObject ctx = ComputateConfigKeys.getPageContext(config);
+					Matcher m = Pattern.compile("<meta property=\"([^\"]+)\"\\s+content=\"([^\"]*)\"/>", Pattern.MULTILINE).matcher(template);
+					boolean trouve = m.find();
+					while (trouve) {
+						String siteKey = m.group(1);
+						if(siteKey.startsWith("site:")) {
+							String key = StringUtils.substringAfter(siteKey, "site:");
+							String val = m.group(2);
+							if(val instanceof String) {
+								String rendered = jinjava.render(val, ctx.getMap());
+								ctx.put(key, rendered);
+							} else {
+								ctx.put(key, val);
+							}
+							trouve = m.find();
+						}
+						trouve = m.find();
+					}
+
+					String renderedTemplate = jinjava.render(template, ctx.getMap());
+					Buffer buffer = Buffer.buffer(renderedTemplate);
+					handler.response().putHeader("Content-Type", "text/html");
+					handler.end(buffer);
+				} catch (Exception ex) {
+					LOG.error(String.format("Failed to render page %s", uri), ex);
+					handler.fail(ex);
+				}
+				
+			}).onFailure(ex -> {
+				LOG.error(String.format("Failed to render page %s", uri), ex);
+				handler.fail(ex);
+			});
+		});
 	}
 
 	public abstract String searchVar(String varIndexed);
