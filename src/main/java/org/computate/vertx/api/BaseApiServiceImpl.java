@@ -1149,14 +1149,13 @@ public abstract class BaseApiServiceImpl {
 		return promise.future();
 	}
 
-	public <Q, R extends ComputateSiteRequest> void configureUi(Router router, Class<Q> classResult, Class<R> classSiteRequest, String uriPrefix, String pageTemplateUri) {
+	public <Q, R extends ComputateSiteRequest> void configureUi(Router router, Class<Q> classResult, Class<R> classSiteRequest, String uriPrefix) {
 		router.getWithRegex("(?<uri>" + uriPrefix.replace("/", "\\/") + "\\/.*)").handler(handler -> {
 			ServiceRequest serviceRequest = generateServiceRequest(handler);
 			R siteRequest = generateSiteRequest(null, null, serviceRequest, classSiteRequest);
 
 			String uri = handler.pathParam("uri");
 			String url = String.format("%s%s", config.getString(ComputateConfigKeys.SITE_BASE_URL), uri);
-			String lang = String.format("%s%s", handler.pathParam("lang1"), handler.pathParam("lang2").toUpperCase());
 			JsonObject query = new JsonObject();
 			MultiMap queryParams = handler.queryParams();
 			for(String name : queryParams.names()) {
@@ -1179,8 +1178,9 @@ public abstract class BaseApiServiceImpl {
 			l.promiseDeepForClass(siteRequest).onSuccess(a -> {
 				Q result = l.first();
 				try {
+					JsonObject resultJson = JsonObject.mapFrom(result);
 					String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
-					Path resourceTemplatePath = Path.of(siteTemplatePath, pageTemplateUri);
+					Path resourceTemplatePath = Path.of(siteTemplatePath, resultJson.getString("templateUri"));
 					String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8) : Files.readString(resourceTemplatePath, Charset.forName("UTF-8"));
 					JsonObject ctx = ComputateConfigKeys.getPageContext(config);
 					Matcher m = Pattern.compile("<meta property=\"([^\"]+)\"\\s+content=\"([^\"]*)\"/>", Pattern.MULTILINE).matcher(template);
