@@ -118,6 +118,28 @@ public class ComputateConfigKeys {
 	/**
 	 * Call the toString method on an object and replace apostrophes. 
 	 */
+	public static String toJsonArrayString(Object originalValue) {
+		if(originalValue == null) {
+			return "";
+		} else {
+			return new JsonArray((List<Object>)originalValue).toString();
+		}
+	}
+
+	/**
+	 * Call the toString method on an object and replace apostrophes. 
+	 */
+	public static String toJsonObjectString(Object originalValue) {
+		if(originalValue == null) {
+			return "";
+		} else {
+			return new JsonObject((Map<String, Object>)originalValue).toString();
+		}
+	}
+
+	/**
+	 * Call the toString method on an object and replace apostrophes. 
+	 */
 	public static String toJsonObjectStringInApostrophes(Object originalValue) {
 		if(originalValue == null) {
 			return "";
@@ -256,6 +278,8 @@ public class ComputateConfigKeys {
 			
 			jinjava.registerFunction(new ELFunctionDefinition("", "lookup", ComputateConfigKeys.class, "lookup", String.class, String.class));
 			jinjava.registerFunction(new ELFunctionDefinition("", "query", ComputateConfigKeys.class, "query", String.class, String.class, String.class, String.class));
+			jinjava.registerFunction(new ELFunctionDefinition("", "toJsonObjectString", ComputateConfigKeys.class, "toJsonObjectString", Object.class));
+			jinjava.registerFunction(new ELFunctionDefinition("", "toJsonArrayString", ComputateConfigKeys.class, "toJsonArrayString", Object.class));
 			jinjava.registerFunction(new ELFunctionDefinition("", "toJsonObjectStringInApostrophes", ComputateConfigKeys.class, "toJsonObjectStringInApostrophes", Object.class));
 			jinjava.registerFunction(new ELFunctionDefinition("", "toJsonArrayStringInApostrophes", ComputateConfigKeys.class, "toJsonArrayStringInApostrophes", Object.class));
 			jinjava.registerFunction(new ELFunctionDefinition("", "formatZonedDateTime", ComputateConfigKeys.class, "formatZonedDateTime", Object.class, String.class, String.class, String.class));
