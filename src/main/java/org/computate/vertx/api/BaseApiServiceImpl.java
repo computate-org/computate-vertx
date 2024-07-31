@@ -16,9 +16,12 @@ package org.computate.vertx.api;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,6 +29,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.computate.search.request.SearchRequest;
 import org.computate.search.response.solr.SolrResponse;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
@@ -50,10 +54,14 @@ import io.vertx.core.WorkerExecutor;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
+import io.vertx.core.http.HttpHeaders;
+import io.vertx.core.http.HttpServerRequest;
+import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.json.impl.JsonUtil;
 import io.vertx.ext.auth.User;
+import io.vertx.ext.auth.authentication.UsernamePasswordCredentials;
 import io.vertx.ext.auth.authorization.AuthorizationProvider;
 import io.vertx.ext.auth.oauth2.OAuth2Auth;
 import io.vertx.ext.web.Router;
@@ -61,6 +69,7 @@ import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.api.service.ServiceRequest;
 import io.vertx.ext.web.api.service.ServiceResponse;
 import io.vertx.ext.web.client.WebClient;
+import io.vertx.ext.web.client.predicate.ResponsePredicate;
 import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.pgclient.PgPool;
 import io.vertx.sqlclient.Tuple;
@@ -82,6 +91,8 @@ import io.vertx.pgclient.PgPool;
 import io.vertx.kafka.client.producer.KafkaProducer;
 
 import java.math.BigDecimal;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -1092,7 +1103,7 @@ public abstract class BaseApiServiceImpl {
 				ctx.put(ComputateConfigKeys.SITE_POWERED_BY_IMAGE_URI, config.getString(ComputateConfigKeys.SITE_POWERED_BY_IMAGE_URI));
 				ctx.put(ComputateConfigKeys.FONTAWESOME_KIT, config.getString(ComputateConfigKeys.FONTAWESOME_KIT));
 
-				Matcher m = Pattern.compile("<meta property=\"([^\"]+)\"\\s+content=\"([^\"]*)\"/>", Pattern.MULTILINE).matcher(template);
+				Matcher m = Pattern.compile("<meta property=\"([^\"]+)\"\\s+content=\"([^\"]*)\"\\s*/>", Pattern.MULTILINE).matcher(template);
 				boolean trouve = m.find();
 				while (trouve) {
 					String siteKey = m.group(1);
@@ -1113,7 +1124,6 @@ public abstract class BaseApiServiceImpl {
 				String renderedTemplate = jinjava.render(template, ctx.getMap());
 
 				Document htmDoc = Jsoup.parse(renderedTemplate);
-				String pageId = StringUtils.substringBeforeLast(StringUtils.substringAfterLast(resourceUri, "/"), ".");
 
 				generatePageBody(siteRequest, ctx, resourceUri, templateUri, classSimpleName).onSuccess(pageBody -> {
 					try {
@@ -1149,10 +1159,1129 @@ public abstract class BaseApiServiceImpl {
 		return promise.future();
 	}
 
-	public <Q, R extends ComputateSiteRequest> void configureUi(Router router, Class<Q> classResult, Class<R> classSiteRequest, String uriPrefix) {
+	public static String varIndexedBaseModel(String entityVar) {
+		switch(entityVar) {
+			case "pk":
+				return "pk_docvalues_long";
+			case "inheritPk":
+				return "inheritPk_docvalues_string";
+			case "created":
+				return "created_docvalues_date";
+			case "modified":
+				return "modified_docvalues_date";
+			case "archived":
+				return "archived_docvalues_boolean";
+			case "deleted":
+				return "deleted_docvalues_boolean";
+			case "classCanonicalName":
+				return "classCanonicalName_docvalues_string";
+			case "classSimpleName":
+				return "classSimpleName_docvalues_string";
+			case "classCanonicalNames":
+				return "classCanonicalNames_docvalues_strings";
+			case "sessionId":
+				return "sessionId_docvalues_string";
+			case "userKey":
+				return "userKey_docvalues_long";
+			case "saves":
+				return "saves_docvalues_strings";
+			case "objectTitle":
+				return "objectTitle_docvalues_string";
+			case "objectId":
+				return "objectId_docvalues_string";
+			case "objectSuggest":
+				return "objectSuggest_suggested";
+			case "objectText":
+				return "objectText_text_enUS";
+			case "pageUrlId":
+				return "pageUrlId_docvalues_string";
+			case "pageUrlPk":
+				return "pageUrlPk_docvalues_string";
+			case "pageUrlApi":
+				return "pageUrlApi_docvalues_string";
+			case "id":
+				return "id";
+			default:
+				return null;
+		}
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> Long staticSetPk(SiteRequest siteRequest_, String o) {
+		if(NumberUtils.isParsable(o))
+			return Long.parseLong(o);
+		return null;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> Long staticSearchPk(SiteRequest siteRequest_, Long o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrPk(SiteRequest siteRequest_, Long o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqPk(SiteRequest siteRequest_, String o) {
+		return staticSearchPk(siteRequest_, staticSetPk(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSetInheritPk(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchInheritPk(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrInheritPk(SiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqInheritPk(SiteRequest siteRequest_, String o) {
+		return staticSearchInheritPk(siteRequest_, staticSetInheritPk(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> ZonedDateTime staticSetCreated(SiteRequest siteRequest_, String o) {
+		if(StringUtils.endsWith(o, "]"))
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
+		else if(StringUtils.endsWith(o, "Z"))
+			return o == null ? null : Instant.parse(o).atZone(Optional.ofNullable(siteRequest_).map(r -> r.getConfig()).map(config -> config.getString(ComputateConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))).truncatedTo(ChronoUnit.MILLIS);
+		else if(StringUtils.contains(o, "T"))
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER).truncatedTo(ChronoUnit.MILLIS);
+		else
+			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchCreated(SiteRequest siteRequest_, ZonedDateTime o) {
+		return o == null ? null : ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER.format(o.toInstant().atOffset(ZoneOffset.UTC));
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrCreated(SiteRequest siteRequest_, String o) {
+		return staticSearchCreated(siteRequest_, staticSetCreated(siteRequest_, o));
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqCreated(SiteRequest siteRequest_, String o) {
+		return staticSearchCreated(siteRequest_, staticSetCreated(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> ZonedDateTime staticSetModified(SiteRequest siteRequest_, String o) {
+		if(StringUtils.endsWith(o, "]"))
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
+		else if(StringUtils.endsWith(o, "Z"))
+			return o == null ? null : Instant.parse(o).atZone(Optional.ofNullable(siteRequest_).map(r -> r.getConfig()).map(config -> config.getString(ComputateConfigKeys.SITE_ZONE)).map(z -> ZoneId.of(z)).orElse(ZoneId.of("UTC"))).truncatedTo(ChronoUnit.MILLIS);
+		else if(StringUtils.contains(o, "T"))
+			return o == null ? null : ZonedDateTime.parse(o, ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER).truncatedTo(ChronoUnit.MILLIS);
+		else
+			return o == null ? null : LocalDate.parse(o, DateTimeFormatter.ISO_DATE).atStartOfDay(ZoneId.of(siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_ZONE))).truncatedTo(ChronoUnit.MILLIS);
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchModified(SiteRequest siteRequest_, ZonedDateTime o) {
+		return o == null ? null : ComputateZonedDateTimeSerializer.UTC_DATE_TIME_FORMATTER.format(o.toInstant().atOffset(ZoneOffset.UTC));
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrModified(SiteRequest siteRequest_, String o) {
+		return staticSearchModified(siteRequest_, staticSetModified(siteRequest_, o));
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqModified(SiteRequest siteRequest_, String o) {
+		return staticSearchModified(siteRequest_, staticSetModified(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> Boolean staticSetArchived(SiteRequest siteRequest_, String o) {
+		return Boolean.parseBoolean(o);
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> Boolean staticSearchArchived(SiteRequest siteRequest_, Boolean o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrArchived(SiteRequest siteRequest_, Boolean o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqArchived(SiteRequest siteRequest_, String o) {
+		return staticSearchArchived(siteRequest_, staticSetArchived(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> Boolean staticSetDeleted(SiteRequest siteRequest_, String o) {
+		return Boolean.parseBoolean(o);
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> Boolean staticSearchDeleted(SiteRequest siteRequest_, Boolean o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrDeleted(SiteRequest siteRequest_, Boolean o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqDeleted(SiteRequest siteRequest_, String o) {
+		return staticSearchDeleted(siteRequest_, staticSetDeleted(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSetClassCanonicalName(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchClassCanonicalName(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrClassCanonicalName(SiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqClassCanonicalName(SiteRequest siteRequest_, String o) {
+		return staticSearchClassCanonicalName(siteRequest_, staticSetClassCanonicalName(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSetClassSimpleName(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchClassSimpleName(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrClassSimpleName(SiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqClassSimpleName(SiteRequest siteRequest_, String o) {
+		return staticSearchClassSimpleName(siteRequest_, staticSetClassSimpleName(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSetClassCanonicalNames(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchClassCanonicalNames(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrClassCanonicalNames(SiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqClassCanonicalNames(SiteRequest siteRequest_, String o) {
+		return staticSearchClassCanonicalNames(siteRequest_, staticSetClassCanonicalNames(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSetSessionId(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchSessionId(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrSessionId(SiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqSessionId(SiteRequest siteRequest_, String o) {
+		return staticSearchSessionId(siteRequest_, staticSetSessionId(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> Long staticSetUserKey(SiteRequest siteRequest_, String o) {
+		if(NumberUtils.isParsable(o))
+			return Long.parseLong(o);
+		return null;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> Long staticSearchUserKey(SiteRequest siteRequest_, Long o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrUserKey(SiteRequest siteRequest_, Long o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqUserKey(SiteRequest siteRequest_, String o) {
+		return staticSearchUserKey(siteRequest_, staticSetUserKey(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSetSaves(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchSaves(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrSaves(SiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqSaves(SiteRequest siteRequest_, String o) {
+		return staticSearchSaves(siteRequest_, staticSetSaves(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSetObjectTitle(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchObjectTitle(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrObjectTitle(SiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqObjectTitle(SiteRequest siteRequest_, String o) {
+		return staticSearchObjectTitle(siteRequest_, staticSetObjectTitle(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSetObjectId(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchObjectId(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrObjectId(SiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqObjectId(SiteRequest siteRequest_, String o) {
+		return staticSearchObjectId(siteRequest_, staticSetObjectId(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSetObjectSuggest(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchObjectSuggest(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrObjectSuggest(SiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqObjectSuggest(SiteRequest siteRequest_, String o) {
+		return staticSearchObjectSuggest(siteRequest_, staticSetObjectSuggest(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSetObjectText(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchObjectText(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrObjectText(SiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqObjectText(SiteRequest siteRequest_, String o) {
+		return staticSearchObjectText(siteRequest_, staticSetObjectText(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSetPageUrlId(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchPageUrlId(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrPageUrlId(SiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqPageUrlId(SiteRequest siteRequest_, String o) {
+		return staticSearchPageUrlId(siteRequest_, staticSetPageUrlId(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSetPageUrlPk(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchPageUrlPk(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrPageUrlPk(SiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqPageUrlPk(SiteRequest siteRequest_, String o) {
+		return staticSearchPageUrlPk(siteRequest_, staticSetPageUrlPk(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSetPageUrlApi(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchPageUrlApi(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrPageUrlApi(SiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqPageUrlApi(SiteRequest siteRequest_, String o) {
+		return staticSearchPageUrlApi(siteRequest_, staticSetPageUrlApi(siteRequest_, o)).toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSetId(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchId(SiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrId(SiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqId(SiteRequest siteRequest_, String o) {
+		return staticSearchId(siteRequest_, staticSetId(siteRequest_, o)).toString();
+	}
+
+
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqForClass(String entityVar, SiteRequest siteRequest_, String o) {
+		return staticSearchFqBaseModel(entityVar,  siteRequest_, o);
+	}
+
+	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqBaseModel(String entityVar, SiteRequest siteRequest_, String o) {
+		switch(entityVar) {
+		case "pk":
+			return staticSearchFqPk(siteRequest_, o);
+		case "inheritPk":
+			return staticSearchFqInheritPk(siteRequest_, o);
+		case "created":
+			return staticSearchFqCreated(siteRequest_, o);
+		case "modified":
+			return staticSearchFqModified(siteRequest_, o);
+		case "archived":
+			return staticSearchFqArchived(siteRequest_, o);
+		case "deleted":
+			return staticSearchFqDeleted(siteRequest_, o);
+		case "classCanonicalName":
+			return staticSearchFqClassCanonicalName(siteRequest_, o);
+		case "classSimpleName":
+			return staticSearchFqClassSimpleName(siteRequest_, o);
+		case "classCanonicalNames":
+			return staticSearchFqClassCanonicalNames(siteRequest_, o);
+		case "sessionId":
+			return staticSearchFqSessionId(siteRequest_, o);
+		case "userKey":
+			return staticSearchFqUserKey(siteRequest_, o);
+		case "saves":
+			return staticSearchFqSaves(siteRequest_, o);
+		case "objectTitle":
+			return staticSearchFqObjectTitle(siteRequest_, o);
+		case "objectId":
+			return staticSearchFqObjectId(siteRequest_, o);
+		case "objectSuggest":
+			return staticSearchFqObjectSuggest(siteRequest_, o);
+		case "objectText":
+			return staticSearchFqObjectText(siteRequest_, o);
+		case "pageUrlId":
+			return staticSearchFqPageUrlId(siteRequest_, o);
+		case "pageUrlPk":
+			return staticSearchFqPageUrlPk(siteRequest_, o);
+		case "pageUrlApi":
+			return staticSearchFqPageUrlApi(siteRequest_, o);
+		case "id":
+			return staticSearchFqId(siteRequest_, o);
+			default:
+				return null;
+		}
+	}
+
+	public <SiteRequest extends ComputateSiteRequest> String searchBaseModelFq(SiteRequest siteRequest, SearchList<?> searchList, String entityVar, String valueIndexed, String varIndexed) {
+		if(varIndexed == null)
+			throw new RuntimeException(String.format("\"%s\" is not an indexed entity. ", entityVar));
+		if(StringUtils.startsWith(valueIndexed, "[")) {
+			String[] fqs = StringUtils.substringAfter(StringUtils.substringBeforeLast(valueIndexed, "]"), "[").split(" TO ");
+			if(fqs.length != 2)
+				throw new RuntimeException(String.format("\"%s\" invalid range query. ", valueIndexed));
+			String fq1 = fqs[0].equals("*") ? fqs[0] : staticSearchFqForClass(entityVar, siteRequest, fqs[0]);
+			String fq2 = fqs[1].equals("*") ? fqs[1] : staticSearchFqForClass(entityVar, siteRequest, fqs[1]);
+			 return varIndexed + ":[" + fq1 + " TO " + fq2 + "]";
+		} else {
+			return varIndexed + ":" + SearchTool.escapeQueryChars(staticSearchFqForClass(entityVar, siteRequest, valueIndexed)).replace("\\", "\\\\");
+		}
+	}
+
+	public void searchBaseModelSort(SearchList<?> searchList, String entityVar, String valueIndexed, String varIndexed) {
+		if(varIndexed == null)
+			throw new RuntimeException(String.format("\"%s\" is not an indexed entity. ", entityVar));
+		searchList.sort(varIndexed, valueIndexed);
+	}
+
+	public void searchBaseModelRows(SearchList<?> searchList, Long valueRows) {
+			searchList.rows(valueRows != null ? valueRows : 10L);
+	}
+
+	public void searchBaseModelStart(SearchList<?> searchList, Long valueStart) {
+		searchList.start(valueStart);
+	}
+
+	public <SiteRequest extends ComputateSiteRequest, U extends ComputateSiteUser> void configureUserSearchApi(String uri, Router router, Class<SiteRequest> classSiteRequest, Class<U> classSiteUser, String userApiAddress, JsonObject config, WebClient webClient, List<String> authResources) {
+		router.getWithRegex(String.format("(?<uri>%s)", uri.replace("/", "\\/"))).handler(handler -> {
+			ServiceRequest serviceRequest = generateServiceRequest(handler);
+			JsonObject query = new JsonObject();
+			MultiMap queryParams = handler.queryParams();
+			for(String name : queryParams.names()) {
+				JsonArray array = query.getJsonArray(name);
+				List<String> vals = queryParams.getAll(name);
+				if(array == null) {
+					array = new JsonArray();
+					query.put(name, array);
+				}
+				for(String val : vals) {
+					array.add(val);
+				}
+			}
+			user(serviceRequest, classSiteRequest, classSiteUser, userApiAddress, "postSiteUserFuture", "patchSiteUserFuture").onSuccess(siteRequest -> {
+				MultiMap multiMap = MultiMap.caseInsensitiveMultiMap()
+						.add("grant_type", "urn:ietf:params:oauth:grant-type:uma-ticket")
+						.add("audience", config.getString(ComputateConfigKeys.AUTH_CLIENT))
+						.add("response_mode", "permissions");
+				authResources.forEach(resource -> {
+					multiMap.add("permission", String.format("%s#%s", resource, "GET"));
+				});
+				webClient.post(
+						config.getInteger(ComputateConfigKeys.AUTH_PORT)
+						, config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
+						, config.getString(ComputateConfigKeys.AUTH_TOKEN_URI)
+						)
+						.ssl(config.getBoolean(ComputateConfigKeys.AUTH_SSL))
+						.putHeader("Authorization", String.format("Bearer %s", siteRequest.getUser().principal().getString("access_token")))
+						.expect(ResponsePredicate.status(200))
+						.sendForm(multiMap).onFailure(ex -> {
+					String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
+					handler.fail(403, new RuntimeException("search failed"));
+				}).onSuccess(authorizationDecision -> {
+					try {
+						JsonArray scopes = authorizationDecision.bodyAsJsonArray().stream().findFirst().map(decision -> ((JsonObject)decision).getJsonArray("scopes")).orElse(new JsonArray());
+						if(!scopes.contains("PATCH")) {
+							String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
+							handler.fail(403, new RuntimeException("search failed"));
+						} else {
+							siteRequest.setScopes(scopes.stream().map(o -> o.toString()).collect(Collectors.toList()));
+							HttpServerRequest request = handler.request();
+							String solrUsername = config.getString(ComputateConfigKeys.SOLR_USERNAME);
+							String solrPassword = config.getString(ComputateConfigKeys.SOLR_PASSWORD);
+							String solrHostName = config.getString(ComputateConfigKeys.SOLR_HOST_NAME);
+							Integer solrPort = config.getInteger(ComputateConfigKeys.SOLR_PORT);
+							String solrCollection = config.getString(ComputateConfigKeys.SOLR_COLLECTION);
+							Boolean solrSsl = config.getBoolean(ComputateConfigKeys.SOLR_SSL);
+
+							SearchList<Object> searchList = new SearchList<Object>();
+							String facetRange = null;
+							Date facetRangeStart = null;
+							Date facetRangeEnd = null;
+							String facetRangeGap = null;
+							String statsField = null;
+							String statsFieldIndexed = null;
+							searchList.setStore(true);
+							searchList.q("*:*");
+							searchList.setSiteRequest_(siteRequest);
+							scopes.stream().forEach(scope -> {
+								searchList.fq(String.format("classSimpleName_docvalues_string:", scope));
+							});
+
+							for(String paramName : query.fieldNames()) {
+								Object paramValuesObject = query.getValue(paramName);
+								String entityVar = null;
+								String valueIndexed = null;
+								String varIndexed = null;
+								String valueSort = null;
+								Long valueStart = null;
+								Long valueRows = null;
+								String valueCursorMark = null;
+								JsonArray paramObjects = paramValuesObject instanceof JsonArray ? (JsonArray)paramValuesObject : new JsonArray().add(paramValuesObject);
+
+								try {
+									if(paramValuesObject != null && "facet.pivot".equals(paramName)) {
+										Matcher mFacetPivot = Pattern.compile("(?:(\\{![^\\}]+\\}))?(.*)").matcher(StringUtils.join(paramObjects.getList().toArray(), ","));
+										boolean foundFacetPivot = mFacetPivot.find();
+										if(foundFacetPivot) {
+											String solrLocalParams = mFacetPivot.group(1);
+											String[] entityVars = mFacetPivot.group(2).trim().split(",");
+											String[] varsIndexed = new String[entityVars.length];
+											for(Integer i = 0; i < entityVars.length; i++) {
+												entityVar = entityVars[i];
+												varsIndexed[i] = varIndexedBaseModel(entityVar);
+											}
+											searchList.facetPivot((solrLocalParams == null ? "" : solrLocalParams) + StringUtils.join(varsIndexed, ","));
+										}
+									} else if(paramValuesObject != null) {
+										for(Object paramObject : paramObjects) {
+											if(paramName.equals("q")) {
+												Matcher mQ = Pattern.compile("(\\w+):(.+?(?=(\\)|\\s+OR\\s+|\\s+AND\\s+|\\^|$)))").matcher((String)paramObject);
+												boolean foundQ = mQ.find();
+												if(foundQ) {
+													StringBuffer sb = new StringBuffer();
+													while(foundQ) {
+														entityVar = mQ.group(1).trim();
+														valueIndexed = mQ.group(2).trim();
+														varIndexed = varIndexedBaseModel(entityVar);
+														String entityQ = searchBaseModelFq(siteRequest, searchList, entityVar, valueIndexed, varIndexed);
+														mQ.appendReplacement(sb, entityQ);
+														foundQ = mQ.find();
+													}
+													mQ.appendTail(sb);
+													searchList.q(sb.toString());
+												}
+											} else if(paramName.equals("fq")) {
+												Matcher mFq = Pattern.compile("(\\w+):(.+?(?=(\\)|\\s+OR\\s+|\\s+AND\\s+|$)))").matcher((String)paramObject);
+												boolean foundFq = mFq.find();
+												if(foundFq) {
+													StringBuffer sb = new StringBuffer();
+													while(foundFq) {
+														entityVar = mFq.group(1).trim();
+														valueIndexed = mFq.group(2).trim();
+														varIndexed = varIndexedBaseModel(entityVar);
+														String entityFq = searchBaseModelFq(siteRequest, searchList, entityVar, valueIndexed, varIndexed);
+														mFq.appendReplacement(sb, entityFq);
+														foundFq = mFq.find();
+													}
+													mFq.appendTail(sb);
+													searchList.fq(sb.toString());
+												}
+											} else if(paramName.equals("sort")) {
+												entityVar = StringUtils.trim(StringUtils.substringBefore((String)paramObject, " "));
+												valueIndexed = StringUtils.trim(StringUtils.substringAfter((String)paramObject, " "));
+												varIndexed = varIndexedBaseModel(entityVar);
+												searchBaseModelSort(searchList, entityVar, valueIndexed, varIndexed);
+											} else if(paramName.equals("start")) {
+												valueStart = paramObject instanceof Long ? (Long)paramObject : Long.parseLong(paramObject.toString());
+												searchBaseModelStart(searchList, valueStart);
+											} else if(paramName.equals("rows")) {
+												valueRows = paramObject instanceof Long ? (Long)paramObject : Long.parseLong(paramObject.toString());
+												searchBaseModelRows(searchList, valueRows);
+											} else if(paramName.equals("stats")) {
+												searchList.stats((Boolean)paramObject);
+											} else if(paramName.equals("stats.field")) {
+												Matcher mStats = Pattern.compile("(?:(\\{![^\\}]+\\}))?(.*)").matcher((String)paramObject);
+												boolean foundStats = mStats.find();
+												if(foundStats) {
+													String solrLocalParams = mStats.group(1);
+													entityVar = mStats.group(2).trim();
+													varIndexed = varIndexedBaseModel(entityVar);
+													searchList.statsField((solrLocalParams == null ? "" : solrLocalParams) + varIndexed);
+													statsField = entityVar;
+													statsFieldIndexed = varIndexed;
+												}
+											} else if(paramName.equals("facet")) {
+												searchList.facet((Boolean)paramObject);
+											} else if(paramName.equals("facet.range.start")) {
+												String startMathStr = (String)paramObject;
+												Date start = SearchTool.parseMath(startMathStr);
+												searchList.facetRangeStart(start.toInstant().toString());
+												facetRangeStart = start;
+											} else if(paramName.equals("facet.range.end")) {
+												String endMathStr = (String)paramObject;
+												Date end = SearchTool.parseMath(endMathStr);
+												searchList.facetRangeEnd(end.toInstant().toString());
+												facetRangeEnd = end;
+											} else if(paramName.equals("facet.range.gap")) {
+												String gap = (String)paramObject;
+												searchList.facetRangeGap(gap);
+												facetRangeGap = gap;
+											} else if(paramName.equals("facet.range")) {
+												Matcher mFacetRange = Pattern.compile("(?:(\\{![^\\}]+\\}))?(.*)").matcher((String)paramObject);
+												boolean foundFacetRange = mFacetRange.find();
+												if(foundFacetRange) {
+													String solrLocalParams = mFacetRange.group(1);
+													entityVar = mFacetRange.group(2).trim();
+													varIndexed = varIndexedBaseModel(entityVar);
+													searchList.facetRange((solrLocalParams == null ? "" : solrLocalParams) + varIndexed);
+													facetRange = entityVar;
+												}
+											} else if(paramName.equals("facet.field")) {
+												entityVar = (String)paramObject;
+												varIndexed = varIndexedBaseModel(entityVar);
+												if(varIndexed != null)
+													searchList.facetField(varIndexed);
+											} else if(paramName.equals("cursorMark")) {
+												valueCursorMark = (String)paramObject;
+												searchList.cursorMark((String)paramObject);
+											}
+										}
+									}
+								} catch(Exception e) {
+									ExceptionUtils.rethrow(e);
+								}
+							}
+
+							searchList.promiseDeepForClass(siteRequest).onSuccess(a -> {
+
+								HttpServerResponse response = handler.response();
+								response.putHeader("content-type", "application/json");
+								List<String> fls = searchList.getRequest().getFields();
+								JsonObject json = new JsonObject();
+								JsonArray l = new JsonArray();
+								searchList.getList().stream().forEach(o -> {
+									JsonObject json2 = JsonObject.mapFrom(o);
+									if(fls.size() > 0) {
+										Set<String> fieldNames = new HashSet<String>();
+										for(String fieldName : json2.fieldNames()) {
+											String v = varIndexedBaseModel(fieldName);
+											if(v != null)
+												fieldNames.add(varIndexedBaseModel(fieldName));
+										}
+										if(fls.size() == 1 && fls.stream().findFirst().orElse(null).equals("saves_docvalues_strings")) {
+											fieldNames.removeAll(Optional.ofNullable(json2.getJsonArray("saves_docvalues_strings")).orElse(new JsonArray()).stream().map(s -> s.toString()).collect(Collectors.toList()));
+											fieldNames.remove("_docvalues_long");
+											fieldNames.remove("created_docvalues_date");
+										}
+										else if(fls.size() >= 1) {
+											fieldNames.removeAll(fls);
+										}
+										for(String fieldName : fieldNames) {
+											if(!fls.contains(fieldName))
+												json2.remove(fieldName);
+										}
+									}
+									l.add(json2);
+								});
+								json.put("list", l);
+
+								SolrResponse responseSearch = searchList.getResponse();
+								SearchRequest searchRequest = searchList.getRequest();
+								List<SolrResponse.Doc> solrDocuments = responseSearch.getResponse().getDocs();
+								Long searchInMillis = Long.valueOf(responseSearch.getResponseHeader().getqTime());
+								Long startNum = searchRequest.getStart();
+								Long foundNum = responseSearch.getResponse().getNumFound();
+								Integer returnedNum = responseSearch.getResponse().getDocs().size();
+								String searchTime = String.format("%d.%03d sec", TimeUnit.MILLISECONDS.toSeconds(searchInMillis), TimeUnit.MILLISECONDS.toMillis(searchInMillis) - TimeUnit.SECONDS.toMillis(TimeUnit.MILLISECONDS.toSeconds(searchInMillis)));
+								String nextCursorMark = responseSearch.getNextCursorMark();
+								String exceptionSearch = Optional.ofNullable(responseSearch.getError()).map(error -> error.getMsg()).orElse(null);
+
+								json.put("startNum", startNum);
+								json.put("foundNum", foundNum);
+								json.put("returnedNum", returnedNum);
+								if(fls.size() == 1 && fls.stream().findFirst().orElse(null).equals("saves")) {
+									json.put("searchTime", searchTime);
+								}
+								Optional.ofNullable(responseSearch.getStats()).map(s -> s.getStatsFields()).map(s -> s.getFields()).ifPresent(stats -> {
+									JsonObject stats2 = new JsonObject();
+									stats.forEach((key, val) -> {
+										JsonObject values = JsonObject.mapFrom(val);
+										String var = searchVar(key);
+										values.remove("name");
+										values.put("var", var);
+										stats2.put(var, values);
+									});
+									json.put("stats", stats2);
+								});
+								Optional.ofNullable(responseSearch.getFacetCounts()).ifPresent(facetCounts -> {
+									JsonObject facetCounts2 = new JsonObject();
+									Optional.ofNullable(facetCounts.getFacetFields()).map(f -> f.getFacets()).ifPresent(facets -> {
+										JsonObject facets2 = new JsonObject();
+										for(SolrResponse.FacetField facetField : facets.values()) {
+											String facetFieldVar = searchVar(facetField.getName());
+											JsonObject facetFieldCounts = new JsonObject();
+											facets2.put(facetFieldVar, facetFieldCounts);
+											facetField.getCounts().forEach((name, count) -> {
+												facetFieldCounts.put(name, count);
+											});
+										}
+										facetCounts2.put("facet_fields", facets2);
+									});
+									Optional.ofNullable(facetCounts.getFacetHeatMaps()).map(f -> f.getFacets()).ifPresent(facets -> {
+										JsonObject facets2 = new JsonObject();
+										for(SolrResponse.FacetField facetField : facets.values()) {
+											String facetFieldVar = searchVar(facetField.getName());
+											JsonObject facetFieldCounts = new JsonObject();
+											facets2.put(facetFieldVar, facetFieldCounts);
+											facetField.getCounts().forEach((name, count) -> {
+												facetFieldCounts.put(name, count);
+											});
+										}
+										facetCounts2.put("facet_heatmaps", facets2);
+									});
+									Optional.ofNullable(facetCounts.getFacetIntervals()).map(f -> f.getFacets()).ifPresent(facets -> {
+										JsonObject facets2 = new JsonObject();
+										for(SolrResponse.FacetField facetField : facets.values()) {
+											String facetFieldVar = searchVar(facetField.getName());
+											JsonObject facetFieldCounts = new JsonObject();
+											facets2.put(facetFieldVar, facetFieldCounts);
+											facetField.getCounts().forEach((name, count) -> {
+												facetFieldCounts.put(name, count);
+											});
+										}
+										facetCounts2.put("facet_intervals", facets2);
+									});
+									Optional.ofNullable(facetCounts.getFacetPivot()).map(f -> f.getPivotMap()).ifPresent(facets -> {
+										JsonObject facets2 = new JsonObject();
+										JsonObject pivotMap = new JsonObject();
+										responsePivotSearch(facets, pivotMap);
+										facetCounts2.put("facet_pivot", pivotMap);
+									});
+									Optional.ofNullable(facetCounts.getFacetQueries()).map(f -> f.getFacets()).ifPresent(facets -> {
+										JsonObject facets2 = new JsonObject();
+										facetCounts2.put("facet_queries", facets2);
+									});
+									Optional.ofNullable(facetCounts.getFacetRanges()).map(f -> f.getRanges()).ifPresent(facets -> {
+										JsonObject facets2 = new JsonObject();
+										for(SolrResponse.FacetRange facetField : facets.values()) {
+											JsonObject rangeFacetJson = new JsonObject();
+											String rangeFacetVar = searchVar(facetField.getName());
+											facets2.put(rangeFacetVar, rangeFacetJson);
+											JsonObject rangeFacetCountsMap = new JsonObject();
+											rangeFacetJson.put("counts", rangeFacetCountsMap);
+											facetField.getCounts().forEach((name, count) -> {
+												rangeFacetCountsMap.put(name, count);
+											});
+										}
+										facetCounts2.put("facet_ranges", facets2);
+									});
+									json.put("facet_counts", facetCounts2);
+								});
+								if(nextCursorMark != null) {
+									json.put("nextCursorMark", nextCursorMark);
+								}
+								if(exceptionSearch != null) {
+									json.put("exceptionSearch", exceptionSearch);
+								}
+								response.end(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily()));
+							}).onFailure(ex -> {
+								handler.fail(ex);
+								LOG.error(String.format("Solr search failed. "), ex);
+							});
+						}
+					} catch(Exception ex) {
+						LOG.error("search failed", ex);
+						handler.fail(500, new RuntimeException("search failed"));
+					}
+				});
+			}).onFailure(ex -> {
+				if("Inactive Token".equals(ex.getMessage()) || StringUtils.startsWith(ex.getMessage(), "invalid_grant:")) {
+					try {
+						handler.redirect(config.getString(ComputateConfigKeys.AUTH_LOGOUT_URI));
+					} catch(Exception ex2) {
+						LOG.error("search login redirect failed", ex2);
+						handler.fail(401, new RuntimeException("SSO Resource Permission check returned DENY"));
+					}
+				} else if(StringUtils.startsWith(ex.getMessage(), "401 UNAUTHORIZED ")) {
+					handler.fail(401, new RuntimeException("SSO Resource Permission check returned DENY"));
+				} else {
+					LOG.error("search failed", ex);
+					handler.fail(401, new RuntimeException("SSO Resource Permission check failed"));
+				}
+			});
+		});
+	}
+
+	public <SiteRequest extends ComputateSiteRequest, U extends ComputateSiteUser> void configurePublicSearchApi(String uri, Router router, Class<SiteRequest> classSiteRequest, JsonObject config, WebClient webClient, List<String> authResources) {
+		router.getWithRegex(String.format("(?<uri>%s)", uri.replace("/", "\\/"))).handler(handler -> {
+			try {
+				ServiceRequest serviceRequest = generateServiceRequest(handler);
+				JsonObject query = new JsonObject();
+				MultiMap queryParams = handler.queryParams();
+				for(String name : queryParams.names()) {
+					JsonArray array = query.getJsonArray(name);
+					List<String> vals = queryParams.getAll(name);
+					if(array == null) {
+						array = new JsonArray();
+						query.put(name, array);
+					}
+					for(String val : vals) {
+						array.add(val);
+					}
+				}
+				HttpServerRequest request = handler.request();
+				String solrUsername = config.getString(ComputateConfigKeys.SOLR_USERNAME);
+				String solrPassword = config.getString(ComputateConfigKeys.SOLR_PASSWORD);
+				String solrHostName = config.getString(ComputateConfigKeys.SOLR_HOST_NAME);
+				Integer solrPort = config.getInteger(ComputateConfigKeys.SOLR_PORT);
+				String solrCollection = config.getString(ComputateConfigKeys.SOLR_COLLECTION);
+				Boolean solrSsl = config.getBoolean(ComputateConfigKeys.SOLR_SSL);
+
+				SiteRequest siteRequest = generateSiteRequest(null, config, serviceRequest, classSiteRequest);
+
+				SearchList<Object> searchList = new SearchList<Object>();
+				String facetRange = null;
+				Date facetRangeStart = null;
+				Date facetRangeEnd = null;
+				String facetRangeGap = null;
+				String statsField = null;
+				String statsFieldIndexed = null;
+				searchList.setStore(true);
+				searchList.q("*:*");
+				searchList.setSiteRequest_(siteRequest);
+				searchList.fq(String.format("classSimpleName_docvalues_string:" + authResources.stream().collect(Collectors.joining(" OR ", "(", ")"))));
+
+				for(String paramName : query.fieldNames()) {
+					Object paramValuesObject = query.getValue(paramName);
+					String entityVar = null;
+					String valueIndexed = null;
+					String varIndexed = null;
+					String valueSort = null;
+					Long valueStart = null;
+					Long valueRows = null;
+					String valueCursorMark = null;
+					JsonArray paramObjects = paramValuesObject instanceof JsonArray ? (JsonArray)paramValuesObject : new JsonArray().add(paramValuesObject);
+
+					if(paramValuesObject != null && "facet.pivot".equals(paramName)) {
+						Matcher mFacetPivot = Pattern.compile("(?:(\\{![^\\}]+\\}))?(.*)").matcher(StringUtils.join(paramObjects.getList().toArray(), ","));
+						boolean foundFacetPivot = mFacetPivot.find();
+						if(foundFacetPivot) {
+							String solrLocalParams = mFacetPivot.group(1);
+							String[] entityVars = mFacetPivot.group(2).trim().split(",");
+							String[] varsIndexed = new String[entityVars.length];
+							for(Integer i = 0; i < entityVars.length; i++) {
+								entityVar = entityVars[i];
+								varsIndexed[i] = varIndexedBaseModel(entityVar);
+							}
+							searchList.facetPivot((solrLocalParams == null ? "" : solrLocalParams) + StringUtils.join(varsIndexed, ","));
+						}
+					} else if(paramValuesObject != null) {
+						for(Object paramObject : paramObjects) {
+							if(paramName.equals("q")) {
+								Matcher mQ = Pattern.compile("(\\w+):(.+?(?=(\\)|\\s+OR\\s+|\\s+AND\\s+|\\^|$)))").matcher((String)paramObject);
+								boolean foundQ = mQ.find();
+								if(foundQ) {
+									StringBuffer sb = new StringBuffer();
+									while(foundQ) {
+										entityVar = mQ.group(1).trim();
+										valueIndexed = mQ.group(2).trim();
+										varIndexed = varIndexedBaseModel(entityVar);
+										String entityQ = searchBaseModelFq(siteRequest, searchList, entityVar, valueIndexed, varIndexed);
+										mQ.appendReplacement(sb, entityQ);
+										foundQ = mQ.find();
+									}
+									mQ.appendTail(sb);
+									searchList.q(sb.toString());
+								}
+							} else if(paramName.equals("fq")) {
+								Matcher mFq = Pattern.compile("(\\w+):(.+?(?=(\\)|\\s+OR\\s+|\\s+AND\\s+|$)))").matcher((String)paramObject);
+								boolean foundFq = mFq.find();
+								if(foundFq) {
+									StringBuffer sb = new StringBuffer();
+									while(foundFq) {
+										entityVar = mFq.group(1).trim();
+										valueIndexed = mFq.group(2).trim();
+										varIndexed = varIndexedBaseModel(entityVar);
+										String entityFq = searchBaseModelFq(siteRequest, searchList, entityVar, valueIndexed, varIndexed);
+										mFq.appendReplacement(sb, entityFq);
+										foundFq = mFq.find();
+									}
+									mFq.appendTail(sb);
+									searchList.fq(sb.toString());
+								}
+							} else if(paramName.equals("sort")) {
+								entityVar = StringUtils.trim(StringUtils.substringBefore((String)paramObject, " "));
+								valueIndexed = StringUtils.trim(StringUtils.substringAfter((String)paramObject, " "));
+								varIndexed = varIndexedBaseModel(entityVar);
+								searchBaseModelSort(searchList, entityVar, valueIndexed, varIndexed);
+							} else if(paramName.equals("start")) {
+								valueStart = paramObject instanceof Long ? (Long)paramObject : Long.parseLong(paramObject.toString());
+								searchBaseModelStart(searchList, valueStart);
+							} else if(paramName.equals("rows")) {
+								valueRows = paramObject instanceof Long ? (Long)paramObject : Long.parseLong(paramObject.toString());
+								searchBaseModelRows(searchList, valueRows);
+							} else if(paramName.equals("stats")) {
+								searchList.stats((Boolean)paramObject);
+							} else if(paramName.equals("stats.field")) {
+								Matcher mStats = Pattern.compile("(?:(\\{![^\\}]+\\}))?(.*)").matcher((String)paramObject);
+								boolean foundStats = mStats.find();
+								if(foundStats) {
+									String solrLocalParams = mStats.group(1);
+									entityVar = mStats.group(2).trim();
+									varIndexed = varIndexedBaseModel(entityVar);
+									searchList.statsField((solrLocalParams == null ? "" : solrLocalParams) + varIndexed);
+									statsField = entityVar;
+									statsFieldIndexed = varIndexed;
+								}
+							} else if(paramName.equals("facet")) {
+								searchList.facet((Boolean)paramObject);
+							} else if(paramName.equals("facet.range.start")) {
+								String startMathStr = (String)paramObject;
+								Date start = SearchTool.parseMath(startMathStr);
+								searchList.facetRangeStart(start.toInstant().toString());
+								facetRangeStart = start;
+							} else if(paramName.equals("facet.range.end")) {
+								String endMathStr = (String)paramObject;
+								Date end = SearchTool.parseMath(endMathStr);
+								searchList.facetRangeEnd(end.toInstant().toString());
+								facetRangeEnd = end;
+							} else if(paramName.equals("facet.range.gap")) {
+								String gap = (String)paramObject;
+								searchList.facetRangeGap(gap);
+								facetRangeGap = gap;
+							} else if(paramName.equals("facet.range")) {
+								Matcher mFacetRange = Pattern.compile("(?:(\\{![^\\}]+\\}))?(.*)").matcher((String)paramObject);
+								boolean foundFacetRange = mFacetRange.find();
+								if(foundFacetRange) {
+									String solrLocalParams = mFacetRange.group(1);
+									entityVar = mFacetRange.group(2).trim();
+									varIndexed = varIndexedBaseModel(entityVar);
+									searchList.facetRange((solrLocalParams == null ? "" : solrLocalParams) + varIndexed);
+									facetRange = entityVar;
+								}
+							} else if(paramName.equals("facet.field")) {
+								entityVar = (String)paramObject;
+								varIndexed = varIndexedBaseModel(entityVar);
+								if(varIndexed != null)
+									searchList.facetField(varIndexed);
+							} else if(paramName.equals("cursorMark")) {
+								valueCursorMark = (String)paramObject;
+								searchList.cursorMark((String)paramObject);
+							}
+						}
+					}
+				}
+
+				searchList.promiseDeepForClass(siteRequest).onSuccess(a -> {
+					HttpServerResponse response = handler.response();
+					response.putHeader("content-type", "application/json");
+					List<String> fls = searchList.getRequest().getFields();
+					JsonObject json = new JsonObject();
+					JsonArray l = new JsonArray();
+					searchList.getList().stream().forEach(o -> {
+						JsonObject json2 = JsonObject.mapFrom(o);
+						if(fls.size() > 0) {
+							Set<String> fieldNames = new HashSet<String>();
+							for(String fieldName : json2.fieldNames()) {
+								String v = varIndexedBaseModel(fieldName);
+								if(v != null)
+									fieldNames.add(varIndexedBaseModel(fieldName));
+							}
+							if(fls.size() == 1 && fls.stream().findFirst().orElse(null).equals("saves_docvalues_strings")) {
+								fieldNames.removeAll(Optional.ofNullable(json2.getJsonArray("saves_docvalues_strings")).orElse(new JsonArray()).stream().map(s -> s.toString()).collect(Collectors.toList()));
+								fieldNames.remove("_docvalues_long");
+								fieldNames.remove("created_docvalues_date");
+							}
+							else if(fls.size() >= 1) {
+								fieldNames.removeAll(fls);
+							}
+							for(String fieldName : fieldNames) {
+								if(!fls.contains(fieldName))
+									json2.remove(fieldName);
+							}
+						}
+						l.add(json2);
+					});
+					json.put("list", l);
+
+					SolrResponse responseSearch = searchList.getResponse();
+					SearchRequest searchRequest = searchList.getRequest();
+					List<SolrResponse.Doc> solrDocuments = responseSearch.getResponse().getDocs();
+					Long searchInMillis = Long.valueOf(responseSearch.getResponseHeader().getqTime());
+					Long startNum = searchRequest.getStart();
+					Long foundNum = responseSearch.getResponse().getNumFound();
+					Integer returnedNum = responseSearch.getResponse().getDocs().size();
+					String searchTime = String.format("%d.%03d sec", TimeUnit.MILLISECONDS.toSeconds(searchInMillis), TimeUnit.MILLISECONDS.toMillis(searchInMillis) - TimeUnit.SECONDS.toMillis(TimeUnit.MILLISECONDS.toSeconds(searchInMillis)));
+					String nextCursorMark = responseSearch.getNextCursorMark();
+					String exceptionSearch = Optional.ofNullable(responseSearch.getError()).map(error -> error.getMsg()).orElse(null);
+
+					json.put("startNum", startNum);
+					json.put("foundNum", foundNum);
+					json.put("returnedNum", returnedNum);
+					if(fls.size() == 1 && fls.stream().findFirst().orElse(null).equals("saves")) {
+						json.put("searchTime", searchTime);
+					}
+					Optional.ofNullable(responseSearch.getStats()).map(s -> s.getStatsFields()).map(s -> s.getFields()).ifPresent(stats -> {
+						JsonObject stats2 = new JsonObject();
+						stats.forEach((key, val) -> {
+							JsonObject values = JsonObject.mapFrom(val);
+							String var = searchVar(key);
+							values.remove("name");
+							values.put("var", var);
+							stats2.put(var, values);
+						});
+						json.put("stats", stats2);
+					});
+					Optional.ofNullable(responseSearch.getFacetCounts()).ifPresent(facetCounts -> {
+						JsonObject facetCounts2 = new JsonObject();
+						Optional.ofNullable(facetCounts.getFacetFields()).map(f -> f.getFacets()).ifPresent(facets -> {
+							JsonObject facets2 = new JsonObject();
+							for(SolrResponse.FacetField facetField : facets.values()) {
+								String facetFieldVar = searchVar(facetField.getName());
+								JsonObject facetFieldCounts = new JsonObject();
+								facets2.put(facetFieldVar, facetFieldCounts);
+								facetField.getCounts().forEach((name, count) -> {
+									facetFieldCounts.put(name, count);
+								});
+							}
+							facetCounts2.put("facet_fields", facets2);
+						});
+						Optional.ofNullable(facetCounts.getFacetHeatMaps()).map(f -> f.getFacets()).ifPresent(facets -> {
+							JsonObject facets2 = new JsonObject();
+							for(SolrResponse.FacetField facetField : facets.values()) {
+								String facetFieldVar = searchVar(facetField.getName());
+								JsonObject facetFieldCounts = new JsonObject();
+								facets2.put(facetFieldVar, facetFieldCounts);
+								facetField.getCounts().forEach((name, count) -> {
+									facetFieldCounts.put(name, count);
+								});
+							}
+							facetCounts2.put("facet_heatmaps", facets2);
+						});
+						Optional.ofNullable(facetCounts.getFacetIntervals()).map(f -> f.getFacets()).ifPresent(facets -> {
+							JsonObject facets2 = new JsonObject();
+							for(SolrResponse.FacetField facetField : facets.values()) {
+								String facetFieldVar = searchVar(facetField.getName());
+								JsonObject facetFieldCounts = new JsonObject();
+								facets2.put(facetFieldVar, facetFieldCounts);
+								facetField.getCounts().forEach((name, count) -> {
+									facetFieldCounts.put(name, count);
+								});
+							}
+							facetCounts2.put("facet_intervals", facets2);
+						});
+						Optional.ofNullable(facetCounts.getFacetPivot()).map(f -> f.getPivotMap()).ifPresent(facets -> {
+							JsonObject facets2 = new JsonObject();
+							JsonObject pivotMap = new JsonObject();
+							responsePivotSearch(facets, pivotMap);
+							facetCounts2.put("facet_pivot", pivotMap);
+						});
+						Optional.ofNullable(facetCounts.getFacetQueries()).map(f -> f.getFacets()).ifPresent(facets -> {
+							JsonObject facets2 = new JsonObject();
+							facetCounts2.put("facet_queries", facets2);
+						});
+						Optional.ofNullable(facetCounts.getFacetRanges()).map(f -> f.getRanges()).ifPresent(facets -> {
+							JsonObject facets2 = new JsonObject();
+							for(SolrResponse.FacetRange facetField : facets.values()) {
+								JsonObject rangeFacetJson = new JsonObject();
+								String rangeFacetVar = searchVar(facetField.getName());
+								facets2.put(rangeFacetVar, rangeFacetJson);
+								JsonObject rangeFacetCountsMap = new JsonObject();
+								rangeFacetJson.put("counts", rangeFacetCountsMap);
+								facetField.getCounts().forEach((name, count) -> {
+									rangeFacetCountsMap.put(name, count);
+								});
+							}
+							facetCounts2.put("facet_ranges", facets2);
+						});
+						json.put("facet_counts", facetCounts2);
+					});
+					if(nextCursorMark != null) {
+						json.put("nextCursorMark", nextCursorMark);
+					}
+					if(exceptionSearch != null) {
+						json.put("exceptionSearch", exceptionSearch);
+					}
+					response.end(Buffer.buffer(Optional.ofNullable(json).orElse(new JsonObject()).encodePrettily()));
+				}).onFailure(ex -> {
+					LOG.error(String.format("Solr search failed. "), ex);
+					handler.fail(ex);
+				});
+			} catch(Exception ex) {
+					LOG.error(String.format("Solr search failed. "), ex);
+				handler.fail(ex);
+			}
+		});
+	}
+
+	public <Q, SiteRequest extends ComputateSiteRequest> void configureUi(Router router, Class<Q> classResult, Class<SiteRequest> classSiteRequest, String uriPrefix) {
 		router.getWithRegex("(?<uri>" + uriPrefix.replace("/", "\\/") + "\\/.*)").handler(handler -> {
 			ServiceRequest serviceRequest = generateServiceRequest(handler);
-			R siteRequest = generateSiteRequest(null, null, serviceRequest, classSiteRequest);
+			SiteRequest siteRequest = generateSiteRequest(null, null, serviceRequest, classSiteRequest);
 
 			String uri = handler.pathParam("uri");
 			String url = String.format("%s%s", config.getString(ComputateConfigKeys.SITE_BASE_URL), uri);
