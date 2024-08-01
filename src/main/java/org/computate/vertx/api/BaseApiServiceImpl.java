@@ -71,6 +71,10 @@ import io.vertx.ext.web.api.service.ServiceResponse;
 import io.vertx.ext.web.client.WebClient;
 import io.vertx.ext.web.client.predicate.ResponsePredicate;
 import io.vertx.kafka.client.producer.KafkaProducer;
+import io.vertx.mqtt.MqttClient;
+import io.vertx.amqp.AmqpClient;
+import io.vertx.amqp.AmqpSender;
+import io.vertx.rabbitmq.RabbitMQClient;
 import io.vertx.pgclient.PgPool;
 import io.vertx.sqlclient.Tuple;
 import jinjava.org.jsoup.Jsoup;
@@ -147,6 +151,14 @@ public abstract class BaseApiServiceImpl {
 
 	protected KafkaProducer<String, String> kafkaProducer;
 
+	protected MqttClient mqttClient;
+
+	protected AmqpClient amqpClient;
+
+	protected AmqpSender amqpSender;
+
+	protected RabbitMQClient rabbitmqClient;
+
 	protected WebClient webClient;
 
 	protected OAuth2Auth oauth2AuthenticationProvider;
@@ -155,32 +167,41 @@ public abstract class BaseApiServiceImpl {
 
 	protected Jinjava jinjava;
 
-	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, WebClient webClient) {
+	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient) {
 		this.eventBus = eventBus;
 		this.config = config;
 		this.workerExecutor = workerExecutor;
 		this.pgPool = pgPool;
 		this.kafkaProducer = kafkaProducer;
+		this.mqttClient = mqttClient;
+		this.amqpSender = amqpSender;
+		this.rabbitmqClient = rabbitmqClient;
 		this.webClient = webClient;
 	}
 
-	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider) {
+	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider) {
 		this.eventBus = eventBus;
 		this.config = config;
 		this.workerExecutor = workerExecutor;
 		this.pgPool = pgPool;
 		this.kafkaProducer = kafkaProducer;
+		this.mqttClient = mqttClient;
+		this.amqpSender = amqpSender;
+		this.rabbitmqClient = rabbitmqClient;
 		this.webClient = webClient;
 		this.oauth2AuthenticationProvider = oauth2AuthenticationProvider;
 		this.authorizationProvider = authorizationProvider;
 	}
 
-	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, Jinjava jinjava) {
+	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, Jinjava jinjava) {
 		this.eventBus = eventBus;
 		this.config = config;
 		this.workerExecutor = workerExecutor;
 		this.pgPool = pgPool;
 		this.kafkaProducer = kafkaProducer;
+		this.mqttClient = mqttClient;
+		this.amqpSender = amqpSender;
+		this.rabbitmqClient = rabbitmqClient;
 		this.webClient = webClient;
 		this.oauth2AuthenticationProvider = oauth2AuthenticationProvider;
 		this.authorizationProvider = authorizationProvider;

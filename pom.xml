@@ -229,6 +229,21 @@
 			<version>2.6.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-mqtt</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-amqp-client</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-rabbitmq-client</artifactId>
+		</dependency>
+
 		<!-- logging -->
 
 		<dependency>

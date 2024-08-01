@@ -15,26 +15,23 @@ import io.vertx.ext.web.client.WebClient;
 import io.vertx.ext.web.templ.handlebars.HandlebarsTemplateEngine;
 import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.pgclient.PgPool;
+import io.vertx.mqtt.MqttClient;
+import io.vertx.amqp.AmqpSender;
+import io.vertx.rabbitmq.RabbitMQClient;
 
 /**
  * Translate: false
  **/
 public class ComputateJavaClassEnUSApiServiceImpl extends ComputateJavaClassEnUSGenApiServiceImpl {
 
-	public ComputateJavaClassEnUSApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, Jinjava jinjava) {
-		super(eventBus, config, workerExecutor, pgPool, kafkaProducer, webClient, oauth2AuthenticationProvider, authorizationProvider, jinjava);
+	public ComputateJavaClassEnUSApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, Jinjava jinjava) {
+		super(eventBus, config, workerExecutor, pgPool, kafkaProducer, mqttClient, amqpSender, rabbitmqClient, webClient, oauth2AuthenticationProvider, authorizationProvider, jinjava);
 	}
 
 	@Override
 	public void searchComputateJavaClass2(ComputateSiteRequest siteRequest, Boolean populate, Boolean store,
 			Boolean modify, SearchList<ComputateJavaClass> searchList) {
 		super.searchComputateJavaClass2(siteRequest, populate, store, modify, searchList);
-
-		String solrHostName = siteRequest.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
-		Integer solrPort = siteRequest.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
-		String solrCollection = "computate";
-//		String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
-//		w.o(String.format("http://%s:%s%s", "localhost", solrPort, solrRequestUri));
 		searchList.setSearchUrl(null);
 	}
 }

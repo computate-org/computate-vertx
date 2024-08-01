@@ -33,9 +33,26 @@ import java.math.RoundingMode;
 import java.util.Map;
 import org.computate.vertx.search.list.SearchList;
 import org.computate.vertx.result.java.ComputateJavaClass;
-import io.vertx.core.json.JsonArray;
-import java.lang.Integer;
 import java.lang.String;
+import org.computate.search.response.solr.SolrResponse.Stats;
+import org.computate.search.response.solr.SolrResponse.FacetCounts;
+import io.vertx.core.json.JsonObject;
+import java.time.ZoneId;
+import java.util.Locale;
+import java.lang.Long;
+import java.time.ZonedDateTime;
+import java.time.ZoneOffset;
+import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+import java.time.format.DateTimeFormatter;
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.lang.Integer;
+import java.math.BigDecimal;
+import io.vertx.core.json.JsonArray;
+import java.lang.Void;
 import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
@@ -66,8 +83,6 @@ import io.vertx.core.Future;
  * <h2>ApiTag.enUS: true</h2>
  * <h2>ApiUri.enUS: null</h2>
  * <h2>Color: null</h2>
- * <h2>IconGroup: null</h2>
- * <h2>IconName: null</h2>
  * <h2>Indexed: true</h2>
  * <h2>{@inheritDoc}</h2>
  * <p>By adding a class comment "{@inheritDoc}", the ComputateJavaClassGenPage class will inherit the helpful inherited class comments from the super class ComputateJavaClassGenPageGen. 

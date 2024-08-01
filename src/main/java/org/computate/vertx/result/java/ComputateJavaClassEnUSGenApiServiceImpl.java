@@ -13,6 +13,9 @@ import io.vertx.core.WorkerExecutor;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.pgclient.PgPool;
 import io.vertx.kafka.client.producer.KafkaProducer;
+import io.vertx.mqtt.MqttClient;
+import io.vertx.amqp.AmqpSender;
+import io.vertx.rabbitmq.RabbitMQClient;
 import io.vertx.core.json.impl.JsonUtil;
 import io.vertx.ext.auth.authorization.AuthorizationProvider;
 import com.hubspot.jinjava.Jinjava;
@@ -106,8 +109,8 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 
 	protected static final Logger LOG = LoggerFactory.getLogger(ComputateJavaClassEnUSGenApiServiceImpl.class);
 
-	public ComputateJavaClassEnUSGenApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, Jinjava jinjava) {
-		super(eventBus, config, workerExecutor, pgPool, kafkaProducer, webClient, oauth2AuthenticationProvider, authorizationProvider, jinjava);
+	public ComputateJavaClassEnUSGenApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, Jinjava jinjava) {
+		super(eventBus, config, workerExecutor, pgPool, kafkaProducer, mqttClient, amqpSender, rabbitmqClient, webClient, oauth2AuthenticationProvider, authorizationProvider, jinjava);
 	}
 
 	// Search //
@@ -115,52 +118,6 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 	@Override
 	public void searchComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
 		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, ComputateSiteUser.getClassApiAddress(), "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
-			webClient.post(
-					config.getInteger(ComputateConfigKeys.AUTH_PORT)
-					, config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
-					, config.getString(ComputateConfigKeys.AUTH_TOKEN_URI)
-					)
-					.ssl(config.getBoolean(ComputateConfigKeys.AUTH_SSL))
-					.putHeader("Authorization", String.format("Bearer %s", siteRequest.getUser().principal().getString("access_token")))
-					.expect(ResponsePredicate.status(200))
-					.sendForm(MultiMap.caseInsensitiveMultiMap()
-							.add("grant_type", "urn:ietf:params:oauth:grant-type:uma-ticket")
-							.add("audience", config.getString(ComputateConfigKeys.AUTH_CLIENT))
-							.add("response_mode", "permissions")
-							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN)))
-							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN)))
-							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "GET"))
-							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "POST"))
-							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "PATCH"))
-			).onFailure(ex -> {
-				String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
-				eventHandler.handle(Future.succeededFuture(
-					new ServiceResponse(403, "FORBIDDEN",
-						Buffer.buffer().appendString(
-							new JsonObject()
-								.put("errorCode", "403")
-								.put("errorMessage", msg)
-								.encodePrettily()
-							), MultiMap.caseInsensitiveMultiMap()
-					)
-				));
-			}).onSuccess(authorizationDecision -> {
-				try {
-					JsonArray scopes = authorizationDecision.bodyAsJsonArray().stream().findFirst().map(decision -> ((JsonObject)decision).getJsonArray("scopes")).orElse(new JsonArray());
-					if(!scopes.contains("GET")) {
-						String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
-						eventHandler.handle(Future.succeededFuture(
-							new ServiceResponse(403, "FORBIDDEN",
-								Buffer.buffer().appendString(
-									new JsonObject()
-										.put("errorCode", "403")
-										.put("errorMessage", msg)
-										.encodePrettily()
-									), MultiMap.caseInsensitiveMultiMap()
-							)
-						));
-					} else {
-						siteRequest.setScopes(scopes.stream().map(o -> o.toString()).collect(Collectors.toList()));
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
 							response200SearchComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
 								eventHandler.handle(Future.succeededFuture(response));
@@ -173,12 +130,6 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 							LOG.error(String.format("searchComputateJavaClass failed. "), ex);
 							error(siteRequest, eventHandler, ex);
 						});
-					}
-				} catch(Exception ex) {
-					LOG.error(String.format("searchComputateJavaClass failed. "), ex);
-					error(null, eventHandler, ex);
-				}
-			});
 		}).onFailure(ex -> {
 			if("Inactive Token".equals(ex.getMessage()) || StringUtils.startsWith(ex.getMessage(), "invalid_grant:")) {
 				try {
@@ -286,48 +237,6 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 	@Override
 	public void getComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
 		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, ComputateSiteUser.getClassApiAddress(), "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
-			webClient.post(
-					config.getInteger(ComputateConfigKeys.AUTH_PORT)
-					, config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
-					, config.getString(ComputateConfigKeys.AUTH_TOKEN_URI)
-					)
-					.ssl(config.getBoolean(ComputateConfigKeys.AUTH_SSL))
-					.putHeader("Authorization", String.format("Bearer %s", siteRequest.getUser().principal().getString("access_token")))
-					.expect(ResponsePredicate.status(200))
-					.sendForm(MultiMap.caseInsensitiveMultiMap()
-							.add("grant_type", "urn:ietf:params:oauth:grant-type:uma-ticket")
-							.add("audience", config.getString(ComputateConfigKeys.AUTH_CLIENT))
-							.add("response_mode", "permissions")
-							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "GET"))
-			).onFailure(ex -> {
-				String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
-				eventHandler.handle(Future.succeededFuture(
-					new ServiceResponse(403, "FORBIDDEN",
-						Buffer.buffer().appendString(
-							new JsonObject()
-								.put("errorCode", "403")
-								.put("errorMessage", msg)
-								.encodePrettily()
-							), MultiMap.caseInsensitiveMultiMap()
-					)
-				));
-			}).onSuccess(authorizationDecision -> {
-				try {
-					JsonArray scopes = authorizationDecision.bodyAsJsonArray().stream().findFirst().map(decision -> ((JsonObject)decision).getJsonArray("scopes")).orElse(new JsonArray());
-					if(!scopes.contains("GET")) {
-						String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
-						eventHandler.handle(Future.succeededFuture(
-							new ServiceResponse(403, "FORBIDDEN",
-								Buffer.buffer().appendString(
-									new JsonObject()
-										.put("errorCode", "403")
-										.put("errorMessage", msg)
-										.encodePrettily()
-									), MultiMap.caseInsensitiveMultiMap()
-							)
-						));
-					} else {
-						siteRequest.setScopes(scopes.stream().map(o -> o.toString()).collect(Collectors.toList()));
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
 							response200GETComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
 								eventHandler.handle(Future.succeededFuture(response));
@@ -340,12 +249,6 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 							LOG.error(String.format("getComputateJavaClass failed. "), ex);
 							error(siteRequest, eventHandler, ex);
 						});
-					}
-				} catch(Exception ex) {
-					LOG.error(String.format("getComputateJavaClass failed. "), ex);
-					error(null, eventHandler, ex);
-				}
-			});
 		}).onFailure(ex -> {
 			if("Inactive Token".equals(ex.getMessage()) || StringUtils.startsWith(ex.getMessage(), "invalid_grant:")) {
 				try {
@@ -396,52 +299,6 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 	@Override
 	public void searchpageComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
 		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, ComputateSiteUser.getClassApiAddress(), "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
-			webClient.post(
-					config.getInteger(ComputateConfigKeys.AUTH_PORT)
-					, config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
-					, config.getString(ComputateConfigKeys.AUTH_TOKEN_URI)
-					)
-					.ssl(config.getBoolean(ComputateConfigKeys.AUTH_SSL))
-					.putHeader("Authorization", String.format("Bearer %s", siteRequest.getUser().principal().getString("access_token")))
-					.expect(ResponsePredicate.status(200))
-					.sendForm(MultiMap.caseInsensitiveMultiMap()
-							.add("grant_type", "urn:ietf:params:oauth:grant-type:uma-ticket")
-							.add("audience", config.getString(ComputateConfigKeys.AUTH_CLIENT))
-							.add("response_mode", "permissions")
-							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN)))
-							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN)))
-							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "GET"))
-							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "POST"))
-							.add("permission", String.format("%s#%s", ComputateJavaClass.CLASS_SIMPLE_NAME, "PATCH"))
-			).onFailure(ex -> {
-				String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
-				eventHandler.handle(Future.succeededFuture(
-					new ServiceResponse(403, "FORBIDDEN",
-						Buffer.buffer().appendString(
-							new JsonObject()
-								.put("errorCode", "403")
-								.put("errorMessage", msg)
-								.encodePrettily()
-							), MultiMap.caseInsensitiveMultiMap()
-					)
-				));
-			}).onSuccess(authorizationDecision -> {
-				try {
-					JsonArray scopes = authorizationDecision.bodyAsJsonArray().stream().findFirst().map(decision -> ((JsonObject)decision).getJsonArray("scopes")).orElse(new JsonArray());
-					if(!scopes.contains("GET")) {
-						String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
-						eventHandler.handle(Future.succeededFuture(
-							new ServiceResponse(403, "FORBIDDEN",
-								Buffer.buffer().appendString(
-									new JsonObject()
-										.put("errorCode", "403")
-										.put("errorMessage", msg)
-										.encodePrettily()
-									), MultiMap.caseInsensitiveMultiMap()
-							)
-						));
-					} else {
-						siteRequest.setScopes(scopes.stream().map(o -> o.toString()).collect(Collectors.toList()));
 						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
 							response200SearchPageComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
 								eventHandler.handle(Future.succeededFuture(response));
@@ -454,12 +311,6 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 							LOG.error(String.format("searchpageComputateJavaClass failed. "), ex);
 							error(siteRequest, eventHandler, ex);
 						});
-					}
-				} catch(Exception ex) {
-					LOG.error(String.format("searchpageComputateJavaClass failed. "), ex);
-					error(null, eventHandler, ex);
-				}
-			});
 		}).onFailure(ex -> {
 			if("Inactive Token".equals(ex.getMessage()) || StringUtils.startsWith(ex.getMessage(), "invalid_grant:")) {
 				try {
@@ -491,7 +342,7 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 	}
 
 	public String templateSearchPageComputateJavaClass() {
-		return "/enUS/ComputateJavaClassPage.htm";
+		return "en-us/ComputateJavaClassPage.htm";
 	}
 	public Future<ServiceResponse> response200SearchPageComputateJavaClass(SearchList<ComputateJavaClass> listComputateJavaClass) {
 		Promise<ServiceResponse> promise = Promise.promise();
@@ -507,18 +358,18 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 
 			page.setSearchListComputateJavaClass_(listComputateJavaClass);
 			page.setSiteRequest_(siteRequest);
+			page.setServiceRequest(siteRequest.getServiceRequest());
 			page.promiseDeepComputateJavaClassPage(siteRequest).onSuccess(a -> {
-				JsonObject ctx = JsonObject.mapFrom(page);
-				ctx.put(ComputateConfigKeys.STATIC_BASE_URL, config.getString(ComputateConfigKeys.STATIC_BASE_URL));
-				ctx.put(ComputateConfigKeys.GITHUB_ORG, config.getString(ComputateConfigKeys.GITHUB_ORG));
-				ctx.put(ComputateConfigKeys.SITE_NAME, config.getString(ComputateConfigKeys.SITE_NAME));
-				ctx.put(ComputateConfigKeys.SITE_DISPLAY_NAME, config.getString(ComputateConfigKeys.SITE_DISPLAY_NAME));
-				ctx.put(ComputateConfigKeys.SITE_POWERED_BY_URL, config.getString(ComputateConfigKeys.SITE_POWERED_BY_URL));
-				ctx.put(ComputateConfigKeys.SITE_POWERED_BY_NAME, config.getString(ComputateConfigKeys.SITE_POWERED_BY_NAME));
-				ctx.put(ComputateConfigKeys.SITE_POWERED_BY_IMAGE_URI, config.getString(ComputateConfigKeys.SITE_POWERED_BY_IMAGE_URI));
-				String renderedTemplate = jinjava.render(template, ctx.getMap());
-				Buffer buffer = Buffer.buffer(renderedTemplate);
-				promise.complete(new ServiceResponse(200, "OK", buffer, requestHeaders));
+				try {
+					JsonObject ctx = ComputateConfigKeys.getPageContext(config);
+					ctx.mergeIn(JsonObject.mapFrom(page));
+					String renderedTemplate = jinjava.render(template, ctx.getMap());
+					Buffer buffer = Buffer.buffer(renderedTemplate);
+					promise.complete(new ServiceResponse(200, "OK", buffer, requestHeaders));
+				} catch(Exception ex) {
+					LOG.error(String.format("response200SearchPageComputateJavaClass failed. "), ex);
+					promise.fail(ex);
+				}
 			}).onFailure(ex -> {
 				promise.fail(ex);
 			});

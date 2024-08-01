@@ -108,19 +108,6 @@ import org.computate.search.response.solr.SolrResponse;
  * A css class of "w3-blue" is expected to exist in the project stylesheets, and is inspired by W3 CSS colors. 
  * See: <a href="https://www.w3schools.com/w3css/w3css_colors.asp">https://www.w3schools.com/w3css/w3css_colors.asp</a>. 
  * </p>
- * <h2>IconGroup: duotone</h2>
- * <p>This class contains a comment <b>"IconGroup: duotone"</b>, which adds icons on the ComputateJavaClass page with a group of "duotone". 
- * This will reference a Font Awesome icon group that starts with "fa-" followed by the icon group "duotone", together is "fa-duotone". 
- * A Font Awesome icon group of "duotone" is expected to exist. 
- * The Font Awesome groups currently supported include: solid, regular, light, thin, duotone, sharp, and kit. 
- * See: <a href="https://fontawesome.com/docs/web/dig-deeper/styles">https://fontawesome.com/docs/web/dig-deeper/styles</a>. 
- * </p>
- * <h2>IconName: map-location-dot</h2>
- * <p>This class contains a comment <b>"IconName: map-location-dot"</b>, which adds icons on the ComputateJavaClass page with a name of "map-location-dot". 
- * This will reference a Font Awesome icon that starts with the icon group "fa-duotone fa-" followed by the icon name, which is "fa-duotone fa-map-location-dot". 
- * A Font Awesome icon of "fa-duotone fa-map-location-dot" is expected to exist. 
- * See: <a href="https://fontawesome.com/icons">https://fontawesome.com/icons</a>. 
- * </p>
  * <h2>Indexed: true</h2>
  * <p>This class contains a comment <b>"Indexed: true"</b>, which means this class will be indexed in the search engine. 
  * Every protected void method that begins with "_" that is marked to be searched with a comment like "Indexed: true", "Stored: true", or "DocValues: true" will be indexed in the search engine. 
@@ -187,8 +174,8 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public static final String ComputateJavaClass_ThisName_enUS = "this java class";
 	public static final String ComputateJavaClass_A_enUS = "a ";
 	public static final String ComputateJavaClass_TheName_enUS = "the java class";
-	public static final String ComputateJavaClass_NameSingular_enUS = "java class";
-	public static final String ComputateJavaClass_NamePlural_enUS = "java classs";
+	public static final String ComputateJavaClass_SingularName_enUS = "java class";
+	public static final String ComputateJavaClass_PluralName_enUS = "java classs";
 	public static final String ComputateJavaClass_NameActual_enUS = "current java class";
 	public static final String ComputateJavaClass_AllName_enUS = "all the java classs";
 	public static final String ComputateJavaClass_SearchAllNameBy_enUS = "search java classs by ";
@@ -209,8 +196,6 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public static final String SearchPage_enUS_ImageUri = "/png/java-class-999.png";
 
 	public static final String ComputateJavaClass_Color = "blue";
-	public static final String ComputateJavaClass_IconGroup = "duotone";
-	public static final String ComputateJavaClass_IconName = "map-location-dot";
 
 	//////////////////
 	// siteRequest_ //
