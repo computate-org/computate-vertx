@@ -628,6 +628,16 @@ public class ComputateConfigKeys {
 	public static final String AUTH_SCOPE_SUPER_ADMIN = "AUTH_SCOPE_SUPER_ADMIN";
 
 	/**
+	 * auth admin username. 
+	 **/
+	public static final String AUTH_ADMIN_USERNAME = "AUTH_ADMIN_USERNAME";
+
+	/**
+	 * auth admin password. 
+	 **/
+	public static final String AUTH_ADMIN_PASSWORD = "AUTH_ADMIN_PASSWORD";
+
+	/**
 	 * Enable SSL Passthrough. 
 	 **/
 	public static final String SSL_PASSTHROUGH = "SSL_PASSTHROUGH";
