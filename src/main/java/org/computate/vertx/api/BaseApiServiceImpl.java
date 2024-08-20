@@ -37,6 +37,7 @@ import org.computate.search.tool.SearchTool;
 import org.computate.vertx.config.ComputateConfigKeys;
 import org.computate.vertx.model.base.ComputateBaseModel;
 import org.computate.vertx.model.user.ComputateSiteUser;
+import org.computate.vertx.openapi.ComputateOAuth2AuthHandlerImpl;
 import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.search.list.SearchList;
 import org.slf4j.Logger;
@@ -140,6 +141,8 @@ public abstract class BaseApiServiceImpl {
 	public static final String importDataModelComplete = "Importing all %s data completed. ";
 	public static final String importModelComplete = "Importing page completed: %s";
 	public static final String importModelFail = "Importing page failed: %s";
+
+	ComputateOAuth2AuthHandlerImpl oauth2AuthHandler;
 
 	protected EventBus eventBus;
 
@@ -2346,7 +2349,6 @@ public abstract class BaseApiServiceImpl {
 							} else {
 								ctx.put(key, val);
 							}
-							trouve = m.find();
 						}
 						trouve = m.find();
 					}
@@ -2362,6 +2364,90 @@ public abstract class BaseApiServiceImpl {
 				
 			}).onFailure(ex -> {
 				LOG.error(String.format("Failed to render page %s", uri), ex);
+				handler.fail(ex);
+			});
+		});
+	}
+
+	public <Q, SiteRequest extends ComputateSiteRequest, SiteUser extends ComputateSiteUser> void configureUserUi(Router router, Class<Q> classResult, Class<SiteRequest> classSiteRequest, Class<SiteUser> classSiteUser, String apiAddressSiteUser, String uriPrefix) {
+		router.getWithRegex("(?<uri>" + uriPrefix.replace("/", "\\/") + "\\/.*)").handler(oauth2AuthHandler).handler(handler -> {
+			ServiceRequest serviceRequest = generateServiceRequest(handler);
+			String originalUri = handler.pathParam("uri");
+
+			user(serviceRequest, classSiteRequest, classSiteUser, apiAddressSiteUser, "postSiteUserFuture", "patchSiteUserFuture").onSuccess(siteRequest -> {
+				SiteUser user = siteRequest.getSiteUser_(classSiteUser);
+				Matcher uriMatcher = Pattern.compile("(/[^/]+)/[^/]+(.*)", Pattern.MULTILINE).matcher(originalUri);
+				if (uriMatcher.find()) {
+					String uri = String.format("%s%s", uriMatcher.group(1), uriMatcher.group(2));
+					String url = String.format("%s%s", config.getString(ComputateConfigKeys.SITE_BASE_URL), uri);
+					JsonObject query = new JsonObject();
+					MultiMap queryParams = handler.queryParams();
+					for(String name : queryParams.names()) {
+						JsonArray array = query.getJsonArray(name);
+						List<String> vals = queryParams.getAll(name);
+						if(array == null) {
+							array = new JsonArray();
+							query.put(name, array);
+						}
+						for(String val : vals) {
+							array.add(val);
+						}
+					}
+					SearchList<Q> l = new SearchList<>();
+					l.q("*:*");
+					l.setC(classResult);
+					l.fq(String.format("%s_docvalues_string:%s", "uri", SearchTool.escapeQueryChars(uri)));
+					l.setStore(true);
+					handler.response().headers().add("Content-Type", "text/html");
+					l.promiseDeepForClass(siteRequest).onSuccess(a -> {
+						Q result = l.first();
+						try {
+							JsonObject resultJson = JsonObject.mapFrom(result);
+							String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
+							Path resourceTemplatePath = Path.of(siteTemplatePath, resultJson.getString("templateUri"));
+							String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8) : Files.readString(resourceTemplatePath, Charset.forName("UTF-8"));
+							JsonObject ctx = ComputateConfigKeys.getPageContext(config);
+							ctx.put("userName", user.getUserName());
+							ctx.put("userFirstName", user.getUserFirstName());
+							ctx.put("userLastName", user.getUserLastName());
+							Matcher m = Pattern.compile("<meta property=\"([^\"]+)\"\\s+content=\"([^\"]*)\"/>", Pattern.MULTILINE).matcher(template);
+							boolean trouve = m.find();
+							while (trouve) {
+								String siteKey = m.group(1);
+								if(siteKey.startsWith("site:")) {
+									String key = StringUtils.substringAfter(siteKey, "site:");
+									String val = m.group(2);
+									if(val instanceof String) {
+										String rendered = jinjava.render(val, ctx.getMap());
+										ctx.put(key, rendered);
+									} else {
+										ctx.put(key, val);
+									}
+								}
+								trouve = m.find();
+							}
+
+							String renderedTemplate = jinjava.render(template, ctx.getMap());
+							Buffer buffer = Buffer.buffer(renderedTemplate);
+							handler.response().putHeader("Content-Type", "text/html");
+							handler.end(buffer);
+						} catch (Exception ex) {
+							LOG.error(String.format("Failed to render page %s", uri), ex);
+							handler.fail(ex);
+						}
+
+					}).onFailure(ex -> {
+						LOG.error(String.format("Failed to render page %s", uri), ex);
+						handler.fail(ex);
+					});
+				} else {
+					String message = String.format("Couldn't find expected format in URI (example \"/en-us/user/product/my-product\"): %s", originalUri);
+					Throwable ex = new RuntimeException(message);
+					LOG.error(message, ex);
+					handler.fail(ex);
+				}
+			}).onFailure(ex -> {
+				LOG.error(String.format("Failed to render page %s", originalUri), ex);
 				handler.fail(ex);
 			});
 		});
