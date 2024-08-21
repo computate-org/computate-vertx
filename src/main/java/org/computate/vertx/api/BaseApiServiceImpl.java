@@ -69,6 +69,7 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.api.service.ServiceRequest;
 import io.vertx.ext.web.api.service.ServiceResponse;
+import io.vertx.ext.web.client.HttpResponse;
 import io.vertx.ext.web.client.WebClient;
 import io.vertx.ext.web.client.predicate.ResponsePredicate;
 import io.vertx.kafka.client.producer.KafkaProducer;
@@ -2370,80 +2371,102 @@ public abstract class BaseApiServiceImpl {
 	}
 
 	public <Q, SiteRequest extends ComputateSiteRequest, SiteUser extends ComputateSiteUser> void configureUserUi(Router router, Class<Q> classResult, Class<SiteRequest> classSiteRequest, Class<SiteUser> classSiteUser, String apiAddressSiteUser, String uriPrefix) {
-		router.getWithRegex("(?<uri>" + uriPrefix.replace("/", "\\/") + "\\/.*)").handler(oauth2AuthHandler).handler(handler -> {
+		router.getWithRegex("(?<part1>/[a-z]{2}-[a-z]{2})/[^/]+(?<part2>.*)").handler(oauth2AuthHandler).handler(handler -> {
 			ServiceRequest serviceRequest = generateServiceRequest(handler);
 			String originalUri = handler.pathParam("uri");
 
 			user(serviceRequest, classSiteRequest, classSiteUser, apiAddressSiteUser, "postSiteUserFuture", "patchSiteUserFuture").onSuccess(siteRequest -> {
-				SiteUser user = siteRequest.getSiteUser_(classSiteUser);
-				Matcher uriMatcher = Pattern.compile("(/[^/]+)/[^/]+(.*)", Pattern.MULTILINE).matcher(originalUri);
-				if (uriMatcher.find()) {
-					String uri = String.format("%s%s", uriMatcher.group(1), uriMatcher.group(2));
+				try {
+					String uri = String.format("%s%s", handler.pathParam("part1"), handler.pathParam("part2"));
 					String url = String.format("%s%s", config.getString(ComputateConfigKeys.SITE_BASE_URL), uri);
-					JsonObject query = new JsonObject();
-					MultiMap queryParams = handler.queryParams();
-					for(String name : queryParams.names()) {
-						JsonArray array = query.getJsonArray(name);
-						List<String> vals = queryParams.getAll(name);
-						if(array == null) {
-							array = new JsonArray();
-							query.put(name, array);
-						}
-						for(String val : vals) {
-							array.add(val);
-						}
-					}
-					SearchList<Q> l = new SearchList<>();
-					l.q("*:*");
-					l.setC(classResult);
-					l.fq(String.format("%s_docvalues_string:%s", "uri", SearchTool.escapeQueryChars(uri)));
-					l.setStore(true);
-					handler.response().headers().add("Content-Type", "text/html");
-					l.promiseDeepForClass(siteRequest).onSuccess(a -> {
-						Q result = l.first();
+					webClient.post(
+							config.getInteger(ComputateConfigKeys.AUTH_PORT)
+							, config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
+							, config.getString(ComputateConfigKeys.AUTH_TOKEN_URI)
+							)
+							.ssl(config.getBoolean(ComputateConfigKeys.AUTH_SSL))
+							.putHeader("Authorization", String.format("Bearer %s", siteRequest.getUser().principal().getString("access_token")))
+							.expect(ResponsePredicate.status(200))
+							.sendForm(MultiMap.caseInsensitiveMultiMap()
+									.add("grant_type", "urn:ietf:params:oauth:grant-type:uma-ticket")
+									.add("audience", config.getString(ComputateConfigKeys.AUTH_CLIENT))
+									.add("response_mode", "permissions")
+									.add("permission", String.format("%s#%s", uri, "GET"))
+					).onComplete(future -> {
 						try {
-							JsonObject resultJson = JsonObject.mapFrom(result);
-							String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
-							Path resourceTemplatePath = Path.of(siteTemplatePath, resultJson.getString("templateUri"));
-							String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8) : Files.readString(resourceTemplatePath, Charset.forName("UTF-8"));
-							JsonObject ctx = ComputateConfigKeys.getPageContext(config);
-							ctx.put("userName", user.getUserName());
-							ctx.put("userFirstName", user.getUserFirstName());
-							ctx.put("userLastName", user.getUserLastName());
-							Matcher m = Pattern.compile("<meta property=\"([^\"]+)\"\\s+content=\"([^\"]*)\"/>", Pattern.MULTILINE).matcher(template);
-							boolean trouve = m.find();
-							while (trouve) {
-								String siteKey = m.group(1);
-								if(siteKey.startsWith("site:")) {
-									String key = StringUtils.substringAfter(siteKey, "site:");
-									String val = m.group(2);
-									if(val instanceof String) {
-										String rendered = jinjava.render(val, ctx.getMap());
-										ctx.put(key, rendered);
-									} else {
-										ctx.put(key, val);
-									}
+							HttpResponse<Buffer> authorizationDecision = null;
+							if(future.succeeded())
+								authorizationDecision = future.result();
+							JsonArray scopes = Optional.ofNullable(authorizationDecision).map(authDecision -> authDecision.bodyAsJsonArray().stream().findFirst().map(decision -> ((JsonObject)decision).getJsonArray("scopes")).orElse(new JsonArray())).orElse(new JsonArray());
+							SiteUser user = siteRequest.getSiteUser_(classSiteUser);
+							JsonObject query = new JsonObject();
+							MultiMap queryParams = handler.queryParams();
+							for(String name : queryParams.names()) {
+								JsonArray array = query.getJsonArray(name);
+								List<String> vals = queryParams.getAll(name);
+								if(array == null) {
+									array = new JsonArray();
+									query.put(name, array);
 								}
-								trouve = m.find();
+								for(String val : vals) {
+									array.add(val);
+								}
 							}
+							SearchList<Q> l = new SearchList<>();
+							l.q("*:*");
+							l.setC(classResult);
+							l.fq(String.format("%s_docvalues_string:%s", "uri", SearchTool.escapeQueryChars(uri)));
+							l.setStore(true);
+							l.promiseDeepForClass(siteRequest).onSuccess(a -> {
+								Q result = l.first();
+								try {
+									JsonObject resultJson = JsonObject.mapFrom(result);
+									String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
+									Path resourceTemplatePath = Path.of(siteTemplatePath, resultJson.getString("templateUri"));
+									String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8) : Files.readString(resourceTemplatePath, Charset.forName("UTF-8"));
+									JsonObject ctx = ComputateConfigKeys.getPageContext(config);
+									ctx.put("userName", user.getUserName());
+									ctx.put("userFirstName", user.getUserFirstName());
+									ctx.put("userLastName", user.getUserLastName());
+									if(scopes.contains("GET")) {
+										ctx.put("scope", "GET");
+									}
+									Matcher m = Pattern.compile("<meta property=\"([^\"]+)\"\\s+content=\"([^\"]*)\"/>", Pattern.MULTILINE).matcher(template);
+									boolean trouve = m.find();
+									while (trouve) {
+										String siteKey = m.group(1);
+										if(siteKey.startsWith("site:")) {
+											String key = StringUtils.substringAfter(siteKey, "site:");
+											String val = m.group(2);
+											if(val instanceof String) {
+												String rendered = jinjava.render(val, ctx.getMap());
+												ctx.put(key, rendered);
+											} else {
+												ctx.put(key, val);
+											}
+										}
+										trouve = m.find();
+									}
 
-							String renderedTemplate = jinjava.render(template, ctx.getMap());
-							Buffer buffer = Buffer.buffer(renderedTemplate);
-							handler.response().putHeader("Content-Type", "text/html");
-							handler.end(buffer);
+									String renderedTemplate = jinjava.render(template, ctx.getMap());
+									Buffer buffer = Buffer.buffer(renderedTemplate);
+									handler.response().putHeader("Content-Type", "text/html");
+									handler.end(buffer);
+								} catch (Exception ex) {
+									LOG.error(String.format("Failed to render page %s", uri), ex);
+									handler.fail(ex);
+								}
+							}).onFailure(ex -> {
+								LOG.error(String.format("Failed to render page %s", uri), ex);
+								handler.fail(ex);
+							});
 						} catch (Exception ex) {
 							LOG.error(String.format("Failed to render page %s", uri), ex);
 							handler.fail(ex);
 						}
-
-					}).onFailure(ex -> {
-						LOG.error(String.format("Failed to render page %s", uri), ex);
-						handler.fail(ex);
 					});
-				} else {
-					String message = String.format("Couldn't find expected format in URI (example \"/en-us/user/product/my-product\"): %s", originalUri);
-					Throwable ex = new RuntimeException(message);
-					LOG.error(message, ex);
+				} catch(Exception ex) {
+					LOG.error("Failed to load page. ", ex);
 					handler.fail(ex);
 				}
 			}).onFailure(ex -> {
