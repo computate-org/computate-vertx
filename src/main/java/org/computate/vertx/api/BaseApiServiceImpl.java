@@ -39,6 +39,7 @@ import org.computate.vertx.model.base.ComputateBaseModel;
 import org.computate.vertx.model.user.ComputateSiteUser;
 import org.computate.vertx.openapi.ComputateOAuth2AuthHandlerImpl;
 import org.computate.vertx.request.ComputateSiteRequest;
+import org.computate.vertx.result.base.ComputateBaseResult;
 import org.computate.vertx.search.list.SearchList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -171,10 +172,11 @@ public abstract class BaseApiServiceImpl {
 
 	protected Jinjava jinjava;
 
-	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient) {
+	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, ComputateOAuth2AuthHandlerImpl oauth2AuthHandler, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient) {
 		this.eventBus = eventBus;
 		this.config = config;
 		this.workerExecutor = workerExecutor;
+		this.oauth2AuthHandler = oauth2AuthHandler;
 		this.pgPool = pgPool;
 		this.kafkaProducer = kafkaProducer;
 		this.mqttClient = mqttClient;
@@ -183,10 +185,11 @@ public abstract class BaseApiServiceImpl {
 		this.webClient = webClient;
 	}
 
-	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider) {
+	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, ComputateOAuth2AuthHandlerImpl oauth2AuthHandler, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider) {
 		this.eventBus = eventBus;
 		this.config = config;
 		this.workerExecutor = workerExecutor;
+		this.oauth2AuthHandler = oauth2AuthHandler;
 		this.pgPool = pgPool;
 		this.kafkaProducer = kafkaProducer;
 		this.mqttClient = mqttClient;
@@ -197,10 +200,11 @@ public abstract class BaseApiServiceImpl {
 		this.authorizationProvider = authorizationProvider;
 	}
 
-	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, Jinjava jinjava) {
+	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, ComputateOAuth2AuthHandlerImpl oauth2AuthHandler, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, Jinjava jinjava) {
 		this.eventBus = eventBus;
 		this.config = config;
 		this.workerExecutor = workerExecutor;
+		this.oauth2AuthHandler = oauth2AuthHandler;
 		this.pgPool = pgPool;
 		this.kafkaProducer = kafkaProducer;
 		this.mqttClient = mqttClient;
@@ -2370,107 +2374,117 @@ public abstract class BaseApiServiceImpl {
 		});
 	}
 
-	public <Q, SiteRequest extends ComputateSiteRequest, SiteUser extends ComputateSiteUser> void configureUserUi(Router router, Class<Q> classResult, Class<SiteRequest> classSiteRequest, Class<SiteUser> classSiteUser, String apiAddressSiteUser, String uriPrefix) {
-		router.getWithRegex("(?<part1>/[a-z]{2}-[a-z]{2})/[^/]+(?<part2>.*)").handler(oauth2AuthHandler).handler(handler -> {
+	public <Q, SiteRequest extends ComputateSiteRequest, SiteUser extends ComputateSiteUser> void configureUserUi(Router router, Class<Q> classResult, Class<SiteRequest> classSiteRequest, Class<SiteUser> classSiteUser, String apiAddressSiteUser, String uriPrefix, String uriPrefixUser) {
+		router.getWithRegex("(?<uri>" + uriPrefixUser.replace("/", "\\/") + "\\/.*)").handler(oauth2AuthHandler).handler(handler -> {
 			ServiceRequest serviceRequest = generateServiceRequest(handler);
-			String originalUri = handler.pathParam("uri");
+			String userUri = handler.pathParam("uri");
 
 			user(serviceRequest, classSiteRequest, classSiteUser, apiAddressSiteUser, "postSiteUserFuture", "patchSiteUserFuture").onSuccess(siteRequest -> {
-				try {
-					String uri = String.format("%s%s", handler.pathParam("part1"), handler.pathParam("part2"));
-					String url = String.format("%s%s", config.getString(ComputateConfigKeys.SITE_BASE_URL), uri);
-					webClient.post(
-							config.getInteger(ComputateConfigKeys.AUTH_PORT)
-							, config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
-							, config.getString(ComputateConfigKeys.AUTH_TOKEN_URI)
-							)
-							.ssl(config.getBoolean(ComputateConfigKeys.AUTH_SSL))
-							.putHeader("Authorization", String.format("Bearer %s", siteRequest.getUser().principal().getString("access_token")))
-							.expect(ResponsePredicate.status(200))
-							.sendForm(MultiMap.caseInsensitiveMultiMap()
-									.add("grant_type", "urn:ietf:params:oauth:grant-type:uma-ticket")
-									.add("audience", config.getString(ComputateConfigKeys.AUTH_CLIENT))
-									.add("response_mode", "permissions")
-									.add("permission", String.format("%s#%s", uri, "GET"))
-					).onComplete(future -> {
-						try {
-							HttpResponse<Buffer> authorizationDecision = null;
-							if(future.succeeded())
-								authorizationDecision = future.result();
-							JsonArray scopes = Optional.ofNullable(authorizationDecision).map(authDecision -> authDecision.bodyAsJsonArray().stream().findFirst().map(decision -> ((JsonObject)decision).getJsonArray("scopes")).orElse(new JsonArray())).orElse(new JsonArray());
-							SiteUser user = siteRequest.getSiteUser_(classSiteUser);
-							JsonObject query = new JsonObject();
-							MultiMap queryParams = handler.queryParams();
-							for(String name : queryParams.names()) {
-								JsonArray array = query.getJsonArray(name);
-								List<String> vals = queryParams.getAll(name);
-								if(array == null) {
-									array = new JsonArray();
-									query.put(name, array);
-								}
-								for(String val : vals) {
-									array.add(val);
-								}
-							}
-							SearchList<Q> l = new SearchList<>();
-							l.q("*:*");
-							l.setC(classResult);
-							l.fq(String.format("%s_docvalues_string:%s", "uri", SearchTool.escapeQueryChars(uri)));
-							l.setStore(true);
-							l.promiseDeepForClass(siteRequest).onSuccess(a -> {
-								Q result = l.first();
-								try {
-									JsonObject resultJson = JsonObject.mapFrom(result);
-									String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
-									Path resourceTemplatePath = Path.of(siteTemplatePath, resultJson.getString("templateUri"));
-									String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8) : Files.readString(resourceTemplatePath, Charset.forName("UTF-8"));
-									JsonObject ctx = ComputateConfigKeys.getPageContext(config);
-									ctx.put("userName", user.getUserName());
-									ctx.put("userFirstName", user.getUserFirstName());
-									ctx.put("userLastName", user.getUserLastName());
-									if(scopes.contains("GET")) {
-										ctx.put("scope", "GET");
-									}
-									Matcher m = Pattern.compile("<meta property=\"([^\"]+)\"\\s+content=\"([^\"]*)\"/>", Pattern.MULTILINE).matcher(template);
-									boolean trouve = m.find();
-									while (trouve) {
-										String siteKey = m.group(1);
-										if(siteKey.startsWith("site:")) {
-											String key = StringUtils.substringAfter(siteKey, "site:");
-											String val = m.group(2);
-											if(val instanceof String) {
-												String rendered = jinjava.render(val, ctx.getMap());
-												ctx.put(key, rendered);
-											} else {
-												ctx.put(key, val);
-											}
-										}
-										trouve = m.find();
-									}
+				SearchList<Q> l = new SearchList<>();
+				l.q("*:*");
+				l.setC(classResult);
+				l.fq(String.format("%s_docvalues_string:%s", "userUri", SearchTool.escapeQueryChars(userUri)));
+				l.setStore(true);
+				l.promiseDeepForClass(siteRequest).onSuccess(a -> {
+					try {
+						Q result = l.first();
+						if(result != null) {
+							String uri = null;
+							if(result instanceof ComputateBaseModel)
+								uri = (String)((ComputateBaseModel)result).obtainForClass("uri");
+							else if(result instanceof ComputateBaseResult)
+								uri = (String)((ComputateBaseResult)result).obtainForClass("uri");
 
-									String renderedTemplate = jinjava.render(template, ctx.getMap());
-									Buffer buffer = Buffer.buffer(renderedTemplate);
-									handler.response().putHeader("Content-Type", "text/html");
-									handler.end(buffer);
+							webClient.post(
+									config.getInteger(ComputateConfigKeys.AUTH_PORT)
+									, config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
+									, config.getString(ComputateConfigKeys.AUTH_TOKEN_URI)
+									)
+									.ssl(config.getBoolean(ComputateConfigKeys.AUTH_SSL))
+									.putHeader("Authorization", String.format("Bearer %s", siteRequest.getUser().principal().getString("access_token")))
+									.expect(ResponsePredicate.status(200))
+									.sendForm(MultiMap.caseInsensitiveMultiMap()
+											.add("grant_type", "urn:ietf:params:oauth:grant-type:uma-ticket")
+											.add("audience", config.getString(ComputateConfigKeys.AUTH_CLIENT))
+											.add("response_mode", "permissions")
+											.add("permission", String.format("%s#%s", uri, "GET"))
+							).onComplete(future -> {
+								try {
+									HttpResponse<Buffer> authorizationDecision = null;
+									if(future.succeeded())
+										authorizationDecision = future.result();
+									JsonArray scopes = Optional.ofNullable(authorizationDecision).map(authDecision -> authDecision.bodyAsJsonArray().stream().findFirst().map(decision -> ((JsonObject)decision).getJsonArray("scopes")).orElse(new JsonArray())).orElse(new JsonArray());
+									SiteUser user = siteRequest.getSiteUser_(classSiteUser);
+									JsonObject query = new JsonObject();
+									MultiMap queryParams = handler.queryParams();
+									for(String name : queryParams.names()) {
+										JsonArray array = query.getJsonArray(name);
+										List<String> vals = queryParams.getAll(name);
+										if(array == null) {
+											array = new JsonArray();
+											query.put(name, array);
+										}
+										for(String val : vals) {
+											array.add(val);
+										}
+									}
+									try {
+										JsonObject resultJson = JsonObject.mapFrom(result);
+										String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
+										Path resourceTemplatePath = Path.of(siteTemplatePath, resultJson.getString("templateUri"));
+										String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8) : Files.readString(resourceTemplatePath, Charset.forName("UTF-8"));
+										JsonObject ctx = ComputateConfigKeys.getPageContext(config);
+										ctx.put("userName", user.getUserName());
+										ctx.put("userFirstName", user.getUserFirstName());
+										ctx.put("userLastName", user.getUserLastName());
+										if(scopes.contains("GET")) {
+											ctx.put("scope", "GET");
+										}
+										Matcher m = Pattern.compile("<meta property=\"([^\"]+)\"\\s+content=\"([^\"]*)\"/>", Pattern.MULTILINE).matcher(template);
+										boolean trouve = m.find();
+										while (trouve) {
+											String siteKey = m.group(1);
+											if(siteKey.startsWith("site:")) {
+												String key = StringUtils.substringAfter(siteKey, "site:");
+												String val = m.group(2);
+												if(val instanceof String) {
+													String rendered = jinjava.render(val, ctx.getMap());
+													ctx.put(key, rendered);
+												} else {
+													ctx.put(key, val);
+												}
+											}
+											trouve = m.find();
+										}
+
+										String renderedTemplate = jinjava.render(template, ctx.getMap());
+										Buffer buffer = Buffer.buffer(renderedTemplate);
+										handler.response().putHeader("Content-Type", "text/html");
+										handler.end(buffer);
+									} catch (Exception ex) {
+										LOG.error(String.format("Failed to render page %s", userUri), ex);
+										handler.fail(ex);
+									}
 								} catch (Exception ex) {
-									LOG.error(String.format("Failed to render page %s", uri), ex);
+									LOG.error(String.format("Failed to render page %s", userUri), ex);
 									handler.fail(ex);
 								}
-							}).onFailure(ex -> {
-								LOG.error(String.format("Failed to render page %s", uri), ex);
-								handler.fail(ex);
 							});
-						} catch (Exception ex) {
-							LOG.error(String.format("Failed to render page %s", uri), ex);
+						} else {
+							Throwable ex = new RuntimeException(String.format("Failed to query page by userUri %s", userUri));
+							LOG.error(ex.getMessage(), ex);
 							handler.fail(ex);
 						}
-					});
-				} catch(Exception ex) {
-					LOG.error("Failed to load page. ", ex);
+					} catch(Exception ex) {
+						LOG.error("Failed to load page. ", ex);
+						handler.fail(ex);
+					}
+				}).onFailure(ex -> {
+					LOG.error(String.format("Failed to render page %s", userUri), ex);
 					handler.fail(ex);
-				}
+				});
 			}).onFailure(ex -> {
-				LOG.error(String.format("Failed to render page %s", originalUri), ex);
+				LOG.error(String.format("Failed to render page %s", userUri), ex);
 				handler.fail(ex);
 			});
 		});

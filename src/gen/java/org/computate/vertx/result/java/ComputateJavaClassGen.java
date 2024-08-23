@@ -177,7 +177,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public static final String ComputateJavaClass_SingularName_enUS = "java class";
 	public static final String ComputateJavaClass_PluralName_enUS = "java classs";
 	public static final String ComputateJavaClass_NameActual_enUS = "current java class";
-	public static final String ComputateJavaClass_AllName_enUS = "all the java classs";
+	public static final String ComputateJavaClass_AllName_enUS = "all java classs";
 	public static final String ComputateJavaClass_SearchAllNameBy_enUS = "search java classs by ";
 	public static final String ComputateJavaClass_Title_enUS = "java classs";
 	public static final String ComputateJavaClass_ThePluralName_enUS = "the java classs";

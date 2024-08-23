@@ -30,6 +30,7 @@ import java.math.RoundingMode;
 
 import static org.apache.commons.lang3.Validate.isTrue;
 
+import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,10 +73,6 @@ import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalTimeSerializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
 
-import com.github.jknack.handlebars.Helper;
-import com.github.jknack.handlebars.Options;
-import com.github.jknack.handlebars.TagType;
-import com.github.jknack.handlebars.internal.lang3.LocaleUtils;
 import org.apache.commons.text.StringEscapeUtils;
 
 import io.vertx.core.json.JsonArray;
@@ -217,9 +214,16 @@ public class ComputateConfigKeys {
 			}
 		}
 
+	public static String formatNumber(Object value, String format, String localeStr) {
+		return formatNumber(value, format, localeStr, false, 2, null, 0, null, false, "HALF_UP");
+	}
 	public static String formatNumber(Object value, String format, String localeStr, Boolean groupingUsed, Integer maximumFractionDigits, Integer maximumIntegerDigits, Integer minimumFractionDigits, Integer minimumIntegerDigits, Boolean parseIntegerOnly, String roundingMode) {
-			isTrue(value instanceof Number, "found '%s', expected 'number'", value);
-			Number number = (Number) value;
+		try {
+			Number number = null;
+			if(value instanceof Number)
+				number = (Number) value;
+			else
+				number = new BigDecimal(value.toString());
 			final NumberFormat numberFormat = build(format, localeStr);
 
 			if (groupingUsed != null) {
@@ -251,6 +255,11 @@ public class ComputateConfigKeys {
 			}
 
 			return numberFormat.format(number);
+		} catch(Throwable ex) {
+			System.err.println(String.format("Exception %s", ex.getMessage()));
+			ExceptionUtils.rethrow(ex);
+			return null;
+		}
 	}
 
 	public static String siteZonedDateTimeFormat(Object value, String pattern, String localeStr) {
@@ -287,6 +296,7 @@ public class ComputateConfigKeys {
 			jinjava.registerFunction(new ELFunctionDefinition("", "formatLocalDate", ComputateConfigKeys.class, "formatLocalDate", Object.class, String.class, String.class, String.class));
 			jinjava.registerFunction(new ELFunctionDefinition("", "formatLocalTime", ComputateConfigKeys.class, "formatLocalTime", Object.class, String.class, String.class, String.class));
 			jinjava.registerFunction(new ELFunctionDefinition("", "formatNumber", ComputateConfigKeys.class, "formatNumber", Object.class, String.class, String.class, Boolean.class, Integer.class, Integer.class, Integer.class, Integer.class, Boolean.class, String.class));
+			jinjava.registerFunction(new ELFunctionDefinition("", "formatNumber", ComputateConfigKeys.class, "formatNumber", Object.class, String.class, String.class));
 
 			jinjava.registerFilter(new Filter() {
 				@Override

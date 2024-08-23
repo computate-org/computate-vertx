@@ -22,6 +22,9 @@
 {{ super() }}
 {%- block htmScriptsComputateJavaClassPage %}
     <script src="{{staticBaseUrl}}/js/enUS/ComputateJavaClassPage.js"></script>
+    {% if id is defined %}
+    <script type="module" src="{{staticBaseUrl}}/js/enUS/ComputateJavaClassPageModule.js"></script>
+    {% endif %}
 {%- endblock htmScriptsComputateJavaClassPage %}
 {%- endblock htmScriptsComputatePageLayout %}
 
@@ -56,19 +59,6 @@
         , customElements.whenDefined('sl-input')
       ]).then(() => {
 
-        document.onkeydown = function(evt) {
-          evt = evt || window.event;
-          var isEscape = false;
-          if ('key' in evt) {
-            isEscape = (evt.key === 'Escape' || evt.key === 'Esc');
-          } else {
-            isEscape = (evt.keyCode === 27);
-          }
-          if (isEscape) {
-            document.querySelector('.w3-modal:visible').classList.add('display-none');
-          }
-        };
-        window.eventBus = new EventBus('/eventbus');
         var pk = {% if pk is defined %}{{pk}}{% else %}null{% endif %};
 
         if(pk == null) {
@@ -87,181 +77,6 @@
         } else {
           window.computateJavaClass = JSON.parse(document.querySelector('.pageForm .computateJavaClass')?.value);
         {% if id is defined %}
-          // PATCH inheritPk
-          document.querySelector('#Page_inheritPk')?.addEventListener('sl-change', (event) => {
-            const form = document.querySelector('#PageForm_inheritPk');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchComputateJavaClassVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
-                  , 'setInheritPk', event.currentTarget.value
-                  , event.currentTarget
-                  , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_inheritPk')?.addEventListener('sl-focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_inheritPk')?.addEventListener('sl-blur', (event) => {
-            const form = document.querySelector('#PageForm_inheritPk');
-            const valid = form.reportValidity();
-          });
-          // PATCH created
-          document.querySelector('#Page_created')?.addEventListener('sl-change', (event) => {
-            const form = document.querySelector('#PageForm_created');
-            const valid = form.checkValidity();
-            if(valid) {
-              var timeZone = event.currentTarget.value.split('[').pop().split(']')[0];
-              var t1 = moment(event.currentTarget.value.split('[')[0].trim(), 'MM/DD/YYYY h:mm a');
-              var t2 = moment.tz(event.currentTarget.value.split('[')[0].trim(), 'MM/DD/YYYY h:mm a', timeZone);
-              var t3 = new Date(t1._d);
-              t3.setTime(t1.toDate().getTime() + t2.toDate().getTime() - t1.toDate().getTime());
-              var t = moment(t3);
-              if(t) {
-                var s = t.tz(timeZone).format('YYYY-MM-DDTHH:mm:ss.000') + '[' + timeZone + ']';
-                patchComputateJavaClassVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
-                    , 'setCreated', s
-                    , event.currentTarget
-                    , function(response, target) { addGlow(target); }
-                    , function(response, target) { addError(target); }
-                    );
-              }
-            }
-          });
-          document.querySelector('#Page_created')?.addEventListener('sl-focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_created')?.addEventListener('sl-blur', (event) => {
-            const form = document.querySelector('#PageForm_created');
-            const valid = form.reportValidity();
-          });
-          // PATCH archived
-          document.querySelector('#Page_archived')?.addEventListener('sl-change', (event) => {
-            const form = document.querySelector('#PageForm_archived');
-            const valid = form.checkValidity();
-            if(valid) {
-              var confirmResponse = confirm('Are you sure you want to archive that?'); 
-              if(confirmResponse) { 
-                patchComputateJavaClassVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
-                    , 'setArchived', event.currentTarget.checked
-                    , event.currentTarget
-                    , function(response, target) { addGlow(target); }
-                    , function(response, target) { addError(target); }
-                    );
-              }
-            }
-          });
-          document.querySelector('#Page_archived')?.addEventListener('sl-focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_archived')?.addEventListener('sl-blur', (event) => {
-            const form = document.querySelector('#PageForm_archived');
-            const valid = form.reportValidity();
-          });
-          // PATCH deleted
-          document.querySelector('#Page_deleted')?.addEventListener('sl-change', (event) => {
-            const form = document.querySelector('#PageForm_deleted');
-            const valid = form.checkValidity();
-            if(valid) {
-              var confirmResponse = confirm('Are you sure you want to delete that?'); 
-              if(confirmResponse) { 
-                patchComputateJavaClassVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
-                    , 'setDeleted', event.currentTarget.checked
-                    , event.currentTarget
-                    , function(response, target) { addGlow(target); }
-                    , function(response, target) { addError(target); }
-                    );
-              }
-            }
-          });
-          document.querySelector('#Page_deleted')?.addEventListener('sl-focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_deleted')?.addEventListener('sl-blur', (event) => {
-            const form = document.querySelector('#PageForm_deleted');
-            const valid = form.reportValidity();
-          });
-          // PATCH sessionId
-          document.querySelector('#Page_sessionId')?.addEventListener('sl-change', (event) => {
-            const form = document.querySelector('#PageForm_sessionId');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchComputateJavaClassVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
-                  , 'setSessionId', event.currentTarget.value
-                  , event.currentTarget
-                  , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_sessionId')?.addEventListener('sl-focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_sessionId')?.addEventListener('sl-blur', (event) => {
-            const form = document.querySelector('#PageForm_sessionId');
-            const valid = form.reportValidity();
-          });
-          // PATCH userKey
-          document.querySelector('#Page_userKey')?.addEventListener('sl-change', (event) => {
-            const form = document.querySelector('#PageForm_userKey');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchComputateJavaClassVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
-                  , 'setUserKey', event.currentTarget.value
-                  , event.currentTarget
-                  , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_userKey')?.addEventListener('sl-focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_userKey')?.addEventListener('sl-blur', (event) => {
-            const form = document.querySelector('#PageForm_userKey');
-            const valid = form.reportValidity();
-          });
-          // PATCH objectId
-          document.querySelector('#Page_objectId')?.addEventListener('sl-change', (event) => {
-            const form = document.querySelector('#PageForm_objectId');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchComputateJavaClassVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
-                  , 'setObjectId', event.currentTarget.value
-                  , event.currentTarget
-                  , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_objectId')?.addEventListener('sl-focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_objectId')?.addEventListener('sl-blur', (event) => {
-            const form = document.querySelector('#PageForm_objectId');
-            const valid = form.reportValidity();
-          });
-          // PATCH id
-          document.querySelector('#Page_id')?.addEventListener('sl-change', (event) => {
-            const form = document.querySelector('#PageForm_id');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchComputateJavaClassVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
-                  , 'setId', event.currentTarget.value
-                  , event.currentTarget
-                  , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_id')?.addEventListener('sl-focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_id')?.addEventListener('sl-blur', (event) => {
-            const form = document.querySelector('#PageForm_id');
-            const valid = form.reportValidity();
-          });
         {% endif %}
         }
         window.listComputateJavaClass = JSON.parse(document.querySelector('.pageForm .listComputateJavaClass')?.value);
@@ -269,11 +84,30 @@
         window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
         window.defaultRangeVar = '{{ defaultRangeVar }}';
         pageGraphComputateJavaClass();
+        {% for key, value in varsQ.items() %}
 
-        {%- block websocketComputateJavaClassPage %}{%- endblock %}
-        document.querySelector('#htmForm_searchpageComputateJavaClass')?.addEventListener('submit', event => {
+        document.querySelector('#qComputateJavaClass_{{ key }}')?.addEventListener('sl-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('ComputateJavaClass', event.target, document.querySelector('#qComputateJavaClassDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qComputateJavaClass_rows')?.addEventListener('sl-change', event => {
+          paramChange('ComputateJavaClass', event.target, document.querySelector('#qComputateJavaClassDiv_rows'));
+        });
+
+        document.querySelector('#qComputateJavaClass_start')?.addEventListener('sl-change', event => {
+          paramChange('ComputateJavaClass', event.target, document.querySelector('#qComputateJavaClassDiv_start'));
+        });
+
+
+        var submitForm_searchpageComputateJavaClass = document.querySelector('#htmForm_searchpageComputateJavaClass')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageComputateJavaClass')?.addEventListener('click', event => {
           event.preventDefault();
           searchpageComputateJavaClass();
+          return false;
         });
       });
     </script>
@@ -281,42 +115,42 @@
 {%- endblock htmScriptComputatePageLayout %}
 
 {%- block websocketComputatePageLayout %}
-{{ super() }}
 {%- block websocketComputateJavaClassPage %}
+        window.eventBus = new EventBus('/eventbus');
         websocketComputateJavaClass(websocketComputateJavaClassInner);
 {%- endblock websocketComputateJavaClassPage %}
 {%- endblock websocketComputatePageLayout %}
 
 {%- block htmUrlComputateJavaClassPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlComputateJavaClassPage %}
 
-{%- macro htmButton_searchpageComputateJavaClass() %}
-{%- endmacro %}
+{%- macro htmButton_searchpageComputateJavaClass() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageComputateJavaClass() %}
-            <sl-button type="submit" variant="primary">Search java classs</sl-button>
+            <sl-button slot="footer" type="submit" variant="primary"
+                id="htmFormButton_searchpageComputateJavaClass"
+                >Search java classs</sl-button>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageComputateJavaClass() %}
         <div id="searchpageComputateJavaClassDialog" label="Search java classs">
           <div id="htmForm_searchpageComputateJavaClass">
-            {{ htmFormButton_searchpageComputateJavaClass() }}
           </div>
         </div>
 {%- endmacro %}
             {%- macro htmBodyAllComputateJavaClassPage() %}
             <h1>
-              <a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-blue w3-hover-blue">
-                {% if classIconCssClasses is defined %}
-                  <i class="{{ classIconCssClasses }} site-menu-icon "></i>
-                {% endif %}
-                <span class="">java classs</span>
+              <a href="{{pageUri}}">
+                
+                <span>java classs</span>
               </a>
             </h1>
-            {{ htmSearchButtonsComputateJavaClassPage() }}
             <div id="site-calendar-box">
               <div id="site-calendar"><!-- // --></div>
             </div>
-              {{ htmPaginationButtonsComputateJavaClassPage() }}
+            {{ htmSearchButtonsComputateJavaClassPage() }}
+            {{ htmFormsComputateJavaClassPage() }}
+            <sl-divider></sl-divider>
+            {{ htmPaginationButtonsComputateJavaClassPage() }}
             <div class="grid-mode-details">
             <div>
                 
@@ -332,95 +166,60 @@
             {%- endmacro htmBodyAllComputateJavaClassPage() %}
 {%- macro htmSearchButtonsComputateJavaClassPage() %}
         <div id="htmSearchButtons">
-          <sl-tooltip placement="top" content="Advanced search for java classs">
-            <sl-button onclick="document.querySelector('#siteSidebarToggleSearch').show(); ">
-              <i slot="prefix" class="fad fa-magnifying-glass hover-box-shadow w3-xlarge "></i> 
-              Search
-            </sl-button>
-          </sl-tooltip>
-          <sl-tooltip placement="top" content="Filters and facet counts for java classs">
-            <sl-button onclick="document.querySelector('#siteSidebarToggleFilters').show(); ">
-              <i slot="prefix" class="fad fa-filters hover-box-shadow w3-xlarge "></i> 
-              Filters
-            </sl-button>
-          </sl-tooltip>
-          <sl-tooltip placement="top" content="Advanced search for java classs">
-            <sl-button onclick="document.querySelector('#siteSidebarToggleRange').show(); ">
-              <i slot="prefix" class="fad fa-calendar-range hover-box-shadow w3-xlarge "></i> 
-              Range
-            </sl-button>
-          </sl-tooltip>
-          <sl-tooltip placement="top" content="Advanced search for java classs">
-            <sl-button onclick="document.querySelector('#siteSidebarTogglePivot').show(); ">
-              <i slot="prefix" class="fad fa-table-pivot hover-box-shadow w3-xlarge "></i> 
-              Pivot
-            </sl-button>
-          </sl-tooltip>
-          <sl-tooltip placement="top" content="Advanced search for java classs">
-            <sl-button onclick="document.querySelector('#siteSidebarToggleFieldList').show(); ">
-              <i slot="prefix" class="fad fa-list-ul hover-box-shadow w3-xlarge "></i> 
-              FieldList
-            </sl-button>
-          </sl-tooltip>
-          <sl-tooltip placement="top" content="Advanced search for java classs">
-            <sl-button onclick="document.querySelector('#siteSidebarToggleStats').show(); ">
-              <i slot="prefix" class="fad fa-chart-candlestick hover-box-shadow w3-xlarge "></i> 
-              Stats
-            </sl-button>
-          </sl-tooltip>
-          <sl-tooltip placement="top" content="Query the JSON REST API for java classs">
-            <sl-button onclick="document.querySelector('#siteSidebarToggleApi').show(); "
-                 href="{{ apiUri }}{% if pk is defined %}/{{ pk }}{% else %}{% if id is defined %}/{{ id }}{% else %}{{ queryStr }}{% endif %}{% endif %}"
-                >
-              <i slot="prefix" class="fad fa-brackets-curly hover-box-shadow w3-xlarge "></i> 
-              Api
-            </sl-button>
-          </sl-tooltip>
-        </div>
+<sl-button onclick="document.querySelector('#siteSidebarToggleSearch').show(); "><i slot="prefix" class="fad fa-magnifying-glass hover-box-shadow "></i> Search</sl-button><sl-button onclick="document.querySelector('#siteSidebarToggleFilters').show(); "><i slot="prefix" class="fad fa-filters hover-box-shadow "></i> Filters</sl-button><sl-button onclick="document.querySelector('#siteSidebarToggleRange').show(); "><i slot="prefix" class="fad fa-calendar-range hover-box-shadow "></i> Range</sl-button><sl-button onclick="document.querySelector('#siteSidebarTogglePivot').show(); "><i slot="prefix" class="fad fa-table-pivot hover-box-shadow "></i> Pivot</sl-button><sl-button onclick="document.querySelector('#siteSidebarToggleFieldList').show(); "><i slot="prefix" class="fad fa-list-ul hover-box-shadow "></i> FieldList</sl-button><sl-button onclick="document.querySelector('#siteSidebarToggleStats').show(); "><i slot="prefix" class="fad fa-chart-candlestick hover-box-shadow "></i> Stats</sl-button><sl-button onclick="document.querySelector('#siteSidebarToggleApi').show(); " href="{{ apiUri }}{% if pk is defined %}/{{ pk }}{% else %}{% if id is defined %}/{{ id }}{% else %}{{ queryStr }}{% endif %}{% endif %}"><i slot="prefix" class="fad fa-brackets-curly hover-box-shadow "></i> Api</sl-button>        </div>
 {%- endmacro htmSearchButtonsComputateJavaClassPage() %}
 
 {%- macro htmPaginationButtonsComputateJavaClassPage() %}
             <div id="htmPaginationButtons">
-              <sl-tooltip placement="top" content="Show the results as details">
-                <sl-button id="grid-toggle-details">
-                  <i class="fa-solid fa-list"></i>
-                </sl-button>
-              </sl-tooltip>
-              <sl-tooltip placement="top" content="Show the results as a list">
-                <sl-button id="grid-toggle-list">
-                  <i class="fa-solid fa-bars"></i>
-                </sl-button>
-              </sl-tooltip>
-              <sl-tooltip placement="top" content="Show the results as cards">
-                <sl-button id="grid-toggle-card">
-                  <i class="fa-solid fa-grid"></i>
-                </sl-button>
-              </sl-tooltip>
-              <sl-divider vertical></sl-divider>
-              <sl-tooltip placement="top" content="Show the previous results">
-                <sl-button{% if pagination.pagePrevious is defined %} href="{{pageUri}}?start={{pagination.pagePrevious.start}}&amp;rows={{pagination.rows}}"{% else %} disabled{% endif %}>
-                  <i slot="prefix" class="fas fa-arrow-square-left "></i>
-                </sl-button>
-              </sl-tooltip>
-              <sl-tooltip placement="top" content="Show half the results">
-                <sl-button{% if pagination.rowsPrevious >= pagination['1L'] %} href="{{pageUri}}?start={{pagination.start}}&amp;rows={{ pagination.rowsPrevious }}"{% else %} disabled{% endif %}>
-                  <i slot="prefix" class="fas fa-minus-square "></i>
-                </sl-button>
-              </sl-tooltip>
-              <sl-tooltip placement="top" content="Show double the results">
-                <sl-button href="{{pageUri}}?start={{pagination.start}}&amp;rows={{ pagination.rowsNext }}">
-                  <i slot="prefix" class="fas fa-plus-square "></i>
-                </sl-button>
-              </sl-tooltip>
-              <sl-tooltip placement="top" content="Show the next results">
-                <sl-button{% if pagination.pageNext is defined %} href="{{pageUri}}?start={{pagination.pageNext.start}}&amp;rows={{pagination.rows}}"{% else %} disabled{% endif %}>
-                  <i slot="prefix" class="fas fa-arrow-square-right "></i>
-                </sl-button>
-              </sl-tooltip>
-              <sl-divider vertical></sl-divider>
-              <div>{{ pagination.startNum }} - {{ pagination.endNum }} of {{ pagination.foundNum }}</div>
+              <sl-button-group>
+                <sl-tooltip placement="top" content="Show the results as details" pill>
+                  <sl-button pill id="grid-toggle-details">
+                    <i class="fa-solid fa-list"></i>
+                  </sl-button>
+                </sl-tooltip>
+                <sl-tooltip placement="top" content="Show the results as a list">
+                  <sl-button id="grid-toggle-list">
+                    <i class="fa-solid fa-bars"></i>
+                  </sl-button>
+                </sl-tooltip>
+                <sl-tooltip placement="top" content="Show the results as cards" pill>
+                  <sl-button pill id="grid-toggle-card">
+                    <i class="fa-solid fa-grid"></i>
+                  </sl-button>
+                </sl-tooltip>
+              </sl-button-group>
+              <sl-button-group>
+                <sl-tooltip placement="top" content="Show the previous results">
+                  <sl-button pill{% if pagination.pagePrevious is defined %} href="{{pageUri}}?start={{pagination.pagePrevious.start}}&amp;rows={{pagination.rows}}"{% else %} disabled{% endif %}>
+                    <i slot="prefix" class="fas fa-arrow-square-left "></i>
+                  </sl-button>
+                </sl-tooltip>
+                <sl-tooltip placement="top" content="Show half the results">
+                  <sl-button{% if pagination.rowsPrevious >= pagination['1L'] %} href="{{pageUri}}?start={{pagination.start}}&amp;rows={{ pagination.rowsPrevious }}"{% else %} disabled{% endif %}>
+                    <i slot="prefix" class="fas fa-minus-square "></i>
+                  </sl-button>
+                </sl-tooltip>
+                <sl-tooltip placement="top" content="Show double the results">
+                  <sl-button href="{{pageUri}}?start={{pagination.start}}&amp;rows={{ pagination.rowsNext }}">
+                    <i slot="prefix" class="fas fa-plus-square "></i>
+                  </sl-button>
+                </sl-tooltip>
+                <sl-tooltip placement="top" content="Show the next results">
+                  <sl-button pill{% if pagination.pageNext is defined %} href="{{pageUri}}?start={{pagination.pageNext.start}}&amp;rows={{pagination.rows}}"{% else %} disabled{% endif %}>
+                    <i slot="prefix" class="fas fa-arrow-square-right "></i>
+                  </sl-button>
+                </sl-tooltip>
+              </sl-button-group>
+              <div>{{ pagination.startNum }} –— {{ pagination.endNum }} of {{ pagination.foundNum }}</div>
             </div>
 {%- endmacro htmPaginationButtonsComputateJavaClassPage() %}
+{%- macro htmFormsComputateJavaClassPage() %}
+  {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+    {% if "PATCH" in scopes %}
+            <sl-divider></sl-divider>
+            <div id="htmButtonGroup">
+{% if computateJavaClassCount == 1 %}<sl-button id="refreshThisComputateJavaClassGenPage" onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'id:{{id}}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisComputateJavaClassGenPage')); }, function() { addError(document.querySelector('#refreshThisComputateJavaClassGenPage')); }); return false; "><i slot="prefix" class="fas fa-sync-alt "></i>refresh</sl-button>{% endif %}{% if computateJavaClassCount > 0 %}<sl-button id="refreshAllComputateJavaClassGenPage{{id}}" onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllComputateJavaClassGenPage{{id}}')); }, function() { addError(document.querySelector('#refreshAllComputateJavaClassGenPage{{id}}')); }); "><i slot="prefix" class="fa-kit fa-solid-arrows-rotate-rotate"></i>Refresh all </sl-button>{% endif %}{% endif %}{% endif %}            </div>
+{%- endmacro htmFormsComputateJavaClassPage() %}
 
     {%- block htmBodyStartComputatePageLayout %}
     {{ super() }}
@@ -434,45 +233,45 @@
           {%- block htmBodySidebarComputateJavaClassPage %}
           <sl-drawer placement="end" id="siteSidebarToggleSearch">
             <div>
-              <span class="w3-bar-item ">
+              <span>
               <i class="fad fa-magnifying-glass "></i> Search</span>
             </div>
-            <div class="w3-bar-block ">
+            <div>
 {%- block htmBodySearchComputateJavaClassPage %}
               <div>
                 {% for key, value in varsQ.items() %}
-                  <div class="w3-cell-row ">
-                    <div class="w3-cell w3-cell-top ">
-                      <label for="qComputateJavaClass_{{ key }}">{{ displayName }}<sup class="w3-tiny "> ({{ classSimpleName }})</sup></label>
+                  <div>
+                    <div>
+                      <label for="qComputateJavaClass_{{ key }}">{{ value.displayName }}<sup> ({{ value.classSimpleName }})</sup></label>
                     </div>
                   </div>
-                  <div class="w3-cell-row ">
-                    <div class="w3-cell w3-cell-top ">
-                      <sl-input id="qComputateJavaClass_{{ key }}" placeholder="{{ displayName }}" class="" {% if var == 'objectSuggest' %}onkeyup{% else %}onchange{% endif %}="qChange('ComputateJavaClass', value); " data-var="{{ var }}" autocomplete="off="></sl-input>
-                      <div class="pageSearchVal w3-tiny "></div>
+                  <div>
+                    <div>
+                      <sl-input id="qComputateJavaClass_{{ key }}" placeholder="{{ displayName }}" data-var="{{ key }}" autocomplete="off="></sl-input>
+                      <div id="qComputateJavaClassDiv_{{ key }}" class="pageSearchVal "></div>
                     </div>
                   </div>
                 {% endfor %}
-                <div class="w3-cell-row ">
-                  <div class="w3-cell w3-cell-top ">
-                    <label for="qComputateJavaClass_Start">start<sup class="w3-tiny "> (Long)</sup></label>
+                <div>
+                  <div>
+                    <label for="qComputateJavaClass_Start">start<sup> (Long)</sup></label>
                   </div>
                 </div>
-                <div class="w3-cell-row ">
-                  <div class="w3-cell w3-cell-top ">
-                    <sl-input id="qComputateJavaClass_start" placeholder="{{ displayName }}" class="" onchange="paramChange('ComputateJavaClass', this); " data-var="start" autocomplete="off=" value="{{ start }}"></sl-input>
-                    <div class="pageSearchVal w3-tiny ">start={{ start }}</div>
+                <div>
+                  <div>
+                    <sl-input id="qComputateJavaClass_start" placeholder="{{ displayName }}" class="" data-var="start" autocomplete="off=" value="{{ start }}"></sl-input>
+                    <div id="qComputateJavaClassDiv_start" class="pageSearchVal ">start={{ start }}</div>
                   </div>
                 </div>
-                <div class="w3-cell-row ">
-                  <div class="w3-cell w3-cell-top ">
-                    <label for="qComputateJavaClass_Rows">rows<sup class="w3-tiny "> (Long)</sup></label>
+                <div>
+                  <div>
+                    <label for="qComputateJavaClass_Rows">rows<sup> (Long)</sup></label>
                   </div>
                 </div>
-                <div class="w3-cell-row ">
-                  <div class="w3-cell w3-cell-top ">
-                    <sl-input id="qComputateJavaClass_rows" placeholder="{{ displayName }}" class="" onchange="paramChange('ComputateJavaClass', this); " data-var="rows" autocomplete="off" value="{{ rows }}"></sl-input>
-                    <div class="pageSearchVal w3-tiny ">rows={{ rows }}</div>
+                <div>
+                  <div>
+                    <sl-input id="qComputateJavaClass_rows" placeholder="{{ displayName }}" class="" data-var="rows" autocomplete="off" value="{{ rows }}"></sl-input>
+                    <div id="qComputateJavaClassDiv_rows" class="pageSearchVal ">rows={{ rows }}</div>
                   </div>
                 </div>
               </div>
@@ -481,30 +280,26 @@
           </sl-drawer>
           <sl-drawer placement="end" id="siteSidebarToggleFilters">
             <div>
-              <span class="w3-bar-item ">
+              <span>
               <i class="fad fa-filters "></i> Filters</span>
             </div>
-            <div class="w3-bar-block ">
+            <div>
               {%- block htmBodyFiltersComputateJavaClassPage %}
               <div>
                 {% for key, value in varsFq.items() %}
                   <div class="">
-                    <label for="fqComputateJavaClass_{{ key }}">{{ displayName }}<sup class="w3-tiny "> ({{ classSimpleName }})</sup></label>
-                    <div class="w3-cell-row ">
-                      <div class="w3-cell w3-cell-top ">
-                        <button id="buttonFacetComputateJavaClass_{{ key }}" class="" onclick="facetFieldChange('ComputateJavaClass', value); " title="see values " data-var="{{ var }}" data-clear="{% if facetField is defined %}true{% else %}false{% endif %}"><i class="fas fa-list "></i></button>
-                      </div>
-                      <div class="w3-cell w3-cell-top ">
-                        <sl-input id="fqComputateJavaClass_{{ key }}" placeholder="{{ displayName }}" class="" onchange="fqChange('ComputateJavaClass', value); " data-var="{{ var }}" autocomplete="off=" value="{{ val }}"></sl-input>
-                      </div>
+                    <label for="fqComputateJavaClass_{{ key }}">{{ value.displayName }}<sup> ({{ value.classSimpleName }})</sup></label>
+                    <div class="display-flex ">
+                      <sl-button id="buttonFacetComputateJavaClass_{{ key }}" onclick="facetFieldChange('ComputateJavaClass', this); " title="see values " data-var="{{ value.var }}" data-clear="{% if value.facetField is defined %}true{% else %}false{% endif %}"><i class="fas fa-list "></i></sl-button>
+                      <sl-input id="fqComputateJavaClass_{{ key }}" placeholder="{{ value.displayName }}" class="" onchange="fqChange('ComputateJavaClass', value); " data-var="{{ value.var }}" autocomplete="off=" value="{{ value.val }}"></sl-input>
                     </div>
                   </div>
-                  <div class="w3-tiny ">
-                    <div class="pageSearchVal " id="pageSearchVal-fqComputateJavaClass_{{ key }}">{% if val is defined %}fq={{ var }}:{{ val | urlencode() }}{% endif %}</div>
-                    <div class="pageSearchVal " id="pageSearchVal-buttonFacetComputateJavaClass_{{ key }}">{% if facetField.var is defined %}facet.field={{ facetField.var }}{% endif %}</div>
-                    <ol class="pageFacetField w3-small pageFacetFieldComputateJavaClass_{{ key }} " id="pageFacetFieldComputateJavaClass_{{ key }}">
-{% for item in facetField.counts %}
-                      <li class="cursor-pointer " data-class="ComputateJavaClass" data-var="{{ item.var }}" data-val="{{ item.key }}" onclick="fqReplace('ComputateJavaClass', item.value); ">{{ item.key }}: {{ item.value }}</li>
+                  <div>
+                    <div class="pageSearchVal " id="pageSearchVal-fqComputateJavaClass_{{ key }}">{% if val is defined %}fq={{ value.var }}:{{ value.val | urlencode() }}{% endif %}</div>
+                    <div class="pageSearchVal " id="pageSearchVal-buttonFacetComputateJavaClass_{{ key }}">{% if value.facetField.var is defined %}facet.field={{ value.facetField.var }}{% endif %}</div>
+                    <ol class="pageFacetField pageFacetFieldComputateJavaClass_{{ key }} " id="pageFacetFieldComputateJavaClass_{{ key }}">
+{% for facetFieldKey, facetFieldValue in value.facetField.counts.items() %}
+                      <li class="cursor-pointer " data-class="ComputateJavaClass" data-var="{{ value.facetField.var }}" data-val="{{ facetFieldKey }}" onclick="fqReplace('ComputateJavaClass', facetFieldValue); ">{{ facetFieldKey }}: {{ facetFieldValue }}</li>
 {% endfor %}
                     </ol>
                   </div>
@@ -514,15 +309,15 @@
             </div>
           </sl-drawer>
           <sl-drawer placement="end" id="siteSidebarToggleRange">
-            <div class="w3-bar w3-blue  ">
-              <span class="w3-bar-item ">
+            <div>
+              <span>
               <i class="fad fa-calendar-range "></i> Range</span>
             </div>
-            <div class="w3-bar-block ">
+            <div>
               {%- block htmBodyRangeComputateJavaClassPage %}
-              <table class="w3-padding ">
+              <table>
                 <tr>
-                  <td class="w3-padding w3-tiny " colspan="2">
+                  <td colspan="2">
                     <div class="pageSearchVal " id="pageSearchVal-pageFacetRangeGap-ComputateJavaClass">{% if rangeGap is defined %}facet.range.gap={{ rangeGap | urlencode() }}{% endif %}</div>
                     <div class="pageSearchVal " id="pageSearchVal-pageFacetRangeStart-ComputateJavaClass">{% if rangeStart is defined %}facet.range.start={{ rangeStart | urlencode() }}{% endif %}</div>
                     <div class="pageSearchVal " id="pageSearchVal-pageFacetRangeEnd-ComputateJavaClass">{% if rangeEnd is defined %}facet.range.end={{ rangeEnd | urlencode() }}{% endif %}</div>
@@ -530,7 +325,7 @@
                   </td>
                 </tr>
               </table>
-              <table class="w3-padding ">
+              <table>
                 <tr class="">
                   <td class="">
                     <span>Range Gap</span>
@@ -568,118 +363,98 @@
                   </td>
                 </tr>
               </table>
-              <table class="w3-padding ">
-                {% for key, value in varsRange.items() %}
-                  <tr class="">
-                    <td class="">
-                      <span><sl-radio-group name="pageFacetRange" class="pageFacetRange " id="pageFacetRangeComputateJavaClass_{{ key }}" value="{{ var }}"{% if defaultRangeVar == var %} checked="checked"{% endif %} onclick="facetRangeChange('ComputateJavaClass', value); "></sl-radio-group></span>
-                    </td>
-                    <td class="">
-                      <label for="pageFacetRangeComputateJavaClass_{{ key }}">{{ displayName }}</label>
-                    </td>
-                  </tr>
+              <sl-radio-group>                {% for key, value in varsRange.items() %}
+                <sl-radio name="pageFacetRange" class="pageFacetRange " id="pageFacetRangeComputateJavaClass_{{ key }}" value="{{ value.var }}"{% if defaultRangeVar == var %} checked="checked"{% endif %} onclick="facetRangeChange('ComputateJavaClass', value); ">{{ value.displayName }}</sl-radio>
                 {% endfor %}
-              </table>
+              </sl-radio-group>
               {%- endblock htmBodyRangeComputateJavaClassPage %}
             </div>
           </sl-drawer>
           <sl-drawer placement="end" id="siteSidebarTogglePivot">
             <div>
-              <span class="w3-bar-item ">
+              <span>
               <i class="fad fa-table-pivot "></i> Pivot</span>
             </div>
-            <div class="w3-bar-block ">
+            <div>
               {%- block htmBodyPivotComputateJavaClassPage %}
-              <div style="display: none; " class="w3-padding w3-tiny " id="pageSearchVal-PivotComputateJavaClassHidden">
+              <div style="display: none; " id="pageSearchVal-PivotComputateJavaClassHidden">
                 {% for item in defaultPivotVars %}
                   <div class="pageSearchVal-PivotComputateJavaClassHidden " id="pageSearchVal-PivotComputateJavaClassHidden_{{ item }}">{{ item }}</div>
                 {% endfor %}
               </div>
-              <div class="w3-padding w3-tiny " id="pageSearchVal-PivotComputateJavaClass">
-                {% if defaultPivotVars is defined %}
+              <div id="pageSearchVal-PivotComputateJavaClass">
+                {% if defaultPivotVars is defined and defaultPivotVars.length > 0 %}
                   <div class="pageSearchVal pageSearchVal-PivotComputateJavaClass " id="pageSearchVal-PivotComputateJavaClass_1">facet.pivot={!range=r1}{% for item in defaultPivotVars %}{% if loop.index > 0 %},{% endif %}{{ item }}{% endfor %}</div>
                 {% endif %}
               </div>
-              <table class="w3-table ">
-                {% for key, value in varsFq.items() %}
-                  <tr class="">
-                    <td class="">
-                      <span><sl-checkbox name="pageFacetPivot" class="pageFacetPivot " id="pageFacetPivotComputateJavaClass_{{ key }}" value="{{ var }}"{% if pivot is defined %} checked="checked"{% endif %} onclick="facetPivotChange('ComputateJavaClass', value); ">{{ displayName }}</sl-checkbox></span>
-                    </td>
-                    <td class="w3-cell ">
-                      <label for="pageFacetPivotComputateJavaClass_{{ key }}">{{ displayName }}</label>
-                    </td>
-                  </tr>
-                {% endfor %}
-              </table>
+              {% for key, value in varsFq.items() %}
+              <div>
+                <sl-checkbox name="pageFacetPivot" class="pageFacetPivot " id="pageFacetPivotComputateJavaClass_{{ key }}" value="{{ value.var }}"{% if pivot is defined %} checked="checked"{% endif %} onclick="facetPivotChange('ComputateJavaClass', value); ">{{ value.displayName }}</sl-checkbox>
+              </div>
+              {% endfor %}
               {%- endblock htmBodyPivotComputateJavaClassPage %}
             </div>
           </sl-drawer>
           <sl-drawer placement="end" id="siteSidebarToggleFieldList">
             <div>
-              <span class="w3-bar-item ">
+              <span>
               <i class="fad fa-list-ul "></i> Field List</span>
             </div>
-            <div class="w3-bar-block ">
+            <div>
               {%- block htmBodyFieldListComputateJavaClassPage %}
               <div
- style="display: none; " class="w3-padding w3-tiny " id="pageSearchVal-FieldListComputateJavaClassHidden">
+ style="display: none; " id="pageSearchVal-FieldListComputateJavaClassHidden">
                 {% for item in defaultFieldListVars %}
                   <div class="pageSearchVal-FieldListComputateJavaClassHidden " id="pageSearchVal-FieldListComputateJavaClassHidden_{{ item }}">{{ item }}</div>
                 {% endfor %}
               </div>
-              <div class="w3-padding w3-tiny " id="pageSearchVal-FieldListComputateJavaClass">
+              {% if defaultFieldListVars is defined and defaultFieldListVars.length > 0 %}
+              <div id="pageSearchVal-FieldListComputateJavaClass">
                 {% if defaultFieldListVars is defined %}
-                  <div class="pageSearchVal pageSearchVal-FieldListComputateJavaClass " id="pageSearchVal-FieldListComputateJavaClass_1">fl={% for item in defaultFieldListVars %}{% if loop.index > 0 %},{% endif %}{{ this }}{% endfor %}</div>
+                  <div class="pageSearchVal pageSearchVal-FieldListComputateJavaClass " id="pageSearchVal-FieldListComputateJavaClass_1">fl={% for item in defaultFieldListVars %}{% if loop.index > 0 %},{% endif %}{{ item }}{% endfor %}</div>
                 {% endif %}
               </div>
-              <table class="w3-table ">
-                {% for key, value in varsFq.items() %}
-                  <tr class="">
-                    <td class="">
-                      <span><sl-checkbox name="pageFieldList" class="pageFieldList " id="pageFieldListComputateJavaClass_{{ key }}" value="{{ var }}"{% if fieldList is defined %} checked="checked"{% endif %} onclick="facetFieldListChange('ComputateJavaClass', value); ">{{ displayName }}</sl-checkbox></span>
-                    </td>
-                    <td class="w3-cell ">
-                      <label for="pageFieldListComputateJavaClass_{{ key }}">{{ displayName }}</label>
-                    </td>
-                  </tr>
+              {% endif %}
+              {% for key, value in varsFq.items() %}
+              <div>
+                <sl-checkbox name="pageFieldList" class="pageFieldList " id="pageFieldListComputateJavaClass_{{ key }}" value="{{ value.var }}"{% if fieldList is defined %} checked="checked"{% endif %} onclick="facetFieldListChange('ComputateJavaClass', value); ">{{ value.displayName }}</sl-checkbox>
+              </div>
                 {% endfor %}
-              </table>
               {%- endblock htmBodyFieldListComputateJavaClassPage %}
             </div>
           </sl-drawer>
           <sl-drawer placement="end" id="siteSidebarToggleStats">
             <div>
-              <span class="w3-bar-item ">
+              <span>
                 <i class="fad fa-chart-candlestick "></i>                 Stats</span>
             </div>
-            <div class="w3-bar-block ">
+            <div>
               {%- block htmBodyStatsComputateJavaClassPage %}
               <div
- style="display: none; " class="w3-padding w3-tiny " id="pageSearchVal-StatsComputateJavaClassHidden">
+ style="display: none; " id="pageSearchVal-StatsComputateJavaClassHidden">
                 {% for item in defaultStatsVars %}
                   <div class="pageSearchVal-StatsComputateJavaClassHidden " id="pageSearchVal-StatsComputateJavaClassHidden_{{ item }}">{{ item }}</div>
                 {% endfor %}
               </div>
-              <div class="w3-padding w3-tiny " id="pageSearchVal-StatsComputateJavaClass">
+              <div id="pageSearchVal-StatsComputateJavaClass">
                 {% if defaultStatsVars is defined %}
                   {% for item in defaultStatsVars %}
                     <div class="pageSearchVal pageSearchVal-StatsComputateJavaClass_{{ item }} " id="pageSearchVal-StatsComputateJavaClass_{{ item }}">stats.field={{ item }}                    </div>
                   {% endfor %}
                 {% endif %}
               </div>
-              <table class="w3-table ">
+              <table>
                 {% for key, value in varsFq.items() %}
                   {% if enableStats is defined %}
                     <tr class="">
                       <td class="">
-                        <span><sl-checkbox name="pageStats" class="pageStats " id="pageStatsComputateJavaClass_{{ key }}" value="{{ var }}"{% if value.stats is defined %} checked="checked"{% endif %} onclick="facetStatsChange('ComputateJavaClass', value); ">{{ displayName }}</sl-checkbox></span>
+                        <span><sl-checkbox name="pageStats" class="pageStats " id="pageStatsComputateJavaClass_{{ key }}" value="{{ value.var }}"{% if value.stats is defined %} checked="checked"{% endif %} onclick="facetStatsChange('ComputateJavaClass', value); ">{{ value.displayName }}</sl-checkbox></span>
                       </td>
-                      <td class="w3-cell ">
+                      <td>
                         <div>
-                          <label for="pageStatsComputateJavaClass_{{ key }}">{{ displayName }}</label>
+                          <label for="pageStatsComputateJavaClass_{{ key }}">{{ value.displayName }}</label>
                         </div>
-                        <div class="pageStatsField w3-small pageStatsFieldComputateJavaClass_{{ key }} " id="pageStatsFieldComputateJavaClass_{{ key }}">
+                        <div class="pageStatsField pageStatsFieldComputateJavaClass_{{ key }} " id="pageStatsFieldComputateJavaClass_{{ key }}">
                           {% if value.stats is defined %}
                             {% for item in value.stats %}
                               {% if item.key == 'name' %}{% else %}
@@ -696,7 +471,7 @@
                                 <sl-input id="animateStatsMax" placeholder="max" value="{{ value.stats.max }}" style="width: 4em; "></sl-input>
                                 <span> speed in seconds </span>
                                 <sl-input id="animateStatsSpeed" placeholder="speed" value="1" style="width: 4em; "></sl-input>
-                                <button onclick="animateStats(); ">animate</button>
+                                <sl-button onclick="animateStats(); ">animate</sl-button>
                               </div>
                             {% endif %}
                           {% endif %}
@@ -713,29 +488,33 @@
         </div>
 
         {%- block htmBodyGraphLocationComputateJavaClassPage %}
-        <div id="htmBodyGraphLocationComputateJavaClassPage" class="w3-content htmBodyGraphLocation "></div>
+        <div id="htmBodyGraphLocationComputateJavaClassPage" class="htmBodyGraphLocation "></div>
         {%- endblock htmBodyGraphLocationComputateJavaClassPage %}
 
         {%- block htmBodyGraphComputateJavaClassPage %}
-        <div id="htmBodyGraphComputatePageLayout" class="w3-content htmBodyGraph "></div>
+        <div id="htmBodyGraphComputatePageLayout" class="htmBodyGraph "></div>
         {%- endblock htmBodyGraphComputateJavaClassPage %}
         <div class="pageContent ">
           <div id="site-calendar-box">
             <div id="site-calendar"><!-- // --></div>
           </div>
-        </div>
 {% if computateJavaClassCount == 0 %}
+        <div>
+          <sl-tooltip content="back to all java classs">
+            <sl-button href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-solid fa-angle-left"></i>
+              all java classs
+            </sl-button>
+          </sl-tooltip>
+        </div>
         <h1>
-          <a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-blue w3-hover-blue">
-  {% if classIconCssClasses is defined %}
-              <i class="{{ classIconCssClasses }} site-menu-icon "></i>
-  {% endif %}
-            <span class="">java classs</span>
-          </a>
+          
+            <span>java classs</span>
         </h1>
         {{ htmSearchButtonsComputateJavaClassPage() }}
+            {{ htmFormsComputateJavaClassPage() }}
         <h2>
-          <span class="w3-bar-item w3-padding w3-center w3-block w3-blue">
+          <span>
   {% if classIconCssClasses is defined %}
             <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
   {% endif %}
@@ -745,20 +524,20 @@
 {% else %}
   {% if computateJavaClassCount == 1 %}
     {% if id is defined %}
+        <div>
+          <sl-tooltip content="back to all java classs">
+            <sl-button href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-solid fa-angle-left"></i>
+              all java classs
+            </sl-button>
+          </sl-tooltip>
+        </div>
         <h1>
-          <a href="{{pageUri}}" class="w3-bar-item w3-btn w3-center w3-block w3-blue w3-hover-blue">
-      {% if classIconCssClasses is defined %}
-              <i class="{{ classIconCssClasses }} site-menu-icon "></i>
-      {% endif %}
-            <span class="">java class</span>
-          </a>
+          
+          {{computateJavaClass_.objectTitle}}
         </h1>
         {{ htmSearchButtonsComputateJavaClassPage() }}
-        <h2 class="w3-center ">
-          <span class="w3-bar-item w3-padding w3-center w3-block w3-blue">
-            <span class="">{{computateJavaClass_.objectTitle}}</span>
-          </span>
-        </h2>
+            {{ htmFormsComputateJavaClassPage() }}
     {% else %}
         {{ htmBodyAllComputateJavaClassPage() }}
     {% endif %}
@@ -781,32 +560,7 @@
         {{ htmForm_searchpageComputateJavaClass() }}
   {% endif %}
         {%- endblock htmFormComputateJavaClassPage %}
-        {%- block htmFormsComputateJavaClassPage %}
-  {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
-    {% if "PATCH" in scopes %}
-      {% if computateJavaClassCount == 1 %}
-        <button
-            class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-blue "
-            id="refreshThisComputateJavaClassGenPage"
-            onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'id:{{id}}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisComputateJavaClassGenPage')); }, function() { addError(document.querySelector('#refreshThisComputateJavaClassGenPage')); }); return false; ">
-          <i class="fas fa-sync-alt "></i>
-          refresh this java class
-        </button>
-      {% endif %}
-      {% if computateJavaClassCount > 0 %}
-        <div class="">
-          <button id="refreshAllComputateJavaClassGenPage{{id}}" class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-blue "
-              onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllComputateJavaClassGenPage{{id}}')); }, function() { addError(document.querySelector('#refreshAllComputateJavaClassGenPage{{id}}')); }); "
-              >
-            <i class="fas fa-sync-alt "></i>
-            refresh all the java classs
-          </button>
         </div>
-      {% endif %}
-    {% endif %}
-  {% endif %}
-        {%- block htmSuggestedComputateJavaClassPage %}{%- endblock %}
-        {%- endblock htmFormsComputateJavaClassPage %}
       {%- endblock htmBodyMiddleComputateJavaClassPage %}
       {%- endblock htmBodyMiddleComputatePageLayout %}
 
@@ -816,17 +570,17 @@
       {%- endblock htmBodyEndComputateJavaClassPage %}
       {%- endblock htmBodyEndComputatePageLayout %}
 {%- block htmSuggestedComputateJavaClassPage %}
-        <div class="w3-cell-row ">
-          <div class="w3-cell ">
+        <div>
+          <div>
             <span>
               search java classs: 
             </span>
           </div>
         </div>
-        <div class="w3-bar ">
+        <div>
           <sl-input
               type="text"
-              class="suggestComputateJavaClass w3-input w3-border w3-bar-item "
+              class="suggestComputateJavaClass "
               name="suggestComputateJavaClass"
               id="suggestComputateJavaClass{{id}}"
               autocomplete="off"
@@ -837,23 +591,22 @@
   {% endif %}
               >
           </sl-input>
-          <button
-              class="w3-btn w3-round w3-border w3-border-black w3-ripple w3-padding w3-bar-item w3-blue "
+          <sl-button
               onclick="window.location.href = '/java-class?q=&quot;, query1, &quot;:' + encodeURIComponent(this.previousElementSibling.value) + '&quot;, fqs, sorts, &quot;&amp;rows=&quot;, start2, &quot;&amp;rows=&quot;, rows1, &quot;'; "
               >
             <i class="fas fa-search "></i>
-          </button>
+          </sl-button>
           <div>
-            <div class="w3-cell-row ">
-              <div class="w3-cell w3-left-align w3-cell-top ">
-                <ul class="w3-ul w3-hoverable " id="suggestListComputateJavaClass{{id}}">
+            <div>
+              <div>
+                <ul id="suggestListComputateJavaClass{{id}}">
                 </ul>
               </div>
             </div>
           </div>
           <div class="">
             <a href="/java-class" class="">
-              see all the java classs
+              see all java classs
             </a>
           </div>
         </div>
