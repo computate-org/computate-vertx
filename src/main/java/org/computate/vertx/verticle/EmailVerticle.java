@@ -13,6 +13,12 @@
  */
 package org.computate.vertx.verticle;
 
+import java.io.File;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import org.apache.commons.lang3.StringUtils;
 import org.computate.vertx.config.ComputateConfigKeys;
 import org.slf4j.Logger;
@@ -21,13 +27,18 @@ import org.slf4j.LoggerFactory;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
+import io.vertx.core.MultiMap;
 import io.vertx.core.Promise;
+import io.vertx.core.buffer.Buffer;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mail.MailClient;
 import io.vertx.ext.mail.MailConfig;
 import io.vertx.ext.mail.MailMessage;
-import io.vertx.ext.web.templ.handlebars.HandlebarsTemplateEngine;
+
+import com.google.common.io.Resources;
+import com.hubspot.jinjava.Jinjava;
+import com.hubspot.jinjava.loader.FileLocator;
 
 /**
  * Keyword: classSimpleNameMailVerticle
@@ -45,12 +56,12 @@ public class EmailVerticle extends EmailVerticleGen<AbstractVerticle> {
 	private String fallbackMailTo;
 	private String fallbackMailSubject;
 
-	private HandlebarsTemplateEngine templateEngine;
+	Jinjava jinjava;
 
 	@Override
 	public void start(Promise<Void> startPromise) throws Exception {
-		configureEmail().onSuccess(config -> {
-			configureTemplateEngine().onSuccess(templateEngine -> {
+		configureJinjava().onSuccess(jinjava -> {
+			configureEmail().onSuccess(config -> {
 				startPromise.complete();
 			}).onFailure(ex -> {
 				startPromise.fail(ex);
@@ -61,6 +72,25 @@ public class EmailVerticle extends EmailVerticleGen<AbstractVerticle> {
 		vertx.eventBus().consumer(MAIL_EVENTBUS_ADDRESS).handler(mailSender());
 	}
 
+	/**
+	 **/
+	public Future<Jinjava> configureJinjava() {
+		Promise<Jinjava> promise = Promise.promise();
+
+		try {
+			jinjava = new Jinjava();
+			String templatePath = config().getString(ComputateConfigKeys.TEMPLATE_PATH);
+			if(!StringUtils.isBlank(templatePath))
+				jinjava.setResourceLocator(new FileLocator(new File(templatePath)));
+			promise.complete(jinjava);
+		} catch(Exception ex) {
+			LOG.error("Jinjava failed to initialize.", ex);
+			promise.fail(ex);
+		}
+
+		return promise.future();
+	}
+
 	private Handler<Message<Object>> mailSender() {
 		return new Handler<Message<Object>>() {
 
@@ -68,54 +98,46 @@ public class EmailVerticle extends EmailVerticleGen<AbstractVerticle> {
 			public void handle(Message<Object> event) {
 
 				try {
-					JsonObject params = new JsonObject(event.body().toString()).getJsonObject("error").getJsonObject("params");
-					JsonObject body = params.getJsonObject("body");
-					JsonObject headers = params.getJsonObject("header");
-					String mailTemplate = headers.getString(MAIL_HEADER_TEMPLATE);
-					String templatePath = config().getString(ComputateConfigKeys.TEMPLATE_PATH);
+					JsonObject body = new JsonObject(event.body().toString());
+					MultiMap headers = event.headers();
+					String emailTemplate = headers.get(MAIL_HEADER_TEMPLATE);
+
+					String siteTemplatePath = config().getString(ComputateConfigKeys.TEMPLATE_PATH);
+					Path resourceTemplatePath = Path.of(siteTemplatePath, emailTemplate);
+					String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8) : Files.readString(resourceTemplatePath, Charset.forName("UTF-8"));
+					String renderedTemplate = jinjava.render(template, body.getMap());
+					Buffer buffer = Buffer.buffer(renderedTemplate);
 	
-					body.put(ComputateConfigKeys.STATIC_BASE_URL, config().getString(ComputateConfigKeys.STATIC_BASE_URL));
-					body.put(ComputateConfigKeys.SITE_BASE_URL, config().getString(ComputateConfigKeys.STATIC_BASE_URL));
-					body.put(ComputateConfigKeys.AUTH_URL, config().getString(ComputateConfigKeys.AUTH_URL));
-					body.put(ComputateConfigKeys.AUTH_REALM, config().getString(ComputateConfigKeys.AUTH_REALM));
-					body.put("staticBaseUrl", config().getString(ComputateConfigKeys.STATIC_BASE_URL));
-					body.put("siteBaseUrl", config().getString(ComputateConfigKeys.SITE_BASE_URL));
-					templateEngine.render(body, String.format("%s/%s", templatePath, mailTemplate)).onSuccess(buffer -> {
+					String mailFrom = headers.get(MAIL_HEADER_FROM);
+					if(StringUtils.isBlank(mailFrom)) {
+						mailFrom = fallbackMailFrom;
+					}
 	
-						String mailFrom = headers.getString(MAIL_HEADER_FROM);
-						if(StringUtils.isBlank(mailFrom)) {
-							mailFrom = fallbackMailFrom;
+					String mailTo = headers.get(MAIL_HEADER_TO);
+					if(StringUtils.isBlank(mailTo)) {
+						mailTo = fallbackMailTo;
+					}
+	
+					String mailSubject = headers.get(MAIL_HEADER_SUBJECT);
+					if(StringUtils.isBlank(mailSubject)) {
+						mailSubject = fallbackMailSubject;
+					}
+	
+					String html = buffer.toString();
+					LOG.info("Sending mail from={}, to={}, subject={}", mailFrom, mailTo, mailSubject);
+					MailMessage message = new MailMessage();
+					message.setFrom(mailFrom);
+					message.setTo(mailTo);
+					message.setSubject(mailSubject);
+					message.setHtml(html);
+					mailClient.sendMail(message, result -> {
+						if(result.succeeded()) {
+							LOG.info(result.result().toString());
+							event.reply(html);
+						} else {
+							LOG.error("sendMail failed. ", result.cause());
+							event.reply(null);
 						}
-	
-						String mailTo = headers.getString(MAIL_HEADER_TO);
-						if(StringUtils.isBlank(mailTo)) {
-							mailTo = fallbackMailTo;
-						}
-	
-						String mailSubject = headers.getString(MAIL_HEADER_SUBJECT);
-						if(StringUtils.isBlank(mailSubject)) {
-							mailSubject = fallbackMailSubject;
-						}
-	
-						String html = buffer.toString();
-						LOG.debug("Sending mail from={}, to={}, subject={}", mailFrom, mailTo, mailSubject);
-						MailMessage message = new MailMessage();
-						message.setFrom(mailFrom);
-						message.setTo(mailTo);
-						message.setSubject(mailSubject);
-						message.setHtml(html);
-						mailClient.sendMail(message, result -> {
-							if(result.succeeded()) {
-								LOG.info(result.result().toString());
-								event.reply(html);
-							} else {
-								LOG.error("sendMail failed. ", result.cause());
-								event.reply(null);
-							}
-						});
-					}).onFailure(ex -> {
-						LOG.error("Rendering email template failed. ", ex);
-						event.reply(null);
 					});
 				} catch(Exception ex) {
 					LOG.error("Rendering email template failed. ", ex);
@@ -134,6 +156,7 @@ public class EmailVerticle extends EmailVerticleGen<AbstractVerticle> {
 			mailConfig.setSsl(config().getBoolean(ComputateConfigKeys.EMAIL_SSL));
 			mailConfig.setUsername(config().getString(ComputateConfigKeys.EMAIL_USERNAME));
 			mailConfig.setPassword(config().getString(ComputateConfigKeys.EMAIL_PASSWORD));
+			mailConfig.setAuthMethods("PLAIN");
 			this.fallbackMailFrom = config().getString(ComputateConfigKeys.EMAIL_FROM);
 			this.fallbackMailTo = config().getString(ComputateConfigKeys.EMAIL_ADMIN);
 			this.fallbackMailSubject = "";
@@ -142,23 +165,6 @@ public class EmailVerticle extends EmailVerticleGen<AbstractVerticle> {
 			promise.complete();
 		} catch(Exception ex) {
 			LOG.error("The email was not configured successfully. ", ex);
-			promise.fail(ex);
-		}
-		return promise.future();
-	}
-
-	/**	
-	 * Val.Fail.enUS:The template engine was not configured properly. 
-	 * Val.Complete.enUS:The template engine was configured properly. 
-	 */
-	private Future<HandlebarsTemplateEngine> configureTemplateEngine() {
-		Promise<HandlebarsTemplateEngine> promise = Promise.promise();
-		try {
-			templateEngine = HandlebarsTemplateEngine.create(vertx);
-			LOG.info(configureTemplateEngineComplete);
-			promise.complete(templateEngine);
-		} catch(Exception ex) {
-			LOG.error(configureTemplateEngineFail, ex);
 			promise.fail(ex);
 		}
 		return promise.future();

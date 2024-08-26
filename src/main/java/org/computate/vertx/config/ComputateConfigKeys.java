@@ -998,6 +998,11 @@ public class ComputateConfigKeys {
 	public static final String IMPORT_PATH = "IMPORT_PATH";
 
 	/**
+	 * Whether Email SMTP is enabled. 
+	 **/
+	public static final String ENABLE_EMAIL = "ENABLE_EMAIL";
+
+	/**
 	 * The SMTP host name for sending email. 
 	 **/
 	public static final String EMAIL_HOST = "EMAIL_HOST";
@@ -1026,6 +1031,11 @@ public class ComputateConfigKeys {
 	 * Whether authentication is required for sending email. 
 	 **/
 	public static final String EMAIL_AUTH = "EMAIL_AUTH";
+
+	/**
+	 * One of: PLAIN, LOGIN, MD5, DIGEST-MD5, CRAM-MD5, GSSAPI, OAUTH10A, OAUTHBEARER, XOAUTH2
+	 **/
+	public static final String EMAIL_AUTH_METHOD = "EMAIL_AUTH_METHOD";
 
 	/**
 	 * Whether SSL is required for sending email. 
@@ -1062,6 +1072,16 @@ public class ComputateConfigKeys {
 	 * 
 	 **/
 	public static final String ENABLE_REFRESH_DATA = "ENABLE_REFRESH_DATA";
+
+	/**
+	 * 
+	 **/
+	public static final String ENABLE_MAIN_VERTICLE = "ENABLE_MAIN_VERTICLE";
+
+	/**
+	 * 
+	 **/
+	public static final String ENABLE_WORKER_VERTICLE = "ENABLE_WORKER_VERTICLE";
 
 	/**
 	 * 
