@@ -370,8 +370,6 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 			if(this.c != null)
 				request.fq("classCanonicalNames_docvalues_strings:" + SearchTool.escapeQueryChars(this.c.getCanonicalName()));
 			ComputateSiteUser siteUser = siteRequest_.getSiteUser_(ComputateSiteUser.class);
-			if(siteUser == null || BooleanUtils.isNotTrue(siteUser.getSeeDeleted()))
-				request.fq("deleted_docvalues_boolean:false");
 			if(siteUser == null || BooleanUtils.isNotTrue(siteUser.getSeeArchived()))
 				request.fq("archived_docvalues_boolean:false");
 		}

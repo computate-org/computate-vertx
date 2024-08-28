@@ -623,7 +623,7 @@ public abstract class BaseApiServiceImpl {
 			return promise.future();
 		}
 
-		public Future<Void> values(Long pk1, Long pk2) {
+		public Future<Void> relateValues(Long pk1, Long pk2) {
 			Promise<Void> promise = Promise.promise();
 			if(pk2 == null) {
 				promise.complete();
@@ -633,6 +633,24 @@ public abstract class BaseApiServiceImpl {
 					classes.add(c2.getSimpleName());
 				}
 				siteRequest.getSqlConnection().preparedQuery(String.format("INSERT INTO %s%s_%s%s(pk1, pk2) VALUES($1, $2) ON CONFLICT DO NOTHING", c1.getSimpleName(), StringUtils.capitalize(entityVar1), c2.getSimpleName(), StringUtils.capitalize(entityVar2), entityVar2)).execute(Tuple.of(pk1, pk2)).onSuccess(a -> {
+					promise.complete();
+				}).onFailure(ex -> {
+					promise.fail(ex);
+				});
+			}
+			return promise.future();
+		}
+
+		public Future<Void> unrelateValues(Long pk1, Long pk2) {
+			Promise<Void> promise = Promise.promise();
+			if(pk2 == null) {
+				promise.complete();
+			} else {
+				if(!pks.contains(pk2)) {
+					pks.add(pk2);
+					classes.add(c2.getSimpleName());
+				}
+				siteRequest.getSqlConnection().preparedQuery(String.format("DELETE FROM %s%s_%s%s WHERE pk1=$1 AND pk2=$2", c1.getSimpleName(), StringUtils.capitalize(entityVar1), c2.getSimpleName(), StringUtils.capitalize(entityVar2), entityVar2)).execute(Tuple.of(pk1, pk2)).onSuccess(a -> {
 					promise.complete();
 				}).onFailure(ex -> {
 					promise.fail(ex);

@@ -564,7 +564,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 			wPaths.tl(5, "schema:");
 			wPaths.tl(6, "type: string");
 
-			if(id || "GET".equals(classApiMethod) || "DELETE".equals(classApiMethodMethod)) {
+			if(id || "GET".equals(classApiMethod)) {
 				wPaths.tl(4, "- name: id");
 				wPaths.tl(5, "in: path");
 				wPaths.t(5, "description: ").yamlStr(6, "");
