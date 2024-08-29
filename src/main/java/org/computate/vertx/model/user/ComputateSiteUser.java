@@ -54,10 +54,6 @@ public interface ComputateSiteUser extends ComputateBaseModel {
 
 	Object sqlInheritPk();
 
-	void setDeleted(Boolean boolean1);
-
-	Object sqlDeleted();
-
 	Object sqlUserName();
 
 	void setUserEmail(String string);
@@ -76,17 +72,11 @@ public interface ComputateSiteUser extends ComputateBaseModel {
 
 	Object sqlSeeArchived();
 
-	void setSeeDeleted(Boolean boolean1);
-
-	Object sqlSeeDeleted();
-
 	void setPk(Long pk);
 
 	void setCreated(String string);
 
 	void setSessionId(String string);
-
-	Boolean getSeeDeleted();
 
 	Boolean getSeeArchived();
 }

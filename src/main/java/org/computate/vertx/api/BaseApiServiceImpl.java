@@ -424,7 +424,6 @@ public abstract class BaseApiServiceImpl {
 									jsonObject.put("setUserCompleteName", accessToken.getString("name"));
 									jsonObject.put("setUserId", accessToken.getString("sub"));
 									jsonObject.put("setUserEmail", accessToken.getString("email"));
-									jsonObject.put("setSeeDeleted", siteUser1.getSeeDeleted());
 									jsonObject.put("setSeeArchived", siteUser1.getSeeArchived());
 									Boolean define = userDefine(siteRequest, jsonObject, true);
 									if(define) {
@@ -1463,22 +1462,6 @@ public abstract class BaseApiServiceImpl {
 		return staticSearchArchived(siteRequest_, staticSetArchived(siteRequest_, o)).toString();
 	}
 
-	public static <SiteRequest extends ComputateSiteRequest> Boolean staticSetDeleted(SiteRequest siteRequest_, String o) {
-		return Boolean.parseBoolean(o);
-	}
-
-	public static <SiteRequest extends ComputateSiteRequest> Boolean staticSearchDeleted(SiteRequest siteRequest_, Boolean o) {
-		return o;
-	}
-
-	public static <SiteRequest extends ComputateSiteRequest> String staticSearchStrDeleted(SiteRequest siteRequest_, Boolean o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static <SiteRequest extends ComputateSiteRequest> String staticSearchFqDeleted(SiteRequest siteRequest_, String o) {
-		return staticSearchDeleted(siteRequest_, staticSetDeleted(siteRequest_, o)).toString();
-	}
-
 	public static <SiteRequest extends ComputateSiteRequest> String staticSetClassCanonicalName(SiteRequest siteRequest_, String o) {
 		return o;
 	}
@@ -1723,8 +1706,6 @@ public abstract class BaseApiServiceImpl {
 			return staticSearchFqModified(siteRequest_, o);
 		case "archived":
 			return staticSearchFqArchived(siteRequest_, o);
-		case "deleted":
-			return staticSearchFqDeleted(siteRequest_, o);
 		case "classCanonicalName":
 			return staticSearchFqClassCanonicalName(siteRequest_, o);
 		case "classSimpleName":
