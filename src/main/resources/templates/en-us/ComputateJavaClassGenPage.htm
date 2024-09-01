@@ -2,7 +2,7 @@
 
 {%- block htmTitleComputatePageLayout %}
 {%- block htmTitleComputateJavaClassPage %}
-    <title>{% if searchListComputateJavaClass_ is defined %}{% if computateJavaClassCount == int1 %}{% if id is defined %}java class{% else %}java class{% endif %}{% else %}no java class found{% endif %}{% else %}java classs{% endif %}</title>
+    <title>{% if searchListComputateJavaClass_ is defined %}{% if computateJavaClassCount == 1 %}{% if id is defined %}java class{% else %}java class{% endif %}{% else %}no java class found{% endif %}{% else %}java classs{% endif %}</title>
 {%- endblock htmTitleComputateJavaClassPage %}
 {%- endblock htmTitleComputatePageLayout %}
 
@@ -22,9 +22,7 @@
 {{ super() }}
 {%- block htmScriptsComputateJavaClassPage %}
     <script src="{{staticBaseUrl}}/js/enUS/ComputateJavaClassPage.js"></script>
-    {% if id is defined %}
     <script type="module" src="{{staticBaseUrl}}/js/enUS/ComputateJavaClassPageModule.js"></script>
-    {% endif %}
 {%- endblock htmScriptsComputateJavaClassPage %}
 {%- endblock htmScriptsComputatePageLayout %}
 

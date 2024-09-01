@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import org.computate.search.serialize.ComputateZonedDateTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -2399,6 +2400,63 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return ApiWriter.staticSearchClassPublicRead(siteRequest_, ApiWriter.staticSetClassPublicRead(siteRequest_, o)).toString();
 	}
 
+	///////////////////////////////
+	// classSearchPagePublicRead //
+	///////////////////////////////
+
+
+	/**	 The entity classSearchPagePublicRead
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected Boolean classSearchPagePublicRead;
+
+	/**	<br> The entity classSearchPagePublicRead
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classSearchPagePublicRead">Find the entity classSearchPagePublicRead in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _classSearchPagePublicRead(Wrap<Boolean> c);
+
+	public Boolean getClassSearchPagePublicRead() {
+		return classSearchPagePublicRead;
+	}
+
+	public void setClassSearchPagePublicRead(Boolean classSearchPagePublicRead) {
+		this.classSearchPagePublicRead = classSearchPagePublicRead;
+	}
+	@JsonIgnore
+	public void setClassSearchPagePublicRead(String o) {
+		this.classSearchPagePublicRead = ApiWriter.staticSetClassSearchPagePublicRead(siteRequest_, o);
+	}
+	public static Boolean staticSetClassSearchPagePublicRead(ComputateSiteRequest siteRequest_, String o) {
+		return Boolean.parseBoolean(o);
+	}
+	protected ApiWriter classSearchPagePublicReadInit() {
+		Wrap<Boolean> classSearchPagePublicReadWrap = new Wrap<Boolean>().var("classSearchPagePublicRead");
+		if(classSearchPagePublicRead == null) {
+			_classSearchPagePublicRead(classSearchPagePublicReadWrap);
+			Optional.ofNullable(classSearchPagePublicReadWrap.getO()).ifPresent(o -> {
+				setClassSearchPagePublicRead(o);
+			});
+		}
+		return (ApiWriter)this;
+	}
+
+	public static Boolean staticSearchClassSearchPagePublicRead(ComputateSiteRequest siteRequest_, Boolean o) {
+		return o;
+	}
+
+	public static String staticSearchStrClassSearchPagePublicRead(ComputateSiteRequest siteRequest_, Boolean o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqClassSearchPagePublicRead(ComputateSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchClassSearchPagePublicRead(siteRequest_, ApiWriter.staticSetClassSearchPagePublicRead(siteRequest_, o)).toString();
+	}
+
 	//////////////////////
 	// classRoleSession //
 	//////////////////////
@@ -3019,6 +3077,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				classKeywordsFoundInit();
 				classKeywordsInit();
 				classPublicReadInit();
+				classSearchPagePublicReadInit();
 				classRoleSessionInit();
 				classRoleUserInit();
 				classRoleAllInit();
@@ -3175,6 +3234,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				return oApiWriter.classKeywords;
 			case "classPublicRead":
 				return oApiWriter.classPublicRead;
+			case "classSearchPagePublicRead":
+				return oApiWriter.classSearchPagePublicRead;
 			case "classRoleSession":
 				return oApiWriter.classRoleSession;
 			case "classRoleUser":
@@ -3288,6 +3349,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSetClassKeywords(siteRequest_, o);
 		case "classPublicRead":
 			return ApiWriter.staticSetClassPublicRead(siteRequest_, o);
+		case "classSearchPagePublicRead":
+			return ApiWriter.staticSetClassSearchPagePublicRead(siteRequest_, o);
 		case "classRoleSession":
 			return ApiWriter.staticSetClassRoleSession(siteRequest_, o);
 		case "classRoleUser":
@@ -3378,6 +3441,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchClassKeywords(siteRequest_, (String)o);
 		case "classPublicRead":
 			return ApiWriter.staticSearchClassPublicRead(siteRequest_, (Boolean)o);
+		case "classSearchPagePublicRead":
+			return ApiWriter.staticSearchClassSearchPagePublicRead(siteRequest_, (Boolean)o);
 		case "classRoleSession":
 			return ApiWriter.staticSearchClassRoleSession(siteRequest_, (Boolean)o);
 		case "classRoleUser":
@@ -3468,6 +3533,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchStrClassKeywords(siteRequest_, (String)o);
 		case "classPublicRead":
 			return ApiWriter.staticSearchStrClassPublicRead(siteRequest_, (Boolean)o);
+		case "classSearchPagePublicRead":
+			return ApiWriter.staticSearchStrClassSearchPagePublicRead(siteRequest_, (Boolean)o);
 		case "classRoleSession":
 			return ApiWriter.staticSearchStrClassRoleSession(siteRequest_, (Boolean)o);
 		case "classRoleUser":
@@ -3558,6 +3625,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchFqClassKeywords(siteRequest_, o);
 		case "classPublicRead":
 			return ApiWriter.staticSearchFqClassPublicRead(siteRequest_, o);
+		case "classSearchPagePublicRead":
+			return ApiWriter.staticSearchFqClassSearchPagePublicRead(siteRequest_, o);
 		case "classRoleSession":
 			return ApiWriter.staticSearchFqClassRoleSession(siteRequest_, o);
 		case "classRoleUser":
@@ -3633,6 +3702,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String VAR_classKeywordsFound = "classKeywordsFound";
 	public static final String VAR_classKeywords = "classKeywords";
 	public static final String VAR_classPublicRead = "classPublicRead";
+	public static final String VAR_classSearchPagePublicRead = "classSearchPagePublicRead";
 	public static final String VAR_classRoleSession = "classRoleSession";
 	public static final String VAR_classRoleUser = "classRoleUser";
 	public static final String VAR_classRoleAll = "classRoleAll";
@@ -3687,6 +3757,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_classKeywordsFound = "";
 	public static final String DISPLAY_NAME_classKeywords = "";
 	public static final String DISPLAY_NAME_classPublicRead = "";
+	public static final String DISPLAY_NAME_classSearchPagePublicRead = "";
 	public static final String DISPLAY_NAME_classRoleSession = "";
 	public static final String DISPLAY_NAME_classRoleUser = "";
 	public static final String DISPLAY_NAME_classRoleAll = "";
@@ -3790,6 +3861,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return DISPLAY_NAME_classKeywords;
 		case VAR_classPublicRead:
 			return DISPLAY_NAME_classPublicRead;
+		case VAR_classSearchPagePublicRead:
+			return DISPLAY_NAME_classSearchPagePublicRead;
 		case VAR_classRoleSession:
 			return DISPLAY_NAME_classRoleSession;
 		case VAR_classRoleUser:

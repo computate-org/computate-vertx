@@ -15,6 +15,8 @@ package org.computate.vertx.verticle;
 
 import org.computate.vertx.request.ComputateSiteRequest;
 import io.vertx.core.AbstractVerticle;
+import org.computate.vertx.api.ApiRequest;
+import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -39,9 +41,14 @@ import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
 import org.computate.search.wrap.Wrap;
+import io.vertx.core.Promise;
+import io.vertx.core.Future;
+import io.vertx.core.json.JsonArray;
 
 /**
  * <ol>
@@ -55,7 +62,7 @@ import org.computate.search.wrap.Wrap;
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
- * <p><a href="https://solr-solr-solrcloud.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.verticle.ComputateMainVerticle">Find the class ComputateMainVerticle in Solr. </a></p>
+ * <p><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.verticle.ComputateMainVerticle">Find the class ComputateMainVerticle in Solr. </a></p>
  * <p>
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
@@ -69,8 +76,6 @@ import org.computate.search.wrap.Wrap;
  * <h2>ApiTag.enUS: true</h2>
  * <h2>ApiUri.enUS: null</h2>
  * <h2>Color: null</h2>
- * <h2>IconGroup: null</h2>
- * <h2>IconName: null</h2>
  * <h2>Indexed: true</h2>
  * <h2>{@inheritDoc}</h2>
  * <p>By adding a class comment "{@inheritDoc}", the ComputateMainVerticle class will inherit the helpful inherited class comments from the super class ComputateMainVerticleGen. 
@@ -83,19 +88,20 @@ import org.computate.search.wrap.Wrap;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class ComputateMainVerticle in Solr: 
- * curl -k 'https://solr-solr-solrcloud.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.verticle.ComputateMainVerticle&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.verticle.ComputateMainVerticle&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.verticle in Solr: 
- * curl -k 'https://solr-solr-solrcloud.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.verticle&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.verticle&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr-solr-solrcloud.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * Generated: true
  **/
 public abstract class ComputateMainVerticleGen<DEV> extends AbstractVerticle {
+	protected static final Logger LOG = LoggerFactory.getLogger(ComputateMainVerticle.class);
 
 	//////////////
 	// initDeep //

@@ -66,7 +66,7 @@ import io.vertx.core.json.JsonArray;
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
  * If you are running the service, you can see the indexed data about this Java Class here: 
  * </p>
- * <p><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator">Find the class FiwareGenerator in Solr. </a></p>
+ * <p><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstClasse_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator">Find the class FiwareGenerator in Solr. </a></p>
  * <p>
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
@@ -80,8 +80,6 @@ import io.vertx.core.json.JsonArray;
  * <h2>ApiTag.enUS: true</h2>
  * <h2>ApiUri.enUS: null</h2>
  * <h2>Color: null</h2>
- * <h2>IconGroup: null</h2>
- * <h2>IconName: null</h2>
  * <h2>Indexed: true</h2>
  * <h2>{@inheritDoc}</h2>
  * <p>By adding a class comment "{@inheritDoc}", the FiwareGenerator class will inherit the helpful inherited class comments from the super class FiwareGeneratorGen. 
@@ -94,15 +92,15 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class FiwareGenerator in Solr: 
- * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.openapi in Solr: 
- * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr-solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * Generated: true
  **/
@@ -123,7 +121,7 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 
 	/**	<br> The entity fiwareSwaggerYamlPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:fiwareSwaggerYamlPath">Find the entity fiwareSwaggerYamlPath in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:fiwareSwaggerYamlPath">Find the entity fiwareSwaggerYamlPath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -158,7 +156,7 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 	}
 
 	public static String staticSearchFqFiwareSwaggerYamlPath(ComputateSiteRequest siteRequest_, String o) {
-		return FiwareGenerator.staticSearchStrFiwareSwaggerYamlPath(siteRequest_, FiwareGenerator.staticSearchFiwareSwaggerYamlPath(siteRequest_, FiwareGenerator.staticSetFiwareSwaggerYamlPath(siteRequest_, o)));
+		return FiwareGenerator.staticSearchFiwareSwaggerYamlPath(siteRequest_, FiwareGenerator.staticSetFiwareSwaggerYamlPath(siteRequest_, o)).toString();
 	}
 
 	///////////////////////////
@@ -175,7 +173,7 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 
 	/**	<br> The entity fiwareSwaggerYamlFile
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:fiwareSwaggerYamlFile">Find the entity fiwareSwaggerYamlFile in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:fiwareSwaggerYamlFile">Find the entity fiwareSwaggerYamlFile in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -216,7 +214,7 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 
 	/**	<br> The entity wFiwareSwagger
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:wFiwareSwagger">Find the entity wFiwareSwagger in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:wFiwareSwagger">Find the entity wFiwareSwagger in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -259,7 +257,7 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 
 	/**	<br> The entity wFiwareExamples
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:wFiwareExamples">Find the entity wFiwareExamples in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:wFiwareExamples">Find the entity wFiwareExamples in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -302,7 +300,7 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 
 	/**	<br> The entity wFiwareExamplesNormalized
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:wFiwareExamplesNormalized">Find the entity wFiwareExamplesNormalized in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:wFiwareExamplesNormalized">Find the entity wFiwareExamplesNormalized in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -345,7 +343,7 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 
 	/**	<br> The entity fiwareContext
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:fiwareContext">Find the entity fiwareContext in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:fiwareContext">Find the entity fiwareContext in Solr</a>
 	 * <br>
 	 * @param o is the entity already constructed. 
 	 **/
@@ -382,7 +380,7 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 	}
 
 	public static String staticSearchFqFiwareContext(ComputateSiteRequest siteRequest_, String o) {
-		return FiwareGenerator.staticSearchStrFiwareContext(siteRequest_, FiwareGenerator.staticSearchFiwareContext(siteRequest_, FiwareGenerator.staticSetFiwareContext(siteRequest_, o)));
+		return FiwareGenerator.staticSearchFiwareContext(siteRequest_, FiwareGenerator.staticSetFiwareContext(siteRequest_, o)).toString();
 	}
 
 	/////////////////////////////
@@ -399,7 +397,7 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 
 	/**	<br> The entity fiwareContextJsonldPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:fiwareContextJsonldPath">Find the entity fiwareContextJsonldPath in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:fiwareContextJsonldPath">Find the entity fiwareContextJsonldPath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -434,7 +432,7 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 	}
 
 	public static String staticSearchFqFiwareContextJsonldPath(ComputateSiteRequest siteRequest_, String o) {
-		return FiwareGenerator.staticSearchStrFiwareContextJsonldPath(siteRequest_, FiwareGenerator.staticSearchFiwareContextJsonldPath(siteRequest_, FiwareGenerator.staticSetFiwareContextJsonldPath(siteRequest_, o)));
+		return FiwareGenerator.staticSearchFiwareContextJsonldPath(siteRequest_, FiwareGenerator.staticSetFiwareContextJsonldPath(siteRequest_, o)).toString();
 	}
 
 	/////////////////////////////
@@ -451,7 +449,7 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 
 	/**	<br> The entity fiwareContextJsonldFile
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:fiwareContextJsonldFile">Find the entity fiwareContextJsonldFile in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:fiwareContextJsonldFile">Find the entity fiwareContextJsonldFile in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -492,7 +490,7 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 
 	/**	<br> The entity wFiwareContext
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr-solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:wFiwareContext">Find the entity wFiwareContext in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&fq=entiteVar_enUS_indexed_string:wFiwareContext">Find the entity wFiwareContext in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
