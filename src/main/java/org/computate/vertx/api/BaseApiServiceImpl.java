@@ -2454,6 +2454,7 @@ public abstract class BaseApiServiceImpl {
 					Path resourceTemplatePath = Path.of(siteTemplatePath, resultJson.getString("templateUri"));
 					String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8) : Files.readString(resourceTemplatePath, Charset.forName("UTF-8"));
 					JsonObject ctx = ComputateConfigKeys.getPageContext(config);
+					ctx.put(classResult.getSimpleName(), result);
 					Matcher m = Pattern.compile("<meta property=\"([^\"]+)\"\\s+content=\"([^\"]*)\"/>", Pattern.MULTILINE).matcher(template);
 					boolean trouve = m.find();
 					while (trouve) {
@@ -2547,6 +2548,7 @@ public abstract class BaseApiServiceImpl {
 										Path resourceTemplatePath = Path.of(siteTemplatePath, resultJson.getString("templateUri"));
 										String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8) : Files.readString(resourceTemplatePath, Charset.forName("UTF-8"));
 										JsonObject ctx = ComputateConfigKeys.getPageContext(config);
+										ctx.put(classResult.getSimpleName(), result);
 										ctx.put("userName", user.getUserName());
 										ctx.put("userFirstName", user.getUserFirstName());
 										ctx.put("userLastName", user.getUserLastName());
