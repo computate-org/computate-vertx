@@ -1136,7 +1136,8 @@ public abstract class BaseApiServiceImpl {
 		vertx.fileSystem().readFile(resourceUri).onSuccess(buffer -> {
 			try {
 				// Jinjava template rendering
-				String template = Resources.toString(Resources.getResource(resourceUri), StandardCharsets.UTF_8);
+				String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
+				String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceUri), StandardCharsets.UTF_8) : Files.readString(Path.of(siteTemplatePath, templateUri), Charset.forName("UTF-8"));
 
 				String siteBaseUrl = config.getString(ComputateConfigKeys.SITE_BASE_URL);
 				JsonObject ctx = new JsonObject();
