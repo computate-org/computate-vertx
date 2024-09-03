@@ -46,6 +46,8 @@ import io.kubernetes.client.common.KubernetesObject;
 import io.kubernetes.client.openapi.ApiClient;
 import io.kubernetes.client.openapi.Configuration;
 import io.kubernetes.client.openapi.apis.CoreV1Api;
+import io.kubernetes.client.openapi.apis.NetworkingV1Api;
+import io.kubernetes.client.openapi.models.V1Ingress;
 import io.kubernetes.client.openapi.models.V1Secret;
 import io.kubernetes.client.util.Config;
 import io.vertx.core.json.JsonArray;
@@ -96,13 +98,17 @@ public class ComputateConfigKeys {
 			if("kubernetes.core.k8s".equals(type)) {
 				ApiClient client = Config.defaultClient();
 				Configuration.setDefaultApiClient(client);
-				CoreV1Api api = new CoreV1Api();
 				if("Secret".equals(kind)) {
+					CoreV1Api api = new CoreV1Api();
 					V1Secret secret = api.readNamespacedSecret(resource_name, namespace).execute();
 					secret.getData().keySet().forEach(key -> {
 						secret.getData().put(key, Base64.getEncoder().encode(secret.getData().get(key)));
 					});
 					return new KubernetesObject[] {secret};
+				} else if("Ingress".equals(kind)) {
+					NetworkingV1Api api = new NetworkingV1Api();
+					V1Ingress ingress = api.readNamespacedIngress(resource_name, namespace).execute();
+					return new KubernetesObject[] {ingress};
 				}
 			}
 		} catch(Throwable ex) {
