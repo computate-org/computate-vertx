@@ -2606,6 +2606,15 @@ public abstract class BaseApiServiceImpl {
 		});
 	}
 
+	public static String urlEncode(String str) {
+		try {
+			return URLEncoder.encode(str, "UTF-8");
+		} catch(Throwable ex) {
+			ExceptionUtils.rethrow(ex);
+			return null;
+		}
+	}
+
 	public abstract String searchVar(String varIndexed);
 
 	public abstract String getClassApiAddress();
