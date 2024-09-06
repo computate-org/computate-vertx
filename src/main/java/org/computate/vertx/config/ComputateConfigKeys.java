@@ -994,6 +994,11 @@ public class ComputateConfigKeys {
 	public static final String STATIC_PATH = "STATIC_PATH";
 
 	/**
+	 * The path to a volume containing downloads
+	 **/
+	public static final String DOWNLOAD_PATH = "DOWNLOAD_PATH";
+
+	/**
 	 * The path to the handlebars template files for the site. 
 	 **/
 	public static final String TEMPLATE_PATH = "TEMPLATE_PATH";
