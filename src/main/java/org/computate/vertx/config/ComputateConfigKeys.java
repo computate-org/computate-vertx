@@ -1289,9 +1289,10 @@ public class ComputateConfigKeys {
 	public static final String RABBITMQ_PASSWORD = "RABBITMQ_PASSWORD";
 	public static final String RABBITMQ_VIRTUAL_HOST = "RABBITMQ_VIRTUAL_HOST";
 
-	public static final String IOT_AGENT_SSL = "IOT_AGENT_SSL";
-	public static final String IOT_AGENT_HOST_NAME = "IOT_AGENT_HOST_NAME";
-	public static final String IOT_AGENT_PORT = "IOT_AGENT_PORT";
+	public static final String IOTAGENT_SSL = "IOTAGENT_SSL";
+	public static final String IOTAGENT_HOST_NAME = "IOTAGENT_HOST_NAME";
+	public static final String IOTAGENT_NORTH_PORT = "IOTAGENT_NORTH_PORT";
+	public static final String IOTAGENT_HTTP_PORT = "IOTAGENT_HTTP_PORT";
 
 	public static final String CONTEXT_BROKER_SSL = "CONTEXT_BROKER_SSL";
 	public static final String CONTEXT_BROKER_HOST_NAME = "CONTEXT_BROKER_HOST_NAME";
