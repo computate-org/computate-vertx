@@ -728,6 +728,8 @@ public class ComputateConfigKeys {
 	 **/
 	public static final String SITE_NAME = "SITE_NAME";
 
+	public static final String SITE_STATIC_NAME = "SITE_STATIC_NAME";
+
 	/**
 	 * The path to the source code of the site. 
 	 **/
