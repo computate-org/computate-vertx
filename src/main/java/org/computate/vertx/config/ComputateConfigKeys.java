@@ -1298,6 +1298,10 @@ public class ComputateConfigKeys {
 	public static final String IOTAGENT_HOST_NAME = "IOTAGENT_HOST_NAME";
 	public static final String IOTAGENT_NORTH_PORT = "IOTAGENT_NORTH_PORT";
 	public static final String IOTAGENT_HTTP_PORT = "IOTAGENT_HTTP_PORT";
+	/**
+	 * The message broker transport type (MQTT or AMQP). 
+	 */
+	public static final String IOTAGENT_TRANSPORT = "IOTAGENT_TRANSPORT";
 
 	public static final String CONTEXT_BROKER_SSL = "CONTEXT_BROKER_SSL";
 	public static final String CONTEXT_BROKER_HOST_NAME = "CONTEXT_BROKER_HOST_NAME";
