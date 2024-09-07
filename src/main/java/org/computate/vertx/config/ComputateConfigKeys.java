@@ -1290,7 +1290,7 @@ public class ComputateConfigKeys {
 	public static final String AMQP_VIRTUAL_HOST = "AMQP_VIRTUAL_HOST";
 
 	public static final String ENABLE_RABBITMQ = "ENABLE_RABBITMQ";
-	public static final String RABBITMQ_HOST = "RABBITMQ_HOST";
+	public static final String RABBITMQ_HOST_NAME = "RABBITMQ_HOST_NAME";
 	public static final String RABBITMQ_PORT = "RABBITMQ_PORT";
 	public static final String RABBITMQ_USER = "RABBITMQ_USER";
 	public static final String RABBITMQ_PASSWORD = "RABBITMQ_PASSWORD";
