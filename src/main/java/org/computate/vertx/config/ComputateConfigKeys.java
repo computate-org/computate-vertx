@@ -125,7 +125,7 @@ public class ComputateConfigKeys {
 		if(originalValue == null) {
 			return "";
 		} else {
-			return new JsonArray((List<Object>)originalValue).toString();
+			return new JsonArray((List<Object>)originalValue).encodePrettily();
 		}
 	}
 
@@ -136,7 +136,7 @@ public class ComputateConfigKeys {
 		if(originalValue == null) {
 			return "";
 		} else {
-			return new JsonObject((Map<String, Object>)originalValue).toString();
+			return new JsonObject((Map<String, Object>)originalValue).encodePrettily();
 		}
 	}
 
@@ -1308,6 +1308,7 @@ public class ComputateConfigKeys {
 	public static final String CONTEXT_BROKER_SSL = "CONTEXT_BROKER_SSL";
 	public static final String CONTEXT_BROKER_HOST_NAME = "CONTEXT_BROKER_HOST_NAME";
 	public static final String CONTEXT_BROKER_PORT = "CONTEXT_BROKER_PORT";
+	public static final String CONTEXT_BROKER_DELAY_MILLIS = "CONTEXT_BROKER_DELAY_MILLIS";
 }
 
 /**
