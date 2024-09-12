@@ -49,6 +49,7 @@ import io.kubernetes.client.openapi.apis.CoreV1Api;
 import io.kubernetes.client.openapi.apis.NetworkingV1Api;
 import io.kubernetes.client.openapi.models.V1Ingress;
 import io.kubernetes.client.openapi.models.V1Secret;
+import io.kubernetes.client.util.ClientBuilder;
 import io.kubernetes.client.util.Config;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
@@ -96,7 +97,12 @@ public class ComputateConfigKeys {
 		Logger LOG = LoggerFactory.getLogger(ComputateConfigKeys.class);
 		try {
 			if("kubernetes.core.k8s".equals(type)) {
-				ApiClient client = Config.defaultClient();
+				ApiClient client;
+				try {
+					client = ClientBuilder.cluster().build();
+				} catch(Throwable ex) {
+					client = Config.defaultClient();
+				}
 				Configuration.setDefaultApiClient(client);
 				if("Secret".equals(kind)) {
 					CoreV1Api api = new CoreV1Api();
