@@ -131,7 +131,7 @@ public class ComputateConfigKeys {
 		if(originalValue == null) {
 			return "";
 		} else {
-			return new JsonArray((List<Object>)originalValue).toString();
+			return new JsonArray((List<Object>)originalValue).encodePrettily();
 		}
 	}
 
@@ -142,7 +142,7 @@ public class ComputateConfigKeys {
 		if(originalValue == null) {
 			return "";
 		} else {
-			return new JsonObject((Map<String, Object>)originalValue).toString();
+			return new JsonObject((Map<String, Object>)originalValue).encodePrettily();
 		}
 	}
 
@@ -734,6 +734,8 @@ public class ComputateConfigKeys {
 	 **/
 	public static final String SITE_NAME = "SITE_NAME";
 
+	public static final String SITE_STATIC_NAME = "SITE_STATIC_NAME";
+
 	/**
 	 * The path to the source code of the site. 
 	 **/
@@ -1294,19 +1296,25 @@ public class ComputateConfigKeys {
 	public static final String AMQP_VIRTUAL_HOST = "AMQP_VIRTUAL_HOST";
 
 	public static final String ENABLE_RABBITMQ = "ENABLE_RABBITMQ";
-	public static final String RABBITMQ_HOST = "RABBITMQ_HOST";
+	public static final String RABBITMQ_HOST_NAME = "RABBITMQ_HOST_NAME";
 	public static final String RABBITMQ_PORT = "RABBITMQ_PORT";
 	public static final String RABBITMQ_USER = "RABBITMQ_USER";
 	public static final String RABBITMQ_PASSWORD = "RABBITMQ_PASSWORD";
 	public static final String RABBITMQ_VIRTUAL_HOST = "RABBITMQ_VIRTUAL_HOST";
 
-	public static final String IOT_AGENT_SSL = "IOT_AGENT_SSL";
-	public static final String IOT_AGENT_HOST_NAME = "IOT_AGENT_HOST_NAME";
-	public static final String IOT_AGENT_PORT = "IOT_AGENT_PORT";
+	public static final String IOTAGENT_SSL = "IOTAGENT_SSL";
+	public static final String IOTAGENT_HOST_NAME = "IOTAGENT_HOST_NAME";
+	public static final String IOTAGENT_NORTH_PORT = "IOTAGENT_NORTH_PORT";
+	public static final String IOTAGENT_HTTP_PORT = "IOTAGENT_HTTP_PORT";
+	/**
+	 * The message broker transport type (MQTT or AMQP). 
+	 */
+	public static final String IOTAGENT_TRANSPORT = "IOTAGENT_TRANSPORT";
 
 	public static final String CONTEXT_BROKER_SSL = "CONTEXT_BROKER_SSL";
 	public static final String CONTEXT_BROKER_HOST_NAME = "CONTEXT_BROKER_HOST_NAME";
 	public static final String CONTEXT_BROKER_PORT = "CONTEXT_BROKER_PORT";
+	public static final String CONTEXT_BROKER_DELAY_MILLIS = "CONTEXT_BROKER_DELAY_MILLIS";
 }
 
 /**

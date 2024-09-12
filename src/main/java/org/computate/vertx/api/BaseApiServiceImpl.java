@@ -48,6 +48,7 @@ import com.google.common.io.Resources;
 import com.hubspot.jinjava.Jinjava;
 
 import io.vertx.core.AsyncResult;
+import io.vertx.core.CompositeFuture;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.MultiMap;
@@ -2604,6 +2605,104 @@ public abstract class BaseApiServiceImpl {
 				handler.fail(ex);
 			});
 		});
+	}
+
+	public Future<Void> listPUTImportSmartDataModel(RoutingContext eventHandler) {
+		Promise<Void> promise = Promise.promise();
+		List<Future<?>> futures = new ArrayList<>();
+		JsonArray jsonArray = Optional.ofNullable(eventHandler.body().asJsonObject()).map(o -> o.getJsonArray("data")).orElse(new JsonArray());
+		try {
+			String ngsildHostName = config.getString(ComputateConfigKeys.CONTEXT_BROKER_HOST_NAME);
+			Integer ngsildPort = config.getInteger(ComputateConfigKeys.CONTEXT_BROKER_PORT);
+			Boolean ngsildSsl = config.getBoolean(ComputateConfigKeys.CONTEXT_BROKER_SSL);
+
+			MultiMap headers = eventHandler.request().headers();
+			final String fiwareService = headers.get("Fiware-Service");
+			final String fiwareServicePath = headers.get("Fiware-ServicePath");
+			final String ngsildTenant = headers.get("NGSILD-Tenant");
+			final String ngsildPath = headers.get("NGSILD-Path");
+			final String computateApi = headers.get("Computate-API");
+			final String computateClassSimpleName = headers.get("Computate-ClassSimpleName");
+			final String link = headers.get("Link");
+
+			jsonArray.forEach(subscriptionObj -> {
+				JsonObject subscriptionEntity = (JsonObject)subscriptionObj;
+				futures.add(Future.future(promise1 -> {
+					try {
+						JsonObject importData = new JsonObject();
+						String entityId = subscriptionEntity.getString("id");
+						String entityType = subscriptionEntity.getString("type");
+						String ngsildUri = String.format("/ngsi-ld/v1/entities/%s", URLEncoder.encode(entityId, "UTF-8"));
+	
+						webClient.get(ngsildPort, ngsildHostName, ngsildUri).ssl(ngsildSsl)
+								.putHeader("Fiware-Service", fiwareService)
+								.putHeader("Fiware-ServicePath", fiwareServicePath)
+								.putHeader("NGSILD-Tenant", ngsildTenant)
+								.putHeader("NGSILD-Path", ngsildPath)
+								.putHeader("Link", link)
+								.putHeader("Accept", "*/*")
+								.send()
+								.expecting(HttpResponseExpectation.SC_OK)
+								.onSuccess(entityResponse -> {
+							LOG.debug(String.format("Context Broker request received %s", entityResponse.bodyAsJsonObject()));
+							JsonObject entity = entityResponse.bodyAsJsonObject();
+							importData.put("setNgsildData", entity);
+
+							JsonObject headers2 = new JsonObject();
+							headers2.put("Fiware-Service", fiwareService);
+							headers2.put("Fiware-ServicePath", fiwareServicePath);
+							headers2.put("NGSILD-Tenant", ngsildTenant);
+							headers2.put("NGSILD-Path", ngsildPath);
+							headers2.put("Link", link);
+							headers2.put("Content-Type", "application/json");
+
+							JsonObject params = new JsonObject();
+							params.put("body", importData);
+							params.put("path", new JsonObject());
+							params.put("cookie", new JsonObject());
+							params.put("header", headers2);
+							params.put("form", new JsonObject());
+							JsonObject query = new JsonObject().put("fq", new JsonArray().add(String.format("entityId:%s", entityId)));
+							query.put("softCommit", true);
+							params.put("query", query);
+							JsonObject context = new JsonObject().put("params", params);
+							JsonObject json = new JsonObject().put("context", context);
+							eventBus.request(computateApi, json, new DeliveryOptions().addHeader("action", String.format("patch%sFuture", computateClassSimpleName))).onSuccess(a -> {
+								promise1.complete();
+							}).onFailure(ex -> {
+								LOG.error(String.format("listPUTImportSmartDataModel failed. "), ex);
+								promise1.fail(ex);
+							});
+						}).onFailure(ex -> {
+							LOG.error(String.format("listPUTImportSmartDataModel failed. "), new RuntimeException(ex));
+							promise1.fail(ex);
+						});
+					} catch(Exception ex) {
+						LOG.error(String.format("listPUTImportSmartDataModel failed. "), new RuntimeException(ex));
+						promise1.fail(ex);
+					}
+				}));
+			});
+			Future.all(futures).onSuccess(a -> {
+				promise.complete();
+			}).onFailure(ex -> {
+				LOG.error(String.format("listPUTImportSmartDataModel failed. "), ex);
+				promise.fail(ex);
+			});
+		} catch(Exception ex) {
+			LOG.error(String.format("listPUTImportSmartDataModel failed. "), ex);
+			promise.fail(ex);
+		}
+		return promise.future();
+	}
+
+	public static String urlEncode(String str) {
+		try {
+			return URLEncoder.encode(str, "UTF-8");
+		} catch(Throwable ex) {
+			ExceptionUtils.rethrow(ex);
+			return null;
+		}
 	}
 
 	public abstract String searchVar(String varIndexed);
