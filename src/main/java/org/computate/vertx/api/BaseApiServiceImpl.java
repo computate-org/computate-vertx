@@ -27,6 +27,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -61,6 +62,7 @@ import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.http.HttpResponseExpectation;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
+import io.vertx.core.http.impl.headers.HeadersMultiMap;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.json.impl.JsonUtil;
@@ -387,8 +389,8 @@ public abstract class BaseApiServiceImpl {
 									params.put("header", new JsonObject());
 									params.put("form", new JsonObject());
 									JsonObject query = new JsonObject();
-									Boolean softCommit = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getBoolean("softCommit")).orElse(null);
-									Integer commitWithin = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getInteger("commitWithin")).orElse(null);
+									Boolean softCommit = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getValue("query")).map(q -> q instanceof HeadersMultiMap ? BooleanUtils.toBooleanObject(((HeadersMultiMap)q).get("softCommit")) : ((JsonObject)q).getBoolean("softCommit")).orElse(null);
+									Boolean commitWithin = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getValue("query")).map(q -> q instanceof HeadersMultiMap ? BooleanUtils.toBooleanObject(((HeadersMultiMap)q).get("commitWithin")) : ((JsonObject)q).getBoolean("commitWithin")).orElse(null);
 									if(softCommit == null && commitWithin == null)
 										softCommit = true;
 									if(softCommit)
@@ -399,20 +401,31 @@ public abstract class BaseApiServiceImpl {
 									JsonObject context = new JsonObject().put("params", params).put("user", Optional.ofNullable(siteRequest.getUser()).map(u -> u.attributes().getJsonObject("tokenPrincipal")).orElse(null));
 									JsonObject json = new JsonObject().put("context", context);
 									eventBus.request(vertxAddress, json, new DeliveryOptions().addHeader("action", postAction)).onSuccess(a -> {
-										JsonObject responseMessage = (JsonObject)a.body();
-										JsonObject responseBody = new JsonObject(Buffer.buffer(JsonUtil.BASE64_DECODER.decode(responseMessage.getString("payload"))));
-										Long pk = Long.parseLong(responseBody.getString("pk"));
-										siteRequest.setUserName(accessToken.getString("preferred_username"));
-										siteRequest.setUserFirstName(accessToken.getString("given_name"));
-										siteRequest.setUserLastName(accessToken.getString("family_name"));
-										siteRequest.setUserEmail(accessToken.getString("email"));
-										siteRequest.setUserId(accessToken.getString("sub"));
-										apiRequest.setPk(pk);
-										siteRequest.setUserKey(pk);
-										siteRequest.setApiRequest_(apiRequest);
-										siteRequest.setUserPrincipal(userPrincipal);
-										siteRequest.setSiteUser(siteUser1);
-										promise.complete(siteRequest);
+										SearchList<ComputateSiteUser> searchList2 = new SearchList<ComputateSiteUser>();
+										searchList2.q("*:*");
+										searchList2.setStore(true);
+										searchList2.setC(cSiteUser);
+										searchList2.fq("userId_docvalues_string:" + SearchTool.escapeQueryChars(userId));
+										searchList2.promiseDeepSearchList(siteRequest).onSuccess(d -> {
+											ComputateSiteUser siteUser2 = searchList2.getList().stream().findFirst().orElse(null);
+											JsonObject responseMessage = (JsonObject)a.body();
+											JsonObject responseBody = new JsonObject(Buffer.buffer(JsonUtil.BASE64_DECODER.decode(responseMessage.getString("payload"))));
+											Long pk = Long.parseLong(responseBody.getString("pk"));
+											siteRequest.setUserName(accessToken.getString("preferred_username"));
+											siteRequest.setUserFirstName(accessToken.getString("given_name"));
+											siteRequest.setUserLastName(accessToken.getString("family_name"));
+											siteRequest.setUserEmail(accessToken.getString("email"));
+											siteRequest.setUserId(accessToken.getString("sub"));
+											apiRequest.setPk(pk);
+											siteRequest.setUserKey(pk);
+											siteRequest.setApiRequest_(apiRequest);
+											siteRequest.setUserPrincipal(userPrincipal);
+											siteRequest.setSiteUser(siteUser2);
+											promise.complete(siteRequest);
+										}).onFailure(ex -> {
+											LOG.error(String.format("user failed. "), ex);
+											promise.fail(ex);
+										});
 									}).onFailure(ex -> {
 										LOG.error(String.format("postSiteUser failed. "), ex);
 										promise.fail(ex);
@@ -449,8 +462,8 @@ public abstract class BaseApiServiceImpl {
 										params.put("header", new JsonObject());
 										params.put("form", new JsonObject());
 										JsonObject query = new JsonObject();
-										Boolean softCommit = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getBoolean("softCommit")).orElse(null);
-										Integer commitWithin = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getInteger("commitWithin")).orElse(null);
+										Boolean softCommit = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getValue("query")).map(q -> q instanceof HeadersMultiMap ? BooleanUtils.toBooleanObject(((HeadersMultiMap)q).get("softCommit")) : ((JsonObject)q).getBoolean("softCommit")).orElse(null);
+										Boolean commitWithin = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getValue("query")).map(q -> q instanceof HeadersMultiMap ? BooleanUtils.toBooleanObject(((HeadersMultiMap)q).get("commitWithin")) : ((JsonObject)q).getBoolean("commitWithin")).orElse(null);
 										if(softCommit == null && commitWithin == null)
 											softCommit = true;
 										if(softCommit)
