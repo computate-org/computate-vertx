@@ -36,11 +36,17 @@ public interface ComputateSiteUser extends ComputateBaseModel {
 
 	<T extends ComputateSiteRequest> void setSiteRequest_(T siteRequest);
 
+	String getUserId();
+
+	String getUserEmail();
+
 	String getUserName();
 
 	String getUserFirstName();
 
 	String getUserLastName();
+
+	String getUserFullName();
 
 	void apiRequestSiteUser();
 

@@ -115,6 +115,7 @@
 {%- block websocketComputatePageLayout %}
 {%- block websocketComputateJavaClassPage %}
         window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
         websocketComputateJavaClass(websocketComputateJavaClassInner);
 {%- endblock websocketComputateJavaClassPage %}
 {%- endblock websocketComputatePageLayout %}
@@ -131,7 +132,7 @@
 
 {%- macro htmForm_searchpageComputateJavaClass() %}
         <div id="searchpageComputateJavaClassDialog" label="Search java classs">
-          <div id="htmForm_searchpageComputateJavaClass">
+          <div id="htmForm_searchpageComputateJavaClass" class="round-first-and-last-row-x-large ">
           </div>
         </div>
 {%- endmacro %}
@@ -149,15 +150,9 @@
             {{ htmFormsComputateJavaClassPage() }}
             <sl-divider></sl-divider>
             {{ htmPaginationButtonsComputateJavaClassPage() }}
-            <div class="grid-mode-details">
-            <div>
-                
-              </div>
-            </div>
-            <div class="grid-mode-details" id="site-results-grid">
+            <div class="grid-mode-details border-radius-x-large" id="site-results-grid">
               {% for item in listComputateJavaClass%}
               <a href="{{ item.pageUrlPk }}">
-                
               </a>
               {% endfor %}
             </div>
@@ -169,23 +164,6 @@
 
 {%- macro htmPaginationButtonsComputateJavaClassPage() %}
             <div id="htmPaginationButtons">
-              <sl-button-group>
-                <sl-tooltip placement="top" content="Show the results as details" pill>
-                  <sl-button pill id="grid-toggle-details">
-                    <i class="fa-solid fa-list"></i>
-                  </sl-button>
-                </sl-tooltip>
-                <sl-tooltip placement="top" content="Show the results as a list">
-                  <sl-button id="grid-toggle-list">
-                    <i class="fa-solid fa-bars"></i>
-                  </sl-button>
-                </sl-tooltip>
-                <sl-tooltip placement="top" content="Show the results as cards" pill>
-                  <sl-button pill id="grid-toggle-card">
-                    <i class="fa-solid fa-grid"></i>
-                  </sl-button>
-                </sl-tooltip>
-              </sl-button-group>
               <sl-button-group>
                 <sl-tooltip placement="top" content="Show the previous results">
                   <sl-button pill{% if pagination.pagePrevious is defined %} href="{{pageUri}}?start={{pagination.pagePrevious.start}}&amp;rows={{pagination.rows}}"{% else %} disabled{% endif %}>
@@ -288,7 +266,7 @@
                   <div class="">
                     <label for="fqComputateJavaClass_{{ key }}">{{ value.displayName }}<sup> ({{ value.classSimpleName }})</sup></label>
                     <div class="display-flex ">
-                      <sl-button id="buttonFacetComputateJavaClass_{{ key }}" onclick="facetFieldChange('ComputateJavaClass', this); " title="see values " data-var="{{ value.var }}" data-clear="{% if value.facetField is defined %}true{% else %}false{% endif %}"><i class="fas fa-list "></i></sl-button>
+                      <sl-button id="buttonFacetComputateJavaClass_{{ key }}" title="see values " data-var="{{ value.var }}" data-clear="{% if value.facetField is defined %}true{% else %}false{% endif %}"><i class="fas fa-list "></i></sl-button>
                       <sl-input id="fqComputateJavaClass_{{ key }}" placeholder="{{ value.displayName }}" class="" onchange="fqChange('ComputateJavaClass', value); " data-var="{{ value.var }}" autocomplete="off=" value="{{ value.val }}"></sl-input>
                     </div>
                   </div>
@@ -387,7 +365,7 @@
               </div>
               {% for key, value in varsFq.items() %}
               <div>
-                <sl-checkbox name="pageFacetPivot" class="pageFacetPivot " id="pageFacetPivotComputateJavaClass_{{ key }}" value="{{ value.var }}"{% if pivot is defined %} checked="checked"{% endif %} onclick="facetPivotChange('ComputateJavaClass', value); ">{{ value.displayName }}</sl-checkbox>
+                <sl-checkbox name="pageFacetPivot" class="pageFacetPivot " id="pageFacetPivotComputateJavaClass_{{ key }}" value="{{ value.var }}"{% if pivot is defined %} checked="checked"{% endif %}>{{ value.displayName }}</sl-checkbox>
               </div>
               {% endfor %}
               {%- endblock htmBodyPivotComputateJavaClassPage %}
@@ -485,12 +463,8 @@
           {%- endblock htmBodySidebarComputateJavaClassPage %}
         </div>
 
-        {%- block htmBodyGraphLocationComputateJavaClassPage %}
-        <div id="htmBodyGraphLocationComputateJavaClassPage" class="htmBodyGraphLocation "></div>
-        {%- endblock htmBodyGraphLocationComputateJavaClassPage %}
-
         {%- block htmBodyGraphComputateJavaClassPage %}
-        <div id="htmBodyGraphComputatePageLayout" class="htmBodyGraph "></div>
+        <div id="htmBodyGraphComputateJavaClassPage" class="htmBodyGraph "></div>
         {%- endblock htmBodyGraphComputateJavaClassPage %}
         <div class="pageContent ">
           <div id="site-calendar-box">
@@ -558,7 +532,6 @@
         {{ htmForm_searchpageComputateJavaClass() }}
   {% endif %}
         {%- endblock htmFormComputateJavaClassPage %}
-        </div>
       {%- endblock htmBodyMiddleComputateJavaClassPage %}
       {%- endblock htmBodyMiddleComputatePageLayout %}
 

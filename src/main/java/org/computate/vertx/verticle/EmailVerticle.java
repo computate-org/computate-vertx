@@ -151,12 +151,14 @@ public class EmailVerticle extends EmailVerticleGen<AbstractVerticle> {
 		Promise<Void> promise = Promise.promise();
 		try {
 			MailConfig mailConfig = new MailConfig();
+			LOG.info(config().getString(ComputateConfigKeys.EMAIL_USERNAME));
+			LOG.info(config().getString(ComputateConfigKeys.EMAIL_PASSWORD));
 			mailConfig.setHostname(config().getString(ComputateConfigKeys.EMAIL_HOST));
 			mailConfig.setPort(config().getInteger(ComputateConfigKeys.EMAIL_PORT));
 			mailConfig.setSsl(config().getBoolean(ComputateConfigKeys.EMAIL_SSL));
 			mailConfig.setUsername(config().getString(ComputateConfigKeys.EMAIL_USERNAME));
 			mailConfig.setPassword(config().getString(ComputateConfigKeys.EMAIL_PASSWORD));
-			mailConfig.setAuthMethods("PLAIN");
+			mailConfig.setAuthMethods(config().getString(ComputateConfigKeys.EMAIL_AUTH_METHOD));
 			this.fallbackMailFrom = config().getString(ComputateConfigKeys.EMAIL_FROM);
 			this.fallbackMailTo = config().getString(ComputateConfigKeys.EMAIL_ADMIN);
 			this.fallbackMailSubject = "";

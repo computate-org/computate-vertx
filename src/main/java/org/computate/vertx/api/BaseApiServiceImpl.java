@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -42,6 +43,7 @@ import org.computate.vertx.openapi.ComputateOAuth2AuthHandlerImpl;
 import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.result.base.ComputateBaseResult;
 import org.computate.vertx.search.list.SearchList;
+import org.computate.vertx.verticle.EmailVerticle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -102,6 +104,7 @@ import io.vertx.pgclient.PgPool;
 import io.vertx.kafka.client.producer.KafkaProducer;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
@@ -109,6 +112,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.NumberFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -150,6 +154,8 @@ public abstract class BaseApiServiceImpl {
 
 	ComputateOAuth2AuthHandlerImpl oauth2AuthHandler;
 
+	protected Vertx vertx;
+
 	protected EventBus eventBus;
 
 	protected JsonObject config;
@@ -176,8 +182,9 @@ public abstract class BaseApiServiceImpl {
 
 	protected Jinjava jinjava;
 
-	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, ComputateOAuth2AuthHandlerImpl oauth2AuthHandler, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient) {
-		this.eventBus = eventBus;
+	public BaseApiServiceImpl(Vertx vertx, JsonObject config, WorkerExecutor workerExecutor, ComputateOAuth2AuthHandlerImpl oauth2AuthHandler, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient) {
+		this.vertx = vertx;
+		this.eventBus = vertx.eventBus();
 		this.config = config;
 		this.workerExecutor = workerExecutor;
 		this.oauth2AuthHandler = oauth2AuthHandler;
@@ -189,8 +196,9 @@ public abstract class BaseApiServiceImpl {
 		this.webClient = webClient;
 	}
 
-	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, ComputateOAuth2AuthHandlerImpl oauth2AuthHandler, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider) {
-		this.eventBus = eventBus;
+	public BaseApiServiceImpl(Vertx vertx, JsonObject config, WorkerExecutor workerExecutor, ComputateOAuth2AuthHandlerImpl oauth2AuthHandler, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider) {
+		this.vertx = vertx;
+		this.eventBus = vertx.eventBus();
 		this.config = config;
 		this.workerExecutor = workerExecutor;
 		this.oauth2AuthHandler = oauth2AuthHandler;
@@ -204,8 +212,9 @@ public abstract class BaseApiServiceImpl {
 		this.authorizationProvider = authorizationProvider;
 	}
 
-	public BaseApiServiceImpl(EventBus eventBus, JsonObject config, WorkerExecutor workerExecutor, ComputateOAuth2AuthHandlerImpl oauth2AuthHandler, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, Jinjava jinjava) {
-		this.eventBus = eventBus;
+	public BaseApiServiceImpl(Vertx vertx, JsonObject config, WorkerExecutor workerExecutor, ComputateOAuth2AuthHandlerImpl oauth2AuthHandler, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, Jinjava jinjava) {
+		this.vertx = vertx;
+		this.eventBus = vertx.eventBus();
 		this.config = config;
 		this.workerExecutor = workerExecutor;
 		this.oauth2AuthHandler = oauth2AuthHandler;
@@ -2518,11 +2527,7 @@ public abstract class BaseApiServiceImpl {
 					try {
 						Q result = l.first();
 						if(result != null) {
-							String uri = null;
-							if(result instanceof ComputateBaseModel)
-								uri = (String)((ComputateBaseModel)result).obtainForClass("uri");
-							else if(result instanceof ComputateBaseResult)
-								uri = (String)((ComputateBaseResult)result).obtainForClass("uri");
+							String uri = result instanceof ComputateBaseModel ?  (String)((ComputateBaseModel)result).obtainForClass("uri") : (String)((ComputateBaseResult)result).obtainForClass("uri");
 
 							webClient.post(
 									config.getInteger(ComputateConfigKeys.AUTH_PORT)
@@ -2564,7 +2569,8 @@ public abstract class BaseApiServiceImpl {
 										String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8) : Files.readString(resourceTemplatePath, Charset.forName("UTF-8"));
 										JsonObject ctx = ComputateConfigKeys.getPageContext(config);
 										ctx.put(classResult.getSimpleName(), result);
-										ctx.put("userName", user.getUserName());
+										String userName = user.getUserName();
+										ctx.put("userName", userName);
 										ctx.put("userFirstName", user.getUserFirstName());
 										ctx.put("userLastName", user.getUserLastName());
 										if(scopes.contains("GET")) {
@@ -2586,11 +2592,118 @@ public abstract class BaseApiServiceImpl {
 											}
 											trouve = m.find();
 										}
+										if(ctx.getString("scope") == null && "0.00".equals(ctx.getString("price"))) {
+											String groupName = uri;
+											String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
+											String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
+											Integer authPort = config.getInteger(ComputateConfigKeys.AUTH_PORT);
+											String authHostName = config.getString(ComputateConfigKeys.AUTH_HOST_NAME);
+											Boolean authSsl = config.getBoolean(ComputateConfigKeys.AUTH_SSL);
+											String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
+											webClient.post(authPort, authHostName, "/realms/master/protocol/openid-connect/token").ssl(authSsl)
+													.sendForm(MultiMap.caseInsensitiveMultiMap()
+															.add("username", authAdminUsername)
+															.add("password", authAdminPassword)
+															.add("grant_type", "password")
+															.add("client_id", "admin-cli")
+															)
+													.expecting(HttpResponseExpectation.SC_OK)
+															.onSuccess(tokenResponse -> {
+												try {
+													String authToken = tokenResponse.bodyAsJsonObject().getString("access_token");
+													webClient.get(authPort, authHostName, String.format("/admin/realms/%s/groups?exact=false&global=true&first=0&max=1&search=%s", authRealm, URLEncoder.encode(groupName, "UTF-8"))).ssl(authSsl).putHeader("Authorization", String.format("Bearer %s", authToken))
+													.send()
+													.expecting(HttpResponseExpectation.SC_OK)
+													.onSuccess(groupResponse -> {
+														try {
+															JsonArray groups = Optional.ofNullable(groupResponse.bodyAsJsonArray()).orElse(new JsonArray());
+															JsonObject group = groups.stream().findFirst().map(o -> (JsonObject)o).orElse(null);
+															if(group != null) {
+																String groupId = group.getString("id");
+																String userId = user.getUserId();
+																webClient.put(authPort, authHostName, String.format("/admin/realms/%s/users/%s/groups/%s", authRealm, userId, groupId)).ssl(authSsl)
+																		.putHeader("Authorization", String.format("Bearer %s", authToken))
+																		.putHeader("Content-Type", "application/json")
+																		.putHeader("Content-Length", "0")
+																		.send()
+																		.expecting(HttpResponseExpectation.SC_NO_CONTENT)
+																		.onSuccess(groupUserResponse -> {
+																	try {
+																		DeliveryOptions options = new DeliveryOptions();
+																		String siteName = config.getString(ComputateConfigKeys.SITE_NAME);
+																		String emailFrom = config.getString(ComputateConfigKeys.EMAIL_FROM);
+																		String emailTo = user.getUserEmail();
+																		String customerName = user.getUserFullName();
 
-										String renderedTemplate = jinjava.render(template, ctx.getMap());
-										Buffer buffer = Buffer.buffer(renderedTemplate);
-										handler.response().putHeader("Content-Type", "text/html");
-										handler.end(buffer);
+																		String emailTemplate = result instanceof ComputateBaseModel ? (String)((ComputateBaseModel)result).obtainForClass("emailTemplate") : (String)((ComputateBaseResult)result).obtainForClass("emailTemplate");
+																		String orderItemName = result instanceof ComputateBaseModel ? (String)((ComputateBaseModel)result).obtainForClass("name") : (String)((ComputateBaseResult)result).obtainForClass("name");
+																		String subject = String.format("Hello %s! Thank you for ordering the %s from %s! ", customerName, orderItemName, siteName);
+																		options.addHeader(EmailVerticle.MAIL_HEADER_SUBJECT, subject);
+																		options.addHeader(EmailVerticle.MAIL_HEADER_FROM, emailFrom);
+																		options.addHeader(EmailVerticle.MAIL_HEADER_TO, emailTo);
+																		options.addHeader(EmailVerticle.MAIL_HEADER_TEMPLATE, emailTemplate);
+																		JsonObject body = new JsonObject();
+																		body.put(ComputateConfigKeys.SITE_BASE_URL, config.getString(ComputateConfigKeys.SITE_BASE_URL));
+																		body.put("siteName", siteName);
+																		body.put("githubUsername", userName);
+																		body.put("orderId", "FREE");
+																		body.put("subject", subject);
+																		body.put("emailTo", emailTo);
+																		body.put("customerName", customerName);
+																		body.put("result", JsonObject.mapFrom(result));
+
+																		ZoneId zoneId = ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE));
+																		ZonedDateTime createdAt = ZonedDateTime.now(zoneId);
+																		Locale locale = Locale.forLanguageTag(config.getString(ComputateConfigKeys.SITE_LOCALE));
+																		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("EEE d MMM uuuu h:mm a VV", locale);
+																		String createdAtStr = dateFormat.format(createdAt.withZoneSameInstant(zoneId));
+																		body.put("createdAt", createdAtStr);
+
+																		vertx.eventBus().request(EmailVerticle.MAIL_EVENTBUS_ADDRESS, body.encode(), options).onSuccess(b -> {
+																			ctx.put("scope", "GET");
+																			String renderedTemplate = jinjava.render(template, ctx.getMap());
+																			Buffer buffer = Buffer.buffer(renderedTemplate);
+																			handler.response().putHeader("Content-Type", "text/html");
+																			handler.end(buffer);
+																		}).onFailure(ex -> {
+																			LOG.error("Failed to process square webook while adding user to group. ", ex);
+																			handler.fail(ex);
+																		});
+																	} catch(Throwable ex) {
+																		LOG.error("Failed to process square webook while querying customer. ", ex);
+																		handler.fail(ex);
+																	}
+																}).onFailure(ex -> {
+																	LOG.error("Failed to process square webook while adding user to group. ", ex);
+																	handler.fail(ex);
+																});
+															} else {
+																Throwable ex = new RuntimeException("Failed to find group. ");
+																LOG.error(ex.getMessage(), ex);
+																handler.fail(ex);
+															}
+														} catch(Throwable ex) {
+															LOG.error("Failed to process square webook while querying group. ", ex);
+															handler.fail(ex);
+														}
+													}).onFailure(ex -> {
+														LOG.error("Failed to process square webook while querying group. ", ex);
+														handler.fail(ex);
+													});
+												} catch(Throwable ex) {
+													LOG.error("Failed to process square webook while querying group. ", ex);
+													handler.fail(ex);
+												}
+											}).onFailure(ex -> {
+												LOG.error("Failed to process square webook. ", ex);
+												handler.fail(ex);
+											});
+										} else {
+											String renderedTemplate = jinjava.render(template, ctx.getMap());
+											Buffer buffer = Buffer.buffer(renderedTemplate);
+											handler.response().putHeader("Content-Type", "text/html");
+											handler.end(buffer);
+										}
 									} catch (Exception ex) {
 										LOG.error(String.format("Failed to render page %s", userUri), ex);
 										handler.fail(ex);
