@@ -151,8 +151,6 @@ public class EmailVerticle extends EmailVerticleGen<AbstractVerticle> {
 		Promise<Void> promise = Promise.promise();
 		try {
 			MailConfig mailConfig = new MailConfig();
-			LOG.info(config().getString(ComputateConfigKeys.EMAIL_USERNAME));
-			LOG.info(config().getString(ComputateConfigKeys.EMAIL_PASSWORD));
 			mailConfig.setHostname(config().getString(ComputateConfigKeys.EMAIL_HOST));
 			mailConfig.setPort(config().getInteger(ComputateConfigKeys.EMAIL_PORT));
 			mailConfig.setSsl(config().getBoolean(ComputateConfigKeys.EMAIL_SSL));
