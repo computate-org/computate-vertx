@@ -1315,6 +1315,7 @@ public class ComputateConfigKeys {
 	public static final String CONTEXT_BROKER_HOST_NAME = "CONTEXT_BROKER_HOST_NAME";
 	public static final String CONTEXT_BROKER_PORT = "CONTEXT_BROKER_PORT";
 	public static final String CONTEXT_BROKER_DELAY_MILLIS = "CONTEXT_BROKER_DELAY_MILLIS";
+	public static final String CONTEXT_BROKER_CONTEXT = "CONTEXT_BROKER_CONTEXT";
 }
 
 /**
