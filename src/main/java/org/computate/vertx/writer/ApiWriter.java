@@ -496,12 +496,12 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 		wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-", classSimpleName);
 
 		if(
-				StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH") 
+				StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH", "DELETE") 
 					&& !(classRoleSession || classRoleUser || classRoleAll)
 					&& (
 					classRoles.size() > 0
 				)
-				|| !StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH") && (
+				|| !StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH", "DELETE") && (
 					BooleanUtils.isNotTrue(classRoleSession) 
 					&& BooleanUtils.isNotTrue(classPublicRead) 
 					&& BooleanUtils.isNotTrue(classSearchPagePublicRead && classApiMethod.equals("SearchPage") && !id)
@@ -577,7 +577,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: string");
 			}
-			if(classApiMethod.contains("Search") || classApiMethod.contains("PATCH") || classApiMethod.contains("PUT")) {
+			if(classApiMethod.contains("Search") || classApiMethod.contains("PATCH") || classApiMethod.contains("PUT") || classApiMethod.contains("DELETE")) {
 				wPaths.tl(4, "- in: query");
 				wPaths.tl(5, "name: q");
 				wPaths.tl(5, "description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'");
