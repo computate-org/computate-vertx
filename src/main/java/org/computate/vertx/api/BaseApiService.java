@@ -109,8 +109,10 @@ abstract class BaseApiService {
 	public static final String importTimerScheduling = "Scheduling the %s import at %s";
 	public static final String importTimerSkip = "Skip importing %s data. ";
 	public static final String importTimerFail = "Scheduling the import of %s data failed. ";
-	public static final String importDataModelFail = "Importing all %s data failed. ";
-	public static final String importDataModelComplete = "Importing all %s data completed. ";
+	public static final String importDataFail = "Importing all %s data failed. ";
+	public static final String importDataComplete = "Importing all %s data completed. ";
+	public static final String importDataFileFail = "Importing %s data file failed. ";
+	public static final String importDataFileComplete = "Importing %s data file completed. ";
 	public static final String importModelComplete = "Importing page completed: %s";
 	public static final String importModelFail = "Importing page failed: %s";
 
@@ -810,19 +812,6 @@ abstract class BaseApiService {
 		}
 	}
 
-	protected Future<Object> importDataClass(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress, ZonedDateTime startDateTime) {
-		Promise<Object> promise = Promise.promise();
-
-		importModel(pagePath, vertx, siteRequest, classSimpleName, classApiAddress, startDateTime).onSuccess(a -> {
-			promise.complete();
-		}).onFailure(ex -> {
-			LOG.error(String.format("Import failed. "), ex);
-			promise.fail(ex);
-		});
-
-		return promise.future();
-	}
-
 	/**
 	 * Val.Scheduling.enUS:Scheduling the %s import at %s
 	 * Val.Skip.enUS:Skip importing %s data. 
@@ -865,12 +854,8 @@ abstract class BaseApiService {
 			if(importStartTime == null) {
 				try {
 					vertx.setTimer(1, a -> {
-						workerExecutor.executeBlocking(promise2 -> {
-							importDataClass(pagePath, vertx, siteRequest, classSimpleName, classApiAddress, null).onSuccess(b -> {
-								promise2.complete();
-							}).onFailure(ex -> {
-								promise2.fail(ex);
-							});
+						workerExecutor.executeBlocking(() -> {
+							return importBlocking(pagePath, vertx, siteRequest, classSimpleName, classApiAddress, null);
 						});
 					});
 					promise.complete();
@@ -881,12 +866,8 @@ abstract class BaseApiService {
 			} else {
 				try {
 					vertx.setTimer(nextStartDuration.toMillis(), a -> {
-						workerExecutor.executeBlocking(promise2 -> {
-							importDataClass(pagePath, vertx, siteRequest, classSimpleName, classApiAddress, nextStartTime2).onSuccess(b -> {
-								promise2.complete();
-							}).onFailure(ex -> {
-								promise2.fail(ex);
-							});
+						workerExecutor.executeBlocking(() -> {
+							return importBlocking(pagePath, vertx, siteRequest, classSimpleName, classApiAddress, nextStartTime2);
 						});
 					});
 					promise.complete();
@@ -906,9 +887,9 @@ abstract class BaseApiService {
 	 * Val.Complete.enUS:Configuring the import of %s data completed. 
 	 * Val.Fail.enUS:Configuring the import of %s data failed. 
 	 **/
-	public Future<Object> importModel(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress, ZonedDateTime startDateTime) {
+	public Future<Object> importBlocking(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress, ZonedDateTime startDateTime) {
 		Promise<Object> promise = Promise.promise();
-		importDataModel(pagePath, vertx, siteRequest, classSimpleName, classApiAddress).onComplete(a -> {
+		importData(pagePath, vertx, siteRequest, classSimpleName, classApiAddress).onComplete(a -> {
 			String importPeriod = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_PERIOD, classSimpleName));
 			if(importPeriod != null && startDateTime != null) {
 				Duration duration = TimeTool.parseNextDuration(importPeriod);
@@ -916,12 +897,8 @@ abstract class BaseApiService {
 				LOG.info(String.format(importTimerScheduling, classSimpleName, nextStartTime.format(TIME_FORMAT)));
 				Duration nextStartDuration = Duration.between(Instant.now(), nextStartTime);
 				vertx.setTimer(nextStartDuration.toMillis(), b -> {
-					workerExecutor.executeBlocking(promise2 -> {
-						importModel(pagePath, vertx, siteRequest, classSimpleName, classApiAddress, nextStartTime).onSuccess(c -> {
-							promise2.complete();
-						}).onFailure(ex -> {
-							promise2.fail(ex);
-						});
+					workerExecutor.executeBlocking(() -> {
+						return importBlocking(pagePath, vertx, siteRequest, classSimpleName, classApiAddress, nextStartTime);
 					});
 				});
 				promise.complete();
@@ -985,8 +962,10 @@ abstract class BaseApiService {
 
 	/**
 	 * Description: Import all Site HTML data
+	 * Val.Complete.enUS:Importing %s data completed. 
+	 * Val.Fail.enUS:Importing %s data failed. 
 	 */
-	private Future<Void> importDataModel(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress) {
+	protected Future<Void> importData(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress) {
 		Promise<Void> promise = Promise.promise();
 		ZonedDateTime now = ZonedDateTime.now(ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE)));
 		// i18nGenerator().onSuccess(i18n -> {
@@ -1005,24 +984,24 @@ abstract class BaseApiService {
 			}
 			YamlProcessor yamlProcessor = new YamlProcessor();
 	
-			importDataModel(vertx, siteRequest, null, yamlProcessor, pageResourcePaths, pageTemplatePaths, 0, classSimpleName, classApiAddress).onSuccess(a -> {
+			importDataFile(vertx, siteRequest, null, yamlProcessor, pageResourcePaths, pageTemplatePaths, 0, classSimpleName, classApiAddress).onSuccess(a -> {
 				deletePageData(siteRequest, now, classSimpleName).onSuccess(b -> {
-					LOG.info(String.format(importDataModelComplete, classSimpleName));
+					LOG.info(String.format(importDataComplete, classSimpleName));
 					promise.complete();
 				}).onFailure(ex -> {
-					LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+					LOG.error(String.format(importDataFail, classSimpleName), ex);
 					promise.fail(ex);
 				});
 			}).onFailure(ex -> {
-				LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+				LOG.error(String.format(importDataFail, classSimpleName), ex);
 				promise.fail(ex);
 			});
 		} catch(Throwable ex) {
-			LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+			LOG.error(String.format(importDataFail, classSimpleName), ex);
 			promise.fail(ex);
 		}
 		// }).onFailure(ex -> {
-		// 	LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+		// 	LOG.error(String.format(importDataFail, classSimpleName), ex);
 		// 	promise.fail(ex);
 		// });
 		return promise.future();
@@ -1030,31 +1009,31 @@ abstract class BaseApiService {
 
 	/**
 	 * Description: Import Site HTML data
-	 * Val.Complete.enUS:Importing %s data completed. 
-	 * Val.Fail.enUS:Importing %s data failed. 
+	 * Val.Complete.enUS:Importing %s data file completed. 
+	 * Val.Fail.enUS:Importing %s data file failed. 
 	 */
-	private Future<Void> importDataModel(Vertx vertx, ComputateSiteRequest siteRequest, JsonObject i18n, YamlProcessor yamlProcessor, List<String> pageResourcePaths, List<String> pageTemplatePaths, Integer i, String classSimpleName, String classApiAddress) {
+	protected Future<Void> importDataFile(Vertx vertx, ComputateSiteRequest siteRequest, JsonObject i18n, YamlProcessor yamlProcessor, List<String> pageResourcePaths, List<String> pageTemplatePaths, Integer i, String classSimpleName, String classApiAddress) {
 		Promise<Void> promise = Promise.promise();
 		try {
 			if(i < pageResourcePaths.size()) {
 				String pageResourcePath = pageResourcePaths.get(i);
 				String pageTemplatePath = pageTemplatePaths.get(i);
 				importModelFromFile(vertx, siteRequest, i18n, yamlProcessor, pageResourcePath, pageTemplatePath, classSimpleName, classApiAddress).onSuccess(a -> {
-					importDataModel(vertx, siteRequest, i18n, yamlProcessor, pageResourcePaths, pageTemplatePaths, i + 1, classSimpleName, classApiAddress).onSuccess(b -> {
+					importDataFile(vertx, siteRequest, i18n, yamlProcessor, pageResourcePaths, pageTemplatePaths, i + 1, classSimpleName, classApiAddress).onSuccess(b -> {
 						promise.complete();
 					}).onFailure(ex -> {
-						LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+						LOG.error(String.format(importDataFileFail, pageTemplatePath), ex);
 						promise.fail(ex);
 					});
 				}).onFailure(ex -> {
-					LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+					LOG.error(String.format(importDataFileFail, pageTemplatePath), ex);
 					promise.fail(ex);
 				});
 			} else {
 				promise.complete();
 			}
 		} catch(Exception ex) {
-			LOG.error(String.format(importDataModelFail, classSimpleName), ex);
+			LOG.error(String.format(importDataFileFail, classSimpleName), ex);
 			promise.fail(ex);
 		}
 		return promise.future();
