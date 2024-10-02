@@ -973,29 +973,33 @@ abstract class BaseApiService {
 			String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
 			List<String> pageResourcePaths = new ArrayList<>();
 			List<String> pageTemplatePaths = new ArrayList<>();
-			try(Stream<Path> stream = Files.walk(pagePath)) {
-				stream.filter(Files::isRegularFile).filter(p -> 
-						p.getFileName().toString().endsWith(".htm")
-						|| p.getFileName().toString().endsWith(".html")
-						).forEach(path -> {
-					pageResourcePaths.add(StringUtils.substringAfter(path.toAbsolutePath().toString(), "/src/main/resources/"));
-					pageTemplatePaths.add(StringUtils.substringAfter(path.toAbsolutePath().toString(), siteTemplatePath + "/"));
-				});
-			}
-			YamlProcessor yamlProcessor = new YamlProcessor();
+			if(Files.exists(pagePath)) {
+				try(Stream<Path> stream = Files.walk(pagePath)) {
+					stream.filter(Files::isRegularFile).filter(p -> 
+							p.getFileName().toString().endsWith(".htm")
+							|| p.getFileName().toString().endsWith(".html")
+							).forEach(path -> {
+						pageResourcePaths.add(StringUtils.substringAfter(path.toAbsolutePath().toString(), "/src/main/resources/"));
+						pageTemplatePaths.add(StringUtils.substringAfter(path.toAbsolutePath().toString(), siteTemplatePath + "/"));
+					});
+				}
+				YamlProcessor yamlProcessor = new YamlProcessor();
 	
-			importDataFile(vertx, siteRequest, null, yamlProcessor, pageResourcePaths, pageTemplatePaths, 0, classSimpleName, classApiAddress).onSuccess(a -> {
-				deletePageData(siteRequest, now, classSimpleName).onSuccess(b -> {
-					LOG.info(String.format(importDataComplete, classSimpleName));
-					promise.complete();
+				importDataFile(vertx, siteRequest, null, yamlProcessor, pageResourcePaths, pageTemplatePaths, 0, classSimpleName, classApiAddress).onSuccess(a -> {
+					deletePageData(siteRequest, now, classSimpleName).onSuccess(b -> {
+						LOG.info(String.format(importDataComplete, classSimpleName));
+						promise.complete();
+					}).onFailure(ex -> {
+						LOG.error(String.format(importDataFail, classSimpleName), ex);
+						promise.fail(ex);
+					});
 				}).onFailure(ex -> {
 					LOG.error(String.format(importDataFail, classSimpleName), ex);
 					promise.fail(ex);
 				});
-			}).onFailure(ex -> {
-				LOG.error(String.format(importDataFail, classSimpleName), ex);
-				promise.fail(ex);
-			});
+			} else {
+				promise.complete();
+			}
 		} catch(Throwable ex) {
 			LOG.error(String.format(importDataFail, classSimpleName), ex);
 			promise.fail(ex);
