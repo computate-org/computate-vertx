@@ -1110,6 +1110,11 @@ abstract class BaseApiService {
 							String pageId = pageBody.getString("pageId");
 							try {
 								if(userUri != null && uri != null) {
+									ZoneId zoneId = ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE));
+									ZonedDateTime createdAt = ZonedDateTime.now(zoneId);
+									String groupName = String.format("%s-%s", createdAt.getYear(), uri);
+									String policyId = StringUtils.substring(String.format("%s-%s", createdAt.getYear(), pageId), 0, 36);
+									String policyName = String.format("%s-%s", createdAt.getYear(), uri);
 									String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
 									String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
 									Integer authPort = config.getInteger(ComputateConfigKeys.AUTH_PORT);
@@ -1128,14 +1133,14 @@ abstract class BaseApiService {
 											String authToken = tokenResponse.bodyAsJsonObject().getString("access_token");
 											webClient.post(authPort, authHostName, String.format("/admin/realms/%s/groups", authRealm)).ssl(authSsl)
 													.putHeader("Authorization", String.format("Bearer %s", authToken))
-													.sendJson(new JsonObject().put("name", uri))
-													.expecting(HttpResponseExpectation.SC_CREATED.and(HttpResponseExpectation.JSON).or(HttpResponseExpectation.SC_CONFLICT))
+													.sendJson(new JsonObject().put("name", groupName))
+													.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
 													.onSuccess(createGroupResponse -> {
 												try {
-													webClient.get(authPort, authHostName, String.format("/admin/realms/%s/groups?exact=false&global=true&first=0&max=1&search=%s", authRealm, URLEncoder.encode(uri, "UTF-8"))).ssl(authSsl)
+													webClient.get(authPort, authHostName, String.format("/admin/realms/%s/groups?exact=false&global=true&first=0&max=1&search=%s", authRealm, URLEncoder.encode(groupName, "UTF-8"))).ssl(authSsl)
 															.putHeader("Authorization", String.format("Bearer %s", authToken))
 															.send()
-															.expecting(HttpResponseExpectation.SC_OK.and(HttpResponseExpectation.JSON))
+															.expecting(HttpResponseExpectation.SC_OK)
 															.onSuccess(groupsResponse -> {
 														try {
 															JsonArray groups = Optional.ofNullable(groupsResponse.bodyAsJsonArray()).orElse(new JsonArray());
@@ -1144,8 +1149,8 @@ abstract class BaseApiService {
 																String groupId = group.getString("id");
 																webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/policy/group", authRealm, authClient)).ssl(authSsl)
 																		.putHeader("Authorization", String.format("Bearer %s", authToken))
-																		.sendJson(new JsonObject().put("id", StringUtils.substring(pageId, 0, 36)).put("name", uri).put("description", String.format("%s group", uri)).put("groups", new JsonArray().add(groupId)))
-																		.expecting(HttpResponseExpectation.SC_CREATED.and(HttpResponseExpectation.JSON).or(HttpResponseExpectation.SC_CONFLICT))
+																		.sendJson(new JsonObject().put("id", policyId).put("name", policyName).put("description", String.format("%s group", groupName)).put("groups", new JsonArray().add(groupId)))
+																		.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
 																		.onSuccess(createPolicyResponse -> {
 																	webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/resource", authRealm, authClient)).ssl(authSsl)
 																			.putHeader("Authorization", String.format("Bearer %s", authToken))
@@ -1155,19 +1160,19 @@ abstract class BaseApiService {
 																					.put("uris", new JsonArray().add(uri))
 																					.put("scopes", new JsonArray().add("GET"))
 																					)
-																			.expecting(HttpResponseExpectation.SC_CREATED.and(HttpResponseExpectation.JSON).or(HttpResponseExpectation.SC_CONFLICT))
+																			.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
 																			.onSuccess(createResourceResponse -> {
 																		webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/permission/scope", authRealm, authClient)).ssl(authSsl)
 																				.putHeader("Authorization", String.format("Bearer %s", authToken))
 																				.sendJson(new JsonObject()
-																						.put("name", String.format("%s-%s", authRealm, uri))
-																						.put("description", String.format("GET %s", uri))
+																						.put("name", String.format("%s-%s", authRealm, groupName))
+																						.put("description", String.format("GET %s", groupName))
 																						.put("decisionStrategy", "AFFIRMATIVE")
 																						.put("resources", new JsonArray().add(uri))
-																						.put("policies", new JsonArray().add(uri))
+																						.put("policies", new JsonArray().add(policyName))
 																						.put("scopes", new JsonArray().add(String.format("%s-GET", authRealm)))
 																						)
-																				.expecting(HttpResponseExpectation.SC_CREATED.and(HttpResponseExpectation.JSON).or(HttpResponseExpectation.SC_CONFLICT))
+																				.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
 																				.onSuccess(createPermissionResponse -> {
 																			LOG.info(String.format("Successfully granted %s access to %s", "GET", uri));
 																			promise.complete();

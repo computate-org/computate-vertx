@@ -183,7 +183,9 @@ public abstract class BaseApiServiceResult extends BaseApiService {
 											trouve = m.find();
 										}
 										if(ctx.getString("scope") == null && "0.00".equals(ctx.getString("price"))) {
-											String groupName = uri;
+											ZoneId zoneId = ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE));
+											ZonedDateTime createdAt = ZonedDateTime.now(zoneId);
+											String groupName = String.format("%s-%s", createdAt.getYear(), uri);
 											String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
 											String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
 											Integer authPort = config.getInteger(ComputateConfigKeys.AUTH_PORT);
@@ -242,8 +244,6 @@ public abstract class BaseApiServiceResult extends BaseApiService {
 																		body.put("customerName", customerName);
 																		body.put("result", JsonObject.mapFrom(result));
 
-																		ZoneId zoneId = ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE));
-																		ZonedDateTime createdAt = ZonedDateTime.now(zoneId);
 																		Locale locale = Locale.forLanguageTag(config.getString(ComputateConfigKeys.SITE_LOCALE));
 																		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("EEE d MMM uuuu h:mm a VV", locale);
 																		String createdAtStr = dateFormat.format(createdAt.withZoneSameInstant(zoneId));
@@ -262,15 +262,15 @@ public abstract class BaseApiServiceResult extends BaseApiService {
 																				promise.fail(ex);
 																			});
 																		}).onFailure(ex -> {
-																			LOG.error("Failed to process square webook while adding user to group. ", ex);
+																			LOG.error("Failed to render page. ", ex);
 																			handler.fail(ex);
 																		});
 																	} catch(Throwable ex) {
-																		LOG.error("Failed to process square webook while querying customer. ", ex);
+																		LOG.error("Failed to render page. ", ex);
 																		handler.fail(ex);
 																	}
 																}).onFailure(ex -> {
-																	LOG.error("Failed to process square webook while adding user to group. ", ex);
+																	LOG.error("Failed to render page. ", ex);
 																	handler.fail(ex);
 																});
 															} else {
@@ -279,19 +279,19 @@ public abstract class BaseApiServiceResult extends BaseApiService {
 																handler.fail(ex);
 															}
 														} catch(Throwable ex) {
-															LOG.error("Failed to process square webook while querying group. ", ex);
+															LOG.error("Failed to render page. ", ex);
 															handler.fail(ex);
 														}
 													}).onFailure(ex -> {
-														LOG.error("Failed to process square webook while querying group. ", ex);
+														LOG.error("Failed to render page. ", ex);
 														handler.fail(ex);
 													});
 												} catch(Throwable ex) {
-													LOG.error("Failed to process square webook while querying group. ", ex);
+													LOG.error("Failed to render page. ", ex);
 													handler.fail(ex);
 												}
 											}).onFailure(ex -> {
-												LOG.error("Failed to process square webook. ", ex);
+												LOG.error("Failed to render page. ", ex);
 												handler.fail(ex);
 											});
 										} else {
