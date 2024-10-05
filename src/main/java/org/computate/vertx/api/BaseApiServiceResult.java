@@ -229,7 +229,7 @@ public abstract class BaseApiServiceResult extends BaseApiService {
 
 																		String emailTemplate = (String)result.obtainForClass("emailTemplate");
 																		String orderItemName = (String)result.obtainForClass("name");
-																		String subject = String.format("Hello %s! Thank you for ordering the %s from %s! ", customerName, orderItemName, siteName);
+																		String subject = String.format("Thank you for ordering the %s from %s! ", customerName, orderItemName, siteName);
 																		options.addHeader(EmailVerticle.MAIL_HEADER_SUBJECT, subject);
 																		options.addHeader(EmailVerticle.MAIL_HEADER_FROM, emailFrom);
 																		options.addHeader(EmailVerticle.MAIL_HEADER_TO, emailTo);
