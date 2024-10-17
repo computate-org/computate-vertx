@@ -217,6 +217,10 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 		c.o((Boolean)classSolrDocument.get("classeRoleChacun_stored_boolean"));
 	}
 
+	protected void _classAuth(Wrap<Boolean> c) {
+		c.o(BooleanUtils.isTrue((Boolean)classSolrDocument.get("classeAuth_stored_boolean")));
+	}
+
 	protected void _classRolesFound(Wrap<Boolean> c) {
 		c.o((Boolean)classSolrDocument.get("classeRolesTrouves_stored_boolean"));
 	}
@@ -498,14 +502,12 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 		if(
 				StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH", "DELETE") 
 					&& !(classRoleSession || classRoleUser || classRoleAll)
-					&& (
-					classRoles.size() > 0
-				)
+					&& classAuth
 				|| !StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH", "DELETE") && (
 					BooleanUtils.isNotTrue(classRoleSession) 
 					&& BooleanUtils.isNotTrue(classPublicRead) 
 					&& BooleanUtils.isNotTrue(classSearchPagePublicRead && classApiMethod.equals("SearchPage") && !id)
-					&& ( classRoles.size() > 0 || classRoleReads.size() > 0)
+					&& classAuth
 				)
 				) {
 		// if(classRoleAll 

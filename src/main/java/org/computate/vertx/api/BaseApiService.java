@@ -961,11 +961,140 @@ abstract class BaseApiService {
 	}
 
 	/**
+	 * Description: Import page
+	 */
+	public Future<Void> authorizeData(String classSimpleName, String groupName, String[] scopes) {
+		Promise<Void> promise = Promise.promise();
+		try {
+			if(groupName != null && scopes != null) {
+				String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
+				String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
+				String authScopeAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN);
+				String authScopeSuperAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN);
+				Integer authPort = config.getInteger(ComputateConfigKeys.AUTH_PORT);
+				String authHostName = config.getString(ComputateConfigKeys.AUTH_HOST_NAME);
+				Boolean authSsl = config.getBoolean(ComputateConfigKeys.AUTH_SSL);
+				String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
+				String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
+
+				String policyId = StringUtils.substring(String.format("%s-group-%s", authRealm, groupName), 0, 36);
+				String policyName = String.format("%s group %s", authRealm, groupName);
+				JsonArray authScopesJson = new JsonArray();
+				for(String scope : scopes) {
+					authScopesJson.add(String.format("%s-GET", authRealm));
+				}
+				webClient.post(authPort, authHostName, "/realms/master/protocol/openid-connect/token").ssl(authSsl)
+						.sendForm(MultiMap.caseInsensitiveMultiMap()
+								.add("username", authAdminUsername)
+								.add("password", authAdminPassword)
+								.add("grant_type", "password")
+								.add("client_id", "admin-cli")
+								).onSuccess(tokenResponse -> {
+					try {
+						String authToken = tokenResponse.bodyAsJsonObject().getString("access_token");
+						webClient.post(authPort, authHostName, String.format("/admin/realms/%s/groups", authRealm)).ssl(authSsl)
+								.putHeader("Authorization", String.format("Bearer %s", authToken))
+								.sendJson(new JsonObject().put("name", groupName))
+								.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+								.onSuccess(createGroupResponse -> {
+							try {
+								webClient.get(authPort, authHostName, String.format("/admin/realms/%s/groups?exact=false&global=true&first=0&max=1&search=%s", authRealm, URLEncoder.encode(groupName, "UTF-8"))).ssl(authSsl)
+										.putHeader("Authorization", String.format("Bearer %s", authToken))
+										.send()
+										.expecting(HttpResponseExpectation.SC_OK)
+										.onSuccess(groupsResponse -> {
+									try {
+										JsonArray groups = Optional.ofNullable(groupsResponse.bodyAsJsonArray()).orElse(new JsonArray());
+										JsonObject group = groups.stream().findFirst().map(o -> (JsonObject)o).orElse(null);
+										if(group != null) {
+											String groupId = group.getString("id");
+											webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/policy/group", authRealm, authClient)).ssl(authSsl)
+													.putHeader("Authorization", String.format("Bearer %s", authToken))
+													.sendJson(new JsonObject().put("id", policyId).put("name", policyName).put("description", String.format("%s group", groupName)).put("groups", new JsonArray().add(groupId)))
+													.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+													.onSuccess(createPolicyResponse -> {
+												webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/resource", authRealm, authClient)).ssl(authSsl)
+														.putHeader("Authorization", String.format("Bearer %s", authToken))
+														.sendJson(new JsonObject()
+																.put("name", classSimpleName)
+																.put("displayName", classSimpleName)
+																.put("scopes", new JsonArray().add("POST").add("PATCH").add("GET").add("DELETE").add(authScopeAdmin).add(authScopeSuperAdmin))
+																)
+														.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+														.onSuccess(createResourceResponse -> {
+
+													webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/permission/scope", authRealm, authClient)).ssl(authSsl)
+															.putHeader("Authorization", String.format("Bearer %s", authToken))
+															.sendJson(new JsonObject()
+																	.put("name", String.format("%s-%s", authRealm, groupName))
+																	.put("description", String.format("GET %s", groupName))
+																	.put("decisionStrategy", "AFFIRMATIVE")
+																	.put("resources", new JsonArray().add(classSimpleName))
+																	.put("policies", new JsonArray().add(policyName))
+																	.put("scopes", authScopesJson)
+																	)
+															.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+															.onSuccess(createPermissionResponse -> {
+														LOG.info(String.format("Successfully granted %s permission to %s", authScopesJson.encode(), classSimpleName));
+														promise.complete();
+													}).onFailure(ex -> {
+														LOG.error(String.format("Failed to grant %s permission to %s", authScopesJson.encode(), classSimpleName), ex);
+														promise.fail(ex);
+													});
+												}).onFailure(ex -> {
+													LOG.error(String.format("Failed to create %s auth resource %s", authScopesJson.encode(), classSimpleName), ex);
+													promise.fail(ex);
+												});
+											}).onFailure(ex -> {
+												LOG.error(String.format("Failed to create auth policy %s for resource %s", policyName, classSimpleName), ex);
+												promise.fail(ex);
+											});
+										} else {
+											Throwable ex = new RuntimeException(String.format("Failed to find group %s for resource %s", groupName, classSimpleName));
+											LOG.error(ex.getMessage(), ex);
+											promise.fail(ex);
+										}
+									} catch(Throwable ex) {
+										LOG.error(String.format("Failed to set up fine-grained resource permissions for resource %s. ", classSimpleName), ex);
+										promise.fail(ex);
+									}
+								}).onFailure(ex -> {
+									LOG.error(String.format("Failed to query the group %s for resource %s. ", groupName, classSimpleName), ex);
+									promise.fail(ex);
+								});
+							} catch(Throwable ex) {
+								LOG.error(String.format("Failed to set up fine-grained resource permissions for resource %s. ", classSimpleName), ex);
+								promise.fail(ex);
+							}
+						}).onFailure(ex -> {
+							LOG.error(String.format("Failed to create the group %s for resource %s. ", groupName, classSimpleName), ex);
+							promise.fail(ex);
+						});
+					} catch(Throwable ex) {
+						LOG.error(String.format("Failed to set up the auth token for fine-grained resource permissions for group %s for resource %s", groupName, classSimpleName), ex);
+						promise.fail(ex);
+					}
+				}).onFailure(ex -> {
+					LOG.error(String.format("Failed to get an admin token while creating fine-grained resource permissions for group %s for resource %s", groupName, classSimpleName), ex);
+					promise.fail(ex);
+				});
+			} else {
+				promise.complete();
+			}
+		} catch(Throwable ex) {
+			LOG.error(String.format("Failed to set up Keycloak credentials while creating fine-grained resource permissions for group %s for resource %s", groupName, classSimpleName), ex);
+			promise.fail(ex);
+		}
+		return promise.future();
+	}
+
+	/**
 	 * Description: Import all Site HTML data
 	 * Val.Complete.enUS:Importing %s data completed. 
 	 * Val.Fail.enUS:Importing %s data failed. 
 	 */
 	protected Future<Void> importData(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress) {
+		//STUFF0
 		Promise<Void> promise = Promise.promise();
 		ZonedDateTime now = ZonedDateTime.now(ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE)));
 		// i18nGenerator().onSuccess(i18n -> {
