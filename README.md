@@ -1,5 +1,5 @@
 
 # Computate Search Tools
 
-Tools for integrating with open source Search Engines like Apache Solr, Elasticsearch and Lucene. 
+Tools for integrating with Eclipse Vert.x. 
 

@@ -978,10 +978,11 @@ abstract class BaseApiService {
 				String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
 
 				String policyId = StringUtils.substring(String.format("%s-group-%s", authRealm, groupName), 0, 36);
-				String policyName = String.format("%s group %s", authRealm, groupName);
+				String policyName = String.format("%s-group-%s", authRealm, groupName);
+				String permissionName = String.format("%s-group-%s-%s", authRealm, groupName, classSimpleName);
 				JsonArray authScopesJson = new JsonArray();
 				for(String scope : scopes) {
-					authScopesJson.add(String.format("%s-GET", authRealm));
+					authScopesJson.add(String.format("%s-%s", authRealm, scope));
 				}
 				webClient.post(authPort, authHostName, "/realms/master/protocol/openid-connect/token").ssl(authSsl)
 						.sendForm(MultiMap.caseInsensitiveMultiMap()
@@ -1026,7 +1027,7 @@ abstract class BaseApiService {
 													webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/permission/scope", authRealm, authClient)).ssl(authSsl)
 															.putHeader("Authorization", String.format("Bearer %s", authToken))
 															.sendJson(new JsonObject()
-																	.put("name", String.format("%s-%s", authRealm, groupName))
+																	.put("name", permissionName)
 																	.put("description", String.format("GET %s", groupName))
 																	.put("decisionStrategy", "AFFIRMATIVE")
 																	.put("resources", new JsonArray().add(classSimpleName))
@@ -1035,10 +1036,10 @@ abstract class BaseApiService {
 																	)
 															.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
 															.onSuccess(createPermissionResponse -> {
-														LOG.info(String.format("Successfully granted %s permission to %s", authScopesJson.encode(), classSimpleName));
+														LOG.info(String.format("Successfully granted %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classSimpleName));
 														promise.complete();
 													}).onFailure(ex -> {
-														LOG.error(String.format("Failed to grant %s permission to %s", authScopesJson.encode(), classSimpleName), ex);
+														LOG.error(String.format("Failed to grant %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classSimpleName), ex);
 														promise.fail(ex);
 													});
 												}).onFailure(ex -> {
