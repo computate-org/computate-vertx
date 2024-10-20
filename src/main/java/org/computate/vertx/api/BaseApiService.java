@@ -97,6 +97,7 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 import org.computate.search.tool.TimeTool;
@@ -961,14 +962,160 @@ abstract class BaseApiService {
 	}
 
 	/**
-	 * Description: Import page
+	 * Creates computate project related Keycloak authorization scopes. 
+	 * These include POST, PATCH, GET, DELETE, SiteAdmin, and SuperAdmin scopes. 
+	 * @return access_token String for creating other authorization resources. 
 	 */
-	public Future<Void> authorizeData(String classSimpleName, String groupName, String[] scopes) {
+	public Future<String> createAuthorizationScopes() {
+		Promise<String> promise = Promise.promise();
+		try {
+			String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
+			String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
+			String authScopeAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN);
+			String authScopeSuperAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN);
+			Integer authPort = config.getInteger(ComputateConfigKeys.AUTH_PORT);
+			String authHostName = config.getString(ComputateConfigKeys.AUTH_HOST_NAME);
+			Boolean authSsl = config.getBoolean(ComputateConfigKeys.AUTH_SSL);
+			String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
+			String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
+			List<Future<?>> futures = new ArrayList<>();
+			String[] authScopes = new String[] {"POST", "PATCH", "GET", "DELETE"
+					, config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN)
+					, config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN)
+					};
+
+			webClient.post(authPort, authHostName, "/realms/master/protocol/openid-connect/token").ssl(authSsl)
+					.sendForm(MultiMap.caseInsensitiveMultiMap()
+							.add("username", authAdminUsername)
+							.add("password", authAdminPassword)
+							.add("grant_type", "password")
+							.add("client_id", "admin-cli")
+							).onSuccess(tokenResponse -> {
+				try {
+					String authToken = tokenResponse.bodyAsJsonObject().getString("access_token");
+					for(String scopeName : authScopes) {
+						futures.add(Future.future(promise1 -> {
+							try {
+								String scopeId = StringUtils.substring(String.format("%s-%s", authRealm, scopeName), -1, 36);
+								webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/scope", authRealm, authClient)).ssl(authSsl)
+										.putHeader("Authorization", String.format("Bearer %s", authToken))
+										.sendJson(new JsonObject().put("id", scopeId).put("name", scopeName))
+										.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+										.onSuccess(createScopeResponse -> {
+									if(createScopeResponse.statusCode() == 201)
+										LOG.info(String.format("Created auth scope %s", scopeName));
+									promise1.complete();
+								}).onFailure(ex -> {
+									LOG.error(String.format("Failed to import auth scope %s", scopeName), ex);
+									promise1.fail(ex);
+								});
+							} catch(Throwable ex) {
+								LOG.error(String.format("Failed to import auth scope %s", scopeName), ex);
+								promise1.fail(ex);
+							}
+						}));
+					}
+					Future.all(futures).onSuccess(a -> {
+						promise.complete(authToken);
+					}).onFailure(ex -> {
+						LOG.error(String.format("Failed to import auth scopes %s", authScopes.toString()), ex);
+						promise.fail(ex);
+					});
+				} catch(Throwable ex) {
+					LOG.error(String.format("Failed to import auth scopes %s", authScopes.toString()), ex);
+					promise.fail(ex);
+				}
+			}).onFailure(ex -> {
+				LOG.error(String.format("Failed to import auth scopes %s", authScopes.toString()), ex);
+				promise.fail(ex);
+			});
+		} catch(Throwable ex) {
+			LOG.error("Failed to import auth scopes", ex);
+			promise.fail(ex);
+		}
+		return promise.future();
+	}
+
+	/**
+	 * Creates Keycloak group and authorization resource, policy, and permission for the group to class data in the site. 
+	 */
+	public Future<Void> authorizeClientData(String authToken, String classSimpleName, String clientId, String[] scopes) {
+		Promise<Void> promise = Promise.promise();
+		try {
+			if(clientId != null && scopes != null) {
+				String authScopeAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN);
+				String authScopeSuperAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN);
+				Integer authPort = config.getInteger(ComputateConfigKeys.AUTH_PORT);
+				String authHostName = config.getString(ComputateConfigKeys.AUTH_HOST_NAME);
+				Boolean authSsl = config.getBoolean(ComputateConfigKeys.AUTH_SSL);
+				String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
+				String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
+
+				String policyId = StringUtils.substring(String.format("%s-client-%s", authRealm, clientId), 0, 36);
+				String policyName = String.format("%s-client-%s", authRealm, clientId);
+				String permissionName = String.format("%s-client-%s-%s", authRealm, clientId, classSimpleName);
+				JsonArray authScopesJson = new JsonArray();
+				for(String scope : scopes) {
+					authScopesJson.add(String.format("%s-%s", authRealm, scope));
+				}
+				webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/policy/client", authRealm, authClient)).ssl(authSsl)
+						.putHeader("Authorization", String.format("Bearer %s", authToken))
+						.sendJson(new JsonObject().put("id", policyId).put("name", policyName).put("description", String.format("%s client", clientId)).put("clients", new JsonArray().add(clientId)))
+						.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+						.onSuccess(createPolicyResponse -> {
+					webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/resource", authRealm, authClient)).ssl(authSsl)
+							.putHeader("Authorization", String.format("Bearer %s", authToken))
+							.sendJson(new JsonObject()
+									.put("name", classSimpleName)
+									.put("displayName", classSimpleName)
+									.put("scopes", new JsonArray().add("POST").add("PATCH").add("GET").add("DELETE").add(authScopeAdmin).add(authScopeSuperAdmin))
+									)
+							.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+							.onSuccess(createResourceResponse -> {
+
+						webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/permission/scope", authRealm, authClient)).ssl(authSsl)
+								.putHeader("Authorization", String.format("Bearer %s", authToken))
+								.sendJson(new JsonObject()
+										.put("name", permissionName)
+										.put("description", String.format("GET %s", clientId))
+										.put("decisionStrategy", "AFFIRMATIVE")
+										.put("resources", new JsonArray().add(classSimpleName))
+										.put("policies", new JsonArray().add(policyName))
+										.put("scopes", authScopesJson)
+										)
+								.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+								.onSuccess(createPermissionResponse -> {
+							LOG.info(String.format("Successfully granted %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classSimpleName));
+							promise.complete();
+						}).onFailure(ex -> {
+							LOG.error(String.format("Failed to grant %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classSimpleName), ex);
+							promise.fail(ex);
+						});
+					}).onFailure(ex -> {
+						LOG.error(String.format("Failed to create %s auth resource %s", authScopesJson.encode(), classSimpleName), ex);
+						promise.fail(ex);
+					});
+				}).onFailure(ex -> {
+					LOG.error(String.format("Failed to create auth policy %s for resource %s", policyName, classSimpleName), ex);
+					promise.fail(ex);
+				});
+			} else {
+				promise.complete();
+			}
+		} catch(Throwable ex) {
+			LOG.error(String.format("Failed to set up Keycloak credentials while creating fine-grained resource permissions for client %s for resource %s", clientId, classSimpleName), ex);
+			promise.fail(ex);
+		}
+		return promise.future();
+	}
+
+	/**
+	 * Creates Keycloak group and authorization resource, policy, and permission for the group to class data in the site. 
+	 */
+	public Future<Void> authorizeGroupData(String authToken, String classSimpleName, String groupName, String[] scopes) {
 		Promise<Void> promise = Promise.promise();
 		try {
 			if(groupName != null && scopes != null) {
-				String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
-				String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
 				String authScopeAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN);
 				String authScopeSuperAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN);
 				Integer authPort = config.getInteger(ComputateConfigKeys.AUTH_PORT);
@@ -984,99 +1131,82 @@ abstract class BaseApiService {
 				for(String scope : scopes) {
 					authScopesJson.add(String.format("%s-%s", authRealm, scope));
 				}
-				webClient.post(authPort, authHostName, "/realms/master/protocol/openid-connect/token").ssl(authSsl)
-						.sendForm(MultiMap.caseInsensitiveMultiMap()
-								.add("username", authAdminUsername)
-								.add("password", authAdminPassword)
-								.add("grant_type", "password")
-								.add("client_id", "admin-cli")
-								).onSuccess(tokenResponse -> {
+				webClient.post(authPort, authHostName, String.format("/admin/realms/%s/groups", authRealm)).ssl(authSsl)
+						.putHeader("Authorization", String.format("Bearer %s", authToken))
+						.sendJson(new JsonObject().put("name", groupName))
+						.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+						.onSuccess(createGroupResponse -> {
 					try {
-						String authToken = tokenResponse.bodyAsJsonObject().getString("access_token");
-						webClient.post(authPort, authHostName, String.format("/admin/realms/%s/groups", authRealm)).ssl(authSsl)
+						webClient.get(authPort, authHostName, String.format("/admin/realms/%s/groups?exact=false&global=true&first=0&max=1&search=%s", authRealm, URLEncoder.encode(groupName, "UTF-8"))).ssl(authSsl)
 								.putHeader("Authorization", String.format("Bearer %s", authToken))
-								.sendJson(new JsonObject().put("name", groupName))
-								.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
-								.onSuccess(createGroupResponse -> {
+								.send()
+								.expecting(HttpResponseExpectation.SC_OK)
+								.onSuccess(groupsResponse -> {
 							try {
-								webClient.get(authPort, authHostName, String.format("/admin/realms/%s/groups?exact=false&global=true&first=0&max=1&search=%s", authRealm, URLEncoder.encode(groupName, "UTF-8"))).ssl(authSsl)
-										.putHeader("Authorization", String.format("Bearer %s", authToken))
-										.send()
-										.expecting(HttpResponseExpectation.SC_OK)
-										.onSuccess(groupsResponse -> {
-									try {
-										JsonArray groups = Optional.ofNullable(groupsResponse.bodyAsJsonArray()).orElse(new JsonArray());
-										JsonObject group = groups.stream().findFirst().map(o -> (JsonObject)o).orElse(null);
-										if(group != null) {
-											String groupId = group.getString("id");
-											webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/policy/group", authRealm, authClient)).ssl(authSsl)
-													.putHeader("Authorization", String.format("Bearer %s", authToken))
-													.sendJson(new JsonObject().put("id", policyId).put("name", policyName).put("description", String.format("%s group", groupName)).put("groups", new JsonArray().add(groupId)))
-													.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
-													.onSuccess(createPolicyResponse -> {
-												webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/resource", authRealm, authClient)).ssl(authSsl)
-														.putHeader("Authorization", String.format("Bearer %s", authToken))
-														.sendJson(new JsonObject()
-																.put("name", classSimpleName)
-																.put("displayName", classSimpleName)
-																.put("scopes", new JsonArray().add("POST").add("PATCH").add("GET").add("DELETE").add(authScopeAdmin).add(authScopeSuperAdmin))
-																)
-														.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
-														.onSuccess(createResourceResponse -> {
+								JsonArray groups = Optional.ofNullable(groupsResponse.bodyAsJsonArray()).orElse(new JsonArray());
+								JsonObject group = groups.stream().findFirst().map(o -> (JsonObject)o).orElse(null);
+								if(group != null) {
+									String groupId = group.getString("id");
+									webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/policy/group", authRealm, authClient)).ssl(authSsl)
+											.putHeader("Authorization", String.format("Bearer %s", authToken))
+											.sendJson(new JsonObject().put("id", policyId).put("name", policyName).put("description", String.format("%s group", groupName)).put("groups", new JsonArray().add(groupId)))
+											.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+											.onSuccess(createPolicyResponse -> {
+										webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/resource", authRealm, authClient)).ssl(authSsl)
+												.putHeader("Authorization", String.format("Bearer %s", authToken))
+												.sendJson(new JsonObject()
+														.put("name", classSimpleName)
+														.put("displayName", classSimpleName)
+														.put("scopes", new JsonArray().add("POST").add("PATCH").add("GET").add("DELETE").add(authScopeAdmin).add(authScopeSuperAdmin))
+														)
+												.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+												.onSuccess(createResourceResponse -> {
 
-													webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/permission/scope", authRealm, authClient)).ssl(authSsl)
-															.putHeader("Authorization", String.format("Bearer %s", authToken))
-															.sendJson(new JsonObject()
-																	.put("name", permissionName)
-																	.put("description", String.format("GET %s", groupName))
-																	.put("decisionStrategy", "AFFIRMATIVE")
-																	.put("resources", new JsonArray().add(classSimpleName))
-																	.put("policies", new JsonArray().add(policyName))
-																	.put("scopes", authScopesJson)
-																	)
-															.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
-															.onSuccess(createPermissionResponse -> {
-														LOG.info(String.format("Successfully granted %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classSimpleName));
-														promise.complete();
-													}).onFailure(ex -> {
-														LOG.error(String.format("Failed to grant %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classSimpleName), ex);
-														promise.fail(ex);
-													});
-												}).onFailure(ex -> {
-													LOG.error(String.format("Failed to create %s auth resource %s", authScopesJson.encode(), classSimpleName), ex);
-													promise.fail(ex);
-												});
+											webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/permission/scope", authRealm, authClient)).ssl(authSsl)
+													.putHeader("Authorization", String.format("Bearer %s", authToken))
+													.sendJson(new JsonObject()
+															.put("name", permissionName)
+															.put("description", String.format("GET %s", groupName))
+															.put("decisionStrategy", "AFFIRMATIVE")
+															.put("resources", new JsonArray().add(classSimpleName))
+															.put("policies", new JsonArray().add(policyName))
+															.put("scopes", authScopesJson)
+															)
+													.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+													.onSuccess(createPermissionResponse -> {
+												LOG.info(String.format("Successfully granted %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classSimpleName));
+												promise.complete();
 											}).onFailure(ex -> {
-												LOG.error(String.format("Failed to create auth policy %s for resource %s", policyName, classSimpleName), ex);
+												LOG.error(String.format("Failed to grant %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classSimpleName), ex);
 												promise.fail(ex);
 											});
-										} else {
-											Throwable ex = new RuntimeException(String.format("Failed to find group %s for resource %s", groupName, classSimpleName));
-											LOG.error(ex.getMessage(), ex);
+										}).onFailure(ex -> {
+											LOG.error(String.format("Failed to create %s auth resource %s", authScopesJson.encode(), classSimpleName), ex);
 											promise.fail(ex);
-										}
-									} catch(Throwable ex) {
-										LOG.error(String.format("Failed to set up fine-grained resource permissions for resource %s. ", classSimpleName), ex);
+										});
+									}).onFailure(ex -> {
+										LOG.error(String.format("Failed to create auth policy %s for resource %s", policyName, classSimpleName), ex);
 										promise.fail(ex);
-									}
-								}).onFailure(ex -> {
-									LOG.error(String.format("Failed to query the group %s for resource %s. ", groupName, classSimpleName), ex);
+									});
+								} else {
+									Throwable ex = new RuntimeException(String.format("Failed to find group %s for resource %s", groupName, classSimpleName));
+									LOG.error(ex.getMessage(), ex);
 									promise.fail(ex);
-								});
+								}
 							} catch(Throwable ex) {
 								LOG.error(String.format("Failed to set up fine-grained resource permissions for resource %s. ", classSimpleName), ex);
 								promise.fail(ex);
 							}
 						}).onFailure(ex -> {
-							LOG.error(String.format("Failed to create the group %s for resource %s. ", groupName, classSimpleName), ex);
+							LOG.error(String.format("Failed to query the group %s for resource %s. ", groupName, classSimpleName), ex);
 							promise.fail(ex);
 						});
 					} catch(Throwable ex) {
-						LOG.error(String.format("Failed to set up the auth token for fine-grained resource permissions for group %s for resource %s", groupName, classSimpleName), ex);
+						LOG.error(String.format("Failed to set up fine-grained resource permissions for resource %s. ", classSimpleName), ex);
 						promise.fail(ex);
 					}
 				}).onFailure(ex -> {
-					LOG.error(String.format("Failed to get an admin token while creating fine-grained resource permissions for group %s for resource %s", groupName, classSimpleName), ex);
+					LOG.error(String.format("Failed to create the group %s for resource %s. ", groupName, classSimpleName), ex);
 					promise.fail(ex);
 				});
 			} else {
@@ -1095,7 +1225,6 @@ abstract class BaseApiService {
 	 * Val.Fail.enUS:Importing %s data failed. 
 	 */
 	protected Future<Void> importData(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress) {
-		//STUFF0
 		Promise<Void> promise = Promise.promise();
 		ZonedDateTime now = ZonedDateTime.now(ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE)));
 		// i18nGenerator().onSuccess(i18n -> {
