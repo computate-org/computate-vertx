@@ -1331,7 +1331,7 @@ abstract class BaseApiService {
 				ctx.put(ComputateConfigKeys.SITE_POWERED_BY_IMAGE_URI, config.getString(ComputateConfigKeys.SITE_POWERED_BY_IMAGE_URI));
 				ctx.put(ComputateConfigKeys.FONTAWESOME_KIT, config.getString(ComputateConfigKeys.FONTAWESOME_KIT));
 
-				Matcher m = Pattern.compile("<meta property=\"([^\"]+)\"\\s+content=\"([^\"]*)\"\\s*/>", Pattern.MULTILINE).matcher(template);
+				Matcher m = Pattern.compile("<meta name=\"([^\"]+)\"\\s+content=\"([^\"]*)\"\\s*/>", Pattern.MULTILINE).matcher(template);
 				boolean trouve = m.find();
 				while (trouve) {
 					String siteKey = m.group(1);

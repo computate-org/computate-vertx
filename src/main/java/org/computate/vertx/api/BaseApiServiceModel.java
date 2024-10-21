@@ -78,7 +78,7 @@ public abstract class BaseApiServiceModel extends BaseApiServiceResult {
 					String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8) : Files.readString(resourceTemplatePath, Charset.forName("UTF-8"));
 					JsonObject ctx = ComputateConfigKeys.getPageContext(config);
 					ctx.put(classModel.getSimpleName(), model);
-					Matcher m = Pattern.compile("<meta property=\"([^\"]+)\"\\s+content=\"([^\"]*)\"/>", Pattern.MULTILINE).matcher(template);
+					Matcher m = Pattern.compile("<meta name=\"([^\"]+)\"\\s+content=\"([^\"]*)\"/>", Pattern.MULTILINE).matcher(template);
 					boolean trouve = m.find();
 					while (trouve) {
 						String siteKey = m.group(1);
@@ -167,7 +167,7 @@ public abstract class BaseApiServiceModel extends BaseApiServiceResult {
 										if(scopes.contains("GET")) {
 											ctx.put("scope", "GET");
 										}
-										Matcher m = Pattern.compile("<meta property=\"([^\"]+)\"\\s+content=\"([^\"]*)\"/>", Pattern.MULTILINE).matcher(template);
+										Matcher m = Pattern.compile("<meta name=\"([^\"]+)\"\\s+content=\"([^\"]*)\"/>", Pattern.MULTILINE).matcher(template);
 										boolean trouve = m.find();
 										while (trouve) {
 											String siteKey = m.group(1);
