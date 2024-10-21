@@ -506,7 +506,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				|| !StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH", "DELETE") && (
 					BooleanUtils.isNotTrue(classRoleSession) 
 					&& BooleanUtils.isNotTrue(classPublicRead) 
-					&& BooleanUtils.isNotTrue(classSearchPagePublicRead && classApiMethod.equals("SearchPage") && !id)
+					&& BooleanUtils.isNotTrue(BooleanUtils.isTrue(classSearchPagePublicRead) && classApiMethod.equals("SearchPage") && !id)
 					&& classAuth
 				)
 				) {
