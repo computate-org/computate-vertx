@@ -442,6 +442,8 @@ public class ComputateConfigKeys {
 		ctx.put(SITE_POWERED_BY_IMAGE_URI, config.getString(SITE_POWERED_BY_IMAGE_URI));
 		ctx.put(SITE_LOGO_URI, config.getString(SITE_LOGO_URI));
 		ctx.put(FONTAWESOME_KIT, config.getString(FONTAWESOME_KIT));
+		ctx.put(WEB_COMPONENTS_CSS, config.getString(WEB_COMPONENTS_CSS));
+		ctx.put(WEB_COMPONENTS_JS, config.getString(WEB_COMPONENTS_JS));
 		ctx.put(SITE_LOCALE, config.getString(SITE_LOCALE));
 		ctx.put(SITE_THEME, config.getString(SITE_THEME));
 		ctx.put(AUTH_SCOPE_ADMIN, config.getString(AUTH_SCOPE_ADMIN));
@@ -1248,6 +1250,16 @@ public class ComputateConfigKeys {
 	 * 
 	 **/
 	public static final String FONTAWESOME_KIT = "FONTAWESOME_KIT";
+
+	/**
+	 * 
+	 **/
+	public static final String WEB_COMPONENTS_CSS = "WEB_COMPONENTS_CSS";
+
+	/**
+	 * 
+	 **/
+	public static final String WEB_COMPONENTS_JS = "WEB_COMPONENTS_JS";
 
 	/**
 	 * 
