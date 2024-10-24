@@ -996,7 +996,7 @@ abstract class BaseApiService {
 					for(String scopeName : authScopes) {
 						futures.add(Future.future(promise1 -> {
 							try {
-								String scopeId = StringUtils.substring(String.format("%s-%s", authRealm, scopeName), -1, 36);
+								String scopeId = StringUtils.substring(String.format("%s-%s", authRealm, scopeName), 0, 36);
 								webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/scope", authRealm, authClient)).ssl(authSsl)
 										.putHeader("Authorization", String.format("Bearer %s", authToken))
 										.sendJson(new JsonObject().put("id", scopeId).put("name", scopeName))
