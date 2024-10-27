@@ -184,6 +184,7 @@ public class I18n {
 	public static final String var_clientWeb = "var_clientWeb";
 	public static final String var_ModeleBase = "var_ModeleBase";
 	public static final String var_Colonne = "var_Colonne";
+	public static final String var_COMPOSANTS_WEB_PREFIXE = "var_COMPOSANTS_WEB_PREFIXE";
 	public static final String var_COMPUTATE_ENSEMBLE_RECHERCHE_PREFIXE = "var_COMPUTATE_ENSEMBLE_RECHERCHE_PREFIXE";
 	public static final String var_COMPUTATE_VERTX_SRC = "var_COMPUTATE_VERTX_SRC";
 	public static final String var_ConfigChemin = "var_ConfigChemin";
