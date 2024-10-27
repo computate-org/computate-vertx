@@ -737,6 +737,7 @@ public class ComputateConfigKeys {
 	public static final String SITE_NAME = "SITE_NAME";
 
 	public static final String SITE_STATIC_NAME = "SITE_STATIC_NAME";
+	public static final String SITE_JAVA_PACKAGE = "SITE_JAVA_PACKAGE";
 
 	/**
 	 * The path to the source code of the site. 
@@ -1330,7 +1331,7 @@ public class ComputateConfigKeys {
 	public static final String CONTEXT_BROKER_CONTEXT = "CONTEXT_BROKER_CONTEXT";
 
 	public static final String USE_CASE_SRC = "USE_CASE_SRC";
-	public static final String USE_CASE_SUMMARY_PATH = "USE_CASE_SUMMARY_PATH";
+	public static final String USE_CASE_SUMMARY_NUM = "USE_CASE_SUMMARY_NUM";
 }
 
 /**

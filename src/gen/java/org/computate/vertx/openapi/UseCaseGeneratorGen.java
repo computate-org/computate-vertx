@@ -31,7 +31,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
-import org.computate.search.serialize.ComputateZonedDateTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -46,13 +45,14 @@ import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
 import java.lang.String;
+import io.vertx.core.json.JsonObject;
+import io.vertx.core.json.JsonArray;
+import java.lang.Integer;
 import java.io.File;
 import org.computate.vertx.writer.AllWriter;
-import io.vertx.core.json.JsonObject;
 import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
-import io.vertx.core.json.JsonArray;
 
 /**
  * <ol>
@@ -107,226 +107,56 @@ import io.vertx.core.json.JsonArray;
 public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
 	protected static final Logger LOG = LoggerFactory.getLogger(UseCaseGenerator.class);
 
-	///////////////////////////
-	// fiwareSwaggerYamlPath //
-	///////////////////////////
+	/////////////////
+	// useCasePath //
+	/////////////////
 
 
-	/**	 The entity fiwareSwaggerYamlPath
+	/**	 The entity useCasePath
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
 	@JsonInclude(Include.NON_NULL)
-	protected String fiwareSwaggerYamlPath;
+	protected String useCasePath;
 
-	/**	<br> The entity fiwareSwaggerYamlPath
+	/**	<br> The entity useCasePath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:fiwareSwaggerYamlPath">Find the entity fiwareSwaggerYamlPath in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCasePath">Find the entity useCasePath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
-	protected abstract void _fiwareSwaggerYamlPath(Wrap<String> c);
+	protected abstract void _useCasePath(Wrap<String> c);
 
-	public String getFiwareSwaggerYamlPath() {
-		return fiwareSwaggerYamlPath;
+	public String getUseCasePath() {
+		return useCasePath;
 	}
-	public void setFiwareSwaggerYamlPath(String o) {
-		this.fiwareSwaggerYamlPath = UseCaseGenerator.staticSetFiwareSwaggerYamlPath(siteRequest_, o);
+	public void setUseCasePath(String o) {
+		this.useCasePath = UseCaseGenerator.staticSetUseCasePath(siteRequest_, o);
 	}
-	public static String staticSetFiwareSwaggerYamlPath(ComputateSiteRequest siteRequest_, String o) {
+	public static String staticSetUseCasePath(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
-	protected UseCaseGenerator fiwareSwaggerYamlPathInit() {
-		Wrap<String> fiwareSwaggerYamlPathWrap = new Wrap<String>().var("fiwareSwaggerYamlPath");
-		if(fiwareSwaggerYamlPath == null) {
-			_fiwareSwaggerYamlPath(fiwareSwaggerYamlPathWrap);
-			Optional.ofNullable(fiwareSwaggerYamlPathWrap.getO()).ifPresent(o -> {
-				setFiwareSwaggerYamlPath(o);
+	protected UseCaseGenerator useCasePathInit() {
+		Wrap<String> useCasePathWrap = new Wrap<String>().var("useCasePath");
+		if(useCasePath == null) {
+			_useCasePath(useCasePathWrap);
+			Optional.ofNullable(useCasePathWrap.getO()).ifPresent(o -> {
+				setUseCasePath(o);
 			});
 		}
 		return (UseCaseGenerator)this;
 	}
 
-	public static String staticSearchFiwareSwaggerYamlPath(ComputateSiteRequest siteRequest_, String o) {
+	public static String staticSearchUseCasePath(ComputateSiteRequest siteRequest_, String o) {
 		return o;
 	}
 
-	public static String staticSearchStrFiwareSwaggerYamlPath(ComputateSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrUseCasePath(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqFiwareSwaggerYamlPath(ComputateSiteRequest siteRequest_, String o) {
-		return UseCaseGenerator.staticSearchFiwareSwaggerYamlPath(siteRequest_, UseCaseGenerator.staticSetFiwareSwaggerYamlPath(siteRequest_, o)).toString();
-	}
-
-	///////////////////////////
-	// fiwareSwaggerYamlFile //
-	///////////////////////////
-
-
-	/**	 The entity fiwareSwaggerYamlFile
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected File fiwareSwaggerYamlFile;
-
-	/**	<br> The entity fiwareSwaggerYamlFile
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:fiwareSwaggerYamlFile">Find the entity fiwareSwaggerYamlFile in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _fiwareSwaggerYamlFile(Wrap<File> c);
-
-	public File getFiwareSwaggerYamlFile() {
-		return fiwareSwaggerYamlFile;
-	}
-
-	public void setFiwareSwaggerYamlFile(File fiwareSwaggerYamlFile) {
-		this.fiwareSwaggerYamlFile = fiwareSwaggerYamlFile;
-	}
-	public static File staticSetFiwareSwaggerYamlFile(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected UseCaseGenerator fiwareSwaggerYamlFileInit() {
-		Wrap<File> fiwareSwaggerYamlFileWrap = new Wrap<File>().var("fiwareSwaggerYamlFile");
-		if(fiwareSwaggerYamlFile == null) {
-			_fiwareSwaggerYamlFile(fiwareSwaggerYamlFileWrap);
-			Optional.ofNullable(fiwareSwaggerYamlFileWrap.getO()).ifPresent(o -> {
-				setFiwareSwaggerYamlFile(o);
-			});
-		}
-		return (UseCaseGenerator)this;
-	}
-
-	////////////////////
-	// wFiwareSwagger //
-	////////////////////
-
-
-	/**	 The entity wFiwareSwagger
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected AllWriter wFiwareSwagger;
-
-	/**	<br> The entity wFiwareSwagger
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:wFiwareSwagger">Find the entity wFiwareSwagger in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _wFiwareSwagger(Wrap<AllWriter> c);
-
-	public AllWriter getWFiwareSwagger() {
-		return wFiwareSwagger;
-	}
-
-	public void setWFiwareSwagger(AllWriter wFiwareSwagger) {
-		this.wFiwareSwagger = wFiwareSwagger;
-	}
-	public static AllWriter staticSetWFiwareSwagger(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected UseCaseGenerator wFiwareSwaggerInit() {
-		Wrap<AllWriter> wFiwareSwaggerWrap = new Wrap<AllWriter>().var("wFiwareSwagger");
-		if(wFiwareSwagger == null) {
-			_wFiwareSwagger(wFiwareSwaggerWrap);
-			Optional.ofNullable(wFiwareSwaggerWrap.getO()).ifPresent(o -> {
-				setWFiwareSwagger(o);
-			});
-		}
-		if(wFiwareSwagger != null)
-			wFiwareSwagger.initDeepForClass(siteRequest_);
-		return (UseCaseGenerator)this;
-	}
-
-	/////////////////////
-	// wFiwareExamples //
-	/////////////////////
-
-
-	/**	 The entity wFiwareExamples
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected AllWriter wFiwareExamples;
-
-	/**	<br> The entity wFiwareExamples
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:wFiwareExamples">Find the entity wFiwareExamples in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _wFiwareExamples(Wrap<AllWriter> c);
-
-	public AllWriter getWFiwareExamples() {
-		return wFiwareExamples;
-	}
-
-	public void setWFiwareExamples(AllWriter wFiwareExamples) {
-		this.wFiwareExamples = wFiwareExamples;
-	}
-	public static AllWriter staticSetWFiwareExamples(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected UseCaseGenerator wFiwareExamplesInit() {
-		Wrap<AllWriter> wFiwareExamplesWrap = new Wrap<AllWriter>().var("wFiwareExamples");
-		if(wFiwareExamples == null) {
-			_wFiwareExamples(wFiwareExamplesWrap);
-			Optional.ofNullable(wFiwareExamplesWrap.getO()).ifPresent(o -> {
-				setWFiwareExamples(o);
-			});
-		}
-		if(wFiwareExamples != null)
-			wFiwareExamples.initDeepForClass(siteRequest_);
-		return (UseCaseGenerator)this;
-	}
-
-	///////////////////////////////
-	// wFiwareExamplesNormalized //
-	///////////////////////////////
-
-
-	/**	 The entity wFiwareExamplesNormalized
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected AllWriter wFiwareExamplesNormalized;
-
-	/**	<br> The entity wFiwareExamplesNormalized
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:wFiwareExamplesNormalized">Find the entity wFiwareExamplesNormalized in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _wFiwareExamplesNormalized(Wrap<AllWriter> c);
-
-	public AllWriter getWFiwareExamplesNormalized() {
-		return wFiwareExamplesNormalized;
-	}
-
-	public void setWFiwareExamplesNormalized(AllWriter wFiwareExamplesNormalized) {
-		this.wFiwareExamplesNormalized = wFiwareExamplesNormalized;
-	}
-	public static AllWriter staticSetWFiwareExamplesNormalized(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected UseCaseGenerator wFiwareExamplesNormalizedInit() {
-		Wrap<AllWriter> wFiwareExamplesNormalizedWrap = new Wrap<AllWriter>().var("wFiwareExamplesNormalized");
-		if(wFiwareExamplesNormalized == null) {
-			_wFiwareExamplesNormalized(wFiwareExamplesNormalizedWrap);
-			Optional.ofNullable(wFiwareExamplesNormalizedWrap.getO()).ifPresent(o -> {
-				setWFiwareExamplesNormalized(o);
-			});
-		}
-		if(wFiwareExamplesNormalized != null)
-			wFiwareExamplesNormalized.initDeepForClass(siteRequest_);
-		return (UseCaseGenerator)this;
+	public static String staticSearchFqUseCasePath(ComputateSiteRequest siteRequest_, String o) {
+		return UseCaseGenerator.staticSearchUseCasePath(siteRequest_, UseCaseGenerator.staticSetUseCasePath(siteRequest_, o)).toString();
 	}
 
 	////////////////////
@@ -383,139 +213,201 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
 		return UseCaseGenerator.staticSearchUseCaseSummary(siteRequest_, UseCaseGenerator.staticSetUseCaseSummary(siteRequest_, o)).toString();
 	}
 
-	//////////////////////////////
-	// useCaseSummaryJsonldPath //
-	//////////////////////////////
+	/////////////////////////
+	// useCaseSummaryCells //
+	/////////////////////////
 
 
-	/**	 The entity useCaseSummaryJsonldPath
-	 *	 is defined as null before being initialized. 
+	/**	 The entity useCaseSummaryCells
+	 *	 It is constructed before being initialized with the constructor by default. 
 	 */
 	@JsonProperty
 	@JsonInclude(Include.NON_NULL)
-	protected String useCaseSummaryJsonldPath;
+	protected JsonArray useCaseSummaryCells = new JsonArray();
 
-	/**	<br> The entity useCaseSummaryJsonldPath
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCaseSummaryJsonldPath">Find the entity useCaseSummaryJsonldPath in Solr</a>
+	/**	<br> The entity useCaseSummaryCells
+	 *  It is constructed before being initialized with the constructor by default. 
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCaseSummaryCells">Find the entity useCaseSummaryCells in Solr</a>
 	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 * @param a is the entity already constructed. 
 	 **/
-	protected abstract void _useCaseSummaryJsonldPath(Wrap<String> c);
+	protected abstract void _useCaseSummaryCells(JsonArray a);
 
-	public String getUseCaseSummaryJsonldPath() {
-		return useCaseSummaryJsonldPath;
+	public JsonArray getUseCaseSummaryCells() {
+		return useCaseSummaryCells;
 	}
-	public void setUseCaseSummaryJsonldPath(String o) {
-		this.useCaseSummaryJsonldPath = UseCaseGenerator.staticSetUseCaseSummaryJsonldPath(siteRequest_, o);
+
+	public void setUseCaseSummaryCells(JsonArray useCaseSummaryCells) {
+		this.useCaseSummaryCells = useCaseSummaryCells;
 	}
-	public static String staticSetUseCaseSummaryJsonldPath(ComputateSiteRequest siteRequest_, String o) {
-		return o;
+	@JsonIgnore
+	public void setUseCaseSummaryCells(String o) {
+		this.useCaseSummaryCells = UseCaseGenerator.staticSetUseCaseSummaryCells(siteRequest_, o);
 	}
-	protected UseCaseGenerator useCaseSummaryJsonldPathInit() {
-		Wrap<String> useCaseSummaryJsonldPathWrap = new Wrap<String>().var("useCaseSummaryJsonldPath");
-		if(useCaseSummaryJsonldPath == null) {
-			_useCaseSummaryJsonldPath(useCaseSummaryJsonldPathWrap);
-			Optional.ofNullable(useCaseSummaryJsonldPathWrap.getO()).ifPresent(o -> {
-				setUseCaseSummaryJsonldPath(o);
-			});
+	public static JsonArray staticSetUseCaseSummaryCells(ComputateSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonArray(o);
 		}
+		return null;
+	}
+	protected UseCaseGenerator useCaseSummaryCellsInit() {
+		_useCaseSummaryCells(useCaseSummaryCells);
 		return (UseCaseGenerator)this;
 	}
 
-	public static String staticSearchUseCaseSummaryJsonldPath(ComputateSiteRequest siteRequest_, String o) {
-		return o;
+	public static String staticSearchUseCaseSummaryCells(ComputateSiteRequest siteRequest_, JsonArray o) {
+		return o.toString();
 	}
 
-	public static String staticSearchStrUseCaseSummaryJsonldPath(ComputateSiteRequest siteRequest_, String o) {
+	public static String staticSearchStrUseCaseSummaryCells(ComputateSiteRequest siteRequest_, String o) {
 		return o == null ? null : o.toString();
 	}
 
-	public static String staticSearchFqUseCaseSummaryJsonldPath(ComputateSiteRequest siteRequest_, String o) {
-		return UseCaseGenerator.staticSearchUseCaseSummaryJsonldPath(siteRequest_, UseCaseGenerator.staticSetUseCaseSummaryJsonldPath(siteRequest_, o)).toString();
+	public static String staticSearchFqUseCaseSummaryCells(ComputateSiteRequest siteRequest_, String o) {
+		return UseCaseGenerator.staticSearchUseCaseSummaryCells(siteRequest_, UseCaseGenerator.staticSetUseCaseSummaryCells(siteRequest_, o)).toString();
 	}
 
-	//////////////////////////////
-	// useCaseSummaryJsonldFile //
-	//////////////////////////////
+	///////////////////////
+	// useCaseSummaryNum //
+	///////////////////////
 
 
-	/**	 The entity useCaseSummaryJsonldFile
+	/**	 The entity useCaseSummaryNum
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
+	@JsonSerialize(using = ToStringSerializer.class)
 	@JsonInclude(Include.NON_NULL)
-	protected File useCaseSummaryJsonldFile;
+	protected Integer useCaseSummaryNum;
 
-	/**	<br> The entity useCaseSummaryJsonldFile
+	/**	<br> The entity useCaseSummaryNum
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCaseSummaryJsonldFile">Find the entity useCaseSummaryJsonldFile in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCaseSummaryNum">Find the entity useCaseSummaryNum in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
-	protected abstract void _useCaseSummaryJsonldFile(Wrap<File> c);
+	protected abstract void _useCaseSummaryNum(Wrap<Integer> c);
 
-	public File getUseCaseSummaryJsonldFile() {
-		return useCaseSummaryJsonldFile;
+	public Integer getUseCaseSummaryNum() {
+		return useCaseSummaryNum;
 	}
 
-	public void setUseCaseSummaryJsonldFile(File useCaseSummaryJsonldFile) {
-		this.useCaseSummaryJsonldFile = useCaseSummaryJsonldFile;
+	public void setUseCaseSummaryNum(Integer useCaseSummaryNum) {
+		this.useCaseSummaryNum = useCaseSummaryNum;
 	}
-	public static File staticSetUseCaseSummaryJsonldFile(ComputateSiteRequest siteRequest_, String o) {
+	@JsonIgnore
+	public void setUseCaseSummaryNum(String o) {
+		this.useCaseSummaryNum = UseCaseGenerator.staticSetUseCaseSummaryNum(siteRequest_, o);
+	}
+	public static Integer staticSetUseCaseSummaryNum(ComputateSiteRequest siteRequest_, String o) {
+		if(NumberUtils.isParsable(o))
+			return Integer.parseInt(o);
 		return null;
 	}
-	protected UseCaseGenerator useCaseSummaryJsonldFileInit() {
-		Wrap<File> useCaseSummaryJsonldFileWrap = new Wrap<File>().var("useCaseSummaryJsonldFile");
-		if(useCaseSummaryJsonldFile == null) {
-			_useCaseSummaryJsonldFile(useCaseSummaryJsonldFileWrap);
-			Optional.ofNullable(useCaseSummaryJsonldFileWrap.getO()).ifPresent(o -> {
-				setUseCaseSummaryJsonldFile(o);
+	protected UseCaseGenerator useCaseSummaryNumInit() {
+		Wrap<Integer> useCaseSummaryNumWrap = new Wrap<Integer>().var("useCaseSummaryNum");
+		if(useCaseSummaryNum == null) {
+			_useCaseSummaryNum(useCaseSummaryNumWrap);
+			Optional.ofNullable(useCaseSummaryNumWrap.getO()).ifPresent(o -> {
+				setUseCaseSummaryNum(o);
 			});
 		}
 		return (UseCaseGenerator)this;
 	}
 
-	////////////////////
-	// wFiwareContext //
-	////////////////////
+	public static Integer staticSearchUseCaseSummaryNum(ComputateSiteRequest siteRequest_, Integer o) {
+		return o;
+	}
+
+	public static String staticSearchStrUseCaseSummaryNum(ComputateSiteRequest siteRequest_, Integer o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqUseCaseSummaryNum(ComputateSiteRequest siteRequest_, String o) {
+		return UseCaseGenerator.staticSearchUseCaseSummaryNum(siteRequest_, UseCaseGenerator.staticSetUseCaseSummaryNum(siteRequest_, o)).toString();
+	}
+
+	////////////////////////
+	// useCaseSummaryFile //
+	////////////////////////
 
 
-	/**	 The entity wFiwareContext
+	/**	 The entity useCaseSummaryFile
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
 	@JsonInclude(Include.NON_NULL)
-	protected AllWriter wFiwareContext;
+	protected File useCaseSummaryFile;
 
-	/**	<br> The entity wFiwareContext
+	/**	<br> The entity useCaseSummaryFile
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:wFiwareContext">Find the entity wFiwareContext in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCaseSummaryFile">Find the entity useCaseSummaryFile in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
-	protected abstract void _wFiwareContext(Wrap<AllWriter> c);
+	protected abstract void _useCaseSummaryFile(Wrap<File> c);
 
-	public AllWriter getWFiwareContext() {
-		return wFiwareContext;
+	public File getUseCaseSummaryFile() {
+		return useCaseSummaryFile;
 	}
 
-	public void setWFiwareContext(AllWriter wFiwareContext) {
-		this.wFiwareContext = wFiwareContext;
+	public void setUseCaseSummaryFile(File useCaseSummaryFile) {
+		this.useCaseSummaryFile = useCaseSummaryFile;
 	}
-	public static AllWriter staticSetWFiwareContext(ComputateSiteRequest siteRequest_, String o) {
+	public static File staticSetUseCaseSummaryFile(ComputateSiteRequest siteRequest_, String o) {
 		return null;
 	}
-	protected UseCaseGenerator wFiwareContextInit() {
-		Wrap<AllWriter> wFiwareContextWrap = new Wrap<AllWriter>().var("wFiwareContext");
-		if(wFiwareContext == null) {
-			_wFiwareContext(wFiwareContextWrap);
-			Optional.ofNullable(wFiwareContextWrap.getO()).ifPresent(o -> {
-				setWFiwareContext(o);
+	protected UseCaseGenerator useCaseSummaryFileInit() {
+		Wrap<File> useCaseSummaryFileWrap = new Wrap<File>().var("useCaseSummaryFile");
+		if(useCaseSummaryFile == null) {
+			_useCaseSummaryFile(useCaseSummaryFileWrap);
+			Optional.ofNullable(useCaseSummaryFileWrap.getO()).ifPresent(o -> {
+				setUseCaseSummaryFile(o);
 			});
 		}
-		if(wFiwareContext != null)
-			wFiwareContext.initDeepForClass(siteRequest_);
+		return (UseCaseGenerator)this;
+	}
+
+	/////////////////////
+	// wUseCaseSummary //
+	/////////////////////
+
+
+	/**	 The entity wUseCaseSummary
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected AllWriter wUseCaseSummary;
+
+	/**	<br> The entity wUseCaseSummary
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:wUseCaseSummary">Find the entity wUseCaseSummary in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _wUseCaseSummary(Wrap<AllWriter> c);
+
+	public AllWriter getWUseCaseSummary() {
+		return wUseCaseSummary;
+	}
+
+	public void setWUseCaseSummary(AllWriter wUseCaseSummary) {
+		this.wUseCaseSummary = wUseCaseSummary;
+	}
+	public static AllWriter staticSetWUseCaseSummary(ComputateSiteRequest siteRequest_, String o) {
+		return null;
+	}
+	protected UseCaseGenerator wUseCaseSummaryInit() {
+		Wrap<AllWriter> wUseCaseSummaryWrap = new Wrap<AllWriter>().var("wUseCaseSummary");
+		if(wUseCaseSummary == null) {
+			_wUseCaseSummary(wUseCaseSummaryWrap);
+			Optional.ofNullable(wUseCaseSummaryWrap.getO()).ifPresent(o -> {
+				setWUseCaseSummary(o);
+			});
+		}
+		if(wUseCaseSummary != null)
+			wUseCaseSummary.initDeepForClass(siteRequest_);
 		return (UseCaseGenerator)this;
 	}
 
@@ -535,15 +427,12 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
 	}
 
 	public void initUseCaseGenerator() {
-				fiwareSwaggerYamlPathInit();
-				fiwareSwaggerYamlFileInit();
-				wFiwareSwaggerInit();
-				wFiwareExamplesInit();
-				wFiwareExamplesNormalizedInit();
+				useCasePathInit();
 				useCaseSummaryInit();
-				useCaseSummaryJsonldPathInit();
-				useCaseSummaryJsonldFileInit();
-				wFiwareContextInit();
+				useCaseSummaryCellsInit();
+				useCaseSummaryNumInit();
+				useCaseSummaryFileInit();
+				wUseCaseSummaryInit();
 	}
 
 	@Override public void initDeepForClass(ComputateSiteRequest siteRequest_) {
@@ -556,14 +445,8 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
 
 	public void siteRequestUseCaseGenerator(ComputateSiteRequest siteRequest_) {
 			super.siteRequestFiwareGenerator(siteRequest_);
-		if(wFiwareSwagger != null)
-			wFiwareSwagger.setSiteRequest_(siteRequest_);
-		if(wFiwareExamples != null)
-			wFiwareExamples.setSiteRequest_(siteRequest_);
-		if(wFiwareExamplesNormalized != null)
-			wFiwareExamplesNormalized.setSiteRequest_(siteRequest_);
-		if(wFiwareContext != null)
-			wFiwareContext.setSiteRequest_(siteRequest_);
+		if(wUseCaseSummary != null)
+			wUseCaseSummary.setSiteRequest_(siteRequest_);
 	}
 
 	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
@@ -590,24 +473,18 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
 	public Object obtainUseCaseGenerator(String var) {
 		UseCaseGenerator oUseCaseGenerator = (UseCaseGenerator)this;
 		switch(var) {
-			case "fiwareSwaggerYamlPath":
-				return oUseCaseGenerator.fiwareSwaggerYamlPath;
-			case "fiwareSwaggerYamlFile":
-				return oUseCaseGenerator.fiwareSwaggerYamlFile;
-			case "wFiwareSwagger":
-				return oUseCaseGenerator.wFiwareSwagger;
-			case "wFiwareExamples":
-				return oUseCaseGenerator.wFiwareExamples;
-			case "wFiwareExamplesNormalized":
-				return oUseCaseGenerator.wFiwareExamplesNormalized;
+			case "useCasePath":
+				return oUseCaseGenerator.useCasePath;
 			case "useCaseSummary":
 				return oUseCaseGenerator.useCaseSummary;
-			case "useCaseSummaryJsonldPath":
-				return oUseCaseGenerator.useCaseSummaryJsonldPath;
-			case "useCaseSummaryJsonldFile":
-				return oUseCaseGenerator.useCaseSummaryJsonldFile;
-			case "wFiwareContext":
-				return oUseCaseGenerator.wFiwareContext;
+			case "useCaseSummaryCells":
+				return oUseCaseGenerator.useCaseSummaryCells;
+			case "useCaseSummaryNum":
+				return oUseCaseGenerator.useCaseSummaryNum;
+			case "useCaseSummaryFile":
+				return oUseCaseGenerator.useCaseSummaryFile;
+			case "wUseCaseSummary":
+				return oUseCaseGenerator.wUseCaseSummary;
 			default:
 				return super.obtainFiwareGenerator(var);
 		}
@@ -643,12 +520,14 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
 	}
 	public static Object staticSetUseCaseGenerator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
-		case "fiwareSwaggerYamlPath":
-			return UseCaseGenerator.staticSetFiwareSwaggerYamlPath(siteRequest_, o);
+		case "useCasePath":
+			return UseCaseGenerator.staticSetUseCasePath(siteRequest_, o);
 		case "useCaseSummary":
 			return UseCaseGenerator.staticSetUseCaseSummary(siteRequest_, o);
-		case "useCaseSummaryJsonldPath":
-			return UseCaseGenerator.staticSetUseCaseSummaryJsonldPath(siteRequest_, o);
+		case "useCaseSummaryCells":
+			return UseCaseGenerator.staticSetUseCaseSummaryCells(siteRequest_, o);
+		case "useCaseSummaryNum":
+			return UseCaseGenerator.staticSetUseCaseSummaryNum(siteRequest_, o);
 			default:
 				return FiwareGenerator.staticSetFiwareGenerator(entityVar,  siteRequest_, o);
 		}
@@ -663,12 +542,14 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
 	}
 	public static Object staticSearchUseCaseGenerator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
-		case "fiwareSwaggerYamlPath":
-			return UseCaseGenerator.staticSearchFiwareSwaggerYamlPath(siteRequest_, (String)o);
+		case "useCasePath":
+			return UseCaseGenerator.staticSearchUseCasePath(siteRequest_, (String)o);
 		case "useCaseSummary":
 			return UseCaseGenerator.staticSearchUseCaseSummary(siteRequest_, (JsonObject)o);
-		case "useCaseSummaryJsonldPath":
-			return UseCaseGenerator.staticSearchUseCaseSummaryJsonldPath(siteRequest_, (String)o);
+		case "useCaseSummaryCells":
+			return UseCaseGenerator.staticSearchUseCaseSummaryCells(siteRequest_, (JsonArray)o);
+		case "useCaseSummaryNum":
+			return UseCaseGenerator.staticSearchUseCaseSummaryNum(siteRequest_, (Integer)o);
 			default:
 				return FiwareGenerator.staticSearchFiwareGenerator(entityVar,  siteRequest_, o);
 		}
@@ -683,12 +564,14 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
 	}
 	public static String staticSearchStrUseCaseGenerator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
-		case "fiwareSwaggerYamlPath":
-			return UseCaseGenerator.staticSearchStrFiwareSwaggerYamlPath(siteRequest_, (String)o);
+		case "useCasePath":
+			return UseCaseGenerator.staticSearchStrUseCasePath(siteRequest_, (String)o);
 		case "useCaseSummary":
 			return UseCaseGenerator.staticSearchStrUseCaseSummary(siteRequest_, (String)o);
-		case "useCaseSummaryJsonldPath":
-			return UseCaseGenerator.staticSearchStrUseCaseSummaryJsonldPath(siteRequest_, (String)o);
+		case "useCaseSummaryCells":
+			return UseCaseGenerator.staticSearchStrUseCaseSummaryCells(siteRequest_, (String)o);
+		case "useCaseSummaryNum":
+			return UseCaseGenerator.staticSearchStrUseCaseSummaryNum(siteRequest_, (Integer)o);
 			default:
 				return FiwareGenerator.staticSearchStrFiwareGenerator(entityVar,  siteRequest_, o);
 		}
@@ -703,12 +586,14 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
 	}
 	public static String staticSearchFqUseCaseGenerator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
-		case "fiwareSwaggerYamlPath":
-			return UseCaseGenerator.staticSearchFqFiwareSwaggerYamlPath(siteRequest_, o);
+		case "useCasePath":
+			return UseCaseGenerator.staticSearchFqUseCasePath(siteRequest_, o);
 		case "useCaseSummary":
 			return UseCaseGenerator.staticSearchFqUseCaseSummary(siteRequest_, o);
-		case "useCaseSummaryJsonldPath":
-			return UseCaseGenerator.staticSearchFqUseCaseSummaryJsonldPath(siteRequest_, o);
+		case "useCaseSummaryCells":
+			return UseCaseGenerator.staticSearchFqUseCaseSummaryCells(siteRequest_, o);
+		case "useCaseSummaryNum":
+			return UseCaseGenerator.staticSearchFqUseCaseSummaryNum(siteRequest_, o);
 			default:
 				return FiwareGenerator.staticSearchFqFiwareGenerator(entityVar,  siteRequest_, o);
 		}
@@ -725,49 +610,37 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
 	}
 
 	public static final String CLASS_SIMPLE_NAME = "UseCaseGenerator";
-	public static final String VAR_fiwareSwaggerYamlPath = "fiwareSwaggerYamlPath";
-	public static final String VAR_fiwareSwaggerYamlFile = "fiwareSwaggerYamlFile";
-	public static final String VAR_wFiwareSwagger = "wFiwareSwagger";
-	public static final String VAR_wFiwareExamples = "wFiwareExamples";
-	public static final String VAR_wFiwareExamplesNormalized = "wFiwareExamplesNormalized";
+	public static final String VAR_useCasePath = "useCasePath";
 	public static final String VAR_useCaseSummary = "useCaseSummary";
-	public static final String VAR_useCaseSummaryJsonldPath = "useCaseSummaryJsonldPath";
-	public static final String VAR_useCaseSummaryJsonldFile = "useCaseSummaryJsonldFile";
-	public static final String VAR_wFiwareContext = "wFiwareContext";
+	public static final String VAR_useCaseSummaryCells = "useCaseSummaryCells";
+	public static final String VAR_useCaseSummaryNum = "useCaseSummaryNum";
+	public static final String VAR_useCaseSummaryFile = "useCaseSummaryFile";
+	public static final String VAR_wUseCaseSummary = "wUseCaseSummary";
 
-	public static final String DISPLAY_NAME_fiwareSwaggerYamlPath = "";
-	public static final String DISPLAY_NAME_fiwareSwaggerYamlFile = "";
-	public static final String DISPLAY_NAME_wFiwareSwagger = "";
-	public static final String DISPLAY_NAME_wFiwareExamples = "";
-	public static final String DISPLAY_NAME_wFiwareExamplesNormalized = "";
+	public static final String DISPLAY_NAME_useCasePath = "";
 	public static final String DISPLAY_NAME_useCaseSummary = "";
-	public static final String DISPLAY_NAME_useCaseSummaryJsonldPath = "";
-	public static final String DISPLAY_NAME_useCaseSummaryJsonldFile = "";
-	public static final String DISPLAY_NAME_wFiwareContext = "";
+	public static final String DISPLAY_NAME_useCaseSummaryCells = "";
+	public static final String DISPLAY_NAME_useCaseSummaryNum = "";
+	public static final String DISPLAY_NAME_useCaseSummaryFile = "";
+	public static final String DISPLAY_NAME_wUseCaseSummary = "";
 
 	public static String displayNameForClass(String var) {
 		return UseCaseGenerator.displayNameUseCaseGenerator(var);
 	}
 	public static String displayNameUseCaseGenerator(String var) {
 		switch(var) {
-		case VAR_fiwareSwaggerYamlPath:
-			return DISPLAY_NAME_fiwareSwaggerYamlPath;
-		case VAR_fiwareSwaggerYamlFile:
-			return DISPLAY_NAME_fiwareSwaggerYamlFile;
-		case VAR_wFiwareSwagger:
-			return DISPLAY_NAME_wFiwareSwagger;
-		case VAR_wFiwareExamples:
-			return DISPLAY_NAME_wFiwareExamples;
-		case VAR_wFiwareExamplesNormalized:
-			return DISPLAY_NAME_wFiwareExamplesNormalized;
+		case VAR_useCasePath:
+			return DISPLAY_NAME_useCasePath;
 		case VAR_useCaseSummary:
 			return DISPLAY_NAME_useCaseSummary;
-		case VAR_useCaseSummaryJsonldPath:
-			return DISPLAY_NAME_useCaseSummaryJsonldPath;
-		case VAR_useCaseSummaryJsonldFile:
-			return DISPLAY_NAME_useCaseSummaryJsonldFile;
-		case VAR_wFiwareContext:
-			return DISPLAY_NAME_wFiwareContext;
+		case VAR_useCaseSummaryCells:
+			return DISPLAY_NAME_useCaseSummaryCells;
+		case VAR_useCaseSummaryNum:
+			return DISPLAY_NAME_useCaseSummaryNum;
+		case VAR_useCaseSummaryFile:
+			return DISPLAY_NAME_useCaseSummaryFile;
+		case VAR_wUseCaseSummary:
+			return DISPLAY_NAME_wUseCaseSummary;
 		default:
 			return FiwareGenerator.displayNameFiwareGenerator(var);
 		}
