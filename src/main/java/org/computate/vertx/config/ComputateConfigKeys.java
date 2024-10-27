@@ -1328,6 +1328,9 @@ public class ComputateConfigKeys {
 	public static final String CONTEXT_BROKER_PORT = "CONTEXT_BROKER_PORT";
 	public static final String CONTEXT_BROKER_DELAY_MILLIS = "CONTEXT_BROKER_DELAY_MILLIS";
 	public static final String CONTEXT_BROKER_CONTEXT = "CONTEXT_BROKER_CONTEXT";
+
+	public static final String USE_CASE_SRC = "USE_CASE_SRC";
+	public static final String USE_CASE_SUMMARY_PATH = "USE_CASE_SUMMARY_PATH";
 }
 
 /**
