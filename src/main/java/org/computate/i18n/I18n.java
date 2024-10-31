@@ -47,6 +47,7 @@ public class I18n {
 	public static final String str_EEE_d_MMM_yyyy = "str_EEE_d_MMM_yyyy";
 	public static final String str_EEE_d_MMM_yyyy_HAposhAposmmColonss_zz = "str_EEE_d_MMM_yyyy_HAposhAposmmColonss_zz";
 	public static final String str_EEE_d_MMM_yyyy_HAposhAposmmColonss_zz_VV = "str_EEE_d_MMM_yyyy_HAposhAposmmColonss_zz_VV";
+	public static final String str_Erreur_lors_de_lanalyse_de_la_classe = "str_Erreur_lors_de_lanalyse_de_la_classe";
 	public static final String str__est_défini_comme_null_avant_d_être_initialisé__ = "str__est_défini_comme_null_avant_d_être_initialisé__";
 	public static final String str__est_l_entité_déjà_construit__ = "str__est_l_entité_déjà_construit__";
 	public static final String str__est_pour_envelopper_une_valeur_à_assigner_à_cette_entité_lors_de_l_initialisation__ = "str__est_pour_envelopper_une_valeur_à_assigner_à_cette_entité_lors_de_l_initialisation__";
@@ -152,6 +153,7 @@ public class I18n {
 	public static final String var_AUTRES_LANGUES = "var_AUTRES_LANGUES";
 	public static final String var_avant = "var_avant";
 	public static final String var_Avant = "var_Avant";
+	public static final String var_BarreLaterale = "var_BarreLaterale";
 	public static final String var_BaseApiServiceImpl = "var_BaseApiServiceImpl";
 	public static final String var_Bouton = "var_Bouton";
 	public static final String var_BoutonsPagination = "var_BoutonsPagination";
@@ -161,6 +163,7 @@ public class I18n {
 	public static final String var_Ce = "var_Ce";
 	public static final String var_CeNom = "var_CeNom";
 	public static final String var_CHEMINS_RELATIFS_A_REGARDER = "var_CHEMINS_RELATIFS_A_REGARDER";
+	public static final String var_CHEMIN_STATIQUE = "var_CHEMIN_STATIQUE";
 	public static final String var_classeApiMethodeMethode = "var_classeApiMethodeMethode";
 	public static final String var_classeApiUriMethode = "var_classeApiUriMethode";
 	public static final String var_classeCheminAbsolu = "var_classeCheminAbsolu";
@@ -241,11 +244,12 @@ public class I18n {
 	public static final String var_ecrireCommentaire = "var_ecrireCommentaire";
 	public static final String var_ECRIRE_COMMENTAIRE = "var_ECRIRE_COMMENTAIRE";
 	public static final String var_Ecrire = "var_Ecrire";
+	public static final String var_Edition = "var_Edition";
+	public static final String var_Emplacement = "var_Emplacement";
 	public static final String var_enleverLueur = "var_enleverLueur";
 	public static final String var_enregistrer = "var_enregistrer";
-	public static final String var_entite = "var_entite";
-	public static final String var_Emplacement = "var_Emplacement";
 	public static final String var_EnTeteExpression = "var_EnTeteExpression";
+	public static final String var_entite = "var_entite";
 	public static final String var_EnumNomSimple = "var_EnumNomSimple";
 	public static final String var_EnumVarDescription = "var_EnumVarDescription";
 	public static final String var_Envoi = "var_Envoi";
@@ -266,6 +270,7 @@ public class I18n {
 	public static final String var_formulaireFiltres = "var_formulaireFiltres";
 	public static final String var_FormulaireFiltres = "var_FormulaireFiltres";
 	public static final String var_Formulaire = "var_Formulaire";
+	public static final String var_FormulaireRecherche = "var_FormulaireRecherche";
 	public static final String var_Formulaires = "var_Formulaires";
 	public static final String var_formulaireValeur = "var_formulaireValeur";
 	public static final String var_formulaireValeurs = "var_formulaireValeurs";
@@ -412,14 +417,17 @@ public class I18n {
 	public static final String var_pageActuel = "var_pageActuel";
 	public static final String var_page = "var_page";
 	public static final String var_Page = "var_Page";
-	public static final String var_PageBase = "var_PageBase";
+	public static final String var_PageAffichage = "var_PageAffichage";
+	public static final String var_PageEdition = "var_PageEdition";
 	public static final String var_PagePart = "var_PagePart";
 	public static final String var_PageRecherche = "var_PageRecherche";
 	public static final String var_PageRecherchePublicLire = "var_PageRecherchePublicLire";
 	public static final String var_PageSimple = "var_PageSimple";
 	public static final String var_PageSuper = "var_PageSuper";
+	public static final String var_PageTemplate = "var_PageTemplate";
 	public static final String var_PageTemplates = "var_PageTemplates";
 	public static final String var_PageTemplatesUtilisateur = "var_PageTemplatesUtilisateur";
+	public static final String var_PageUtilisateur = "var_PageUtilisateur";
 	public static final String var_peupler = "var_peupler";
 	public static final String var_Peupler = "var_Peupler";
 	public static final String var_pivot = "var_pivot";
@@ -450,6 +458,7 @@ public class I18n {
 	public static final String var_Rechercher = "var_Rechercher";
 	public static final String var_RechercherTousNomPar = "var_RechercherTousNomPar";
 	public static final String var_RechercherTousNom = "var_RechercherTousNom";
+	public static final String var_RechercheSuggere = "var_RechercheSuggere";
 	public static final String var_rechercheSolr = "var_rechercheSolr";
 	public static final String var_Regarder = "var_Regarder";
 	public static final String var_REGARDER_MAINTENANT = "var_REGARDER_MAINTENANT";
@@ -522,6 +531,7 @@ public class I18n {
 	public static final String var_supprime = "var_supprime";
 	public static final String var_Supprime = "var_Supprime";
 	public static final String var_template = "var_template";
+	public static final String var_TEMPLATE_CHEMIN = "var_TEMPLATE_CHEMIN";
 	public static final String var_tempsRecherche = "var_tempsRecherche";
 	public static final String var_tempsRestant = "var_tempsRestant";
 	public static final String var_tempsTransmission = "var_tempsTransmission";
@@ -541,6 +551,10 @@ public class I18n {
 	public static final String var_UnNom = "var_UnNom";
 	public static final String var_Un = "var_Un";
 	public static final String var_Uri = "var_Uri";
+	public static final String var_UriPageAffichage = "var_UriPageAffichage";
+	public static final String var_UriPageEdition = "var_UriPageEdition";
+	public static final String var_UriPageRecherche = "var_UriPageRecherche";
+	public static final String var_UriPageUtilisateur = "var_UriPageUtilisateur";
 	public static final String var_Url = "var_Url";
 	public static final String var_utilisateurCles = "var_utilisateurCles";
 	public static final String var_UtilisateurCles = "var_UtilisateurCles";
