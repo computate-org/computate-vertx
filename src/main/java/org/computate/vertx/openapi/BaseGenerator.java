@@ -14,10 +14,13 @@
 package org.computate.vertx.openapi;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -33,6 +36,7 @@ import org.computate.vertx.config.ComputateConfigKeys;
 import org.computate.vertx.request.ComputateSiteRequest;
 import org.computate.vertx.writer.AllWriter;
 import org.computate.vertx.writer.ApiWriter;
+import org.yaml.snakeyaml.Yaml;
 
 import com.hubspot.jinjava.Jinjava;
 
@@ -125,6 +129,23 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 		c.o("enUS");
 	}
 
+	protected void _computateVertxSrc(Wrap<String> c) {
+		c.o(config.getString(ComputateConfigKeys.COMPUTATE_VERTX_SRC));
+	}
+
+	protected void _i18n(Wrap<JsonObject> w) {
+		try {
+			File configFichier = new File(String.format("%s/src/main/resources/org/computate/i18n/i18n_%s.yaml", computateVertxSrc, languageName));
+			String template = Files.readString(configFichier.toPath());
+			Yaml yaml = new Yaml();
+			Map<String, Object> map = yaml.load(template);
+			w.o(new JsonObject(map));
+		} catch(Throwable ex) {
+			LOG.error("Error generating OpenAPI spec", ex);
+			ExceptionUtils.rethrow(ex);
+		}
+	}
+
 	protected void _appPath(Wrap<String> c) {
 		c.o(config.getString(ComputateConfigKeys.SITE_SRC));
 	}
@@ -153,7 +174,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 	}
 
 	protected void _openApiYamlPath(Wrap<String> c) {
-		c.o(appPath + "/src/main/resources/webroot/" + ("2.0".equals(apiVersion) ? "swagger2" : "openapi3") + "-enUS.yaml");
+		c.o(String.format("%s/src/main/resources/webroot/%s-%s.yaml", appPath, ("2.0".equals(apiVersion) ? "swagger2" : "openapi3"), languageName));
 	}
 
 	protected void _openApiYamlFile(Wrap<File> c) {
@@ -176,14 +197,6 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 		c.o(new File(sqlDropPath));
 	}
 
-	protected void _articleYamlPath(Wrap<String> c) {
-		c.o(appPath + "/src/main/resources/article.yaml");
-	}
-
-	protected void _articleYamlFile(Wrap<File> c) {
-		c.o(new File(articleYamlPath));
-	}
-
 	protected void _w(Wrap<AllWriter> c) {
 		c.o(AllWriter.create(siteRequest_, openApiYamlFile, "  "));
 	}
@@ -194,10 +207,6 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 
 	protected void _wSqlDrop(Wrap<AllWriter> c) {
 		c.o(AllWriter.create(siteRequest_, sqlDropFile, "  "));
-	}
-
-	protected void _wArticle(Wrap<AllWriter> c) {
-		c.o(AllWriter.create(siteRequest_, articleYamlFile, "  "));
 	}
 
 	protected void _wPaths(Wrap<AllWriter> c) {
@@ -223,7 +232,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 			searchClasses.fq("classeApi_indexed_boolean:true");
 			searchClasses.fq("classeEtendGen_indexed_boolean:true");
 			searchClasses.fq("partEstClasse_indexed_boolean:true");
-			searchClasses.sortAsc("classeNomCanonique_enUS_indexed_string");
+			searchClasses.sortAsc(String.format("classeNomCanonique_%s_indexed_string", languageName));
 			searchClasses.sortAsc("partNumero_indexed_int");
 			searchClasses.initDeepForClass(siteRequest_);
 
@@ -266,10 +275,12 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 
 			ArrayList<String> classUris = new ArrayList<>();
 
-			for(String classApiMethode : classDoc.getClassApiMethods()) {
+			for(String classApiMethod : classDoc.getClassApiMethods()) {
 				ApiWriter apiWriter = new ApiWriter();
+				apiWriter.setI18n(i18n);
+				apiWriter.setLanguageName(languageName);
 				apiWriter.setClassSolrDocument(doc);
-				apiWriter.setClassApiMethod(classApiMethode);
+				apiWriter.setClassApiMethod(classApiMethod);
 				apiWriter.setContextRows(classDoc.getClassRows());
 				apiWriter.setWPaths(wPaths);
 				apiWriter.setWRequestBodies(wRequestBodies);
@@ -416,7 +427,6 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 		try {
 			if(docs.size() >= (i + 1)) {
 				SolrResponse.Doc doc1 = docs.get(i);
-				String langueNom = "enUS";
 	
 				List<String> classeEntiteClassesSuperEtMoiSansGen = doc1.get("classesSuperEtMoiSansGen_stored_strings");
 				String fqClassesSuperEtMoi = "(" + classeEntiteClassesSuperEtMoiSansGen.stream().map(c -> SearchTool.escapeQueryChars(c)).collect(Collectors.joining(" OR ")) + ")";
@@ -425,7 +435,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 				searchClasses.q("*:*");
 				searchClasses.rows(1000000);
 				searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath) + (platformPomArtifactId == null ? "" : (" OR siteNom_indexed_string:" + SearchTool.escapeQueryChars(platformPomArtifactId))));
-				searchClasses.fq("classeNomCanonique_" + langueNom + "_indexed_string:" + fqClassesSuperEtMoi);
+				searchClasses.fq("classeNomCanonique_" + languageName + "_indexed_string:" + fqClassesSuperEtMoi);
 				searchClasses.fq("partEstEntite_indexed_boolean:true");
 				searchClasses.fq("-(entiteAttribuer_indexed_boolean:true AND entiteTypeJson_indexed_string:array)");
 				searchClasses.fq("(entiteAttribuer_indexed_boolean:true OR entiteDefinir_indexed_boolean:true OR entiteClePrimaire_indexed_boolean:true)");
@@ -444,7 +454,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 					try {
 						SolrResponse queryResponse = a.bodyAsJson(SolrResponse.class);
 	
-						String classeNomSimple = (String)doc1.get("classeNomSimple_" + langueNom + "_stored_string");
+						String classeNomSimple = (String)doc1.get("classeNomSimple_" + languageName + "_stored_string");
 						wSqlDrop.l("DROP TABLE ", classeNomSimple, " CASCADE;");
 						wSqlCreate.l();
 						wSqlCreate.l("CREATE TABLE IF NOT EXISTS ", classeNomSimple, "();");
@@ -452,11 +462,11 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 						List<Doc> entiteDocs = queryResponse.getResponse().getDocs();
 						for(Integer j = 0; j < entiteDocs.size(); j++) {
 							SolrResponse.Doc doc2 = entiteDocs.get(j);
-							if(doc2.get("entiteAttribuerTypeJson_stored_string") != null && (((String)doc2.get("entiteVar_" + langueNom + "_stored_string")).compareTo((String)doc2.get("entiteAttribuerVar_" + langueNom + "_stored_string")) < 0 || "array".equals(doc2.get("entiteAttribuerTypeJson_stored_string"))) || doc2.get("entiteAttribuerTypeJson_stored_string") == null) {
+							if(doc2.get("entiteAttribuerTypeJson_stored_string") != null && (((String)doc2.get("entiteVar_" + languageName + "_stored_string")).compareTo((String)doc2.get("entiteAttribuerVar_" + languageName + "_stored_string")) < 0 || "array".equals(doc2.get("entiteAttribuerTypeJson_stored_string"))) || doc2.get("entiteAttribuerTypeJson_stored_string") == null) {
 								wSqlCreate.s("ALTER TABLE ", classeNomSimple, " ADD COLUMN IF NOT EXISTS ");
-								wSqlCreate.s(doc2.get("entiteVar_" + langueNom + "_stored_string"), " ", doc2.get("entiteTypeSql_stored_string"));
+								wSqlCreate.s(doc2.get("entiteVar_" + languageName + "_stored_string"), " ", doc2.get("entiteTypeSql_stored_string"));
 								if(doc2.get("entiteAttribuerTypeJson_stored_string") != null)
-									wSqlCreate.s(" references ", (String)doc2.get("entiteAttribuerNomSimple_" + langueNom + "_stored_string"), "(pk)");
+									wSqlCreate.s(" references ", (String)doc2.get("entiteAttribuerNomSimple_" + languageName + "_stored_string"), "(pk)");
 								wSqlCreate.l(";");
 							}
 						}
@@ -532,14 +542,13 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 
 		try {
 			if(docs.size() >= (i + 1)) {
-				String langueNom = "enUS";
 				SolrResponse.Doc doc1 = docs.get(i);
-				String var = doc1.get("entiteVar_" + langueNom + "_stored_string");
-				String varAttribuer = doc1.get("entiteAttribuerVar_" + langueNom + "_stored_string");
+				String var = doc1.get("entiteVar_" + languageName + "_stored_string");
+				String varAttribuer = doc1.get("entiteAttribuerVar_" + languageName + "_stored_string");
 
 				if(var.compareTo(varAttribuer) < 0) {
-					String c1 = doc1.get("classeNomSimple_" + langueNom + "_stored_string");
-					String c2 = doc1.get("entiteAttribuerNomSimple_" + langueNom + "_stored_string");
+					String c1 = doc1.get("classeNomSimple_" + languageName + "_stored_string");
+					String c2 = doc1.get("entiteAttribuerNomSimple_" + languageName + "_stored_string");
 
 					wSqlDrop.l("DROP TABLE ", c1, StringUtils.capitalize(var), "_", c2, StringUtils.capitalize(varAttribuer), " CASCADE;");
 					wSqlCreate.l("CREATE TABLE IF NOT EXISTS ", c1, StringUtils.capitalize(var), "_", c2, StringUtils.capitalize(varAttribuer), "(");
@@ -584,85 +593,6 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 			wSqlCreate.flushClose();
 			wSqlDrop.flushClose();
 			LOG.error("Write SQL failed. ", ex);
-			promise.fail(ex);
-		});
-
-		return promise.future();
-	}
-
-	public Future<Void> loadArticle() {
-		Promise<Void> promise = Promise.promise();
-
-		try {
-			SearchRequest searchClasses = new SearchRequest();
-			searchClasses.q("*:*");
-			searchClasses.rows(1000000);
-			searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath) + (platformPomArtifactId == null ? "" : (" OR siteNom_indexed_string:" + SearchTool.escapeQueryChars(platformPomArtifactId))));
-			searchClasses.fq("article_indexed_boolean:true");
-			searchClasses.fq("partEstClasse_indexed_boolean:true");
-			searchClasses.sortAsc("classeNomCanonique_enUS_indexed_string");
-			searchClasses.sortAsc("partNumero_indexed_int");
-			searchClasses.initDeepForClass(siteRequest_);
-
-			String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
-			String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
-			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME_COMPUTATE);
-			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT_COMPUTATE);
-			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
-			Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL_COMPUTATE);
-			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
-			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).send().onSuccess(a -> {
-				try {
-					SolrResponse queryResponse = a.bodyAsJson(SolrResponse.class);
-					loadArticle(queryResponse.getResponse().getDocs(), 0).onSuccess(b -> {
-						promise.complete();
-					}).onFailure(ex -> {
-						LOG.error("Write Articles failed. ", ex);
-						promise.fail(ex);
-					});
-				} catch(Exception ex) {
-					LOG.error(String.format("Could not read response from Solr: http://%s:%s%s", solrHostName, solrPort, solrRequestUri), ex);
-					promise.fail(ex);
-				}
-			}).onFailure(ex -> {
-				LOG.error(String.format("Search failed. "), new RuntimeException(ex));
-				promise.fail(ex);
-			});
-		} catch (Exception ex) {
-			LOG.error("Write Articles failed. ", ex);
-			promise.fail(ex);
-		}
-
-		return promise.future();
-	}
-
-	public Future<Void> loadArticle(List<SolrResponse.Doc> docs, Integer i) {
-		Promise<Void> promise = Promise.promise();
-		if(docs.size() >= (i + 1)) {
-			SolrResponse.Doc doc = docs.get(i);
-			ComputateEnUSClass classDoc = JsonObject.mapFrom(doc.getFields()).mapTo(ComputateEnUSClass.class);
-			wArticle.l("- ", classDoc.getClassCanonicalName());
-			loadArticle(docs, i + 1).onSuccess(b -> {
-				promise.complete();
-			}).onFailure(ex -> {
-				promise.fail(ex);
-			});
-		} else {
-			promise.complete();
-		}
-		return promise.future();
-	}
-
-	public Future<Void> writeArticle() {
-		Promise<Void> promise = Promise.promise();
-
-		loadArticle().onSuccess(a -> {
-			wArticle.flushClose();
-			LOG.info("Write Articles completed. ");
-			promise.complete();
-		}).onFailure(ex -> {
-			wArticle.flushClose();
-			LOG.error("Write Articles failed. ", ex);
 			promise.fail(ex);
 		});
 

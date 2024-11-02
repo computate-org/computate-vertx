@@ -81,6 +81,7 @@ public class I18n {
 	public static final String str_Supprimer = "str_Supprimer";
 	public static final String str_Supprimer_ = "str_Supprimer_";
 	public static final String str_Télécharger_image = "str_Télécharger_image";
+	public static final String str_Tri = "str_Tri";
 	public static final String str_trier_par___croissante = "str_trier_par___croissante";
 	public static final String str_trier_par___decroissante = "str_trier_par___decroissante";
 	public static final String str_Trouver_la_classe_ = "str_Trouver_la_classe_";
@@ -233,6 +234,7 @@ public class I18n {
 	public static final String var_DescriptionAlternatif = "var_DescriptionAlternatif";
 	public static final String var_desindexer = "var_desindexer";
 	public static final String var_Dialogue = "var_Dialogue";
+	public static final String var_Direction = "var_Direction";
 	public static final String var_DocsAlternatif = "var_DocsAlternatif";
 	public static final String var_documentSolr = "var_documentSolr";
 	public static final String var_DocumentSolr = "var_DocumentSolr";
@@ -341,6 +343,7 @@ public class I18n {
 	public static final String var_Liste = "var_Liste";
 	public static final String var_listeChamps = "var_listeChamps";
 	public static final String var_ListeChamps = "var_ListeChamps";
+	public static final String var_ListeDeroulante = "var_ListeDeroulante";
 	public static final String var_listeRecherche = "var_listeRecherche";
 	public static final String var_ListeRecherche = "var_ListeRecherche";
 	public static final String var_longeurMax = "var_longeurMax";
@@ -428,6 +431,7 @@ public class I18n {
 	public static final String var_PageTemplates = "var_PageTemplates";
 	public static final String var_PageTemplatesUtilisateur = "var_PageTemplatesUtilisateur";
 	public static final String var_PageUtilisateur = "var_PageUtilisateur";
+	public static final String var_Parties = "var_Parties";
 	public static final String var_peupler = "var_peupler";
 	public static final String var_Peupler = "var_Peupler";
 	public static final String var_pivot = "var_pivot";

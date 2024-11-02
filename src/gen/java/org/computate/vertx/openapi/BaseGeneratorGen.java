@@ -94,15 +94,15 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class BaseGenerator in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.openapi in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * Generated: true
  **/
@@ -128,7 +128,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity vertx_
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:vertx_">Find the entity vertx_ in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:vertx_">Find the entity vertx_ in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -169,7 +169,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity webClient
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:webClient">Find the entity webClient in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:webClient">Find the entity webClient in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -210,7 +210,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -251,7 +251,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity config
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:config">Find the entity config in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:config">Find the entity config in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -311,7 +311,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity appName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:appName">Find the entity appName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:appName">Find the entity appName in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -363,7 +363,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity languageName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:languageName">Find the entity languageName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:languageName">Find the entity languageName in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -401,6 +401,118 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 		return BaseGenerator.staticSearchLanguageName(siteRequest_, BaseGenerator.staticSetLanguageName(siteRequest_, o)).toString();
 	}
 
+	///////////////////////
+	// computateVertxSrc //
+	///////////////////////
+
+
+	/**	 The entity computateVertxSrc
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String computateVertxSrc;
+
+	/**	<br> The entity computateVertxSrc
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:computateVertxSrc">Find the entity computateVertxSrc in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _computateVertxSrc(Wrap<String> c);
+
+	public String getComputateVertxSrc() {
+		return computateVertxSrc;
+	}
+	public void setComputateVertxSrc(String o) {
+		this.computateVertxSrc = BaseGenerator.staticSetComputateVertxSrc(siteRequest_, o);
+	}
+	public static String staticSetComputateVertxSrc(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected BaseGenerator computateVertxSrcInit() {
+		Wrap<String> computateVertxSrcWrap = new Wrap<String>().var("computateVertxSrc");
+		if(computateVertxSrc == null) {
+			_computateVertxSrc(computateVertxSrcWrap);
+			Optional.ofNullable(computateVertxSrcWrap.getO()).ifPresent(o -> {
+				setComputateVertxSrc(o);
+			});
+		}
+		return (BaseGenerator)this;
+	}
+
+	public static String staticSearchComputateVertxSrc(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrComputateVertxSrc(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqComputateVertxSrc(ComputateSiteRequest siteRequest_, String o) {
+		return BaseGenerator.staticSearchComputateVertxSrc(siteRequest_, BaseGenerator.staticSetComputateVertxSrc(siteRequest_, o)).toString();
+	}
+
+	//////////
+	// i18n //
+	//////////
+
+
+	/**	 The entity i18n
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected JsonObject i18n;
+
+	/**	<br> The entity i18n
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:i18n">Find the entity i18n in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _i18n(Wrap<JsonObject> w);
+
+	public JsonObject getI18n() {
+		return i18n;
+	}
+
+	public void setI18n(JsonObject i18n) {
+		this.i18n = i18n;
+	}
+	@JsonIgnore
+	public void setI18n(String o) {
+		this.i18n = BaseGenerator.staticSetI18n(siteRequest_, o);
+	}
+	public static JsonObject staticSetI18n(ComputateSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonObject(o);
+		}
+		return null;
+	}
+	protected BaseGenerator i18nInit() {
+		Wrap<JsonObject> i18nWrap = new Wrap<JsonObject>().var("i18n");
+		if(i18n == null) {
+			_i18n(i18nWrap);
+			Optional.ofNullable(i18nWrap.getO()).ifPresent(o -> {
+				setI18n(o);
+			});
+		}
+		return (BaseGenerator)this;
+	}
+
+	public static String staticSearchI18n(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
+	}
+
+	public static String staticSearchStrI18n(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqI18n(ComputateSiteRequest siteRequest_, String o) {
+		return BaseGenerator.staticSearchI18n(siteRequest_, BaseGenerator.staticSetI18n(siteRequest_, o)).toString();
+	}
+
 	/////////////
 	// appPath //
 	/////////////
@@ -415,7 +527,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity appPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:appPath">Find the entity appPath in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:appPath">Find the entity appPath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -467,7 +579,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity platformPomArtifactId
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:platformPomArtifactId">Find the entity platformPomArtifactId in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:platformPomArtifactId">Find the entity platformPomArtifactId in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -519,7 +631,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity openApiVersion
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:openApiVersion">Find the entity openApiVersion in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:openApiVersion">Find the entity openApiVersion in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -572,7 +684,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity openApiVersionNumber
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:openApiVersionNumber">Find the entity openApiVersionNumber in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:openApiVersionNumber">Find the entity openApiVersionNumber in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -632,7 +744,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity tabsSchema
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:tabsSchema">Find the entity tabsSchema in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:tabsSchema">Find the entity tabsSchema in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -691,7 +803,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity apiVersion
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:apiVersion">Find the entity apiVersion in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:apiVersion">Find the entity apiVersion in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -743,7 +855,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity openApiYamlPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:openApiYamlPath">Find the entity openApiYamlPath in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:openApiYamlPath">Find the entity openApiYamlPath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -795,7 +907,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity openApiYamlFile
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:openApiYamlFile">Find the entity openApiYamlFile in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:openApiYamlFile">Find the entity openApiYamlFile in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -836,7 +948,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity sqlCreatePath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:sqlCreatePath">Find the entity sqlCreatePath in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:sqlCreatePath">Find the entity sqlCreatePath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -888,7 +1000,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity sqlCreateFile
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:sqlCreateFile">Find the entity sqlCreateFile in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:sqlCreateFile">Find the entity sqlCreateFile in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -929,7 +1041,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity sqlDropPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:sqlDropPath">Find the entity sqlDropPath in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:sqlDropPath">Find the entity sqlDropPath in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -981,7 +1093,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity sqlDropFile
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:sqlDropFile">Find the entity sqlDropFile in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:sqlDropFile">Find the entity sqlDropFile in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1008,99 +1120,6 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 		return (BaseGenerator)this;
 	}
 
-	/////////////////////
-	// articleYamlPath //
-	/////////////////////
-
-
-	/**	 The entity articleYamlPath
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected String articleYamlPath;
-
-	/**	<br> The entity articleYamlPath
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:articleYamlPath">Find the entity articleYamlPath in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _articleYamlPath(Wrap<String> c);
-
-	public String getArticleYamlPath() {
-		return articleYamlPath;
-	}
-	public void setArticleYamlPath(String o) {
-		this.articleYamlPath = BaseGenerator.staticSetArticleYamlPath(siteRequest_, o);
-	}
-	public static String staticSetArticleYamlPath(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-	protected BaseGenerator articleYamlPathInit() {
-		Wrap<String> articleYamlPathWrap = new Wrap<String>().var("articleYamlPath");
-		if(articleYamlPath == null) {
-			_articleYamlPath(articleYamlPathWrap);
-			Optional.ofNullable(articleYamlPathWrap.getO()).ifPresent(o -> {
-				setArticleYamlPath(o);
-			});
-		}
-		return (BaseGenerator)this;
-	}
-
-	public static String staticSearchArticleYamlPath(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-
-	public static String staticSearchStrArticleYamlPath(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqArticleYamlPath(ComputateSiteRequest siteRequest_, String o) {
-		return BaseGenerator.staticSearchArticleYamlPath(siteRequest_, BaseGenerator.staticSetArticleYamlPath(siteRequest_, o)).toString();
-	}
-
-	/////////////////////
-	// articleYamlFile //
-	/////////////////////
-
-
-	/**	 The entity articleYamlFile
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected File articleYamlFile;
-
-	/**	<br> The entity articleYamlFile
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:articleYamlFile">Find the entity articleYamlFile in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _articleYamlFile(Wrap<File> c);
-
-	public File getArticleYamlFile() {
-		return articleYamlFile;
-	}
-
-	public void setArticleYamlFile(File articleYamlFile) {
-		this.articleYamlFile = articleYamlFile;
-	}
-	public static File staticSetArticleYamlFile(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected BaseGenerator articleYamlFileInit() {
-		Wrap<File> articleYamlFileWrap = new Wrap<File>().var("articleYamlFile");
-		if(articleYamlFile == null) {
-			_articleYamlFile(articleYamlFileWrap);
-			Optional.ofNullable(articleYamlFileWrap.getO()).ifPresent(o -> {
-				setArticleYamlFile(o);
-			});
-		}
-		return (BaseGenerator)this;
-	}
-
 	///////
 	// w //
 	///////
@@ -1115,7 +1134,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity w
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:w">Find the entity w in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:w">Find the entity w in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1158,7 +1177,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity wSqlCreate
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:wSqlCreate">Find the entity wSqlCreate in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:wSqlCreate">Find the entity wSqlCreate in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1201,7 +1220,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity wSqlDrop
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:wSqlDrop">Find the entity wSqlDrop in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:wSqlDrop">Find the entity wSqlDrop in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1230,49 +1249,6 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 		return (BaseGenerator)this;
 	}
 
-	//////////////
-	// wArticle //
-	//////////////
-
-
-	/**	 The entity wArticle
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected AllWriter wArticle;
-
-	/**	<br> The entity wArticle
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:wArticle">Find the entity wArticle in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _wArticle(Wrap<AllWriter> c);
-
-	public AllWriter getWArticle() {
-		return wArticle;
-	}
-
-	public void setWArticle(AllWriter wArticle) {
-		this.wArticle = wArticle;
-	}
-	public static AllWriter staticSetWArticle(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected BaseGenerator wArticleInit() {
-		Wrap<AllWriter> wArticleWrap = new Wrap<AllWriter>().var("wArticle");
-		if(wArticle == null) {
-			_wArticle(wArticleWrap);
-			Optional.ofNullable(wArticleWrap.getO()).ifPresent(o -> {
-				setWArticle(o);
-			});
-		}
-		if(wArticle != null)
-			wArticle.initDeepForClass(siteRequest_);
-		return (BaseGenerator)this;
-	}
-
 	////////////
 	// wPaths //
 	////////////
@@ -1287,7 +1263,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity wPaths
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:wPaths">Find the entity wPaths in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:wPaths">Find the entity wPaths in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1330,7 +1306,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity wRequestBodies
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:wRequestBodies">Find the entity wRequestBodies in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:wRequestBodies">Find the entity wRequestBodies in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1373,7 +1349,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	/**	<br> The entity wSchemas
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:wSchemas">Find the entity wSchemas in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:wSchemas">Find the entity wSchemas in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1423,6 +1399,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 				configInit();
 				appNameInit();
 				languageNameInit();
+				computateVertxSrcInit();
+				i18nInit();
 				appPathInit();
 				platformPomArtifactIdInit();
 				openApiVersionInit();
@@ -1435,12 +1413,9 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 				sqlCreateFileInit();
 				sqlDropPathInit();
 				sqlDropFileInit();
-				articleYamlPathInit();
-				articleYamlFileInit();
 				wInit();
 				wSqlCreateInit();
 				wSqlDropInit();
-				wArticleInit();
 				wPathsInit();
 				wRequestBodiesInit();
 				wSchemasInit();
@@ -1461,8 +1436,6 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			wSqlCreate.setSiteRequest_(siteRequest_);
 		if(wSqlDrop != null)
 			wSqlDrop.setSiteRequest_(siteRequest_);
-		if(wArticle != null)
-			wArticle.setSiteRequest_(siteRequest_);
 		if(wPaths != null)
 			wPaths.setSiteRequest_(siteRequest_);
 		if(wRequestBodies != null)
@@ -1507,6 +1480,10 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 				return oBaseGenerator.appName;
 			case "languageName":
 				return oBaseGenerator.languageName;
+			case "computateVertxSrc":
+				return oBaseGenerator.computateVertxSrc;
+			case "i18n":
+				return oBaseGenerator.i18n;
 			case "appPath":
 				return oBaseGenerator.appPath;
 			case "platformPomArtifactId":
@@ -1531,18 +1508,12 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 				return oBaseGenerator.sqlDropPath;
 			case "sqlDropFile":
 				return oBaseGenerator.sqlDropFile;
-			case "articleYamlPath":
-				return oBaseGenerator.articleYamlPath;
-			case "articleYamlFile":
-				return oBaseGenerator.articleYamlFile;
 			case "w":
 				return oBaseGenerator.w;
 			case "wSqlCreate":
 				return oBaseGenerator.wSqlCreate;
 			case "wSqlDrop":
 				return oBaseGenerator.wSqlDrop;
-			case "wArticle":
-				return oBaseGenerator.wArticle;
 			case "wPaths":
 				return oBaseGenerator.wPaths;
 			case "wRequestBodies":
@@ -1590,6 +1561,10 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSetAppName(siteRequest_, o);
 		case "languageName":
 			return BaseGenerator.staticSetLanguageName(siteRequest_, o);
+		case "computateVertxSrc":
+			return BaseGenerator.staticSetComputateVertxSrc(siteRequest_, o);
+		case "i18n":
+			return BaseGenerator.staticSetI18n(siteRequest_, o);
 		case "appPath":
 			return BaseGenerator.staticSetAppPath(siteRequest_, o);
 		case "platformPomArtifactId":
@@ -1608,8 +1583,6 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSetSqlCreatePath(siteRequest_, o);
 		case "sqlDropPath":
 			return BaseGenerator.staticSetSqlDropPath(siteRequest_, o);
-		case "articleYamlPath":
-			return BaseGenerator.staticSetArticleYamlPath(siteRequest_, o);
 			default:
 				return null;
 		}
@@ -1630,6 +1603,10 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSearchAppName(siteRequest_, (String)o);
 		case "languageName":
 			return BaseGenerator.staticSearchLanguageName(siteRequest_, (String)o);
+		case "computateVertxSrc":
+			return BaseGenerator.staticSearchComputateVertxSrc(siteRequest_, (String)o);
+		case "i18n":
+			return BaseGenerator.staticSearchI18n(siteRequest_, (JsonObject)o);
 		case "appPath":
 			return BaseGenerator.staticSearchAppPath(siteRequest_, (String)o);
 		case "platformPomArtifactId":
@@ -1648,8 +1625,6 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSearchSqlCreatePath(siteRequest_, (String)o);
 		case "sqlDropPath":
 			return BaseGenerator.staticSearchSqlDropPath(siteRequest_, (String)o);
-		case "articleYamlPath":
-			return BaseGenerator.staticSearchArticleYamlPath(siteRequest_, (String)o);
 			default:
 				return null;
 		}
@@ -1670,6 +1645,10 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSearchStrAppName(siteRequest_, (String)o);
 		case "languageName":
 			return BaseGenerator.staticSearchStrLanguageName(siteRequest_, (String)o);
+		case "computateVertxSrc":
+			return BaseGenerator.staticSearchStrComputateVertxSrc(siteRequest_, (String)o);
+		case "i18n":
+			return BaseGenerator.staticSearchStrI18n(siteRequest_, (String)o);
 		case "appPath":
 			return BaseGenerator.staticSearchStrAppPath(siteRequest_, (String)o);
 		case "platformPomArtifactId":
@@ -1688,8 +1667,6 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSearchStrSqlCreatePath(siteRequest_, (String)o);
 		case "sqlDropPath":
 			return BaseGenerator.staticSearchStrSqlDropPath(siteRequest_, (String)o);
-		case "articleYamlPath":
-			return BaseGenerator.staticSearchStrArticleYamlPath(siteRequest_, (String)o);
 			default:
 				return null;
 		}
@@ -1710,6 +1687,10 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSearchFqAppName(siteRequest_, o);
 		case "languageName":
 			return BaseGenerator.staticSearchFqLanguageName(siteRequest_, o);
+		case "computateVertxSrc":
+			return BaseGenerator.staticSearchFqComputateVertxSrc(siteRequest_, o);
+		case "i18n":
+			return BaseGenerator.staticSearchFqI18n(siteRequest_, o);
 		case "appPath":
 			return BaseGenerator.staticSearchFqAppPath(siteRequest_, o);
 		case "platformPomArtifactId":
@@ -1728,8 +1709,6 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSearchFqSqlCreatePath(siteRequest_, o);
 		case "sqlDropPath":
 			return BaseGenerator.staticSearchFqSqlDropPath(siteRequest_, o);
-		case "articleYamlPath":
-			return BaseGenerator.staticSearchFqArticleYamlPath(siteRequest_, o);
 			default:
 				return null;
 		}
@@ -1753,6 +1732,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 	public static final String VAR_config = "config";
 	public static final String VAR_appName = "appName";
 	public static final String VAR_languageName = "languageName";
+	public static final String VAR_computateVertxSrc = "computateVertxSrc";
+	public static final String VAR_i18n = "i18n";
 	public static final String VAR_appPath = "appPath";
 	public static final String VAR_platformPomArtifactId = "platformPomArtifactId";
 	public static final String VAR_openApiVersion = "openApiVersion";
@@ -1765,12 +1746,9 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 	public static final String VAR_sqlCreateFile = "sqlCreateFile";
 	public static final String VAR_sqlDropPath = "sqlDropPath";
 	public static final String VAR_sqlDropFile = "sqlDropFile";
-	public static final String VAR_articleYamlPath = "articleYamlPath";
-	public static final String VAR_articleYamlFile = "articleYamlFile";
 	public static final String VAR_w = "w";
 	public static final String VAR_wSqlCreate = "wSqlCreate";
 	public static final String VAR_wSqlDrop = "wSqlDrop";
-	public static final String VAR_wArticle = "wArticle";
 	public static final String VAR_wPaths = "wPaths";
 	public static final String VAR_wRequestBodies = "wRequestBodies";
 	public static final String VAR_wSchemas = "wSchemas";
@@ -1781,6 +1759,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_config = "";
 	public static final String DISPLAY_NAME_appName = "";
 	public static final String DISPLAY_NAME_languageName = "";
+	public static final String DISPLAY_NAME_computateVertxSrc = "";
+	public static final String DISPLAY_NAME_i18n = "";
 	public static final String DISPLAY_NAME_appPath = "";
 	public static final String DISPLAY_NAME_platformPomArtifactId = "";
 	public static final String DISPLAY_NAME_openApiVersion = "";
@@ -1793,12 +1773,9 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_sqlCreateFile = "";
 	public static final String DISPLAY_NAME_sqlDropPath = "";
 	public static final String DISPLAY_NAME_sqlDropFile = "";
-	public static final String DISPLAY_NAME_articleYamlPath = "";
-	public static final String DISPLAY_NAME_articleYamlFile = "";
 	public static final String DISPLAY_NAME_w = "";
 	public static final String DISPLAY_NAME_wSqlCreate = "";
 	public static final String DISPLAY_NAME_wSqlDrop = "";
-	public static final String DISPLAY_NAME_wArticle = "";
 	public static final String DISPLAY_NAME_wPaths = "";
 	public static final String DISPLAY_NAME_wRequestBodies = "";
 	public static final String DISPLAY_NAME_wSchemas = "";
@@ -1820,6 +1797,10 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return DISPLAY_NAME_appName;
 		case VAR_languageName:
 			return DISPLAY_NAME_languageName;
+		case VAR_computateVertxSrc:
+			return DISPLAY_NAME_computateVertxSrc;
+		case VAR_i18n:
+			return DISPLAY_NAME_i18n;
 		case VAR_appPath:
 			return DISPLAY_NAME_appPath;
 		case VAR_platformPomArtifactId:
@@ -1844,18 +1825,12 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return DISPLAY_NAME_sqlDropPath;
 		case VAR_sqlDropFile:
 			return DISPLAY_NAME_sqlDropFile;
-		case VAR_articleYamlPath:
-			return DISPLAY_NAME_articleYamlPath;
-		case VAR_articleYamlFile:
-			return DISPLAY_NAME_articleYamlFile;
 		case VAR_w:
 			return DISPLAY_NAME_w;
 		case VAR_wSqlCreate:
 			return DISPLAY_NAME_wSqlCreate;
 		case VAR_wSqlDrop:
 			return DISPLAY_NAME_wSqlDrop;
-		case VAR_wArticle:
-			return DISPLAY_NAME_wArticle;
 		case VAR_wPaths:
 			return DISPLAY_NAME_wPaths;
 		case VAR_wRequestBodies:

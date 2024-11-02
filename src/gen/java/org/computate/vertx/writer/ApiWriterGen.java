@@ -31,7 +31,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
-import org.computate.search.serialize.ComputateZonedDateTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -45,13 +44,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
+import java.lang.String;
+import io.vertx.core.json.JsonObject;
 import org.computate.search.computate.enus.ComputateEnUSClass;
 import org.computate.search.response.solr.SolrResponse.Doc;
 import java.lang.Integer;
-import java.lang.String;
 import io.vertx.core.json.JsonArray;
 import org.computate.vertx.writer.AllWriter;
-import io.vertx.core.json.JsonObject;
 import org.computate.vertx.writer.AllWriters;
 import java.lang.Boolean;
 import org.computate.search.wrap.Wrap;
@@ -149,6 +148,118 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			});
 		}
 		return (ApiWriter)this;
+	}
+
+	//////////////////
+	// languageName //
+	//////////////////
+
+
+	/**	 The entity languageName
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String languageName;
+
+	/**	<br> The entity languageName
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:languageName">Find the entity languageName in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _languageName(Wrap<String> c);
+
+	public String getLanguageName() {
+		return languageName;
+	}
+	public void setLanguageName(String o) {
+		this.languageName = ApiWriter.staticSetLanguageName(siteRequest_, o);
+	}
+	public static String staticSetLanguageName(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected ApiWriter languageNameInit() {
+		Wrap<String> languageNameWrap = new Wrap<String>().var("languageName");
+		if(languageName == null) {
+			_languageName(languageNameWrap);
+			Optional.ofNullable(languageNameWrap.getO()).ifPresent(o -> {
+				setLanguageName(o);
+			});
+		}
+		return (ApiWriter)this;
+	}
+
+	public static String staticSearchLanguageName(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrLanguageName(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqLanguageName(ComputateSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchLanguageName(siteRequest_, ApiWriter.staticSetLanguageName(siteRequest_, o)).toString();
+	}
+
+	//////////
+	// i18n //
+	//////////
+
+
+	/**	 The entity i18n
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected JsonObject i18n;
+
+	/**	<br> The entity i18n
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:i18n">Find the entity i18n in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _i18n(Wrap<JsonObject> w);
+
+	public JsonObject getI18n() {
+		return i18n;
+	}
+
+	public void setI18n(JsonObject i18n) {
+		this.i18n = i18n;
+	}
+	@JsonIgnore
+	public void setI18n(String o) {
+		this.i18n = ApiWriter.staticSetI18n(siteRequest_, o);
+	}
+	public static JsonObject staticSetI18n(ComputateSiteRequest siteRequest_, String o) {
+		if(o != null) {
+				return new JsonObject(o);
+		}
+		return null;
+	}
+	protected ApiWriter i18nInit() {
+		Wrap<JsonObject> i18nWrap = new Wrap<JsonObject>().var("i18n");
+		if(i18n == null) {
+			_i18n(i18nWrap);
+			Optional.ofNullable(i18nWrap.getO()).ifPresent(o -> {
+				setI18n(o);
+			});
+		}
+		return (ApiWriter)this;
+	}
+
+	public static String staticSearchI18n(ComputateSiteRequest siteRequest_, JsonObject o) {
+		return o.toString();
+	}
+
+	public static String staticSearchStrI18n(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqI18n(ComputateSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchI18n(siteRequest_, ApiWriter.staticSetI18n(siteRequest_, o)).toString();
 	}
 
 	//////////////
@@ -2206,6 +2317,63 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return ApiWriter.staticSearchClassPageCanonicalNameMethod(siteRequest_, ApiWriter.staticSetClassPageCanonicalNameMethod(siteRequest_, o)).toString();
 	}
 
+	/////////////////////////////////
+	// classPageWithTemplateMethod //
+	/////////////////////////////////
+
+
+	/**	 The entity classPageWithTemplateMethod
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected Boolean classPageWithTemplateMethod;
+
+	/**	<br> The entity classPageWithTemplateMethod
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classPageWithTemplateMethod">Find the entity classPageWithTemplateMethod in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _classPageWithTemplateMethod(Wrap<Boolean> w);
+
+	public Boolean getClassPageWithTemplateMethod() {
+		return classPageWithTemplateMethod;
+	}
+
+	public void setClassPageWithTemplateMethod(Boolean classPageWithTemplateMethod) {
+		this.classPageWithTemplateMethod = classPageWithTemplateMethod;
+	}
+	@JsonIgnore
+	public void setClassPageWithTemplateMethod(String o) {
+		this.classPageWithTemplateMethod = ApiWriter.staticSetClassPageWithTemplateMethod(siteRequest_, o);
+	}
+	public static Boolean staticSetClassPageWithTemplateMethod(ComputateSiteRequest siteRequest_, String o) {
+		return Boolean.parseBoolean(o);
+	}
+	protected ApiWriter classPageWithTemplateMethodInit() {
+		Wrap<Boolean> classPageWithTemplateMethodWrap = new Wrap<Boolean>().var("classPageWithTemplateMethod");
+		if(classPageWithTemplateMethod == null) {
+			_classPageWithTemplateMethod(classPageWithTemplateMethodWrap);
+			Optional.ofNullable(classPageWithTemplateMethodWrap.getO()).ifPresent(o -> {
+				setClassPageWithTemplateMethod(o);
+			});
+		}
+		return (ApiWriter)this;
+	}
+
+	public static Boolean staticSearchClassPageWithTemplateMethod(ComputateSiteRequest siteRequest_, Boolean o) {
+		return o;
+	}
+
+	public static String staticSearchStrClassPageWithTemplateMethod(ComputateSiteRequest siteRequest_, Boolean o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqClassPageWithTemplateMethod(ComputateSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchClassPageWithTemplateMethod(siteRequest_, ApiWriter.staticSetClassPageWithTemplateMethod(siteRequest_, o)).toString();
+	}
+
 	////////////////////////
 	// classKeywordsFound //
 	////////////////////////
@@ -2982,58 +3150,6 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return ApiWriter.staticSearchClassRolesLanguage(siteRequest_, ApiWriter.staticSetClassRolesLanguage(siteRequest_, o)).toString();
 	}
 
-	//////////////////
-	// languageName //
-	//////////////////
-
-
-	/**	 The entity languageName
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected String languageName;
-
-	/**	<br> The entity languageName
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:languageName">Find the entity languageName in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _languageName(Wrap<String> c);
-
-	public String getLanguageName() {
-		return languageName;
-	}
-	public void setLanguageName(String o) {
-		this.languageName = ApiWriter.staticSetLanguageName(siteRequest_, o);
-	}
-	public static String staticSetLanguageName(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-	protected ApiWriter languageNameInit() {
-		Wrap<String> languageNameWrap = new Wrap<String>().var("languageName");
-		if(languageName == null) {
-			_languageName(languageNameWrap);
-			Optional.ofNullable(languageNameWrap.getO()).ifPresent(o -> {
-				setLanguageName(o);
-			});
-		}
-		return (ApiWriter)this;
-	}
-
-	public static String staticSearchLanguageName(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-
-	public static String staticSearchStrLanguageName(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqLanguageName(ComputateSiteRequest siteRequest_, String o) {
-		return ApiWriter.staticSearchLanguageName(siteRequest_, ApiWriter.staticSetLanguageName(siteRequest_, o)).toString();
-	}
-
 	////////////////////////
 	// entitySolrDocument //
 	////////////////////////
@@ -3091,6 +3207,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	public void initApiWriter() {
 				siteRequest_Init();
+				languageNameInit();
+				i18nInit();
 				classDocInit();
 				classSolrDocumentInit();
 				contextRowsInit();
@@ -3131,6 +3249,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				classSuperApiOperationIdMethodRequestInit();
 				classSuperApiOperationIdMethodResponseInit();
 				classPageCanonicalNameMethodInit();
+				classPageWithTemplateMethodInit();
 				classKeywordsFoundInit();
 				classKeywordsInit();
 				classPublicReadInit();
@@ -3143,7 +3262,6 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				classRolesInit();
 				classRoleReadsInit();
 				classRolesLanguageInit();
-				languageNameInit();
 				entitySolrDocumentInit();
 	}
 
@@ -3206,6 +3324,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		switch(var) {
 			case "siteRequest_":
 				return oApiWriter.siteRequest_;
+			case "languageName":
+				return oApiWriter.languageName;
+			case "i18n":
+				return oApiWriter.i18n;
 			case "classDoc":
 				return oApiWriter.classDoc;
 			case "classSolrDocument":
@@ -3286,6 +3408,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				return oApiWriter.classSuperApiOperationIdMethodResponse;
 			case "classPageCanonicalNameMethod":
 				return oApiWriter.classPageCanonicalNameMethod;
+			case "classPageWithTemplateMethod":
+				return oApiWriter.classPageWithTemplateMethod;
 			case "classKeywordsFound":
 				return oApiWriter.classKeywordsFound;
 			case "classKeywords":
@@ -3310,8 +3434,6 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				return oApiWriter.classRoleReads;
 			case "classRolesLanguage":
 				return oApiWriter.classRolesLanguage;
-			case "languageName":
-				return oApiWriter.languageName;
 			case "entitySolrDocument":
 				return oApiWriter.entitySolrDocument;
 			default:
@@ -3349,6 +3471,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	}
 	public static Object staticSetApiWriter(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
+		case "languageName":
+			return ApiWriter.staticSetLanguageName(siteRequest_, o);
+		case "i18n":
+			return ApiWriter.staticSetI18n(siteRequest_, o);
 		case "contextRows":
 			return ApiWriter.staticSetContextRows(siteRequest_, o);
 		case "classApiMethod":
@@ -3403,6 +3529,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSetClassSuperApiOperationIdMethodResponse(siteRequest_, o);
 		case "classPageCanonicalNameMethod":
 			return ApiWriter.staticSetClassPageCanonicalNameMethod(siteRequest_, o);
+		case "classPageWithTemplateMethod":
+			return ApiWriter.staticSetClassPageWithTemplateMethod(siteRequest_, o);
 		case "classKeywordsFound":
 			return ApiWriter.staticSetClassKeywordsFound(siteRequest_, o);
 		case "classKeywords":
@@ -3427,8 +3555,6 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSetClassRoleReads(siteRequest_, o);
 		case "classRolesLanguage":
 			return ApiWriter.staticSetClassRolesLanguage(siteRequest_, o);
-		case "languageName":
-			return ApiWriter.staticSetLanguageName(siteRequest_, o);
 			default:
 				return null;
 		}
@@ -3443,6 +3569,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	}
 	public static Object staticSearchApiWriter(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
+		case "languageName":
+			return ApiWriter.staticSearchLanguageName(siteRequest_, (String)o);
+		case "i18n":
+			return ApiWriter.staticSearchI18n(siteRequest_, (JsonObject)o);
 		case "contextRows":
 			return ApiWriter.staticSearchContextRows(siteRequest_, (Integer)o);
 		case "classApiMethod":
@@ -3497,6 +3627,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchClassSuperApiOperationIdMethodResponse(siteRequest_, (String)o);
 		case "classPageCanonicalNameMethod":
 			return ApiWriter.staticSearchClassPageCanonicalNameMethod(siteRequest_, (String)o);
+		case "classPageWithTemplateMethod":
+			return ApiWriter.staticSearchClassPageWithTemplateMethod(siteRequest_, (Boolean)o);
 		case "classKeywordsFound":
 			return ApiWriter.staticSearchClassKeywordsFound(siteRequest_, (Boolean)o);
 		case "classKeywords":
@@ -3521,8 +3653,6 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchClassRoleReads(siteRequest_, (String)o);
 		case "classRolesLanguage":
 			return ApiWriter.staticSearchClassRolesLanguage(siteRequest_, (String)o);
-		case "languageName":
-			return ApiWriter.staticSearchLanguageName(siteRequest_, (String)o);
 			default:
 				return null;
 		}
@@ -3537,6 +3667,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	}
 	public static String staticSearchStrApiWriter(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
+		case "languageName":
+			return ApiWriter.staticSearchStrLanguageName(siteRequest_, (String)o);
+		case "i18n":
+			return ApiWriter.staticSearchStrI18n(siteRequest_, (String)o);
 		case "contextRows":
 			return ApiWriter.staticSearchStrContextRows(siteRequest_, (Integer)o);
 		case "classApiMethod":
@@ -3591,6 +3725,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchStrClassSuperApiOperationIdMethodResponse(siteRequest_, (String)o);
 		case "classPageCanonicalNameMethod":
 			return ApiWriter.staticSearchStrClassPageCanonicalNameMethod(siteRequest_, (String)o);
+		case "classPageWithTemplateMethod":
+			return ApiWriter.staticSearchStrClassPageWithTemplateMethod(siteRequest_, (Boolean)o);
 		case "classKeywordsFound":
 			return ApiWriter.staticSearchStrClassKeywordsFound(siteRequest_, (Boolean)o);
 		case "classKeywords":
@@ -3615,8 +3751,6 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchStrClassRoleReads(siteRequest_, (String)o);
 		case "classRolesLanguage":
 			return ApiWriter.staticSearchStrClassRolesLanguage(siteRequest_, (String)o);
-		case "languageName":
-			return ApiWriter.staticSearchStrLanguageName(siteRequest_, (String)o);
 			default:
 				return null;
 		}
@@ -3631,6 +3765,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	}
 	public static String staticSearchFqApiWriter(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
+		case "languageName":
+			return ApiWriter.staticSearchFqLanguageName(siteRequest_, o);
+		case "i18n":
+			return ApiWriter.staticSearchFqI18n(siteRequest_, o);
 		case "contextRows":
 			return ApiWriter.staticSearchFqContextRows(siteRequest_, o);
 		case "classApiMethod":
@@ -3685,6 +3823,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchFqClassSuperApiOperationIdMethodResponse(siteRequest_, o);
 		case "classPageCanonicalNameMethod":
 			return ApiWriter.staticSearchFqClassPageCanonicalNameMethod(siteRequest_, o);
+		case "classPageWithTemplateMethod":
+			return ApiWriter.staticSearchFqClassPageWithTemplateMethod(siteRequest_, o);
 		case "classKeywordsFound":
 			return ApiWriter.staticSearchFqClassKeywordsFound(siteRequest_, o);
 		case "classKeywords":
@@ -3709,8 +3849,6 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchFqClassRoleReads(siteRequest_, o);
 		case "classRolesLanguage":
 			return ApiWriter.staticSearchFqClassRolesLanguage(siteRequest_, o);
-		case "languageName":
-			return ApiWriter.staticSearchFqLanguageName(siteRequest_, o);
 			default:
 				return null;
 		}
@@ -3727,6 +3865,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
 	public static final String CLASS_SIMPLE_NAME = "ApiWriter";
 	public static final String VAR_siteRequest_ = "siteRequest_";
+	public static final String VAR_languageName = "languageName";
+	public static final String VAR_i18n = "i18n";
 	public static final String VAR_classDoc = "classDoc";
 	public static final String VAR_classSolrDocument = "classSolrDocument";
 	public static final String VAR_contextRows = "contextRows";
@@ -3767,6 +3907,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String VAR_classSuperApiOperationIdMethodRequest = "classSuperApiOperationIdMethodRequest";
 	public static final String VAR_classSuperApiOperationIdMethodResponse = "classSuperApiOperationIdMethodResponse";
 	public static final String VAR_classPageCanonicalNameMethod = "classPageCanonicalNameMethod";
+	public static final String VAR_classPageWithTemplateMethod = "classPageWithTemplateMethod";
 	public static final String VAR_classKeywordsFound = "classKeywordsFound";
 	public static final String VAR_classKeywords = "classKeywords";
 	public static final String VAR_classPublicRead = "classPublicRead";
@@ -3779,10 +3920,11 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String VAR_classRoles = "classRoles";
 	public static final String VAR_classRoleReads = "classRoleReads";
 	public static final String VAR_classRolesLanguage = "classRolesLanguage";
-	public static final String VAR_languageName = "languageName";
 	public static final String VAR_entitySolrDocument = "entitySolrDocument";
 
 	public static final String DISPLAY_NAME_siteRequest_ = "";
+	public static final String DISPLAY_NAME_languageName = "";
+	public static final String DISPLAY_NAME_i18n = "";
 	public static final String DISPLAY_NAME_classDoc = "";
 	public static final String DISPLAY_NAME_classSolrDocument = "";
 	public static final String DISPLAY_NAME_contextRows = "";
@@ -3823,6 +3965,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_classSuperApiOperationIdMethodRequest = "";
 	public static final String DISPLAY_NAME_classSuperApiOperationIdMethodResponse = "";
 	public static final String DISPLAY_NAME_classPageCanonicalNameMethod = "";
+	public static final String DISPLAY_NAME_classPageWithTemplateMethod = "";
 	public static final String DISPLAY_NAME_classKeywordsFound = "";
 	public static final String DISPLAY_NAME_classKeywords = "";
 	public static final String DISPLAY_NAME_classPublicRead = "";
@@ -3835,7 +3978,6 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_classRoles = "";
 	public static final String DISPLAY_NAME_classRoleReads = "";
 	public static final String DISPLAY_NAME_classRolesLanguage = "";
-	public static final String DISPLAY_NAME_languageName = "";
 	public static final String DISPLAY_NAME_entitySolrDocument = "";
 
 	public static String displayNameForClass(String var) {
@@ -3845,6 +3987,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		switch(var) {
 		case VAR_siteRequest_:
 			return DISPLAY_NAME_siteRequest_;
+		case VAR_languageName:
+			return DISPLAY_NAME_languageName;
+		case VAR_i18n:
+			return DISPLAY_NAME_i18n;
 		case VAR_classDoc:
 			return DISPLAY_NAME_classDoc;
 		case VAR_classSolrDocument:
@@ -3925,6 +4071,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return DISPLAY_NAME_classSuperApiOperationIdMethodResponse;
 		case VAR_classPageCanonicalNameMethod:
 			return DISPLAY_NAME_classPageCanonicalNameMethod;
+		case VAR_classPageWithTemplateMethod:
+			return DISPLAY_NAME_classPageWithTemplateMethod;
 		case VAR_classKeywordsFound:
 			return DISPLAY_NAME_classKeywordsFound;
 		case VAR_classKeywords:
@@ -3949,8 +4097,6 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return DISPLAY_NAME_classRoleReads;
 		case VAR_classRolesLanguage:
 			return DISPLAY_NAME_classRolesLanguage;
-		case VAR_languageName:
-			return DISPLAY_NAME_languageName;
 		case VAR_entitySolrDocument:
 			return DISPLAY_NAME_entitySolrDocument;
 		default:

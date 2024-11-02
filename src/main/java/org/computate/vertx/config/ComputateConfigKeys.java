@@ -925,6 +925,16 @@ public class ComputateConfigKeys {
 	public static final String COMPUTATE_SRC = "COMPUTATE_SRC";
 
 	/**
+	 * The path to the computate-search source code. 
+	 **/
+	public static final String COMPUTATE_SEARCH_SRC = "COMPUTATE_SEARCH_SRC";
+
+	/**
+	 * The path to the computate-vertx source code. 
+	 **/
+	public static final String COMPUTATE_VERTX_SRC = "COMPUTATE_VERTX_SRC";
+
+	/**
 	 * The Email account for the site. 
 	 **/
 	public static final String ACCOUNT_EMAIL = "ACCOUNT_EMAIL";
