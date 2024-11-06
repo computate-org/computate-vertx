@@ -17,25 +17,6 @@ import io.vertx.core.Promise;
 import io.vertx.core.json.JsonObject;
 
 /**
- * Api: true
- * Page: true
- * SuperPage.enUS: ComputatePageLayout
- * Indexed: true
- * 
- * ApiTag.enUS: Java Class
- * ApiUri.enUS: /api/java-class
- * 
- * ApiMethod:
- *   Search:
- *   GET:
- *   SearchPage:
- *     Page: ComputateJavaClassPage
- *     ApiUri: /java-class
- *
- * AName.enUS: a java class
- * Color: blue
- * IconGroup: duotone
- * IconName: map-location-dot
  */
 public class ComputateJavaClass extends ComputateJavaClassGen<Object> {
 

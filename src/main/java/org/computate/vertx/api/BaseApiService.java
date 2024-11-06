@@ -148,7 +148,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 
 	protected Jinjava jinjava;
 
-	protected I18n i18n;
+	protected JsonObject i18n;
 
 	public void setOauth2AuthHandler(ComputateOAuth2AuthHandlerImpl oauth2AuthHandler) {
 		this.oauth2AuthHandler = oauth2AuthHandler;
@@ -210,7 +210,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 		this.jinjava = jinjava;
 	}
 
-	public void setI18n(I18n i18n) {
+	public void setI18n(JsonObject i18n) {
 		this.i18n = i18n;
 	}
 

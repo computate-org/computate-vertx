@@ -49,5 +49,5 @@ public interface BaseApiServiceInterface {
 	public void setOauth2AuthenticationProvider(OAuth2Auth oauth2AuthenticationProvider);
 	public void setAuthorizationProvider(AuthorizationProvider authorizationProvider);
 	public void setJinjava(Jinjava jinjava);
-	public void setI18n(I18n i18n);
+	public void setI18n(JsonObject i18n);
 }
