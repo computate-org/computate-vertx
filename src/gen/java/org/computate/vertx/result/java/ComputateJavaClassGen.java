@@ -154,15 +154,15 @@ import org.computate.search.response.solr.SolrResponse;
  * </p>
  * <p>
  * Delete the class ComputateJavaClass in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.result.java in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.result.java&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.result.java&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * Generated: true
  **/
@@ -188,8 +188,8 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public static final String ComputateJavaClass_ANameAdjective_enUS = "a java class";
 	public static final String ComputateJavaClass_NameAdjectiveSingular_enUS = "java class";
 	public static final String ComputateJavaClass_NameAdjectivePlural_enUS = "java classs";
-	public static final String Search_enUS_Uri = "/api/java-class";
-	public static final String Search_enUS_ImageUri = "/png/api/java-class-999.png";
+	public static final String Search_enUS_Uri = "/api/java-class/{id}";
+	public static final String Search_enUS_ImageUri = "/png/api/java-class/{id}-999.png";
 	public static final String GET_enUS_Uri = "/api/java-class/{id}";
 	public static final String GET_enUS_ImageUri = "/png/api/java-class/{id}-999.png";
 	public static final String SearchPage_enUS_Uri = "/java-class";
@@ -211,7 +211,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -252,7 +252,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity promiseBefore
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:promiseBefore">Find the entity promiseBefore in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:promiseBefore">Find the entity promiseBefore in Solr</a>
 	 * <br>
 	 * @param promise is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -295,7 +295,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity inheritPk
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:inheritPk">Find the entity inheritPk in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:inheritPk">Find the entity inheritPk in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -354,7 +354,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity created
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:created">Find the entity created in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:created">Find the entity created in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -431,7 +431,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity archived
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:archived">Find the entity archived in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:archived">Find the entity archived in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -492,7 +492,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity deleted
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:deleted">Find the entity deleted in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:deleted">Find the entity deleted in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -554,7 +554,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classCanonicalNames
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classCanonicalNames">Find the entity classCanonicalNames in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classCanonicalNames">Find the entity classCanonicalNames in Solr</a>
 	 * <br>
 	 * @param l is the entity already constructed. 
 	 **/
@@ -627,7 +627,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity sessionId
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:sessionId">Find the entity sessionId in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:sessionId">Find the entity sessionId in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -684,7 +684,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity userKey
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:userKey">Find the entity userKey in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:userKey">Find the entity userKey in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -748,7 +748,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity saves
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:saves">Find the entity saves in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:saves">Find the entity saves in Solr</a>
 	 * <br>
 	 * @param l is the entity already constructed. 
 	 **/
@@ -821,7 +821,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity objectTitle
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:objectTitle">Find the entity objectTitle in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:objectTitle">Find the entity objectTitle in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -873,7 +873,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity objectId
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:objectId">Find the entity objectId in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:objectId">Find the entity objectId in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -929,7 +929,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity objectSuggest
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:objectSuggest">Find the entity objectSuggest in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:objectSuggest">Find the entity objectSuggest in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -982,7 +982,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity objectText
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:objectText">Find the entity objectText in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:objectText">Find the entity objectText in Solr</a>
 	 * <br>
 	 * @param l is the entity already constructed. 
 	 **/
@@ -1055,7 +1055,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity pageUrlId
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:pageUrlId">Find the entity pageUrlId in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:pageUrlId">Find the entity pageUrlId in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1107,7 +1107,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity pageUrlPk
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:pageUrlPk">Find the entity pageUrlPk in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:pageUrlPk">Find the entity pageUrlPk in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1159,7 +1159,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity pageUrlApi
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:pageUrlApi">Find the entity pageUrlApi in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:pageUrlApi">Find the entity pageUrlApi in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1211,7 +1211,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity doc
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:doc">Find the entity doc in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:doc">Find the entity doc in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1271,7 +1271,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity sitePath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:sitePath">Find the entity sitePath in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:sitePath">Find the entity sitePath in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1323,7 +1323,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity siteName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:siteName">Find the entity siteName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:siteName">Find the entity siteName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1376,7 +1376,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity superClassParamsTypeName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:superClassParamsTypeName">Find the entity superClassParamsTypeName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:superClassParamsTypeName">Find the entity superClassParamsTypeName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1455,7 +1455,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity superClassCompleteName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:superClassCompleteName">Find the entity superClassCompleteName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:superClassCompleteName">Find the entity superClassCompleteName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1507,7 +1507,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity superClassGenericCompleteName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:superClassGenericCompleteName">Find the entity superClassGenericCompleteName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:superClassGenericCompleteName">Find the entity superClassGenericCompleteName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1559,7 +1559,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity superClassGenericCanonicalName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:superClassGenericCanonicalName">Find the entity superClassGenericCanonicalName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:superClassGenericCanonicalName">Find the entity superClassGenericCanonicalName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1611,7 +1611,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity superClassGenericSimpleName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:superClassGenericSimpleName">Find the entity superClassGenericSimpleName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:superClassGenericSimpleName">Find the entity superClassGenericSimpleName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1663,7 +1663,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classIsBase
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classIsBase">Find the entity classIsBase in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classIsBase">Find the entity classIsBase in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1720,7 +1720,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classExtendsBase
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classExtendsBase">Find the entity classExtendsBase in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classExtendsBase">Find the entity classExtendsBase in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1777,7 +1777,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classBaseExtendsGen
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classBaseExtendsGen">Find the entity classBaseExtendsGen in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classBaseExtendsGen">Find the entity classBaseExtendsGen in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1834,7 +1834,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classContainsSiteRequest
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classContainsSiteRequest">Find the entity classContainsSiteRequest in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classContainsSiteRequest">Find the entity classContainsSiteRequest in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1891,7 +1891,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classTranslate
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classTranslate">Find the entity classTranslate in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classTranslate">Find the entity classTranslate in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -1948,7 +1948,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classInitDeep
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classInitDeep">Find the entity classInitDeep in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classInitDeep">Find the entity classInitDeep in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2005,7 +2005,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classExtendsGen
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classExtendsGen">Find the entity classExtendsGen in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classExtendsGen">Find the entity classExtendsGen in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2062,7 +2062,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity languageName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:languageName">Find the entity languageName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:languageName">Find the entity languageName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2114,7 +2114,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity modified
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:modified">Find the entity modified in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:modified">Find the entity modified in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2166,7 +2166,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classCanonicalName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classCanonicalName">Find the entity classCanonicalName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classCanonicalName">Find the entity classCanonicalName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2218,7 +2218,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSimpleName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSimpleName">Find the entity classSimpleName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSimpleName">Find the entity classSimpleName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2270,7 +2270,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPackageName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPackageName">Find the entity classPackageName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPackageName">Find the entity classPackageName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2322,7 +2322,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classCanonicalNameGen
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classCanonicalNameGen">Find the entity classCanonicalNameGen in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classCanonicalNameGen">Find the entity classCanonicalNameGen in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2374,7 +2374,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSimpleNameGen
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSimpleNameGen">Find the entity classSimpleNameGen in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSimpleNameGen">Find the entity classSimpleNameGen in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2426,7 +2426,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity superClassCanonicalName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:superClassCanonicalName">Find the entity superClassCanonicalName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:superClassCanonicalName">Find the entity superClassCanonicalName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2478,7 +2478,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity superClassSimpleName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:superClassSimpleName">Find the entity superClassSimpleName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:superClassSimpleName">Find the entity superClassSimpleName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2530,7 +2530,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classAbsolutePath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classAbsolutePath">Find the entity classAbsolutePath in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classAbsolutePath">Find the entity classAbsolutePath in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2582,7 +2582,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPath">Find the entity classPath in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPath">Find the entity classPath in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2634,7 +2634,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classDirectoryPath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classDirectoryPath">Find the entity classDirectoryPath in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classDirectoryPath">Find the entity classDirectoryPath in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2686,7 +2686,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPathGen
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPathGen">Find the entity classPathGen in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPathGen">Find the entity classPathGen in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2738,7 +2738,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classDirectoryPathGen
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classDirectoryPathGen">Find the entity classDirectoryPathGen in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classDirectoryPathGen">Find the entity classDirectoryPathGen in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2790,7 +2790,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity domainPackageName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:domainPackageName">Find the entity domainPackageName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:domainPackageName">Find the entity domainPackageName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2843,7 +2843,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity entityClassesSuperAndMeWithoutGen
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:entityClassesSuperAndMeWithoutGen">Find the entity entityClassesSuperAndMeWithoutGen in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:entityClassesSuperAndMeWithoutGen">Find the entity entityClassesSuperAndMeWithoutGen in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2922,7 +2922,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classIsAbstract
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classIsAbstract">Find the entity classIsAbstract in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classIsAbstract">Find the entity classIsAbstract in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -2979,7 +2979,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classModel
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classModel">Find the entity classModel in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classModel">Find the entity classModel in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3036,7 +3036,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classApi
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classApi">Find the entity classApi in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classApi">Find the entity classApi in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3093,7 +3093,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSimplePage
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSimplePage">Find the entity classSimplePage in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSimplePage">Find the entity classSimplePage in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3150,7 +3150,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSaved
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSaved">Find the entity classSaved in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSaved">Find the entity classSaved in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3207,7 +3207,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSimpleNameApiPackageInfo
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSimpleNameApiPackageInfo">Find the entity classSimpleNameApiPackageInfo in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSimpleNameApiPackageInfo">Find the entity classSimpleNameApiPackageInfo in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3259,7 +3259,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSimpleNameGenApiServiceImpl
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSimpleNameGenApiServiceImpl">Find the entity classSimpleNameGenApiServiceImpl in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSimpleNameGenApiServiceImpl">Find the entity classSimpleNameGenApiServiceImpl in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3311,7 +3311,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSimpleNameApiServiceImpl
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSimpleNameApiServiceImpl">Find the entity classSimpleNameApiServiceImpl in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSimpleNameApiServiceImpl">Find the entity classSimpleNameApiServiceImpl in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3363,7 +3363,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSimpleNameGenApiService
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSimpleNameGenApiService">Find the entity classSimpleNameGenApiService in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSimpleNameGenApiService">Find the entity classSimpleNameGenApiService in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3415,7 +3415,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classCanonicalNameApiPackageInfo
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classCanonicalNameApiPackageInfo">Find the entity classCanonicalNameApiPackageInfo in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classCanonicalNameApiPackageInfo">Find the entity classCanonicalNameApiPackageInfo in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3467,7 +3467,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classCanonicalNameGenApiServiceImpl
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classCanonicalNameGenApiServiceImpl">Find the entity classCanonicalNameGenApiServiceImpl in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classCanonicalNameGenApiServiceImpl">Find the entity classCanonicalNameGenApiServiceImpl in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3519,7 +3519,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classCanonicalNameApiServiceImpl
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classCanonicalNameApiServiceImpl">Find the entity classCanonicalNameApiServiceImpl in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classCanonicalNameApiServiceImpl">Find the entity classCanonicalNameApiServiceImpl in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3571,7 +3571,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classCanonicalNameGenApiService
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classCanonicalNameGenApiService">Find the entity classCanonicalNameGenApiService in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classCanonicalNameGenApiService">Find the entity classCanonicalNameGenApiService in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3623,7 +3623,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPathApiPackageInfo
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPathApiPackageInfo">Find the entity classPathApiPackageInfo in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPathApiPackageInfo">Find the entity classPathApiPackageInfo in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3675,7 +3675,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPathGenApiServiceImpl
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPathGenApiServiceImpl">Find the entity classPathGenApiServiceImpl in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPathGenApiServiceImpl">Find the entity classPathGenApiServiceImpl in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3727,7 +3727,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPathApiServiceImpl
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPathApiServiceImpl">Find the entity classPathApiServiceImpl in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPathApiServiceImpl">Find the entity classPathApiServiceImpl in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3779,7 +3779,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPathGenApiService
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPathGenApiService">Find the entity classPathGenApiService in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPathGenApiService">Find the entity classPathGenApiService in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3831,7 +3831,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPublicRead
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPublicRead">Find the entity classPublicRead in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPublicRead">Find the entity classPublicRead in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3888,7 +3888,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classRoleSession
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classRoleSession">Find the entity classRoleSession in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classRoleSession">Find the entity classRoleSession in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -3945,7 +3945,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classRoleUser
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classRoleUser">Find the entity classRoleUser in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classRoleUser">Find the entity classRoleUser in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4002,7 +4002,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classRoleEach
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classRoleEach">Find the entity classRoleEach in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classRoleEach">Find the entity classRoleEach in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4060,7 +4060,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classRoles
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classRoles">Find the entity classRoles in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classRoles">Find the entity classRoles in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4140,7 +4140,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classRolesLanguage
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classRolesLanguage">Find the entity classRolesLanguage in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classRolesLanguage">Find the entity classRolesLanguage in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4219,7 +4219,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classRolesFound
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classRolesFound">Find the entity classRolesFound in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classRolesFound">Find the entity classRolesFound in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4276,7 +4276,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classRoleReadFound
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classRoleReadFound">Find the entity classRoleReadFound in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classRoleReadFound">Find the entity classRoleReadFound in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4333,7 +4333,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSessionWrite
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSessionWrite">Find the entity classSessionWrite in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSessionWrite">Find the entity classSessionWrite in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4390,7 +4390,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classUserWrite
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classUserWrite">Find the entity classUserWrite in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classUserWrite">Find the entity classUserWrite in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4447,7 +4447,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPublicWrite
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPublicWrite">Find the entity classPublicWrite in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPublicWrite">Find the entity classPublicWrite in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4504,7 +4504,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSessionRead
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSessionRead">Find the entity classSessionRead in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSessionRead">Find the entity classSessionRead in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4561,7 +4561,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classUserRead
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classUserRead">Find the entity classUserRead in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classUserRead">Find the entity classUserRead in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4618,7 +4618,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classFiltersFound
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classFiltersFound">Find the entity classFiltersFound in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classFiltersFound">Find the entity classFiltersFound in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4676,7 +4676,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity sqlSort
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:sqlSort">Find the entity sqlSort in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:sqlSort">Find the entity sqlSort in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4735,7 +4735,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity id
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:id">Find the entity id in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:id">Find the entity id in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4791,7 +4791,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity partIsClass
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:partIsClass">Find the entity partIsClass in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:partIsClass">Find the entity partIsClass in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4849,7 +4849,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity partNumber
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:partNumber">Find the entity partNumber in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:partNumber">Find the entity partNumber in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4909,7 +4909,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classImports
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classImports">Find the entity classImports in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classImports">Find the entity classImports in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -4989,7 +4989,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classEntityVars
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classEntityVars">Find the entity classEntityVars in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classEntityVars">Find the entity classEntityVars in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5069,7 +5069,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classImportsGenApi
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classImportsGenApi">Find the entity classImportsGenApi in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classImportsGenApi">Find the entity classImportsGenApi in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5149,7 +5149,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classAttributeSimpleNamePages
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classAttributeSimpleNamePages">Find the entity classAttributeSimpleNamePages in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classAttributeSimpleNamePages">Find the entity classAttributeSimpleNamePages in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5229,7 +5229,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classMethodVars
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classMethodVars">Find the entity classMethodVars in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classMethodVars">Find the entity classMethodVars in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5308,7 +5308,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classVarSuggested
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarSuggested">Find the entity classVarSuggested in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarSuggested">Find the entity classVarSuggested in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5360,7 +5360,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classVarText
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarText">Find the entity classVarText in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarText">Find the entity classVarText in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5412,7 +5412,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classVarPrimaryKey
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarPrimaryKey">Find the entity classVarPrimaryKey in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarPrimaryKey">Find the entity classVarPrimaryKey in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5464,7 +5464,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classVarInheritPrimaryKey
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarInheritPrimaryKey">Find the entity classVarInheritPrimaryKey in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarInheritPrimaryKey">Find the entity classVarInheritPrimaryKey in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5516,7 +5516,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classVarSaves
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarSaves">Find the entity classVarSaves in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarSaves">Find the entity classVarSaves in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5568,7 +5568,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classvarUniqueKey
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classvarUniqueKey">Find the entity classvarUniqueKey in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classvarUniqueKey">Find the entity classvarUniqueKey in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5620,7 +5620,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classVarModified
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarModified">Find the entity classVarModified in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarModified">Find the entity classVarModified in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5672,7 +5672,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classVarCreated
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarCreated">Find the entity classVarCreated in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarCreated">Find the entity classVarCreated in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5724,7 +5724,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classVarUrlId
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarUrlId">Find the entity classVarUrlId in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarUrlId">Find the entity classVarUrlId in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5776,7 +5776,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classVarUrlPk
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarUrlPk">Find the entity classVarUrlPk in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarUrlPk">Find the entity classVarUrlPk in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5828,7 +5828,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classVarId
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarId">Find the entity classVarId in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarId">Find the entity classVarId in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5880,7 +5880,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classVarTitle
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarTitle">Find the entity classVarTitle in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classVarTitle">Find the entity classVarTitle in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5932,7 +5932,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classKeywordsFound
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classKeywordsFound">Find the entity classKeywordsFound in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classKeywordsFound">Find the entity classKeywordsFound in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -5989,7 +5989,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPageCanonicalName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPageCanonicalName">Find the entity classPageCanonicalName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPageCanonicalName">Find the entity classPageCanonicalName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6041,7 +6041,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPageSimpleName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPageSimpleName">Find the entity classPageSimpleName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPageSimpleName">Find the entity classPageSimpleName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6093,7 +6093,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classGenPageSimpleName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classGenPageSimpleName">Find the entity classGenPageSimpleName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classGenPageSimpleName">Find the entity classGenPageSimpleName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6145,7 +6145,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classGenPageCanonicalName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classGenPageCanonicalName">Find the entity classGenPageCanonicalName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classGenPageCanonicalName">Find the entity classGenPageCanonicalName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6197,7 +6197,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classGenPagePath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classGenPagePath">Find the entity classGenPagePath in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classGenPagePath">Find the entity classGenPagePath in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6249,7 +6249,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPagePath
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPagePath">Find the entity classPagePath in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPagePath">Find the entity classPagePath in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6301,7 +6301,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPagePathCss
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPagePathCss">Find the entity classPagePathCss in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPagePathCss">Find the entity classPagePathCss in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6353,7 +6353,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPagePathJs
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPagePathJs">Find the entity classPagePathJs in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPagePathJs">Find the entity classPagePathJs in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6405,7 +6405,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPagePathHbs
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPagePathHbs">Find the entity classPagePathHbs in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPagePathHbs">Find the entity classPagePathHbs in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6457,7 +6457,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classGenPagePathHbs
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classGenPagePathHbs">Find the entity classGenPagePathHbs in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classGenPagePathHbs">Find the entity classGenPagePathHbs in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6509,7 +6509,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPageLanguageName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPageLanguageName">Find the entity classPageLanguageName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPageLanguageName">Find the entity classPageLanguageName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6561,7 +6561,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPageSuperCanonicalName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPageSuperCanonicalName">Find the entity classPageSuperCanonicalName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPageSuperCanonicalName">Find the entity classPageSuperCanonicalName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6613,7 +6613,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSuperPageSimpleName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSuperPageSimpleName">Find the entity classSuperPageSimpleName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSuperPageSimpleName">Find the entity classSuperPageSimpleName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6666,7 +6666,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classImportsGenPage
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classImportsGenPage">Find the entity classImportsGenPage in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classImportsGenPage">Find the entity classImportsGenPage in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6745,7 +6745,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classApiUri
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classApiUri">Find the entity classApiUri in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classApiUri">Find the entity classApiUri in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6797,7 +6797,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classApiTag
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classApiTag">Find the entity classApiTag in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classApiTag">Find the entity classApiTag in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6850,7 +6850,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classApiMethods
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classApiMethods">Find the entity classApiMethods in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classApiMethods">Find the entity classApiMethods in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6929,7 +6929,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classContext
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classContext">Find the entity classContext in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classContext">Find the entity classContext in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -6986,7 +6986,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextColor
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextColor">Find the entity contextColor in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextColor">Find the entity contextColor in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7038,7 +7038,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextIconGroup
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextIconGroup">Find the entity contextIconGroup in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextIconGroup">Find the entity contextIconGroup in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7090,7 +7090,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextIconName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextIconName">Find the entity contextIconName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextIconName">Find the entity contextIconName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7143,7 +7143,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextRows
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextRows">Find the entity contextRows in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextRows">Find the entity contextRows in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7202,7 +7202,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextAName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextAName">Find the entity contextAName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextAName">Find the entity contextAName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7254,7 +7254,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextNameSingular
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextNameSingular">Find the entity contextNameSingular in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextNameSingular">Find the entity contextNameSingular in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7306,7 +7306,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextNamePlural
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextNamePlural">Find the entity contextNamePlural in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextNamePlural">Find the entity contextNamePlural in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7358,7 +7358,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextNameVar
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextNameVar">Find the entity contextNameVar in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextNameVar">Find the entity contextNameVar in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7410,7 +7410,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextTheNames
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextTheNames">Find the entity contextTheNames in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextTheNames">Find the entity contextTheNames in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7462,7 +7462,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextNameAdjectiveSingular
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextNameAdjectiveSingular">Find the entity contextNameAdjectiveSingular in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextNameAdjectiveSingular">Find the entity contextNameAdjectiveSingular in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7514,7 +7514,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextNameAdjectivePlural
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextNameAdjectivePlural">Find the entity contextNameAdjectivePlural in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextNameAdjectivePlural">Find the entity contextNameAdjectivePlural in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7566,7 +7566,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextThis
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextThis">Find the entity contextThis in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextThis">Find the entity contextThis in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7618,7 +7618,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextA
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextA">Find the entity contextA in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextA">Find the entity contextA in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7670,7 +7670,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextCreated
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextCreated">Find the entity contextCreated in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextCreated">Find the entity contextCreated in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7722,7 +7722,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextModified
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextModified">Find the entity contextModified in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextModified">Find the entity contextModified in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7774,7 +7774,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextActualName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextActualName">Find the entity contextActualName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextActualName">Find the entity contextActualName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7826,7 +7826,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextAll
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextAll">Find the entity contextAll in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextAll">Find the entity contextAll in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7878,7 +7878,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextAllName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextAllName">Find the entity contextAllName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextAllName">Find the entity contextAllName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7930,7 +7930,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextSearchAllNameBy
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextSearchAllNameBy">Find the entity contextSearchAllNameBy in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextSearchAllNameBy">Find the entity contextSearchAllNameBy in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -7982,7 +7982,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextSearchAllName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextSearchAllName">Find the entity contextSearchAllName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextSearchAllName">Find the entity contextSearchAllName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8034,7 +8034,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextNoNameFound
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextNoNameFound">Find the entity contextNoNameFound in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextNoNameFound">Find the entity contextNoNameFound in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8086,7 +8086,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextANameAdjective
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextANameAdjective">Find the entity contextANameAdjective in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextANameAdjective">Find the entity contextANameAdjective in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8138,7 +8138,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextThisName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextThisName">Find the entity contextThisName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextThisName">Find the entity contextThisName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8190,7 +8190,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextTheName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextTheName">Find the entity contextTheName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextTheName">Find the entity contextTheName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8242,7 +8242,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextOfName
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextOfName">Find the entity contextOfName in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextOfName">Find the entity contextOfName in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8294,7 +8294,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextThisLowercase
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextThisLowercase">Find the entity contextThisLowercase in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextThisLowercase">Find the entity contextThisLowercase in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8346,7 +8346,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity contextTitle
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextTitle">Find the entity contextTitle in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:contextTitle">Find the entity contextTitle in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8398,7 +8398,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classIndexed
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classIndexed">Find the entity classIndexed in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classIndexed">Find the entity classIndexed in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8455,7 +8455,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classImage
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classImage">Find the entity classImage in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classImage">Find the entity classImage in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8512,7 +8512,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPromise
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPromise">Find the entity classPromise in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPromise">Find the entity classPromise in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8570,7 +8570,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classImportsGen
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classImportsGen">Find the entity classImportsGen in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classImportsGen">Find the entity classImportsGen in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8649,7 +8649,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSortsFound
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSortsFound">Find the entity classSortsFound in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSortsFound">Find the entity classSortsFound in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8707,7 +8707,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSortsSuffixType
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSortsSuffixType">Find the entity classSortsSuffixType in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSortsSuffixType">Find the entity classSortsSuffixType in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8787,7 +8787,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSortsOrder
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSortsOrder">Find the entity classSortsOrder in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSortsOrder">Find the entity classSortsOrder in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8867,7 +8867,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classSortsVar
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSortsVar">Find the entity classSortsVar in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classSortsVar">Find the entity classSortsVar in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -8946,7 +8946,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity classPage
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPage">Find the entity classPage in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:classPage">Find the entity classPage in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -9003,7 +9003,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
 	/**	<br> The entity version
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:version">Find the entity version in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&fq=entiteVar_enUS_indexed_string:version">Find the entity version in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/

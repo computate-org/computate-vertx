@@ -110,10 +110,6 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 
 	protected static final Logger LOG = LoggerFactory.getLogger(ComputateJavaClassEnUSGenApiServiceImpl.class);
 
-	public ComputateJavaClassEnUSGenApiServiceImpl(Vertx vertx, JsonObject config, WorkerExecutor workerExecutor, ComputateOAuth2AuthHandlerImpl oauth2AuthHandler, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, Jinjava jinjava) {
-		super(vertx, config, workerExecutor, oauth2AuthHandler, pgPool, kafkaProducer, mqttClient, amqpSender, rabbitmqClient, webClient, oauth2AuthenticationProvider, authorizationProvider, jinjava);
-	}
-
 	// Search //
 
 	@Override
@@ -156,7 +152,6 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 			}
 		});
 	}
-
 
 	public Future<ServiceResponse> response200SearchComputateJavaClass(SearchList<ComputateJavaClass> listComputateJavaClass) {
 		Promise<ServiceResponse> promise = Promise.promise();
@@ -276,7 +271,6 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 		});
 	}
 
-
 	public Future<ServiceResponse> response200GETComputateJavaClass(SearchList<ComputateJavaClass> listComputateJavaClass) {
 		Promise<ServiceResponse> promise = Promise.promise();
 		try {
@@ -291,47 +285,6 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 	}
 
 	// SearchPage //
-
-	@Override
-	public void searchpageComputateJavaClassId(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
-		user(serviceRequest, ComputateSiteRequest.class, ComputateSiteUser.class, ComputateSiteUser.getClassApiAddress(), "postComputateSiteUserFuture", "patchComputateSiteUserFuture").onSuccess(siteRequest -> {
-						searchComputateJavaClassList(siteRequest, false, true, false).onSuccess(listComputateJavaClass -> {
-							response200SearchPageComputateJavaClass(listComputateJavaClass).onSuccess(response -> {
-								eventHandler.handle(Future.succeededFuture(response));
-								LOG.debug(String.format("searchpageComputateJavaClass succeeded. "));
-							}).onFailure(ex -> {
-								LOG.error(String.format("searchpageComputateJavaClass failed. "), ex);
-								error(siteRequest, eventHandler, ex);
-							});
-						}).onFailure(ex -> {
-							LOG.error(String.format("searchpageComputateJavaClass failed. "), ex);
-							error(siteRequest, eventHandler, ex);
-						});
-		}).onFailure(ex -> {
-			if("Inactive Token".equals(ex.getMessage()) || StringUtils.startsWith(ex.getMessage(), "invalid_grant:")) {
-				try {
-					eventHandler.handle(Future.succeededFuture(new ServiceResponse(302, "Found", null, MultiMap.caseInsensitiveMultiMap().add(HttpHeaders.LOCATION, "/logout?redirect_uri=" + URLEncoder.encode(serviceRequest.getExtra().getString("uri"), "UTF-8")))));
-				} catch(Exception ex2) {
-					LOG.error(String.format("searchpageComputateJavaClass failed. ", ex2));
-					error(null, eventHandler, ex2);
-				}
-			} else if(StringUtils.startsWith(ex.getMessage(), "401 UNAUTHORIZED ")) {
-				eventHandler.handle(Future.succeededFuture(
-					new ServiceResponse(401, "UNAUTHORIZED",
-						Buffer.buffer().appendString(
-							new JsonObject()
-								.put("errorCode", "401")
-								.put("errorMessage", "SSO Resource Permission check returned DENY")
-								.encodePrettily()
-							), MultiMap.caseInsensitiveMultiMap()
-							)
-					));
-			} else {
-				LOG.error(String.format("searchpageComputateJavaClass failed. "), ex);
-				error(null, eventHandler, ex);
-			}
-		});
-	}
 
 	@Override
 	public void searchpageComputateJavaClass(ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> eventHandler) {
@@ -374,18 +327,17 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 		});
 	}
 
-
 	public void searchpageComputateJavaClassPageInit(ComputateJavaClassPage page, SearchList<ComputateJavaClass> listComputateJavaClass) {
 	}
 
-	public String templateSearchPageComputateJavaClass() {
-		return "en-us/ComputateJavaClassPage.htm";
+	public String templateSearchPageComputateJavaClass(ServiceRequest serviceRequest) {
+		return "java-class/ComputateJavaClassSearch.htm";
 	}
 	public Future<ServiceResponse> response200SearchPageComputateJavaClass(SearchList<ComputateJavaClass> listComputateJavaClass) {
 		Promise<ServiceResponse> promise = Promise.promise();
 		try {
 			ComputateSiteRequest siteRequest = listComputateJavaClass.getSiteRequest_(ComputateSiteRequest.class);
-			String pageTemplateUri = templateSearchPageComputateJavaClass();
+			String pageTemplateUri = templateSearchPageComputateJavaClass(siteRequest.getServiceRequest());
 			String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
 			Path resourceTemplatePath = Path.of(siteTemplatePath, pageTemplateUri);
 			String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceTemplatePath.toString()), StandardCharsets.UTF_8) : Files.readString(resourceTemplatePath, Charset.forName("UTF-8"));
@@ -415,6 +367,40 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 			promise.fail(ex);
 		}
 		return promise.future();
+	}
+	public void responsePivotSearchPageComputateJavaClass(List<SolrResponse.Pivot> pivots, JsonArray pivotArray) {
+		if(pivots != null) {
+			for(SolrResponse.Pivot pivotField : pivots) {
+				String entityIndexed = pivotField.getField();
+				String entityVar = StringUtils.substringBefore(entityIndexed, "_docvalues_");
+				JsonObject pivotJson = new JsonObject();
+				pivotArray.add(pivotJson);
+				pivotJson.put("field", entityVar);
+				pivotJson.put("value", pivotField.getValue());
+				pivotJson.put("count", pivotField.getCount());
+				Collection<SolrResponse.PivotRange> pivotRanges = pivotField.getRanges().values();
+				List<SolrResponse.Pivot> pivotFields2 = pivotField.getPivotList();
+				if(pivotRanges != null) {
+					JsonObject rangeJson = new JsonObject();
+					pivotJson.put("ranges", rangeJson);
+					for(SolrResponse.PivotRange rangeFacet : pivotRanges) {
+						JsonObject rangeFacetJson = new JsonObject();
+						String rangeFacetVar = StringUtils.substringBefore(rangeFacet.getName(), "_docvalues_");
+						rangeJson.put(rangeFacetVar, rangeFacetJson);
+						JsonObject rangeFacetCountsObject = new JsonObject();
+						rangeFacetJson.put("counts", rangeFacetCountsObject);
+						rangeFacet.getCounts().forEach((value, count) -> {
+							rangeFacetCountsObject.put(value, count);
+						});
+					}
+				}
+				if(pivotFields2 != null) {
+					JsonArray pivotArray2 = new JsonArray();
+					pivotJson.put("pivot", pivotArray2);
+					responsePivotSearchPageComputateJavaClass(pivotFields2, pivotArray2);
+				}
+			}
+		}
 	}
 
 	// General //
@@ -740,7 +726,12 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 							}
 						}
 					});
-					promise.complete();
+					o.promiseDeepForClass(siteRequest).onSuccess(a -> {
+						promise.complete();
+					}).onFailure(ex -> {
+						LOG.error(String.format("persistComputateJavaClass failed. "), ex);
+						promise.fail(ex);
+					});
 				} catch(Exception ex) {
 					LOG.error(String.format("persistComputateJavaClass failed. "), ex);
 					promise.fail(ex);
@@ -766,34 +757,29 @@ public class ComputateJavaClassEnUSGenApiServiceImpl extends BaseApiServiceImpl 
 		try {
 			ComputateSiteRequest siteRequest = o.getSiteRequest_();
 			ApiRequest apiRequest = siteRequest.getApiRequest_();
-			o.promiseDeepForClass(siteRequest).onSuccess(a -> {
-				JsonObject json = new JsonObject();
-				JsonObject add = new JsonObject();
-				json.put("add", add);
-				JsonObject doc = new JsonObject();
-				add.put("doc", doc);
-				o.indexComputateJavaClass(doc);
-				String solrUsername = siteRequest.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
-				String solrPassword = siteRequest.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
-				String solrHostName = siteRequest.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
-				Integer solrPort = siteRequest.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
-				String solrCollection = siteRequest.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
-				Boolean solrSsl = siteRequest.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
-				Boolean softCommit = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getBoolean("softCommit")).orElse(null);
-				Integer commitWithin = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getInteger("commitWithin")).orElse(null);
-					if(softCommit == null && commitWithin == null)
-						softCommit = true;
-					else if(softCommit == null)
-						softCommit = false;
-				String solrRequestUri = String.format("/solr/%s/update%s%s%s", solrCollection, "?overwrite=true&wt=json", softCommit ? "&softCommit=true" : "", commitWithin != null ? ("&commitWithin=" + commitWithin) : "");
-				webClient.post(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).putHeader("Content-Type", "application/json").expect(ResponsePredicate.SC_OK).sendBuffer(json.toBuffer()).onSuccess(b -> {
-					promise.complete(o);
-				}).onFailure(ex -> {
-					LOG.error(String.format("indexComputateJavaClass failed. "), new RuntimeException(ex));
-					promise.fail(ex);
-				});
+			JsonObject json = new JsonObject();
+			JsonObject add = new JsonObject();
+			json.put("add", add);
+			JsonObject doc = new JsonObject();
+			add.put("doc", doc);
+			o.indexComputateJavaClass(doc);
+			String solrUsername = siteRequest.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
+			String solrPassword = siteRequest.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
+			String solrHostName = siteRequest.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
+			Integer solrPort = siteRequest.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+			String solrCollection = siteRequest.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
+			Boolean solrSsl = siteRequest.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
+			Boolean softCommit = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getBoolean("softCommit")).orElse(null);
+			Integer commitWithin = Optional.ofNullable(siteRequest.getServiceRequest().getParams()).map(p -> p.getJsonObject("query")).map( q -> q.getInteger("commitWithin")).orElse(null);
+				if(softCommit == null && commitWithin == null)
+					softCommit = true;
+				else if(softCommit == null)
+					softCommit = false;
+			String solrRequestUri = String.format("/solr/%s/update%s%s%s", solrCollection, "?overwrite=true&wt=json", softCommit ? "&softCommit=true" : "", commitWithin != null ? ("&commitWithin=" + commitWithin) : "");
+			webClient.post(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).putHeader("Content-Type", "application/json").expect(ResponsePredicate.SC_OK).sendBuffer(json.toBuffer()).onSuccess(b -> {
+				promise.complete(o);
 			}).onFailure(ex -> {
-				LOG.error(String.format("indexComputateJavaClass failed. "), ex);
+				LOG.error(String.format("indexComputateJavaClass failed. "), new RuntimeException(ex));
 				promise.fail(ex);
 			});
 		} catch(Exception ex) {

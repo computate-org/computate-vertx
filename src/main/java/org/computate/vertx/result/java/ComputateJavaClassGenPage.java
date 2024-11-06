@@ -1,7 +1,18 @@
 package org.computate.vertx.result.java;
 
-import org.computate.vertx.page.ComputatePageLayout;
+import org.computate.vertx.result.java.ComputateJavaClass;
 import org.computate.vertx.request.ComputateSiteRequest;
+import java.lang.Void;
+import java.lang.String;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.lang.Boolean;
+import java.util.List;
+import java.lang.Long;
+import io.vertx.core.json.JsonObject;
+import java.lang.Integer;
+import org.computate.vertx.page.ComputatePageLayout;
 import org.computate.vertx.model.user.ComputateSiteUser;
 import java.io.IOException;
 import io.vertx.core.http.HttpServerRequest;
@@ -11,20 +22,15 @@ import org.computate.search.wrap.Wrap;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Locale;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.api.service.ServiceRequest;
 import io.vertx.core.json.JsonArray;
 import java.net.URLDecoder;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.StringUtils;
 import java.util.Map;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 import java.util.stream.Collectors;
@@ -385,6 +391,16 @@ public class ComputateJavaClassGenPage extends ComputateJavaClassGenPageGen<Comp
     String s = Optional.ofNullable(siteRequest_.getRequestVars().get(VAR_DEFAULT_MAP_ZOOM)).orElse(siteRequest_.getConfig().getString(ComputateConfigKeys.DEFAULT_MAP_ZOOM));
     if(s != null)
       w.o(new BigDecimal(s));
+  }
+
+  @Override
+  protected void _defaultSortVars(List<String> l) {
+    Optional.ofNullable(searchListComputateJavaClass_.getSorts()).orElse(Arrays.asList()).forEach(varSortStr -> {
+      String varSortParts[] = varSortStr.split(" ");
+      String varSort = ComputateJavaClass.searchVarComputateJavaClass(varSortParts[0]);
+      String varSortDirection = varSortParts[1];
+      l.add(String.format("%s %s", varSort, varSortDirection));
+    });
   }
 
   @Override

@@ -31,50 +31,6 @@ import io.vertx.core.Vertx;
 
 public abstract class BaseApiServiceImpl extends BaseApiServiceModel {
 
-	public BaseApiServiceImpl(Vertx vertx, JsonObject config, WorkerExecutor workerExecutor, ComputateOAuth2AuthHandlerImpl oauth2AuthHandler, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient) {
-		this.vertx = vertx;
-		this.eventBus = vertx.eventBus();
-		this.config = config;
-		this.workerExecutor = workerExecutor;
-		this.oauth2AuthHandler = oauth2AuthHandler;
-		this.pgPool = pgPool;
-		this.kafkaProducer = kafkaProducer;
-		this.mqttClient = mqttClient;
-		this.amqpSender = amqpSender;
-		this.rabbitmqClient = rabbitmqClient;
-		this.webClient = webClient;
-	}
-
-	public BaseApiServiceImpl(Vertx vertx, JsonObject config, WorkerExecutor workerExecutor, ComputateOAuth2AuthHandlerImpl oauth2AuthHandler, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider) {
-		this.vertx = vertx;
-		this.eventBus = vertx.eventBus();
-		this.config = config;
-		this.workerExecutor = workerExecutor;
-		this.oauth2AuthHandler = oauth2AuthHandler;
-		this.pgPool = pgPool;
-		this.kafkaProducer = kafkaProducer;
-		this.mqttClient = mqttClient;
-		this.amqpSender = amqpSender;
-		this.rabbitmqClient = rabbitmqClient;
-		this.webClient = webClient;
-		this.oauth2AuthenticationProvider = oauth2AuthenticationProvider;
-		this.authorizationProvider = authorizationProvider;
-	}
-
-	public BaseApiServiceImpl(Vertx vertx, JsonObject config, WorkerExecutor workerExecutor, ComputateOAuth2AuthHandlerImpl oauth2AuthHandler, PgPool pgPool, KafkaProducer<String, String> kafkaProducer, MqttClient mqttClient, AmqpSender amqpSender, RabbitMQClient rabbitmqClient, WebClient webClient, OAuth2Auth oauth2AuthenticationProvider, AuthorizationProvider authorizationProvider, Jinjava jinjava) {
-		this.vertx = vertx;
-		this.eventBus = vertx.eventBus();
-		this.config = config;
-		this.workerExecutor = workerExecutor;
-		this.oauth2AuthHandler = oauth2AuthHandler;
-		this.pgPool = pgPool;
-		this.kafkaProducer = kafkaProducer;
-		this.mqttClient = mqttClient;
-		this.amqpSender = amqpSender;
-		this.rabbitmqClient = rabbitmqClient;
-		this.webClient = webClient;
-		this.oauth2AuthenticationProvider = oauth2AuthenticationProvider;
-		this.authorizationProvider = authorizationProvider;
-		this.jinjava = jinjava;
+	public BaseApiServiceImpl() {
 	}
 }

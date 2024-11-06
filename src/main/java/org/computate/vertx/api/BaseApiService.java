@@ -31,6 +31,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.computate.i18n.I18n;
 import org.computate.search.request.SearchRequest;
 import org.computate.search.response.solr.SolrResponse;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
@@ -102,7 +103,7 @@ import java.util.stream.Stream;
 
 import org.computate.search.tool.TimeTool;
 
-abstract class BaseApiService {
+abstract class BaseApiService implements BaseApiServiceInterface {
 
 	protected static final Logger LOG = LoggerFactory.getLogger(BaseApiServiceImpl.class);
 
@@ -146,6 +147,72 @@ abstract class BaseApiService {
 	protected AuthorizationProvider authorizationProvider;
 
 	protected Jinjava jinjava;
+
+	protected I18n i18n;
+
+	public void setOauth2AuthHandler(ComputateOAuth2AuthHandlerImpl oauth2AuthHandler) {
+		this.oauth2AuthHandler = oauth2AuthHandler;
+	}
+
+	public void setVertx(Vertx vertx) {
+		this.vertx = vertx;
+	}
+
+	public void setEventBus(EventBus eventBus) {
+		this.eventBus = eventBus;
+	}
+
+	public void setConfig(JsonObject config) {
+		this.config = config;
+	}
+
+	public void setWorkerExecutor(WorkerExecutor workerExecutor) {
+		this.workerExecutor = workerExecutor;
+	}
+
+	public void setPgPool(PgPool pgPool) {
+		this.pgPool = pgPool;
+	}
+
+	public void setKafkaProducer(KafkaProducer<String, String> kafkaProducer) {
+		this.kafkaProducer = kafkaProducer;
+	}
+
+	public void setMqttClient(MqttClient mqttClient) {
+		this.mqttClient = mqttClient;
+	}
+
+	public void setAmqpClient(AmqpClient amqpClient) {
+		this.amqpClient = amqpClient;
+	}
+
+	public void setAmqpSender(AmqpSender amqpSender) {
+		this.amqpSender = amqpSender;
+	}
+
+	public void setRabbitmqClient(RabbitMQClient rabbitmqClient) {
+		this.rabbitmqClient = rabbitmqClient;
+	}
+
+	public void setWebClient(WebClient webClient) {
+		this.webClient = webClient;
+	}
+
+	public void setOauth2AuthenticationProvider(OAuth2Auth oauth2AuthenticationProvider) {
+		this.oauth2AuthenticationProvider = oauth2AuthenticationProvider;
+	}
+
+	public void setAuthorizationProvider(AuthorizationProvider authorizationProvider) {
+		this.authorizationProvider = authorizationProvider;
+	}
+
+	public void setJinjava(Jinjava jinjava) {
+		this.jinjava = jinjava;
+	}
+
+	public void setI18n(I18n i18n) {
+		this.i18n = i18n;
+	}
 
 	// General //
 
@@ -1333,12 +1400,13 @@ abstract class BaseApiService {
 				ctx.put(ComputateConfigKeys.WEB_COMPONENTS_CSS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_CSS));
 				ctx.put(ComputateConfigKeys.WEB_COMPONENTS_JS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_JS));
 
+				String metaPrefixResult = String.format("%s.", i18n.getString(I18n.var_resultat));
 				Matcher m = Pattern.compile("<meta name=\"([^\"]+)\"\\s+content=\"([^\"]*)\"\\s*/>", Pattern.MULTILINE).matcher(template);
 				boolean trouve = m.find();
 				while (trouve) {
 					String siteKey = m.group(1);
-					if(siteKey.startsWith("site:")) {
-						String key = StringUtils.substringAfter(siteKey, "site:");
+					if(siteKey.startsWith(metaPrefixResult)) {
+						String key = StringUtils.substringAfter(siteKey, metaPrefixResult);
 						String val = m.group(2);
 						if(val instanceof String) {
 							String rendered = jinjava.render(val, ctx.getMap());

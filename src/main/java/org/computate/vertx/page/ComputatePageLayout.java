@@ -245,6 +245,9 @@ public class ComputatePageLayout extends ComputatePageLayoutGen<Object> {
 	protected void _pagination(JsonObject pagination) {
 	}
 
+  protected void _defaultSortVars(List<String> l) {
+	}
+
 	protected void _defaultFieldListVars(List<String> l) {
 	}
 
