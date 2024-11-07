@@ -17,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -1311,7 +1313,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				}
 				YamlProcessor yamlProcessor = new YamlProcessor();
 	
-				importDataFile(vertx, siteRequest, null, yamlProcessor, pageResourcePaths, pageTemplatePaths, 0, classSimpleName, classApiAddress).onSuccess(a -> {
+				importDataFile(vertx, siteRequest, yamlProcessor, pageResourcePaths, pageTemplatePaths, 0, classSimpleName, classApiAddress).onSuccess(a -> {
 					deletePageData(siteRequest, now, classSimpleName).onSuccess(b -> {
 						LOG.info(String.format(importDataComplete, classSimpleName));
 						promise.complete();
@@ -1342,14 +1344,14 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	 * Val.Complete.enUS:Importing %s data file completed. 
 	 * Val.Fail.enUS:Importing %s data file failed. 
 	 */
-	protected Future<Void> importDataFile(Vertx vertx, ComputateSiteRequest siteRequest, JsonObject i18n, YamlProcessor yamlProcessor, List<String> pageResourcePaths, List<String> pageTemplatePaths, Integer i, String classSimpleName, String classApiAddress) {
+	protected Future<Void> importDataFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, List<String> pageResourcePaths, List<String> pageTemplatePaths, Integer i, String classSimpleName, String classApiAddress) {
 		Promise<Void> promise = Promise.promise();
 		try {
 			if(i < pageResourcePaths.size()) {
 				String pageResourcePath = pageResourcePaths.get(i);
 				String pageTemplatePath = pageTemplatePaths.get(i);
-				importModelFromFile(vertx, siteRequest, i18n, yamlProcessor, pageResourcePath, pageTemplatePath, classSimpleName, classApiAddress).onSuccess(a -> {
-					importDataFile(vertx, siteRequest, i18n, yamlProcessor, pageResourcePaths, pageTemplatePaths, i + 1, classSimpleName, classApiAddress).onSuccess(b -> {
+				importModelFromFile(vertx, siteRequest, yamlProcessor, pageResourcePath, pageTemplatePath, classSimpleName, classApiAddress).onSuccess(a -> {
+					importDataFile(vertx, siteRequest, yamlProcessor, pageResourcePaths, pageTemplatePaths, i + 1, classSimpleName, classApiAddress).onSuccess(b -> {
 						promise.complete();
 					}).onFailure(ex -> {
 						LOG.error(String.format(importDataFileFail, pageTemplatePath), ex);
@@ -1369,7 +1371,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 		return promise.future();
 	}
 
-	public Future<JsonObject> generatePageBody(ComputateSiteRequest siteRequest, JsonObject ctx, String resourceUri, String templateUri, String classSimpleName) {
+	public Future<JsonObject> generatePageBody(ComputateSiteRequest siteRequest, Map<String, Object> ctx, String resourceUri, String templateUri, String classSimpleName) {
 		Promise<JsonObject> promise = Promise.promise();
 		promise.complete(new JsonObject());
 		return promise.future();
@@ -1378,7 +1380,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	/**
 	 * Description: Import page
 	 */
-	private Future<Void> importModelFromFile(Vertx vertx, ComputateSiteRequest siteRequest, JsonObject i18n, YamlProcessor yamlProcessor, String resourceUri, String templateUri, String classSimpleName, String classApiAddress) {
+	private Future<Void> importModelFromFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, String resourceUri, String templateUri, String classSimpleName, String classApiAddress) {
 		Promise<Void> promise = Promise.promise();
 		vertx.fileSystem().readFile(resourceUri).onSuccess(buffer -> {
 			try {
@@ -1387,7 +1389,10 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceUri), StandardCharsets.UTF_8) : Files.readString(Path.of(siteTemplatePath, templateUri), Charset.forName("UTF-8"));
 
 				String siteBaseUrl = config.getString(ComputateConfigKeys.SITE_BASE_URL);
-				JsonObject ctx = new JsonObject();
+				Map<String, Object> ctx = new HashMap<>();
+				Map<String, Object> result = new HashMap<>();
+				String shortFileName = FilenameUtils.getBaseName(resourceUri);
+				result.put(i18n.getString(I18n.var_nomFichierCourt), shortFileName);
 				ctx.put(ComputateConfigKeys.STATIC_BASE_URL, config.getString(ComputateConfigKeys.STATIC_BASE_URL));
 				ctx.put(ComputateConfigKeys.SITE_BASE_URL, config.getString(ComputateConfigKeys.SITE_BASE_URL));
 				ctx.put(ComputateConfigKeys.GITHUB_ORG, config.getString(ComputateConfigKeys.GITHUB_ORG));
@@ -1399,27 +1404,28 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				ctx.put(ComputateConfigKeys.FONTAWESOME_KIT, config.getString(ComputateConfigKeys.FONTAWESOME_KIT));
 				ctx.put(ComputateConfigKeys.WEB_COMPONENTS_CSS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_CSS));
 				ctx.put(ComputateConfigKeys.WEB_COMPONENTS_JS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_JS));
+				ctx.put(i18n.getString(I18n.var_resultat), result);
 
 				String metaPrefixResult = String.format("%s.", i18n.getString(I18n.var_resultat));
 				Matcher m = Pattern.compile("<meta name=\"([^\"]+)\"\\s+content=\"([^\"]*)\"\\s*/>", Pattern.MULTILINE).matcher(template);
 				boolean trouve = m.find();
 				while (trouve) {
-					String siteKey = m.group(1);
-					if(siteKey.startsWith(metaPrefixResult)) {
-						String key = StringUtils.substringAfter(siteKey, metaPrefixResult);
+					String resultKey = m.group(1);
+					if(resultKey.startsWith(metaPrefixResult)) {
+						String key = StringUtils.substringAfter(resultKey, metaPrefixResult);
 						String val = m.group(2);
 						if(val instanceof String) {
-							String rendered = jinjava.render(val, ctx.getMap());
-							ctx.put(key, rendered);
+							String rendered = jinjava.render(val, ctx);
+							result.put(key, rendered);
 						} else {
-							ctx.put(key, val);
+							result.put(key, val);
 						}
 					}
 					trouve = m.find();
 				}
 
 				// JSoup HTML parsing
-				String renderedTemplate = jinjava.render(template, ctx.getMap());
+				String renderedTemplate = jinjava.render(template, ctx);
 
 				Document htmDoc = Jsoup.parse(renderedTemplate);
 
@@ -1557,19 +1563,19 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 							promise.fail(ex);
 						});
 					} catch(Exception ex) {
-						LOG.error(String.format(importModelFail, classSimpleName), ex);
+						LOG.error(String.format("Failed to import model from file: %s", resourceUri), ex);
 						promise.fail(ex);
 					}
 				}).onFailure(ex -> {
-					LOG.error(String.format(importModelFail, classSimpleName), ex);
+					LOG.error(String.format("Failed to import model from file: %s", resourceUri), ex);
 					promise.fail(ex);
 				});
 			} catch(Exception ex) {
-				LOG.error(String.format(importModelFail, classSimpleName), ex);
+				LOG.error(String.format("Failed to import model from file: %s", resourceUri), ex);
 				promise.fail(ex);
 			}
 		}).onFailure(ex -> {
-			LOG.error(String.format(importModelFail, classSimpleName), ex);
+			LOG.error(String.format("Failed to import model from file: %s", resourceUri), ex);
 			promise.fail(ex);
 		});
 		return promise.future();

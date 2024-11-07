@@ -396,6 +396,7 @@ public class I18n {
 	public static final String var_NOM_DOMAINE = "var_NOM_DOMAINE";
 	public static final String var_nomEnsembleDomaine = "var_nomEnsembleDomaine";
 	public static final String var_NomFamille = "var_NomFamille";
+	public static final String var_nomFichierCourt = "var_nomFichierCourt";
 	public static final String var_nomFichierConfig = "var_nomFichierConfig";
 	public static final String var_NOM_FICHIER_CONFIG = "var_NOM_FICHIER_CONFIG";
 	public static final String var_Nom = "var_Nom";
