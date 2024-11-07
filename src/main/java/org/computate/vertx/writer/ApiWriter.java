@@ -512,10 +512,16 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 			wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-", classSimpleName);
 
 			if(
-					StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH", "DELETE") 
+					StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH", "DELETE"
+							, i18n.getString(I18n.var_PageEdition)
+							, i18n.getString(I18n.var_PageUtilisateur)
+							) 
 						&& !(classRoleSession || classRoleUser || classRoleAll)
 						&& classAuth
-					|| !StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH", "DELETE") && (
+					|| !StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH", "DELETE"
+							, i18n.getString(I18n.var_PageEdition)
+							, i18n.getString(I18n.var_PageUtilisateur)
+							) && (
 						BooleanUtils.isNotTrue(classRoleSession) 
 						&& BooleanUtils.isNotTrue(classPublicRead) 
 						&& BooleanUtils.isNotTrue(BooleanUtils.isTrue(classSearchPagePublicRead) && classApiMethod.equals("SearchPage") && !id)
