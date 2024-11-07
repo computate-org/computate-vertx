@@ -319,6 +319,7 @@ public class I18n {
 	public static final String var_indexer = "var_indexer";
 	public static final String var_Indexer = "var_Indexer";
 	public static final String var_InheritClePrimaire = "var_InheritClePrimaire";
+	public static final String var_Initialise = "var_Initialise";
 	public static final String var_initLoin = "var_initLoin";
 	public static final String var_InitLoin = "var_InitLoin";
 	public static final String var_Interne = "var_Interne";
