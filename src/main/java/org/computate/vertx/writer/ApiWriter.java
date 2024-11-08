@@ -492,23 +492,30 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 		}
 	}
 
-	public void  writeApi(Boolean id) throws Exception, Exception {
+	public void  writeApi() throws Exception, Exception {
 
-		if(classPageCanonicalNameMethod != null && BooleanUtils.isFalse(id) && !"/".equals(classApiUriMethod))
-			writeApi(true);
+		String id = null;
+		if(classApiMethod.contains(i18n.getString(I18n.var_PageEdition))
+				|| classApiMethod.contains(i18n.getString(I18n.var_PageAffichage))
+				|| classApiMethod.contains(i18n.getString(I18n.var_PageUtilisateur))
+				|| classApiMethod.contains("GET")
+				|| classApiMethod.contains("DELETE")
+				) {
+			id = StringUtils.substringBefore(StringUtils.substringAfter(StringUtils.substringAfterLast(classApiUriMethod, "/"), "{"), "}");
+		}
 
-		if(id || !classApiMethod.contains(i18n.getString(I18n.var_PageEdition))
+		if(id != null || !classApiMethod.contains(i18n.getString(I18n.var_PageEdition))
 				&& !classApiMethod.contains(i18n.getString(I18n.var_PageAffichage))
 				&& !classApiMethod.contains(i18n.getString(I18n.var_PageUtilisateur))
 				) {
 
-			if(id || !classUris.contains(classApiUriMethod)) {
-				wPaths.tl(1, classApiUriMethod, (id ? "/{id}" : ""), ":");
-				classUris.add(classApiUriMethod + (id ? "/{id}" : ""));
+			if(!classUris.contains(classApiUriMethod)) {
+				wPaths.tl(1, classApiUriMethod, ":");
+				classUris.add(classApiUriMethod);
 			}
 
 			wPaths.tl(2, StringUtils.lowerCase(classApiMethodMethod), ":");
-			wPaths.tl(3, "operationId: ", classApiOperationIdMethod, (id ? "Id" : ""));
+			wPaths.tl(3, "operationId: ", classApiOperationIdMethod);
 			wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-", classSimpleName);
 
 			if(
@@ -524,7 +531,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 							) && (
 						BooleanUtils.isNotTrue(classRoleSession) 
 						&& BooleanUtils.isNotTrue(classPublicRead) 
-						&& BooleanUtils.isNotTrue(BooleanUtils.isTrue(classSearchPagePublicRead) && classApiMethod.equals("SearchPage") && !id)
+						&& BooleanUtils.isNotTrue(BooleanUtils.isTrue(classSearchPagePublicRead) && classApiMethod.equals(i18n.getString(I18n.var_PageRecherche)))
 						&& classAuth
 					)
 					) {
@@ -557,7 +564,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(3, "produces:");
 				wPaths.tl(4, "- ", classApiMediaType200Method);
 			}
-			if(!id && classFiware) {
+			if(classFiware) {
 				wRequestHeaders.tl(4, "- name: Fiware-Service");
 				wRequestHeaders.tl(5, "in: header");
 				wRequestHeaders.tl(5, "schema:");
@@ -589,8 +596,8 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: string");
 
-				if(id || "GET".equals(classApiMethod)) {
-					wPaths.tl(4, "- name: id");
+				if(id != null) {
+					wPaths.tl(4, "- name: ", id);
 					wPaths.tl(5, "in: path");
 					wPaths.t(5, "description: ").yamlStr(6, "");
 					wPaths.tl(5, "required: true");
@@ -803,95 +810,84 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 
 			wPaths.tl(5 + tabsResponses, "schema:");
 			wPaths.tl(6 + tabsResponses, "$ref: '#/components/schemas/", classApiOperationIdMethodResponse, "'");
-			if(!id) {
-				if(openApiVersionNumber > 2) {
-					if(!"GET".equals(classApiMethodMethod) && !"DELETE".equals(classApiMethodMethod)) {
-						wRequestBodies.tl(2, classApiOperationIdMethodRequest, ":");
-						wRequestBodies.tl(3, "content:");
-						wRequestBodies.tl(4, "application/json:");
-						wRequestBodies.tl(5, "schema:");
-						wRequestBodies.tl(6, "$ref: '#/components/schemas/", classApiOperationIdMethodRequest, "'");
-					}
-					wRequestBodies.tl(2, classApiOperationIdMethodResponse, ":");
+			if(openApiVersionNumber > 2) {
+				if(!"GET".equals(classApiMethodMethod) && !"DELETE".equals(classApiMethodMethod)) {
+					wRequestBodies.tl(2, classApiOperationIdMethodRequest, ":");
 					wRequestBodies.tl(3, "content:");
-
-					if("application/pdf".equals(classApiMediaType200Method))
-						wRequestBodies.tl(4, classApiMediaType200Method, ":");
-					else
-						wRequestBodies.tl(4, classApiMediaType200Method, "; charset=utf-8:");
-
+					wRequestBodies.tl(4, "application/json:");
 					wRequestBodies.tl(5, "schema:");
-					wRequestBodies.tl(6, "$ref: '#/components/schemas/", classApiOperationIdMethodResponse, "'");
+					wRequestBodies.tl(6, "$ref: '#/components/schemas/", classApiOperationIdMethodRequest, "'");
+				}
+				wRequestBodies.tl(2, classApiOperationIdMethodResponse, ":");
+				wRequestBodies.tl(3, "content:");
+
+				if("application/pdf".equals(classApiMediaType200Method))
+					wRequestBodies.tl(4, classApiMediaType200Method, ":");
+				else
+					wRequestBodies.tl(4, classApiMediaType200Method, "; charset=utf-8:");
+
+				wRequestBodies.tl(5, "schema:");
+				wRequestBodies.tl(6, "$ref: '#/components/schemas/", classApiOperationIdMethodResponse, "'");
+			}
+	
+			if(!"GET".equals(classApiMethodMethod) && !"DELETE".equals(classApiMethodMethod)) {
+				wSchemas.tl(tabsSchema, classApiOperationIdMethodRequest, ":");
+				wSchemas.tl(tabsSchema + 1, "allOf:");
+				if(BooleanUtils.isTrue(classExtendsBase) && StringUtils.isNotBlank(classSuperApiOperationIdMethodRequest)) {
+					wSchemas.tl(tabsSchema + 2, "- $ref: \"#/components/schemas/", classSuperApiOperationIdMethodRequest, "\"");
+				}
+				wSchemas.tl(tabsSchema + 2, "- type: object");
+				wSchemas.tl(tabsSchema + 3, "properties:");
+				if("PUT".equals(classApiMethodMethod)) {
+					wSchemas.tl(tabsSchema + 4, "list:");
+					wSchemas.tl(tabsSchema + 5, "type: array");
+					wSchemas.tl(tabsSchema + 5, "items:");
+					wSchemas.tl(tabsSchema + 6, "type: object");
+					wSchemas.tl(tabsSchema + 6, "properties:");
+					
+				}
+				wSchemas.s(wRequestSchema.toString());
+			}
+
+			wSchemas.tl(tabsSchema, classApiOperationIdMethodResponse, ":");
+			wSchemas.tl(tabsSchema + 1, "allOf:");
+			if("text/html".equals(classApiMediaType200Method)) {
+				wSchemas.tl(tabsSchema + 2, "- type: string");
+			}
+			else if("application/pdf".equals(classApiMediaType200Method)) {
+				wSchemas.tl(tabsSchema + 2, "- type: string");
+				wSchemas.tl(tabsSchema + 2, "- format: binary");
+			}
+			else {
+				if(BooleanUtils.isTrue(classExtendsBase) && StringUtils.isNotBlank(classSuperApiOperationIdMethodResponse)) {
+					wSchemas.tl(tabsSchema + 2, "- $ref: \"#/components/schemas/", classSuperApiOperationIdMethodResponse, "\"");
 				}
 	
-				if(!"GET".equals(classApiMethodMethod) && !"DELETE".equals(classApiMethodMethod)) {
-					wSchemas.tl(tabsSchema, classApiOperationIdMethodRequest, ":");
-					wSchemas.tl(tabsSchema + 1, "allOf:");
-					if(BooleanUtils.isTrue(classExtendsBase) && StringUtils.isNotBlank(classSuperApiOperationIdMethodRequest)) {
-						wSchemas.tl(tabsSchema + 2, "- $ref: \"#/components/schemas/", classSuperApiOperationIdMethodRequest, "\"");
-					}
+				if(classApiMethod.contains("Search")) {
 					wSchemas.tl(tabsSchema + 2, "- type: object");
 					wSchemas.tl(tabsSchema + 3, "properties:");
-					if("PUT".equals(classApiMethodMethod)) {
-						wSchemas.tl(tabsSchema + 4, "list:");
-						wSchemas.tl(tabsSchema + 5, "type: array");
-						wSchemas.tl(tabsSchema + 5, "items:");
-						wSchemas.tl(tabsSchema + 6, "type: object");
+					wSchemas.tl(tabsSchema + 4, "startNum:");
+					wSchemas.tl(tabsSchema + 5, "type: integer");
+					wSchemas.tl(tabsSchema + 5, "minimum: 0");
+					wSchemas.tl(tabsSchema + 4, "foundNum:");
+					wSchemas.tl(tabsSchema + 5, "type: integer");
+					wSchemas.tl(tabsSchema + 5, "minimum: 0");
+					wSchemas.tl(tabsSchema + 4, "returnedNum:");
+					wSchemas.tl(tabsSchema + 5, "type: integer");
+					wSchemas.tl(tabsSchema + 5, "minimum: 0");
+					wSchemas.tl(tabsSchema + 4, "list:");
+					wSchemas.tl(tabsSchema + 5, "type: array");
+					wSchemas.tl(tabsSchema + 5, "items:");
+					wSchemas.tl(tabsSchema + 6, "type: object");
+					if(!wResponseSchema.getEmpty())
 						wSchemas.tl(tabsSchema + 6, "properties:");
-						
-					}
-					wSchemas.s(wRequestSchema.toString());
-				}
-
-				wSchemas.tl(tabsSchema, classApiOperationIdMethodResponse, ":");
-				wSchemas.tl(tabsSchema + 1, "allOf:");
-				if("text/html".equals(classApiMediaType200Method)) {
-					wSchemas.tl(tabsSchema + 2, "- type: string");
-				}
-				else if("application/pdf".equals(classApiMediaType200Method)) {
-					wSchemas.tl(tabsSchema + 2, "- type: string");
-					wSchemas.tl(tabsSchema + 2, "- format: binary");
 				}
 				else {
-					if(BooleanUtils.isTrue(classExtendsBase) && StringUtils.isNotBlank(classSuperApiOperationIdMethodResponse)) {
-						wSchemas.tl(tabsSchema + 2, "- $ref: \"#/components/schemas/", classSuperApiOperationIdMethodResponse, "\"");
-					}
-	
-					if(classApiMethod.contains("Search")) {
-						wSchemas.tl(tabsSchema + 2, "- type: object");
+					wSchemas.tl(tabsSchema + 2, "- type: object");
+					if(!wResponseSchema.getEmpty())
 						wSchemas.tl(tabsSchema + 3, "properties:");
-						wSchemas.tl(tabsSchema + 4, "startNum:");
-						wSchemas.tl(tabsSchema + 5, "type: integer");
-						wSchemas.tl(tabsSchema + 5, "minimum: 0");
-						wSchemas.tl(tabsSchema + 4, "foundNum:");
-						wSchemas.tl(tabsSchema + 5, "type: integer");
-						wSchemas.tl(tabsSchema + 5, "minimum: 0");
-						wSchemas.tl(tabsSchema + 4, "returnedNum:");
-						wSchemas.tl(tabsSchema + 5, "type: integer");
-						wSchemas.tl(tabsSchema + 5, "minimum: 0");
-						wSchemas.tl(tabsSchema + 4, "list:");
-						wSchemas.tl(tabsSchema + 5, "type: array");
-						wSchemas.tl(tabsSchema + 5, "items:");
-						wSchemas.tl(tabsSchema + 6, "type: object");
-						if(!wResponseSchema.getEmpty())
-							wSchemas.tl(tabsSchema + 6, "properties:");
-					}
-					else {
-						wSchemas.tl(tabsSchema + 2, "- type: object");
-						if(!wResponseSchema.getEmpty())
-							wSchemas.tl(tabsSchema + 3, "properties:");
-					}
-					wSchemas.s(wResponseSchema.toString());
 				}
-			} else if(classApiMethod.contains(i18n.getString(I18n.var_PageEdition))
-					|| classApiMethod.contains(i18n.getString(I18n.var_PageAffichage))
-					|| classApiMethod.contains(i18n.getString(I18n.var_PageUtilisateur))
-					) {
-				wSchemas.tl(tabsSchema, classApiOperationIdMethodResponse, ":");
-				wSchemas.tl(tabsSchema + 1, "allOf:");
-				if("text/html".equals(classApiMediaType200Method)) {
-					wSchemas.tl(tabsSchema + 2, "- type: string");
-				}
+				wSchemas.s(wResponseSchema.toString());
 			}
 		}
 	}

@@ -108,11 +108,6 @@ import io.vertx.core.json.JsonArray;
  **/
 public abstract class BaseGeneratorGen<DEV> extends Object {
 	protected static final Logger LOG = LoggerFactory.getLogger(BaseGenerator.class);
-	public static final String configureConfigComplete1 = "The config was configured successfully. ";
-	public static final String configureConfigComplete = configureConfigComplete1;
-	public static final String configureConfigFail1 = "Could not configure the config(). ";
-	public static final String configureConfigFail = configureConfigFail1;
-
 
 	////////////
 	// vertx_ //
@@ -1722,8 +1717,6 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 		StringBuilder sb = new StringBuilder();
 		return sb.toString();
 	}
-
-	public static final String[] BaseGeneratorVals = new String[] { configureConfigComplete1, configureConfigFail1 };
 
 	public static final String CLASS_SIMPLE_NAME = "BaseGenerator";
 	public static final String VAR_vertx_ = "vertx_";

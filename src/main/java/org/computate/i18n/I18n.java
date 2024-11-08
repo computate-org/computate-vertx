@@ -409,6 +409,7 @@ public class I18n {
 	public static final String var_Numero = "var_Numero";
 	public static final String var_numRetourne = "var_numRetourne";
 	public static final String var_numTrouve = "var_numTrouve";
+	public static final String var_objetId = "var_objetId";
 	public static final String var_ObjetJson = "var_ObjetJson";
 	public static final String var_Objet = "var_Objet";
 	public static final String var_Objets = "var_Objets";

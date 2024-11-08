@@ -18,6 +18,7 @@ import java.nio.file.Files;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -275,6 +276,8 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 
 			ArrayList<String> classUris = new ArrayList<>();
 
+			List<String> classApiMethods = classDoc.getClassApiMethods();
+			classApiMethods.stream().sorted(Comparator.comparing(classApiMethod -> doc.get(String.format("classeApiMethode%s_%s_stored_string", classApiMethod, languageName))));
 			for(String classApiMethod : classDoc.getClassApiMethods()) {
 				ApiWriter apiWriter = new ApiWriter();
 				apiWriter.setI18n(i18n);
@@ -298,7 +301,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 				try {
 					for(ApiWriter apiWriter : apiWriters) {
 						apiWriter.getWriters().flushClose();
-						apiWriter.writeApi(false);
+						apiWriter.writeApi();
 					}
 
 					for(ApiWriter apiWriter : apiWriters) {
