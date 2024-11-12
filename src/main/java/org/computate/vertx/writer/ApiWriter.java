@@ -368,6 +368,13 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 							w.tl(7 + tabsSchema + numberTabs, "- ", entiteOptionVar);
 						}
 					}
+				} else if("array".equals(entityJsonType)) {
+					w.tl(5 + tabsSchema + numberTabs, "items:");
+					w.tl(6 + tabsSchema + numberTabs, "anyOf:");
+					w.tl(7 + tabsSchema + numberTabs, "- type: string");
+					w.tl(7 + tabsSchema + numberTabs, "- type: number");
+					w.tl(7 + tabsSchema + numberTabs, "- type: string");
+					w.tl(7 + tabsSchema + numberTabs, "- type: boolean");
 				}
 				if(StringUtils.isNotBlank(entityDescription))
 					w.t(5 + tabsSchema + numberTabs, "description: ").yamlStr(7 + numberTabs, "- " + entityDescription);
@@ -397,6 +404,13 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 							w.tl(7 + tabsSchema + numberTabs, "- ", entiteOptionVar);
 						}
 					}
+				} else if("array".equals(entityJsonType)) {
+					w.tl(5 + tabsSchema + numberTabs, "items:");
+					w.tl(6 + tabsSchema + numberTabs, "anyOf:");
+					w.tl(7 + tabsSchema + numberTabs, "- type: string");
+					w.tl(7 + tabsSchema + numberTabs, "- type: number");
+					w.tl(7 + tabsSchema + numberTabs, "- type: string");
+					w.tl(7 + tabsSchema + numberTabs, "- type: boolean");
 				}
 				if(StringUtils.isNotBlank(entityDescription))
 					w.t(5 + tabsSchema + numberTabs, "description: ").yamlStr(7 + numberTabs, "- " + entityDescription);
@@ -422,6 +436,13 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 							w.tl(7 + tabsSchema + numberTabs, "- ", entiteOptionVar);
 						}
 					}
+				} else if("array".equals(entityJsonType)) {
+					w.tl(5 + tabsSchema + numberTabs, "items:");
+					w.tl(6 + tabsSchema + numberTabs, "anyOf:");
+					w.tl(7 + tabsSchema + numberTabs, "- type: string");
+					w.tl(7 + tabsSchema + numberTabs, "- type: number");
+					w.tl(7 + tabsSchema + numberTabs, "- type: string");
+					w.tl(7 + tabsSchema + numberTabs, "- type: boolean");
 				}
 				if(StringUtils.isNotBlank(entityDescription))
 					w.t(5 + tabsSchema + numberTabs, "description: ").yamlStr(7 + numberTabs, "- " + entityDescription);
@@ -483,6 +504,13 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 							w.tl(7 + tabsSchema + numberTabs, "- ", entiteOptionVar);
 						}
 					}
+				} else if("array".equals(entityJsonType)) {
+					w.tl(5 + tabsSchema + numberTabs, "items:");
+					w.tl(6 + tabsSchema + numberTabs, "anyOf:");
+					w.tl(7 + tabsSchema + numberTabs, "- type: string");
+					w.tl(7 + tabsSchema + numberTabs, "- type: number");
+					w.tl(7 + tabsSchema + numberTabs, "- type: string");
+					w.tl(7 + tabsSchema + numberTabs, "- type: boolean");
 				}
 				if(StringUtils.isNotBlank(entityDescription))
 					w.t(5 + tabsSchema + numberTabs, "description: ").yamlStr(7 + numberTabs, "- " + entityDescription);
