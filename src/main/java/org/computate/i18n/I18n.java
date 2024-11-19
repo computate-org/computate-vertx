@@ -174,9 +174,12 @@ public class I18n {
 	public static final String var_Classe = "var_Classe";
 	public static final String var_CLASSE_API_ADDRESSE = "var_CLASSE_API_ADDRESSE";
 	public static final String var_ClasseApiAddresse = "var_ClasseApiAddresse";
+	public static final String var_classeNomAdjectifSingulier = "var_classeNomAdjectifSingulier";
 	public static final String var_classeNomCanonique = "var_classeNomCanonique";
 	public static final String var_classeNomsCanoniques = "var_classeNomsCanoniques";
 	public static final String var_classeNomSimple = "var_classeNomSimple";
+	public static final String var_classeStringFormatUrlPageAffichage = "var_classeStringFormatUrlPageAffichage";
+	public static final String var_classeStringFormatUrlPageEdition = "var_classeStringFormatUrlPageEdition";
 	public static final String var_Cle = "var_Cle";
 	public static final String var_ClePrimaire = "var_ClePrimaire";
 	public static final String var_Cles = "var_Cles";
@@ -310,6 +313,7 @@ public class I18n {
 	public static final String var_IconeGroupe = "var_IconeGroupe";
 	public static final String var_Icone = "var_Icone";
 	public static final String var_IconeNom = "var_IconeNom";
+	public static final String var_id = "var_id";
 	public static final String var_Ignorer = "var_Ignorer";
 	public static final String var_ImageHauteur = "var_ImageHauteur";
 	public static final String var_Image = "var_Image";
@@ -382,6 +386,7 @@ public class I18n {
 	public static final String var_Modifier = "var_Modifier";
 	public static final String var_MotCle = "var_MotCle";
 	public static final String var_Multiligne = "var_Multiligne";
+	public static final String var_nom = "var_nom";
 	public static final String var_NomActual = "var_NomActual";
 	public static final String var_NomActuel = "var_NomActuel";
 	public static final String var_NomAdjectifPluriel = "var_NomAdjectifPluriel";
@@ -547,6 +552,7 @@ public class I18n {
 	public static final String var_texte = "var_texte";
 	public static final String var_Texte = "var_Texte";
 	public static final String var_TiroirRecherche = "var_TiroirRecherche";
+	public static final String var_titre = "var_titre";
 	public static final String var_Titre = "var_Titre";
 	public static final String var_TousNom = "var_TousNom";
 	public static final String var_Tous = "var_Tous";
@@ -591,6 +597,7 @@ public class I18n {
 	public static final String var_VarCree = "var_VarCree";
 	public static final String var_VarDescription = "var_VarDescription";
 	public static final String var_VarModifie = "var_VarModifie";
+	public static final String var_VarNom = "var_VarNom";
 	public static final String var_VarTitre = "var_VarTitre";
 	public static final String var_VarUrl = "var_VarUrl";
 	public static final String var_Verticale = "var_Verticale";

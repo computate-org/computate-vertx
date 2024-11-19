@@ -18,7 +18,7 @@ package org.computate.vertx.result.base;
  */
 public interface ComputateBaseResult {
 
-	public String getId();
+	public String getSolrId();
 
 	public Object obtainForClass(String v);
 	
