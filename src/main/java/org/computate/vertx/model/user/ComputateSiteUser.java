@@ -52,13 +52,9 @@ public interface ComputateSiteUser extends ComputateBaseModel {
 
 	ComputateSiteRequest getSiteRequest_();
 
-	void setInheritPk(String string);
-
 	void setArchived(Boolean boolean1);
 
 	Object sqlArchived();
-
-	Object sqlInheritPk();
 
 	Object sqlUserName();
 
