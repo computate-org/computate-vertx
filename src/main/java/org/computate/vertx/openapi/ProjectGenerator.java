@@ -75,8 +75,8 @@ public class ProjectGenerator extends ProjectGeneratorGen<BaseGenerator> {
 	}
 
 	/**
-	 * Val.Success.enUS:Copy platform static files succeeded. 
-	 * Val.Fail.enUS:Copy platform static files failed. 
+	 * Val.Success.enUS: Copy platform static files succeeded. 
+	 * Val.Fail.enUS: Copy platform static files failed. 
 	 **/
 	public Future<Void> writeProject() {
 		Promise<Void> promise = Promise.promise();
@@ -98,8 +98,8 @@ public class ProjectGenerator extends ProjectGeneratorGen<BaseGenerator> {
 	}
 
 	/**
-	 * Val.Success.enUS:Copy platform static files from %s to %s succeeded. 
-	 * Val.Fail.enUS:Copy platform static files from %s to %s failed. 
+	 * Val.Success.enUS: Copy platform static files from %s to %s succeeded. 
+	 * Val.Fail.enUS: Copy platform static files from %s to %s failed. 
 	 **/
 	public Future<Void> copyPlatformStaticFiles() {
 		Promise<Void> promise = Promise.promise();
@@ -130,8 +130,8 @@ public class ProjectGenerator extends ProjectGeneratorGen<BaseGenerator> {
 	}
 
 	/**
-	 * Val.Success.enUS:Copy platform resource files from %s to %s succeeded. 
-	 * Val.Fail.enUS:Copy platform resource files from %s to %s failed. 
+	 * Val.Success.enUS: Copy platform resource files from %s to %s succeeded. 
+	 * Val.Fail.enUS: Copy platform resource files from %s to %s failed. 
 	 **/
 	public Future<Void> copyPlatformResourceFiles() {
 		Promise<Void> promise = Promise.promise();
@@ -162,8 +162,8 @@ public class ProjectGenerator extends ProjectGeneratorGen<BaseGenerator> {
 	}
 
 	/**
-	 * Val.Success.enUS:Copy files recursively succeeded. 
-	 * Val.Fail.enUS:Copy files recursively failed. 
+	 * Val.Success.enUS: Copy files recursively succeeded. 
+	 * Val.Fail.enUS: Copy files recursively failed. 
 	 **/
 	private Future<Void> copyRecursive(Vertx vertx, String from, String to) {
 		Promise<Void> promise = Promise.promise();

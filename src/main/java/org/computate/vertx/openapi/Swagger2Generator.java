@@ -65,8 +65,8 @@ public class Swagger2Generator extends Swagger2GeneratorGen<UseCaseGenerator> {
 
 	/**
 	 * 
-	 * Val.Error.enUS:An error occured while writing the API. 
-	 * Val.Error2.enUS:An error occured while writing the API. 
+	 * Val.Error.enUS: An error occured while writing the API. 
+	 * Val.Error2.enUS: An error occured while writing the API. 
 	 */
 	public Future<Void> writeApi() {
 		Promise<Void> promise = Promise.promise();

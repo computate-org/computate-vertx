@@ -102,6 +102,11 @@ import io.vertx.core.json.JsonArray;
  **/
 public abstract class Swagger2GeneratorGen<DEV> extends UseCaseGenerator {
 	protected static final Logger LOG = LoggerFactory.getLogger(Swagger2Generator.class);
+	public static final String writeApiError1 = "An error occured while writing the API. ";
+	public static final String writeApiError = writeApiError1;
+	public static final String writeApiError21 = "An error occured while writing the API. ";
+	public static final String writeApiError2 = writeApiError21;
+
 
 	//////////////
 	// initDeep //
@@ -248,6 +253,8 @@ public abstract class Swagger2GeneratorGen<DEV> extends UseCaseGenerator {
 		sb.append(super.toString());
 		return sb.toString();
 	}
+
+	public static final String[] Swagger2GeneratorVals = new String[] { writeApiError1, writeApiError21 };
 
 	public static final String CLASS_SIMPLE_NAME = "Swagger2Generator";
 

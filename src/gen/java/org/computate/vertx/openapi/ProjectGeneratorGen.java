@@ -476,6 +476,26 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
 		}
 		return (ProjectGenerator)this;
 	}
+	public static final String writeProjectSuccess1 = "Copy platform static files succeeded. ";
+	public static final String writeProjectSuccess = writeProjectSuccess1;
+	public static final String writeProjectFail1 = "Copy platform static files failed. ";
+	public static final String writeProjectFail = writeProjectFail1;
+
+	public static final String copyPlatformStaticFilesSuccess1 = "Copy platform static files from %s to %s succeeded. ";
+	public static final String copyPlatformStaticFilesSuccess = copyPlatformStaticFilesSuccess1;
+	public static final String copyPlatformStaticFilesFail1 = "Copy platform static files from %s to %s failed. ";
+	public static final String copyPlatformStaticFilesFail = copyPlatformStaticFilesFail1;
+
+	public static final String copyPlatformResourceFilesSuccess1 = "Copy platform resource files from %s to %s succeeded. ";
+	public static final String copyPlatformResourceFilesSuccess = copyPlatformResourceFilesSuccess1;
+	public static final String copyPlatformResourceFilesFail1 = "Copy platform resource files from %s to %s failed. ";
+	public static final String copyPlatformResourceFilesFail = copyPlatformResourceFilesFail1;
+
+	public static final String copyRecursiveSuccess1 = "Copy files recursively succeeded. ";
+	public static final String copyRecursiveSuccess = copyRecursiveSuccess1;
+	public static final String copyRecursiveFail1 = "Copy files recursively failed. ";
+	public static final String copyRecursiveFail = copyRecursiveFail1;
+
 
 	//////////////
 	// initDeep //
@@ -678,6 +698,8 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
 		sb.append(super.toString());
 		return sb.toString();
 	}
+
+	public static final String[] ProjectGeneratorVals = new String[] { writeProjectSuccess1, writeProjectFail1, copyPlatformStaticFilesSuccess1, copyPlatformStaticFilesFail1, copyPlatformResourceFilesSuccess1, copyPlatformResourceFilesFail1, copyRecursiveSuccess1, copyRecursiveFail1 };
 
 	public static final String CLASS_SIMPLE_NAME = "ProjectGenerator";
 	public static final String VAR_siteStaticPath = "siteStaticPath";
