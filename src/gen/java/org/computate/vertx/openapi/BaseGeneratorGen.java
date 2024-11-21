@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import org.computate.search.serialize.ComputateLocalTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -1773,6 +1774,34 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_wRequestBodies = "";
 	public static final String DISPLAY_NAME_wSchemas = "";
 
+	public String idForClass() {
+		return null;
+	}
+
+	public String titleForClass() {
+		return null;
+	}
+
+	public String nameForClass() {
+		return null;
+	}
+
+	public String classNameAdjectiveSingularForClass() {
+		return null;
+	}
+
+	public String descriptionForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlEditPageForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlDisplayPageForClass() {
+		return null;
+	}
+
 	public static String displayNameForClass(String var) {
 		return BaseGenerator.displayNameBaseGenerator(var);
 	}
@@ -1832,6 +1861,121 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return DISPLAY_NAME_wSchemas;
 		default:
 			return null;
+		}
+	}
+
+	public static String descriptionBaseGenerator(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static String classSimpleNameBaseGenerator(String var) {
+		switch(var) {
+		case VAR_vertx_:
+			return "Vertx";
+		case VAR_webClient:
+			return "WebClient";
+		case VAR_siteRequest_:
+			return "ComputateSiteRequest";
+		case VAR_config:
+			return "JsonObject";
+		case VAR_appName:
+			return "String";
+		case VAR_languageName:
+			return "String";
+		case VAR_computateVertxSrc:
+			return "String";
+		case VAR_i18n:
+			return "JsonObject";
+		case VAR_appPath:
+			return "String";
+		case VAR_platformPomArtifactId:
+			return "String";
+		case VAR_openApiVersion:
+			return "String";
+		case VAR_openApiVersionNumber:
+			return "Integer";
+		case VAR_tabsSchema:
+			return "Integer";
+		case VAR_apiVersion:
+			return "String";
+		case VAR_openApiYamlPath:
+			return "String";
+		case VAR_openApiYamlFile:
+			return "File";
+		case VAR_sqlCreatePath:
+			return "String";
+		case VAR_sqlCreateFile:
+			return "File";
+		case VAR_sqlDropPath:
+			return "String";
+		case VAR_sqlDropFile:
+			return "File";
+		case VAR_w:
+			return "AllWriter";
+		case VAR_wSqlCreate:
+			return "AllWriter";
+		case VAR_wSqlDrop:
+			return "AllWriter";
+		case VAR_wPaths:
+			return "AllWriter";
+		case VAR_wRequestBodies:
+			return "AllWriter";
+		case VAR_wSchemas:
+			return "AllWriter";
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmColumnBaseGenerator(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmRowBaseGenerator(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmCellBaseGenerator(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMinBaseGenerator(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMaxBaseGenerator(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer maxBaseGenerator(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer minBaseGenerator(String var) {
+		switch(var) {
+			default:
+				return null;
 		}
 	}
 }

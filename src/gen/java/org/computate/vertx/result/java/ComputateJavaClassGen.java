@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import org.computate.search.serialize.ComputateLocalTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -277,7 +278,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
-	@JsonDeserialize(using = ComputateLocalDateDeserializer.class)
+	@JsonDeserialize(using = ComputateLocalTimeDeserializer.class)
 	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
 	@JsonInclude(Include.NON_NULL)
@@ -8981,17 +8982,17 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	// initDeep //
 	//////////////
 
-	public Future<Void> promiseDeepComputateJavaClass(ComputateSiteRequest siteRequest_) {
+	public Future<ComputateJavaClassGen<DEV>> promiseDeepComputateJavaClass(ComputateSiteRequest siteRequest_) {
 		setSiteRequest_(siteRequest_);
 		return promiseDeepComputateJavaClass();
 	}
 
-	public Future<Void> promiseDeepComputateJavaClass() {
-		Promise<Void> promise = Promise.promise();
+	public Future<ComputateJavaClassGen<DEV>> promiseDeepComputateJavaClass() {
+		Promise<ComputateJavaClassGen<DEV>> promise = Promise.promise();
 		Promise<Void> promise2 = Promise.promise();
 		promiseComputateJavaClass(promise2);
 		promise2.future().onSuccess(a -> {
-			promise.complete();
+			promise.complete(this);
 		}).onFailure(ex -> {
 			promise.fail(ex);
 		});
@@ -9186,7 +9187,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 		return promise.future();
 	}
 
-	public Future<Void> promiseDeepForClass(ComputateSiteRequest siteRequest_) {
+	public Future<? extends ComputateJavaClassGen<DEV>> promiseDeepForClass(ComputateSiteRequest siteRequest_) {
 		return promiseDeepComputateJavaClass(siteRequest_);
 	}
 
@@ -11190,6 +11191,34 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_classPage = "";
 	public static final String DISPLAY_NAME_version = "";
 
+	public String idForClass() {
+		return objectId;
+	}
+
+	public String titleForClass() {
+		return objectTitle;
+	}
+
+	public String nameForClass() {
+		return null;
+	}
+
+	public String classNameAdjectiveSingularForClass() {
+		return null;
+	}
+
+	public String descriptionForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlEditPageForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlDisplayPageForClass() {
+		return null;
+	}
+
 	public static String displayNameForClass(String var) {
 		return ComputateJavaClass.displayNameComputateJavaClass(var);
 	}
@@ -11509,6 +11538,423 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 			return DISPLAY_NAME_version;
 		default:
 			return null;
+		}
+	}
+
+	public static String descriptionComputateJavaClass(String var) {
+		switch(var) {
+		case VAR_siteRequest_:
+			return "The current request object";
+		case VAR_promiseBefore:
+			return "An asynchronous method for searching for a computer related to this message";
+		case VAR_inheritPk:
+			return "An optional inherited primary key from a legacy system for this object in the database";
+		case VAR_created:
+			return "A created timestamp for this record in the database";
+		case VAR_archived:
+			return "For archiving this record";
+		case VAR_deleted:
+			return "For deleting this record";
+		case VAR_classCanonicalNames:
+			return "All the inherited canonical names of this Java class";
+		case VAR_sessionId:
+			return "The session ID of the user that created this object";
+		case VAR_userKey:
+			return "The primary key of the user that created this record";
+		case VAR_saves:
+			return "A list of fields that are saved for this record in the database";
+		case VAR_objectTitle:
+			return "The title of this object";
+		case VAR_objectId:
+			return "A URL friendly unique ID for this object";
+		case VAR_objectSuggest:
+			return "The indexed field in the search engine for this record while using autosuggest";
+		case VAR_objectText:
+			return "The full text search field in the search engine for this record while using autosuggest";
+		case VAR_pageUrlId:
+			return "The link by name for this object in the UI";
+		case VAR_pageUrlPk:
+			return "The link by primary key for this object in the UI";
+		case VAR_pageUrlApi:
+			return "The link to this object in the API";
+		case VAR_modified:
+			return "A modified timestamp for this record in the database";
+		case VAR_classCanonicalName:
+			return "the canonical name of this Java class";
+		case VAR_classSimpleName:
+			return "The simple name of this Java class";
+		case VAR_id:
+			return "The unique key for this record in the search engine";
+			default:
+				return null;
+		}
+	}
+
+	public static String classSimpleNameComputateJavaClass(String var) {
+		switch(var) {
+		case VAR_siteRequest_:
+			return "ComputateSiteRequest";
+		case VAR_promiseBefore:
+			return "Void";
+		case VAR_inheritPk:
+			return "String";
+		case VAR_created:
+			return "ZonedDateTime";
+		case VAR_archived:
+			return "Boolean";
+		case VAR_deleted:
+			return "Boolean";
+		case VAR_classCanonicalNames:
+			return "List";
+		case VAR_sessionId:
+			return "String";
+		case VAR_userKey:
+			return "Long";
+		case VAR_saves:
+			return "List";
+		case VAR_objectTitle:
+			return "String";
+		case VAR_objectId:
+			return "String";
+		case VAR_objectSuggest:
+			return "String";
+		case VAR_objectText:
+			return "List";
+		case VAR_pageUrlId:
+			return "String";
+		case VAR_pageUrlPk:
+			return "String";
+		case VAR_pageUrlApi:
+			return "String";
+		case VAR_doc:
+			return "JsonObject";
+		case VAR_sitePath:
+			return "String";
+		case VAR_siteName:
+			return "String";
+		case VAR_superClassParamsTypeName:
+			return "List";
+		case VAR_superClassCompleteName:
+			return "String";
+		case VAR_superClassGenericCompleteName:
+			return "String";
+		case VAR_superClassGenericCanonicalName:
+			return "String";
+		case VAR_superClassGenericSimpleName:
+			return "String";
+		case VAR_classIsBase:
+			return "Boolean";
+		case VAR_classExtendsBase:
+			return "Boolean";
+		case VAR_classBaseExtendsGen:
+			return "Boolean";
+		case VAR_classContainsSiteRequest:
+			return "Boolean";
+		case VAR_classTranslate:
+			return "Boolean";
+		case VAR_classInitDeep:
+			return "Boolean";
+		case VAR_classExtendsGen:
+			return "Boolean";
+		case VAR_languageName:
+			return "String";
+		case VAR_modified:
+			return "String";
+		case VAR_classCanonicalName:
+			return "String";
+		case VAR_classSimpleName:
+			return "String";
+		case VAR_classPackageName:
+			return "String";
+		case VAR_classCanonicalNameGen:
+			return "String";
+		case VAR_classSimpleNameGen:
+			return "String";
+		case VAR_superClassCanonicalName:
+			return "String";
+		case VAR_superClassSimpleName:
+			return "String";
+		case VAR_classAbsolutePath:
+			return "String";
+		case VAR_classPath:
+			return "String";
+		case VAR_classDirectoryPath:
+			return "String";
+		case VAR_classPathGen:
+			return "String";
+		case VAR_classDirectoryPathGen:
+			return "String";
+		case VAR_domainPackageName:
+			return "String";
+		case VAR_entityClassesSuperAndMeWithoutGen:
+			return "List";
+		case VAR_classIsAbstract:
+			return "Boolean";
+		case VAR_classModel:
+			return "Boolean";
+		case VAR_classApi:
+			return "Boolean";
+		case VAR_classSimplePage:
+			return "Boolean";
+		case VAR_classSaved:
+			return "Boolean";
+		case VAR_classSimpleNameApiPackageInfo:
+			return "String";
+		case VAR_classSimpleNameGenApiServiceImpl:
+			return "String";
+		case VAR_classSimpleNameApiServiceImpl:
+			return "String";
+		case VAR_classSimpleNameGenApiService:
+			return "String";
+		case VAR_classCanonicalNameApiPackageInfo:
+			return "String";
+		case VAR_classCanonicalNameGenApiServiceImpl:
+			return "String";
+		case VAR_classCanonicalNameApiServiceImpl:
+			return "String";
+		case VAR_classCanonicalNameGenApiService:
+			return "String";
+		case VAR_classPathApiPackageInfo:
+			return "String";
+		case VAR_classPathGenApiServiceImpl:
+			return "String";
+		case VAR_classPathApiServiceImpl:
+			return "String";
+		case VAR_classPathGenApiService:
+			return "String";
+		case VAR_classPublicRead:
+			return "Boolean";
+		case VAR_classRoleSession:
+			return "Boolean";
+		case VAR_classRoleUser:
+			return "Boolean";
+		case VAR_classRoleEach:
+			return "Boolean";
+		case VAR_classRoles:
+			return "List";
+		case VAR_classRolesLanguage:
+			return "List";
+		case VAR_classRolesFound:
+			return "Boolean";
+		case VAR_classRoleReadFound:
+			return "Boolean";
+		case VAR_classSessionWrite:
+			return "Boolean";
+		case VAR_classUserWrite:
+			return "Boolean";
+		case VAR_classPublicWrite:
+			return "Boolean";
+		case VAR_classSessionRead:
+			return "Boolean";
+		case VAR_classUserRead:
+			return "Boolean";
+		case VAR_classFiltersFound:
+			return "Boolean";
+		case VAR_sqlSort:
+			return "Integer";
+		case VAR_id:
+			return "String";
+		case VAR_partIsClass:
+			return "Boolean";
+		case VAR_partNumber:
+			return "Integer";
+		case VAR_classImports:
+			return "List";
+		case VAR_classEntityVars:
+			return "List";
+		case VAR_classImportsGenApi:
+			return "List";
+		case VAR_classAttributeSimpleNamePages:
+			return "List";
+		case VAR_classMethodVars:
+			return "List";
+		case VAR_classVarSuggested:
+			return "String";
+		case VAR_classVarText:
+			return "String";
+		case VAR_classVarPrimaryKey:
+			return "String";
+		case VAR_classVarInheritPrimaryKey:
+			return "String";
+		case VAR_classVarSaves:
+			return "String";
+		case VAR_classvarUniqueKey:
+			return "String";
+		case VAR_classVarModified:
+			return "String";
+		case VAR_classVarCreated:
+			return "String";
+		case VAR_classVarUrlId:
+			return "String";
+		case VAR_classVarUrlPk:
+			return "String";
+		case VAR_classVarId:
+			return "String";
+		case VAR_classVarTitle:
+			return "String";
+		case VAR_classKeywordsFound:
+			return "Boolean";
+		case VAR_classPageCanonicalName:
+			return "String";
+		case VAR_classPageSimpleName:
+			return "String";
+		case VAR_classGenPageSimpleName:
+			return "String";
+		case VAR_classGenPageCanonicalName:
+			return "String";
+		case VAR_classGenPagePath:
+			return "String";
+		case VAR_classPagePath:
+			return "String";
+		case VAR_classPagePathCss:
+			return "String";
+		case VAR_classPagePathJs:
+			return "String";
+		case VAR_classPagePathHbs:
+			return "String";
+		case VAR_classGenPagePathHbs:
+			return "String";
+		case VAR_classPageLanguageName:
+			return "String";
+		case VAR_classPageSuperCanonicalName:
+			return "String";
+		case VAR_classSuperPageSimpleName:
+			return "String";
+		case VAR_classImportsGenPage:
+			return "List";
+		case VAR_classApiUri:
+			return "String";
+		case VAR_classApiTag:
+			return "String";
+		case VAR_classApiMethods:
+			return "List";
+		case VAR_classContext:
+			return "Boolean";
+		case VAR_contextColor:
+			return "String";
+		case VAR_contextIconGroup:
+			return "String";
+		case VAR_contextIconName:
+			return "String";
+		case VAR_contextRows:
+			return "Integer";
+		case VAR_contextAName:
+			return "String";
+		case VAR_contextNameSingular:
+			return "String";
+		case VAR_contextNamePlural:
+			return "String";
+		case VAR_contextNameVar:
+			return "String";
+		case VAR_contextTheNames:
+			return "String";
+		case VAR_contextNameAdjectiveSingular:
+			return "String";
+		case VAR_contextNameAdjectivePlural:
+			return "String";
+		case VAR_contextThis:
+			return "String";
+		case VAR_contextA:
+			return "String";
+		case VAR_contextCreated:
+			return "String";
+		case VAR_contextModified:
+			return "String";
+		case VAR_contextActualName:
+			return "String";
+		case VAR_contextAll:
+			return "String";
+		case VAR_contextAllName:
+			return "String";
+		case VAR_contextSearchAllNameBy:
+			return "String";
+		case VAR_contextSearchAllName:
+			return "String";
+		case VAR_contextNoNameFound:
+			return "String";
+		case VAR_contextANameAdjective:
+			return "String";
+		case VAR_contextThisName:
+			return "String";
+		case VAR_contextTheName:
+			return "String";
+		case VAR_contextOfName:
+			return "String";
+		case VAR_contextThisLowercase:
+			return "String";
+		case VAR_contextTitle:
+			return "String";
+		case VAR_classIndexed:
+			return "Boolean";
+		case VAR_classImage:
+			return "Boolean";
+		case VAR_classPromise:
+			return "Boolean";
+		case VAR_classImportsGen:
+			return "List";
+		case VAR_classSortsFound:
+			return "Boolean";
+		case VAR_classSortsSuffixType:
+			return "List";
+		case VAR_classSortsOrder:
+			return "List";
+		case VAR_classSortsVar:
+			return "List";
+		case VAR_classPage:
+			return "Boolean";
+		case VAR_version:
+			return "Boolean";
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmColumnComputateJavaClass(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmRowComputateJavaClass(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmCellComputateJavaClass(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMinComputateJavaClass(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMaxComputateJavaClass(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer maxComputateJavaClass(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer minComputateJavaClass(String var) {
+		switch(var) {
+			default:
+				return null;
 		}
 	}
 }

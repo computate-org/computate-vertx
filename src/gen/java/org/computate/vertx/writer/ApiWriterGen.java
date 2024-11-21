@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import org.computate.search.serialize.ComputateLocalTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -3980,6 +3981,34 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_classRolesLanguage = "";
 	public static final String DISPLAY_NAME_entitySolrDocument = "";
 
+	public String idForClass() {
+		return null;
+	}
+
+	public String titleForClass() {
+		return null;
+	}
+
+	public String nameForClass() {
+		return null;
+	}
+
+	public String classNameAdjectiveSingularForClass() {
+		return null;
+	}
+
+	public String descriptionForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlEditPageForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlDisplayPageForClass() {
+		return null;
+	}
+
 	public static String displayNameForClass(String var) {
 		return ApiWriter.displayNameApiWriter(var);
 	}
@@ -4101,6 +4130,183 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return DISPLAY_NAME_entitySolrDocument;
 		default:
 			return null;
+		}
+	}
+
+	public static String descriptionApiWriter(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static String classSimpleNameApiWriter(String var) {
+		switch(var) {
+		case VAR_siteRequest_:
+			return "ComputateSiteRequest";
+		case VAR_languageName:
+			return "String";
+		case VAR_i18n:
+			return "JsonObject";
+		case VAR_classDoc:
+			return "ComputateEnUSClass";
+		case VAR_classSolrDocument:
+			return "Doc";
+		case VAR_contextRows:
+			return "Integer";
+		case VAR_classApiMethod:
+			return "String";
+		case VAR_openApiVersion:
+			return "String";
+		case VAR_classUris:
+			return "List";
+		case VAR_openApiVersionNumber:
+			return "Integer";
+		case VAR_tabsSchema:
+			return "Integer";
+		case VAR_tabsResponses:
+			return "Integer";
+		case VAR_wPaths:
+			return "AllWriter";
+		case VAR_wRequestBodies:
+			return "AllWriter";
+		case VAR_wSchemas:
+			return "AllWriter";
+		case VAR_config:
+			return "JsonObject";
+		case VAR_authClients:
+			return "JsonObject";
+		case VAR_wRequestHeaders:
+			return "AllWriter";
+		case VAR_wRequestDescription:
+			return "AllWriter";
+		case VAR_wResponseDescription:
+			return "AllWriter";
+		case VAR_wRequestBody:
+			return "AllWriter";
+		case VAR_wResponseBody:
+			return "AllWriter";
+		case VAR_wRequestSchema:
+			return "AllWriter";
+		case VAR_wResponseSchema:
+			return "AllWriter";
+		case VAR_writers:
+			return "AllWriters";
+		case VAR_classApiTag:
+			return "String";
+		case VAR_classExtendsBase:
+			return "Boolean";
+		case VAR_classIsBase:
+			return "Boolean";
+		case VAR_classFiware:
+			return "Boolean";
+		case VAR_classSimpleName:
+			return "String";
+		case VAR_appName:
+			return "String";
+		case VAR_classAbsolutePath:
+			return "String";
+		case VAR_classApiUriMethod:
+			return "String";
+		case VAR_classRoleUserMethod:
+			return "Boolean";
+		case VAR_classApiMethodMethod:
+			return "String";
+		case VAR_classApiMediaTypeRequestMethod:
+			return "String";
+		case VAR_classApiMediaType200Method:
+			return "String";
+		case VAR_classApiOperationIdMethod:
+			return "String";
+		case VAR_classApiOperationIdMethodRequest:
+			return "String";
+		case VAR_classApiOperationIdMethodResponse:
+			return "String";
+		case VAR_classSuperApiOperationIdMethodRequest:
+			return "String";
+		case VAR_classSuperApiOperationIdMethodResponse:
+			return "String";
+		case VAR_classPageCanonicalNameMethod:
+			return "String";
+		case VAR_classPageWithTemplateMethod:
+			return "Boolean";
+		case VAR_classKeywordsFound:
+			return "Boolean";
+		case VAR_classKeywords:
+			return "List";
+		case VAR_classPublicRead:
+			return "Boolean";
+		case VAR_classSearchPagePublicRead:
+			return "Boolean";
+		case VAR_classRoleSession:
+			return "Boolean";
+		case VAR_classRoleUser:
+			return "Boolean";
+		case VAR_classRoleAll:
+			return "Boolean";
+		case VAR_classAuth:
+			return "Boolean";
+		case VAR_classRolesFound:
+			return "Boolean";
+		case VAR_classRoles:
+			return "List";
+		case VAR_classRoleReads:
+			return "List";
+		case VAR_classRolesLanguage:
+			return "List";
+		case VAR_entitySolrDocument:
+			return "Doc";
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmColumnApiWriter(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmRowApiWriter(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmCellApiWriter(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMinApiWriter(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMaxApiWriter(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer maxApiWriter(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer minApiWriter(String var) {
+		switch(var) {
+			default:
+				return null;
 		}
 	}
 }

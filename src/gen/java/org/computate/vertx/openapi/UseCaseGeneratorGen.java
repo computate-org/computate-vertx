@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import org.computate.search.serialize.ComputateLocalTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -624,6 +625,41 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
 	public static final String DISPLAY_NAME_useCaseSummaryFile = "";
 	public static final String DISPLAY_NAME_wUseCaseSummary = "";
 
+	@Override
+	public String idForClass() {
+		return null;
+	}
+
+	@Override
+	public String titleForClass() {
+		return null;
+	}
+
+	@Override
+	public String nameForClass() {
+		return null;
+	}
+
+	@Override
+	public String classNameAdjectiveSingularForClass() {
+		return null;
+	}
+
+	@Override
+	public String descriptionForClass() {
+		return null;
+	}
+
+	@Override
+	public String classStringFormatUrlEditPageForClass() {
+		return null;
+	}
+
+	@Override
+	public String classStringFormatUrlDisplayPageForClass() {
+		return null;
+	}
+
 	public static String displayNameForClass(String var) {
 		return UseCaseGenerator.displayNameUseCaseGenerator(var);
 	}
@@ -643,6 +679,81 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
 			return DISPLAY_NAME_wUseCaseSummary;
 		default:
 			return FiwareGenerator.displayNameFiwareGenerator(var);
+		}
+	}
+
+	public static String descriptionUseCaseGenerator(String var) {
+		switch(var) {
+			default:
+				return FiwareGenerator.descriptionFiwareGenerator(var);
+		}
+	}
+
+	public static String classSimpleNameUseCaseGenerator(String var) {
+		switch(var) {
+		case VAR_useCasePath:
+			return "String";
+		case VAR_useCaseSummary:
+			return "JsonObject";
+		case VAR_useCaseSummaryCells:
+			return "JsonArray";
+		case VAR_useCaseSummaryNum:
+			return "Integer";
+		case VAR_useCaseSummaryFile:
+			return "File";
+		case VAR_wUseCaseSummary:
+			return "AllWriter";
+			default:
+				return FiwareGenerator.classSimpleNameFiwareGenerator(var);
+		}
+	}
+
+	public static Integer htmColumnUseCaseGenerator(String var) {
+		switch(var) {
+			default:
+				return FiwareGenerator.htmColumnFiwareGenerator(var);
+		}
+	}
+
+	public static Integer htmRowUseCaseGenerator(String var) {
+		switch(var) {
+			default:
+				return FiwareGenerator.htmRowFiwareGenerator(var);
+		}
+	}
+
+	public static Integer htmCellUseCaseGenerator(String var) {
+		switch(var) {
+			default:
+				return FiwareGenerator.htmCellFiwareGenerator(var);
+		}
+	}
+
+	public static Integer lengthMinUseCaseGenerator(String var) {
+		switch(var) {
+			default:
+				return FiwareGenerator.lengthMinFiwareGenerator(var);
+		}
+	}
+
+	public static Integer lengthMaxUseCaseGenerator(String var) {
+		switch(var) {
+			default:
+				return FiwareGenerator.lengthMaxFiwareGenerator(var);
+		}
+	}
+
+	public static Integer maxUseCaseGenerator(String var) {
+		switch(var) {
+			default:
+				return FiwareGenerator.maxFiwareGenerator(var);
+		}
+	}
+
+	public static Integer minUseCaseGenerator(String var) {
+		switch(var) {
+			default:
+				return FiwareGenerator.minFiwareGenerator(var);
 		}
 	}
 }

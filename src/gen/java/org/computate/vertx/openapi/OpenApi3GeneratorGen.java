@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import org.computate.search.serialize.ComputateLocalTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -88,15 +89,15 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class OpenApi3Generator in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.OpenApi3Generator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.OpenApi3Generator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.openapi in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * Generated: true
  **/
@@ -252,6 +253,41 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 	public static final String CLASS_SIMPLE_NAME = "OpenApi3Generator";
 
 
+	@Override
+	public String idForClass() {
+		return null;
+	}
+
+	@Override
+	public String titleForClass() {
+		return null;
+	}
+
+	@Override
+	public String nameForClass() {
+		return null;
+	}
+
+	@Override
+	public String classNameAdjectiveSingularForClass() {
+		return null;
+	}
+
+	@Override
+	public String descriptionForClass() {
+		return null;
+	}
+
+	@Override
+	public String classStringFormatUrlEditPageForClass() {
+		return null;
+	}
+
+	@Override
+	public String classStringFormatUrlDisplayPageForClass() {
+		return null;
+	}
+
 	public static String displayNameForClass(String var) {
 		return OpenApi3Generator.displayNameOpenApi3Generator(var);
 	}
@@ -259,6 +295,69 @@ public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
 		switch(var) {
 		default:
 			return Swagger2Generator.displayNameSwagger2Generator(var);
+		}
+	}
+
+	public static String descriptionOpenApi3Generator(String var) {
+		switch(var) {
+			default:
+				return Swagger2Generator.descriptionSwagger2Generator(var);
+		}
+	}
+
+	public static String classSimpleNameOpenApi3Generator(String var) {
+		switch(var) {
+			default:
+				return Swagger2Generator.classSimpleNameSwagger2Generator(var);
+		}
+	}
+
+	public static Integer htmColumnOpenApi3Generator(String var) {
+		switch(var) {
+			default:
+				return Swagger2Generator.htmColumnSwagger2Generator(var);
+		}
+	}
+
+	public static Integer htmRowOpenApi3Generator(String var) {
+		switch(var) {
+			default:
+				return Swagger2Generator.htmRowSwagger2Generator(var);
+		}
+	}
+
+	public static Integer htmCellOpenApi3Generator(String var) {
+		switch(var) {
+			default:
+				return Swagger2Generator.htmCellSwagger2Generator(var);
+		}
+	}
+
+	public static Integer lengthMinOpenApi3Generator(String var) {
+		switch(var) {
+			default:
+				return Swagger2Generator.lengthMinSwagger2Generator(var);
+		}
+	}
+
+	public static Integer lengthMaxOpenApi3Generator(String var) {
+		switch(var) {
+			default:
+				return Swagger2Generator.lengthMaxSwagger2Generator(var);
+		}
+	}
+
+	public static Integer maxOpenApi3Generator(String var) {
+		switch(var) {
+			default:
+				return Swagger2Generator.maxSwagger2Generator(var);
+		}
+	}
+
+	public static Integer minOpenApi3Generator(String var) {
+		switch(var) {
+			default:
+				return Swagger2Generator.minSwagger2Generator(var);
 		}
 	}
 }

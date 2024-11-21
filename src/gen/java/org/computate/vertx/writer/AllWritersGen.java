@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import org.computate.search.serialize.ComputateLocalTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -88,15 +89,15 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class AllWriters in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriters&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriters&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.writer in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.writer&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.writer&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * Generated: true
  **/
@@ -117,7 +118,7 @@ public abstract class AllWritersGen<DEV> extends Object {
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriters&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriters&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -159,7 +160,7 @@ public abstract class AllWritersGen<DEV> extends Object {
 
 	/**	<br> The entity writers
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriters&fq=entiteVar_enUS_indexed_string:writers">Find the entity writers in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriters&fq=entiteVar_enUS_indexed_string:writers">Find the entity writers in Solr</a>
 	 * <br>
 	 * @param c is the entity already constructed. 
 	 **/
@@ -347,6 +348,34 @@ public abstract class AllWritersGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_siteRequest_ = "";
 	public static final String DISPLAY_NAME_writers = "";
 
+	public String idForClass() {
+		return null;
+	}
+
+	public String titleForClass() {
+		return null;
+	}
+
+	public String nameForClass() {
+		return null;
+	}
+
+	public String classNameAdjectiveSingularForClass() {
+		return null;
+	}
+
+	public String descriptionForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlEditPageForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlDisplayPageForClass() {
+		return null;
+	}
+
 	public static String displayNameForClass(String var) {
 		return AllWriters.displayNameAllWriters(var);
 	}
@@ -358,6 +387,73 @@ public abstract class AllWritersGen<DEV> extends Object {
 			return DISPLAY_NAME_writers;
 		default:
 			return null;
+		}
+	}
+
+	public static String descriptionAllWriters(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static String classSimpleNameAllWriters(String var) {
+		switch(var) {
+		case VAR_siteRequest_:
+			return "ComputateSiteRequest";
+		case VAR_writers:
+			return "List";
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmColumnAllWriters(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmRowAllWriters(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmCellAllWriters(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMinAllWriters(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMaxAllWriters(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer maxAllWriters(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer minAllWriters(String var) {
+		switch(var) {
+			default:
+				return null;
 		}
 	}
 }

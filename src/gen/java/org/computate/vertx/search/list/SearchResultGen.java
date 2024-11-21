@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import org.computate.search.serialize.ComputateLocalTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -90,15 +91,15 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class SearchResult in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.search.list in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.search.list&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.search.list&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * Generated: true
  **/
@@ -119,7 +120,7 @@ public abstract class SearchResultGen<DEV> extends Object {
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -160,7 +161,7 @@ public abstract class SearchResultGen<DEV> extends Object {
 
 	/**	<br> The entity solrDocument
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&fq=entiteVar_enUS_indexed_string:solrDocument">Find the entity solrDocument in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&fq=entiteVar_enUS_indexed_string:solrDocument">Find the entity solrDocument in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -221,7 +222,7 @@ public abstract class SearchResultGen<DEV> extends Object {
 
 	/**	<br> The entity resultIndex
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&fq=entiteVar_enUS_indexed_string:resultIndex">Find the entity resultIndex in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&fq=entiteVar_enUS_indexed_string:resultIndex">Find the entity resultIndex in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -443,6 +444,34 @@ public abstract class SearchResultGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_solrDocument = "";
 	public static final String DISPLAY_NAME_resultIndex = "";
 
+	public String idForClass() {
+		return null;
+	}
+
+	public String titleForClass() {
+		return null;
+	}
+
+	public String nameForClass() {
+		return null;
+	}
+
+	public String classNameAdjectiveSingularForClass() {
+		return null;
+	}
+
+	public String descriptionForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlEditPageForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlDisplayPageForClass() {
+		return null;
+	}
+
 	public static String displayNameForClass(String var) {
 		return SearchResult.displayNameSearchResult(var);
 	}
@@ -456,6 +485,75 @@ public abstract class SearchResultGen<DEV> extends Object {
 			return DISPLAY_NAME_resultIndex;
 		default:
 			return null;
+		}
+	}
+
+	public static String descriptionSearchResult(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static String classSimpleNameSearchResult(String var) {
+		switch(var) {
+		case VAR_siteRequest_:
+			return "ComputateSiteRequest";
+		case VAR_solrDocument:
+			return "JsonObject";
+		case VAR_resultIndex:
+			return "Long";
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmColumnSearchResult(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmRowSearchResult(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmCellSearchResult(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMinSearchResult(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMaxSearchResult(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer maxSearchResult(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer minSearchResult(String var) {
+		switch(var) {
+			default:
+				return null;
 		}
 	}
 }

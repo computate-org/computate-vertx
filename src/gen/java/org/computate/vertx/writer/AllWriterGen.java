@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import org.computate.search.serialize.ComputateLocalTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -93,15 +94,15 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class AllWriter in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.writer in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.writer&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.writer&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * Generated: true
  **/
@@ -122,7 +123,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -163,7 +164,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 
 	/**	<br> The entity tabStr
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&fq=entiteVar_enUS_indexed_string:tabStr">Find the entity tabStr in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&fq=entiteVar_enUS_indexed_string:tabStr">Find the entity tabStr in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -215,7 +216,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 
 	/**	<br> The entity file
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&fq=entiteVar_enUS_indexed_string:file">Find the entity file in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&fq=entiteVar_enUS_indexed_string:file">Find the entity file in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -256,7 +257,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 
 	/**	<br> The entity stringWriter
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&fq=entiteVar_enUS_indexed_string:stringWriter">Find the entity stringWriter in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&fq=entiteVar_enUS_indexed_string:stringWriter">Find the entity stringWriter in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -297,7 +298,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 
 	/**	<br> The entity buffer
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&fq=entiteVar_enUS_indexed_string:buffer">Find the entity buffer in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&fq=entiteVar_enUS_indexed_string:buffer">Find the entity buffer in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -338,7 +339,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 
 	/**	<br> The entity printWriter
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&fq=entiteVar_enUS_indexed_string:printWriter">Find the entity printWriter in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&fq=entiteVar_enUS_indexed_string:printWriter">Find the entity printWriter in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -379,7 +380,7 @@ public abstract class AllWriterGen<DEV> extends Object {
 
 	/**	<br> The entity empty
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&fq=entiteVar_enUS_indexed_string:empty">Find the entity empty in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriter&fq=entiteVar_enUS_indexed_string:empty">Find the entity empty in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -619,6 +620,34 @@ public abstract class AllWriterGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_printWriter = "";
 	public static final String DISPLAY_NAME_empty = "";
 
+	public String idForClass() {
+		return null;
+	}
+
+	public String titleForClass() {
+		return null;
+	}
+
+	public String nameForClass() {
+		return null;
+	}
+
+	public String classNameAdjectiveSingularForClass() {
+		return null;
+	}
+
+	public String descriptionForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlEditPageForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlDisplayPageForClass() {
+		return null;
+	}
+
 	public static String displayNameForClass(String var) {
 		return AllWriter.displayNameAllWriter(var);
 	}
@@ -640,6 +669,83 @@ public abstract class AllWriterGen<DEV> extends Object {
 			return DISPLAY_NAME_empty;
 		default:
 			return null;
+		}
+	}
+
+	public static String descriptionAllWriter(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static String classSimpleNameAllWriter(String var) {
+		switch(var) {
+		case VAR_siteRequest_:
+			return "ComputateSiteRequest";
+		case VAR_tabStr:
+			return "String";
+		case VAR_file:
+			return "File";
+		case VAR_stringWriter:
+			return "StringWriter";
+		case VAR_buffer:
+			return "Buffer";
+		case VAR_printWriter:
+			return "PrintWriter";
+		case VAR_empty:
+			return "Boolean";
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmColumnAllWriter(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmRowAllWriter(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmCellAllWriter(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMinAllWriter(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMaxAllWriter(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer maxAllWriter(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer minAllWriter(String var) {
+		switch(var) {
+			default:
+				return null;
 		}
 	}
 }

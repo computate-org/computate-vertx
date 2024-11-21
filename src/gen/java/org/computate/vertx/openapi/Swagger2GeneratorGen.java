@@ -14,7 +14,7 @@
 package org.computate.vertx.openapi;
 
 import org.computate.vertx.request.ComputateSiteRequest;
-import org.computate.vertx.openapi.FiwareGenerator;
+import org.computate.vertx.openapi.UseCaseGenerator;
 import org.computate.vertx.api.ApiRequest;
 import org.computate.vertx.config.ComputateConfigKeys;
 import java.util.Optional;
@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import org.computate.search.serialize.ComputateLocalTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -55,7 +56,7 @@ import io.vertx.core.json.JsonArray;
  * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these Swagger2Generator objects in a RESTful API. 
  * </li><li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class Swagger2GeneratorGen into the class Swagger2Generator. 
  * </li>
- * <h3>About the Swagger2Generator class and it's generated class Swagger2GeneratorGen&lt;FiwareGenerator&gt;: </h3>extends Swagger2GeneratorGen
+ * <h3>About the Swagger2Generator class and it's generated class Swagger2GeneratorGen&lt;UseCaseGenerator&gt;: </h3>extends Swagger2GeneratorGen
  * <p>
  * This Java class extends a generated Java class Swagger2GeneratorGen built by the <a href="https://github.com/computate-org/computate">https://github.com/computate-org/computate</a> project. 
  * Whenever this Java class is modified or touched, the watch service installed as described in the README, indexes all the information about this Java class in a local Apache Solr Search Engine. 
@@ -66,9 +67,9 @@ import io.vertx.core.json.JsonArray;
  * The extended class ending with "Gen" did not exist at first, but was automatically created by the same watch service based on the data retrieved from the local Apache Server search engine. 
  * The extended class contains many generated fields, getters, setters, initialization code, and helper methods to help build a website and API fast, reactive, and scalable. 
  * </p>
- * extends Swagger2GeneratorGen<FiwareGenerator>
- * <p>This <code>class Swagger2Generator extends Swagger2GeneratorGen&lt;FiwareGenerator&gt;</code>, which means it extends a newly generated Swagger2GeneratorGen. 
- * The generated <code>class Swagger2GeneratorGen extends FiwareGenerator</code> which means that Swagger2Generator extends Swagger2GeneratorGen which extends FiwareGenerator. 
+ * extends Swagger2GeneratorGen<UseCaseGenerator>
+ * <p>This <code>class Swagger2Generator extends Swagger2GeneratorGen&lt;UseCaseGenerator&gt;</code>, which means it extends a newly generated Swagger2GeneratorGen. 
+ * The generated <code>class Swagger2GeneratorGen extends UseCaseGenerator</code> which means that Swagger2Generator extends Swagger2GeneratorGen which extends UseCaseGenerator. 
  * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
  * <h2>Api: true</h2>
@@ -87,25 +88,20 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class Swagger2Generator in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.openapi in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * Generated: true
  **/
-public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
+public abstract class Swagger2GeneratorGen<DEV> extends UseCaseGenerator {
 	protected static final Logger LOG = LoggerFactory.getLogger(Swagger2Generator.class);
-	public static final String writeApiError1 = "An error occured while writing the API. ";
-	public static final String writeApiError = writeApiError1;
-	public static final String writeApiError21 = "An error occured while writing the API. ";
-	public static final String writeApiError2 = writeApiError21;
-
 
 	//////////////
 	// initDeep //
@@ -118,7 +114,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
 	}
 
 	public void initDeepSwagger2Generator() {
-		super.initDeepFiwareGenerator(siteRequest_);
+		super.initDeepUseCaseGenerator(siteRequest_);
 		initSwagger2Generator();
 	}
 
@@ -134,7 +130,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
 	/////////////////
 
 	public void siteRequestSwagger2Generator(ComputateSiteRequest siteRequest_) {
-			super.siteRequestFiwareGenerator(siteRequest_);
+			super.siteRequestUseCaseGenerator(siteRequest_);
 	}
 
 	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
@@ -162,7 +158,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
 		Swagger2Generator oSwagger2Generator = (Swagger2Generator)this;
 		switch(var) {
 			default:
-				return super.obtainFiwareGenerator(var);
+				return super.obtainUseCaseGenerator(var);
 		}
 	}
 
@@ -183,7 +179,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
 		Swagger2Generator oSwagger2Generator = (Swagger2Generator)this;
 		switch(var) {
 			default:
-				return super.relateFiwareGenerator(var, val);
+				return super.relateUseCaseGenerator(var, val);
 		}
 	}
 
@@ -197,7 +193,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
 	public static Object staticSetSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 			default:
-				return FiwareGenerator.staticSetFiwareGenerator(entityVar,  siteRequest_, o);
+				return UseCaseGenerator.staticSetUseCaseGenerator(entityVar,  siteRequest_, o);
 		}
 	}
 
@@ -211,7 +207,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
 	public static Object staticSearchSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 			default:
-				return FiwareGenerator.staticSearchFiwareGenerator(entityVar,  siteRequest_, o);
+				return UseCaseGenerator.staticSearchUseCaseGenerator(entityVar,  siteRequest_, o);
 		}
 	}
 
@@ -225,7 +221,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
 	public static String staticSearchStrSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
 		switch(entityVar) {
 			default:
-				return FiwareGenerator.staticSearchStrFiwareGenerator(entityVar,  siteRequest_, o);
+				return UseCaseGenerator.staticSearchStrUseCaseGenerator(entityVar,  siteRequest_, o);
 		}
 	}
 
@@ -239,7 +235,7 @@ public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
 	public static String staticSearchFqSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
 		switch(entityVar) {
 			default:
-				return FiwareGenerator.staticSearchFqFiwareGenerator(entityVar,  siteRequest_, o);
+				return UseCaseGenerator.staticSearchFqUseCaseGenerator(entityVar,  siteRequest_, o);
 		}
 	}
 
@@ -253,10 +249,43 @@ public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
 		return sb.toString();
 	}
 
-	public static final String[] Swagger2GeneratorVals = new String[] { writeApiError1, writeApiError21 };
-
 	public static final String CLASS_SIMPLE_NAME = "Swagger2Generator";
 
+
+	@Override
+	public String idForClass() {
+		return null;
+	}
+
+	@Override
+	public String titleForClass() {
+		return null;
+	}
+
+	@Override
+	public String nameForClass() {
+		return null;
+	}
+
+	@Override
+	public String classNameAdjectiveSingularForClass() {
+		return null;
+	}
+
+	@Override
+	public String descriptionForClass() {
+		return null;
+	}
+
+	@Override
+	public String classStringFormatUrlEditPageForClass() {
+		return null;
+	}
+
+	@Override
+	public String classStringFormatUrlDisplayPageForClass() {
+		return null;
+	}
 
 	public static String displayNameForClass(String var) {
 		return Swagger2Generator.displayNameSwagger2Generator(var);
@@ -264,7 +293,70 @@ public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
 	public static String displayNameSwagger2Generator(String var) {
 		switch(var) {
 		default:
-			return FiwareGenerator.displayNameFiwareGenerator(var);
+			return UseCaseGenerator.displayNameUseCaseGenerator(var);
+		}
+	}
+
+	public static String descriptionSwagger2Generator(String var) {
+		switch(var) {
+			default:
+				return UseCaseGenerator.descriptionUseCaseGenerator(var);
+		}
+	}
+
+	public static String classSimpleNameSwagger2Generator(String var) {
+		switch(var) {
+			default:
+				return UseCaseGenerator.classSimpleNameUseCaseGenerator(var);
+		}
+	}
+
+	public static Integer htmColumnSwagger2Generator(String var) {
+		switch(var) {
+			default:
+				return UseCaseGenerator.htmColumnUseCaseGenerator(var);
+		}
+	}
+
+	public static Integer htmRowSwagger2Generator(String var) {
+		switch(var) {
+			default:
+				return UseCaseGenerator.htmRowUseCaseGenerator(var);
+		}
+	}
+
+	public static Integer htmCellSwagger2Generator(String var) {
+		switch(var) {
+			default:
+				return UseCaseGenerator.htmCellUseCaseGenerator(var);
+		}
+	}
+
+	public static Integer lengthMinSwagger2Generator(String var) {
+		switch(var) {
+			default:
+				return UseCaseGenerator.lengthMinUseCaseGenerator(var);
+		}
+	}
+
+	public static Integer lengthMaxSwagger2Generator(String var) {
+		switch(var) {
+			default:
+				return UseCaseGenerator.lengthMaxUseCaseGenerator(var);
+		}
+	}
+
+	public static Integer maxSwagger2Generator(String var) {
+		switch(var) {
+			default:
+				return UseCaseGenerator.maxUseCaseGenerator(var);
+		}
+	}
+
+	public static Integer minSwagger2Generator(String var) {
+		switch(var) {
+			default:
+				return UseCaseGenerator.minUseCaseGenerator(var);
 		}
 	}
 }

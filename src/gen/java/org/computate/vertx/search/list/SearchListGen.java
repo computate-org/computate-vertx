@@ -30,6 +30,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import org.computate.search.serialize.ComputateLocalTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -115,15 +116,15 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class SearchList in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.search.list in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.search.list&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.search.list&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
  * </p>
  * Generated: true
  **/
@@ -144,7 +145,7 @@ public abstract class SearchListGen<DEV> {
 
 	/**	<br> The entity c
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:c">Find the entity c in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:c">Find the entity c in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -185,7 +186,7 @@ public abstract class SearchListGen<DEV> {
 
 	/**	<br> The entity siteRequest_
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -226,7 +227,7 @@ public abstract class SearchListGen<DEV> {
 
 	/**	<br> The entity store
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:store">Find the entity store in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:store">Find the entity store in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -283,7 +284,7 @@ public abstract class SearchListGen<DEV> {
 
 	/**	<br> The entity populate
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:populate">Find the entity populate in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:populate">Find the entity populate in Solr</a>
 	 * <br>
 	 * @param c is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -340,7 +341,7 @@ public abstract class SearchListGen<DEV> {
 
 	/**	<br> The entity request
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:request">Find the entity request in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:request">Find the entity request in Solr</a>
 	 * <br>
 	 * @param o is the entity already constructed. 
 	 **/
@@ -376,7 +377,7 @@ public abstract class SearchListGen<DEV> {
 
 	/**	<br> The entity searchUrl
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:searchUrl">Find the entity searchUrl in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:searchUrl">Find the entity searchUrl in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -428,7 +429,7 @@ public abstract class SearchListGen<DEV> {
 
 	/**	<br> The entity response
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:response">Find the entity response in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:response">Find the entity response in Solr</a>
 	 * <br>
 	 * @param promise is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -471,7 +472,7 @@ public abstract class SearchListGen<DEV> {
 
 	/**	<br> The entity docs
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:docs">Find the entity docs in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:docs">Find the entity docs in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -524,7 +525,7 @@ public abstract class SearchListGen<DEV> {
 
 	/**	<br> The entity list
 	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:list">Find the entity list in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:list">Find the entity list in Solr</a>
 	 * <br>
 	 * @param l is the entity already constructed. 
 	 **/
@@ -567,7 +568,7 @@ public abstract class SearchListGen<DEV> {
 
 	/**	<br> The entity first
 	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/computate/select?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:first">Find the entity first in Solr</a>
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:first">Find the entity first in Solr</a>
 	 * <br>
 	 * @param w is for wrapping a value to assign to this entity during initialization. 
 	 **/
@@ -598,17 +599,17 @@ public abstract class SearchListGen<DEV> {
 	// initDeep //
 	//////////////
 
-	public Future<Void> promiseDeepSearchList(ComputateSiteRequest siteRequest_) {
+	public Future<SearchListGen<DEV>> promiseDeepSearchList(ComputateSiteRequest siteRequest_) {
 		setSiteRequest_(siteRequest_);
 		return promiseDeepSearchList();
 	}
 
-	public Future<Void> promiseDeepSearchList() {
-		Promise<Void> promise = Promise.promise();
+	public Future<SearchListGen<DEV>> promiseDeepSearchList() {
+		Promise<SearchListGen<DEV>> promise = Promise.promise();
 		Promise<Void> promise2 = Promise.promise();
 		promiseSearchList(promise2);
 		promise2.future().onSuccess(a -> {
-			promise.complete();
+			promise.complete(this);
 		}).onFailure(ex -> {
 			promise.fail(ex);
 		});
@@ -657,7 +658,7 @@ public abstract class SearchListGen<DEV> {
 		return promise.future();
 	}
 
-	public Future<Void> promiseDeepForClass(ComputateSiteRequest siteRequest_) {
+	public Future<? extends SearchListGen<DEV>> promiseDeepForClass(ComputateSiteRequest siteRequest_) {
 		return promiseDeepSearchList(siteRequest_);
 	}
 
@@ -852,6 +853,34 @@ public abstract class SearchListGen<DEV> {
 	public static final String DISPLAY_NAME_list = "";
 	public static final String DISPLAY_NAME_first = "";
 
+	public String idForClass() {
+		return null;
+	}
+
+	public String titleForClass() {
+		return null;
+	}
+
+	public String nameForClass() {
+		return null;
+	}
+
+	public String classNameAdjectiveSingularForClass() {
+		return null;
+	}
+
+	public String descriptionForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlEditPageForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlDisplayPageForClass() {
+		return null;
+	}
+
 	public static String displayNameForClass(String var) {
 		return SearchList.displayNameSearchList(var);
 	}
@@ -879,6 +908,89 @@ public abstract class SearchListGen<DEV> {
 			return DISPLAY_NAME_first;
 		default:
 			return null;
+		}
+	}
+
+	public static String descriptionSearchList(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static String classSimpleNameSearchList(String var) {
+		switch(var) {
+		case VAR_c:
+			return "Class";
+		case VAR_siteRequest_:
+			return "ComputateSiteRequest";
+		case VAR_store:
+			return "Boolean";
+		case VAR_populate:
+			return "Boolean";
+		case VAR_request:
+			return "SearchRequest";
+		case VAR_searchUrl:
+			return "String";
+		case VAR_response:
+			return "SolrResponse";
+		case VAR_docs:
+			return "List";
+		case VAR_list:
+			return "List";
+		case VAR_first:
+			return "Object";
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmColumnSearchList(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmRowSearchList(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmCellSearchList(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMinSearchList(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMaxSearchList(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer maxSearchList(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer minSearchList(String var) {
+		switch(var) {
+			default:
+				return null;
 		}
 	}
 }

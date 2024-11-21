@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import org.computate.search.serialize.ComputateLocalTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -2776,7 +2777,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
-	@JsonDeserialize(using = ComputateLocalDateDeserializer.class)
+	@JsonDeserialize(using = ComputateLocalTimeDeserializer.class)
 	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
 	@JsonInclude(Include.NON_NULL)
@@ -2852,7 +2853,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
-	@JsonDeserialize(using = ComputateLocalDateDeserializer.class)
+	@JsonDeserialize(using = ComputateLocalTimeDeserializer.class)
 	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
 	@JsonInclude(Include.NON_NULL)
@@ -3040,7 +3041,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
-	@JsonDeserialize(using = ComputateLocalDateDeserializer.class)
+	@JsonDeserialize(using = ComputateLocalTimeDeserializer.class)
 	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
 	@JsonInclude(Include.NON_NULL)
@@ -3116,7 +3117,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
-	@JsonDeserialize(using = ComputateLocalDateDeserializer.class)
+	@JsonDeserialize(using = ComputateLocalTimeDeserializer.class)
 	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
 	@JsonInclude(Include.NON_NULL)
@@ -4131,17 +4132,17 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	// initDeep //
 	//////////////
 
-	public Future<Void> promiseDeepComputatePageLayout(ComputateSiteRequest siteRequest_) {
+	public Future<ComputatePageLayoutGen<DEV>> promiseDeepComputatePageLayout(ComputateSiteRequest siteRequest_) {
 		setSiteRequest_(siteRequest_);
 		return promiseDeepComputatePageLayout();
 	}
 
-	public Future<Void> promiseDeepComputatePageLayout() {
-		Promise<Void> promise = Promise.promise();
+	public Future<ComputatePageLayoutGen<DEV>> promiseDeepComputatePageLayout() {
+		Promise<ComputatePageLayoutGen<DEV>> promise = Promise.promise();
 		Promise<Void> promise2 = Promise.promise();
 		promiseComputatePageLayout(promise2);
 		promise2.future().onSuccess(a -> {
-			promise.complete();
+			promise.complete(this);
 		}).onFailure(ex -> {
 			promise.fail(ex);
 		});
@@ -4266,7 +4267,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 		return promise.future();
 	}
 
-	public Future<Void> promiseDeepForClass(ComputateSiteRequest siteRequest_) {
+	public Future<? extends ComputatePageLayoutGen<DEV>> promiseDeepForClass(ComputateSiteRequest siteRequest_) {
 		return promiseDeepComputatePageLayout(siteRequest_);
 	}
 
@@ -5175,6 +5176,34 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_classIconCssClasses = "";
 	public static final String DISPLAY_NAME_pageDescription = "";
 
+	public String idForClass() {
+		return null;
+	}
+
+	public String titleForClass() {
+		return null;
+	}
+
+	public String nameForClass() {
+		return null;
+	}
+
+	public String classNameAdjectiveSingularForClass() {
+		return null;
+	}
+
+	public String descriptionForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlEditPageForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlDisplayPageForClass() {
+		return null;
+	}
+
 	public static String displayNameForClass(String var) {
 		return ComputatePageLayout.displayNameComputatePageLayout(var);
 	}
@@ -5324,6 +5353,279 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 			return DISPLAY_NAME_pageDescription;
 		default:
 			return null;
+		}
+	}
+
+	public static String descriptionComputatePageLayout(String var) {
+		switch(var) {
+		case VAR_siteRequest_:
+			return "The current request object";
+		case VAR_lang:
+			return "The current request language";
+		case VAR_requestVars:
+			return "The current request vars";
+		case VAR_config:
+			return "the site configuration";
+		case VAR_serviceRequest:
+			return "The current Vert.x service request";
+		case VAR_pageUri:
+			return "The current request URI";
+		case VAR_pageId:
+			return "The current page name";
+		case VAR_apiUri:
+			return "The API request URI";
+		case VAR_pageMethod:
+			return "The current request HTTP method";
+		case VAR_params:
+			return "The current request parameters";
+		case VAR_userKey:
+			return "The current user's primary key";
+		case VAR_userFullName:
+			return "The current user's full name";
+		case VAR_userName:
+			return "The current user's username";
+		case VAR_userEmail:
+			return "The current user's email";
+		case VAR_logoutUrl:
+			return "The logout URL";
+		case VAR_promiseBefore:
+			return "A method that can be overridden at the start of the request that makes this main template be initialized with a Vert.x promise for reactive initialization";
+		case VAR_classSimpleName:
+			return "The simple name of this Java class";
+		case VAR_pageTitle:
+			return "The page title to override";
+		case VAR_scopes:
+			return "The user's roles";
+		case VAR_roleRequired:
+			return "The required roles to access this page";
+		case VAR_authRoleAdmin:
+			return "The admin roles required to access this page";
+		case VAR_authRoleSuperAdmin:
+			return "The super-admin roles required to access this page";
+		case VAR_pagination:
+			return "The pagination data about this request";
+		case VAR_query:
+			return "The query data about this request";
+		case VAR_queryStr:
+			return "The query String for this request";
+		case VAR_promiseAfter:
+			return "A method that can be overridden at the end of the request that makes this main template be initialized with a Vert.x promise for reactive initialization";
+		case VAR_pageImageUri:
+			return "The image URI for this page";
+		case VAR_pageImageWidth:
+			return "The image width";
+		case VAR_pageImageHeight:
+			return "The image height";
+		case VAR_pageVideoId:
+			return "The video ID for this page";
+		case VAR_classIconGroup:
+			return "The icon group for this page";
+		case VAR_classIconName:
+			return "The icon name for this page";
+		case VAR_classIconCssClasses:
+			return "The icon CSS classes for this page";
+		case VAR_pageDescription:
+			return "An optional description field for the page";
+			default:
+				return null;
+		}
+	}
+
+	public static String classSimpleNameComputatePageLayout(String var) {
+		switch(var) {
+		case VAR_siteRequest_:
+			return "ComputateSiteRequest";
+		case VAR_lang:
+			return "String";
+		case VAR_requestVars:
+			return "Map";
+		case VAR_config:
+			return "JsonObject";
+		case VAR_serviceRequest:
+			return "ServiceRequest";
+		case VAR_staticBaseUrl:
+			return "String";
+		case VAR_siteBaseUrl:
+			return "String";
+		case VAR_siteAuthUrl:
+			return "String";
+		case VAR_siteAuthRealm:
+			return "String";
+		case VAR_fontAwesomeKit:
+			return "String";
+		case VAR_facebookGraphVersion:
+			return "String";
+		case VAR_facebookAppId:
+			return "String";
+		case VAR_pageUri:
+			return "String";
+		case VAR_pageId:
+			return "String";
+		case VAR_apiUri:
+			return "String";
+		case VAR_pageMethod:
+			return "String";
+		case VAR_params:
+			return "JsonObject";
+		case VAR_userKey:
+			return "Long";
+		case VAR_userFullName:
+			return "String";
+		case VAR_userName:
+			return "String";
+		case VAR_userEmail:
+			return "String";
+		case VAR_logoutUrl:
+			return "String";
+		case VAR_promiseBefore:
+			return "Void";
+		case VAR_classSimpleName:
+			return "String";
+		case VAR_pageTitle:
+			return "String";
+		case VAR_scopes:
+			return "List";
+		case VAR_roleRequired:
+			return "List";
+		case VAR_authRoleAdmin:
+			return "List";
+		case VAR_authRoleSuperAdmin:
+			return "List";
+		case VAR_stats:
+			return "Stats";
+		case VAR_facetCounts:
+			return "FacetCounts";
+		case VAR_pagination:
+			return "JsonObject";
+		case VAR_defaultSortVars:
+			return "List";
+		case VAR_defaultFieldListVars:
+			return "List";
+		case VAR_defaultStatsVars:
+			return "List";
+		case VAR_defaultPivotVars:
+			return "List";
+		case VAR_varsQ:
+			return "JsonObject";
+		case VAR_varsFq:
+			return "JsonObject";
+		case VAR_varsRange:
+			return "JsonObject";
+		case VAR_query:
+			return "JsonObject";
+		case VAR_pageResponse:
+			return "String";
+		case VAR_defaultZoneId:
+			return "String";
+		case VAR_defaultTimeZone:
+			return "ZoneId";
+		case VAR_defaultLocaleId:
+			return "String";
+		case VAR_rows:
+			return "Long";
+		case VAR_start:
+			return "Long";
+		case VAR_defaultLocale:
+			return "Locale";
+		case VAR_rangeGap:
+			return "String";
+		case VAR_rangeEnd:
+			return "ZonedDateTime";
+		case VAR_rangeStart:
+			return "ZonedDateTime";
+		case VAR_defaultRangeStats:
+			return "JsonObject";
+		case VAR_defaultRangeGap:
+			return "String";
+		case VAR_defaultRangeEnd:
+			return "ZonedDateTime";
+		case VAR_defaultRangeStart:
+			return "ZonedDateTime";
+		case VAR_defaultRangeVar:
+			return "String";
+		case VAR_defaultFacetSort:
+			return "String";
+		case VAR_defaultFacetLimit:
+			return "Integer";
+		case VAR_defaultFacetMinCount:
+			return "Integer";
+		case VAR_defaultPivotMinCount:
+			return "Integer";
+		case VAR_DEFAULT_MAP_LOCATION:
+			return "JsonObject";
+		case VAR_DEFAULT_MAP_ZOOM:
+			return "BigDecimal";
+		case VAR_queryStr:
+			return "String";
+		case VAR_promiseAfter:
+			return "Void";
+		case VAR_pageImageUri:
+			return "String";
+		case VAR_pageImageWidth:
+			return "Integer";
+		case VAR_pageImageHeight:
+			return "Integer";
+		case VAR_pageVideoId:
+			return "String";
+		case VAR_classIconGroup:
+			return "String";
+		case VAR_classIconName:
+			return "String";
+		case VAR_classIconCssClasses:
+			return "String";
+		case VAR_pageDescription:
+			return "String";
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmColumnComputatePageLayout(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmRowComputatePageLayout(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer htmCellComputatePageLayout(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMinComputatePageLayout(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer lengthMaxComputatePageLayout(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer maxComputatePageLayout(String var) {
+		switch(var) {
+			default:
+				return null;
+		}
+	}
+
+	public static Integer minComputatePageLayout(String var) {
+		switch(var) {
+			default:
+				return null;
 		}
 	}
 }
