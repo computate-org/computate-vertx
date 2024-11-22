@@ -66,6 +66,7 @@ public class I18n {
 	public static final String str_le_projet_ = "str_le_projet_";
 	public static final String str_Modifier = "str_Modifier";
 	public static final String str_Modifier_des_ = "str_Modifier_des_";
+	public static final String str_s_s_non_trouve = "str_s_s_non_trouve";
 	public static final String str_nest_pas_une_entite_indexe = "str_nest_pas_une_entite_indexe";
 	public static final String str_Pret = "str_Pret";
 	public static final String str_Recharger = "str_Recharger";
@@ -365,6 +366,7 @@ public class I18n {
 	public static final String var_max = "var_max";
 	public static final String var_Max = "var_Max";
 	public static final String var_Menu = "var_Menu";
+	public static final String var_message = "var_message";
 	public static final String var_Methode = "var_Methode";
 	public static final String var_methode = "var_methode";
 	public static final String var_methodeNom = "var_methodeNom";
