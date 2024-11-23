@@ -13,11 +13,13 @@ str_Afficher_les_resultats_sous_forme_de_cartes: "Show the results as cards"
 str_Afficher_les_resultats_sous_forme_de_details: "Show the results as details"
 str_API: "API"
 str_au_total_avec_: '%s %s total with %s &quot;%s&quot;'
+str_aucun: 'none'
 str_chemin_absolu: "%s touched"
 str_chemin_absolu_url: "%s/java-class/%s"
 str_créé_nouveau: "created new"
 str_Creer: "Create"
 str_Creer_: "Create "
+str_croissante: "ascending"
 str__dans_Solr: " in Solr"
 str_DDDashMMDashYYYY_HHColonMM: "MM/DD/YYYY HH:MM AM"
 str_DDDashMMDashYYYY_HHColonmm: "MM/DD/YYYY h:mm a"
@@ -252,6 +254,7 @@ classe:
         </p>
 
 str_de: "of"
+str_decroissante: "descending"
 str_Definir: "Set"
 str_deuxPoints: ": "
 str_Dupliquer: "Duplicate"

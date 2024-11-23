@@ -28,6 +28,7 @@ public class I18n {
 	public static final String str_Afficher_les_resultats_sous_forme_de_details = "str_Afficher_les_resultats_sous_forme_de_details";
 	public static final String str_API = "str_API";
 	public static final String str_au_total_avec_ = "str_au_total_avec_";
+	public static final String str_aucun = "str_aucun";
 	public static final String str_chemin_absolu = "str_chemin_absolu";
 	public static final String str_chemin_absolu_url = "str_chemin_absolu_url";
 	public static final String str_confirmer_supprimer = "str_confirmer_supprimer";
@@ -35,11 +36,13 @@ public class I18n {
 	public static final String str_créé_nouveau = "str_créé_nouveau";
 	public static final String str_Creer = "str_Creer";
 	public static final String str_Creer_ = "str_Creer_";
+	public static final String str_croissante = "str_croissante";
 	public static final String str__dans_Solr = "str__dans_Solr";
 	public static final String str_DDDashMMDashYYYY_HHColonMM = "str_DDDashMMDashYYYY_HHColonMM";
 	public static final String str_DDDashMMDashYYYY_HHColonmm = "str_DDDashMMDashYYYY_HHColonmm";
 	public static final String str_ddDashMMDashyyyy_HHColonmm_VV = "str_ddDashMMDashyyyy_HHColonmm_VV";
 	public static final String str_de = "str_de";
+	public static final String str_decroissante = "str_decroissante";
 	public static final String str_Definir = "str_Definir";
 	public static final String str_deuxPoints = "str_deuxPoints";
 	public static final String str_Dupliquer = "str_Dupliquer";
