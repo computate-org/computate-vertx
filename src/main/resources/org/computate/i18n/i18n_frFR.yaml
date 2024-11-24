@@ -11,6 +11,7 @@ str_Afficher_les_resultats_sous_forme_de_cartes: "Afficher les résultats sous f
 str_Afficher_les_resultats_sous_forme_de_details: "Afficher les résultats sous forme de détails"
 str_API: "API"
 str_au_total_avec_: '%s %s total avec %s « %s »'
+str_aucun: 'aucun'
 str_chemin_absolu: "%s touché"
 str_chemin_absolu_url: "%s/classe-java/%s"
 str_confirmer_supprimer: "Voulez-vous vraiment supprimer cela ?"
@@ -165,6 +166,7 @@ var_classeNomCanonique: "classeNomCanonique"
 var_classeNomsCanoniques: "classeNomsCanoniques"
 var_classeNomSimple: "classeNomSimple"
 var_classeStringFormatUrlPageEdition: "classeStringFormatUrlPageEdition"
+var_classeStringFormatUrlPageUtilisateur: "classeStringFormatUrlPageUtilisateur"
 var_Cle: "Cle"
 var_ClePrimaire: "ClePrimaire"
 var_Cles: "Cles"

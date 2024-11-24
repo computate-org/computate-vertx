@@ -184,6 +184,7 @@ public class I18n {
 	public static final String var_classeNomSimple = "var_classeNomSimple";
 	public static final String var_classeStringFormatUrlPageAffichage = "var_classeStringFormatUrlPageAffichage";
 	public static final String var_classeStringFormatUrlPageEdition = "var_classeStringFormatUrlPageEdition";
+	public static final String var_classeStringFormatUrlPageUtilisateur = "var_classeStringFormatUrlPageUtilisateur";
 	public static final String var_Cle = "var_Cle";
 	public static final String var_ClePrimaire = "var_ClePrimaire";
 	public static final String var_Cles = "var_Cles";
