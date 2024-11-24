@@ -386,6 +386,10 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		w.o(String.format("http://%s:%s%s", solrHostName, solrPort, solrRequestUri));
 	}
 
+	protected void _defaultSort(Wrap<Boolean> w) {
+		w.o(false);
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * Ignore: true

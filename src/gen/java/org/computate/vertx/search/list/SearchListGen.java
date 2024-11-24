@@ -415,6 +415,63 @@ public abstract class SearchListGen<DEV> {
 		return SearchList.staticSearchSearchUrl(siteRequest_, SearchList.staticSetSearchUrl(siteRequest_, o)).toString();
 	}
 
+	/////////////////
+	// defaultSort //
+	/////////////////
+
+
+	/**	 The entity defaultSort
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected Boolean defaultSort;
+
+	/**	<br> The entity defaultSort
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:defaultSort">Find the entity defaultSort in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultSort(Wrap<Boolean> w);
+
+	public Boolean getDefaultSort() {
+		return defaultSort;
+	}
+
+	public void setDefaultSort(Boolean defaultSort) {
+		this.defaultSort = defaultSort;
+	}
+	@JsonIgnore
+	public void setDefaultSort(String o) {
+		this.defaultSort = SearchList.staticSetDefaultSort(siteRequest_, o);
+	}
+	public static Boolean staticSetDefaultSort(ComputateSiteRequest siteRequest_, String o) {
+		return Boolean.parseBoolean(o);
+	}
+	protected SearchList defaultSortInit() {
+		Wrap<Boolean> defaultSortWrap = new Wrap<Boolean>().var("defaultSort");
+		if(defaultSort == null) {
+			_defaultSort(defaultSortWrap);
+			Optional.ofNullable(defaultSortWrap.getO()).ifPresent(o -> {
+				setDefaultSort(o);
+			});
+		}
+		return (SearchList)this;
+	}
+
+	public static Boolean staticSearchDefaultSort(ComputateSiteRequest siteRequest_, Boolean o) {
+		return o;
+	}
+
+	public static String staticSearchStrDefaultSort(ComputateSiteRequest siteRequest_, Boolean o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDefaultSort(ComputateSiteRequest siteRequest_, String o) {
+		return SearchList.staticSearchDefaultSort(siteRequest_, SearchList.staticSetDefaultSort(siteRequest_, o)).toString();
+	}
+
 	//////////////
 	// response //
 	//////////////
@@ -626,6 +683,7 @@ public abstract class SearchListGen<DEV> {
 				populateInit();
 				requestInit();
 				searchUrlInit();
+				defaultSortInit();
 				promise2.complete();
 			} catch(Exception ex) {
 				promise2.fail(ex);
@@ -707,6 +765,8 @@ public abstract class SearchListGen<DEV> {
 				return oSearchList.request;
 			case "searchUrl":
 				return oSearchList.searchUrl;
+			case "defaultSort":
+				return oSearchList.defaultSort;
 			case "response":
 				return oSearchList.response;
 			case "docs":
@@ -756,6 +816,8 @@ public abstract class SearchListGen<DEV> {
 			return SearchList.staticSetPopulate(siteRequest_, o);
 		case "searchUrl":
 			return SearchList.staticSetSearchUrl(siteRequest_, o);
+		case "defaultSort":
+			return SearchList.staticSetDefaultSort(siteRequest_, o);
 			default:
 				return null;
 		}
@@ -776,6 +838,8 @@ public abstract class SearchListGen<DEV> {
 			return SearchList.staticSearchPopulate(siteRequest_, (Boolean)o);
 		case "searchUrl":
 			return SearchList.staticSearchSearchUrl(siteRequest_, (String)o);
+		case "defaultSort":
+			return SearchList.staticSearchDefaultSort(siteRequest_, (Boolean)o);
 			default:
 				return null;
 		}
@@ -796,6 +860,8 @@ public abstract class SearchListGen<DEV> {
 			return SearchList.staticSearchStrPopulate(siteRequest_, (Boolean)o);
 		case "searchUrl":
 			return SearchList.staticSearchStrSearchUrl(siteRequest_, (String)o);
+		case "defaultSort":
+			return SearchList.staticSearchStrDefaultSort(siteRequest_, (Boolean)o);
 			default:
 				return null;
 		}
@@ -816,6 +882,8 @@ public abstract class SearchListGen<DEV> {
 			return SearchList.staticSearchFqPopulate(siteRequest_, o);
 		case "searchUrl":
 			return SearchList.staticSearchFqSearchUrl(siteRequest_, o);
+		case "defaultSort":
+			return SearchList.staticSearchFqDefaultSort(siteRequest_, o);
 			default:
 				return null;
 		}
@@ -837,6 +905,7 @@ public abstract class SearchListGen<DEV> {
 	public static final String VAR_populate = "populate";
 	public static final String VAR_request = "request";
 	public static final String VAR_searchUrl = "searchUrl";
+	public static final String VAR_defaultSort = "defaultSort";
 	public static final String VAR_response = "response";
 	public static final String VAR_docs = "docs";
 	public static final String VAR_list = "list";
@@ -848,6 +917,7 @@ public abstract class SearchListGen<DEV> {
 	public static final String DISPLAY_NAME_populate = "";
 	public static final String DISPLAY_NAME_request = "";
 	public static final String DISPLAY_NAME_searchUrl = "";
+	public static final String DISPLAY_NAME_defaultSort = "";
 	public static final String DISPLAY_NAME_response = "";
 	public static final String DISPLAY_NAME_docs = "";
 	public static final String DISPLAY_NAME_list = "";
@@ -898,6 +968,8 @@ public abstract class SearchListGen<DEV> {
 			return DISPLAY_NAME_request;
 		case VAR_searchUrl:
 			return DISPLAY_NAME_searchUrl;
+		case VAR_defaultSort:
+			return DISPLAY_NAME_defaultSort;
 		case VAR_response:
 			return DISPLAY_NAME_response;
 		case VAR_docs:
@@ -932,6 +1004,8 @@ public abstract class SearchListGen<DEV> {
 			return "SearchRequest";
 		case VAR_searchUrl:
 			return "String";
+		case VAR_defaultSort:
+			return "Boolean";
 		case VAR_response:
 			return "SolrResponse";
 		case VAR_docs:
