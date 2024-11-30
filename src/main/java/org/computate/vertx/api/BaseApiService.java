@@ -1388,7 +1388,6 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
 				String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceUri), StandardCharsets.UTF_8) : Files.readString(Path.of(siteTemplatePath, templateUri), Charset.forName("UTF-8"));
 
-				String siteBaseUrl = config.getString(ComputateConfigKeys.SITE_BASE_URL);
 				Map<String, Object> ctx = new HashMap<>();
 				Map<String, Object> result = new HashMap<>();
 				String shortFileName = FilenameUtils.getBaseName(resourceUri);
@@ -1407,6 +1406,8 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				  ctx.put(ComputateConfigKeys.FONTAWESOME_KIT, config.getString(ComputateConfigKeys.FONTAWESOME_KIT));
 				  ctx.put(ComputateConfigKeys.WEB_COMPONENTS_CSS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_CSS));
 				  ctx.put(ComputateConfigKeys.WEB_COMPONENTS_JS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_JS));
+				  ctx.put(ComputateConfigKeys.PUBLIC_SEARCH_URI, config.getString(ComputateConfigKeys.PUBLIC_SEARCH_URI));
+				  ctx.put(ComputateConfigKeys.USER_SEARCH_URI, config.getString(ComputateConfigKeys.USER_SEARCH_URI));
 				  ctx.put(i18n.getString(I18n.var_resultat), result);
 
 				  String metaPrefixResult = String.format("%s.", i18n.getString(I18n.var_resultat));

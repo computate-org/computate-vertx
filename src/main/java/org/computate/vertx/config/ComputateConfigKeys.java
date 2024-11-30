@@ -15,6 +15,7 @@
 package org.computate.vertx.config;
 
 import java.io.File;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import java.math.RoundingMode;
 
 import static org.apache.commons.lang3.Validate.isTrue;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
@@ -86,10 +88,16 @@ import io.vertx.core.json.JsonObject;
  */
 public class ComputateConfigKeys {
 
-
 	public static String lookup(String type, String arg1) {
-		if("env".equals(type))
+		if("env".equals(type)) {
 			return System.getenv(arg1);
+		} else if("file".equals(type)) {
+			try {
+				return FileUtils.readFileToString(new File(arg1), Charset.forName("UTF-8"));
+			} catch(Throwable ex) {
+				return null;
+			}
+		}
 		return null;
 	}
 
@@ -448,6 +456,8 @@ public class ComputateConfigKeys {
 		ctx.put(SITE_THEME, config.getString(SITE_THEME));
 		ctx.put(AUTH_SCOPE_ADMIN, config.getString(AUTH_SCOPE_ADMIN));
 		ctx.put(AUTH_SCOPE_SUPER_ADMIN, config.getString(AUTH_SCOPE_SUPER_ADMIN));
+		ctx.put(PUBLIC_SEARCH_URI, config.getString(PUBLIC_SEARCH_URI));
+		ctx.put(USER_SEARCH_URI, config.getString(USER_SEARCH_URI));
 		return ctx;
 	}
 
@@ -1344,6 +1354,16 @@ public class ComputateConfigKeys {
 
 	public static final String USE_CASE_SRC = "USE_CASE_SRC";
 	public static final String USE_CASE_SUMMARY_NUM = "USE_CASE_SUMMARY_NUM";
+
+	public static final String ENABLE_SQUARE = "ENABLE_SQUARE";
+	public static final String SQUARE_ACCESS_TOKEN = "SQUARE_ACCESS_TOKEN";
+	public static final String SQUARE_SIGNATURE_KEY = "SQUARE_SIGNATURE_KEY";
+	public static final String SQUARE_NOTIFICATION_URL = "SQUARE_NOTIFICATION_URL";
+
+	/** The public search endpoint for searching public items in the site. **/
+	public static final String PUBLIC_SEARCH_URI = "PUBLIC_SEARCH_URI";
+	/** The user search endpoint for searching public and authorized items in the site. **/
+	public static final String USER_SEARCH_URI = "USER_SEARCH_URI";
 }
 
 /**
