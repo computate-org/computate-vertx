@@ -1403,7 +1403,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				  ctx.put(ComputateConfigKeys.SITE_DISPLAY_NAME, config.getString(ComputateConfigKeys.SITE_DISPLAY_NAME));
 				  ctx.put(ComputateConfigKeys.SITE_POWERED_BY_URL, config.getString(ComputateConfigKeys.SITE_POWERED_BY_URL));
 				  ctx.put(ComputateConfigKeys.SITE_POWERED_BY_NAME, config.getString(ComputateConfigKeys.SITE_POWERED_BY_NAME));
-				  ctx.put(ComputateConfigKeys.SITE_POWERED_BY_IMAGE_URI, config.getString(ComputateConfigKeys.SITE_POWERED_BY_IMAGE_URI));
+				  ctx.put(ComputateConfigKeys.SITE_POWERED_BY_IMAGE, config.getString(ComputateConfigKeys.SITE_POWERED_BY_IMAGE));
 				  ctx.put(ComputateConfigKeys.FONTAWESOME_KIT, config.getString(ComputateConfigKeys.FONTAWESOME_KIT));
 				  ctx.put(ComputateConfigKeys.WEB_COMPONENTS_CSS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_CSS));
 				  ctx.put(ComputateConfigKeys.WEB_COMPONENTS_JS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_JS));

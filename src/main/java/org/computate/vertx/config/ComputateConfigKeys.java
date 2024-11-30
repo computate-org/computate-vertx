@@ -439,7 +439,7 @@ public class ComputateConfigKeys {
 		ctx.put(SITE_DISPLAY_NAME, config.getString(SITE_DISPLAY_NAME));
 		ctx.put(SITE_POWERED_BY_URL, config.getString(SITE_POWERED_BY_URL));
 		ctx.put(SITE_POWERED_BY_NAME, config.getString(SITE_POWERED_BY_NAME));
-		ctx.put(SITE_POWERED_BY_IMAGE_URI, config.getString(SITE_POWERED_BY_IMAGE_URI));
+		ctx.put(SITE_POWERED_BY_IMAGE, config.getString(SITE_POWERED_BY_IMAGE));
 		ctx.put(SITE_LOGO_URI, config.getString(SITE_LOGO_URI));
 		ctx.put(FONTAWESOME_KIT, config.getString(FONTAWESOME_KIT));
 		ctx.put(WEB_COMPONENTS_CSS, config.getString(WEB_COMPONENTS_CSS));
@@ -799,7 +799,7 @@ public class ComputateConfigKeys {
 	/**
 	 * The project powered by image relative URI. 
 	 **/
-	public static final String SITE_POWERED_BY_IMAGE_URI = "SITE_POWERED_BY_IMAGE_URI";
+	public static final String SITE_POWERED_BY_IMAGE = "SITE_POWERED_BY_IMAGE";
 
 	/**
 	 * The project logo relative URI. 
