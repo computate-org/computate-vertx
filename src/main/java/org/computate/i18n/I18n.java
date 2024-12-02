@@ -503,6 +503,7 @@ public class I18n {
 	public static final String var_ResultatRecherche = "var_ResultatRecherche";
 	public static final String var_resultat = "var_resultat";
 	public static final String var_ResultatBase = "var_ResultatBase";
+	public static final String var_retourner_a_ = "var_retourner_a_";
 	public static final String var_Role = "var_Role";
 	public static final String var_routeur = "var_routeur";
 	public static final String var_Sauvegarde = "var_Sauvegarde";

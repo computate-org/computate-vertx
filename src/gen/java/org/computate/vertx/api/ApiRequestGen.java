@@ -31,7 +31,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
-import org.computate.search.serialize.ComputateLocalTimeDeserializer;
+import org.computate.search.serialize.ComputateZonedDateTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -166,7 +166,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
-	@JsonDeserialize(using = ComputateLocalTimeDeserializer.class)
+	@JsonDeserialize(using = ComputateZonedDateTimeDeserializer.class)
 	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
 	@JsonInclude(Include.NON_NULL)
@@ -636,9 +636,9 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	 *  It is constructed before being initialized with the constructor by default. 
 	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:pks">Find the entity pks in Solr</a>
 	 * <br>
-	 * @param c is the entity already constructed. 
+	 * @param l is the entity already constructed. 
 	 **/
-	protected abstract void _pks(List<Long> c);
+	protected abstract void _pks(List<Long> l);
 
 	public List<Long> getPks() {
 		return pks;
@@ -701,6 +701,80 @@ public abstract class ApiRequestGen<DEV> extends Object {
 
 	public static String staticSearchFqPks(ComputateSiteRequest siteRequest_, String o) {
 		return ApiRequest.staticSearchPks(siteRequest_, ApiRequest.staticSetPks(siteRequest_, o)).toString();
+	}
+
+	/////////
+	// ids //
+	/////////
+
+
+	/**	 The entity ids
+	 *	 It is constructed before being initialized with the constructor by default. 
+	 */
+	@JsonProperty
+	@JsonFormat(shape = JsonFormat.Shape.ARRAY)
+	@JsonInclude(Include.NON_NULL)
+	protected List<String> ids = new ArrayList<String>();
+
+	/**	<br> The entity ids
+	 *  It is constructed before being initialized with the constructor by default. 
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&fq=entiteVar_enUS_indexed_string:ids">Find the entity ids in Solr</a>
+	 * <br>
+	 * @param l is the entity already constructed. 
+	 **/
+	protected abstract void _ids(List<String> l);
+
+	public List<String> getIds() {
+		return ids;
+	}
+
+	public void setIds(List<String> ids) {
+		this.ids = ids;
+	}
+	public void setIds(String o) {
+		String l = ApiRequest.staticSetIds(siteRequest_, o);
+		if(l != null)
+			addIds(l);
+	}
+	public static String staticSetIds(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	public ApiRequest addIds(String...objects) {
+		for(String o : objects) {
+			addIds(o);
+		}
+		return (ApiRequest)this;
+	}
+	public ApiRequest addIds(String o) {
+		if(o != null)
+			this.ids.add(o);
+		return (ApiRequest)this;
+	}
+	@JsonIgnore
+	public void setIds(JsonArray objects) {
+		ids.clear();
+		if(objects == null)
+			return;
+		for(int i = 0; i < objects.size(); i++) {
+			String o = objects.getString(i);
+			addIds(o);
+		}
+	}
+	protected ApiRequest idsInit() {
+		_ids(ids);
+		return (ApiRequest)this;
+	}
+
+	public static String staticSearchIds(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrIds(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqIds(ComputateSiteRequest siteRequest_, String o) {
+		return ApiRequest.staticSearchIds(siteRequest_, ApiRequest.staticSetIds(siteRequest_, o)).toString();
 	}
 
 	/////////////
@@ -928,6 +1002,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 				pkInit();
 				originalInit();
 				pksInit();
+				idsInit();
 				classesInit();
 				varsInit();
 				timeRemainingInit();
@@ -988,6 +1063,8 @@ public abstract class ApiRequestGen<DEV> extends Object {
 				return oApiRequest.original;
 			case "pks":
 				return oApiRequest.pks;
+			case "ids":
+				return oApiRequest.ids;
 			case "classes":
 				return oApiRequest.classes;
 			case "vars":
@@ -1045,6 +1122,8 @@ public abstract class ApiRequestGen<DEV> extends Object {
 			return ApiRequest.staticSetPk(siteRequest_, o);
 		case "pks":
 			return ApiRequest.staticSetPks(siteRequest_, o);
+		case "ids":
+			return ApiRequest.staticSetIds(siteRequest_, o);
 		case "classes":
 			return ApiRequest.staticSetClasses(siteRequest_, o);
 		case "vars":
@@ -1081,6 +1160,8 @@ public abstract class ApiRequestGen<DEV> extends Object {
 			return ApiRequest.staticSearchPk(siteRequest_, (Long)o);
 		case "pks":
 			return ApiRequest.staticSearchPks(siteRequest_, (Long)o);
+		case "ids":
+			return ApiRequest.staticSearchIds(siteRequest_, (String)o);
 		case "classes":
 			return ApiRequest.staticSearchClasses(siteRequest_, (String)o);
 		case "vars":
@@ -1117,6 +1198,8 @@ public abstract class ApiRequestGen<DEV> extends Object {
 			return ApiRequest.staticSearchStrPk(siteRequest_, (Long)o);
 		case "pks":
 			return ApiRequest.staticSearchStrPks(siteRequest_, (Long)o);
+		case "ids":
+			return ApiRequest.staticSearchStrIds(siteRequest_, (String)o);
 		case "classes":
 			return ApiRequest.staticSearchStrClasses(siteRequest_, (String)o);
 		case "vars":
@@ -1153,6 +1236,8 @@ public abstract class ApiRequestGen<DEV> extends Object {
 			return ApiRequest.staticSearchFqPk(siteRequest_, o);
 		case "pks":
 			return ApiRequest.staticSearchFqPks(siteRequest_, o);
+		case "ids":
+			return ApiRequest.staticSearchFqIds(siteRequest_, o);
 		case "classes":
 			return ApiRequest.staticSearchFqClasses(siteRequest_, o);
 		case "vars":
@@ -1184,6 +1269,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public static final String VAR_pk = "pk";
 	public static final String VAR_original = "original";
 	public static final String VAR_pks = "pks";
+	public static final String VAR_ids = "ids";
 	public static final String VAR_classes = "classes";
 	public static final String VAR_vars = "vars";
 	public static final String VAR_timeRemaining = "timeRemaining";
@@ -1198,6 +1284,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_pk = "";
 	public static final String DISPLAY_NAME_original = "";
 	public static final String DISPLAY_NAME_pks = "";
+	public static final String DISPLAY_NAME_ids = "";
 	public static final String DISPLAY_NAME_classes = "";
 	public static final String DISPLAY_NAME_vars = "";
 	public static final String DISPLAY_NAME_timeRemaining = "";
@@ -1230,6 +1317,10 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		return null;
 	}
 
+	public String classStringFormatUrlUserPageForClass() {
+		return null;
+	}
+
 	public static String displayNameForClass(String var) {
 		return ApiRequest.displayNameApiRequest(var);
 	}
@@ -1255,6 +1346,8 @@ public abstract class ApiRequestGen<DEV> extends Object {
 			return DISPLAY_NAME_original;
 		case VAR_pks:
 			return DISPLAY_NAME_pks;
+		case VAR_ids:
+			return DISPLAY_NAME_ids;
 		case VAR_classes:
 			return DISPLAY_NAME_classes;
 		case VAR_vars:
@@ -1294,6 +1387,8 @@ public abstract class ApiRequestGen<DEV> extends Object {
 		case VAR_original:
 			return "Object";
 		case VAR_pks:
+			return "List";
+		case VAR_ids:
 			return "List";
 		case VAR_classes:
 			return "List";

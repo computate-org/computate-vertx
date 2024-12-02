@@ -66,7 +66,10 @@ public class ApiRequest extends ApiRequestGen<Object> {
 	protected void _original(Wrap<Object> c) {
 	}
 
-	protected void _pks(List<Long> c) {
+	protected void _pks(List<Long> l) {
+	}
+
+	protected void _ids(List<String> l) {
 	}
 
 	protected void _classes(List<String> c) {
