@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
-import org.computate.search.serialize.ComputateLocalTimeDeserializer;
+import org.computate.search.serialize.ComputateZonedDateTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -278,7 +278,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
-	@JsonDeserialize(using = ComputateLocalTimeDeserializer.class)
+	@JsonDeserialize(using = ComputateZonedDateTimeDeserializer.class)
 	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
 	@JsonInclude(Include.NON_NULL)
@@ -499,6 +499,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setClassCanonicalNames(List<String> classCanonicalNames) {
 		this.classCanonicalNames = classCanonicalNames;
 	}
+	@JsonIgnore
 	public void setClassCanonicalNames(String o) {
 		String l = ComputateJavaClass.staticSetClassCanonicalNames(siteRequest_, o);
 		if(l != null)
@@ -693,6 +694,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setSaves(List<String> saves) {
 		this.saves = saves;
 	}
+	@JsonIgnore
 	public void setSaves(String o) {
 		String l = ComputateJavaClass.staticSetSaves(siteRequest_, o);
 		if(l != null)
@@ -927,6 +929,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setObjectText(List<String> objectText) {
 		this.objectText = objectText;
 	}
+	@JsonIgnore
 	public void setObjectText(String o) {
 		String l = ComputateJavaClass.staticSetObjectText(siteRequest_, o);
 		if(l != null)
@@ -1321,6 +1324,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setSuperClassParamsTypeName(List<String> superClassParamsTypeName) {
 		this.superClassParamsTypeName = superClassParamsTypeName;
 	}
+	@JsonIgnore
 	public void setSuperClassParamsTypeName(String o) {
 		String l = ComputateJavaClass.staticSetSuperClassParamsTypeName(siteRequest_, o);
 		if(l != null)
@@ -2788,6 +2792,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setEntityClassesSuperAndMeWithoutGen(List<String> entityClassesSuperAndMeWithoutGen) {
 		this.entityClassesSuperAndMeWithoutGen = entityClassesSuperAndMeWithoutGen;
 	}
+	@JsonIgnore
 	public void setEntityClassesSuperAndMeWithoutGen(String o) {
 		String l = ComputateJavaClass.staticSetEntityClassesSuperAndMeWithoutGen(siteRequest_, o);
 		if(l != null)
@@ -4005,6 +4010,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setClassRoles(List<String> classRoles) {
 		this.classRoles = classRoles;
 	}
+	@JsonIgnore
 	public void setClassRoles(String o) {
 		String l = ComputateJavaClass.staticSetClassRoles(siteRequest_, o);
 		if(l != null)
@@ -4085,6 +4091,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setClassRolesLanguage(List<String> classRolesLanguage) {
 		this.classRolesLanguage = classRolesLanguage;
 	}
+	@JsonIgnore
 	public void setClassRolesLanguage(String o) {
 		String l = ComputateJavaClass.staticSetClassRolesLanguage(siteRequest_, o);
 		if(l != null)
@@ -4854,6 +4861,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setClassImports(List<String> classImports) {
 		this.classImports = classImports;
 	}
+	@JsonIgnore
 	public void setClassImports(String o) {
 		String l = ComputateJavaClass.staticSetClassImports(siteRequest_, o);
 		if(l != null)
@@ -4934,6 +4942,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setClassEntityVars(List<String> classEntityVars) {
 		this.classEntityVars = classEntityVars;
 	}
+	@JsonIgnore
 	public void setClassEntityVars(String o) {
 		String l = ComputateJavaClass.staticSetClassEntityVars(siteRequest_, o);
 		if(l != null)
@@ -5014,6 +5023,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setClassImportsGenApi(List<String> classImportsGenApi) {
 		this.classImportsGenApi = classImportsGenApi;
 	}
+	@JsonIgnore
 	public void setClassImportsGenApi(String o) {
 		String l = ComputateJavaClass.staticSetClassImportsGenApi(siteRequest_, o);
 		if(l != null)
@@ -5094,6 +5104,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setClassAttributeSimpleNamePages(List<String> classAttributeSimpleNamePages) {
 		this.classAttributeSimpleNamePages = classAttributeSimpleNamePages;
 	}
+	@JsonIgnore
 	public void setClassAttributeSimpleNamePages(String o) {
 		String l = ComputateJavaClass.staticSetClassAttributeSimpleNamePages(siteRequest_, o);
 		if(l != null)
@@ -5174,6 +5185,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setClassMethodVars(List<String> classMethodVars) {
 		this.classMethodVars = classMethodVars;
 	}
+	@JsonIgnore
 	public void setClassMethodVars(String o) {
 		String l = ComputateJavaClass.staticSetClassMethodVars(siteRequest_, o);
 		if(l != null)
@@ -6611,6 +6623,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setClassImportsGenPage(List<String> classImportsGenPage) {
 		this.classImportsGenPage = classImportsGenPage;
 	}
+	@JsonIgnore
 	public void setClassImportsGenPage(String o) {
 		String l = ComputateJavaClass.staticSetClassImportsGenPage(siteRequest_, o);
 		if(l != null)
@@ -6795,6 +6808,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setClassApiMethods(List<String> classApiMethods) {
 		this.classApiMethods = classApiMethods;
 	}
+	@JsonIgnore
 	public void setClassApiMethods(String o) {
 		String l = ComputateJavaClass.staticSetClassApiMethods(siteRequest_, o);
 		if(l != null)
@@ -8515,6 +8529,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setClassImportsGen(List<String> classImportsGen) {
 		this.classImportsGen = classImportsGen;
 	}
+	@JsonIgnore
 	public void setClassImportsGen(String o) {
 		String l = ComputateJavaClass.staticSetClassImportsGen(siteRequest_, o);
 		if(l != null)
@@ -8652,6 +8667,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setClassSortsSuffixType(List<String> classSortsSuffixType) {
 		this.classSortsSuffixType = classSortsSuffixType;
 	}
+	@JsonIgnore
 	public void setClassSortsSuffixType(String o) {
 		String l = ComputateJavaClass.staticSetClassSortsSuffixType(siteRequest_, o);
 		if(l != null)
@@ -8732,6 +8748,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setClassSortsOrder(List<String> classSortsOrder) {
 		this.classSortsOrder = classSortsOrder;
 	}
+	@JsonIgnore
 	public void setClassSortsOrder(String o) {
 		String l = ComputateJavaClass.staticSetClassSortsOrder(siteRequest_, o);
 		if(l != null)
@@ -8812,6 +8829,7 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	public void setClassSortsVar(List<String> classSortsVar) {
 		this.classSortsVar = classSortsVar;
 	}
+	@JsonIgnore
 	public void setClassSortsVar(String o) {
 		String l = ComputateJavaClass.staticSetClassSortsVar(siteRequest_, o);
 		if(l != null)
@@ -11216,6 +11234,10 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 	}
 
 	public String classStringFormatUrlDisplayPageForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlUserPageForClass() {
 		return null;
 	}
 

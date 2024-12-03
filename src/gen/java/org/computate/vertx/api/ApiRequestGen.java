@@ -731,6 +731,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public void setIds(List<String> ids) {
 		this.ids = ids;
 	}
+	@JsonIgnore
 	public void setIds(String o) {
 		String l = ApiRequest.staticSetIds(siteRequest_, o);
 		if(l != null)
@@ -805,6 +806,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public void setClasses(List<String> classes) {
 		this.classes = classes;
 	}
+	@JsonIgnore
 	public void setClasses(String o) {
 		String l = ApiRequest.staticSetClasses(siteRequest_, o);
 		if(l != null)
@@ -879,6 +881,7 @@ public abstract class ApiRequestGen<DEV> extends Object {
 	public void setVars(List<String> vars) {
 		this.vars = vars;
 	}
+	@JsonIgnore
 	public void setVars(String o) {
 		String l = ApiRequest.staticSetVars(siteRequest_, o);
 		if(l != null)

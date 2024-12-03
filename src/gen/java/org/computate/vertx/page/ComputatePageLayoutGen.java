@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
-import org.computate.search.serialize.ComputateLocalTimeDeserializer;
+import org.computate.search.serialize.ComputateZonedDateTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -1442,6 +1442,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public void setScopes(List<String> scopes) {
 		this.scopes = scopes;
 	}
+	@JsonIgnore
 	public void setScopes(String o) {
 		String l = ComputatePageLayout.staticSetScopes(siteRequest_, o);
 		if(l != null)
@@ -1516,6 +1517,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public void setRoleRequired(List<String> roleRequired) {
 		this.roleRequired = roleRequired;
 	}
+	@JsonIgnore
 	public void setRoleRequired(String o) {
 		String l = ComputatePageLayout.staticSetRoleRequired(siteRequest_, o);
 		if(l != null)
@@ -1590,6 +1592,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public void setAuthRoleAdmin(List<String> authRoleAdmin) {
 		this.authRoleAdmin = authRoleAdmin;
 	}
+	@JsonIgnore
 	public void setAuthRoleAdmin(String o) {
 		String l = ComputatePageLayout.staticSetAuthRoleAdmin(siteRequest_, o);
 		if(l != null)
@@ -1664,6 +1667,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public void setAuthRoleSuperAdmin(List<String> authRoleSuperAdmin) {
 		this.authRoleSuperAdmin = authRoleSuperAdmin;
 	}
+	@JsonIgnore
 	public void setAuthRoleSuperAdmin(String o) {
 		String l = ComputatePageLayout.staticSetAuthRoleSuperAdmin(siteRequest_, o);
 		if(l != null)
@@ -1874,6 +1878,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public void setDefaultSortVars(List<String> defaultSortVars) {
 		this.defaultSortVars = defaultSortVars;
 	}
+	@JsonIgnore
 	public void setDefaultSortVars(String o) {
 		String l = ComputatePageLayout.staticSetDefaultSortVars(siteRequest_, o);
 		if(l != null)
@@ -1948,6 +1953,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public void setDefaultFieldListVars(List<String> defaultFieldListVars) {
 		this.defaultFieldListVars = defaultFieldListVars;
 	}
+	@JsonIgnore
 	public void setDefaultFieldListVars(String o) {
 		String l = ComputatePageLayout.staticSetDefaultFieldListVars(siteRequest_, o);
 		if(l != null)
@@ -2022,6 +2028,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public void setDefaultStatsVars(List<String> defaultStatsVars) {
 		this.defaultStatsVars = defaultStatsVars;
 	}
+	@JsonIgnore
 	public void setDefaultStatsVars(String o) {
 		String l = ComputatePageLayout.staticSetDefaultStatsVars(siteRequest_, o);
 		if(l != null)
@@ -2096,6 +2103,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	public void setDefaultPivotVars(List<String> defaultPivotVars) {
 		this.defaultPivotVars = defaultPivotVars;
 	}
+	@JsonIgnore
 	public void setDefaultPivotVars(String o) {
 		String l = ComputatePageLayout.staticSetDefaultPivotVars(siteRequest_, o);
 		if(l != null)
@@ -2777,7 +2785,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
-	@JsonDeserialize(using = ComputateLocalTimeDeserializer.class)
+	@JsonDeserialize(using = ComputateZonedDateTimeDeserializer.class)
 	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
 	@JsonInclude(Include.NON_NULL)
@@ -2853,7 +2861,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
-	@JsonDeserialize(using = ComputateLocalTimeDeserializer.class)
+	@JsonDeserialize(using = ComputateZonedDateTimeDeserializer.class)
 	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
 	@JsonInclude(Include.NON_NULL)
@@ -3041,7 +3049,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
-	@JsonDeserialize(using = ComputateLocalTimeDeserializer.class)
+	@JsonDeserialize(using = ComputateZonedDateTimeDeserializer.class)
 	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
 	@JsonInclude(Include.NON_NULL)
@@ -3117,7 +3125,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
-	@JsonDeserialize(using = ComputateLocalTimeDeserializer.class)
+	@JsonDeserialize(using = ComputateZonedDateTimeDeserializer.class)
 	@JsonSerialize(using = ComputateZonedDateTimeSerializer.class)
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSSV'['VV']'")
 	@JsonInclude(Include.NON_NULL)
@@ -5201,6 +5209,10 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
 	}
 
 	public String classStringFormatUrlDisplayPageForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlUserPageForClass() {
 		return null;
 	}
 

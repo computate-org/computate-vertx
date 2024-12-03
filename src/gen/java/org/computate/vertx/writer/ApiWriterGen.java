@@ -31,7 +31,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
-import org.computate.search.serialize.ComputateLocalTimeDeserializer;
+import org.computate.search.serialize.ComputateZonedDateTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -537,6 +537,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassUris(List<String> classUris) {
 		this.classUris = classUris;
 	}
+	@JsonIgnore
 	public void setClassUris(String o) {
 		String l = ApiWriter.staticSetClassUris(siteRequest_, o);
 		if(l != null)
@@ -2460,6 +2461,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassKeywords(List<String> classKeywords) {
 		this.classKeywords = classKeywords;
 	}
+	@JsonIgnore
 	public void setClassKeywords(String o) {
 		String l = ApiWriter.staticSetClassKeywords(siteRequest_, o);
 		if(l != null)
@@ -2939,6 +2941,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassRoles(List<String> classRoles) {
 		this.classRoles = classRoles;
 	}
+	@JsonIgnore
 	public void setClassRoles(String o) {
 		String l = ApiWriter.staticSetClassRoles(siteRequest_, o);
 		if(l != null)
@@ -3019,6 +3022,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassRoleReads(List<String> classRoleReads) {
 		this.classRoleReads = classRoleReads;
 	}
+	@JsonIgnore
 	public void setClassRoleReads(String o) {
 		String l = ApiWriter.staticSetClassRoleReads(siteRequest_, o);
 		if(l != null)
@@ -3099,6 +3103,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public void setClassRolesLanguage(List<String> classRolesLanguage) {
 		this.classRolesLanguage = classRolesLanguage;
 	}
+	@JsonIgnore
 	public void setClassRolesLanguage(String o) {
 		String l = ApiWriter.staticSetClassRolesLanguage(siteRequest_, o);
 		if(l != null)
@@ -4006,6 +4011,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	}
 
 	public String classStringFormatUrlDisplayPageForClass() {
+		return null;
+	}
+
+	public String classStringFormatUrlUserPageForClass() {
 		return null;
 	}
 
