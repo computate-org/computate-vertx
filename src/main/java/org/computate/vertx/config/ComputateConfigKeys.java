@@ -1210,6 +1210,11 @@ public class ComputateConfigKeys {
 	/**
 	 * 
 	 **/
+	public static final String ZOOKEEPER_ROOT_PATH = "ZOOKEEPER_ROOT_PATH";
+
+	/**
+	 * 
+	 **/
 	public static final String ZOOKEEPER_HOST_NAME = "ZOOKEEPER_HOST_NAME";
 
 	/**
