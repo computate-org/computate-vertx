@@ -36,7 +36,7 @@ SOLR_PORT: 443
 SOLR_SSL: true
 SOLR_COLLECTION: "site"
 SOLR_USERNAME: admin
-SOLR_PASSWORD: "{{ query('kubernetes.core.k8s', kind='Secret', resource_name='solr', namespace='solr')[0].data['solr-password'] | b64decode }}"
+SOLR_PASSWORD: "{{ query('kubernetes.core.k8s', kind='Secret', resource_name='solr-secret', namespace='solr')[0].data['solr-password'] | b64decode }}"
 SOLR_URL: "https://solr.apps-crc.testing/solr/computate"
 SOLR_URL_COMPUTATE: "https://solr.apps-crc.testing/solr/computate"
 SOLR_ID: "solrId"
