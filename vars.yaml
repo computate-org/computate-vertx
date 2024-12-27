@@ -1,7 +1,8 @@
 ---
 SITE_NAME: computate-vertx
 # The source code directory for the project. 
-SITE_SRC: "{{ lookup('env', 'HOME') }}/.local/src/{{ SITE_NAME }}"
+SITE_SRC: "{{ lookup('env', 'COMPUTATE_VERTX_SRC') | default(lookup('env', 'HOME') + '/.local/src/' + SITE_NAME) }}"
+
 DOMAIN_NAME: computate.org
 SITE_POM_ARTIFACT_ID: vertx
 DOMAIN_PACKAGE_NAME: "org.computate.vertx"
