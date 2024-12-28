@@ -91,12 +91,6 @@ public class ComputateConfigKeys {
 	public static String lookup(String type, String arg1) {
 		if("env".equals(type)) {
 			return System.getenv(arg1);
-		} else if("file".equals(type)) {
-			try {
-				return FileUtils.readFileToString(new File(arg1), Charset.forName("UTF-8"));
-			} catch(Throwable ex) {
-				return null;
-			}
 		}
 		return null;
 	}

@@ -1,4 +1,75 @@
 ---
+
+######################
+# OpenShift defaults #
+######################
+
+# The wildcard domain suffix where OpenShift Routes are available by default. 
+OPENSHIFT_APPS_DOMAIN: "{{ lookup('env', 'OPENSHIFT_APPS_DOMAIN') | default('apps-crc.testing', true) }}"
+# Look up the default container namespace to see if using OpenShift AI.
+USING_OPENSHIFT_AI: "{{ lookup('env', 'USING_OPENSHIFT_AI') | default('false', true) | bool }}"
+# The name of the OpenShift AI Workbench. 
+OPENSHIFT_AI_WORKBENCH: "{{ lookup('env', 'OPENSHIFT_AI_WORKBENCH') | default('', true) }}"
+
+######################
+# Zookeeper defaults #
+######################
+
+# The namespace in OpenShift where Zookeeper will run. 
+ZOOKEEPER_NAMESPACE: "{{ lookup('env', 'ZOOKEEPER_NAMESPACE') | default('zookeeper', true) }}"
+# The default hostname for the Zookeeper cluster manager. 
+ZOOKEEPER_HOST_NAME: "{{ lookup('env', 'ZOOKEEPER_HOST_NAME') | default('zookeeper.' + OPENSHIFT_APPS_DOMAIN, true) }}"
+# The default port that Zookeeper runs to manage the cluster. 
+ZOOKEEPER_PORT: "{{ lookup('env', 'ZOOKEEPER_PORT') | default('30081', true) }}"
+ZOOKEEPER_MAX_RETRIES: 0
+ZOOKEEPER_BASE_SLEEP_TIME_MILLIS: 5000
+ZOOKEEPER_MAX_SLEEP_MILLIS: 5000
+ZOOKEEPER_CONNECTION_TIMEOUT_MILLIS: 3000
+ZOOKEEPER_SESSION_TIMEOUT_MILLIS: 5000
+
+#################
+# Solr defaults #
+#################
+
+# The unique ID for solr records in the search engine
+SOLR_ID: "solrId"
+# The namespace in OpenShift where Solr will run. 
+SOLR_NAMESPACE: "{{ lookup('env', 'SOLR_NAMESPACE') | default('solr', true) }}"
+# Whether to use SSL when connecting to Solr. 
+SOLR_SSL: "{{ lookup('env', 'SOLR_SSL') | default('true', true) | bool }}"
+# The host name to connect to Solr in OpenShift. 
+SOLR_HOST_NAME: "{{ lookup('env', 'SOLR_HOST_NAME') | default('solr.' + OPENSHIFT_APPS_DOMAIN, true) }}"
+# The default port that Solr runs. 
+SOLR_PORT: "{{ lookup('env', 'SOLR_PORT') | default('443', true) }}"
+# The solr collection to use for the site. 
+SOLR_COLLECTION: "{{ lookup('env', 'SOLR_COLLECTION') | default(SITE_SHORT_NAME, true) }}"
+# The URL to the Solr collection. 
+SOLR_URL: "{{ ('https://' if SOLR_SSL else 'http://') + SOLR_HOST_NAME + ('' if SOLR_PORT == 443 else (':' + SOLR_PORT)) }}/solr/{{ SOLR_COLLECTION }}"
+# The solr pod name to connect and create Solr configsets and collections. 
+SOLR_POD_NAME: "solr-0"
+# The solr configset to use for the site. 
+SOLR_CONFIGSET: "computate"
+# The Solr admin username
+SOLR_USERNAME: admin
+# The Solr admin password
+SOLR_PASSWORD: "{{ query('kubernetes.core.k8s', kind='Secret', resource_name='solr-secret', namespace=SOLR_NAMESPACE)[0].data['solr-password'] | b64decode }}"
+# Whether to use SSL when connecting to Solr. 
+
+# Whether to use SSL when connecting to Solr. 
+SOLR_SSL_COMPUTATE: "{{ lookup('env', 'SOLR_SSL_COMPUTATE') | default(SOLR_SSL, true) | bool }}"
+# The host name to connect to Solr in OpenShift. 
+SOLR_HOST_NAME_COMPUTATE: "{{ lookup('env', 'SOLR_HOST_NAME_COMPUTATE') | default(SOLR_HOST_NAME, true) }}"
+# The default port that Solr runs. 
+SOLR_PORT_COMPUTATE: "{{ lookup('env', 'SOLR_PORT_COMPUTATE') | default(SOLR_PORT, true) }}"
+# The solr collection to use for the site. 
+SOLR_COLLECTION_COMPUTATE: "{{ lookup('env', 'SOLR_COLLECTION_COMPUTATE') | default('computate', true) }}"
+# The URL to the Solr collection. 
+SOLR_URL_COMPUTATE: "{{ ('https://' if SOLR_SSL_COMPUTATE else 'http://') + SOLR_HOST_NAME_COMPUTATE + ('' if SOLR_PORT_COMPUTATE == 443 else (':' + SOLR_PORT_COMPUTATE)) }}/solr/{{ SOLR_COLLECTION_COMPUTATE }}"
+
+########################
+# computate-vertx vars #
+########################
+
 SITE_NAME: computate-vertx
 # The source code directory for the project. 
 SITE_SRC: "{{ lookup('env', 'COMPUTATE_VERTX_SRC') | default(lookup('env', 'HOME') + '/.local/src/' + SITE_NAME) }}"
@@ -28,17 +99,4 @@ ENABLE_ROLE_ADMIN: true
 ENABLE_OPENID_CONNECT: true
 ENABLE_QUARKUS: false
 ENABLE_VERTX: true
-
-ZOOKEEPER_HOST_NAME: "localhost"
-ZOOKEEPER_PORT: 2181
-
-SOLR_HOST_NAME: "solr.apps-crc.testing"
-SOLR_PORT: 443
-SOLR_SSL: true
-SOLR_COLLECTION: "site"
-SOLR_USERNAME: admin
-SOLR_PASSWORD: "{{ query('kubernetes.core.k8s', kind='Secret', resource_name='solr-secret', namespace='solr')[0].data['solr-password'] | b64decode }}"
-SOLR_URL: "https://solr.apps-crc.testing/solr/computate"
-SOLR_URL_COMPUTATE: "https://solr.apps-crc.testing/solr/computate"
-SOLR_ID: "solrId"
 
