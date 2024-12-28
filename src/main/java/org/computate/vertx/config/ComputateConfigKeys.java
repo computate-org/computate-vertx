@@ -23,6 +23,7 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.text.NumberFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -90,7 +91,7 @@ public class ComputateConfigKeys {
 
 	public static String lookup(String type, String arg1) {
 		if("env".equals(type)) {
-			return System.getenv(arg1);
+			return Optional.ofNullable(System.getenv(arg1)).orElse("");
 		}
 		return null;
 	}
