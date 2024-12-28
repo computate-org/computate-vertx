@@ -44,7 +44,7 @@ SOLR_PORT: "{{ lookup('env', 'SOLR_PORT') | default('443', true) }}"
 # The solr collection to use for the site. 
 SOLR_COLLECTION: "{{ lookup('env', 'SOLR_COLLECTION') | default(SITE_SHORT_NAME, true) }}"
 # The URL to the Solr collection. 
-SOLR_URL: "{{ ('https://' if SOLR_SSL else 'http://') + SOLR_HOST_NAME + ('' if SOLR_PORT == 443 else (':' + SOLR_PORT)) }}/solr/{{ SOLR_COLLECTION }}"
+SOLR_URL: "{{ ('https://' if SOLR_SSL == True else 'http://') + SOLR_HOST_NAME + ('' if SOLR_PORT == 443 else (':' + SOLR_PORT)) }}/solr/{{ SOLR_COLLECTION }}"
 # The solr pod name to connect and create Solr configsets and collections. 
 SOLR_POD_NAME: "solr-0"
 # The solr configset to use for the site. 
@@ -64,7 +64,7 @@ SOLR_PORT_COMPUTATE: "{{ lookup('env', 'SOLR_PORT_COMPUTATE') | default(SOLR_POR
 # The solr collection to use for the site. 
 SOLR_COLLECTION_COMPUTATE: "{{ lookup('env', 'SOLR_COLLECTION_COMPUTATE') | default('computate', true) }}"
 # The URL to the Solr collection. 
-SOLR_URL_COMPUTATE: "{{ ('https://' if SOLR_SSL_COMPUTATE else 'http://') + SOLR_HOST_NAME_COMPUTATE + ('' if SOLR_PORT_COMPUTATE == 443 else (':' + SOLR_PORT_COMPUTATE)) }}/solr/{{ SOLR_COLLECTION_COMPUTATE }}"
+SOLR_URL_COMPUTATE: "{{ ('https://' if SOLR_SSL_COMPUTATE == True else 'http://') + SOLR_HOST_NAME_COMPUTATE + ('' if SOLR_PORT_COMPUTATE == 443 else (':' + SOLR_PORT_COMPUTATE)) }}/solr/{{ SOLR_COLLECTION_COMPUTATE }}"
 
 ########################
 # computate-vertx vars #
