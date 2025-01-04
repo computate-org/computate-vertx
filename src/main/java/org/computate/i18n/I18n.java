@@ -533,6 +533,7 @@ public class I18n {
 	public static final String var_solrId = "var_solrId";
 	public static final String var_SOLR_MOT_DE_PASSE = "var_SOLR_MOT_DE_PASSE";
 	public static final String var_SOLR_URL_COMPUTATE = "var_SOLR_URL_COMPUTATE";
+	public static final String var_SOLR_URL_FIWARE = "var_SOLR_URL_FIWARE";
 	public static final String var_SOLR_UTILISATEUR = "var_SOLR_UTILISATEUR";
 	public static final String var_solrUrl = "var_solrUrl";
 	public static final String var_SOLR_URL = "var_SOLR_URL";
