@@ -81,6 +81,7 @@ import io.vertx.amqp.AmqpClient;
 import io.vertx.amqp.AmqpSender;
 import io.vertx.rabbitmq.RabbitMQClient;
 import io.vertx.pgclient.PgPool;
+import io.vertx.sqlclient.Pool;
 import io.vertx.sqlclient.Tuple;
 import jinjava.org.jsoup.Jsoup;
 import jinjava.org.jsoup.nodes.Document;
@@ -130,7 +131,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 
 	protected WorkerExecutor workerExecutor;
 
-	protected PgPool pgPool;
+	protected Pool pgPool;
 
 	protected KafkaProducer<String, String> kafkaProducer;
 
@@ -172,7 +173,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 		this.workerExecutor = workerExecutor;
 	}
 
-	public void setPgPool(PgPool pgPool) {
+	public void setPgPool(Pool pgPool) {
 		this.pgPool = pgPool;
 	}
 

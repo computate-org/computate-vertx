@@ -29,8 +29,8 @@ import io.vertx.ext.auth.oauth2.OAuth2Auth;
 import io.vertx.ext.web.client.WebClient;
 import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.mqtt.MqttClient;
-import io.vertx.pgclient.PgPool;
 import io.vertx.rabbitmq.RabbitMQClient;
+import io.vertx.sqlclient.Pool;
 
 public interface BaseApiServiceInterface {
 
@@ -39,7 +39,7 @@ public interface BaseApiServiceInterface {
 	public void setEventBus(EventBus eventBus);
 	public void setConfig(JsonObject config);
 	public void setWorkerExecutor(WorkerExecutor workerExecutor);
-	public void setPgPool(PgPool pgPool);
+	public void setPgPool(Pool pgPool);
 	public void setKafkaProducer(KafkaProducer<String, String> kafkaProducer);
 	public void setMqttClient(MqttClient mqttClient);
 	public void setAmqpClient(AmqpClient amqpClient);
