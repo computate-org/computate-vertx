@@ -487,6 +487,11 @@ public class ComputateConfigKeys {
 	public static final String RUN_SQL_GENERATOR = "RUN_SQL_GENERATOR";
 
 	/**
+	 * Run the Keycloak authorization generator when this environment variable is set to true. 
+	 **/
+	public static final String RUN_AUTHORIZATION_GENERATOR = "RUN_AUTHORIZATION_GENERATOR";
+
+	/**
 	 * Run the Article Generator when this environment variable is set to true. 
 	 **/
 	public static final String RUN_ARTICLE_GENERATOR = "RUN_ARTICLE_GENERATOR";

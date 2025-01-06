@@ -1049,7 +1049,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 			String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
 			String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
 			List<Future<?>> futures = new ArrayList<>();
-			String[] authScopes = new String[] {"POST", "PATCH", "GET", "DELETE"
+			String[] authScopes = new String[] {"POST", "PATCH", "GET", "DELETE", "PUT"
 					, config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN)
 					, config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN)
 					};
