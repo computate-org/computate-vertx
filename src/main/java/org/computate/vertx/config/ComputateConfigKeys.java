@@ -1282,6 +1282,11 @@ public class ComputateConfigKeys {
 	/**
 	 * 
 	 **/
+	public static final String FONTAWESOME_STYLE = "FONTAWESOME_STYLE";
+
+	/**
+	 * 
+	 **/
 	public static final String WEB_COMPONENTS_CSS = "WEB_COMPONENTS_CSS";
 
 	/**

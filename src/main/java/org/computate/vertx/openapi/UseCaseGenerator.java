@@ -120,11 +120,11 @@ public class UseCaseGenerator extends UseCaseGeneratorGen<FiwareGenerator> {
 						loadUseCaseApi(queryResponse.getResponse().getDocs(), 0).onSuccess(d -> {
 							promise.complete(queryResponse);
 						}).onFailure(ex -> {
-							LOG.error("Write Articles failed. ", ex);
+							LOG.error("Write use cases failed. ", ex);
 							promise.fail(ex);
 						});
 					}).onFailure(ex -> {
-						LOG.error("Write Articles failed. ", ex);
+						LOG.error("Write use cases failed. ", ex);
 						promise.fail(ex);
 					});
 				} catch(Exception ex) {
