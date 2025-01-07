@@ -277,6 +277,7 @@ public class I18n {
 	public static final String var_fin = "var_fin";
 	public static final String var_Fin = "var_Fin";
 	public static final String var_FiwareContexte = "var_FiwareContexte";
+	public static final String var_FONTAWESOME_STYLE = "var_FONTAWESOME_STYLE";
 	public static final String var_formulaireFiltres = "var_formulaireFiltres";
 	public static final String var_FormulaireFiltres = "var_FormulaireFiltres";
 	public static final String var_Formulaire = "var_Formulaire";
