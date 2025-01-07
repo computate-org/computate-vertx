@@ -1066,7 +1066,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 					for(String scopeName : authScopes) {
 						futures.add(Future.future(promise1 -> {
 							try {
-								String scopeId = StringUtils.substring(String.format("%s-%s", authRealm, scopeName), 0, 36);
+								String scopeId = String.format("%s-%s", authRealm, scopeName);
 								webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/scope", authRealm, authClient)).ssl(authSsl)
 										.putHeader("Authorization", String.format("Bearer %s", authToken))
 										.sendJson(new JsonObject().put("id", scopeId).put("name", scopeName))
@@ -1121,7 +1121,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
 				String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
 
-				String policyId = StringUtils.substring(String.format("%s-client-%s", authRealm, clientId), 0, 36);
+				String policyId = String.format("%s-client-%s", authRealm, clientId);
 				String policyName = String.format("%s-client-%s", authRealm, clientId);
 				String permissionName = String.format("%s-client-%s-%s", authRealm, clientId, classSimpleName);
 				JsonArray authScopesJson = new JsonArray();
@@ -1194,7 +1194,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
 				String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
 
-				String policyId = StringUtils.substring(String.format("%s-group-%s", authRealm, groupName), 0, 36);
+				String policyId = String.format("%s-group-%s", authRealm, groupName);
 				String policyName = String.format("%s-group-%s", authRealm, groupName);
 				String permissionName = String.format("%s-group-%s-%s", authRealm, groupName, classSimpleName);
 				JsonArray authScopesJson = new JsonArray();
