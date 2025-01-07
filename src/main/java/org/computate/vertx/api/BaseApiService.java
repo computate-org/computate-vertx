@@ -2074,7 +2074,8 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				}).onSuccess(authorizationDecision -> {
 					try {
 						JsonArray scopes = authorizationDecision.bodyAsJsonArray().stream().findFirst().map(decision -> ((JsonObject)decision).getJsonArray("scopes")).orElse(new JsonArray());
-						if(!scopes.contains("PATCH")) {
+						List<String> rsnames = authorizationDecision.bodyAsJsonArray().stream().map(decision -> ((JsonObject)decision).getString("rsname")).collect(Collectors.toList());
+						if(!scopes.contains("GET")) {
 							String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
 							handler.fail(403, new RuntimeException("search failed"));
 						} else {
@@ -2097,9 +2098,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 							searchList.setStore(true);
 							searchList.q("*:*");
 							searchList.setSiteRequest_(siteRequest);
-							scopes.stream().forEach(scope -> {
-								searchList.fq(String.format("classSimpleName_docvalues_string:", scope));
-							});
+							searchList.fq(String.format("classSimpleName_docvalues_string:" + rsnames.stream().collect(Collectors.joining(" OR ", "(", ")"))));
 
 							for(String paramName : query.fieldNames()) {
 								Object paramValuesObject = query.getValue(paramName);
