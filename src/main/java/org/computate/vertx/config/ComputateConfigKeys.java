@@ -445,6 +445,7 @@ public class ComputateConfigKeys {
 		ctx.put(SITE_POWERED_BY_IMAGE, config.getString(SITE_POWERED_BY_IMAGE));
 		ctx.put(SITE_LOGO_URI, config.getString(SITE_LOGO_URI));
 		ctx.put(FONTAWESOME_KIT, config.getString(FONTAWESOME_KIT));
+		ctx.put(FONTAWESOME_STYLE, config.getString(FONTAWESOME_STYLE));
 		ctx.put(WEB_COMPONENTS_CSS, config.getString(WEB_COMPONENTS_CSS));
 		ctx.put(WEB_COMPONENTS_JS, config.getString(WEB_COMPONENTS_JS));
 		ctx.put(SITE_LOCALE, config.getString(SITE_LOCALE));
