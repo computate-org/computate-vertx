@@ -142,12 +142,13 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 			searchClasses.sortAsc("partNumero_indexed_int");
 			searchClasses.initDeepForClass(siteRequest_);
 
+			String siteName = siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_NAME);
 			String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
 			String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
 			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME_COMPUTATE);
-			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT_COMPUTATE);
+			Integer solrPort = Integer.parseInt(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PORT_COMPUTATE));
 			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
-			Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL_COMPUTATE);
+			Boolean solrSsl = Boolean.parseBoolean(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_SSL_COMPUTATE));
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
 			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).send().onSuccess(a -> {
 				try {
@@ -157,7 +158,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 						fiwareContext.put("ngsi-ld", "https://uri.etsi.org/ngsi-ld/");
 						fiwareContext.put("fiware", "https://uri.fiware.org/ns/data-models#");
 						fiwareContext.put("schema", "https://schema.org/");
-						fiwareContext.put("smartvillage", "https://raw.githubusercontent.com/" + config.getString(ComputateConfigKeys.GITHUB_ORG) + "/" + config.getString(ComputateConfigKeys.SITE_NAME) + "-static/main/fiware/");
+						fiwareContext.put(siteName, "https://raw.githubusercontent.com/" + config.getString(ComputateConfigKeys.GITHUB_ORG) + "/" + config.getString(ComputateConfigKeys.SITE_NAME) + "-static/main/fiware/");
 
 						loadSmartDataModel(queryResponse.getResponse().getDocs(), 0).onSuccess(d -> {
 							promise.complete();
@@ -229,10 +230,6 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 			File schemaFile = new File(schemaPath);
 			AllWriter wSchema = AllWriter.create(siteRequest_, schemaFile, "  ");
 
-			String fiwareOperatorVarsPath = appPath + "/../smartvillage-operator/roles/smart-data-model-vars/vars/" + classDoc.getClassSimpleName() + ".yaml";
-			File fiwareOperatorVarsFile = new File(fiwareOperatorVarsPath);
-			AllWriter wFiwareOperatorVars = AllWriter.create(siteRequest_, fiwareOperatorVarsFile, "  ");
-
 			JsonObject schema = new JsonObject();
 			JsonArray allOf = new JsonArray();
 			JsonArray required = new JsonArray();
@@ -268,141 +265,12 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 			wDoc.l();
 			wDoc.l("## Attributes of the entity");
 			wDoc.l();
-
-			wFiwareOperatorVars.tl(0, "---");
-			if(StringUtils.isNotBlank(classDoc.getClassSmartDataDomain())) {
-				wFiwareOperatorVars.tl(0, "MODEL_NAME: ", classDoc.getClassSmartDataModel());
-				wFiwareOperatorVars.tl(0, "SUBMODULE_SHORT_NAME: ", classDoc.getClassSmartDataSubModule());
-				wFiwareOperatorVars.tl(0, "DOMAIN_NAME: ", classDoc.getClassSmartDataDomain());
-			}
-			wFiwareOperatorVars.tl(0, "name: smartvillage");
-			wFiwareOperatorVars.tl(0, "description: |");
-			wFiwareOperatorVars.tl(1, classDoc.getClassDescription());
-			wFiwareOperatorVars.tl(0, "schema:");
-			wFiwareOperatorVars.tl(1, "managementState:");
-			wFiwareOperatorVars.tl(2, "type: string");
-			wFiwareOperatorVars.tl(2, "default: Managed");
-			wFiwareOperatorVars.tl(2, "enum:");
-			wFiwareOperatorVars.tl(3, "- Managed");
-			wFiwareOperatorVars.tl(3, "- Unmanaged");
-			wFiwareOperatorVars.tl(1, "iotagent:");
-			wFiwareOperatorVars.tl(2, "type: object");
-			wFiwareOperatorVars.tl(2, "properties:");
-			wFiwareOperatorVars.tl(3, "name:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: iotagent-json");
-			wFiwareOperatorVars.tl(3, "namespace:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(3, "service_name:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: iotagent-json");
-			wFiwareOperatorVars.tl(3, "base_url:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(1, "context_broker:");
-			wFiwareOperatorVars.tl(2, "type: object");
-			wFiwareOperatorVars.tl(2, "properties:");
-			wFiwareOperatorVars.tl(3, "name:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: scorpiobroker");
-			wFiwareOperatorVars.tl(3, "namespace:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(3, "service_name:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: scorpiobroker");
-			wFiwareOperatorVars.tl(3, "base_url:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(1, "ngsi_ld:");
-			wFiwareOperatorVars.tl(2, "type: object");
-			wFiwareOperatorVars.tl(2, "properties:");
-			wFiwareOperatorVars.tl(3, "service:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: ", Optional.ofNullable(classDoc.getClassNamePlural()).orElse("").replace(" ", "").toLowerCase());
-			wFiwareOperatorVars.tl(3, "service_path:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: /Sweden/Veberod/CityCenter");
-			wFiwareOperatorVars.tl(3, "context:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: https://raw.githubusercontent.com/computate-org/smartabyar-smartvillage-static/main/fiware/context.jsonld");
-			wFiwareOperatorVars.tl(1, "service_group:");
-			wFiwareOperatorVars.tl(2, "type: object");
-			wFiwareOperatorVars.tl(2, "properties:");
-			wFiwareOperatorVars.tl(3, "resource:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: /iot/json");
-			wFiwareOperatorVars.tl(3, "apikey:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: ", classDoc.getClassSimpleName());
-			wFiwareOperatorVars.tl(1, "message_broker:");
-			wFiwareOperatorVars.tl(2, "type: object");
-			wFiwareOperatorVars.tl(2, "properties:");
-			wFiwareOperatorVars.tl(3, "transport:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: MQTT");
-			wFiwareOperatorVars.tl(4, "enum:");
-			wFiwareOperatorVars.tl(5, "- MQTT");
-			wFiwareOperatorVars.tl(5, "- AMQP");
-			wFiwareOperatorVars.tl(3, "namespace:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(3, "host:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: default-mqtt-0-svc.amqbroker.svc");
-			wFiwareOperatorVars.tl(3, "user:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(3, "secret:");
-			wFiwareOperatorVars.tl(4, "type: object");
-			wFiwareOperatorVars.tl(4, "properties:");
-			wFiwareOperatorVars.tl(5, "name:");
-			wFiwareOperatorVars.tl(6, "type: string");
-			wFiwareOperatorVars.tl(5, "key:");
-			wFiwareOperatorVars.tl(6, "type: string");
-			wFiwareOperatorVars.tl(3, "port:");
-			wFiwareOperatorVars.tl(4, "type: number");
-			wFiwareOperatorVars.tl(4, "default: 1883");
-			wFiwareOperatorVars.tl(1, "device:");
-			wFiwareOperatorVars.tl(2, "type: object");
-			wFiwareOperatorVars.tl(2, "properties:");
-			wFiwareOperatorVars.tl(3, "id:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(3, "subscription_url:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: \"http://orionld-smartvillage-sync:8080\"");
-			wFiwareOperatorVars.tl(1, "smartvillage:");
-			wFiwareOperatorVars.tl(2, "type: object");
-			wFiwareOperatorVars.tl(2, "properties:");
-			wFiwareOperatorVars.tl(3, "enabled:");
-			wFiwareOperatorVars.tl(4, "type: boolean");
-			wFiwareOperatorVars.tl(4, "default: true");
-			wFiwareOperatorVars.tl(3, "auth_secret_name:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: keycloak-client-secret-smartvillage");
-			wFiwareOperatorVars.tl(3, "auth_token_url:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: https://keycloak-sso.apps-crc.testing/auth/realms/SMARTVILLAGE/protocol/openid-connect/token");
-			wFiwareOperatorVars.tl(3, "site_base_url:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: https://smartvillage-web-smartvillage.apps-crc.testing");
-			wFiwareOperatorVars.tl(3, "smart_model_api:");
-			wFiwareOperatorVars.tl(4, "type: string");
-			wFiwareOperatorVars.tl(4, "default: ", classDoc.getClassApiUri());
-			if(classDoc.getClassAlternateModel() != null) {
-				wFiwareOperatorVars.tl(1, "alternate_model:");
-				wFiwareOperatorVars.tl(2, "type: object");
-				wFiwareOperatorVars.tl(2, "properties:");
-				wFiwareOperatorVars.tl(3, "enabled:");
-				wFiwareOperatorVars.tl(4, "type: boolean");
-				wFiwareOperatorVars.tl(4, "default: true");
-				wFiwareOperatorVars.tl(3, "id:");
-				wFiwareOperatorVars.tl(4, "type: string");
-				wFiwareOperatorVars.tl(4, "default: ", toId(classDoc.getClassAlternateModel()));
-			}
-			wFiwareOperatorVars.tl(0, "smart_data_model:");
-			wFiwareOperatorVars.tl(1, "attributes:");
-
 //			fiwareContext.put(classDoc.getClassSimpleName(), "https://github.com/" + config.getString(ComputateConfigKeys.GITHUB_ORG) + "/" + config.getString(ComputateConfigKeys.SITE_NAME) + "-static/blob/main/fiware/" + classDoc.getClassSimpleName() + "/");
-			fiwareContext.put(classDoc.getClassSimpleName(), "smartvillage:" + classDoc.getClassSimpleName());
+			String siteName = siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_NAME);
+			fiwareContext.put(classDoc.getClassSimpleName(), String.format("%s:%s", siteName, classDoc.getClassSimpleName()));
 
 			vertx_.fileSystem().mkdirs(exampleFile.getParent()).onComplete(a -> {
-				loadSmartDataModelEntities(classDoc, properties, required, wDoc, wModel, wExample, wExampleNormalized, wExampleLd, wExampleNormalizedLd, wFiwareOperatorVars).onSuccess(b -> {
+				loadSmartDataModelEntities(classDoc, properties, required, wDoc, wModel, wExample, wExampleNormalized, wExampleLd, wExampleNormalizedLd).onSuccess(b -> {
 					try {
 						wModel.flushClose();
 						wExample.flushClose();
@@ -413,8 +281,6 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 
 						wSchema.l(schema.encodePrettily());
 						wSchema.flushClose();
-
-						wFiwareOperatorVars.flushClose();
 	
 						loadSmartDataModel(docs, i + 1).onSuccess(c -> {
 							promise.complete();
@@ -437,7 +303,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 		return promise.future();
 	}
 
-	public Future<List<SolrResponse.Doc>> loadSmartDataModelEntities(ComputateEnUSClass classDoc, JsonObject properties, JsonArray required, AllWriter wDoc, AllWriter wModel, AllWriter wExample, AllWriter wExampleNormalized, AllWriter wExampleLd, AllWriter wExampleNormalizedLd, AllWriter wFiwareOperatorVars) {
+	public Future<List<SolrResponse.Doc>> loadSmartDataModelEntities(ComputateEnUSClass classDoc, JsonObject properties, JsonArray required, AllWriter wDoc, AllWriter wModel, AllWriter wExample, AllWriter wExampleNormalized, AllWriter wExampleLd, AllWriter wExampleNormalizedLd) {
 		Promise<List<SolrResponse.Doc>> promise = Promise.promise();
 
 		try {
@@ -454,9 +320,9 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 			String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
 			String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
 			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME_COMPUTATE);
-			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT_COMPUTATE);
+			Integer solrPort = Integer.parseInt(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PORT_COMPUTATE));
 			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
-			Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL_COMPUTATE);
+			Boolean solrSsl = Boolean.parseBoolean(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_SSL_COMPUTATE));
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchEntities.getQueryString());
 			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).send().onSuccess(a -> {
 				try {
@@ -512,14 +378,6 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 							}
 
 							wModel.tl(2, entityVar, ":");
-							wFiwareOperatorVars.tl(2, entityVar, ":");
-
-							wFiwareOperatorVars.tl(3, "name: ", entityVar);
-							if(StringUtils.isNotBlank(entityAlternateName)) {
-								wFiwareOperatorVars.tl(3, "alternate_name: ", entityAlternateName);
-							}
-
-							wFiwareOperatorVars.tl(3, "type: ", entityFiwareType);
 							wModel.tl(3, "type: ", entityFiwareType);
 							property.put("type", entityFiwareType);
 							if(entityJsonFormat != null) {
@@ -529,51 +387,32 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 
 							if(StringUtils.isNotBlank(entityDescription)) {
 								wModel.t(3, "description: ").yamlStr(4, entityDescription);
-								wFiwareOperatorVars.t(3, "description: ").yamlStr(4, entityDescription);
 								property.put("description", entityDescription);
-							}
-							if(StringUtils.isNotBlank(entityAlternateDescription)) {
-								wFiwareOperatorVars.t(3, "alternate_description: ").yamlStr(4, entityAlternateDescription);
-							}
-
-							if(StringUtils.isNotBlank(entityDocs)) {
-								wFiwareOperatorVars.t(3, "docs: ").yamlStr(4, entityDocs);
-							}
-							if(StringUtils.isNotBlank(entityAlternateDocs)) {
-								wFiwareOperatorVars.t(3, "alternate_docs: ").yamlStr(4, entityAlternateDocs);
 							}
 
 							if(entityRequired) {
 								wModel.tl(3, "required: ", entityRequired);
-								wFiwareOperatorVars.tl(3, "required: ", entityRequired);
 								required.add(entityVar);
 							}
 							if(entityUnitLabel != null) {
 								wModel.tl(3, "units: ", entityUnitLabel);
-								wFiwareOperatorVars.tl(3, "units: ", entityUnitLabel);
 							}
 							if(entityMin != null) {
 								wModel.tl(3, "minimum: ", entityMin);
-								wFiwareOperatorVars.tl(3, "minimum: ", entityMin);
 								property.put("minimum", entityMin);
 							}
 							if(entityMax != null) {
 								wModel.tl(3, "maximum: ", entityMax);
-								wFiwareOperatorVars.tl(3, "maximum: ", entityMax);
 								property.put("maximum", entityMax);
 							}
 							wModel.tl(3, "x-ngsi:");
 							if(ngsiModel != null) {
 								wModel.tl(4, "model: ", ngsiModel);
-								wFiwareOperatorVars.tl(3, "x-ngsi:");
-								wFiwareOperatorVars.tl(4, "model: ", ngsiModel);
 							}
 							wModel.tl(4, "type: ", entityNgsiType);
 							if(entityListeFiwareType != null) {
 								wModel.tl(3, "items:");
 								wModel.tl(4, "type: ", entityListeFiwareType);
-								wFiwareOperatorVars.tl(3, "items:");
-								wFiwareOperatorVars.tl(4, "type: ", entityListeFiwareType);
 							}
 
 							if(StringUtils.isNotBlank(entityDefault)) {

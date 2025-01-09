@@ -14,10 +14,14 @@
 package org.computate.vertx.serialize.pgclient;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Stack;
 
 import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.github.jknack.handlebars.internal.lang3.StringUtils;
@@ -35,9 +39,56 @@ public class PgClientPointDeserializer extends JsonDeserializer<Point> {
 	public Point deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
 			throws IOException {
 
-
 		String text = jsonParser.getText().strip();
 
+		if(StringUtils.equals(text, "{")) {
+			StringBuilder b = new StringBuilder();
+			b.append(text);
+			JsonToken token = jsonParser.nextToken();
+			Stack<Boolean> isArrays = new Stack<>();
+			isArrays.push(false);
+			while(token != null) {
+				if(token == JsonToken.START_ARRAY) {
+					if(isArrays.peek()) {
+						if(b.charAt(b.length() - 1) != '[')
+							b.append(",");
+					}
+					isArrays.push(true);
+					b.append(jsonParser.getText());
+				} else if(token == JsonToken.END_ARRAY) {
+					isArrays.pop();
+					b.append(jsonParser.getText());
+				} else if(token == JsonToken.START_OBJECT) {
+					if(isArrays.peek()) {
+						if(b.charAt(b.length() - 1) != '[')
+							b.append(",");
+					}
+					isArrays.push(false);
+					b.append(jsonParser.getText());
+				} else if(token == JsonToken.END_OBJECT) {
+					isArrays.pop();
+					b.append(jsonParser.getText());
+					if(isArrays.isEmpty())
+						break;
+				} else if(token == JsonToken.FIELD_NAME) {
+					if(b.charAt(b.length() - 1) != '{')
+						b.append(",");
+					b.append("\"").append(StringEscapeUtils.escapeJson(jsonParser.getText())).append("\":");
+				} else if(token.isBoolean() || token.isNumeric() || token.isStructEnd() || token.isStructStart()) {
+					if(isArrays.peek()) {
+						if(b.charAt(b.length() - 1) != '[')
+							b.append(",");
+					}
+					b.append(jsonParser.getText());
+				} else {
+					if(isArrays.peek())
+						b.append(",");
+					b.append("\"").append(StringEscapeUtils.escapeJson(jsonParser.getText())).append("\"");
+				}
+				token = jsonParser.nextToken();
+			}
+			text = b.toString();
+		}
 		if(StringUtils.startsWith(text, "{")) {
 			JsonObject json = new JsonObject(text);
 			Point point = new Point();
