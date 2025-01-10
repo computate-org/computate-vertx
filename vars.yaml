@@ -65,6 +65,7 @@ SOLR_PORT_COMPUTATE: "{{ lookup('env', 'SOLR_PORT_COMPUTATE') | default(SOLR_POR
 SOLR_COLLECTION_COMPUTATE: "{{ lookup('env', 'SOLR_COLLECTION_COMPUTATE') | default('computate', true) }}"
 # The URL to the Solr collection. 
 SOLR_URL_COMPUTATE: "{{ ('https://' if SOLR_SSL_COMPUTATE == True else 'http://') + SOLR_HOST_NAME_COMPUTATE + ('' if SOLR_PORT_COMPUTATE == 443 else (':' + SOLR_PORT_COMPUTATE)) }}/solr/{{ SOLR_COLLECTION_COMPUTATE }}"
+SOLR_URL_FIWARE: "{{ ('https://' if SOLR_SSL_FIWARE == True else 'http://') + SOLR_HOST_NAME_FIWARE + ('' if SOLR_PORT_FIWARE == 443 else (':' + SOLR_PORT_FIWARE)) }}/solr/{{ SOLR_COLLECTION_FIWARE }}"
 
 ########################
 # computate-vertx vars #
