@@ -78,6 +78,7 @@ str_Vous_pouvez_remplacer_les_valeurs_par_defaut_ci_dessous: "Vous pouvez rempla
 var_a: "a"
 var_activer: "activer"
 var_ACTIVER_ARCHIVE: "ACTIVER_ARCHIVE"
+var_ACTIVER_CONTEXT_BROKER: "ACTIVER_CONTEXT_BROKER"
 var_ACTIVER_LOG: "ACTIVER_LOG"
 var_ACTIVER_OPENID_CONNECT: "ACTIVER_OPENID_CONNECT"
 var_ACTIVER_QUARKUS: "ACTIVER_QUARKUS"
