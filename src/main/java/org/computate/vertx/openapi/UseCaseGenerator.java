@@ -109,9 +109,9 @@ public class UseCaseGenerator extends UseCaseGeneratorGen<FiwareGenerator> {
 			String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
 			String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
 			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME_COMPUTATE);
-			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT_COMPUTATE);
+			Integer solrPort = Integer.parseInt(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PORT_COMPUTATE));
 			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
-			Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL_COMPUTATE);
+			Boolean solrSsl = Boolean.parseBoolean(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_SSL_COMPUTATE));
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchClasses.getQueryString());
 			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).send().onSuccess(a -> {
 				try {
@@ -294,9 +294,9 @@ public class UseCaseGenerator extends UseCaseGeneratorGen<FiwareGenerator> {
 			String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
 			String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
 			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME_COMPUTATE);
-			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT_COMPUTATE);
+			Integer solrPort = Integer.parseInt(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PORT_COMPUTATE));
 			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION_COMPUTATE);
-			Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL_COMPUTATE);
+			Boolean solrSsl = Boolean.parseBoolean(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_SSL_COMPUTATE));
 			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, searchEntities.getQueryString());
 			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).send().onSuccess(a -> {
 				try {

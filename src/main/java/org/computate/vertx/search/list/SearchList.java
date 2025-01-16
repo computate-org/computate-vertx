@@ -295,9 +295,9 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 				String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
 				String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
 				String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
-				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+				Integer solrPort = Integer.parseInt(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PORT));
 				String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
-				Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
+				Boolean solrSsl = Boolean.parseBoolean(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_SSL));
 
 				request.setQueryString(null);
 				request.initDeepForClass(siteRequest_);
@@ -333,9 +333,9 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 			String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
 			String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
 			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
-			Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+			Integer solrPort = Integer.parseInt(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PORT));
 			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
-			Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
+			Boolean solrSsl = Boolean.parseBoolean(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_SSL));
 
 			request.setQueryString(null);
 			request.initDeepForClass(siteRequest_);
@@ -380,7 +380,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 	 */
 	protected void _searchUrl(Wrap<String> w) {
 		String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
-		Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+		Integer solrPort = Integer.parseInt(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PORT));
 		String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
 		String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
 		w.o(String.format("http://%s:%s%s", solrHostName, solrPort, solrRequestUri));
@@ -401,9 +401,9 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 				String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
 				String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
 				String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
-				Integer solrPort = siteRequest_.getConfig().getInteger(ComputateConfigKeys.SOLR_PORT);
+				Integer solrPort = Integer.parseInt(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PORT));
 				String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
-				Boolean solrSsl = siteRequest_.getConfig().getBoolean(ComputateConfigKeys.SOLR_SSL);
+				Boolean solrSsl = Boolean.parseBoolean(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_SSL));
 				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
 				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).send().onSuccess(a -> {
 					try {
