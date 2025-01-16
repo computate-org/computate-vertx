@@ -394,6 +394,8 @@ public class I18n {
 	public static final String var_Modifier = "var_Modifier";
 	public static final String var_MotCle = "var_MotCle";
 	public static final String var_Multiligne = "var_Multiligne";
+	public static final String var_NGSILD_TENANT_ENV = "var_NGSILD_TENANT_ENV";
+	public static final String var_NGSILD_CHEMIN_ENV = "var_NGSILD_CHEMIN_ENV";
 	public static final String var_nom = "var_nom";
 	public static final String var_NomActual = "var_NomActual";
 	public static final String var_NomActuel = "var_NomActuel";
