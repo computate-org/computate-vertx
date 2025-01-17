@@ -546,16 +546,14 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 			wPaths.tl(3, "operationId: ", classApiOperationIdMethod);
 			wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-", classSimpleName);
 
+			// if it's not a GET request and it's not a session/user/all request and has class auth
+			// or it's a GET request, but it's not a session or public read page
 			if(
 					StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH", "DELETE"
-							, i18n.getString(I18n.var_PageEdition)
-							, i18n.getString(I18n.var_PageUtilisateur)
 							) 
 						&& !(classRoleSession || classRoleUser || classRoleAll)
 						&& classAuth
 					|| !StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH", "DELETE"
-							, i18n.getString(I18n.var_PageEdition)
-							, i18n.getString(I18n.var_PageUtilisateur)
 							) && (
 						BooleanUtils.isNotTrue(classRoleSession) 
 						&& BooleanUtils.isNotTrue(classPublicRead) 
