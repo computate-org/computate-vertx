@@ -47,6 +47,7 @@ import java.math.RoundingMode;
 import java.util.Map;
 import java.lang.String;
 import io.vertx.core.json.JsonObject;
+import org.computate.vertx.serialize.vertx.JsonObjectDeserializer;
 import org.computate.search.computate.enus.ComputateEnUSClass;
 import org.computate.search.response.solr.SolrResponse.Doc;
 import java.lang.Integer;
@@ -212,6 +213,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
+	@JsonDeserialize(using = JsonObjectDeserializer.class)
 	@JsonInclude(Include.NON_NULL)
 	protected JsonObject i18n;
 
@@ -908,6 +910,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
+	@JsonDeserialize(using = JsonObjectDeserializer.class)
 	@JsonInclude(Include.NON_NULL)
 	protected JsonObject config;
 
@@ -968,6 +971,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
+	@JsonDeserialize(using = JsonObjectDeserializer.class)
 	@JsonInclude(Include.NON_NULL)
 	protected JsonObject authClients;
 
