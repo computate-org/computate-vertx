@@ -24,7 +24,7 @@ import io.vertx.core.json.JsonObject;
 /**
  * InitDeepBefore: true
  */
-public class Swagger2Generator extends Swagger2GeneratorGen<UseCaseGenerator> {
+public class Swagger2Generator extends Swagger2GeneratorGen<FiwareGenerator> {
 
 	public Future<Void> writeOpenApi() {
 		Promise<Void> promise = Promise.promise();
