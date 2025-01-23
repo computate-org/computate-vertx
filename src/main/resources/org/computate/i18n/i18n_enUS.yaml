@@ -14,6 +14,7 @@ str_Afficher_les_resultats_sous_forme_de_details: "Show the results as details"
 str_API: "API"
 str_au_total_avec_: '%s %s total with %s &quot;%s&quot;'
 str_aucun: 'none'
+str_Cartes_des: "Map of %s"
 str_chemin_absolu: "%s touched"
 str_chemin_absolu_url: "%s/java-class/%s"
 str_créé_nouveau: "created new"

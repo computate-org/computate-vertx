@@ -1007,9 +1007,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	private Future<Void> deletePageData(ComputateSiteRequest siteRequest, ZonedDateTime now, String classSimpleName) {
 		Promise<Void> promise = Promise.promise();
 		String solrHostName = config.getString(ComputateConfigKeys.SOLR_HOST_NAME);
-		Integer solrPort = config.getInteger(ComputateConfigKeys.SOLR_PORT);
+		Integer solrPort = Integer.parseInt(config.getString(ComputateConfigKeys.SOLR_PORT));
 		String solrCollection = config.getString(ComputateConfigKeys.SOLR_COLLECTION);
-		Boolean solrSsl = config.getBoolean(ComputateConfigKeys.SOLR_SSL);
+		Boolean solrSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.SOLR_SSL));
 		String solrRequestUri = String.format("/solr/%s/update%s", solrCollection, "?softCommit=true&overwrite=true&wt=json");
 		String deleteQuery = String.format("classSimpleName_docvalues_string:(%s) AND created_docvalues_date:[* TO %s]", classSimpleName, staticSearchStr(siteRequest, staticSearchZonedDateTime(now)));
 		String deleteXml = String.format("<delete><query>%s</query></delete>", deleteQuery);
@@ -1043,9 +1043,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 			String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
 			String authScopeAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN);
 			String authScopeSuperAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN);
-			Integer authPort = config.getInteger(ComputateConfigKeys.AUTH_PORT);
+			Integer authPort = Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT));
 			String authHostName = config.getString(ComputateConfigKeys.AUTH_HOST_NAME);
-			Boolean authSsl = config.getBoolean(ComputateConfigKeys.AUTH_SSL);
+			Boolean authSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.AUTH_SSL));
 			String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
 			String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
 			List<Future<?>> futures = new ArrayList<>();
@@ -1115,9 +1115,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 			if(clientId != null && scopes != null) {
 				String authScopeAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN);
 				String authScopeSuperAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN);
-				Integer authPort = config.getInteger(ComputateConfigKeys.AUTH_PORT);
+				Integer authPort = Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT));
 				String authHostName = config.getString(ComputateConfigKeys.AUTH_HOST_NAME);
-				Boolean authSsl = config.getBoolean(ComputateConfigKeys.AUTH_SSL);
+				Boolean authSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.AUTH_SSL));
 				String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
 				String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
 
@@ -1188,9 +1188,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 			if(groupName != null && scopes != null) {
 				String authScopeAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN);
 				String authScopeSuperAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN);
-				Integer authPort = config.getInteger(ComputateConfigKeys.AUTH_PORT);
+				Integer authPort = Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT));
 				String authHostName = config.getString(ComputateConfigKeys.AUTH_HOST_NAME);
-				Boolean authSsl = config.getBoolean(ComputateConfigKeys.AUTH_SSL);
+				Boolean authSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.AUTH_SSL));
 				String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
 				String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
 
@@ -1458,9 +1458,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				  					String policyName = String.format("%s-%s", createdAt.getYear(), uri);
 				  					String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
 				  					String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
-				  					Integer authPort = config.getInteger(ComputateConfigKeys.AUTH_PORT);
+				  					Integer authPort = Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT));
 				  					String authHostName = config.getString(ComputateConfigKeys.AUTH_HOST_NAME);
-				  					Boolean authSsl = config.getBoolean(ComputateConfigKeys.AUTH_SSL);
+				  					Boolean authSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.AUTH_SSL));
 				  					String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
 				  					String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
 				  					webClient.post(authPort, authHostName, "/realms/master/protocol/openid-connect/token").ssl(authSsl)
@@ -2062,11 +2062,11 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 					multiMap.add("permission", String.format("%s#%s", resource, "GET"));
 				});
 				webClient.post(
-						config.getInteger(ComputateConfigKeys.AUTH_PORT)
+						Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT))
 						, config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
 						, config.getString(ComputateConfigKeys.AUTH_TOKEN_URI)
 						)
-						.ssl(config.getBoolean(ComputateConfigKeys.AUTH_SSL))
+						.ssl(Boolean.parseBoolean(config.getString(ComputateConfigKeys.AUTH_SSL)))
 						.putHeader("Authorization", String.format("Bearer %s", siteRequest.getUser().principal().getString("access_token")))
 						.expect(ResponsePredicate.status(200))
 						.sendForm(multiMap).onFailure(ex -> {
@@ -2085,9 +2085,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 							String solrUsername = config.getString(ComputateConfigKeys.SOLR_USERNAME);
 							String solrPassword = config.getString(ComputateConfigKeys.SOLR_PASSWORD);
 							String solrHostName = config.getString(ComputateConfigKeys.SOLR_HOST_NAME);
-							Integer solrPort = config.getInteger(ComputateConfigKeys.SOLR_PORT);
+							Integer solrPort = Integer.parseInt(config.getString(ComputateConfigKeys.SOLR_PORT));
 							String solrCollection = config.getString(ComputateConfigKeys.SOLR_COLLECTION);
-							Boolean solrSsl = config.getBoolean(ComputateConfigKeys.SOLR_SSL);
+							Boolean solrSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.SOLR_SSL));
 
 							SearchList<Object> searchList = new SearchList<Object>();
 							String facetRange = null;
@@ -2407,9 +2407,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				String solrUsername = config.getString(ComputateConfigKeys.SOLR_USERNAME);
 				String solrPassword = config.getString(ComputateConfigKeys.SOLR_PASSWORD);
 				String solrHostName = config.getString(ComputateConfigKeys.SOLR_HOST_NAME);
-				Integer solrPort = config.getInteger(ComputateConfigKeys.SOLR_PORT);
+				Integer solrPort = Integer.parseInt(config.getString(ComputateConfigKeys.SOLR_PORT));
 				String solrCollection = config.getString(ComputateConfigKeys.SOLR_COLLECTION);
-				Boolean solrSsl = config.getBoolean(ComputateConfigKeys.SOLR_SSL);
+				Boolean solrSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.SOLR_SSL));
 
 				SiteRequest siteRequest = generateSiteRequest(null, config, serviceRequest, classSiteRequest);
 
@@ -2694,8 +2694,8 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 		JsonArray jsonArray = Optional.ofNullable(eventHandler.body().asJsonObject()).map(o -> o.getJsonArray("data")).orElse(new JsonArray());
 		try {
 			String ngsildHostName = config.getString(ComputateConfigKeys.CONTEXT_BROKER_HOST_NAME);
-			Integer ngsildPort = config.getInteger(ComputateConfigKeys.CONTEXT_BROKER_PORT);
-			Boolean ngsildSsl = config.getBoolean(ComputateConfigKeys.CONTEXT_BROKER_SSL);
+			Integer ngsildPort = Integer.parseInt(config.getString(ComputateConfigKeys.CONTEXT_BROKER_PORT));
+			Boolean ngsildSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.CONTEXT_BROKER_SSL));
 
 			MultiMap headers = eventHandler.request().headers();
 			final String fiwareService = headers.get("Fiware-Service");

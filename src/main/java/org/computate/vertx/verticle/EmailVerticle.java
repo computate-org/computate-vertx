@@ -152,8 +152,8 @@ public class EmailVerticle extends EmailVerticleGen<AbstractVerticle> {
 		try {
 			MailConfig mailConfig = new MailConfig();
 			mailConfig.setHostname(config().getString(ComputateConfigKeys.EMAIL_HOST));
-			mailConfig.setPort(config().getInteger(ComputateConfigKeys.EMAIL_PORT));
-			mailConfig.setSsl(config().getBoolean(ComputateConfigKeys.EMAIL_SSL));
+			mailConfig.setPort(Integer.parseInt(config().getString(ComputateConfigKeys.EMAIL_PORT)));
+			mailConfig.setSsl(Boolean.parseBoolean(config().getString(ComputateConfigKeys.EMAIL_SSL)));
 			mailConfig.setUsername(config().getString(ComputateConfigKeys.EMAIL_USERNAME));
 			mailConfig.setPassword(config().getString(ComputateConfigKeys.EMAIL_PASSWORD));
 			mailConfig.setAuthMethods(config().getString(ComputateConfigKeys.EMAIL_AUTH_METHOD));

@@ -47,7 +47,9 @@ import java.math.RoundingMode;
 import java.util.Map;
 import java.lang.String;
 import io.vertx.core.json.JsonObject;
+import org.computate.vertx.serialize.vertx.JsonObjectDeserializer;
 import io.vertx.core.json.JsonArray;
+import org.computate.vertx.serialize.vertx.JsonArrayDeserializer;
 import java.lang.Integer;
 import java.io.File;
 import org.computate.vertx.writer.AllWriter;
@@ -169,6 +171,7 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
 	 *	 It is constructed before being initialized with the constructor by default. 
 	 */
 	@JsonProperty
+	@JsonDeserialize(using = JsonObjectDeserializer.class)
 	@JsonInclude(Include.NON_NULL)
 	protected JsonObject useCaseSummary = new JsonObject();
 
@@ -223,6 +226,7 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
 	 *	 It is constructed before being initialized with the constructor by default. 
 	 */
 	@JsonProperty
+	@JsonDeserialize(using = JsonArrayDeserializer.class)
 	@JsonInclude(Include.NON_NULL)
 	protected JsonArray useCaseSummaryCells = new JsonArray();
 

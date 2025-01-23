@@ -29,6 +29,7 @@ public class I18n {
 	public static final String str_API = "str_API";
 	public static final String str_au_total_avec_ = "str_au_total_avec_";
 	public static final String str_aucun = "str_aucun";
+	public static final String str_Cartes_des = "str_Cartes_des";
 	public static final String str_chemin_absolu = "str_chemin_absolu";
 	public static final String str_chemin_absolu_url = "str_chemin_absolu_url";
 	public static final String str_confirmer_supprimer = "str_confirmer_supprimer";

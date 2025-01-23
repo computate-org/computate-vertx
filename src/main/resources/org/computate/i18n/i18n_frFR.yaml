@@ -12,6 +12,7 @@ str_Afficher_les_resultats_sous_forme_de_details: "Afficher les résultats sous 
 str_API: "API"
 str_au_total_avec_: '%s %s total avec %s « %s »'
 str_aucun: 'aucun'
+str_Cartes_des: "Carte des %s"
 str_chemin_absolu: "%s touché"
 str_chemin_absolu_url: "%s/classe-java/%s"
 str_confirmer_supprimer: "Voulez-vous vraiment supprimer cela ?"

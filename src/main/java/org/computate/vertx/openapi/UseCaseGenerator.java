@@ -49,7 +49,7 @@ public class UseCaseGenerator extends UseCaseGeneratorGen<FiwareGenerator> {
 		useCaseSummary.put("cells", a);
 	}
 	protected void _useCaseSummaryNum(Wrap<Integer> c) {
-		c.o(config.getInteger(ComputateConfigKeys.USE_CASE_SUMMARY_NUM));
+		c.o(Integer.parseInt(config.getString(ComputateConfigKeys.USE_CASE_SUMMARY_NUM)));
 	}
 	protected void _useCaseSummaryFile(Wrap<File> c) {
 		c.o(new File(String.format("%s/%s-use-case.ipynb", useCasePath, useCaseSummaryNum)));

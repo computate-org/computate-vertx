@@ -134,11 +134,11 @@ public abstract class BaseApiServiceModel extends BaseApiServiceResult {
 							String uri = (String)model.obtainForClass("uri");
 
 							webClient.post(
-									config.getInteger(ComputateConfigKeys.AUTH_PORT)
+									Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT))
 									, config.getString(ComputateConfigKeys.AUTH_HOST_NAME)
 									, config.getString(ComputateConfigKeys.AUTH_TOKEN_URI)
 									)
-									.ssl(config.getBoolean(ComputateConfigKeys.AUTH_SSL))
+									.ssl(Boolean.parseBoolean(config.getString(ComputateConfigKeys.AUTH_SSL)))
 									.putHeader("Authorization", String.format("Bearer %s", siteRequest.getUser().principal().getString("access_token")))
 									.expect(ResponsePredicate.status(200))
 									.sendForm(MultiMap.caseInsensitiveMultiMap()
@@ -189,9 +189,9 @@ public abstract class BaseApiServiceModel extends BaseApiServiceResult {
 											String groupName = String.format("%s-%s", createdAt.getYear(), uri);
 											String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
 											String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
-											Integer authPort = config.getInteger(ComputateConfigKeys.AUTH_PORT);
+											Integer authPort = Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT));
 											String authHostName = config.getString(ComputateConfigKeys.AUTH_HOST_NAME);
-											Boolean authSsl = config.getBoolean(ComputateConfigKeys.AUTH_SSL);
+											Boolean authSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.AUTH_SSL));
 											String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
 											webClient.post(authPort, authHostName, "/realms/master/protocol/openid-connect/token").ssl(authSsl)
 													.sendForm(MultiMap.caseInsensitiveMultiMap()
