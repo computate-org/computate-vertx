@@ -236,6 +236,7 @@ public class I18n {
 	public static final String var_Definir = "var_Definir";
 	public static final String var_dejaInitialise = "var_dejaInitialise";
 	public static final String var_DeNom = "var_DeNom";
+	public static final String var_DELETEFiltre = "var_DELETEFiltre";
 	public static final String var_dernier = "var_dernier";
 	public static final String var_Dernier = "var_Dernier";
 	public static final String var_desattribuer = "var_desattribuer";

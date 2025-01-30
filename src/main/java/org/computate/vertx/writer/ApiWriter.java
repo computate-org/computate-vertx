@@ -523,12 +523,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 	public void  writeApi() throws Exception, Exception {
 
 		String id = null;
-		if(classApiMethod.contains(i18n.getString(I18n.var_PageEdition))
-				|| classApiMethod.contains(i18n.getString(I18n.var_PageAffichage))
-				|| classApiMethod.contains(i18n.getString(I18n.var_PageUtilisateur))
-				|| classApiMethod.contains("GET")
-				|| classApiMethod.contains("DELETE")
-				) {
+		if(classApiUriMethod.contains("/{")) {
 			id = StringUtils.substringBefore(StringUtils.substringAfter(StringUtils.substringAfterLast(classApiUriMethod, "/"), "{"), "}");
 		}
 
@@ -655,6 +650,31 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 					wPaths.tl(6, "type: array");
 					wPaths.tl(6, "items:");
 					wPaths.tl(7, "  type: string");
+				}
+				if(classApiMethod.contains("DELETE")) {
+					wPaths.tl(4, "- in: query");
+					wPaths.tl(5, "name: commitWithin");
+					wPaths.tl(5, "description: 'The number of milliseconds to commit the record to Solr. '");
+					wPaths.tl(5, "required: false");
+					wPaths.tl(5, "schema:");
+					wPaths.tl(6, "type: integer");
+					wPaths.tl(4, "- in: query");
+					wPaths.tl(5, "name: softCommit");
+					wPaths.tl(5, "description: 'Does a soft commit for the record in Solr immediately. '");
+					wPaths.tl(5, "required: false");
+					wPaths.tl(5, "schema:");
+					wPaths.tl(6, "type: boolean");
+					wPaths.tl(4, "- in: query");
+					wPaths.tl(5, "name: rows");
+					wPaths.tl(5, "description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '");
+					wPaths.tl(5, "required: false");
+					wPaths.tl(5, "schema:");
+					wPaths.tl(6, "type: integer");
+					if(contextRows == null)
+						wPaths.tl(6, "default: 10");
+					else
+						wPaths.tl(6, "default: ", contextRows);
+					wPaths.tl(6, "minimum: 0");
 				}
 				if(classApiMethod.contains("Search")) {
 					wPaths.tl(4, "- in: query");
