@@ -1746,6 +1746,63 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return ApiWriter.staticSearchClassAbsolutePath(siteRequest_, ApiWriter.staticSetClassAbsolutePath(siteRequest_, o)).toString();
 	}
 
+	////////////////////////////
+	// classApiMethodSecurity //
+	////////////////////////////
+
+
+	/**	 The entity classApiMethodSecurity
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected Boolean classApiMethodSecurity;
+
+	/**	<br> The entity classApiMethodSecurity
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:classApiMethodSecurity">Find the entity classApiMethodSecurity in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _classApiMethodSecurity(Wrap<Boolean> c);
+
+	public Boolean getClassApiMethodSecurity() {
+		return classApiMethodSecurity;
+	}
+
+	public void setClassApiMethodSecurity(Boolean classApiMethodSecurity) {
+		this.classApiMethodSecurity = classApiMethodSecurity;
+	}
+	@JsonIgnore
+	public void setClassApiMethodSecurity(String o) {
+		this.classApiMethodSecurity = ApiWriter.staticSetClassApiMethodSecurity(siteRequest_, o);
+	}
+	public static Boolean staticSetClassApiMethodSecurity(ComputateSiteRequest siteRequest_, String o) {
+		return Boolean.parseBoolean(o);
+	}
+	protected ApiWriter classApiMethodSecurityInit() {
+		Wrap<Boolean> classApiMethodSecurityWrap = new Wrap<Boolean>().var("classApiMethodSecurity");
+		if(classApiMethodSecurity == null) {
+			_classApiMethodSecurity(classApiMethodSecurityWrap);
+			Optional.ofNullable(classApiMethodSecurityWrap.getO()).ifPresent(o -> {
+				setClassApiMethodSecurity(o);
+			});
+		}
+		return (ApiWriter)this;
+	}
+
+	public static Boolean staticSearchClassApiMethodSecurity(ComputateSiteRequest siteRequest_, Boolean o) {
+		return o;
+	}
+
+	public static String staticSearchStrClassApiMethodSecurity(ComputateSiteRequest siteRequest_, Boolean o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqClassApiMethodSecurity(ComputateSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchClassApiMethodSecurity(siteRequest_, ApiWriter.staticSetClassApiMethodSecurity(siteRequest_, o)).toString();
+	}
+
 	///////////////////////
 	// classApiUriMethod //
 	///////////////////////
@@ -3248,6 +3305,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				classSimpleNameInit();
 				appNameInit();
 				classAbsolutePathInit();
+				classApiMethodSecurityInit();
 				classApiUriMethodInit();
 				classRoleUserMethodInit();
 				classApiMethodMethodInit();
@@ -3396,6 +3454,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				return oApiWriter.appName;
 			case "classAbsolutePath":
 				return oApiWriter.classAbsolutePath;
+			case "classApiMethodSecurity":
+				return oApiWriter.classApiMethodSecurity;
 			case "classApiUriMethod":
 				return oApiWriter.classApiUriMethod;
 			case "classRoleUserMethod":
@@ -3517,6 +3577,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSetAppName(siteRequest_, o);
 		case "classAbsolutePath":
 			return ApiWriter.staticSetClassAbsolutePath(siteRequest_, o);
+		case "classApiMethodSecurity":
+			return ApiWriter.staticSetClassApiMethodSecurity(siteRequest_, o);
 		case "classApiUriMethod":
 			return ApiWriter.staticSetClassApiUriMethod(siteRequest_, o);
 		case "classRoleUserMethod":
@@ -3615,6 +3677,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchAppName(siteRequest_, (String)o);
 		case "classAbsolutePath":
 			return ApiWriter.staticSearchClassAbsolutePath(siteRequest_, (String)o);
+		case "classApiMethodSecurity":
+			return ApiWriter.staticSearchClassApiMethodSecurity(siteRequest_, (Boolean)o);
 		case "classApiUriMethod":
 			return ApiWriter.staticSearchClassApiUriMethod(siteRequest_, (String)o);
 		case "classRoleUserMethod":
@@ -3713,6 +3777,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchStrAppName(siteRequest_, (String)o);
 		case "classAbsolutePath":
 			return ApiWriter.staticSearchStrClassAbsolutePath(siteRequest_, (String)o);
+		case "classApiMethodSecurity":
+			return ApiWriter.staticSearchStrClassApiMethodSecurity(siteRequest_, (Boolean)o);
 		case "classApiUriMethod":
 			return ApiWriter.staticSearchStrClassApiUriMethod(siteRequest_, (String)o);
 		case "classRoleUserMethod":
@@ -3811,6 +3877,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchFqAppName(siteRequest_, o);
 		case "classAbsolutePath":
 			return ApiWriter.staticSearchFqClassAbsolutePath(siteRequest_, o);
+		case "classApiMethodSecurity":
+			return ApiWriter.staticSearchFqClassApiMethodSecurity(siteRequest_, o);
 		case "classApiUriMethod":
 			return ApiWriter.staticSearchFqClassApiUriMethod(siteRequest_, o);
 		case "classRoleUserMethod":
@@ -3906,6 +3974,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String VAR_classSimpleName = "classSimpleName";
 	public static final String VAR_appName = "appName";
 	public static final String VAR_classAbsolutePath = "classAbsolutePath";
+	public static final String VAR_classApiMethodSecurity = "classApiMethodSecurity";
 	public static final String VAR_classApiUriMethod = "classApiUriMethod";
 	public static final String VAR_classRoleUserMethod = "classRoleUserMethod";
 	public static final String VAR_classApiMethodMethod = "classApiMethodMethod";
@@ -3964,6 +4033,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_classSimpleName = "";
 	public static final String DISPLAY_NAME_appName = "";
 	public static final String DISPLAY_NAME_classAbsolutePath = "";
+	public static final String DISPLAY_NAME_classApiMethodSecurity = "";
 	public static final String DISPLAY_NAME_classApiUriMethod = "";
 	public static final String DISPLAY_NAME_classRoleUserMethod = "";
 	public static final String DISPLAY_NAME_classApiMethodMethod = "";
@@ -4091,6 +4161,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return DISPLAY_NAME_appName;
 		case VAR_classAbsolutePath:
 			return DISPLAY_NAME_classAbsolutePath;
+		case VAR_classApiMethodSecurity:
+			return DISPLAY_NAME_classApiMethodSecurity;
 		case VAR_classApiUriMethod:
 			return DISPLAY_NAME_classApiUriMethod;
 		case VAR_classRoleUserMethod:
@@ -4219,6 +4291,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return "String";
 		case VAR_classAbsolutePath:
 			return "String";
+		case VAR_classApiMethodSecurity:
+			return "Boolean";
 		case VAR_classApiUriMethod:
 			return "String";
 		case VAR_classRoleUserMethod:

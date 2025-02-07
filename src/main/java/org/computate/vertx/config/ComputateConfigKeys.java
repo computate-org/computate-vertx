@@ -183,26 +183,26 @@ public class ComputateConfigKeys {
 	}
 
 	public static String formatZonedDateTime(Object value, String pattern, String localeId, String zone) {
-		Locale locale = Locale.forLanguageTag(localeId);
+		Locale locale = Optional.ofNullable(localeId).map(l -> Locale.forLanguageTag(l)).orElse(Locale.getDefault());
 		ZonedDateTime date = value instanceof ZonedDateTime ? (ZonedDateTime)value : ZonedDateTime.parse(value.toString(), ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
 		ZoneId zoneId = ZoneId.of(zone);
 		return DateTimeFormatter.ofPattern(pattern, locale).format(date.withZoneSameInstant(zoneId));
 	}
 
 	public static String formatLocalDate(Object value, String pattern, String localeId, String zone) {
-		Locale locale = Locale.forLanguageTag(localeId);
+		Locale locale = Optional.ofNullable(localeId).map(l -> Locale.forLanguageTag(l)).orElse(Locale.getDefault());
 		LocalDate date = value instanceof LocalDate ? (LocalDate)value : LocalDate.parse(value.toString(), ComputateLocalDateSerializer.LOCAL_DATE_FORMATTER_YYYY_MM_DD);
 		return DateTimeFormatter.ofPattern(pattern, locale).format(date);
 	}
 
 	public static String formatLocalDateTime(Object value, String pattern, String localeId, String zone) {
-		Locale locale = Locale.forLanguageTag(localeId);
+		Locale locale = Optional.ofNullable(localeId).map(l -> Locale.forLanguageTag(l)).orElse(Locale.getDefault());
 		LocalDateTime date = value instanceof LocalDateTime ? (LocalDateTime)value : LocalDateTime.parse(value.toString(), DateTimeFormatter.ISO_DATE_TIME);
 		return DateTimeFormatter.ofPattern(pattern, locale).format(date);
 	}
 
 	public static String formatLocalTime(Object value, String pattern, String localeId, String zone) {
-		Locale locale = Locale.forLanguageTag(localeId);
+		Locale locale = Optional.ofNullable(localeId).map(l -> Locale.forLanguageTag(l)).orElse(Locale.getDefault());
 		LocalTime date = value instanceof LocalTime ? (LocalTime)value : LocalTime.parse(value.toString(), ComputateLocalTimeSerializer.LOCAL_TIME_FORMATTER_DISPLAY_H_MM_A);
 		return DateTimeFormatter.ofPattern(pattern, locale).format(date);
 	}
@@ -213,12 +213,12 @@ public class ComputateConfigKeys {
 		 * @param options The helper options.
 		 * @return The number format to use.
 		 */
-		private static NumberFormat build(String format, String localeStr) {
+		private static NumberFormat build(String format, String localeId) {
 			if (format == null) {
 				return NumberStyle.DEFAULT.numberFormat(Locale.getDefault());
 			}
 			isTrue(format instanceof String, "found '%s', expected 'string'", format);
-			Locale locale = LocaleUtils.toLocale(localeStr);
+			Locale locale = Optional.ofNullable(localeId).map(l -> Locale.forLanguageTag(l)).orElse(Locale.getDefault());
 			try {
 				NumberStyle style = NumberStyle.valueOf(format.toUpperCase().trim());
 				return style.numberFormat(locale);
@@ -281,9 +281,9 @@ public class ComputateConfigKeys {
 		return siteZonedDateTimeFormatTz(value, pattern, localeStr, null);
 	}
 
-	public static String siteZonedDateTimeFormatTz(Object value, String pattern, String localeStr, Object tz) {
+	public static String siteZonedDateTimeFormatTz(Object value, String pattern, String localeId, Object tz) {
 		final DateTimeFormatter dateFormatter;
-		Locale locale = LocaleUtils.toLocale(localeStr.replace("-", "_"));
+		Locale locale = Optional.ofNullable(localeId).map(l -> Locale.forLanguageTag(l.replace("-", "_"))).orElse(Locale.getDefault());
 		dateFormatter = DateTimeFormatter.ofPattern(pattern.toString(), locale);
 		if (tz != null) {
 			final TimeZone timeZone = tz instanceof TimeZone ? (TimeZone) tz : TimeZone.getTimeZone(tz.toString());

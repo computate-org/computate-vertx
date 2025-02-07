@@ -515,6 +515,7 @@ public class I18n {
 	public static final String var_Sauvegarde = "var_Sauvegarde";
 	public static final String var_sauvegardes = "var_sauvegardes";
 	public static final String var_Sauvegardes = "var_Sauvegardes";
+	public static final String var_Securite = "var_Securite";
 	public static final String var_sessionId = "var_sessionId";
 	public static final String var_SessionId = "var_SessionId";
 	public static final String var_Signature = "var_Signature";

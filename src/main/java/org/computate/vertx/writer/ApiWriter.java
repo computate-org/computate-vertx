@@ -149,6 +149,10 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 		c.o((String)classSolrDocument.get(String.format("classeCheminAbsolu_%s_stored_string", languageName)));
 	}
 
+	protected void _classApiMethodSecurity(Wrap<Boolean> c) {
+		c.o((Boolean)classSolrDocument.get(String.format("classeApiSecurite%s_stored_boolean", classApiMethod)));
+	}
+
 	protected void _classApiUriMethod(Wrap<String> c) {
 		c.o((String)classSolrDocument.get(String.format("classeApiUri%s_%s_stored_string", classApiMethod, languageName)));
 	}
@@ -543,36 +547,13 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 
 			// if it's not a GET request and it's not a session/user/all request and has class auth
 			// or it's a GET request, but it's not a session or public read page
-			if(
-					StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH", "DELETE"
-							) 
-						&& !(classRoleSession || classRoleUser || classRoleAll)
-						&& classAuth
-					|| !StringUtils.containsAny(classApiMethod, "POST", "PUT", "PATCH", "DELETE"
-							) && (
-						BooleanUtils.isNotTrue(classRoleSession) 
-						&& BooleanUtils.isNotTrue(classPublicRead) 
-						&& BooleanUtils.isNotTrue(BooleanUtils.isTrue(classSearchPagePublicRead) && classApiMethod.equals(i18n.getString(I18n.var_PageRecherche)))
-						&& classAuth
-					)
-					) {
-			// if(classRoleAll 
-			// 		|| classRoleUserMethod 
-			// 		|| classRolesFound && BooleanUtils.isNotTrue(classRoleSession) && BooleanUtils.isNotTrue(classPublicRead)
-			// 		|| classRolesFound && BooleanUtils.isNotTrue(classRoleSession) && BooleanUtils.isTrue(classPublicRead) && StringUtils.equalsAny(classApiMethodMethod, "POST", "PUT", "PATCH", "DELETE")
-			// 		) {
-				String roleSecurity = (String)classSolrDocument.get(String.format("RoleSecurity_%s_stored_string", classApiMethod));
-				if(roleSecurity == null || roleSecurity.equals("true")) {
-					wPaths.tl(3, "security:");
-	//			wPaths.tl(4, "- basicAuth: []");
-					authClients.fieldNames().forEach(authClientOpenApiId -> {
-						wPaths.tl(4, "- ", authClientOpenApiId, ":");
-						wPaths.tl(5, "- openid");
-						wPaths.tl(5, "- profile");
-					});
-				} else {
-					roleSecurity.toString();
-				}
+			if(classApiMethodSecurity) {
+				wPaths.tl(3, "security:");
+				authClients.fieldNames().forEach(authClientOpenApiId -> {
+					wPaths.tl(4, "- ", authClientOpenApiId, ":");
+					wPaths.tl(5, "- openid");
+					wPaths.tl(5, "- profile");
+				});
 			}
 
 			wPaths.t(3, "description: ").yamlStr(4, "");
