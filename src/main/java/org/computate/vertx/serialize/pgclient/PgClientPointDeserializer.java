@@ -102,8 +102,8 @@ public class PgClientPointDeserializer extends JsonDeserializer<Point> {
 			return null;
 		} else {
 			String[] vals = jsonParser.getText().split(",");
-			if(vals.length == 2 && NumberUtils.isParsable(vals[0]) && NumberUtils.isParsable(vals[1]))
-				return new Point(Double.parseDouble(vals[0]), Double.parseDouble(vals[1]));
+			if(vals.length == 2 && NumberUtils.isParsable(vals[0].strip()) && NumberUtils.isParsable(vals[1].strip()))
+				return new Point(Double.parseDouble(vals[1].strip()), Double.parseDouble(vals[0].strip()));
 			return null;
 		}
 	}
