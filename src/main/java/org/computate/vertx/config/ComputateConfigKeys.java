@@ -183,28 +183,44 @@ public class ComputateConfigKeys {
 	}
 
 	public static String formatZonedDateTime(Object value, String pattern, String localeId, String zone) {
+		if(value == null) {
+			return null;
+		} else {
 		Locale locale = Optional.ofNullable(localeId).map(l -> Locale.forLanguageTag(l)).orElse(Locale.getDefault());
-		ZonedDateTime date = value instanceof ZonedDateTime ? (ZonedDateTime)value : ZonedDateTime.parse(value.toString(), ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
-		ZoneId zoneId = ZoneId.of(zone);
-		return DateTimeFormatter.ofPattern(pattern, locale).format(date.withZoneSameInstant(zoneId));
+			ZonedDateTime date = value instanceof ZonedDateTime ? (ZonedDateTime)value : ZonedDateTime.parse(value.toString(), ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER);
+			ZoneId zoneId = ZoneId.of(zone);
+			return DateTimeFormatter.ofPattern(pattern, locale).format(date.withZoneSameInstant(zoneId));
+		}
 	}
 
 	public static String formatLocalDate(Object value, String pattern, String localeId, String zone) {
-		Locale locale = Optional.ofNullable(localeId).map(l -> Locale.forLanguageTag(l)).orElse(Locale.getDefault());
-		LocalDate date = value instanceof LocalDate ? (LocalDate)value : LocalDate.parse(value.toString(), ComputateLocalDateSerializer.LOCAL_DATE_FORMATTER_YYYY_MM_DD);
-		return DateTimeFormatter.ofPattern(pattern, locale).format(date);
+		if(value == null) {
+			return null;
+		} else {
+			Locale locale = Optional.ofNullable(localeId).map(l -> Locale.forLanguageTag(l)).orElse(Locale.getDefault());
+			LocalDate date = value instanceof LocalDate ? (LocalDate)value : LocalDate.parse(value.toString(), ComputateLocalDateSerializer.LOCAL_DATE_FORMATTER_YYYY_MM_DD);
+			return DateTimeFormatter.ofPattern(pattern, locale).format(date);
+		}
 	}
 
 	public static String formatLocalDateTime(Object value, String pattern, String localeId, String zone) {
-		Locale locale = Optional.ofNullable(localeId).map(l -> Locale.forLanguageTag(l)).orElse(Locale.getDefault());
-		LocalDateTime date = value instanceof LocalDateTime ? (LocalDateTime)value : LocalDateTime.parse(value.toString(), DateTimeFormatter.ISO_DATE_TIME);
-		return DateTimeFormatter.ofPattern(pattern, locale).format(date);
+		if(value == null) {
+			return null;
+		} else {
+			Locale locale = Optional.ofNullable(localeId).map(l -> Locale.forLanguageTag(l)).orElse(Locale.getDefault());
+			LocalDateTime date = value instanceof LocalDateTime ? (LocalDateTime)value : LocalDateTime.parse(value.toString(), DateTimeFormatter.ISO_DATE_TIME);
+			return DateTimeFormatter.ofPattern(pattern, locale).format(date);
+		}
 	}
 
 	public static String formatLocalTime(Object value, String pattern, String localeId, String zone) {
-		Locale locale = Optional.ofNullable(localeId).map(l -> Locale.forLanguageTag(l)).orElse(Locale.getDefault());
-		LocalTime date = value instanceof LocalTime ? (LocalTime)value : LocalTime.parse(value.toString(), ComputateLocalTimeSerializer.LOCAL_TIME_FORMATTER_DISPLAY_H_MM_A);
-		return DateTimeFormatter.ofPattern(pattern, locale).format(date);
+		if(value == null) {
+			return null;
+		} else {
+			Locale locale = Optional.ofNullable(localeId).map(l -> Locale.forLanguageTag(l)).orElse(Locale.getDefault());
+			LocalTime date = value instanceof LocalTime ? (LocalTime)value : LocalTime.parse(value.toString(), ComputateLocalTimeSerializer.LOCAL_TIME_FORMATTER_DISPLAY_H_MM_A);
+			return DateTimeFormatter.ofPattern(pattern, locale).format(date);
+		}
 	}
 
 		/**
