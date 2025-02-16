@@ -10,6 +10,8 @@ OPENSHIFT_APPS_DOMAIN: "{{ lookup('env', 'OPENSHIFT_APPS_DOMAIN') | default('app
 USING_OPENSHIFT_AI: "{{ lookup('env', 'USING_OPENSHIFT_AI') | default('false', true) | bool }}"
 # The name of the OpenShift AI Workbench. 
 OPENSHIFT_AI_WORKBENCH: "{{ lookup('env', 'OPENSHIFT_AI_WORKBENCH') | default('', true) }}"
+# Verify SSL connections. 
+SSL_VERIFY: false
 
 ######################
 # Zookeeper defaults #
@@ -65,7 +67,6 @@ SOLR_PORT_COMPUTATE: "{{ lookup('env', 'SOLR_PORT_COMPUTATE') | default(SOLR_POR
 SOLR_COLLECTION_COMPUTATE: "{{ lookup('env', 'SOLR_COLLECTION_COMPUTATE') | default('computate', true) }}"
 # The URL to the Solr collection. 
 SOLR_URL_COMPUTATE: "{{ ('https://' if SOLR_SSL_COMPUTATE == True else 'http://') + SOLR_HOST_NAME_COMPUTATE + ('' if SOLR_PORT_COMPUTATE == 443 else (':' + SOLR_PORT_COMPUTATE)) }}/solr/{{ SOLR_COLLECTION_COMPUTATE }}"
-SOLR_URL_FIWARE: "{{ ('https://' if SOLR_SSL_FIWARE == True else 'http://') + SOLR_HOST_NAME_FIWARE + ('' if SOLR_PORT_FIWARE == 443 else (':' + SOLR_PORT_FIWARE)) }}/solr/{{ SOLR_COLLECTION_FIWARE }}"
 
 ########################
 # computate-vertx vars #
@@ -73,7 +74,7 @@ SOLR_URL_FIWARE: "{{ ('https://' if SOLR_SSL_FIWARE == True else 'http://') + SO
 
 SITE_NAME: computate-vertx
 # The source code directory for the project. 
-SITE_SRC: "{{ lookup('env', 'COMPUTATE_VERTX_SRC') | default(lookup('env', 'HOME') + '/.local/src/' + SITE_NAME) }}"
+SITE_SRC: "{{ lookup('env', 'COMPUTATE_VERTX_SRC') | default(lookup('env', 'HOME') + '/.local/src/' + SITE_NAME, true) }}"
 
 DOMAIN_NAME: computate.org
 SITE_POM_ARTIFACT_ID: vertx
@@ -91,6 +92,8 @@ AUTH_FINE_GRAINED_POLICY_PERMISSIONS: True
 WRITE_API: true
 # Write code comments into generated code. 
 WRITE_COMMENTS: true
+CLONE_STATIC: false
+CREATE_SOLR_COLLECTION: false
 ENABLE_LOG: true
 ENABLE_DELETED: true
 ENABLE_ARCHIVED: true
