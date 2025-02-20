@@ -98,6 +98,7 @@ public class I18n {
 	public static final String var_activer = "var_activer";
 	public static final String var_ACTIVER_ARCHIVE = "var_ACTIVER_ARCHIVE";
 	public static final String var_ACTIVER_CONTEXT_BROKER = "var_ACTIVER_CONTEXT_BROKER";
+	public static final String var_ACTIVER_CONTEXT_BROKER_ENVOI = "var_ACTIVER_CONTEXT_BROKER_ENVOI";
 	public static final String var_ACTIVER_LOG = "var_ACTIVER_LOG";
 	public static final String var_ACTIVER_OPENID_CONNECT = "var_ACTIVER_OPENID_CONNECT";
 	public static final String var_ACTIVER_QUARKUS = "var_ACTIVER_QUARKUS";

@@ -1374,6 +1374,7 @@ public class ComputateConfigKeys {
 	public static final String IOTAGENT_TRANSPORT = "IOTAGENT_TRANSPORT";
 
 	public static final String ENABLE_CONTEXT_BROKER = "ENABLE_CONTEXT_BROKER";
+	public static final String ENABLE_CONTEXT_BROKER_SEND = "ENABLE_CONTEXT_BROKER_SEND";
 	public static final String CONTEXT_BROKER_SSL = "CONTEXT_BROKER_SSL";
 	public static final String CONTEXT_BROKER_HOST_NAME = "CONTEXT_BROKER_HOST_NAME";
 	public static final String CONTEXT_BROKER_PORT = "CONTEXT_BROKER_PORT";
