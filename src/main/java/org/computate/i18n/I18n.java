@@ -561,6 +561,7 @@ public class I18n {
 	public static final String var_supprime = "var_supprime";
 	public static final String var_Supprime = "var_Supprime";
 	public static final String var_template = "var_template";
+	public static final String var_templateChemin = "var_templateChemin";
 	public static final String var_TEMPLATE_CHEMIN = "var_TEMPLATE_CHEMIN";
 	public static final String var_tempsRecherche = "var_tempsRecherche";
 	public static final String var_tempsRestant = "var_tempsRestant";

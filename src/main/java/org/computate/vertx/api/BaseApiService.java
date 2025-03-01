@@ -1299,8 +1299,6 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 		ZonedDateTime now = ZonedDateTime.now(ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE)));
 		// i18nGenerator().onSuccess(i18n -> {
 		try {
-			String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
-			List<String> pageResourcePaths = new ArrayList<>();
 			List<String> pageTemplatePaths = new ArrayList<>();
 			if(Files.exists(pagePath)) {
 				try(Stream<Path> stream = Files.walk(pagePath)) {
@@ -1308,13 +1306,12 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 							p.getFileName().toString().endsWith(".htm")
 							|| p.getFileName().toString().endsWith(".html")
 							).forEach(path -> {
-						pageResourcePaths.add(StringUtils.substringAfter(path.toAbsolutePath().toString(), "/src/main/resources/"));
-						pageTemplatePaths.add(StringUtils.substringAfter(path.toAbsolutePath().toString(), siteTemplatePath + "/"));
+						pageTemplatePaths.add(path.toAbsolutePath().toString());
 					});
 				}
 				YamlProcessor yamlProcessor = new YamlProcessor();
 	
-				importDataFile(vertx, siteRequest, yamlProcessor, pageResourcePaths, pageTemplatePaths, 0, classSimpleName, classApiAddress).onSuccess(a -> {
+				importDataFile(vertx, siteRequest, yamlProcessor, pageTemplatePaths, 0, classSimpleName, classApiAddress).onSuccess(a -> {
 					deletePageData(siteRequest, now, classSimpleName).onSuccess(b -> {
 						LOG.info(String.format(importDataComplete, classSimpleName));
 						promise.complete();
@@ -1345,14 +1342,13 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	 * Val.Complete.enUS:Importing %s data file completed. 
 	 * Val.Fail.enUS:Importing %s data file failed. 
 	 */
-	protected Future<Void> importDataFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, List<String> pageResourcePaths, List<String> pageTemplatePaths, Integer i, String classSimpleName, String classApiAddress) {
+	protected Future<Void> importDataFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, List<String> pageTemplatePaths, Integer i, String classSimpleName, String classApiAddress) {
 		Promise<Void> promise = Promise.promise();
 		try {
-			if(i < pageResourcePaths.size()) {
-				String pageResourcePath = pageResourcePaths.get(i);
+			if(i < pageTemplatePaths.size()) {
 				String pageTemplatePath = pageTemplatePaths.get(i);
-				importModelFromFile(vertx, siteRequest, yamlProcessor, pageResourcePath, pageTemplatePath, classSimpleName, classApiAddress).onSuccess(a -> {
-					importDataFile(vertx, siteRequest, yamlProcessor, pageResourcePaths, pageTemplatePaths, i + 1, classSimpleName, classApiAddress).onSuccess(b -> {
+				importModelFromFile(vertx, siteRequest, yamlProcessor, pageTemplatePath, classSimpleName, classApiAddress).onSuccess(a -> {
+					importDataFile(vertx, siteRequest, yamlProcessor, pageTemplatePaths, i + 1, classSimpleName, classApiAddress).onSuccess(b -> {
 						promise.complete();
 					}).onFailure(ex -> {
 						LOG.error(String.format(importDataFileFail, pageTemplatePath), ex);
@@ -1372,7 +1368,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 		return promise.future();
 	}
 
-	public Future<JsonObject> generatePageBody(ComputateSiteRequest siteRequest, Map<String, Object> ctx, String resourceUri, String templateUri, String classSimpleName) {
+	public Future<JsonObject> generatePageBody(ComputateSiteRequest siteRequest, Map<String, Object> ctx, String templatePath, String classSimpleName) {
 		Promise<JsonObject> promise = Promise.promise();
 		promise.complete(new JsonObject());
 		return promise.future();
@@ -1381,17 +1377,15 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	/**
 	 * Description: Import page
 	 */
-	private Future<Void> importModelFromFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, String resourceUri, String templateUri, String classSimpleName, String classApiAddress) {
+	private Future<Void> importModelFromFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, String templatePath, String classSimpleName, String classApiAddress) {
 		Promise<Void> promise = Promise.promise();
-		vertx.fileSystem().readFile(resourceUri).onSuccess(buffer -> {
+		vertx.fileSystem().readFile(templatePath).onSuccess(buffer -> {
 			try {
 				// Jinjava template rendering
-				String siteTemplatePath = config.getString(ComputateConfigKeys.TEMPLATE_PATH);
-				String template = siteTemplatePath == null ? Resources.toString(Resources.getResource(resourceUri), StandardCharsets.UTF_8) : Files.readString(Path.of(siteTemplatePath, templateUri), Charset.forName("UTF-8"));
-
 				Map<String, Object> ctx = new HashMap<>();
 				Map<String, Object> result = new HashMap<>();
-				String shortFileName = FilenameUtils.getBaseName(resourceUri);
+				String shortFileName = FilenameUtils.getBaseName(templatePath);
+				String template = Files.readString(Path.of(templatePath), Charset.forName("UTF-8"));
         if(shortFileName.startsWith(classSimpleName)) {
           promise.complete();
         } else {
@@ -1435,7 +1429,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 
 				  Document htmDoc = Jsoup.parse(renderedTemplate);
 
-				  generatePageBody(siteRequest, ctx, resourceUri, templateUri, classSimpleName).onSuccess(pageBody -> {
+				  generatePageBody(siteRequest, ctx, templatePath, classSimpleName).onSuccess(pageBody -> {
 				  	try {
 				  		JsonObject pageParams = new JsonObject();
 				  		pageParams.put("body", pageBody);
@@ -1569,20 +1563,20 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				  			promise.fail(ex);
 				  		});
 				  	} catch(Exception ex) {
-				  		LOG.error(String.format("Failed to import model from file: %s", resourceUri), ex);
+				  		LOG.error(String.format("Failed to import model from file: %s", templatePath), ex);
 				  		promise.fail(ex);
 				  	}
 				  }).onFailure(ex -> {
-				  	LOG.error(String.format("Failed to import model from file: %s", resourceUri), ex);
+				  	LOG.error(String.format("Failed to import model from file: %s", templatePath), ex);
 				  	promise.fail(ex);
 				  });
         }
 			} catch(Exception ex) {
-				LOG.error(String.format("Failed to import model from file: %s", resourceUri), ex);
+				LOG.error(String.format("Failed to import model from file: %s", templatePath), ex);
 				promise.fail(ex);
 			}
 		}).onFailure(ex -> {
-			LOG.error(String.format("Failed to import model from file: %s", resourceUri), ex);
+			LOG.error(String.format("Failed to import model from file: %s", templatePath), ex);
 			promise.fail(ex);
 		});
 		return promise.future();
