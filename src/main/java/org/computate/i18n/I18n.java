@@ -189,6 +189,7 @@ public class I18n {
 	public static final String var_classeStringFormatUrlPageAffichage = "var_classeStringFormatUrlPageAffichage";
 	public static final String var_classeStringFormatUrlPageEdition = "var_classeStringFormatUrlPageEdition";
 	public static final String var_classeStringFormatUrlPageUtilisateur = "var_classeStringFormatUrlPageUtilisateur";
+	public static final String var_classeStringFormatUrlTelechargement = "var_classeStringFormatUrlTelechargement";
 	public static final String var_Cle = "var_Cle";
 	public static final String var_ClePrimaire = "var_ClePrimaire";
 	public static final String var_Cles = "var_Cles";
@@ -561,6 +562,7 @@ public class I18n {
 	public static final String var_Supprimer = "var_Supprimer";
 	public static final String var_supprime = "var_supprime";
 	public static final String var_Supprime = "var_Supprime";
+	public static final String var_Telechargement = "var_Telechargement";
 	public static final String var_template = "var_template";
 	public static final String var_templateChemin = "var_templateChemin";
 	public static final String var_TEMPLATE_CHEMIN = "var_TEMPLATE_CHEMIN";
@@ -588,6 +590,7 @@ public class I18n {
 	public static final String var_UriPageEdition = "var_UriPageEdition";
 	public static final String var_UriPageRecherche = "var_UriPageRecherche";
 	public static final String var_UriPageUtilisateur = "var_UriPageUtilisateur";
+	public static final String var_UriTelechargement = "var_UriTelechargement";
 	public static final String var_Url = "var_Url";
 	public static final String var_utilisateurCles = "var_utilisateurCles";
 	public static final String var_UtilisateurCles = "var_UtilisateurCles";
