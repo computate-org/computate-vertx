@@ -177,6 +177,7 @@ public class I18n {
 	public static final String var_classeCheminAbsolu = "var_classeCheminAbsolu";
 	public static final String var_CLASSE_CHEMIN_ABSOLU = "var_CLASSE_CHEMIN_ABSOLU";
 	public static final String var_CLASSE_NOM_SIMPLE = "var_CLASSE_NOM_SIMPLE";
+	public static final String var_CLASSE_NOM_CANONIQUE = "var_CLASSE_NOM_CANONIQUE";
 	public static final String var_classe = "var_classe";
 	public static final String var_Classe = "var_Classe";
 	public static final String var_CLASSE_API_ADDRESSE = "var_CLASSE_API_ADDRESSE";

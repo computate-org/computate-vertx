@@ -185,7 +185,7 @@ public abstract class BaseApiServiceResult extends BaseApiService {
 										if(ctx.getString("scope") == null && "0.00".equals(ctx.getString("price"))) {
 											ZoneId zoneId = ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE));
 											ZonedDateTime createdAt = ZonedDateTime.now(zoneId);
-											String groupName = String.format("%s-%s", createdAt.getYear(), uri);
+											String groupName = uri;
 											String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
 											String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
 											Integer authPort = Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT));

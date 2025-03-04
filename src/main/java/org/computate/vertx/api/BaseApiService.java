@@ -888,7 +888,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	 * Val.Skip.enUS:Skip importing %s data. 
 	 * Val.Fail.enUS:Scheduling the import of %s data failed. 
 	 */
-	public Future<Void> importTimer(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress) {
+	public Future<Void> importTimer(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classCanonicalName, String classSimpleName, String classApiAddress, String varPageId, String varUserUri) {
 		Promise<Void> promise = Promise.promise();
 		if(config.getBoolean(String.format("%s_%s", ComputateConfigKeys.ENABLE_IMPORT_DATA, classSimpleName), true)) {
 			// Load the import start time and period configuration. 
@@ -926,7 +926,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				try {
 					vertx.setTimer(1, a -> {
 						workerExecutor.executeBlocking(() -> {
-							return importBlocking(pagePath, vertx, siteRequest, classSimpleName, classApiAddress, null);
+							return importBlocking(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, null, varPageId, varUserUri);
 						});
 					});
 					promise.complete();
@@ -938,7 +938,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				try {
 					vertx.setTimer(nextStartDuration.toMillis(), a -> {
 						workerExecutor.executeBlocking(() -> {
-							return importBlocking(pagePath, vertx, siteRequest, classSimpleName, classApiAddress, nextStartTime2);
+							return importBlocking(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, nextStartTime2, varPageId, varUserUri);
 						});
 					});
 					promise.complete();
@@ -958,9 +958,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	 * Val.Complete.enUS:Configuring the import of %s data completed. 
 	 * Val.Fail.enUS:Configuring the import of %s data failed. 
 	 **/
-	public Future<Object> importBlocking(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress, ZonedDateTime startDateTime) {
+	public Future<Object> importBlocking(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classCanonicalName, String classSimpleName, String classApiAddress, ZonedDateTime startDateTime, String varPageId, String varUserUri) {
 		Promise<Object> promise = Promise.promise();
-		importData(pagePath, vertx, siteRequest, classSimpleName, classApiAddress).onComplete(a -> {
+		importData(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, varPageId, varUserUri).onComplete(a -> {
 			String importPeriod = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_PERIOD, classSimpleName));
 			if(importPeriod != null && startDateTime != null) {
 				Duration duration = TimeTool.parseNextDuration(importPeriod);
@@ -969,7 +969,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				Duration nextStartDuration = Duration.between(Instant.now(), nextStartTime);
 				vertx.setTimer(nextStartDuration.toMillis(), b -> {
 					workerExecutor.executeBlocking(() -> {
-						return importBlocking(pagePath, vertx, siteRequest, classSimpleName, classApiAddress, nextStartTime);
+						return importBlocking(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, nextStartTime, varPageId, varUserUri);
 					});
 				});
 				promise.complete();
@@ -1294,7 +1294,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	 * Val.Complete.enUS:Importing %s data completed. 
 	 * Val.Fail.enUS:Importing %s data failed. 
 	 */
-	protected Future<Void> importData(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classSimpleName, String classApiAddress) {
+	protected Future<Void> importData(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classCanonicalName, String classSimpleName, String classApiAddress, String varPageId, String varUserUri) {
 		Promise<Void> promise = Promise.promise();
 		ZonedDateTime now = ZonedDateTime.now(ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE)));
 		// i18nGenerator().onSuccess(i18n -> {
@@ -1311,7 +1311,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				}
 				YamlProcessor yamlProcessor = new YamlProcessor();
 	
-				importDataFile(vertx, siteRequest, yamlProcessor, pageTemplatePaths, 0, classSimpleName, classApiAddress).onSuccess(a -> {
+				importDataFile(vertx, siteRequest, yamlProcessor, pageTemplatePaths, 0, classCanonicalName, classSimpleName, classApiAddress, varPageId, varUserUri).onSuccess(a -> {
 					deletePageData(siteRequest, now, classSimpleName).onSuccess(b -> {
 						LOG.info(String.format(importDataComplete, classSimpleName));
 						promise.complete();
@@ -1342,13 +1342,13 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	 * Val.Complete.enUS:Importing %s data file completed. 
 	 * Val.Fail.enUS:Importing %s data file failed. 
 	 */
-	protected Future<Void> importDataFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, List<String> pageTemplatePaths, Integer i, String classSimpleName, String classApiAddress) {
+	protected Future<Void> importDataFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, List<String> pageTemplatePaths, Integer i, String classCanonicalName, String classSimpleName, String classApiAddress, String varPageId, String varUserUri) {
 		Promise<Void> promise = Promise.promise();
 		try {
 			if(i < pageTemplatePaths.size()) {
 				String pageTemplatePath = pageTemplatePaths.get(i);
-				importModelFromFile(vertx, siteRequest, yamlProcessor, pageTemplatePath, classSimpleName, classApiAddress).onSuccess(a -> {
-					importDataFile(vertx, siteRequest, yamlProcessor, pageTemplatePaths, i + 1, classSimpleName, classApiAddress).onSuccess(b -> {
+				importModelFromFile(vertx, siteRequest, yamlProcessor, pageTemplatePath, classCanonicalName, classSimpleName, classApiAddress, varPageId, varUserUri).onSuccess(a -> {
+					importDataFile(vertx, siteRequest, yamlProcessor, pageTemplatePaths, i + 1, classCanonicalName, classSimpleName, classApiAddress, varPageId, varUserUri).onSuccess(b -> {
 						promise.complete();
 					}).onFailure(ex -> {
 						LOG.error(String.format(importDataFileFail, pageTemplatePath), ex);
@@ -1377,7 +1377,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	/**
 	 * Description: Import page
 	 */
-	private Future<Void> importModelFromFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, String templatePath, String classSimpleName, String classApiAddress) {
+	private Future<Void> importModelFromFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, String templatePath, String classCanonicalName, String classSimpleName, String classApiAddress, String varPageId, String varUserUrl) {
 		Promise<Void> promise = Promise.promise();
 		vertx.fileSystem().readFile(templatePath).onSuccess(buffer -> {
 			try {
@@ -1389,187 +1389,212 @@ abstract class BaseApiService implements BaseApiServiceInterface {
         if(shortFileName.startsWith(classSimpleName)) {
           promise.complete();
         } else {
-				  result.put(i18n.getString(I18n.var_nomFichierCourt), shortFileName);
-				  ctx.put(ComputateConfigKeys.STATIC_BASE_URL, config.getString(ComputateConfigKeys.STATIC_BASE_URL));
-				  ctx.put(ComputateConfigKeys.SITE_BASE_URL, config.getString(ComputateConfigKeys.SITE_BASE_URL));
-				  ctx.put(ComputateConfigKeys.GITHUB_ORG, config.getString(ComputateConfigKeys.GITHUB_ORG));
-				  ctx.put(ComputateConfigKeys.SITE_NAME, config.getString(ComputateConfigKeys.SITE_NAME));
-				  ctx.put(ComputateConfigKeys.SITE_DISPLAY_NAME, config.getString(ComputateConfigKeys.SITE_DISPLAY_NAME));
-				  ctx.put(ComputateConfigKeys.SITE_POWERED_BY_URL, config.getString(ComputateConfigKeys.SITE_POWERED_BY_URL));
-				  ctx.put(ComputateConfigKeys.SITE_POWERED_BY_NAME, config.getString(ComputateConfigKeys.SITE_POWERED_BY_NAME));
-				  ctx.put(ComputateConfigKeys.SITE_POWERED_BY_IMAGE, config.getString(ComputateConfigKeys.SITE_POWERED_BY_IMAGE));
-				  ctx.put(ComputateConfigKeys.FONTAWESOME_KIT, config.getString(ComputateConfigKeys.FONTAWESOME_KIT));
-				  ctx.put(ComputateConfigKeys.FONTAWESOME_STYLE, config.getString(ComputateConfigKeys.FONTAWESOME_STYLE));
-				  ctx.put(ComputateConfigKeys.WEB_COMPONENTS_CSS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_CSS));
-				  ctx.put(ComputateConfigKeys.WEB_COMPONENTS_JS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_JS));
-				  ctx.put(ComputateConfigKeys.PUBLIC_SEARCH_URI, config.getString(ComputateConfigKeys.PUBLIC_SEARCH_URI));
-				  ctx.put(ComputateConfigKeys.USER_SEARCH_URI, config.getString(ComputateConfigKeys.USER_SEARCH_URI));
-				  ctx.put(i18n.getString(I18n.var_resultat), result);
+					result.put(i18n.getString(I18n.var_nomFichierCourt), shortFileName);
+					ctx.put(ComputateConfigKeys.STATIC_BASE_URL, config.getString(ComputateConfigKeys.STATIC_BASE_URL));
+					ctx.put(ComputateConfigKeys.SITE_BASE_URL, config.getString(ComputateConfigKeys.SITE_BASE_URL));
+					ctx.put(ComputateConfigKeys.GITHUB_ORG, config.getString(ComputateConfigKeys.GITHUB_ORG));
+					ctx.put(ComputateConfigKeys.SITE_NAME, config.getString(ComputateConfigKeys.SITE_NAME));
+					ctx.put(ComputateConfigKeys.SITE_DISPLAY_NAME, config.getString(ComputateConfigKeys.SITE_DISPLAY_NAME));
+					ctx.put(ComputateConfigKeys.SITE_POWERED_BY_URL, config.getString(ComputateConfigKeys.SITE_POWERED_BY_URL));
+					ctx.put(ComputateConfigKeys.SITE_POWERED_BY_NAME, config.getString(ComputateConfigKeys.SITE_POWERED_BY_NAME));
+					ctx.put(ComputateConfigKeys.SITE_POWERED_BY_IMAGE, config.getString(ComputateConfigKeys.SITE_POWERED_BY_IMAGE));
+					ctx.put(ComputateConfigKeys.FONTAWESOME_KIT, config.getString(ComputateConfigKeys.FONTAWESOME_KIT));
+					ctx.put(ComputateConfigKeys.FONTAWESOME_STYLE, config.getString(ComputateConfigKeys.FONTAWESOME_STYLE));
+					ctx.put(ComputateConfigKeys.WEB_COMPONENTS_CSS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_CSS));
+					ctx.put(ComputateConfigKeys.WEB_COMPONENTS_JS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_JS));
+					ctx.put(ComputateConfigKeys.PUBLIC_SEARCH_URI, config.getString(ComputateConfigKeys.PUBLIC_SEARCH_URI));
+					ctx.put(ComputateConfigKeys.USER_SEARCH_URI, config.getString(ComputateConfigKeys.USER_SEARCH_URI));
+					ctx.put(i18n.getString(I18n.var_resultat), result);
 
-				  String metaPrefixResult = String.format("%s.", i18n.getString(I18n.var_resultat));
-				  Matcher m = Pattern.compile("<meta name=\"([^\"]+)\"\\s+content=\"([^\"]*)\"\\s*/>", Pattern.MULTILINE).matcher(template);
-				  boolean trouve = m.find();
-				  while (trouve) {
-				  	String resultKey = m.group(1);
-				  	if(resultKey.startsWith(metaPrefixResult)) {
-				  		String key = StringUtils.substringAfter(resultKey, metaPrefixResult);
-				  		String val = m.group(2);
-				  		if(val instanceof String) {
-				  			String rendered = jinjava.render(val, ctx);
-				  			result.put(key, rendered);
-				  		} else {
-				  			result.put(key, val);
-				  		}
-				  	}
-				  	trouve = m.find();
-				  }
+					String metaPrefixResult = String.format("%s.", i18n.getString(I18n.var_resultat));
+					Matcher m = Pattern.compile("<meta name=\"([^\"]+)\"\\s+content=\"([^\"]*)\"\\s*/>", Pattern.MULTILINE).matcher(template);
+					boolean trouve = m.find();
+					while (trouve) {
+						String resultKey = m.group(1);
+						if(resultKey.startsWith(metaPrefixResult)) {
+							String key = StringUtils.substringAfter(resultKey, metaPrefixResult);
+							String val = m.group(2);
+							if(val instanceof String) {
+								String rendered = jinjava.render(val, ctx);
+								result.put(key, rendered);
+							} else {
+								result.put(key, val);
+							}
+						}
+						trouve = m.find();
+					}
 
-				  // JSoup HTML parsing
-				  String renderedTemplate = jinjava.render(template, ctx);
+					// JSoup HTML parsing
+					String renderedTemplate = jinjava.render(template, ctx);
 
-				  Document htmDoc = Jsoup.parse(renderedTemplate);
+					Document htmDoc = Jsoup.parse(renderedTemplate);
 
-				  generatePageBody(siteRequest, ctx, templatePath, classSimpleName).onSuccess(pageBody -> {
-				  	try {
-				  		JsonObject pageParams = new JsonObject();
-				  		pageParams.put("body", pageBody);
-				  		pageParams.put("path", new JsonObject());
-				  		pageParams.put("cookie", new JsonObject());
-				  		pageParams.put("query", new JsonObject().put("softCommit", true).put("q", "*:*").put("var", new JsonArray().add("refresh:false")));
-				  		JsonObject pageContext = new JsonObject().put("params", pageParams);
-				  		JsonObject pageRequest = new JsonObject().put("context", pageContext);
+					generatePageBody(siteRequest, ctx, templatePath, classSimpleName).onSuccess(pageBody -> {
+						try {
+							JsonObject pageParams = new JsonObject();
+							pageParams.put("body", pageBody);
+							pageParams.put("path", new JsonObject());
+							pageParams.put("cookie", new JsonObject());
+							pageParams.put("query", new JsonObject().put("softCommit", true).put("q", "*:*").put("var", new JsonArray().add("refresh:false")));
+							JsonObject pageContext = new JsonObject().put("params", pageParams);
+							JsonObject pageRequest = new JsonObject().put("context", pageContext);
 
-				  		vertx.eventBus().request(classApiAddress, pageRequest, new DeliveryOptions().setSendTimeout(config.getLong(ComputateConfigKeys.VERTX_MAX_EVENT_LOOP_EXECUTE_TIME) * 1000).addHeader("action", String.format("putimport%sFuture", classSimpleName))).onSuccess(message -> {
-				  			String userUri = pageBody.getString("userUri");
-				  			String uri = pageBody.getString("uri");
-				  			String pageId = pageBody.getString("pageId");
-				  			try {
-				  				if(userUri != null && uri != null) {
-				  					ZoneId zoneId = ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE));
-				  					ZonedDateTime createdAt = ZonedDateTime.now(zoneId);
-				  					String groupName = String.format("%s-%s", createdAt.getYear(), uri);
-				  					String policyId = StringUtils.substring(String.format("%s-%s", createdAt.getYear(), pageId), 0, 36);
-				  					String policyName = String.format("%s-%s", createdAt.getYear(), uri);
-				  					String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
-				  					String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
-				  					Integer authPort = Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT));
-				  					String authHostName = config.getString(ComputateConfigKeys.AUTH_HOST_NAME);
-				  					Boolean authSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.AUTH_SSL));
-				  					String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
-				  					String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
-				  					webClient.post(authPort, authHostName, "/realms/master/protocol/openid-connect/token").ssl(authSsl)
-				  							.sendForm(MultiMap.caseInsensitiveMultiMap()
-				  									.add("username", authAdminUsername)
-				  									.add("password", authAdminPassword)
-				  									.add("grant_type", "password")
-				  									.add("client_id", "admin-cli")
-				  									).onSuccess(tokenResponse -> {
-				  						try {
-				  							String authToken = tokenResponse.bodyAsJsonObject().getString("access_token");
-				  							webClient.post(authPort, authHostName, String.format("/admin/realms/%s/groups", authRealm)).ssl(authSsl)
-				  									.putHeader("Authorization", String.format("Bearer %s", authToken))
-				  									.sendJson(new JsonObject().put("name", groupName))
-				  									.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
-				  									.onSuccess(createGroupResponse -> {
-				  								try {
-				  									webClient.get(authPort, authHostName, String.format("/admin/realms/%s/groups?exact=false&global=true&first=0&max=1&search=%s", authRealm, URLEncoder.encode(groupName, "UTF-8"))).ssl(authSsl)
-				  											.putHeader("Authorization", String.format("Bearer %s", authToken))
-				  											.send()
-				  											.expecting(HttpResponseExpectation.SC_OK)
-				  											.onSuccess(groupsResponse -> {
-				  										try {
-				  											JsonArray groups = Optional.ofNullable(groupsResponse.bodyAsJsonArray()).orElse(new JsonArray());
-				  											JsonObject group = groups.stream().findFirst().map(o -> (JsonObject)o).orElse(null);
-				  											if(group != null) {
-				  												String groupId = group.getString("id");
-				  												webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/policy/group", authRealm, authClient)).ssl(authSsl)
-				  														.putHeader("Authorization", String.format("Bearer %s", authToken))
-				  														.sendJson(new JsonObject().put("id", policyId).put("name", policyName).put("description", String.format("%s group", groupName)).put("groups", new JsonArray().add(groupId)))
-				  														.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
-				  														.onSuccess(createPolicyResponse -> {
-				  													webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/resource", authRealm, authClient)).ssl(authSsl)
-				  															.putHeader("Authorization", String.format("Bearer %s", authToken))
-				  															.sendJson(new JsonObject()
-				  																	.put("name", uri)
-				  																	.put("displayName", uri)
-				  																	.put("uris", new JsonArray().add(uri))
-				  																	.put("scopes", new JsonArray().add("GET"))
-				  																	)
-				  															.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
-				  															.onSuccess(createResourceResponse -> {
-				  														webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/permission/scope", authRealm, authClient)).ssl(authSsl)
-				  																.putHeader("Authorization", String.format("Bearer %s", authToken))
-				  																.sendJson(new JsonObject()
-				  																		.put("name", String.format("%s-%s", authRealm, groupName))
-				  																		.put("description", String.format("GET %s", groupName))
-				  																		.put("decisionStrategy", "AFFIRMATIVE")
-				  																		.put("resources", new JsonArray().add(uri))
-				  																		.put("policies", new JsonArray().add(policyName))
-				  																		.put("scopes", new JsonArray().add(String.format("%s-GET", authRealm)))
-				  																		)
-				  																.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
-				  																.onSuccess(createPermissionResponse -> {
-				  															LOG.info(String.format("Successfully granted %s access to %s", "GET", uri));
-				  															promise.complete();
-				  														}).onFailure(ex -> {
-				  															LOG.error(String.format("Failed to create an auth permission for uri %s. ", uri), ex);
-				  															promise.fail(ex);
-				  														});
-				  													}).onFailure(ex -> {
-				  														LOG.error(String.format("Failed to create an auth resource for uri %s. ", uri), ex);
-				  														promise.fail(ex);
-				  													});
-				  												}).onFailure(ex -> {
-				  													LOG.error(String.format("Failed to create an auth policy for group %s. ", uri), ex);
-				  													promise.fail(ex);
-				  												});
-				  											} else {
-				  												Throwable ex = new RuntimeException(String.format("Failed to find group %s", uri));
-				  												LOG.error(ex.getMessage(), ex);
-				  												promise.fail(ex);
-				  											}
-				  										} catch(Throwable ex) {
-				  											LOG.error("Failed to set up fine-grained resource permissions. ", ex);
-				  											promise.fail(ex);
-				  										}
-				  									}).onFailure(ex -> {
-				  										LOG.error(String.format("Failed to query the group %s. ", uri), ex);
-				  										promise.fail(ex);
-				  									});
-				  								} catch(Throwable ex) {
-				  									LOG.error("Failed to set up fine-grained resource permissions. ", ex);
-				  									promise.fail(ex);
-				  								}
-				  							}).onFailure(ex -> {
-				  								LOG.error(String.format("Failed to create the group %s. ", uri), ex);
-				  								promise.fail(ex);
-				  							});
-				  						} catch(Throwable ex) {
-				  							LOG.error(String.format("Failed to set up the auth token for fine-grained resource permissions for uri %s", uri), ex);
-				  							promise.fail(ex);
-				  						}
-				  					}).onFailure(ex -> {
-				  						LOG.error(String.format("Failed to get an admin token while creating fine-grained resource permissions for uri %s", uri), ex);
-				  						promise.fail(ex);
-				  					});
-				  				} else {
-				  					promise.complete();
-				  				}
-				  			} catch(Throwable ex) {
-				  				LOG.error(String.format("Failed to set up Keycloak credentials while creating fine-grained resource permissions for uri %s", uri), ex);
-				  				promise.fail(ex);
-				  			}
-				  		}).onFailure(ex -> {
-				  			promise.fail(ex);
-				  		});
-				  	} catch(Exception ex) {
-				  		LOG.error(String.format("Failed to import model from file: %s", templatePath), ex);
-				  		promise.fail(ex);
-				  	}
-				  }).onFailure(ex -> {
-				  	LOG.error(String.format("Failed to import model from file: %s", templatePath), ex);
-				  	promise.fail(ex);
-				  });
+							vertx.eventBus().request(classApiAddress, pageRequest, new DeliveryOptions().setSendTimeout(config.getLong(ComputateConfigKeys.VERTX_MAX_EVENT_LOOP_EXECUTE_TIME) * 1000).addHeader("action", String.format("putimport%sFuture", classSimpleName))).onSuccess(message -> {
+								try {
+									String siteBaseUrl = config.getString(ComputateConfigKeys.SITE_BASE_URL);
+									String pageId = pageBody.getString(varPageId);
+									if(varUserUrl == null) {
+										promise.complete();
+									} else {
+										SearchList<Object> searchList = new SearchList<Object>();
+										searchList.setStore(true);
+										searchList.q("*:*");
+										searchList.setC(Class.forName(classCanonicalName));
+										searchList.fq("archived_docvalues_boolean:false");
+										searchList.fq("pageId_docvalues_string:" + SearchTool.escapeQueryChars(pageId));
+										searchList.promiseDeepForClass(siteRequest).onSuccess(a -> {
+											try {
+												JsonObject resultJsonObject = JsonObject.mapFrom(searchList.getList().stream().findFirst().orElse(null));
+												String userUrl = resultJsonObject.getString(varUserUrl);
+												if(userUrl == null) {
+													promise.complete();
+												} else {
+													String uri = StringUtils.substringAfter(userUrl, siteBaseUrl);
+													if(userUrl != null && uri != null) {
+														ZoneId zoneId = ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE));
+														ZonedDateTime createdAt = ZonedDateTime.now(zoneId);
+														String groupName = uri;
+														String policyId = pageId;
+														String policyName = uri;
+														String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
+														String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
+														Integer authPort = Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT));
+														String authHostName = config.getString(ComputateConfigKeys.AUTH_HOST_NAME);
+														Boolean authSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.AUTH_SSL));
+														String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
+														String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
+														webClient.post(authPort, authHostName, "/realms/master/protocol/openid-connect/token").ssl(authSsl)
+																.sendForm(MultiMap.caseInsensitiveMultiMap()
+																		.add("username", authAdminUsername)
+																		.add("password", authAdminPassword)
+																		.add("grant_type", "password")
+																		.add("client_id", "admin-cli")
+																		).onSuccess(tokenResponse -> {
+															try {
+																String authToken = tokenResponse.bodyAsJsonObject().getString("access_token");
+																webClient.post(authPort, authHostName, String.format("/admin/realms/%s/groups", authRealm)).ssl(authSsl)
+																		.putHeader("Authorization", String.format("Bearer %s", authToken))
+																		.sendJson(new JsonObject().put("name", groupName))
+																		.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+																		.onSuccess(createGroupResponse -> {
+																	try {
+																		webClient.get(authPort, authHostName, String.format("/admin/realms/%s/groups?exact=false&global=true&first=0&max=1&search=%s", authRealm, URLEncoder.encode(groupName, "UTF-8"))).ssl(authSsl)
+																				.putHeader("Authorization", String.format("Bearer %s", authToken))
+																				.send()
+																				.expecting(HttpResponseExpectation.SC_OK)
+																				.onSuccess(groupsResponse -> {
+																			try {
+																				JsonArray groups = Optional.ofNullable(groupsResponse.bodyAsJsonArray()).orElse(new JsonArray());
+																				JsonObject group = groups.stream().findFirst().map(o -> (JsonObject)o).orElse(null);
+																				if(group != null) {
+																					String groupId = group.getString("id");
+																					webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/policy/group", authRealm, authClient)).ssl(authSsl)
+																							.putHeader("Authorization", String.format("Bearer %s", authToken))
+																							.sendJson(new JsonObject().put("id", policyId).put("name", policyName).put("description", String.format("%s group", groupName)).put("groups", new JsonArray().add(groupId)))
+																							.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+																							.onSuccess(createPolicyResponse -> {
+																						webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/resource", authRealm, authClient)).ssl(authSsl)
+																								.putHeader("Authorization", String.format("Bearer %s", authToken))
+																								.sendJson(new JsonObject()
+																										.put("name", uri)
+																										.put("displayName", uri)
+																										.put("uris", new JsonArray().add(uri))
+																										.put("scopes", new JsonArray().add("GET"))
+																										)
+																								.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+																								.onSuccess(createResourceResponse -> {
+																							webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/permission/scope", authRealm, authClient)).ssl(authSsl)
+																									.putHeader("Authorization", String.format("Bearer %s", authToken))
+																									.sendJson(new JsonObject()
+																											.put("name", String.format("%s-%s", authRealm, groupName))
+																											.put("description", String.format("GET %s", groupName))
+																											.put("decisionStrategy", "AFFIRMATIVE")
+																											.put("resources", new JsonArray().add(uri))
+																											.put("policies", new JsonArray().add(policyName))
+																											.put("scopes", new JsonArray().add(String.format("%s-GET", authRealm)))
+																											)
+																									.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+																									.onSuccess(createPermissionResponse -> {
+																								LOG.info(String.format("Successfully granted %s access to %s", "GET", uri));
+																								promise.complete();
+																							}).onFailure(ex -> {
+																								LOG.error(String.format("Failed to create an auth permission for uri %s. ", uri), ex);
+																								promise.fail(ex);
+																							});
+																						}).onFailure(ex -> {
+																							LOG.error(String.format("Failed to create an auth resource for uri %s. ", uri), ex);
+																							promise.fail(ex);
+																						});
+																					}).onFailure(ex -> {
+																						LOG.error(String.format("Failed to create an auth policy for group %s. ", uri), ex);
+																						promise.fail(ex);
+																					});
+																				} else {
+																					Throwable ex = new RuntimeException(String.format("Failed to find group %s", uri));
+																					LOG.error(ex.getMessage(), ex);
+																					promise.fail(ex);
+																				}
+																			} catch(Throwable ex) {
+																				LOG.error("Failed to set up fine-grained resource permissions. ", ex);
+																				promise.fail(ex);
+																			}
+																		}).onFailure(ex -> {
+																			LOG.error(String.format("Failed to query the group %s. ", uri), ex);
+																			promise.fail(ex);
+																		});
+																	} catch(Throwable ex) {
+																		LOG.error("Failed to set up fine-grained resource permissions. ", ex);
+																		promise.fail(ex);
+																	}
+																}).onFailure(ex -> {
+																	LOG.error(String.format("Failed to create the group %s. ", uri), ex);
+																	promise.fail(ex);
+																});
+															} catch(Throwable ex) {
+																LOG.error(String.format("Failed to set up the auth token for fine-grained resource permissions for uri %s", uri), ex);
+																promise.fail(ex);
+															}
+														}).onFailure(ex -> {
+															LOG.error(String.format("Failed to get an admin token while creating fine-grained resource permissions for uri %s", uri), ex);
+															promise.fail(ex);
+														});
+													} else {
+														promise.complete();
+													}
+												}
+											} catch(Throwable ex) {
+												LOG.error(String.format("Failed to set up Keycloak credentials while creating fine-grained resource permissions for URL %s", pageBody.getString(varUserUrl)), ex);
+												promise.fail(ex);
+											}
+										}).onFailure(ex -> {
+											promise.fail(ex);
+										});
+									}
+								} catch(Throwable ex) {
+									LOG.error(String.format("Failed to set up Keycloak credentials while creating fine-grained resource permissions for URL %s", pageBody.getString(varUserUrl)), ex);
+									promise.fail(ex);
+								}
+							}).onFailure(ex -> {
+								promise.fail(ex);
+							});
+						} catch(Exception ex) {
+							LOG.error(String.format("Failed to import model from file: %s", templatePath), ex);
+							promise.fail(ex);
+						}
+					}).onFailure(ex -> {
+						LOG.error(String.format("Failed to import model from file: %s", templatePath), ex);
+						promise.fail(ex);
+					});
         }
 			} catch(Exception ex) {
 				LOG.error(String.format("Failed to import model from file: %s", templatePath), ex);
