@@ -66,6 +66,10 @@ public interface ComputateSiteRequest extends ComputateSearchSiteRequest {
 
 	void setScopes(List<String> l);
 
+	Boolean getPublicRead();
+
+	void setPublicRead(Boolean b);
+
 	Map<String, String> getRequestVars();
 
 	void setWebClient(WebClient webClient);
@@ -83,6 +87,10 @@ public interface ComputateSiteRequest extends ComputateSearchSiteRequest {
 	void setRequestHeaders(MultiMap requestHeaders);
 
 	JsonObject getConfig();
+
+	JsonObject getI18n();
+
+	void setI18n(JsonObject i18n);
 
 	WebClient getWebClient();
 

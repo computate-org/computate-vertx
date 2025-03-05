@@ -16,6 +16,8 @@ package org.computate.vertx.search.list;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URLDecoder;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +26,7 @@ import java.util.Optional;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.reflect.MethodUtils;
+import org.computate.i18n.I18n;
 import org.computate.search.request.SearchRequest;
 import org.computate.search.response.solr.SolrResponse;
 import org.computate.search.tool.SearchTool;
@@ -36,6 +39,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
 import io.vertx.ext.auth.authentication.UsernamePasswordCredentials;
 
 /** 
@@ -284,14 +289,82 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		return list.get(index);
 	}
 
+	/**
+	 * Query the next Solr search results with pagination from rows and start parameters. 
+	 * @return true if new search results were returned, or false if no more search results were found. 
+	 */
 	public Future<Boolean> next() {
 		Promise<Boolean> promise = Promise.promise();
 		try {
 			Long start = Optional.ofNullable(request.getStart()).orElse(0L);
 			Long rows = Optional.ofNullable(request.getRows()).orElse(0L);
 			Long numFound = Optional.ofNullable(response).map(r -> r.getResponse()).map(r -> r.getNumFound()).orElse(0L);
-			if(rows > 0 && (start + rows) < numFound) {
-				request.setStart(start + rows);
+			if(siteRequest_.getPublicRead() || siteRequest_.getScopes().contains("GET")) {
+				if(rows > 0 && (start + rows) < numFound) {
+					request.setStart(start + rows);
+					String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
+					String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
+					String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
+					Integer solrPort = Integer.parseInt(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PORT));
+					String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
+					Boolean solrSsl = Boolean.parseBoolean(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_SSL));
+
+					request.setQueryString(null);
+					request.initDeepForClass(siteRequest_);
+
+					String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
+					siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).send().onSuccess(a -> {
+						SolrResponse response = a.bodyAsJson(SolrResponse.class);
+						setResponse(response);
+						Wrap<List<SolrResponse.Doc>> docsWrap = new Wrap<List<SolrResponse.Doc>>().var("docs").o(response.getResponse().getDocs());
+						_docs(docsWrap);
+						setDocs(docsWrap.getO());
+						list.clear();
+						_list(list);
+
+						promise.complete(true);
+					}).onFailure(ex -> {
+						LOG.error(String.format("Search failed. "), ex);
+						promise.fail(ex);
+					});
+				} else {
+					promise.complete(false);
+				}
+			} else {
+				SolrResponse response = new SolrResponse();
+				SolrResponse.Response responseResponse = new SolrResponse.Response();
+				responseResponse.setDocs(Arrays.asList());
+				responseResponse.setNumFound(0L);
+				responseResponse.setNumFoundExact(true);
+				responseResponse.setStart(0L);
+				response.setResponse(responseResponse);
+				response.setFacetCounts(new SolrResponse.FacetCounts());
+				response.setFacets(new HashMap<>());
+				response.setResponseHeader(new SolrResponse.ResponseHeader());
+				response.setStats(new SolrResponse.Stats());
+				setResponse(response);
+				Wrap<List<SolrResponse.Doc>> docsWrap = new Wrap<List<SolrResponse.Doc>>().var("docs").o(response.getResponse().getDocs());
+				_docs(docsWrap);
+				setDocs(docsWrap.getO());
+				list.clear();
+				_list(list);
+				promise.complete(false);
+			}
+		} catch (Exception ex) {
+			promise.fail(ex);
+			LOG.error(String.format("Solr search failed. "), ex);
+		}
+		return promise.future();
+	}
+
+	/**
+	 * Query the Solr search results. 
+	 * @return true if new search results were returned, or false if no more search results were found. 
+	 */
+	public Future<Boolean> query() {
+		Promise<Boolean> promise = Promise.promise();
+		try {
+			if(siteRequest_.getPublicRead() || siteRequest_.getScopes().contains("GET")) {
 				String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
 				String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
 				String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
@@ -314,47 +387,29 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 
 					promise.complete(true);
 				}).onFailure(ex -> {
-					LOG.error(String.format("Search failed. "), ex);
 					promise.fail(ex);
+					LOG.error(String.format("Solr search failed. "), ex);
 				});
 			} else {
-				promise.complete(false);
-			}
-		} catch (Exception ex) {
-			promise.fail(ex);
-			LOG.error(String.format("Solr search failed. "), ex);
-		}
-		return promise.future();
-	}
-
-	public Future<Boolean> query() {
-		Promise<Boolean> promise = Promise.promise();
-		try {
-			String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
-			String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
-			String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
-			Integer solrPort = Integer.parseInt(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PORT));
-			String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
-			Boolean solrSsl = Boolean.parseBoolean(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_SSL));
-
-			request.setQueryString(null);
-			request.initDeepForClass(siteRequest_);
-
-			String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
-			siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).send().onSuccess(a -> {
-				SolrResponse response = a.bodyAsJson(SolrResponse.class);
+				SolrResponse response = new SolrResponse();
+				SolrResponse.Response responseResponse = new SolrResponse.Response();
+				responseResponse.setDocs(Arrays.asList());
+				responseResponse.setNumFound(0L);
+				responseResponse.setNumFoundExact(true);
+				responseResponse.setStart(0L);
+				response.setResponse(responseResponse);
+				response.setFacetCounts(new SolrResponse.FacetCounts());
+				response.setFacets(new HashMap<>());
+				response.setResponseHeader(new SolrResponse.ResponseHeader());
+				response.setStats(new SolrResponse.Stats());
 				setResponse(response);
 				Wrap<List<SolrResponse.Doc>> docsWrap = new Wrap<List<SolrResponse.Doc>>().var("docs").o(response.getResponse().getDocs());
 				_docs(docsWrap);
 				setDocs(docsWrap.getO());
 				list.clear();
 				_list(list);
-
-				promise.complete(true);
-			}).onFailure(ex -> {
-				promise.fail(ex);
-				LOG.error(String.format("Solr search failed. "), ex);
-			});
+				promise.complete(false);
+			}
 		} catch (Exception ex) {
 			promise.fail(ex);
 			LOG.error(String.format("Solr search failed. "), ex);
@@ -392,34 +447,56 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 
 	/**
 	 * {@inheritDoc}
+	 * Query solr and generate the response. 
 	 * Ignore: true
 	 */
 	protected void _response(Promise<SolrResponse> promise) {
 		try {
-			if(request.getQuery() != null) {
-				request.initDeepForClass(siteRequest_);
-				String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
-				String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
-				String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
-				Integer solrPort = Integer.parseInt(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PORT));
-				String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
-				Boolean solrSsl = Boolean.parseBoolean(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_SSL));
-				String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
-				siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).send().onSuccess(a -> {
-					try {
-						SolrResponse response = a.bodyAsJson(SolrResponse.class);
-						setResponse(response);
-						promise.complete(response);
-					} catch(Exception ex) {
-						LOG.error(String.format("Could not read response from Solr: %s", searchUrl), ex);
+			if(siteRequest_.getPublicRead() || siteRequest_.getScopes().contains("GET")) {
+				if(request.getQuery() != null) {
+					request.initDeepForClass(siteRequest_);
+					String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
+					String solrPassword = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PASSWORD);
+					String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
+					Integer solrPort = Integer.parseInt(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PORT));
+					String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
+					Boolean solrSsl = Boolean.parseBoolean(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_SSL));
+					String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
+					siteRequest_.getWebClient().get(solrPort, solrHostName, solrRequestUri).ssl(solrSsl).authentication(new UsernamePasswordCredentials(solrUsername, solrPassword)).send().onSuccess(a -> {
+						try {
+							SolrResponse response = a.bodyAsJson(SolrResponse.class);
+							setResponse(response);
+							promise.complete(response);
+						} catch(Exception ex) {
+							LOG.error(String.format("Could not read response from Solr: %s", searchUrl), ex);
+							promise.fail(ex);
+						}
+					}).onFailure(ex -> {
+						LOG.error(String.format("Search failed. "), new RuntimeException(ex));
 						promise.fail(ex);
-					}
-				}).onFailure(ex -> {
-					LOG.error(String.format("Search failed. "), new RuntimeException(ex));
-					promise.fail(ex);
-				});
+					});
+				} else {
+					promise.complete();
+				}
 			} else {
-				promise.complete();
+				SolrResponse response = new SolrResponse();
+				SolrResponse.Response responseResponse = new SolrResponse.Response();
+				responseResponse.setDocs(Arrays.asList());
+				responseResponse.setNumFound(0L);
+				responseResponse.setNumFoundExact(true);
+				responseResponse.setStart(0L);
+				response.setResponse(responseResponse);
+				response.setFacetCounts(new SolrResponse.FacetCounts());
+				response.setFacets(new HashMap<>());
+				response.setResponseHeader(new SolrResponse.ResponseHeader());
+				response.setStats(new SolrResponse.Stats());
+				setResponse(response);
+				Wrap<List<SolrResponse.Doc>> docsWrap = new Wrap<List<SolrResponse.Doc>>().var("docs").o(response.getResponse().getDocs());
+				_docs(docsWrap);
+				setDocs(docsWrap.getO());
+				list.clear();
+				_list(list);
+				promise.complete(response);
 			}
 		} catch (Exception ex) {
 			promise.fail(ex);
@@ -452,7 +529,7 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 				try {
 					if(doc != null) {
 						String classCanonicalName = (String)fields.get("classCanonicalName_docvalues_string");
-						DEV o = (DEV)Class.forName(classCanonicalName == null ? c.getCanonicalName() : classCanonicalName).newInstance();
+						DEV o = (DEV)Class.forName(classCanonicalName == null ? c.getCanonicalName() : classCanonicalName).getDeclaredConstructor().newInstance();
 						MethodUtils.invokeMethod(o, "setSiteRequest_", siteRequest_);
 						if(populate)
 							MethodUtils.invokeMethod(o, "populateForClass", doc);

@@ -120,7 +120,7 @@ public abstract class BaseApiServiceResult extends BaseApiService {
 			ServiceRequest serviceRequest = generateServiceRequest(handler);
 			String userUri = handler.pathParam("uri");
 
-			user(serviceRequest, classSiteRequest, classSiteUser, apiAddressSiteUser, "postSiteUserFuture", "patchSiteUserFuture").onSuccess(siteRequest -> {
+			user(serviceRequest, classSiteRequest, classSiteUser, apiAddressSiteUser, "postSiteUserFuture", "patchSiteUserFuture", false).onSuccess(siteRequest -> {
 				SearchList<Q> l = new SearchList<>();
 				l.q("*:*");
 				l.setC(classResult);

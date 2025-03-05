@@ -82,6 +82,7 @@ import io.vertx.amqp.AmqpSender;
 import io.vertx.rabbitmq.RabbitMQClient;
 import io.vertx.pgclient.PgPool;
 import io.vertx.sqlclient.Pool;
+import io.vertx.sqlclient.Row;
 import io.vertx.sqlclient.Tuple;
 import jinjava.org.jsoup.Jsoup;
 import jinjava.org.jsoup.nodes.Document;
@@ -90,6 +91,7 @@ import io.vertx.core.Vertx;
 
 import static org.apache.commons.lang3.Validate.notNull;
 
+import java.lang.reflect.Constructor;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
@@ -266,6 +268,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 			siteRequest.setUser(user);
 			siteRequest.setConfig(config);
 			siteRequest.setServiceRequest(serviceRequest);
+			siteRequest.setI18n(i18n);
 			siteRequest.setSiteRequest_(siteRequest);
 			siteRequest.initDeepForClass();
 		} catch (Exception ex) {
@@ -335,7 +338,52 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 		return promise.future();
 	}
 
-	public <T extends ComputateSiteRequest> Future<T> user(ServiceRequest serviceRequest, Class<T> cSiteRequest, Class<?> cSiteUser, String vertxAddress, String postAction, String patchAction) {
+	private <T extends ComputateSiteUser> Future<T> getDbUser(ComputateSiteRequest siteRequest, String userId, Class<?> cSiteUser) {
+		Promise<T> promise = Promise.promise();
+		Promise<T> promise1 = Promise.promise();
+		pgPool.withConnection(sqlConnection -> {
+			sqlConnection.preparedQuery(String.format("SELECT * FROM %s WHERE userId=$1", cSiteUser.getSimpleName()))
+					.collecting(Collectors.toList())
+					.execute(Tuple.of(userId)
+					).onSuccess(result -> {
+				try {
+					T siteUser = null;
+					for(Row definition : result.value()) {
+						siteUser = (T)cSiteUser.getDeclaredConstructor().newInstance();
+						for(Integer i = 0; i < definition.size(); i++) {
+							String columnName = definition.getColumnName(i);
+							Object columnValue = definition.getValue(i);
+							if(!"pk".equals(columnName)) {
+								try {
+									siteUser.persistForClass(columnName, columnValue);
+								} catch(Exception e) {
+									LOG.error(String.format("getDbUser failed. "), e);
+								}
+							}
+						}
+						siteUser.setSiteRequest_(siteRequest);
+						break;
+					}
+					promise1.complete(siteUser);
+				} catch(Exception ex) {
+					LOG.error(String.format("getDbUser failed. "), ex);
+					promise1.fail(ex);
+				}
+			}).onFailure(ex -> {
+				LOG.error(String.format("getDbUser failed. "), ex);
+				promise1.fail(ex);
+			});
+			return promise1.future();
+		}).onSuccess(user -> {
+			promise.complete(user);
+		}).onFailure(ex -> {
+			LOG.error(String.format("getDbUser failed. "), ex);
+			promise.fail(ex);
+		});
+		return promise.future();
+	}
+
+	public <T extends ComputateSiteRequest> Future<T> user(ServiceRequest serviceRequest, Class<T> cSiteRequest, Class<?> cSiteUser, String vertxAddress, String postAction, String patchAction, Boolean publicRead) {
 		Promise<T> promise = Promise.promise();
 		try {
 			getUserPrincipal(serviceRequest, cSiteRequest, cSiteUser, vertxAddress, postAction, patchAction).onSuccess(userPrincipal -> {
@@ -351,14 +399,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 							user.attributes().put("accessToken", accessToken);
 							String userId = accessToken.getString("sub");
 							T siteRequest = generateSiteRequest(user, userPrincipal, serviceRequest, cSiteRequest);
-							SearchList<ComputateSiteUser> searchList = new SearchList<ComputateSiteUser>();
-							searchList.q("*:*");
-							searchList.setStore(true);
-							searchList.setC(cSiteUser);
-							searchList.fq("userId_docvalues_string:" + SearchTool.escapeQueryChars(userId));
-							searchList.promiseDeepSearchList(siteRequest).onSuccess(c -> {
-								ComputateSiteUser siteUser1 = searchList.getList().stream().findFirst().orElse(null);
-	
+
+							getDbUser(siteRequest, userId, cSiteUser).onSuccess(siteUser1 -> {
+
 								if(siteUser1 == null) {
 									JsonObject jsonObject = new JsonObject();
 									jsonObject.put("userName", accessToken.getString("preferred_username"));
@@ -400,13 +443,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 									JsonObject context = new JsonObject().put("params", params).put("user", Optional.ofNullable(siteRequest.getUser()).map(u -> u.attributes().getJsonObject("tokenPrincipal")).orElse(null));
 									JsonObject json = new JsonObject().put("context", context);
 									eventBus.request(vertxAddress, json, new DeliveryOptions().addHeader("action", postAction)).onSuccess(a -> {
-										SearchList<ComputateSiteUser> searchList2 = new SearchList<ComputateSiteUser>();
-										searchList2.q("*:*");
-										searchList2.setStore(true);
-										searchList2.setC(cSiteUser);
-										searchList2.fq("userId_docvalues_string:" + SearchTool.escapeQueryChars(userId));
-										searchList2.promiseDeepSearchList(siteRequest).onSuccess(d -> {
-											ComputateSiteUser siteUser2 = searchList2.getList().stream().findFirst().orElse(null);
+										getDbUser(siteRequest, userId, cSiteUser).onSuccess(siteUser2 -> {
 											JsonObject responseMessage = (JsonObject)a.body();
 											JsonObject responseBody = new JsonObject(Buffer.buffer(JsonUtil.BASE64_DECODER.decode(responseMessage.getString("payload"))));
 											Long pk = Long.parseLong(responseBody.getString("pk"));
@@ -420,6 +457,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 											siteRequest.setApiRequest_(apiRequest);
 											siteRequest.setUserPrincipal(userPrincipal);
 											siteRequest.setSiteUser(siteUser2);
+											siteRequest.setPublicRead(publicRead);
 											promise.complete(siteRequest);
 										}).onFailure(ex -> {
 											LOG.error(String.format("user failed. "), ex);
@@ -484,6 +522,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 											siteRequest.setApiRequest_(apiRequest);
 											siteRequest.setUserPrincipal(userPrincipal);
 											siteRequest.setSiteUser(siteUser1);
+											siteRequest.setPublicRead(publicRead);
 											promise.complete(siteRequest);
 										}).onFailure(ex -> {
 											LOG.error(String.format("postSiteUser failed. "), ex);
@@ -496,6 +535,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 										siteRequest.setUserKey(siteUser1.getPk());
 										siteRequest.setUserPrincipal(userPrincipal);
 										siteRequest.setSiteUser(siteUser1);
+										siteRequest.setPublicRead(publicRead);
 										promise.complete((T)siteRequest);
 									}
 								}
@@ -2076,7 +2116,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 					array.add(val);
 				}
 			}
-			user(serviceRequest, classSiteRequest, classSiteUser, userApiAddress, "postSiteUserFuture", "patchSiteUserFuture").onSuccess(siteRequest -> {
+			user(serviceRequest, classSiteRequest, classSiteUser, userApiAddress, "postSiteUserFuture", "patchSiteUserFuture", false).onSuccess(siteRequest -> {
 				MultiMap multiMap = MultiMap.caseInsensitiveMultiMap()
 						.add("grant_type", "urn:ietf:params:oauth:grant-type:uma-ticket")
 						.add("audience", config.getString(ComputateConfigKeys.AUTH_CLIENT))

@@ -26,6 +26,7 @@ public class I18n {
 	public static final String str_Afficher_les_resultats_sous_forme_de_liste = "str_Afficher_les_resultats_sous_forme_de_liste";
 	public static final String str_Afficher_les_resultats_sous_forme_de_cartes = "str_Afficher_les_resultats_sous_forme_de_cartes";
 	public static final String str_Afficher_les_resultats_sous_forme_de_details = "str_Afficher_les_resultats_sous_forme_de_details";
+	public static final String str_Ajout_portee_GET = "str_Ajout_portee_GET";
 	public static final String str_API = "str_API";
 	public static final String str_au_total_avec_ = "str_au_total_avec_";
 	public static final String str_aucun = "str_aucun";
@@ -62,6 +63,8 @@ public class I18n {
 	public static final String str_Il_est_construit_avant_d_être_initialisé_avec_le_constructeur_par_défaut = "str_Il_est_construit_avant_d_être_initialisé_avec_le_constructeur_par_défaut";
 	public static final String str_Importer = "str_Importer";
 	public static final String str_Importer_ = "str_Importer_";
+	public static final String str_Impossible_de_trouver_le_telechargement = "str_Impossible_de_trouver_le_telechargement";
+	public static final String str_Interdit_autorisations_de_recherche = "str_Interdit_autorisations_de_recherche";
 	public static final String str_Interroger_lAPI_REST_JSON_pour_ = "str_Interroger_lAPI_REST_JSON_pour_";
 	public static final String str_la_classe_ = "str_la_classe_";
 	public static final String str_l_ensemble_ = "str_l_ensemble_";
@@ -171,7 +174,9 @@ public class I18n {
 	public static final String var_Ce = "var_Ce";
 	public static final String var_CeNom = "var_CeNom";
 	public static final String var_CHEMINS_RELATIFS_A_REGARDER = "var_CHEMINS_RELATIFS_A_REGARDER";
+	public static final String var_cheminTelechargement = "var_cheminTelechargement";
 	public static final String var_CHEMIN_STATIQUE = "var_CHEMIN_STATIQUE";
+	public static final String var_CHEMIN_TELECHARGEMENT = "var_CHEMIN_TELECHARGEMENT";
 	public static final String var_classeApiMethodeMethode = "var_classeApiMethodeMethode";
 	public static final String var_classeApiUriMethode = "var_classeApiUriMethode";
 	public static final String var_classeCheminAbsolu = "var_classeCheminAbsolu";
