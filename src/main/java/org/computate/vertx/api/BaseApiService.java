@@ -350,6 +350,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 					T siteUser = null;
 					for(Row definition : result.value()) {
 						siteUser = (T)cSiteUser.getDeclaredConstructor().newInstance();
+						siteUser.setSiteRequest_(siteRequest);
 						for(Integer i = 0; i < definition.size(); i++) {
 							String columnName = definition.getColumnName(i);
 							Object columnValue = definition.getValue(i);
@@ -361,7 +362,6 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 								}
 							}
 						}
-						siteUser.setSiteRequest_(siteRequest);
 						break;
 					}
 					promise1.complete(siteUser);
@@ -391,6 +391,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 					try {
 						if(user == null) {
 							ComputateSiteRequest siteRequest = generateSiteRequest(null, null, serviceRequest, cSiteRequest);
+							siteRequest.setPublicRead(publicRead);
 							promise.complete((T)siteRequest);
 						} else {
 							user.attributes().put("principal", userPrincipal);
@@ -399,6 +400,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 							user.attributes().put("accessToken", accessToken);
 							String userId = accessToken.getString("sub");
 							T siteRequest = generateSiteRequest(user, userPrincipal, serviceRequest, cSiteRequest);
+							siteRequest.setPublicRead(publicRead);
 
 							getDbUser(siteRequest, userId, cSiteUser).onSuccess(siteUser1 -> {
 
@@ -416,6 +418,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 									siteRequest2.setJsonObject(jsonObject);
 									siteRequest2.setSiteRequest_(siteRequest);
 									siteRequest2.initDeepForClass();
+									siteRequest2.setPublicRead(publicRead);
 	
 									ApiRequest apiRequest = new ApiRequest();
 									apiRequest.setRows(1L);
@@ -483,6 +486,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 										siteRequest2.setJsonObject(jsonObject);
 										siteRequest2.setSiteRequest_(siteRequest);
 										siteRequest2.initDeepForClass();
+										siteRequest2.setPublicRead(publicRead);
 										siteUser1.setSiteRequest_(siteRequest2);
 	
 										ApiRequest apiRequest = new ApiRequest();
