@@ -2182,8 +2182,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 								try {
 									if(paramValuesObject != null && "facet.pivot".equals(paramName)) {
 										Matcher mFacetPivot = Pattern.compile("(?:(\\{![^\\}]+\\}))?(.*)").matcher(StringUtils.join(paramObjects.getList().toArray(), ","));
-										boolean foundFacetPivot = mFacetPivot.find();
-										if(foundFacetPivot) {
+										if(mFacetPivot.find()) {
 											String solrLocalParams = mFacetPivot.group(1);
 											String[] entityVars = mFacetPivot.group(2).trim().split(",");
 											String[] varsIndexed = new String[entityVars.length];
@@ -2197,33 +2196,29 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 										for(Object paramObject : paramObjects) {
 											if(paramName.equals("q")) {
 												Matcher mQ = Pattern.compile("(\\w+):(.+?(?=(\\)|\\s+OR\\s+|\\s+AND\\s+|\\^|$)))").matcher((String)paramObject);
-												boolean foundQ = mQ.find();
-												if(foundQ) {
-													StringBuffer sb = new StringBuffer();
-													while(foundQ) {
-														entityVar = mQ.group(1).trim();
-														valueIndexed = mQ.group(2).trim();
-														varIndexed = varIndexedBaseModel(entityVar);
-														String entityQ = searchBaseModelFq(siteRequest, searchList, entityVar, valueIndexed, varIndexed);
-														mQ.appendReplacement(sb, entityQ);
-														foundQ = mQ.find();
-													}
+												StringBuffer sb = new StringBuffer();
+												while(mQ.find()) {
+													entityVar = mQ.group(1).trim();
+													valueIndexed = mQ.group(2).trim();
+													varIndexed = varIndexedBaseModel(entityVar);
+													String entityQ = searchBaseModelFq(siteRequest, searchList, entityVar, valueIndexed, varIndexed);
+													mQ.appendReplacement(sb, entityQ);
+												}
+												if(!sb.isEmpty()) {
 													mQ.appendTail(sb);
 													searchList.q(sb.toString());
 												}
 											} else if(paramName.equals("fq")) {
 												Matcher mFq = Pattern.compile("(\\w+):(.+?(?=(\\)|\\s+OR\\s+|\\s+AND\\s+|$)))").matcher((String)paramObject);
-												boolean foundFq = mFq.find();
-												if(foundFq) {
-													StringBuffer sb = new StringBuffer();
-													while(foundFq) {
-														entityVar = mFq.group(1).trim();
-														valueIndexed = mFq.group(2).trim();
-														varIndexed = varIndexedBaseModel(entityVar);
-														String entityFq = searchBaseModelFq(siteRequest, searchList, entityVar, valueIndexed, varIndexed);
-														mFq.appendReplacement(sb, entityFq);
-														foundFq = mFq.find();
-													}
+												StringBuffer sb = new StringBuffer();
+												while(mFq.find()) {
+													entityVar = mFq.group(1).trim();
+													valueIndexed = mFq.group(2).trim();
+													varIndexed = varIndexedBaseModel(entityVar);
+													String entityFq = searchBaseModelFq(siteRequest, searchList, entityVar, valueIndexed, varIndexed);
+													mFq.appendReplacement(sb, entityFq);
+												}
+												if(!sb.isEmpty()) {
 													mFq.appendTail(sb);
 													searchList.fq(sb.toString());
 												}
@@ -2242,8 +2237,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 												searchList.stats((Boolean)paramObject);
 											} else if(paramName.equals("stats.field")) {
 												Matcher mStats = Pattern.compile("(?:(\\{![^\\}]+\\}))?(.*)").matcher((String)paramObject);
-												boolean foundStats = mStats.find();
-												if(foundStats) {
+												if(mStats.find()) {
 													String solrLocalParams = mStats.group(1);
 													entityVar = mStats.group(2).trim();
 													varIndexed = varIndexedBaseModel(entityVar);
@@ -2269,8 +2263,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 												facetRangeGap = gap;
 											} else if(paramName.equals("facet.range")) {
 												Matcher mFacetRange = Pattern.compile("(?:(\\{![^\\}]+\\}))?(.*)").matcher((String)paramObject);
-												boolean foundFacetRange = mFacetRange.find();
-												if(foundFacetRange) {
+												if(mFacetRange.find()) {
 													String solrLocalParams = mFacetRange.group(1);
 													entityVar = mFacetRange.group(2).trim();
 													varIndexed = varIndexedBaseModel(entityVar);
@@ -2479,6 +2472,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				Boolean solrSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.SOLR_SSL));
 
 				SiteRequest siteRequest = generateSiteRequest(null, config, serviceRequest, classSiteRequest);
+				siteRequest.setPublicRead(true);
 
 				SearchList<Object> searchList = new SearchList<Object>();
 				String facetRange = null;
@@ -2505,8 +2499,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 
 					if(paramValuesObject != null && "facet.pivot".equals(paramName)) {
 						Matcher mFacetPivot = Pattern.compile("(?:(\\{![^\\}]+\\}))?(.*)").matcher(StringUtils.join(paramObjects.getList().toArray(), ","));
-						boolean foundFacetPivot = mFacetPivot.find();
-						if(foundFacetPivot) {
+						if(mFacetPivot.find()) {
 							String solrLocalParams = mFacetPivot.group(1);
 							String[] entityVars = mFacetPivot.group(2).trim().split(",");
 							String[] varsIndexed = new String[entityVars.length];
@@ -2520,33 +2513,29 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 						for(Object paramObject : paramObjects) {
 							if(paramName.equals("q")) {
 								Matcher mQ = Pattern.compile("(\\w+):(.+?(?=(\\)|\\s+OR\\s+|\\s+AND\\s+|\\^|$)))").matcher((String)paramObject);
-								boolean foundQ = mQ.find();
-								if(foundQ) {
-									StringBuffer sb = new StringBuffer();
-									while(foundQ) {
-										entityVar = mQ.group(1).trim();
-										valueIndexed = mQ.group(2).trim();
-										varIndexed = varIndexedBaseModel(entityVar);
-										String entityQ = searchBaseModelFq(siteRequest, searchList, entityVar, valueIndexed, varIndexed);
-										mQ.appendReplacement(sb, entityQ);
-										foundQ = mQ.find();
-									}
+								StringBuffer sb = new StringBuffer();
+								while(mQ.find()) {
+									entityVar = mQ.group(1).trim();
+									valueIndexed = mQ.group(2).trim();
+									varIndexed = varIndexedBaseModel(entityVar);
+									String entityQ = searchBaseModelFq(siteRequest, searchList, entityVar, valueIndexed, varIndexed);
+									mQ.appendReplacement(sb, entityQ);
+								}
+								if(!sb.isEmpty()) {
 									mQ.appendTail(sb);
 									searchList.q(sb.toString());
 								}
 							} else if(paramName.equals("fq")) {
 								Matcher mFq = Pattern.compile("(\\w+):(.+?(?=(\\)|\\s+OR\\s+|\\s+AND\\s+|$)))").matcher((String)paramObject);
-								boolean foundFq = mFq.find();
-								if(foundFq) {
-									StringBuffer sb = new StringBuffer();
-									while(foundFq) {
-										entityVar = mFq.group(1).trim();
-										valueIndexed = mFq.group(2).trim();
-										varIndexed = varIndexedBaseModel(entityVar);
-										String entityFq = searchBaseModelFq(siteRequest, searchList, entityVar, valueIndexed, varIndexed);
-										mFq.appendReplacement(sb, entityFq);
-										foundFq = mFq.find();
-									}
+								StringBuffer sb = new StringBuffer();
+								while(mFq.find()) {
+									entityVar = mFq.group(1).trim();
+									valueIndexed = mFq.group(2).trim();
+									varIndexed = varIndexedBaseModel(entityVar);
+									String entityFq = searchBaseModelFq(siteRequest, searchList, entityVar, valueIndexed, varIndexed);
+									mFq.appendReplacement(sb, entityFq);
+								}
+								if(!sb.isEmpty()) {
 									mFq.appendTail(sb);
 									searchList.fq(sb.toString());
 								}
@@ -2565,8 +2554,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 								searchList.stats((Boolean)paramObject);
 							} else if(paramName.equals("stats.field")) {
 								Matcher mStats = Pattern.compile("(?:(\\{![^\\}]+\\}))?(.*)").matcher((String)paramObject);
-								boolean foundStats = mStats.find();
-								if(foundStats) {
+								if(mStats.find()) {
 									String solrLocalParams = mStats.group(1);
 									entityVar = mStats.group(2).trim();
 									varIndexed = varIndexedBaseModel(entityVar);
@@ -2592,8 +2580,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 								facetRangeGap = gap;
 							} else if(paramName.equals("facet.range")) {
 								Matcher mFacetRange = Pattern.compile("(?:(\\{![^\\}]+\\}))?(.*)").matcher((String)paramObject);
-								boolean foundFacetRange = mFacetRange.find();
-								if(foundFacetRange) {
+								if(mFacetRange.find()) {
 									String solrLocalParams = mFacetRange.group(1);
 									entityVar = mFacetRange.group(2).trim();
 									varIndexed = varIndexedBaseModel(entityVar);
@@ -2603,8 +2590,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 							} else if(paramName.equals("facet.field")) {
 								entityVar = (String)paramObject;
 								varIndexed = varIndexedBaseModel(entityVar);
-								if(varIndexed != null)
+								if(varIndexed != null) {
 									searchList.facetField(varIndexed);
+								}
 							} else if(paramName.equals("cursorMark")) {
 								valueCursorMark = (String)paramObject;
 								searchList.cursorMark((String)paramObject);
