@@ -586,6 +586,7 @@ public class I18n {
 	public static final String var_tri = "var_tri";
 	public static final String var_Tri = "var_Tri";
 	public static final String var_TypeMedia = "var_TypeMedia";
+	public static final String var_Unique = "var_Unique";
 	public static final String var_UniteLabel = "var_UniteLabel";
 	public static final String var_UnNomAdjectif = "var_UnNomAdjectif";
 	public static final String var_UnNom = "var_UnNom";

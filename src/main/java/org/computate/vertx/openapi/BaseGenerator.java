@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.computate.search.computate.enus.ComputateEnUSClass;
@@ -470,6 +471,8 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 								wSqlCreate.s(doc2.get("entiteVar_" + languageName + "_stored_string"), " ", doc2.get("entiteTypeSql_stored_string"));
 								if(doc2.get("entiteAttribuerTypeJson_stored_string") != null)
 									wSqlCreate.s(" references ", (String)doc2.get("entiteAttribuerNomSimple_" + languageName + "_stored_string"), "(pk)");
+								if(BooleanUtils.isTrue((Boolean)doc2.get("entiteUnique_stored_boolean")))
+									wSqlCreate.s(" UNIQUE");
 								wSqlCreate.l(";");
 							}
 						}
