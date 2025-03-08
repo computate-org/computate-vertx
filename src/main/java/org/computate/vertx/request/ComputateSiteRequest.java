@@ -66,6 +66,10 @@ public interface ComputateSiteRequest extends ComputateSearchSiteRequest {
 
 	void setScopes(List<String> l);
 
+	List<String> getGroups();
+
+	void setGroups(List<String> l);
+
 	Boolean getPublicRead();
 
 	void setPublicRead(Boolean b);

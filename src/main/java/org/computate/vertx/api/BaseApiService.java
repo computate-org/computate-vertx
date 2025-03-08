@@ -523,6 +523,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 											siteRequest.setUserEmail(accessToken.getString("email"));
 											siteRequest.setUserId(accessToken.getString("sub"));
 											siteRequest.setUserKey(siteUser1.getPk());
+											siteRequest.setGroups(Optional.ofNullable(accessToken.getJsonArray("groups")).orElse(new JsonArray()).stream().map(s -> s.toString()).collect(Collectors.toList()));
 											siteRequest.setApiRequest_(apiRequest);
 											siteRequest.setUserPrincipal(userPrincipal);
 											siteRequest.setSiteUser(siteUser1);
@@ -537,6 +538,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 										siteRequest.setUserFirstName(siteUser1.getUserFirstName());
 										siteRequest.setUserLastName(siteUser1.getUserLastName());
 										siteRequest.setUserKey(siteUser1.getPk());
+										siteRequest.setGroups(Optional.ofNullable(accessToken.getJsonArray("groups")).orElse(new JsonArray()).stream().map(s -> s.toString()).collect(Collectors.toList()));
 										siteRequest.setUserPrincipal(userPrincipal);
 										siteRequest.setSiteUser(siteUser1);
 										siteRequest.setPublicRead(publicRead);
