@@ -886,7 +886,7 @@ public class ComputateConfigKeys {
 	/**
 	 * The JDBC URL to the database. 
 	 **/
-	public static final String DATABASE_HOST = "DATABASE_HOST";
+	public static final String DATABASE_HOST_NAME = "DATABASE_HOST_NAME";
 
 	/**
 	 * The JDBC URL to the database. 
@@ -1066,7 +1066,7 @@ public class ComputateConfigKeys {
 	/**
 	 * The SMTP host name for sending email. 
 	 **/
-	public static final String EMAIL_HOST = "EMAIL_HOST";
+	public static final String EMAIL_HOST_NAME = "EMAIL_HOST_NAME";
 
 	/**
 	 * The SMTP port for sending email. 
@@ -1342,7 +1342,7 @@ public class ComputateConfigKeys {
 	public static final String FACEBOOK_APP_ID = "FACEBOOK_APP_ID";
 
 	public static final String MQTT_ENABLED = "MQTT_ENABLED";
-	public static final String MQTT_HOST = "MQTT_HOST";
+	public static final String MQTT_HOST_NAME = "MQTT_HOST_NAME";
 	public static final String MQTT_PORT = "MQTT_PORT";
 	public static final String MQTT_IOT_SUBSCRIBE_TOPIC = "MQTT_IOT_SUBSCRIBE_TOPIC";
 
@@ -1351,7 +1351,7 @@ public class ComputateConfigKeys {
 	public static final String ENABLE_MQTT = "ENABLE_MQTT";
 
 	public static final String ENABLE_AMQP = "ENABLE_AMQP";
-	public static final String AMQP_HOST = "AMQP_HOST";
+	public static final String AMQP_HOST_NAME = "AMQP_HOST_NAME";
 	public static final String AMQP_PORT = "AMQP_PORT";
 	public static final String AMQP_USER = "AMQP_USER";
 	public static final String AMQP_PASSWORD = "AMQP_PASSWORD";
