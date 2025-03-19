@@ -1345,6 +1345,8 @@ public class ComputateConfigKeys {
 	public static final String MQTT_HOST_NAME = "MQTT_HOST_NAME";
 	public static final String MQTT_PORT = "MQTT_PORT";
 	public static final String MQTT_IOT_SUBSCRIBE_TOPIC = "MQTT_IOT_SUBSCRIBE_TOPIC";
+	public static final String MQTT_USERNAME = "MQTT_USERNAME";
+	public static final String MQTT_PASSWORD = "MQTT_PASSWORD";
 
 	public static final String ENABLE_OPEN_TELEMETRY = "ENABLE_OPEN_TELEMETRY";
 	public static final String ENABLE_KAFKA = "ENABLE_KAFKA";
@@ -1353,14 +1355,14 @@ public class ComputateConfigKeys {
 	public static final String ENABLE_AMQP = "ENABLE_AMQP";
 	public static final String AMQP_HOST_NAME = "AMQP_HOST_NAME";
 	public static final String AMQP_PORT = "AMQP_PORT";
-	public static final String AMQP_USER = "AMQP_USER";
+	public static final String AMQP_USERNAME = "AMQP_USERNAME";
 	public static final String AMQP_PASSWORD = "AMQP_PASSWORD";
 	public static final String AMQP_VIRTUAL_HOST = "AMQP_VIRTUAL_HOST";
 
 	public static final String ENABLE_RABBITMQ = "ENABLE_RABBITMQ";
 	public static final String RABBITMQ_HOST_NAME = "RABBITMQ_HOST_NAME";
 	public static final String RABBITMQ_PORT = "RABBITMQ_PORT";
-	public static final String RABBITMQ_USER = "RABBITMQ_USER";
+	public static final String RABBITMQ_USERNAME = "RABBITMQ_USERNAME";
 	public static final String RABBITMQ_PASSWORD = "RABBITMQ_PASSWORD";
 	public static final String RABBITMQ_VIRTUAL_HOST = "RABBITMQ_VIRTUAL_HOST";
 
