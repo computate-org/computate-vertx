@@ -1390,6 +1390,7 @@ public class ComputateConfigKeys {
 	public static final String SQUARE_ACCESS_TOKEN = "SQUARE_ACCESS_TOKEN";
 	public static final String SQUARE_SIGNATURE_KEY = "SQUARE_SIGNATURE_KEY";
 	public static final String SQUARE_NOTIFICATION_URL = "SQUARE_NOTIFICATION_URL";
+	public static final String SQUARE_WEBHOOK_UNLOCK_MILLIS = "SQUARE_WEBHOOK_UNLOCK_MILLIS";
 
 	/** The public search endpoint for searching public items in the site. **/
 	public static final String PUBLIC_SEARCH_URI = "PUBLIC_SEARCH_URI";
