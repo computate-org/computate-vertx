@@ -200,6 +200,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 	}
 
 	protected void _w(Wrap<AllWriter> c) {
+		openApiYamlFile.getParentFile().mkdirs();
 		c.o(AllWriter.create(siteRequest_, openApiYamlFile, "  "));
 	}
 
