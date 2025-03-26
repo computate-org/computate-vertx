@@ -48,6 +48,7 @@ import java.util.Map;
 import io.vertx.core.Vertx;
 import io.vertx.ext.web.client.WebClient;
 import io.vertx.core.json.JsonObject;
+import org.computate.vertx.serialize.vertx.JsonObjectDeserializer;
 import java.lang.String;
 import java.lang.Integer;
 import java.io.File;
@@ -242,6 +243,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
+	@JsonDeserialize(using = JsonObjectDeserializer.class)
 	@JsonInclude(Include.NON_NULL)
 	protected JsonObject config;
 
@@ -458,6 +460,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 	 *	 is defined as null before being initialized. 
 	 */
 	@JsonProperty
+	@JsonDeserialize(using = JsonObjectDeserializer.class)
 	@JsonInclude(Include.NON_NULL)
 	protected JsonObject i18n;
 
@@ -559,6 +562,58 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 
 	public static String staticSearchFqAppPath(ComputateSiteRequest siteRequest_, String o) {
 		return BaseGenerator.staticSearchAppPath(siteRequest_, BaseGenerator.staticSetAppPath(siteRequest_, o)).toString();
+	}
+
+	///////////////////
+	// appStaticPath //
+	///////////////////
+
+
+	/**	 The entity appStaticPath
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonInclude(Include.NON_NULL)
+	protected String appStaticPath;
+
+	/**	<br> The entity appStaticPath
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:appStaticPath">Find the entity appStaticPath in Solr</a>
+	 * <br>
+	 * @param c is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _appStaticPath(Wrap<String> c);
+
+	public String getAppStaticPath() {
+		return appStaticPath;
+	}
+	public void setAppStaticPath(String o) {
+		this.appStaticPath = BaseGenerator.staticSetAppStaticPath(siteRequest_, o);
+	}
+	public static String staticSetAppStaticPath(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	protected BaseGenerator appStaticPathInit() {
+		Wrap<String> appStaticPathWrap = new Wrap<String>().var("appStaticPath");
+		if(appStaticPath == null) {
+			_appStaticPath(appStaticPathWrap);
+			Optional.ofNullable(appStaticPathWrap.getO()).ifPresent(o -> {
+				setAppStaticPath(o);
+			});
+		}
+		return (BaseGenerator)this;
+	}
+
+	public static String staticSearchAppStaticPath(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrAppStaticPath(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqAppStaticPath(ComputateSiteRequest siteRequest_, String o) {
+		return BaseGenerator.staticSearchAppStaticPath(siteRequest_, BaseGenerator.staticSetAppStaticPath(siteRequest_, o)).toString();
 	}
 
 	///////////////////////////
@@ -1398,6 +1453,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 				computateVertxSrcInit();
 				i18nInit();
 				appPathInit();
+				appStaticPathInit();
 				platformPomArtifactIdInit();
 				openApiVersionInit();
 				openApiVersionNumberInit();
@@ -1482,6 +1538,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 				return oBaseGenerator.i18n;
 			case "appPath":
 				return oBaseGenerator.appPath;
+			case "appStaticPath":
+				return oBaseGenerator.appStaticPath;
 			case "platformPomArtifactId":
 				return oBaseGenerator.platformPomArtifactId;
 			case "openApiVersion":
@@ -1563,6 +1621,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSetI18n(siteRequest_, o);
 		case "appPath":
 			return BaseGenerator.staticSetAppPath(siteRequest_, o);
+		case "appStaticPath":
+			return BaseGenerator.staticSetAppStaticPath(siteRequest_, o);
 		case "platformPomArtifactId":
 			return BaseGenerator.staticSetPlatformPomArtifactId(siteRequest_, o);
 		case "openApiVersion":
@@ -1605,6 +1665,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSearchI18n(siteRequest_, (JsonObject)o);
 		case "appPath":
 			return BaseGenerator.staticSearchAppPath(siteRequest_, (String)o);
+		case "appStaticPath":
+			return BaseGenerator.staticSearchAppStaticPath(siteRequest_, (String)o);
 		case "platformPomArtifactId":
 			return BaseGenerator.staticSearchPlatformPomArtifactId(siteRequest_, (String)o);
 		case "openApiVersion":
@@ -1647,6 +1709,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSearchStrI18n(siteRequest_, (String)o);
 		case "appPath":
 			return BaseGenerator.staticSearchStrAppPath(siteRequest_, (String)o);
+		case "appStaticPath":
+			return BaseGenerator.staticSearchStrAppStaticPath(siteRequest_, (String)o);
 		case "platformPomArtifactId":
 			return BaseGenerator.staticSearchStrPlatformPomArtifactId(siteRequest_, (String)o);
 		case "openApiVersion":
@@ -1689,6 +1753,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return BaseGenerator.staticSearchFqI18n(siteRequest_, o);
 		case "appPath":
 			return BaseGenerator.staticSearchFqAppPath(siteRequest_, o);
+		case "appStaticPath":
+			return BaseGenerator.staticSearchFqAppStaticPath(siteRequest_, o);
 		case "platformPomArtifactId":
 			return BaseGenerator.staticSearchFqPlatformPomArtifactId(siteRequest_, o);
 		case "openApiVersion":
@@ -1720,6 +1786,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 	}
 
 	public static final String CLASS_SIMPLE_NAME = "BaseGenerator";
+	public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.openapi.BaseGenerator";
 	public static final String VAR_vertx_ = "vertx_";
 	public static final String VAR_webClient = "webClient";
 	public static final String VAR_siteRequest_ = "siteRequest_";
@@ -1729,6 +1796,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 	public static final String VAR_computateVertxSrc = "computateVertxSrc";
 	public static final String VAR_i18n = "i18n";
 	public static final String VAR_appPath = "appPath";
+	public static final String VAR_appStaticPath = "appStaticPath";
 	public static final String VAR_platformPomArtifactId = "platformPomArtifactId";
 	public static final String VAR_openApiVersion = "openApiVersion";
 	public static final String VAR_openApiVersionNumber = "openApiVersionNumber";
@@ -1756,6 +1824,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_computateVertxSrc = "";
 	public static final String DISPLAY_NAME_i18n = "";
 	public static final String DISPLAY_NAME_appPath = "";
+	public static final String DISPLAY_NAME_appStaticPath = "";
 	public static final String DISPLAY_NAME_platformPomArtifactId = "";
 	public static final String DISPLAY_NAME_openApiVersion = "";
 	public static final String DISPLAY_NAME_openApiVersionNumber = "";
@@ -1806,6 +1875,10 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 		return null;
 	}
 
+	public String classStringFormatUrlDownloadForClass() {
+		return null;
+	}
+
 	public static String displayNameForClass(String var) {
 		return BaseGenerator.displayNameBaseGenerator(var);
 	}
@@ -1829,6 +1902,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 			return DISPLAY_NAME_i18n;
 		case VAR_appPath:
 			return DISPLAY_NAME_appPath;
+		case VAR_appStaticPath:
+			return DISPLAY_NAME_appStaticPath;
 		case VAR_platformPomArtifactId:
 			return DISPLAY_NAME_platformPomArtifactId;
 		case VAR_openApiVersion:
@@ -1894,6 +1969,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
 		case VAR_i18n:
 			return "JsonObject";
 		case VAR_appPath:
+			return "String";
+		case VAR_appStaticPath:
 			return "String";
 		case VAR_platformPomArtifactId:
 			return "String";

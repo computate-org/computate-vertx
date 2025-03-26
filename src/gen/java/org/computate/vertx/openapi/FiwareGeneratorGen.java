@@ -49,6 +49,7 @@ import java.lang.String;
 import java.io.File;
 import org.computate.vertx.writer.AllWriter;
 import io.vertx.core.json.JsonObject;
+import org.computate.vertx.serialize.vertx.JsonObjectDeserializer;
 import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
@@ -338,6 +339,7 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 	 *	 It is constructed before being initialized with the constructor by default. 
 	 */
 	@JsonProperty
+	@JsonDeserialize(using = JsonObjectDeserializer.class)
 	@JsonInclude(Include.NON_NULL)
 	protected JsonObject fiwareContext = new JsonObject();
 
@@ -725,6 +727,7 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 	}
 
 	public static final String CLASS_SIMPLE_NAME = "FiwareGenerator";
+	public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.openapi.FiwareGenerator";
 	public static final String VAR_fiwareSwaggerYamlPath = "fiwareSwaggerYamlPath";
 	public static final String VAR_fiwareSwaggerYamlFile = "fiwareSwaggerYamlFile";
 	public static final String VAR_wFiwareSwagger = "wFiwareSwagger";
@@ -782,6 +785,11 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
 
 	@Override
 	public String classStringFormatUrlUserPageForClass() {
+		return null;
+	}
+
+	@Override
+	public String classStringFormatUrlDownloadForClass() {
 		return null;
 	}
 

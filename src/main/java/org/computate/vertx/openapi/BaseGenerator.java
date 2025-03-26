@@ -152,6 +152,10 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 		c.o(config.getString(ComputateConfigKeys.SITE_SRC));
 	}
 
+	protected void _appStaticPath(Wrap<String> c) {
+		c.o(config.getString(ComputateConfigKeys.STATIC_PATH));
+	}
+
 	protected void _platformPomArtifactId(Wrap<String> w) {
 		w.o(config.getString(ComputateConfigKeys.PLATFORM_POM_ARTIFACT_ID));
 	}

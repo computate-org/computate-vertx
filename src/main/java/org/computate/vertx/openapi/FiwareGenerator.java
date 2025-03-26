@@ -40,7 +40,7 @@ import io.vertx.ext.auth.authentication.UsernamePasswordCredentials;
 public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 
 	protected void _fiwareSwaggerYamlPath(Wrap<String> c) {
-		c.o(appPath + "-static/fiware/swagger.yaml");
+		c.o(appStaticPath + "/fiware/swagger.yaml");
 	}
 
 	protected void _fiwareSwaggerYamlFile(Wrap<File> c) {
@@ -60,7 +60,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 	protected void _fiwareContext(JsonObject o) {
 	}
 	protected void _fiwareContextJsonldPath(Wrap<String> c) {
-		c.o(appPath + "-static/fiware/context.jsonld");
+		c.o(appStaticPath + "/fiware/context.jsonld");
 	}
 	protected void _fiwareContextJsonldFile(Wrap<File> c) {
 		c.o(new File(fiwareContextJsonldPath));
@@ -202,7 +202,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 
 			wFiwareExamplesNormalized.tl(10, "- $ref: \"", config.getString(ComputateConfigKeys.STATIC_BASE_URL), "/fiware/", classDoc.getClassSimpleName(), "/examples/example-normalized.json\"");
 
-			String modelPath = appPath + "-static/fiware/" + classDoc.getClassSimpleName() + "/model.yaml";
+			String modelPath = appStaticPath + "/fiware/" + classDoc.getClassSimpleName() + "/model.yaml";
 			File modelFile = new File(modelPath);
 			AllWriter wModel = AllWriter.create(siteRequest_, modelFile, "  ");
 			wModel.tl(0, classDoc.getClassSimpleName(), ":");
@@ -210,23 +210,23 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 				wModel.t(1, "description: ").yamlStr(2, classDoc.getClassDescription());
 			wModel.tl(1, "properties:");
 
-			String examplePath = appPath + "-static/fiware/" + classDoc.getClassSimpleName() + "/examples/example.json";
+			String examplePath = appStaticPath + "/fiware/" + classDoc.getClassSimpleName() + "/examples/example.json";
 			File exampleFile = new File(examplePath);
 			AllWriter wExample = AllWriter.create(siteRequest_, exampleFile, "  ");
 
-			String examplePathLd = appPath + "-static/fiware/" + classDoc.getClassSimpleName() + "/examples/example.jsonld";
+			String examplePathLd = appStaticPath + "/fiware/" + classDoc.getClassSimpleName() + "/examples/example.jsonld";
 			File exampleFileLd = new File(examplePathLd);
 			AllWriter wExampleLd = AllWriter.create(siteRequest_, exampleFileLd, "  ");
 
-			String exampleNormalizedPath = appPath + "-static/fiware/" + classDoc.getClassSimpleName() + "/examples/example-normalized.json";
+			String exampleNormalizedPath = appStaticPath + "/fiware/" + classDoc.getClassSimpleName() + "/examples/example-normalized.json";
 			File exampleNormalizedFile = new File(exampleNormalizedPath);
 			AllWriter wExampleNormalized = AllWriter.create(siteRequest_, exampleNormalizedFile, "  ");
 
-			String exampleNormalizedPathLd = appPath + "-static/fiware/" + classDoc.getClassSimpleName() + "/examples/example-normalized.jsonld";
+			String exampleNormalizedPathLd = appStaticPath + "/fiware/" + classDoc.getClassSimpleName() + "/examples/example-normalized.jsonld";
 			File exampleNormalizedFileLd = new File(exampleNormalizedPathLd);
 			AllWriter wExampleNormalizedLd = AllWriter.create(siteRequest_, exampleNormalizedFileLd, "  ");
 
-			String schemaPath = appPath + "-static/fiware/" + classDoc.getClassSimpleName() + "/schema.json";
+			String schemaPath = appStaticPath + "/fiware/" + classDoc.getClassSimpleName() + "/schema.json";
 			File schemaFile = new File(schemaPath);
 			AllWriter wSchema = AllWriter.create(siteRequest_, schemaFile, "  ");
 
@@ -247,7 +247,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 			allOf.add(new JsonObject().put("$ref", "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"));
 			schema.put("properties", properties);
 
-			String docPath = appPath + "-static/fiware/" + classDoc.getClassSimpleName() + "/README.md";
+			String docPath = appStaticPath + "/fiware/" + classDoc.getClassSimpleName() + "/README.md";
 			File docFile = new File(docPath);
 			AllWriter wDoc = AllWriter.create(siteRequest_, docFile, "  ");
 			wDoc.tl(0, "# ", classDoc.getClassSimpleName());
@@ -438,7 +438,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 
 							wDoc.l("- [", entityVar, "](", config.getString(ComputateConfigKeys.STATIC_BASE_URL), "/fiware/", classDoc.getClassSimpleName(), "/attributes/", entityVar, ".md)");
 
-							String docPath = appPath + "-static/fiware/" + classDoc.getClassSimpleName() + "/attributes/" + entityVar + ".md";
+							String docPath = appStaticPath + "/fiware/" + classDoc.getClassSimpleName() + "/attributes/" + entityVar + ".md";
 							File docFile = new File(docPath);
 							AllWriter wEntityDoc = AllWriter.create(siteRequest_, docFile, "  ");
 							wEntityDoc.tl(0, "# ", classDoc.getClassSimpleName(), ".", entityVar);
