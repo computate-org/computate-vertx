@@ -1383,6 +1383,11 @@ public class ComputateConfigKeys {
 	public static final String CONTEXT_BROKER_DELAY_MILLIS = "CONTEXT_BROKER_DELAY_MILLIS";
 	public static final String CONTEXT_BROKER_CONTEXT = "CONTEXT_BROKER_CONTEXT";
 
+	public static final String NGSILD_TENANT_ENV = "NGSILD_TENANT_ENV";
+	public static final String NGSILD_PATH_ENV = "NGSILD_PATH_ENV";
+	public static final String NGSILD_TENANT = "NGSILD_TENANT";
+	public static final String NGSILD_PATH = "NGSILD_PATH";
+
 	public static final String USE_CASE_SRC = "USE_CASE_SRC";
 	public static final String USE_CASE_SUMMARY_NUM = "USE_CASE_SUMMARY_NUM";
 
