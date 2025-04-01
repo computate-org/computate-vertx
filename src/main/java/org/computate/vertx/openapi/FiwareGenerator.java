@@ -47,6 +47,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 		c.o(new File(fiwareSwaggerYamlPath));
 	}
 	protected void _wFiwareSwagger(Wrap<AllWriter> c) {
+		fiwareSwaggerYamlFile.getParentFile().mkdirs();
 		c.o(AllWriter.create(siteRequest_, fiwareSwaggerYamlFile, "  "));
 	}
 
