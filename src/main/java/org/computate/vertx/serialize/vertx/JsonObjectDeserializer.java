@@ -36,13 +36,11 @@ public class JsonObjectDeserializer extends JsonDeserializer<JsonObject> {
 			throws IOException {
 		String text = jsonParser.getText().strip();
 		StringBuilder b = new StringBuilder();
-		b.append(text);
-		JsonToken token = jsonParser.nextToken();
+		JsonToken token = jsonParser.currentToken();
 		Stack<Boolean> isArrays = new Stack<>();
-		isArrays.push(false);
 		while(token != null) {
 			if(token == JsonToken.START_ARRAY) {
-				if(isArrays.peek()) {
+				if(!isArrays.isEmpty() && isArrays.peek()) {
 					if(b.charAt(b.length() - 1) != '[')
 						b.append(",");
 				}

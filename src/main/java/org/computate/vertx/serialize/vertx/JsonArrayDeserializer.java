@@ -36,13 +36,11 @@ public class JsonArrayDeserializer extends JsonDeserializer<JsonArray> {
 			throws IOException {
 		String text = jsonParser.getText().strip();
 		StringBuilder b = new StringBuilder();
-		b.append(text);
-		JsonToken token = jsonParser.nextToken();
+		JsonToken token = jsonParser.currentToken();
 		Stack<Boolean> isArrays = new Stack<>();
-		isArrays.push(false);
 		while(token != null) {
 			if(token == JsonToken.START_ARRAY) {
-				if(isArrays.peek()) {
+				if(!isArrays.isEmpty() && isArrays.peek()) {
 					if(b.charAt(b.length() - 1) != '[')
 						b.append(",");
 				}
@@ -51,6 +49,8 @@ public class JsonArrayDeserializer extends JsonDeserializer<JsonArray> {
 			} else if(token == JsonToken.END_ARRAY) {
 				isArrays.pop();
 				b.append(jsonParser.getText());
+				if(isArrays.isEmpty())
+					break;
 			} else if(token == JsonToken.START_OBJECT) {
 				if(isArrays.peek()) {
 					if(b.charAt(b.length() - 1) != '[')
@@ -61,8 +61,6 @@ public class JsonArrayDeserializer extends JsonDeserializer<JsonArray> {
 			} else if(token == JsonToken.END_OBJECT) {
 				isArrays.pop();
 				b.append(jsonParser.getText());
-				if(isArrays.isEmpty())
-					break;
 			} else if(token == JsonToken.FIELD_NAME) {
 				if(b.charAt(b.length() - 1) != '{')
 					b.append(",");
