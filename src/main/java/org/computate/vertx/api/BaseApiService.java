@@ -573,7 +573,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 		return false;
 	}
 
-	public void attributeArrayFuture(ComputateSiteRequest siteRequest, Class<?> c1, Long pk1, Class<?> c2, String pk2, List<Future<?>> futures, String entityVar, Boolean inheritPk) {
+	public void attributeArrayFuture(String idSearchVar, String pkSearchVar, ComputateSiteRequest siteRequest, Class<?> c1, Long pk1, Class<?> c2, String pk2, List<Future<?>> futures, String entityVar, Boolean inheritPk) {
 		ApiRequest apiRequest = siteRequest.getApiRequest_();
 		List<Long> pks = apiRequest.getPks();
 
@@ -584,7 +584,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				searchList.setStore(true);
 				searchList.setC(c1);
 				searchList.fq("classCanonicalNames_docvalues_strings:" + SearchTool.escapeQueryChars(c2.getCanonicalName()));
-				searchList.fq((inheritPk ? "inheritPk_docvalues_string:" : "pk_docvalues_long:") + SearchTool.escapeQueryChars(l));
+				searchList.fq((inheritPk ? idSearchVar + ":" : idSearchVar + ":") + SearchTool.escapeQueryChars(l));
 				searchList.promiseDeepSearchList(siteRequest).onSuccess(s -> {
 					Long l2 = Optional.ofNullable(searchList.getList().stream().findFirst().orElse(null)).map(a -> a.getPk()).orElse(null);
 					if(l2 != null) {
@@ -645,7 +645,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 			return this;
 		}
 
-		public Future<Void> set(String entityVar1, Class<? extends ComputateBaseModel> c2, Long pk2) {
+		public Future<Void> set(String entityVar1, Class<? extends ComputateBaseModel> c2, Long pk2, Object val) {
 			Promise<Void> promise = Promise.promise();
 			if(pk2 == null) {
 				promise.complete();
@@ -654,7 +654,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 					pks.add(pk2);
 					classes.add(c2.getSimpleName());
 				}
-				siteRequest.getSqlConnection().preparedQuery(String.format("UPDATE %s SET %s=$1 WHERE pk=$2", c1.getSimpleName(), entityVar1)).execute(Tuple.of(pk2, pk1)).onSuccess(a -> {
+				siteRequest.getSqlConnection().preparedQuery(String.format("UPDATE %s SET %s=$1 WHERE pk=$2", c1.getSimpleName(), entityVar1)).execute(Tuple.of(val, pk1)).onSuccess(a -> {
 					promise.complete();
 				}).onFailure(ex -> {
 					promise.fail(ex);
@@ -751,14 +751,14 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 			this.siteRequest = siteRequest;
 		}
 
-		public Future<Long> query(Class<? extends ComputateBaseModel> c, String pk, Boolean inheritPk) {
+		public Future<Long> query(String idSearchVar, String pkSearchVar, Class<? extends ComputateBaseModel> c, String pk, Boolean inheritPk) {
 			Promise<Long> promise = Promise.promise();
 			if(pk != null) {
 				SearchList<ComputateBaseModel> searchList = new SearchList<ComputateBaseModel>();
 				searchList.q("*:*");
 				searchList.setStore(true);
 				searchList.setC(c);
-				searchList.fq((inheritPk ? "inheritPk_docvalues_string:" : "pk_docvalues_long:") + pk);
+				searchList.fq((inheritPk ? idSearchVar + ":" : idSearchVar + ":") + pk);
 				searchList.promiseDeepSearchList(siteRequest).onSuccess(s -> {
 					Long l2 = Optional.ofNullable(searchList.getList().stream().findFirst().orElse(null)).map(a -> a.getPk()).orElse(null);
 					promise.complete(l2);
