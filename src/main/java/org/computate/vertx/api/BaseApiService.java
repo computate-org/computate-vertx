@@ -665,19 +665,17 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 
 		public Future<Void> setToNull(String entityVar1, Class<? extends ComputateBaseModel> c2, Long pk2) {
 			Promise<Void> promise = Promise.promise();
-			if(pk2 == null) {
-				promise.complete();
-			} else {
+			if(pk2 != null) {
 				if(!pks.contains(pk2)) {
 					pks.add(pk2);
 					classes.add(c2.getSimpleName());
 				}
-				siteRequest.getSqlConnection().preparedQuery(String.format("UPDATE %s SET %s=null WHERE pk=$1", c1.getSimpleName(), entityVar1)).execute(Tuple.of(pk1)).onSuccess(a -> {
-					promise.complete();
-				}).onFailure(ex -> {
-					promise.fail(ex);
-				});
 			}
+			siteRequest.getSqlConnection().preparedQuery(String.format("UPDATE %s SET %s=null WHERE pk=$1", c1.getSimpleName(), entityVar1)).execute(Tuple.of(pk1)).onSuccess(a -> {
+				promise.complete();
+			}).onFailure(ex -> {
+				promise.fail(ex);
+			});
 			return promise.future();
 		}
 
