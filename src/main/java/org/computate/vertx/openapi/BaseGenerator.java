@@ -471,7 +471,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 						List<Doc> entiteDocs = queryResponse.getResponse().getDocs();
 						for(Integer j = 0; j < entiteDocs.size(); j++) {
 							SolrResponse.Doc doc2 = entiteDocs.get(j);
-							if(doc2.get("entiteAttribuerTypeJson_stored_string") != null && (((String)doc2.get("entiteVar_" + languageName + "_stored_string")).compareTo((String)doc2.get("entiteAttribuerVar_" + languageName + "_stored_string")) < 0 || "array".equals(doc2.get("entiteAttribuerTypeJson_stored_string"))) || doc2.get("entiteAttribuerTypeJson_stored_string") == null) {
+							if(doc2.get("entiteAttribuerTypeJson_stored_string") != null && (((String)doc2.get("entiteVar_" + languageName + "_stored_string")).compareTo((String)doc2.get("entiteAttribuerVar_" + languageName + "_stored_string")) <= 0 || "array".equals(doc2.get("entiteAttribuerTypeJson_stored_string"))) || doc2.get("entiteAttribuerTypeJson_stored_string") == null) {
 								wSqlCreate.s("ALTER TABLE ", classeNomSimple, " ADD COLUMN IF NOT EXISTS ");
 								wSqlCreate.s(doc2.get("entiteVar_" + languageName + "_stored_string"), " ", doc2.get("entiteTypeSql_stored_string"));
 								if(doc2.get("entiteAttribuerTypeJson_stored_string") != null)
@@ -557,7 +557,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 				String var = doc1.get("entiteVar_" + languageName + "_stored_string");
 				String varAttribuer = doc1.get("entiteAttribuerVar_" + languageName + "_stored_string");
 
-				if(var.compareTo(varAttribuer) < 0) {
+				if(var.compareTo(varAttribuer) <= 0) {
 					String c1 = doc1.get("classeNomSimple_" + languageName + "_stored_string");
 					String c2 = doc1.get("entiteAttribuerNomSimple_" + languageName + "_stored_string");
 

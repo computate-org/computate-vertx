@@ -392,6 +392,8 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 						if(user == null) {
 							ComputateSiteRequest siteRequest = generateSiteRequest(null, null, serviceRequest, cSiteRequest);
 							siteRequest.setPublicRead(publicRead);
+							siteRequest.setSessionId(Optional.ofNullable(serviceRequest.getParams()).map(params -> Optional.ofNullable(params.getJsonObject("cookie")).map(cookie -> cookie.getString("vertx-web.session")).orElse(null)).orElse(null));
+							siteRequest.setSessionIdBefore(Optional.ofNullable(serviceRequest.getParams()).map(params -> Optional.ofNullable(params.getJsonObject("cookie")).map(cookie -> cookie.getString("sessionIdBefore")).orElse(null)).orElse(null));
 							promise.complete((T)siteRequest);
 						} else {
 							user.attributes().put("principal", userPrincipal);
@@ -401,6 +403,8 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 							String userId = accessToken.getString("sub");
 							T siteRequest = generateSiteRequest(user, userPrincipal, serviceRequest, cSiteRequest);
 							siteRequest.setPublicRead(publicRead);
+							siteRequest.setSessionId(Optional.ofNullable(serviceRequest.getParams()).map(params -> Optional.ofNullable(params.getJsonObject("cookie")).map(cookie -> cookie.getString("vertx-web.session")).orElse(null)).orElse(null));
+							siteRequest.setSessionIdBefore(Optional.ofNullable(serviceRequest.getParams()).map(params -> Optional.ofNullable(params.getJsonObject("cookie")).map(cookie -> cookie.getString("sessionIdBefore")).orElse(null)).orElse(null));
 
 							getDbUser(siteRequest, userId, cSiteUser).onSuccess(siteUser1 -> {
 

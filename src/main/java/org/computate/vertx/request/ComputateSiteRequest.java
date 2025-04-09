@@ -40,6 +40,14 @@ public interface ComputateSiteRequest extends ComputateSearchSiteRequest {
 
 	String getRequestMethod();
 
+	String getSessionId();
+
+	void setSessionId(String sessionId);
+
+	String getSessionIdBefore();
+
+	void setSessionIdBefore(String sessionIdBefore);
+
 	ServiceRequest getServiceRequest();
 
 	ComputateSiteRequest copy();
