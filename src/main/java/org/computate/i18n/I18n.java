@@ -624,6 +624,7 @@ public class I18n {
 	public static final String var_Valider = "var_Valider";
 	public static final String var_VarCree = "var_VarCree";
 	public static final String var_VarDescription = "var_VarDescription";
+	public static final String var_VarId = "var_VarId";
 	public static final String var_VarModifie = "var_VarModifie";
 	public static final String var_VarNom = "var_VarNom";
 	public static final String var_VarTitre = "var_VarTitre";
