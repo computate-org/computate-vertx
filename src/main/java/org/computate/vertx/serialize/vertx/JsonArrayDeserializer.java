@@ -52,7 +52,7 @@ public class JsonArrayDeserializer extends JsonDeserializer<JsonArray> {
 				if(isArrays.isEmpty())
 					break;
 			} else if(token == JsonToken.START_OBJECT) {
-				if(isArrays.peek()) {
+				if(!isArrays.isEmpty() && isArrays.peek()) {
 					if(b.charAt(b.length() - 1) != '[')
 						b.append(",");
 				}

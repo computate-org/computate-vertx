@@ -50,7 +50,7 @@ public class JsonObjectDeserializer extends JsonDeserializer<JsonObject> {
 				isArrays.pop();
 				b.append(jsonParser.getText());
 			} else if(token == JsonToken.START_OBJECT) {
-				if(isArrays.peek()) {
+				if(!isArrays.isEmpty() && isArrays.peek()) {
 					if(b.charAt(b.length() - 1) != '[')
 						b.append(",");
 				}
