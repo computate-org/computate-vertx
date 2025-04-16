@@ -448,7 +448,8 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 				searchClasses.fq("partEstEntite_indexed_boolean:true");
 				searchClasses.fq("-(entiteAttribuer_indexed_boolean:true AND entiteTypeJson_indexed_string:array)");
 				searchClasses.fq("(entiteAttribuer_indexed_boolean:true OR entiteDefinir_indexed_boolean:true OR entiteClePrimaire_indexed_boolean:true)");
-				searchClasses.sortAsc("classeEstBase_indexed_boolean");
+				searchClasses.sortAsc("classeOrdre_indexed_boolean");
+				searchClasses.sortAsc("classeNomSimple_indexed_string");
 				searchClasses.sortAsc("partNumero_indexed_int");
 				searchClasses.initDeepForClass(siteRequest_);
 	
@@ -471,15 +472,13 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 						List<Doc> entiteDocs = queryResponse.getResponse().getDocs();
 						for(Integer j = 0; j < entiteDocs.size(); j++) {
 							SolrResponse.Doc doc2 = entiteDocs.get(j);
-							if(doc2.get("entiteAttribuerTypeJson_stored_string") != null && (((String)doc2.get("entiteVar_" + languageName + "_stored_string")).compareTo((String)doc2.get("entiteAttribuerVar_" + languageName + "_stored_string")) <= 0 || "array".equals(doc2.get("entiteAttribuerTypeJson_stored_string"))) || doc2.get("entiteAttribuerTypeJson_stored_string") == null) {
-								wSqlCreate.s("ALTER TABLE ", classeNomSimple, " ADD COLUMN IF NOT EXISTS ");
-								wSqlCreate.s(doc2.get("entiteVar_" + languageName + "_stored_string"), " ", doc2.get("entiteTypeSql_stored_string"));
-								if(doc2.get("entiteAttribuerTypeJson_stored_string") != null)
-									wSqlCreate.s(" references ", (String)doc2.get("entiteAttribuerNomSimple_" + languageName + "_stored_string"), "(", (String)doc2.get("entiteAttribuerVar_" + languageName + "_stored_string"), ")");
-								if(BooleanUtils.isTrue((Boolean)doc2.get("entiteUnique_stored_boolean")))
-									wSqlCreate.s(" UNIQUE");
-								wSqlCreate.l(";");
-							}
+							wSqlCreate.s("ALTER TABLE ", classeNomSimple, " ADD COLUMN IF NOT EXISTS ");
+							wSqlCreate.s(doc2.get("entiteVar_" + languageName + "_stored_string"), " ", doc2.get("entiteTypeSql_stored_string"));
+							if(doc2.get("entiteAttribuerTypeJson_stored_string") != null)
+								wSqlCreate.s(" references ", (String)doc2.get("entiteAttribuerNomSimple_" + languageName + "_stored_string"), "(", (String)doc2.get("entiteAttribuerVar_" + languageName + "_stored_string"), ")");
+							if(BooleanUtils.isTrue((Boolean)doc2.get("entiteUnique_stored_boolean")))
+								wSqlCreate.s(" UNIQUE");
+							wSqlCreate.l(";");
 						}
 	
 						loadSql1(docs, i + 1).onSuccess(b -> {
