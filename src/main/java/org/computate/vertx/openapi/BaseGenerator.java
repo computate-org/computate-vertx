@@ -446,6 +446,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 				searchClasses.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath) + (platformPomArtifactId == null ? "" : (" OR siteNom_indexed_string:" + SearchTool.escapeQueryChars(platformPomArtifactId))));
 				searchClasses.fq("classeNomCanonique_" + languageName + "_indexed_string:" + fqClassesSuperEtMoi);
 				searchClasses.fq("partEstEntite_indexed_boolean:true");
+				searchClasses.fq("entiteEstSubstitue_indexed_boolean:false");
 				searchClasses.fq("-(entiteAttribuer_indexed_boolean:true AND entiteTypeJson_indexed_string:array)");
 				searchClasses.fq("(entiteAttribuer_indexed_boolean:true OR entiteDefinir_indexed_boolean:true OR entiteClePrimaire_indexed_boolean:true)");
 				searchClasses.sortAsc("classeOrdre_indexed_boolean");
