@@ -341,7 +341,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 			searchEntities.fq("siteChemin_indexed_string:" + SearchTool.escapeQueryChars(appPath) + (platformPomArtifactId == null ? "" : (" OR siteNom_indexed_string:" + SearchTool.escapeQueryChars(platformPomArtifactId))));
 			searchEntities.fq("classeCheminAbsolu_indexed_string:" + SearchTool.escapeQueryChars(classDoc.getClassAbsolutePath()));
 			searchEntities.fq("partEstEntite_indexed_boolean:true");
-			searchEntities.sortAsc("partNumero_indexed_int");
+			searchEntities.sortAsc("classeOrdreSql_indexed_int");
 			searchEntities.initDeepForClass(siteRequest_);
 
 			String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
@@ -397,7 +397,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 			searchClasses.fq("classeSauvegarde_indexed_boolean:true");
 			searchClasses.fq("partEstClasse_indexed_boolean:true");
 			searchClasses.fq("classeEstBase_indexed_boolean:false");
-			searchClasses.sortAsc("sqlSort_indexed_int");
+			searchClasses.sortAsc("classeOrdreSql_indexed_int");
 			searchClasses.initDeepForClass(siteRequest_);
 
 			String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
@@ -449,8 +449,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 				searchClasses.fq("entiteEstSubstitue_indexed_boolean:false");
 				searchClasses.fq("-(entiteAttribuer_indexed_boolean:true AND entiteTypeJson_indexed_string:array)");
 				searchClasses.fq("(entiteAttribuer_indexed_boolean:true OR entiteDefinir_indexed_boolean:true OR entiteClePrimaire_indexed_boolean:true)");
-				searchClasses.sortAsc("classeOrdre_indexed_boolean");
-				searchClasses.sortAsc("classeNomSimple_indexed_string");
+				searchClasses.sortAsc("classeOrdreSql_indexed_int");
 				searchClasses.sortAsc("partNumero_indexed_int");
 				searchClasses.initDeepForClass(siteRequest_);
 	
