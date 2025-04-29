@@ -940,7 +940,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	 */
 	public Future<Void> importTimer(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classCanonicalName, String classSimpleName, String classApiAddress, String varPageId, String varUserUrl, String varDownload) {
 		Promise<Void> promise = Promise.promise();
-		if(config.getBoolean(String.format("%s_%s", ComputateConfigKeys.ENABLE_IMPORT_DATA, classSimpleName), true)) {
+		if(Boolean.parseBoolean(config.getString(String.format("%s_%s", ComputateConfigKeys.ENABLE_IMPORT_DATA, classSimpleName), "true"))) {
 			// Load the import start time and period configuration. 
 			String importStartTime = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_START_TIME, classSimpleName));
 			String importPeriod = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_PERIOD, classSimpleName));
