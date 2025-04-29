@@ -240,7 +240,6 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 			searchClasses.fq("classeEtendGen_indexed_boolean:true");
 			searchClasses.fq("partEstClasse_indexed_boolean:true");
 			searchClasses.sortAsc(String.format("classeNomCanonique_%s_indexed_string", languageName));
-			searchClasses.sortAsc("partNumero_indexed_int");
 			searchClasses.initDeepForClass(siteRequest_);
 
 			String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
@@ -342,6 +341,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 			searchEntities.fq("classeCheminAbsolu_indexed_string:" + SearchTool.escapeQueryChars(classDoc.getClassAbsolutePath()));
 			searchEntities.fq("partEstEntite_indexed_boolean:true");
 			searchEntities.sortAsc("classeOrdreSql_indexed_int");
+			searchEntities.sortAsc("partNumero_indexed_int");
 			searchEntities.initDeepForClass(siteRequest_);
 
 			String solrUsername = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_USERNAME);
