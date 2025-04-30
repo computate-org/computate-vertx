@@ -914,7 +914,7 @@ public class ComputateJavaClass extends ComputateJavaClassGen<Object> {
 	 * Example: 100
 	 **/
 	protected void _contextRows(Wrap<Integer> w) {
-		w.o(doc.getInteger("contexteRows_stored_int"));
+		w.o(doc.getInteger("classeLignes_stored_int"));
 	}
 	/**
 	 * Example: "a donor"
