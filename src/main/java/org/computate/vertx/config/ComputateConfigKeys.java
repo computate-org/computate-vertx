@@ -463,6 +463,7 @@ public class ComputateConfigKeys {
 		ctx.put(FONTAWESOME_KIT, config.getString(FONTAWESOME_KIT));
 		ctx.put(FONTAWESOME_STYLE, config.getString(FONTAWESOME_STYLE));
 		ctx.put(WEB_COMPONENTS_CSS, config.getString(WEB_COMPONENTS_CSS));
+		ctx.put(WEB_COMPONENTS_PREFIX, config.getString(WEB_COMPONENTS_PREFIX));
 		ctx.put(WEB_COMPONENTS_JS, config.getString(WEB_COMPONENTS_JS));
 		ctx.put(SITE_LOCALE, config.getString(SITE_LOCALE));
 		ctx.put(SITE_THEME, config.getString(SITE_THEME));
@@ -1305,6 +1306,11 @@ public class ComputateConfigKeys {
 	 * 
 	 **/
 	public static final String WEB_COMPONENTS_CSS = "WEB_COMPONENTS_CSS";
+
+	/**
+	 * 
+	 **/
+	public static final String WEB_COMPONENTS_PREFIX = "WEB_COMPONENTS_PREFIX";
 
 	/**
 	 * 

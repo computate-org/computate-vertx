@@ -443,6 +443,7 @@ public class I18n {
 	public static final String var_objetTexte = "var_objetTexte";
 	public static final String var_objetTitre = "var_objetTitre";
 	public static final String var_obtenir = "var_obtenir";
+	public static final String var_Option = "var_Option";
 	public static final String var_Optionnel = "var_Optionnel";
 	public static final String var_Ordre = "var_Ordre";
 	public static final String var_OutilRecherche = "var_OutilRecherche";
@@ -482,6 +483,7 @@ public class I18n {
 	public static final String var_PUTCopie = "var_PUTCopie";
 	public static final String var_PUTFusion = "var_PUTFusion";
 	public static final String var_put = "var_put";
+	public static final String var_Radio = "var_Radio";
 	public static final String var_rechargé = "var_rechargé";
 	public static final String var_recharger = "var_recharger";
 	public static final String var_Recharger = "var_Recharger";

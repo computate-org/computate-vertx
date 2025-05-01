@@ -1451,6 +1451,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 					ctx.put(ComputateConfigKeys.FONTAWESOME_KIT, config.getString(ComputateConfigKeys.FONTAWESOME_KIT));
 					ctx.put(ComputateConfigKeys.FONTAWESOME_STYLE, config.getString(ComputateConfigKeys.FONTAWESOME_STYLE));
 					ctx.put(ComputateConfigKeys.WEB_COMPONENTS_CSS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_CSS));
+					ctx.put(ComputateConfigKeys.WEB_COMPONENTS_PREFIX, config.getString(ComputateConfigKeys.WEB_COMPONENTS_PREFIX));
 					ctx.put(ComputateConfigKeys.WEB_COMPONENTS_JS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_JS));
 					ctx.put(ComputateConfigKeys.PUBLIC_SEARCH_URI, config.getString(ComputateConfigKeys.PUBLIC_SEARCH_URI));
 					ctx.put(ComputateConfigKeys.USER_SEARCH_URI, config.getString(ComputateConfigKeys.USER_SEARCH_URI));
