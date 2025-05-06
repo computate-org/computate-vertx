@@ -73,8 +73,11 @@ public class I18n {
 	public static final String str_le_projet_ = "str_le_projet_";
 	public static final String str_Modifier = "str_Modifier";
 	public static final String str_Modifier_des_ = "str_Modifier_des_";
+	public static final String str_Moins = "str_Moins";
 	public static final String str_s_s_non_trouve = "str_s_s_non_trouve";
 	public static final String str_nest_pas_une_entite_indexe = "str_nest_pas_une_entite_indexe";
+	public static final String str_Plus = "str_Plus";
+	public static final String str_Precedent = "str_Precedent";
 	public static final String str_Pret = "str_Pret";
 	public static final String str_Recharger = "str_Recharger";
 	public static final String str_recharger = "str_recharger";
@@ -86,6 +89,7 @@ public class I18n {
 	public static final String str_retourner_a_ = "str_retourner_a_";
 	public static final String str_roles_requis = "str_roles_requis";
 	public static final String str_Stats = "str_Stats";
+	public static final String str_Suivant = "str_Suivant";
 	public static final String str_Supprimer = "str_Supprimer";
 	public static final String str_Supprimer_ = "str_Supprimer_";
 	public static final String str_Télécharger_image = "str_Télécharger_image";
@@ -141,6 +145,7 @@ public class I18n {
 	public static final String var_attribuer = "var_attribuer";
 	public static final String var_Attribuer = "var_Attribuer";
 	public static final String var_AucunNomTrouve = "var_AucunNomTrouve";
+	public static final String var_Augmenter = "var_Augmenter";
 	public static final String var_AuthChacun = "var_AuthChacun";
 	public static final String var_AuthClientDefaut = "var_AuthClientDefaut";
 	public static final String var_AuthGroupe = "var_AuthGroupe";
@@ -253,6 +258,7 @@ public class I18n {
 	public static final String var_DescriptionAlternatif = "var_DescriptionAlternatif";
 	public static final String var_desindexer = "var_desindexer";
 	public static final String var_Dialogue = "var_Dialogue";
+	public static final String var_Diminuer = "var_Diminuer";
 	public static final String var_Direction = "var_Direction";
 	public static final String var_DocsAlternatif = "var_DocsAlternatif";
 	public static final String var_documentSolr = "var_documentSolr";
@@ -568,6 +574,7 @@ public class I18n {
 	public static final String var_suggere = "var_suggere";
 	public static final String var_Suggere = "var_Suggere";
 	public static final String var_suivant = "var_suivant";
+	public static final String var_Suivant = "var_Suivant";
 	public static final String var_supprimer = "var_supprimer";
 	public static final String var_Supprimer = "var_Supprimer";
 	public static final String var_supprime = "var_supprime";
