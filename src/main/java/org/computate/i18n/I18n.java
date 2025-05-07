@@ -174,6 +174,8 @@ public class I18n {
 	public static final String var_Bouton = "var_Bouton";
 	public static final String var_BoutonsPagination = "var_BoutonsPagination";
 	public static final String var_BoutonsRecherche = "var_BoutonsRecherche";
+	public static final String var_Cacher = "var_Cacher";
+	public static final String var_cacher = "var_cacher";
 	public static final String var_calendrier = "var_calendrier";
 	public static final String var_Calendrier = "var_Calendrier";
 	public static final String var_Ce = "var_Ce";
@@ -318,6 +320,7 @@ public class I18n {
 	public static final String var_graphique = "var_graphique";
 	public static final String var_Graphique = "var_Graphique";
 	public static final String var_Groupe = "var_Groupe";
+	public static final String var_GroupeBouton = "var_GroupeBouton";
 	public static final String var_HAposhAposmm = "var_HAposhAposmm";
 	public static final String var_Hauteur = "var_Hauteur";
 	public static final String var_HHColonMM = "var_HHColonMM";
@@ -497,6 +500,7 @@ public class I18n {
 	public static final String var_Recherche = "var_Recherche";
 	public static final String var_rechercher = "var_rechercher";
 	public static final String var_Rechercher = "var_Rechercher";
+	public static final String var_RechercherMax = "var_RechercherMax";
 	public static final String var_RechercherTousNomPar = "var_RechercherTousNomPar";
 	public static final String var_RechercherTousNom = "var_RechercherTousNom";
 	public static final String var_RechercheSuggere = "var_RechercheSuggere";
@@ -633,13 +637,16 @@ public class I18n {
 	public static final String var_Valeur = "var_Valeur";
 	public static final String var_valide = "var_valide";
 	public static final String var_Valider = "var_Valider";
+	public static final String var_Var = "var_Var";
 	public static final String var_VarCree = "var_VarCree";
 	public static final String var_VarDescription = "var_VarDescription";
 	public static final String var_VarId = "var_VarId";
 	public static final String var_VarModifie = "var_VarModifie";
 	public static final String var_VarNom = "var_VarNom";
+	public static final String var_VarRecherche = "var_VarRecherche";
 	public static final String var_VarTitre = "var_VarTitre";
 	public static final String var_VarUrl = "var_VarUrl";
+	public static final String var_VarValeur = "var_VarValeur";
 	public static final String var_Verticale = "var_Verticale";
 	public static final String var_VideoId = "var_VideoId";
 	public static final String var_vider = "var_vider";
