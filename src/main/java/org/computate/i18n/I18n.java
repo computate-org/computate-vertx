@@ -654,4 +654,5 @@ public class I18n {
 	public static final String var_VoirArchive = "var_VoirArchive";
 	public static final String var_VoirSupprime = "var_VoirSupprime";
 	public static final String var_voir = "var_voir";
+	public static final String var_Zone = "var_Zone";
 }
