@@ -56,7 +56,7 @@ public class ApiRequest extends ApiRequestGen<Object> {
 		c.o("PATCH-" + uuid);
 	}
 
-	protected void _pk(Wrap<Long> c) {
+	protected void _solrId(Wrap<Long> c) {
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class ApiRequest extends ApiRequestGen<Object> {
 	protected void _original(Wrap<Object> c) {
 	}
 
-	protected void _pks(List<Long> l) {
+	protected void _solrIds(List<String> l) {
 	}
 
 	protected void _ids(List<String> l) {

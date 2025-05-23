@@ -561,6 +561,9 @@ public class I18n {
 	public static final String var_SITE_ZONE = "var_SITE_ZONE";
 	public static final String var_SOLR_ID = "var_SOLR_ID";
 	public static final String var_solrId = "var_solrId";
+	public static final String var_SolrId = "var_SolrId";
+	public static final String var_solrIds = "var_solrIds";
+	public static final String var_SolrIds = "var_SolrIds";
 	public static final String var_SOLR_MOT_DE_PASSE = "var_SOLR_MOT_DE_PASSE";
 	public static final String var_SOLR_URL_COMPUTATE = "var_SOLR_URL_COMPUTATE";
 	public static final String var_SOLR_COLLECTION_COMPUTATE = "var_SOLR_COLLECTION_COMPUTATE";

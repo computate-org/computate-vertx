@@ -43,6 +43,7 @@ import org.computate.vertx.model.base.ComputateBaseModel;
 import org.computate.vertx.model.user.ComputateSiteUser;
 import org.computate.vertx.openapi.ComputateOAuth2AuthHandlerImpl;
 import org.computate.vertx.request.ComputateSiteRequest;
+import org.computate.vertx.result.base.ComputateBaseResult;
 import org.computate.vertx.search.list.SearchList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -459,7 +460,6 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 											siteRequest.setUserLastName(accessToken.getString("family_name"));
 											siteRequest.setUserEmail(accessToken.getString("email"));
 											siteRequest.setUserId(accessToken.getString("sub"));
-											apiRequest.setPk(pk);
 											siteRequest.setUserKey(pk);
 											siteRequest.setApiRequest_(apiRequest);
 											siteRequest.setUserPrincipal(userPrincipal);
@@ -577,34 +577,6 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 		return false;
 	}
 
-	public void attributeArrayFuture(String idSearchVar, String pkSearchVar, ComputateSiteRequest siteRequest, Class<?> c1, Long pk1, Class<?> c2, String pk2, List<Future<?>> futures, String entityVar, Boolean inheritPk) {
-		ApiRequest apiRequest = siteRequest.getApiRequest_();
-		List<Long> pks = apiRequest.getPks();
-
-		for(String l : Optional.ofNullable(siteRequest.getJsonObject().getJsonArray(entityVar)).orElse(new JsonArray()).stream().map(a -> (String)a).collect(Collectors.toList())) {
-			if(l != null) {
-				SearchList<ComputateBaseModel> searchList = new SearchList<ComputateBaseModel>();
-				searchList.q("*:*");
-				searchList.setStore(true);
-				searchList.setC(c1);
-				searchList.fq("classCanonicalNames_docvalues_strings:" + SearchTool.escapeQueryChars(c2.getCanonicalName()));
-				searchList.fq((inheritPk ? idSearchVar + ":" : idSearchVar + ":") + SearchTool.escapeQueryChars(l));
-				searchList.promiseDeepSearchList(siteRequest).onSuccess(s -> {
-					Long l2 = Optional.ofNullable(searchList.getList().stream().findFirst().orElse(null)).map(a -> a.getPk()).orElse(null);
-					if(l2 != null) {
-						futures.add(siteRequest.getSqlConnection().preparedQuery(String.format("UPDATE %s SET %s=$1 WHERE pk=$2", c1.getSimpleName(), entityVar)).execute(Tuple.of(pk1, l2)));
-						if(!pks.contains(l2)) {
-							pks.add(l2);
-							apiRequest.getClasses().add(c2.getSimpleName());
-						}
-					}
-				}).onFailure(ex -> {
-					LOG.error("update %s failed. ", entityVar);
-				});
-			}
-		}
-	}
-
 	///////////////
 	// SqlUpdate //
 	///////////////
@@ -616,14 +588,14 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 		private String entityVar2;
 		private Long pk1;
 		private ApiRequest apiRequest;
-		private List<Long> pks;
+		private List<String> solrIds;
 		private List<String> classes;
 		private ComputateSiteRequest siteRequest;
 
 		public SqlUpdate(ComputateSiteRequest siteRequest) {
 			this.siteRequest = siteRequest;
 			this.apiRequest = siteRequest.getApiRequest_();
-			this.pks = apiRequest.getPks();
+			this.solrIds = apiRequest.getSolrIds();
 			this.classes = apiRequest.getClasses();
 		}
 
@@ -649,13 +621,13 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 			return this;
 		}
 
-		public Future<Void> set(String entityVar1, Class<? extends ComputateBaseModel> c2, Long pk2, Object val) {
+		public Future<Void> set(String entityVar1, Class<?> c2, String solrId2, Object val) {
 			Promise<Void> promise = Promise.promise();
-			if(pk2 == null) {
+			if(solrId2 == null) {
 				promise.complete();
 			} else {
-				if(!pks.contains(pk2)) {
-					pks.add(pk2);
+				if(!solrIds.contains(solrId2)) {
+					solrIds.add(solrId2);
 					classes.add(c2.getSimpleName());
 				}
 				siteRequest.getSqlConnection().preparedQuery(String.format("UPDATE %s SET %s=$1 WHERE pk=$2", c1.getSimpleName(), entityVar1)).execute(Tuple.of(val, pk1)).onSuccess(a -> {
@@ -667,11 +639,11 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 			return promise.future();
 		}
 
-		public Future<Void> setToNull(String entityVar1, Class<? extends ComputateBaseModel> c2, Long pk2) {
+		public Future<Void> setToNull(String entityVar1, Class<?> c2, String solrId2) {
 			Promise<Void> promise = Promise.promise();
-			if(pk2 != null) {
-				if(!pks.contains(pk2)) {
-					pks.add(pk2);
+			if(solrId2 != null) {
+				if(!solrIds.contains(solrId2)) {
+					solrIds.add(solrId2);
 					classes.add(c2.getSimpleName());
 				}
 			}
@@ -683,13 +655,13 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 			return promise.future();
 		}
 
-		public Future<Void> relateValues(Long pk1, Long pk2) {
+		public Future<Void> relateValues(Long pk1, Long pk2, String solrId2) {
 			Promise<Void> promise = Promise.promise();
-			if(pk2 == null) {
+			if(solrId2 == null) {
 				promise.complete();
 			} else {
-				if(!pks.contains(pk2)) {
-					pks.add(pk2);
+				if(!solrIds.contains(solrId2)) {
+					solrIds.add(solrId2);
 					classes.add(c2.getSimpleName());
 				}
 				siteRequest.getSqlConnection().preparedQuery(String.format("INSERT INTO %s%s_%s%s(pk1, pk2) VALUES($1, $2) ON CONFLICT DO NOTHING", c1.getSimpleName(), StringUtils.capitalize(entityVar1), c2.getSimpleName(), StringUtils.capitalize(entityVar2), entityVar2)).execute(Tuple.of(pk1, pk2)).onSuccess(a -> {
@@ -701,13 +673,13 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 			return promise.future();
 		}
 
-		public Future<Void> unrelateValues(Long pk1, Long pk2) {
+		public Future<Void> unrelateValues(Long pk1, Long pk2, String solrId2) {
 			Promise<Void> promise = Promise.promise();
 			if(pk2 == null) {
 				promise.complete();
 			} else {
-				if(!pks.contains(pk2)) {
-					pks.add(pk2);
+				if(!solrIds.contains(solrId2)) {
+					solrIds.add(solrId2);
 					classes.add(c2.getSimpleName());
 				}
 				siteRequest.getSqlConnection().preparedQuery(String.format("DELETE FROM %s%s_%s%s WHERE pk1=$1 AND pk2=$2", c1.getSimpleName(), StringUtils.capitalize(entityVar1), c2.getSimpleName(), StringUtils.capitalize(entityVar2), entityVar2)).execute(Tuple.of(pk1, pk2)).onSuccess(a -> {
@@ -719,13 +691,13 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 			return promise.future();
 		}
 
-		public Future<Void> where(Long pk1, Long pk2) {
+		public Future<Void> where(Long pk1, Long pk2, String solrId2) {
 			Promise<Void> promise = Promise.promise();
 			if(pk2 == null) {
 				promise.complete();
 			} else {
-				if(!pks.contains(pk2)) {
-					pks.add(pk2);
+				if(!solrIds.contains(solrId2)) {
+					solrIds.add(solrId2);
 					classes.add(c2.getSimpleName());
 				}
 				siteRequest.getSqlConnection().preparedQuery(String.format("DELETE FROM %s%s_%s%s WHERE pk1=$1 AND pk2=$2", c1.getSimpleName(), StringUtils.capitalize(entityVar1), c2.getSimpleName(), StringUtils.capitalize(entityVar2), entityVar2)).execute(Tuple.of(pk1, pk2)).onSuccess(a -> {
@@ -753,17 +725,35 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 			this.siteRequest = siteRequest;
 		}
 
-		public Future<Long> query(String idSearchVar, String pkSearchVar, Class<? extends ComputateBaseModel> c, String pk, Boolean inheritPk) {
-			Promise<Long> promise = Promise.promise();
+		public Future<ComputateBaseResult> query(String idSearchVar, Class<? extends ComputateBaseResult> c, String id) {
+			Promise<ComputateBaseResult> promise = Promise.promise();
+			if(id != null) {
+				SearchList<ComputateBaseResult> searchList = new SearchList<ComputateBaseResult>();
+				searchList.q("*:*");
+				searchList.setStore(true);
+				searchList.setC(c);
+				searchList.fq(idSearchVar + ":" + id);
+				searchList.promiseDeepSearchList(siteRequest).onSuccess(s -> {
+					promise.complete(searchList.getList().stream().findFirst().orElse(null));
+				}).onFailure(ex -> {
+					promise.fail(ex);
+				});
+			} else {
+				promise.complete();
+			}
+			return promise.future();
+		}
+
+		public Future<ComputateBaseModel> query(String idSearchVar, Class<? extends ComputateBaseModel> c, Long pk) {
+			Promise<ComputateBaseModel> promise = Promise.promise();
 			if(pk != null) {
 				SearchList<ComputateBaseModel> searchList = new SearchList<ComputateBaseModel>();
 				searchList.q("*:*");
 				searchList.setStore(true);
 				searchList.setC(c);
-				searchList.fq((inheritPk ? idSearchVar + ":" : idSearchVar + ":") + pk);
+				searchList.fq(idSearchVar + ":" + pk);
 				searchList.promiseDeepSearchList(siteRequest).onSuccess(s -> {
-					Long l2 = Optional.ofNullable(searchList.getList().stream().findFirst().orElse(null)).map(a -> a.getPk()).orElse(null);
-					promise.complete(l2);
+					promise.complete(searchList.getList().stream().findFirst().orElse(null));
 				}).onFailure(ex -> {
 					promise.fail(ex);
 				});
