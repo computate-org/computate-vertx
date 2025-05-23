@@ -66,9 +66,10 @@ public class I18n {
 	public static final String str_Impossible_de_trouver_le_telechargement = "str_Impossible_de_trouver_le_telechargement";
 	public static final String str_Interdit_autorisations_de_recherche = "str_Interdit_autorisations_de_recherche";
 	public static final String str_Interroger_lAPI_REST_JSON_pour_ = "str_Interroger_lAPI_REST_JSON_pour_";
-	public static final String str_la_classe_ = "str_la_classe_";
 	public static final String str_l_ensemble_ = "str_l_ensemble_";
 	public static final String str_L_entité_ = "str_L_entité_";
+	public static final String str_la_variable_de_tri_nexiste_pas = "str_la_variable_de_tri_nexiste_pas";
+	public static final String str_la_classe_ = "str_la_classe_";
 	public static final String str_Liste_Champs = "str_Liste_Champs";
 	public static final String str_le_projet_ = "str_le_projet_";
 	public static final String str_Modifier = "str_Modifier";
