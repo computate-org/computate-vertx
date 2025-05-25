@@ -536,308 +536,310 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				&& !classApiMethod.contains(i18n.getString(I18n.var_PageUtilisateur))
 				) {
 
-			if(!classUris.contains(classApiUriMethod)) {
-				wPaths.tl(1, classApiUriMethod, ":");
-				classUris.add(classApiUriMethod);
-			}
-
-			wPaths.tl(2, StringUtils.lowerCase(classApiMethodMethod), ":");
-			wPaths.tl(3, "operationId: ", classApiOperationIdMethod);
-			wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-", classSimpleName);
-
-			// if it's not a GET request and it's not a session/user/all request and has class auth
-			// or it's a GET request, but it's not a session or public read page
-			if(classApiMethodSecurity) {
-				wPaths.tl(3, "security:");
-				authClients.fieldNames().forEach(authClientOpenApiId -> {
-					wPaths.tl(4, "- ", authClientOpenApiId, ":");
-					wPaths.tl(5, "- openid");
-					wPaths.tl(5, "- profile");
-				});
-			}
-
-			wPaths.t(3, "description: ").yamlStr(4, "");
-			wPaths.t(3, "summary: ").yamlStr(4, "");
-			if(StringUtils.isNotBlank(classApiTag)) {
-				wPaths.tl(3, "tags:");
-				wPaths.tl(4, "- ", classApiTag);
-			}
-
-			if(openApiVersionNumber == 2) {
-				wPaths.tl(3, "produces:");
-				wPaths.tl(4, "- ", classApiMediaType200Method);
-			}
-			if(classFiware) {
-				wRequestHeaders.tl(4, "- name: Fiware-Service");
-				wRequestHeaders.tl(5, "in: header");
-				wRequestHeaders.tl(5, "schema:");
-				wRequestHeaders.tl(6, "type: string");
-				wRequestHeaders.tl(4, "- name: Fiware-ServicePath");
-				wRequestHeaders.tl(5, "in: header");
-				wRequestHeaders.tl(5, "schema:");
-				wRequestHeaders.tl(6, "type: string");
-				wRequestHeaders.tl(4, "- name: NGSILD-Tenant");
-				wRequestHeaders.tl(5, "in: header");
-				wRequestHeaders.tl(5, "schema:");
-				wRequestHeaders.tl(6, "type: string");
-				wRequestHeaders.tl(4, "- name: NGSILD-Path");
-				wRequestHeaders.tl(5, "in: header");
-				wRequestHeaders.tl(5, "schema:");
-				wRequestHeaders.tl(6, "type: string");
-			}
-
-			wPaths.tl(3, "parameters:");
-			wPaths.tl(4, "- name: vertx-web.session");
-			wPaths.tl(5, "in: cookie");
-			wPaths.tl(5, "schema:");
-			wPaths.tl(6, "type: string");
-			wPaths.tl(4, "- name: sessionIdBefore");
-			wPaths.tl(5, "in: cookie");
-			wPaths.tl(5, "schema:");
-			wPaths.tl(6, "type: string");
-	
-			if(!wRequestHeaders.getEmpty() || "GET".equals(classApiMethodMethod) || "DELETE".equals(classApiMethodMethod) || "PUT".equals(classApiMethodMethod) || "PATCH".equals(classApiMethodMethod)) {
-				wPaths.s(wRequestHeaders);
-
-				if(id != null) {
-					wPaths.tl(4, "- name: ", id);
-					wPaths.tl(5, "in: path");
-					wPaths.t(5, "description: ").yamlStr(6, "");
-					wPaths.tl(5, "required: true");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: string");
+			if(!"null".equals(id)) {
+				if(!classUris.contains(classApiUriMethod)) {
+					wPaths.tl(1, classApiUriMethod, ":");
+					classUris.add(classApiUriMethod);
 				}
-				if(classApiMethod.contains("Search") || classApiMethod.contains("PATCH") || classApiMethod.contains("PUT") || classApiMethod.contains("DELETE")) {
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: q");
-					wPaths.tl(5, "description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: string");
-					wPaths.tl(6, "default: '*:*'");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: fq");
-					wPaths.tl(5, "description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: array");
-					wPaths.tl(6, "items:");
-					wPaths.tl(7, "type: string");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: var");
-					wPaths.tl(5, "description: 'The var parameters are additional optional variables and values to pass into the application. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: array");
-					wPaths.tl(6, "items:");
-					wPaths.tl(7, "  type: string");
-				}
-				if(classApiMethod.contains("DELETE")) {
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: commitWithin");
-					wPaths.tl(5, "description: 'The number of milliseconds to commit the record to Solr. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: integer");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: softCommit");
-					wPaths.tl(5, "description: 'Does a soft commit for the record in Solr immediately. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: boolean");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: rows");
-					wPaths.tl(5, "description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: integer");
-					if(contextRows == null)
-						wPaths.tl(6, "default: 10");
-					else
-						wPaths.tl(6, "default: ", contextRows);
-					wPaths.tl(6, "minimum: 0");
-				}
-				if(classApiMethod.contains("Search")) {
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: fl");
-					wPaths.tl(5, "description: 'The field list parameter limits the information included in a query response to a specified list of fields. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: string");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: sort");
-					wPaths.tl(5, "description: 'The sort parameter arranges search results in either ascending (asc) or descending (desc) order. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: array");
-					wPaths.tl(6, "items:");
-					wPaths.tl(7, "type: string");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: start");
-					wPaths.tl(5, "description: 'The start parameter specifies an offset into a query result set and instructs Solr to begin displaying results from this offset. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: integer");
-					wPaths.tl(6, "default: 0");
-					wPaths.tl(6, "minimum: 0");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: rows");
-					wPaths.tl(5, "description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: integer");
-					if(contextRows == null)
-						wPaths.tl(6, "default: 10");
-					else
-						wPaths.tl(6, "default: ", contextRows);
-					wPaths.tl(6, "minimum: 0");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: facet");
-					wPaths.tl(5, "description: 'The facet parameter enables facet counts in the query response. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: boolean");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: facet.range.start");
-					wPaths.tl(5, "description: 'The facet.range.start parameter specifies the lower bound of the ranges. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: array");
-					wPaths.tl(6, "items:");
-					wPaths.tl(7, "type: string");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: facet.range.end");
-					wPaths.tl(5, "description: 'The facet.range.end specifies the upper bound of the ranges. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: array");
-					wPaths.tl(6, "items:");
-					wPaths.tl(7, "type: string");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: facet.range.gap");
-					wPaths.tl(5, "description: 'The span of each range expressed as a value to be added to the lower bound. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: array");
-					wPaths.tl(6, "items:");
-					wPaths.tl(7, "type: string");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: facet.pivot");
-					wPaths.tl(5, "description: 'The facet.pivot parameter defines the fields to use for the pivot. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: array");
-					wPaths.tl(6, "items:");
-					wPaths.tl(7, "type: string");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: facet.range");
-					wPaths.tl(5, "description: 'The facet.range parameter defines the field for which Solr should create range facets. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: array");
-					wPaths.tl(6, "items:");
-					wPaths.tl(7, "type: string");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: facet.field");
-					wPaths.tl(5, "description: 'The facet.field parameter identifies a field that should be treated as a facet. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: array");
-					wPaths.tl(6, "items:");
-					wPaths.tl(7, "type: string");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: d");
-					wPaths.tl(5, "description: 'The radial distance, usually in kilometers. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: integer");
-					wPaths.tl(6, "minimum: 0");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: pt");
-					wPaths.tl(5, "description: 'he center point using the format lat,lon if latitude & longitude. Otherwise, x,y for PointType or x y for RPT field types. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: string");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: sfield");
-					wPaths.tl(5, "description: 'A spatial indexed field. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: string");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: score");
-					wPaths.tl(5, "description: '(Advanced option; not supported by LatLonType (deprecated) or PointType) If the query is used in a scoring context (e.g., as the main query in q), this local parameter determines what scores will be produced. Valid values are: none, kilometers, miles, degrees, distance, recipDistance, overlapRatio, area, area2D'");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: string");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: distanceUnits");
-					wPaths.tl(5, "description: 'This is used to specify the units for distance measurements used throughout the use of this field. This can be degrees, kilometers or miles. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: string");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: stats");
-					wPaths.tl(5, "description: 'The Stats component returns simple statistics for numeric, string, and date fields within the document set. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: boolean");
-					wPaths.tl(4, "- in: query");
-					wPaths.tl(5, "name: stats.field");
-					wPaths.tl(5, "description: 'Specifies a field for which statistics should be generated. '");
-					wPaths.tl(5, "required: false");
-					wPaths.tl(5, "schema:");
-					wPaths.tl(6, "type: array");
-					wPaths.tl(6, "items:");
-					wPaths.tl(7, "type: string");
-				}
-			}
 
-			if(openApiVersionNumber > 2) {
-				if(classApiMethodMethod == null)
-					throw new Exception("Expected a comment for " + this.toString() + " like : ApiMethod: ...");
-				if(!classApiMethodMethod.contains("GET") && !classApiMethodMethod.contains("DELETE")) {
-					wPaths.tl(3, "requestBody:");
-					String strRequestDescription = wRequestDescription.toString();
-					wPaths.t(4, "description: ").yamlStr(5, StringUtils.trim(strRequestDescription));
-					wPaths.tl(4, "required: true");
-					wPaths.tl(4, "content:");
-					wPaths.tl(5, classApiMediaTypeRequestMethod, ":");
-					wPaths.tl(6, "schema:");
-					wPaths.tl(7, "$ref: '#/components/schemas/", classApiOperationIdMethodRequest, "'");
-				}
-			}
-			else {
-				wPaths.tl(4, "- name: \"", classApiOperationIdMethodRequest, "\"");
-				wPaths.tl(5, "in: body");
+				wPaths.tl(2, StringUtils.lowerCase(classApiMethodMethod), ":");
+				wPaths.tl(3, "operationId: ", classApiOperationIdMethod);
+				wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-", classSimpleName);
 
-				String strRequestDescription = wRequestDescription.toString();
-				wPaths.t(5, "description: ").yamlStr(6, StringUtils.trim(strRequestDescription));
-				
+				// if it's not a GET request and it's not a session/user/all request and has class auth
+				// or it's a GET request, but it's not a session or public read page
+				if(classApiMethodSecurity) {
+					wPaths.tl(3, "security:");
+					authClients.fieldNames().forEach(authClientOpenApiId -> {
+						wPaths.tl(4, "- ", authClientOpenApiId, ":");
+						wPaths.tl(5, "- openid");
+						wPaths.tl(5, "- profile");
+					});
+				}
+
+				wPaths.t(3, "description: ").yamlStr(4, "");
+				wPaths.t(3, "summary: ").yamlStr(4, "");
+				if(StringUtils.isNotBlank(classApiTag)) {
+					wPaths.tl(3, "tags:");
+					wPaths.tl(4, "- ", classApiTag);
+				}
+
+				if(openApiVersionNumber == 2) {
+					wPaths.tl(3, "produces:");
+					wPaths.tl(4, "- ", classApiMediaType200Method);
+				}
+				if(classFiware) {
+					wRequestHeaders.tl(4, "- name: Fiware-Service");
+					wRequestHeaders.tl(5, "in: header");
+					wRequestHeaders.tl(5, "schema:");
+					wRequestHeaders.tl(6, "type: string");
+					wRequestHeaders.tl(4, "- name: Fiware-ServicePath");
+					wRequestHeaders.tl(5, "in: header");
+					wRequestHeaders.tl(5, "schema:");
+					wRequestHeaders.tl(6, "type: string");
+					wRequestHeaders.tl(4, "- name: NGSILD-Tenant");
+					wRequestHeaders.tl(5, "in: header");
+					wRequestHeaders.tl(5, "schema:");
+					wRequestHeaders.tl(6, "type: string");
+					wRequestHeaders.tl(4, "- name: NGSILD-Path");
+					wRequestHeaders.tl(5, "in: header");
+					wRequestHeaders.tl(5, "schema:");
+					wRequestHeaders.tl(6, "type: string");
+				}
+
+				wPaths.tl(3, "parameters:");
+				wPaths.tl(4, "- name: vertx-web.session");
+				wPaths.tl(5, "in: cookie");
 				wPaths.tl(5, "schema:");
-				wPaths.tl(6, "$ref: '#/components/requestBodies/", classApiOperationIdMethodRequest, "'");
-			}
-
-			wPaths.tl(3, "responses:");
-			wPaths.tl(4, "'200':");
-			if(openApiVersionNumber > 2) {
-				String strResponseDescription = wResponseDescription.toString();
-				wPaths.t(5, "description: ").yamlStr(6, strResponseDescription);
-				wPaths.tl(5, "content:");
-
-				if("application/pdf".equals(classApiMediaType200Method))
-					wPaths.tl(6, classApiMediaType200Method, ":");
-				else
-					wPaths.tl(6, classApiMediaType200Method, "; charset=utf-8:");
-			}
-			else {
+				wPaths.tl(6, "type: string");
+				wPaths.tl(4, "- name: sessionIdBefore");
+				wPaths.tl(5, "in: cookie");
+				wPaths.tl(5, "schema:");
+				wPaths.tl(6, "type: string");
 	
-				String strResponseDescription = wResponseDescription.toString();
-				wPaths.t(5 + tabsResponses, "description: ").yamlStr(6, strResponseDescription);
-			}
+				if(!wRequestHeaders.getEmpty() || "GET".equals(classApiMethodMethod) || "DELETE".equals(classApiMethodMethod) || "PUT".equals(classApiMethodMethod) || "PATCH".equals(classApiMethodMethod)) {
+					wPaths.s(wRequestHeaders);
 
-			wPaths.tl(5 + tabsResponses, "schema:");
-			wPaths.tl(6 + tabsResponses, "$ref: '#/components/schemas/", classApiOperationIdMethodResponse, "'");
+					if(id != null) {
+						wPaths.tl(4, "- name: ", id);
+						wPaths.tl(5, "in: path");
+						wPaths.t(5, "description: ").yamlStr(6, "");
+						wPaths.tl(5, "required: true");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: string");
+					}
+					if(classApiMethod.contains("Search") || classApiMethod.contains("PATCH") || classApiMethod.contains("PUT") || classApiMethod.contains("DELETE")) {
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: q");
+						wPaths.tl(5, "description: 'The query parameter defines a query using standard query syntax. This parameter is mandatory.'");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: string");
+						wPaths.tl(6, "default: '*:*'");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: fq");
+						wPaths.tl(5, "description: 'The filter query parameter defines a query that can be used to restrict the superset of documents that can be returned, without influencing score. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: var");
+						wPaths.tl(5, "description: 'The var parameters are additional optional variables and values to pass into the application. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "  type: string");
+					}
+					if(classApiMethod.contains("DELETE")) {
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: commitWithin");
+						wPaths.tl(5, "description: 'The number of milliseconds to commit the record to Solr. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: integer");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: softCommit");
+						wPaths.tl(5, "description: 'Does a soft commit for the record in Solr immediately. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: boolean");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: rows");
+						wPaths.tl(5, "description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: integer");
+						if(contextRows == null)
+							wPaths.tl(6, "default: 10");
+						else
+							wPaths.tl(6, "default: ", contextRows);
+						wPaths.tl(6, "minimum: 0");
+					}
+					if(classApiMethod.contains("Search")) {
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: fl");
+						wPaths.tl(5, "description: 'The field list parameter limits the information included in a query response to a specified list of fields. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: sort");
+						wPaths.tl(5, "description: 'The sort parameter arranges search results in either ascending (asc) or descending (desc) order. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: start");
+						wPaths.tl(5, "description: 'The start parameter specifies an offset into a query result set and instructs Solr to begin displaying results from this offset. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: integer");
+						wPaths.tl(6, "default: 0");
+						wPaths.tl(6, "minimum: 0");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: rows");
+						wPaths.tl(5, "description: 'The rows parameter specifies the maximum number of documents from the complete result set that Solr should return to the client at one time. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: integer");
+						if(contextRows == null)
+							wPaths.tl(6, "default: 10");
+						else
+							wPaths.tl(6, "default: ", contextRows);
+						wPaths.tl(6, "minimum: 0");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: facet");
+						wPaths.tl(5, "description: 'The facet parameter enables facet counts in the query response. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: boolean");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: facet.range.start");
+						wPaths.tl(5, "description: 'The facet.range.start parameter specifies the lower bound of the ranges. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: facet.range.end");
+						wPaths.tl(5, "description: 'The facet.range.end specifies the upper bound of the ranges. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: facet.range.gap");
+						wPaths.tl(5, "description: 'The span of each range expressed as a value to be added to the lower bound. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: facet.pivot");
+						wPaths.tl(5, "description: 'The facet.pivot parameter defines the fields to use for the pivot. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: facet.range");
+						wPaths.tl(5, "description: 'The facet.range parameter defines the field for which Solr should create range facets. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: facet.field");
+						wPaths.tl(5, "description: 'The facet.field parameter identifies a field that should be treated as a facet. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: d");
+						wPaths.tl(5, "description: 'The radial distance, usually in kilometers. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: integer");
+						wPaths.tl(6, "minimum: 0");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: pt");
+						wPaths.tl(5, "description: 'he center point using the format lat,lon if latitude & longitude. Otherwise, x,y for PointType or x y for RPT field types. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: sfield");
+						wPaths.tl(5, "description: 'A spatial indexed field. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: score");
+						wPaths.tl(5, "description: '(Advanced option; not supported by LatLonType (deprecated) or PointType) If the query is used in a scoring context (e.g., as the main query in q), this local parameter determines what scores will be produced. Valid values are: none, kilometers, miles, degrees, distance, recipDistance, overlapRatio, area, area2D'");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: distanceUnits");
+						wPaths.tl(5, "description: 'This is used to specify the units for distance measurements used throughout the use of this field. This can be degrees, kilometers or miles. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: stats");
+						wPaths.tl(5, "description: 'The Stats component returns simple statistics for numeric, string, and date fields within the document set. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: boolean");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: stats.field");
+						wPaths.tl(5, "description: 'Specifies a field for which statistics should be generated. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "type: string");
+					}
+				}
+
+				if(openApiVersionNumber > 2) {
+					if(classApiMethodMethod == null)
+						throw new Exception("Expected a comment for " + this.toString() + " like : ApiMethod: ...");
+					if(!classApiMethodMethod.contains("GET") && !classApiMethodMethod.contains("DELETE")) {
+						wPaths.tl(3, "requestBody:");
+						String strRequestDescription = wRequestDescription.toString();
+						wPaths.t(4, "description: ").yamlStr(5, StringUtils.trim(strRequestDescription));
+						wPaths.tl(4, "required: true");
+						wPaths.tl(4, "content:");
+						wPaths.tl(5, classApiMediaTypeRequestMethod, ":");
+						wPaths.tl(6, "schema:");
+						wPaths.tl(7, "$ref: '#/components/schemas/", classApiOperationIdMethodRequest, "'");
+					}
+				}
+				else {
+					wPaths.tl(4, "- name: \"", classApiOperationIdMethodRequest, "\"");
+					wPaths.tl(5, "in: body");
+
+					String strRequestDescription = wRequestDescription.toString();
+					wPaths.t(5, "description: ").yamlStr(6, StringUtils.trim(strRequestDescription));
+					
+					wPaths.tl(5, "schema:");
+					wPaths.tl(6, "$ref: '#/components/requestBodies/", classApiOperationIdMethodRequest, "'");
+				}
+
+				wPaths.tl(3, "responses:");
+				wPaths.tl(4, "'200':");
+				if(openApiVersionNumber > 2) {
+					String strResponseDescription = wResponseDescription.toString();
+					wPaths.t(5, "description: ").yamlStr(6, strResponseDescription);
+					wPaths.tl(5, "content:");
+
+					if("application/pdf".equals(classApiMediaType200Method))
+						wPaths.tl(6, classApiMediaType200Method, ":");
+					else
+						wPaths.tl(6, classApiMediaType200Method, "; charset=utf-8:");
+				}
+				else {
+	
+					String strResponseDescription = wResponseDescription.toString();
+					wPaths.t(5 + tabsResponses, "description: ").yamlStr(6, strResponseDescription);
+				}
+
+				wPaths.tl(5 + tabsResponses, "schema:");
+				wPaths.tl(6 + tabsResponses, "$ref: '#/components/schemas/", classApiOperationIdMethodResponse, "'");
+			}
 			if(openApiVersionNumber > 2) {
 				if(!"GET".equals(classApiMethodMethod) && !"DELETE".equals(classApiMethodMethod)) {
 					wRequestBodies.tl(2, classApiOperationIdMethodRequest, ":");
