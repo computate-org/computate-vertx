@@ -14,27 +14,35 @@
  */
 package org.computate.vertx.config;
 
+import static org.apache.commons.lang3.Validate.isTrue;
+
 import java.io.File;
-import java.nio.charset.Charset;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
-import java.text.NumberFormat;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.util.TimeZone;
 
-import static org.apache.commons.lang3.Validate.isTrue;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.computate.search.serialize.ComputateLocalDateSerializer;
+import org.computate.search.serialize.ComputateLocalTimeSerializer;
+import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
@@ -54,33 +62,6 @@ import io.kubernetes.client.openapi.models.V1Ingress;
 import io.kubernetes.client.openapi.models.V1Secret;
 import io.kubernetes.client.util.ClientBuilder;
 import io.kubernetes.client.util.Config;
-import io.vertx.core.json.JsonArray;
-import io.vertx.core.json.JsonObject;
-
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.net.URLEncoder;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.TimeZone;
-
-import org.computate.search.serialize.ComputateLocalDateSerializer;
-import org.computate.search.serialize.ComputateLocalTimeSerializer;
-import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
-
-import org.apache.commons.text.StringEscapeUtils;
-
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
@@ -595,6 +576,11 @@ public class ComputateConfigKeys {
 	 * The port of the site. 
 	 **/
 	public static final String SITE_PORT = "SITE_PORT";
+
+	/**
+	 * The number of computate code generation instances of the Vertx verticle to deploy. 
+	 **/
+	public static final String COMPUTATE_INSTANCES = "COMPUTATE_INSTANCES";
 
 	/**
 	 * The number of instances of the Vertx verticle to deploy. 
