@@ -99,6 +99,7 @@ public class I18n {
 	public static final String str_trier_par___decroissante = "str_trier_par___decroissante";
 	public static final String str_Trouver_la_classe_ = "str_Trouver_la_classe_";
 	public static final String str_Trouver_l_entité_ = "str_Trouver_l_entité_";
+	public static final String str_UneProblemeExecutionRegarderRepertoire = "str_UneProblemeExecutionRegarderRepertoire";
 	public static final String str_ValiderLaSignature = "str_ValiderLaSignature";
 	public static final String str_voir_valeurs = "str_voir_valeurs";
 	public static final String str_Vous_pouvez_remplacer_les_valeurs_par_defaut_ci_dessous = "str_Vous_pouvez_remplacer_les_valeurs_par_defaut_ci_dessous";
