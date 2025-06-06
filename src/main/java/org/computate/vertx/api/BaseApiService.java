@@ -725,7 +725,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 			this.siteRequest = siteRequest;
 		}
 
-		public Future<ComputateBaseResult> query(String idSearchVar, Class<? extends ComputateBaseResult> c, String id) {
+		public Future<ComputateBaseResult> query(String idSearchVar, Class<?> c, String id) {
 			Promise<ComputateBaseResult> promise = Promise.promise();
 			if(id != null) {
 				SearchList<ComputateBaseResult> searchList = new SearchList<ComputateBaseResult>();
@@ -733,25 +733,6 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				searchList.setStore(true);
 				searchList.setC(c);
 				searchList.fq(idSearchVar + ":" + id);
-				searchList.promiseDeepSearchList(siteRequest).onSuccess(s -> {
-					promise.complete(searchList.getList().stream().findFirst().orElse(null));
-				}).onFailure(ex -> {
-					promise.fail(ex);
-				});
-			} else {
-				promise.complete();
-			}
-			return promise.future();
-		}
-
-		public Future<ComputateBaseModel> query(String idSearchVar, Class<? extends ComputateBaseModel> c, Long pk) {
-			Promise<ComputateBaseModel> promise = Promise.promise();
-			if(pk != null) {
-				SearchList<ComputateBaseModel> searchList = new SearchList<ComputateBaseModel>();
-				searchList.q("*:*");
-				searchList.setStore(true);
-				searchList.setC(c);
-				searchList.fq(idSearchVar + ":" + pk);
 				searchList.promiseDeepSearchList(siteRequest).onSuccess(s -> {
 					promise.complete(searchList.getList().stream().findFirst().orElse(null));
 				}).onFailure(ex -> {
