@@ -452,6 +452,8 @@ public class ComputateConfigKeys {
 		ctx.put(AUTH_SCOPE_SUPER_ADMIN, config.getString(AUTH_SCOPE_SUPER_ADMIN));
 		ctx.put(PUBLIC_SEARCH_URI, config.getString(PUBLIC_SEARCH_URI));
 		ctx.put(USER_SEARCH_URI, config.getString(USER_SEARCH_URI));
+		ctx.put(MAILING_LIST_URL, config.getString(MAILING_LIST_URL));
+		ctx.put(MAILING_LIST_EMAIL, config.getString(MAILING_LIST_EMAIL));
 		return ctx;
 	}
 
@@ -474,6 +476,11 @@ public class ComputateConfigKeys {
 	 * 
 	 **/
 	public static final String MAILING_LIST_URL = "MAILING_LIST_URL";
+
+	/**
+	 * 
+	 **/
+	public static final String MAILING_LIST_EMAIL = "MAILING_LIST_EMAIL";
 
 	/**
 	 * Run the OpenAPI3 Generator when this environment variable is set to true. 
