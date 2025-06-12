@@ -454,6 +454,7 @@ public class ComputateConfigKeys {
 		ctx.put(USER_SEARCH_URI, config.getString(USER_SEARCH_URI));
 		ctx.put(MAILING_LIST_URL, config.getString(MAILING_LIST_URL));
 		ctx.put(MAILING_LIST_EMAIL, config.getString(MAILING_LIST_EMAIL));
+		ctx.put(SITE_REPO_HTTPS, config.getString(SITE_REPO_HTTPS));
 		return ctx;
 	}
 
@@ -481,6 +482,11 @@ public class ComputateConfigKeys {
 	 * 
 	 **/
 	public static final String MAILING_LIST_EMAIL = "MAILING_LIST_EMAIL";
+
+	/**
+	 * 
+	 **/
+	public static final String SITE_REPO_HTTPS = "SITE_REPO_HTTPS";
 
 	/**
 	 * Run the OpenAPI3 Generator when this environment variable is set to true. 
