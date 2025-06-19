@@ -159,7 +159,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 						fiwareContext.put("ngsi-ld", "https://uri.etsi.org/ngsi-ld/");
 						fiwareContext.put("fiware", "https://uri.fiware.org/ns/data-models#");
 						fiwareContext.put("schema", "https://schema.org/");
-						fiwareContext.put(siteName, config.getString(ComputateConfigKeys.STATIC_BASE_URL) + "/fiware/");
+						fiwareContext.put(siteName, config.getString(ComputateConfigKeys.NGSILD_BASE_URL) + "/");
 
 						loadSmartDataModel(queryResponse.getResponse().getDocs(), 0).onSuccess(d -> {
 							promise.complete();
@@ -197,11 +197,11 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 //			wFiwareSwagger.tl(3, "\"$ref\": \"", config.getString(ComputateConfigKeys.SITE_PUBLIC_URL), "/static/fiware/", classDoc.getClassSimpleName(), "/model.yaml#/", classDoc.getClassSimpleName());
 //			wFiwareSwagger.tl(3, "\"$ref\": \"", config.getString(ComputateConfigKeys.SITE_BASE_URL), "/static/fiware/", classDoc.getClassSimpleName(), "/model.yaml#/", classDoc.getClassSimpleName());
 //			wFiwareSwagger.tl(3, "\"$ref\": \"", "https://computate.neocities.org/smart-village-view", "/fiware/", classDoc.getClassSimpleName(), "/model.yaml#/", classDoc.getClassSimpleName());
-			wFiwareSwagger.tl(3, "\"$ref\": \"", config.getString(ComputateConfigKeys.STATIC_BASE_URL), "/fiware/", classDoc.getClassSimpleName(), "/model.yaml#/", classDoc.getClassSimpleName());
+			wFiwareSwagger.tl(3, "\"$ref\": \"", config.getString(ComputateConfigKeys.NGSILD_BASE_URL), "/", classDoc.getClassSimpleName(), "/model.yaml#/", classDoc.getClassSimpleName());
 
-			wFiwareExamples.tl(10, "- \"$ref\": \"", config.getString(ComputateConfigKeys.STATIC_BASE_URL), "/fiware/", classDoc.getClassSimpleName(), "/examples/example.json\"");
+			wFiwareExamples.tl(10, "- \"$ref\": \"", config.getString(ComputateConfigKeys.NGSILD_BASE_URL), "/", classDoc.getClassSimpleName(), "/examples/example.json\"");
 
-			wFiwareExamplesNormalized.tl(10, "- $ref: \"", config.getString(ComputateConfigKeys.STATIC_BASE_URL), "/fiware/", classDoc.getClassSimpleName(), "/examples/example-normalized.json\"");
+			wFiwareExamplesNormalized.tl(10, "- $ref: \"", config.getString(ComputateConfigKeys.NGSILD_BASE_URL), "/", classDoc.getClassSimpleName(), "/examples/example-normalized.json\"");
 
 			String modelPath = appStaticPath + "/fiware/" + classDoc.getClassSimpleName() + "/model.yaml";
 			File modelFile = new File(modelPath);
@@ -238,7 +238,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 			schema.put("$schema", "http://json-schema.org/schema#");
 			schema.put("$schemaVersion", "0.0.1");
 			schema.put("modelTags", "");
-			schema.put("$id", config.getString(ComputateConfigKeys.STATIC_BASE_URL) + "/fiware/" + classDoc.getClassSimpleName() + "/schema.json");
+			schema.put("$id", config.getString(ComputateConfigKeys.NGSILD_BASE_URL) + "/" + classDoc.getClassSimpleName() + "/schema.json");
 			schema.put("title", classDoc.getClassSimpleName());
 			schema.put("description", classDoc.getClassDescription());
 			schema.put("type", "object");
@@ -262,11 +262,11 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 			wDoc.l(config.getString(ComputateConfigKeys.API_VERSION));
 			wDoc.l();
 			wDoc.l("## Original Schema");
-			wDoc.l(config.getString(ComputateConfigKeys.STATIC_BASE_URL) + "/fiware/" + classDoc.getClassSimpleName() + "/schema.json");
+			wDoc.l(config.getString(ComputateConfigKeys.NGSILD_BASE_URL) + "/" + classDoc.getClassSimpleName() + "/schema.json");
 			wDoc.l();
 			wDoc.l("## Attributes of the entity");
 			wDoc.l();
-//			fiwareContext.put(classDoc.getClassSimpleName(), config.getString(ComputateConfigKeys.STATIC_BASE_URL) + "/fiware/" + classDoc.getClassSimpleName() + "/");
+//			fiwareContext.put(classDoc.getClassSimpleName(), config.getString(ComputateConfigKeys.NGSILD_BASE_URL) + "/" + classDoc.getClassSimpleName() + "/");
 			String siteName = siteRequest_.getConfig().getString(ComputateConfigKeys.SITE_NAME);
 			fiwareContext.put(classDoc.getClassSimpleName(), String.format("%s:%s", siteName, classDoc.getClassSimpleName()));
 
@@ -435,9 +435,9 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 								}
 							}
 
-							fiwareContext.put(entityVar, Optional.ofNullable(entityFiwareContext).orElse(config.getString(ComputateConfigKeys.STATIC_BASE_URL) + "/fiware/" + classDoc.getClassSimpleName() + "/attributes/" + entityVar + ".md"));
+							fiwareContext.put(entityVar, Optional.ofNullable(entityFiwareContext).orElse(config.getString(ComputateConfigKeys.NGSILD_BASE_URL) + "/" + classDoc.getClassSimpleName() + "/attributes/" + entityVar + ".md"));
 
-							wDoc.l("- [", entityVar, "](", config.getString(ComputateConfigKeys.STATIC_BASE_URL), "/fiware/", classDoc.getClassSimpleName(), "/attributes/", entityVar, ".md)");
+							wDoc.l("- [", entityVar, "](", config.getString(ComputateConfigKeys.NGSILD_BASE_URL), "/", classDoc.getClassSimpleName(), "/attributes/", entityVar, ".md)");
 
 							String docPath = appStaticPath + "/fiware/" + classDoc.getClassSimpleName() + "/attributes/" + entityVar + ".md";
 							File docFile = new File(docPath);
@@ -453,7 +453,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 							wEntityDoc.l(config.getString(ComputateConfigKeys.API_VERSION));
 							wEntityDoc.l();
 							wEntityDoc.l("## Original Schema");
-							wEntityDoc.l(config.getString(ComputateConfigKeys.STATIC_BASE_URL) + "/fiware/" + classDoc.getClassSimpleName() + "/schema.json");
+							wEntityDoc.l(config.getString(ComputateConfigKeys.NGSILD_BASE_URL) + "/" + classDoc.getClassSimpleName() + "/schema.json");
 							wEntityDoc.flushClose();
 						}
 					}
@@ -461,8 +461,8 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 					wExample.l(example.encodePrettily());
 					wExampleNormalized.l(exampleNormalized.encodePrettily());
 
-					example.put("@context", new JsonArray().add(config.getString(ComputateConfigKeys.STATIC_BASE_URL) + "/fiware/" + classDoc.getClassSimpleName() + "/context.jsonld"));
-					exampleNormalized.put("@context", new JsonArray().add(config.getString(ComputateConfigKeys.STATIC_BASE_URL) + "/fiware/" + classDoc.getClassSimpleName() + "/context.jsonld"));
+					example.put("@context", new JsonArray().add(config.getString(ComputateConfigKeys.NGSILD_BASE_URL) + "/" + classDoc.getClassSimpleName() + "/context.jsonld"));
+					exampleNormalized.put("@context", new JsonArray().add(config.getString(ComputateConfigKeys.NGSILD_BASE_URL) + "/" + classDoc.getClassSimpleName() + "/context.jsonld"));
 					wExampleLd.l(example.encodePrettily());
 					wExampleNormalizedLd.l(exampleNormalized.encodePrettily());
 

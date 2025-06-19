@@ -1392,6 +1392,7 @@ public class ComputateConfigKeys {
 	public static final String NGSILD_PATH_ENV = "NGSILD_PATH_ENV";
 	public static final String NGSILD_TENANT = "NGSILD_TENANT";
 	public static final String NGSILD_PATH = "NGSILD_PATH";
+	public static final String NGSILD_BASE_URL = "NGSILD_BASE_URL";
 
 	public static final String USE_CASE_SRC = "USE_CASE_SRC";
 	public static final String USE_CASE_SUMMARY_NUM = "USE_CASE_SUMMARY_NUM";
