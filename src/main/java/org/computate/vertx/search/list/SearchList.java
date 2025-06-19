@@ -441,9 +441,10 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 	protected void _searchUrl(Wrap<String> w) {
 		String solrHostName = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_HOST_NAME);
 		Integer solrPort = Integer.parseInt(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_PORT));
+		Boolean solrSsl = Boolean.parseBoolean(siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_SSL));
 		String solrCollection = siteRequest_.getConfig().getString(ComputateConfigKeys.SOLR_COLLECTION);
 		String solrRequestUri = String.format("/solr/%s/select%s", solrCollection, request.getQueryString());
-		w.o(String.format("http://%s:%s%s", solrHostName, solrPort, solrRequestUri));
+		w.o(String.format("%s://%s:%s%s", solrSsl ? "https" : "http", solrHostName, solrPort, solrRequestUri));
 	}
 
 	protected void _defaultSort(Wrap<Boolean> w) {
