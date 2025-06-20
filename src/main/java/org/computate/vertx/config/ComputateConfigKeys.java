@@ -1408,6 +1408,8 @@ public class ComputateConfigKeys {
 	public static final String PUBLIC_SEARCH_URI = "PUBLIC_SEARCH_URI";
 	/** The user search endpoint for searching public and authorized items in the site. **/
 	public static final String USER_SEARCH_URI = "USER_SEARCH_URI";
+	public static final String YOUTUBE_URL = "YOUTUBE_URL";
+	public static final String LINKEDIN_URL = "LINKEDIN_URL";
 }
 
 /**
