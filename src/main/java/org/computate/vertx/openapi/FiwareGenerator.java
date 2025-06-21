@@ -435,7 +435,7 @@ public class FiwareGenerator extends FiwareGeneratorGen<ProjectGenerator> {
 								}
 							}
 
-							fiwareContext.put(entityVar, Optional.ofNullable(entityFiwareContext).orElse(config.getString(ComputateConfigKeys.NGSILD_BASE_URL) + "/" + classDoc.getClassSimpleName() + "/attributes/" + entityVar + ".md"));
+							fiwareContext.put(entityVar, Optional.ofNullable(entityFiwareContext).orElse("https://github.com/" + config.getString(ComputateConfigKeys.GITHUB_ORG) + "/" + config.getString(ComputateConfigKeys.SITE_NAME) + "/" + classDoc.getClassSimpleName() + "/attributes/" + entityVar + ".md"));
 
 							wDoc.l("- [", entityVar, "](", config.getString(ComputateConfigKeys.NGSILD_BASE_URL), "/", classDoc.getClassSimpleName(), "/attributes/", entityVar, ".md)");
 

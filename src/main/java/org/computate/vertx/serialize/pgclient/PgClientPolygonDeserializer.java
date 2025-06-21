@@ -14,6 +14,8 @@
 package org.computate.vertx.serialize.pgclient;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 import org.apache.commons.lang3.StringUtils;
@@ -33,13 +35,13 @@ import io.vertx.pgclient.data.Polygon;
 /**
  * Keyword: classSimpleNamePolygonDeserializer
  */
-public class PgClientPolygonDeserializer extends JsonDeserializer<Polygon> {
+public class PgClientPolygonDeserializer extends JsonDeserializer<List<Polygon>> {
 
 	@Override
-	public Polygon deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
+	public List<Polygon> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
 			throws IOException {
 		String text = jsonParser.getText();
-		Polygon polygon = new Polygon();
+		List<Polygon> list = new ArrayList<>();
 
 		if(StringUtils.equals(text, "{")) {
 			StringBuilder b = new StringBuilder();
@@ -92,6 +94,7 @@ public class PgClientPolygonDeserializer extends JsonDeserializer<Polygon> {
 		if(StringUtils.startsWith(text, "[")) {
 			String[] pathVals;
 
+			Polygon polygon = new Polygon();
 			text = text.replaceAll("\\s", "");
 			pathVals = StringUtils.substringBeforeLast(StringUtils.substringAfter(text, "[("), ")]").split("\\),\\(");
 			for(String pointStr : pathVals) {
@@ -99,26 +102,31 @@ public class PgClientPolygonDeserializer extends JsonDeserializer<Polygon> {
 				if(pointVals.length == 2 && NumberUtils.isParsable(pointVals[0]) && NumberUtils.isParsable(pointVals[1]))
 					polygon.addPoint(new Point(Double.parseDouble(pointVals[0]), Double.parseDouble(pointVals[1])));
 			}
+			list.add(polygon);
 		} else {
 			JsonObject json = new JsonObject(text);
 
 			if(json.getJsonArray("coordinates").stream().findFirst().map(a -> (JsonArray)a).orElse(new JsonArray()).stream().findFirst().map(a -> (a instanceof JsonArray)).orElse(false)) {
 				for(Object shapesObject : json.getJsonArray("coordinates")) {
+					Polygon polygon = new Polygon();
 					JsonArray shapes = (JsonArray)shapesObject;
 					for(Object pointObject : shapes) {
 						JsonArray points = (JsonArray)pointObject;
 						if(points.size() == 2)
 							polygon.addPoint(new Point(Double.parseDouble(points.getString(0)), Double.parseDouble(points.getString(1))));
 					}
+					list.add(polygon);
 				}
 			} else {
 				for(Object pointObject : json.getJsonArray("coordinates")) {
 					JsonArray points = (JsonArray)pointObject;
+					Polygon polygon = new Polygon();
 					if(points.size() == 2)
 						polygon.addPoint(new Point(Double.parseDouble(points.getString(0)), Double.parseDouble(points.getString(1))));
+					list.add(polygon);
 				}
 			}
 		}
-		return polygon;
+		return list;
 	}
 }

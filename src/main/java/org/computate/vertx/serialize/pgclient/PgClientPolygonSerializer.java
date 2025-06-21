@@ -14,6 +14,7 @@
 package org.computate.vertx.serialize.pgclient;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -27,12 +28,19 @@ import io.vertx.pgclient.data.Polygon;
 /**
  * Keyword: classSimpleNamePolygonSerializer
  */
-public class PgClientPolygonSerializer extends JsonSerializer<Polygon> {
+public class PgClientPolygonSerializer extends JsonSerializer<List<Polygon>> {
 
 	@Override()
-	public void serialize(Polygon o, JsonGenerator generator, SerializerProvider provider) throws IOException, IOException {
-		JsonArray pointsArray = new JsonArray();
-		o.getPoints().stream().map(point -> new JsonArray().add(Double.valueOf(point.getX())).add(Double.valueOf(point.getY()))).collect(Collectors.toList()).forEach(pointArray -> pointsArray.add(pointArray));
-		generator.writeObject(new JsonObject().put("type", "Polygon").put("coordinates", new JsonArray().add(pointsArray)));
+	public void serialize(List<Polygon> l, JsonGenerator generator, SerializerProvider provider) throws IOException, IOException {
+		JsonArray coordinates = new JsonArray();
+		JsonObject json = new JsonObject().put("type", "Polygon").put("coordinates", coordinates);
+		for(Polygon o : l) {
+			JsonArray coordinates2 = new JsonArray();
+			coordinates.add(coordinates2);
+			o.getPoints().forEach(point -> {
+				coordinates2.add(new JsonArray().add(point.getX()).add(point.getY()));
+			});
+		}
+		generator.writeObject(json);
 	}
 }
