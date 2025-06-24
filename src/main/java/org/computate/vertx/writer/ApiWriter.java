@@ -23,6 +23,7 @@ import org.computate.i18n.I18n;
 import org.computate.search.computate.enus.ComputateEnUSClass;
 import org.computate.search.response.solr.SolrResponse;
 import org.computate.search.wrap.Wrap;
+import org.computate.vertx.config.ComputateConfigKeys;
 import org.computate.vertx.request.ComputateSiteRequest;
 
 import io.vertx.core.json.JsonObject;
@@ -593,6 +594,18 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: string");
 				wPaths.tl(4, "- name: sessionIdBefore");
+				wPaths.tl(5, "in: cookie");
+				wPaths.tl(5, "schema:");
+				wPaths.tl(6, "type: string");
+				wPaths.tl(4, "- name: ", ComputateConfigKeys.SITE_FONT_SIZE);
+				wPaths.tl(5, "in: cookie");
+				wPaths.tl(5, "schema:");
+				wPaths.tl(6, "type: string");
+				wPaths.tl(4, "- name: ", ComputateConfigKeys.SITE_THEME);
+				wPaths.tl(5, "in: cookie");
+				wPaths.tl(5, "schema:");
+				wPaths.tl(6, "type: string");
+				wPaths.tl(4, "- name: ", ComputateConfigKeys.WEB_COMPONENTS_THEME);
 				wPaths.tl(5, "in: cookie");
 				wPaths.tl(5, "schema:");
 				wPaths.tl(6, "type: string");

@@ -1319,6 +1319,16 @@ public class ComputateConfigKeys {
 	/**
 	 * 
 	 **/
+	public static final String WEB_COMPONENTS_THEME = "WEB_COMPONENTS_THEME";
+
+	/**
+	 * 
+	 **/
+	public static final String SITE_FONT_SIZE = "SITE_FONT_SIZE";
+
+	/**
+	 * 
+	 **/
 	public static final String DYNAMIC_PAGE_PATHS = "DYNAMIC_PAGE_PATHS";
 
 	/**
