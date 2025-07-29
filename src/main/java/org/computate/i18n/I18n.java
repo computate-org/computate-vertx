@@ -158,6 +158,7 @@ public class I18n {
 	public static final String var_AuthPortees = "var_AuthPortees";
 	public static final String var_authPourLire = "var_authPourLire";
 	public static final String var_authPourEcrire = "var_authPourEcrire";
+	public static final String var_AuthRessource = "var_AuthRessource";
 	public static final String var_authRoleAdmin = "var_authRoleAdmin";
 	public static final String var_authRoleSuperAdmin = "var_authRoleSuperAdmin";
 	public static final String var_AuthSession = "var_AuthSession";
@@ -195,6 +196,7 @@ public class I18n {
 	public static final String var_classe = "var_classe";
 	public static final String var_Classe = "var_Classe";
 	public static final String var_CLASSE_API_ADDRESSE = "var_CLASSE_API_ADDRESSE";
+	public static final String var_CLASSE_AUTH_RESSOURCE = "var_CLASSE_AUTH_RESSOURCE";
 	public static final String var_ClasseApiAddresse = "var_ClasseApiAddresse";
 	public static final String var_classeNomAdjectifSingulier = "var_classeNomAdjectifSingulier";
 	public static final String var_classeNomCanonique = "var_classeNomCanonique";

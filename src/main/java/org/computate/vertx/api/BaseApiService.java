@@ -909,7 +909,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	 * Val.Skip.enUS:Skip importing %s data. 
 	 * Val.Fail.enUS:Scheduling the import of %s data failed. 
 	 */
-	public Future<Void> importTimer(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classCanonicalName, String classSimpleName, String classApiAddress, String varPageId, String varUserUrl, String varDownload) {
+	public Future<Void> importTimer(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classCanonicalName, String classSimpleName, String classApiAddress, String classAuthResource, String varPageId, String varUserUrl, String varDownload) {
 		Promise<Void> promise = Promise.promise();
 		if(Boolean.parseBoolean(config.getString(String.format("%s_%s", ComputateConfigKeys.ENABLE_IMPORT_DATA, classSimpleName), "true"))) {
 			// Load the import start time and period configuration. 
@@ -947,7 +947,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				try {
 					vertx.setTimer(1, a -> {
 						workerExecutor.executeBlocking(() -> {
-							return importBlocking(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, null, varPageId, varUserUrl, varDownload);
+							return importBlocking(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, null, varPageId, varUserUrl, varDownload);
 						});
 					});
 					promise.complete();
@@ -959,7 +959,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				try {
 					vertx.setTimer(nextStartDuration.toMillis(), a -> {
 						workerExecutor.executeBlocking(() -> {
-							return importBlocking(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, nextStartTime2, varPageId, varUserUrl, varDownload);
+							return importBlocking(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, nextStartTime2, varPageId, varUserUrl, varDownload);
 						});
 					});
 					promise.complete();
@@ -979,9 +979,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	 * Val.Complete.enUS:Configuring the import of %s data completed. 
 	 * Val.Fail.enUS:Configuring the import of %s data failed. 
 	 **/
-	public Future<Object> importBlocking(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classCanonicalName, String classSimpleName, String classApiAddress, ZonedDateTime startDateTime, String varPageId, String varUserUrl, String varDownload) {
+	public Future<Object> importBlocking(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classCanonicalName, String classSimpleName, String classApiAddress, String classAuthResource, ZonedDateTime startDateTime, String varPageId, String varUserUrl, String varDownload) {
 		Promise<Object> promise = Promise.promise();
-		importData(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, varPageId, varUserUrl, varDownload).onComplete(a -> {
+		importData(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, varPageId, varUserUrl, varDownload).onComplete(a -> {
 			String importPeriod = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_PERIOD, classSimpleName));
 			if(importPeriod != null && startDateTime != null) {
 				Duration duration = TimeTool.parseNextDuration(importPeriod);
@@ -990,7 +990,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				Duration nextStartDuration = Duration.between(Instant.now(), nextStartTime);
 				vertx.setTimer(nextStartDuration.toMillis(), b -> {
 					workerExecutor.executeBlocking(() -> {
-						return importBlocking(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, nextStartTime, varPageId, varUserUrl, varDownload);
+						return importBlocking(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, nextStartTime, varPageId, varUserUrl, varDownload);
 					});
 				});
 				promise.complete();
@@ -1127,83 +1127,83 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 		return promise.future();
 	}
 
+	// /**
+	//  * Creates Keycloak group and authorization resource, policy, and permission for the group to class data in the site. 
+	//  */
+	// public Future<Void> authorizeClientData(String authToken, String classSimpleName, String clientId, String[] scopes) {
+	// 	Promise<Void> promise = Promise.promise();
+	// 	try {
+	// 		if(clientId != null && scopes != null) {
+	// 			String authScopeAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN);
+	// 			String authScopeSuperAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN);
+	// 			Integer authPort = Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT));
+	// 			String authHostName = config.getString(ComputateConfigKeys.AUTH_HOST_NAME);
+	// 			Boolean authSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.AUTH_SSL));
+	// 			String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
+	// 			String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
+
+	// 			String policyId = String.format("%s-client-%s", authRealm, clientId);
+	// 			String policyName = String.format("%s-client-%s", authRealm, clientId);
+	// 			String permissionName = String.format("%s-client-%s-%s", authRealm, clientId, classSimpleName);
+	// 			JsonArray authScopesJson = new JsonArray();
+	// 			for(String scope : scopes) {
+	// 				authScopesJson.add(String.format("%s-%s", authRealm, scope));
+	// 			}
+	// 			webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/policy/client", authRealm, authClient)).ssl(authSsl)
+	// 					.putHeader("Authorization", String.format("Bearer %s", authToken))
+	// 					.sendJson(new JsonObject().put("id", policyId).put("name", policyName).put("description", String.format("%s client", clientId)).put("clients", new JsonArray().add(clientId)))
+	// 					.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+	// 					.onSuccess(createPolicyResponse -> {
+	// 				webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/resource", authRealm, authClient)).ssl(authSsl)
+	// 						.putHeader("Authorization", String.format("Bearer %s", authToken))
+	// 						.sendJson(new JsonObject()
+	// 								.put("name", classSimpleName)
+	// 								.put("displayName", classSimpleName)
+	// 								.put("scopes", new JsonArray().add("POST").add("PATCH").add("GET").add("DELETE").add(authScopeAdmin).add(authScopeSuperAdmin))
+	// 								)
+	// 						.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+	// 						.onSuccess(createResourceResponse -> {
+
+	// 					webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/permission/scope", authRealm, authClient)).ssl(authSsl)
+	// 							.putHeader("Authorization", String.format("Bearer %s", authToken))
+	// 							.sendJson(new JsonObject()
+	// 									.put("name", permissionName)
+	// 									.put("description", String.format("GET %s", clientId))
+	// 									.put("decisionStrategy", "AFFIRMATIVE")
+	// 									.put("resources", new JsonArray().add(classSimpleName))
+	// 									.put("policies", new JsonArray().add(policyName))
+	// 									.put("scopes", authScopesJson)
+	// 									)
+	// 							.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
+	// 							.onSuccess(createPermissionResponse -> {
+	// 						LOG.info(String.format("Successfully granted %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classSimpleName));
+	// 						promise.complete();
+	// 					}).onFailure(ex -> {
+	// 						LOG.error(String.format("Failed to grant %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classSimpleName), ex);
+	// 						promise.fail(ex);
+	// 					});
+	// 				}).onFailure(ex -> {
+	// 					LOG.error(String.format("Failed to create %s auth resource %s", authScopesJson.encode(), classSimpleName), ex);
+	// 					promise.fail(ex);
+	// 				});
+	// 			}).onFailure(ex -> {
+	// 				LOG.error(String.format("Failed to create auth policy %s for resource %s", policyName, classSimpleName), ex);
+	// 				promise.fail(ex);
+	// 			});
+	// 		} else {
+	// 			promise.complete();
+	// 		}
+	// 	} catch(Throwable ex) {
+	// 		LOG.error(String.format("Failed to set up Keycloak credentials while creating fine-grained resource permissions for client %s for resource %s", clientId, classSimpleName), ex);
+	// 		promise.fail(ex);
+	// 	}
+	// 	return promise.future();
+	// }
+
 	/**
 	 * Creates Keycloak group and authorization resource, policy, and permission for the group to class data in the site. 
 	 */
-	public Future<Void> authorizeClientData(String authToken, String classSimpleName, String clientId, String[] scopes) {
-		Promise<Void> promise = Promise.promise();
-		try {
-			if(clientId != null && scopes != null) {
-				String authScopeAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN);
-				String authScopeSuperAdmin = config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN);
-				Integer authPort = Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT));
-				String authHostName = config.getString(ComputateConfigKeys.AUTH_HOST_NAME);
-				Boolean authSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.AUTH_SSL));
-				String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
-				String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
-
-				String policyId = String.format("%s-client-%s", authRealm, clientId);
-				String policyName = String.format("%s-client-%s", authRealm, clientId);
-				String permissionName = String.format("%s-client-%s-%s", authRealm, clientId, classSimpleName);
-				JsonArray authScopesJson = new JsonArray();
-				for(String scope : scopes) {
-					authScopesJson.add(String.format("%s-%s", authRealm, scope));
-				}
-				webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/policy/client", authRealm, authClient)).ssl(authSsl)
-						.putHeader("Authorization", String.format("Bearer %s", authToken))
-						.sendJson(new JsonObject().put("id", policyId).put("name", policyName).put("description", String.format("%s client", clientId)).put("clients", new JsonArray().add(clientId)))
-						.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
-						.onSuccess(createPolicyResponse -> {
-					webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/resource", authRealm, authClient)).ssl(authSsl)
-							.putHeader("Authorization", String.format("Bearer %s", authToken))
-							.sendJson(new JsonObject()
-									.put("name", classSimpleName)
-									.put("displayName", classSimpleName)
-									.put("scopes", new JsonArray().add("POST").add("PATCH").add("GET").add("DELETE").add(authScopeAdmin).add(authScopeSuperAdmin))
-									)
-							.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
-							.onSuccess(createResourceResponse -> {
-
-						webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/permission/scope", authRealm, authClient)).ssl(authSsl)
-								.putHeader("Authorization", String.format("Bearer %s", authToken))
-								.sendJson(new JsonObject()
-										.put("name", permissionName)
-										.put("description", String.format("GET %s", clientId))
-										.put("decisionStrategy", "AFFIRMATIVE")
-										.put("resources", new JsonArray().add(classSimpleName))
-										.put("policies", new JsonArray().add(policyName))
-										.put("scopes", authScopesJson)
-										)
-								.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
-								.onSuccess(createPermissionResponse -> {
-							LOG.info(String.format("Successfully granted %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classSimpleName));
-							promise.complete();
-						}).onFailure(ex -> {
-							LOG.error(String.format("Failed to grant %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classSimpleName), ex);
-							promise.fail(ex);
-						});
-					}).onFailure(ex -> {
-						LOG.error(String.format("Failed to create %s auth resource %s", authScopesJson.encode(), classSimpleName), ex);
-						promise.fail(ex);
-					});
-				}).onFailure(ex -> {
-					LOG.error(String.format("Failed to create auth policy %s for resource %s", policyName, classSimpleName), ex);
-					promise.fail(ex);
-				});
-			} else {
-				promise.complete();
-			}
-		} catch(Throwable ex) {
-			LOG.error(String.format("Failed to set up Keycloak credentials while creating fine-grained resource permissions for client %s for resource %s", clientId, classSimpleName), ex);
-			promise.fail(ex);
-		}
-		return promise.future();
-	}
-
-	/**
-	 * Creates Keycloak group and authorization resource, policy, and permission for the group to class data in the site. 
-	 */
-	public Future<Void> authorizeGroupData(String authToken, String classSimpleName, String groupName, String[] scopes) {
+	public Future<Void> authorizeGroupData(String authToken, String classAuthResource, String groupName, String[] scopes) {
 		Promise<Void> promise = Promise.promise();
 		try {
 			if(groupName != null && scopes != null) {
@@ -1217,7 +1217,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 
 				String policyId = String.format("%s-group-%s", authRealm, groupName);
 				String policyName = String.format("%s-group-%s", authRealm, groupName);
-				String permissionName = String.format("%s-group-%s-%s", authRealm, groupName, classSimpleName);
+				String permissionName = String.format("%s-group-%s-%s", authRealm, groupName, classAuthResource);
 				JsonArray authScopesJson = new JsonArray();
 				for(String scope : scopes) {
 					authScopesJson.add(String.format("%s-%s", authRealm, scope));
@@ -1246,8 +1246,8 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 										webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/resource", authRealm, authClient)).ssl(authSsl)
 												.putHeader("Authorization", String.format("Bearer %s", authToken))
 												.sendJson(new JsonObject()
-														.put("name", classSimpleName)
-														.put("displayName", classSimpleName)
+														.put("name", classAuthResource)
+														.put("displayName", classAuthResource)
 														.put("scopes", new JsonArray().add("POST").add("PATCH").add("GET").add("DELETE").add(authScopeAdmin).add(authScopeSuperAdmin))
 														)
 												.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
@@ -1259,52 +1259,52 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 															.put("name", permissionName)
 															.put("description", String.format("GET %s", groupName))
 															.put("decisionStrategy", "AFFIRMATIVE")
-															.put("resources", new JsonArray().add(classSimpleName))
+															.put("resources", new JsonArray().add(classAuthResource))
 															.put("policies", new JsonArray().add(policyName))
 															.put("scopes", authScopesJson)
 															)
 													.expecting(HttpResponseExpectation.SC_CREATED.or(HttpResponseExpectation.SC_CONFLICT))
 													.onSuccess(createPermissionResponse -> {
-												LOG.info(String.format("Successfully granted %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classSimpleName));
+												LOG.info(String.format("Successfully granted %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classAuthResource));
 												promise.complete();
 											}).onFailure(ex -> {
-												LOG.error(String.format("Failed to grant %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classSimpleName), ex);
+												LOG.error(String.format("Failed to grant %s permission to %s policy to %s resource", authScopesJson.encode(), policyName, classAuthResource), ex);
 												promise.fail(ex);
 											});
 										}).onFailure(ex -> {
-											LOG.error(String.format("Failed to create %s auth resource %s", authScopesJson.encode(), classSimpleName), ex);
+											LOG.error(String.format("Failed to create %s auth resource %s", authScopesJson.encode(), classAuthResource), ex);
 											promise.fail(ex);
 										});
 									}).onFailure(ex -> {
-										LOG.error(String.format("Failed to create auth policy %s for resource %s", policyName, classSimpleName), ex);
+										LOG.error(String.format("Failed to create auth policy %s for resource %s", policyName, classAuthResource), ex);
 										promise.fail(ex);
 									});
 								} else {
-									Throwable ex = new RuntimeException(String.format("Failed to find group %s for resource %s", groupName, classSimpleName));
+									Throwable ex = new RuntimeException(String.format("Failed to find group %s for resource %s", groupName, classAuthResource));
 									LOG.error(ex.getMessage(), ex);
 									promise.fail(ex);
 								}
 							} catch(Throwable ex) {
-								LOG.error(String.format("Failed to set up fine-grained resource permissions for resource %s. ", classSimpleName), ex);
+								LOG.error(String.format("Failed to set up fine-grained resource permissions for resource %s. ", classAuthResource), ex);
 								promise.fail(ex);
 							}
 						}).onFailure(ex -> {
-							LOG.error(String.format("Failed to query the group %s for resource %s. ", groupName, classSimpleName), ex);
+							LOG.error(String.format("Failed to query the group %s for resource %s. ", groupName, classAuthResource), ex);
 							promise.fail(ex);
 						});
 					} catch(Throwable ex) {
-						LOG.error(String.format("Failed to set up fine-grained resource permissions for resource %s. ", classSimpleName), ex);
+						LOG.error(String.format("Failed to set up fine-grained resource permissions for resource %s. ", classAuthResource), ex);
 						promise.fail(ex);
 					}
 				}).onFailure(ex -> {
-					LOG.error(String.format("Failed to create the group %s for resource %s. ", groupName, classSimpleName), ex);
+					LOG.error(String.format("Failed to create the group %s for resource %s. ", groupName, classAuthResource), ex);
 					promise.fail(ex);
 				});
 			} else {
 				promise.complete();
 			}
 		} catch(Throwable ex) {
-			LOG.error(String.format("Failed to set up Keycloak credentials while creating fine-grained resource permissions for group %s for resource %s", groupName, classSimpleName), ex);
+			LOG.error(String.format("Failed to set up Keycloak credentials while creating fine-grained resource permissions for group %s for resource %s", groupName, classAuthResource), ex);
 			promise.fail(ex);
 		}
 		return promise.future();
@@ -1315,7 +1315,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	 * Val.Complete.enUS:Importing %s data completed. 
 	 * Val.Fail.enUS:Importing %s data failed. 
 	 */
-	protected Future<Void> importData(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classCanonicalName, String classSimpleName, String classApiAddress, String varPageId, String varUserUrl, String varDownload) {
+	protected Future<Void> importData(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classCanonicalName, String classSimpleName, String classApiAddress, String classAuthResource, String varPageId, String varUserUrl, String varDownload) {
 		Promise<Void> promise = Promise.promise();
 		ZonedDateTime now = ZonedDateTime.now(ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE)));
 		// i18nGenerator().onSuccess(i18n -> {
@@ -1332,7 +1332,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				}
 				YamlProcessor yamlProcessor = new YamlProcessor();
 	
-				importDataFile(vertx, siteRequest, yamlProcessor, pageTemplatePaths, 0, classCanonicalName, classSimpleName, classApiAddress, varPageId, varUserUrl, varDownload).onSuccess(a -> {
+				importDataFile(vertx, siteRequest, yamlProcessor, pageTemplatePaths, 0, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, varPageId, varUserUrl, varDownload).onSuccess(a -> {
 					deletePageData(siteRequest, now, classSimpleName).onSuccess(b -> {
 						LOG.info(String.format(importDataComplete, classSimpleName));
 						promise.complete();
@@ -1363,13 +1363,13 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	 * Val.Complete.enUS:Importing %s data file completed. 
 	 * Val.Fail.enUS:Importing %s data file failed. 
 	 */
-	protected Future<Void> importDataFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, List<String> pageTemplatePaths, Integer i, String classCanonicalName, String classSimpleName, String classApiAddress, String varPageId, String varUserUrl, String varDownload) {
+	protected Future<Void> importDataFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, List<String> pageTemplatePaths, Integer i, String classCanonicalName, String classSimpleName, String classApiAddress, String classAuthResource, String varPageId, String varUserUrl, String varDownload) {
 		Promise<Void> promise = Promise.promise();
 		try {
 			if(i < pageTemplatePaths.size()) {
 				String pageTemplatePath = pageTemplatePaths.get(i);
-				importModelFromFile(vertx, siteRequest, yamlProcessor, pageTemplatePath, classCanonicalName, classSimpleName, classApiAddress, varPageId, varUserUrl, varDownload).onSuccess(a -> {
-					importDataFile(vertx, siteRequest, yamlProcessor, pageTemplatePaths, i + 1, classCanonicalName, classSimpleName, classApiAddress, varPageId, varUserUrl, varDownload).onSuccess(b -> {
+				importModelFromFile(vertx, siteRequest, yamlProcessor, pageTemplatePath, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, varPageId, varUserUrl, varDownload).onSuccess(a -> {
+					importDataFile(vertx, siteRequest, yamlProcessor, pageTemplatePaths, i + 1, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, varPageId, varUserUrl, varDownload).onSuccess(b -> {
 						promise.complete();
 					}).onFailure(ex -> {
 						LOG.error(String.format(importDataFileFail, pageTemplatePath), ex);
@@ -1398,7 +1398,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	/**
 	 * Description: Import page
 	 */
-	private Future<Void> importModelFromFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, String templatePath, String classCanonicalName, String classSimpleName, String classApiAddress, String varPageId, String varUserUrl, String varDownload) {
+	private Future<Void> importModelFromFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, String templatePath, String classCanonicalName, String classSimpleName, String classApiAddress, String classAuthResource, String varPageId, String varUserUrl, String varDownload) {
 		Promise<Void> promise = Promise.promise();
 		vertx.fileSystem().readFile(templatePath).onSuccess(buffer -> {
 			try {
@@ -1483,11 +1483,11 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 													promise.complete();
 												} else {
 													ZoneId zoneId = ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE));
-													String groupName = String.format("%s-%s-GET", classSimpleName, pageId);
-													String policyId = String.format("%s-%s-GET", classSimpleName, pageId);
-													String policyName = String.format("%s-%s-GET", classSimpleName, pageId);
-													String resourceName = String.format("%s-%s", classSimpleName, pageId);
-													String resourceDisplayName = String.format("%s %s", classSimpleName, pageId);
+													String groupName = String.format("%s-%s-GET", classAuthResource, pageId);
+													String policyId = String.format("%s-%s-GET", classAuthResource, pageId);
+													String policyName = String.format("%s-%s-GET", classAuthResource, pageId);
+													String resourceName = String.format("%s-%s", classAuthResource, pageId);
+													String resourceDisplayName = String.format("%s %s", classAuthResource, pageId);
 													String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
 													String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
 													Integer authPort = Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT));
