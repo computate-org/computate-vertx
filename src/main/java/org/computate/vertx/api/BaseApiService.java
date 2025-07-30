@@ -718,10 +718,10 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 	// SearchQuery //
 	/////////////////
 
-	public class SearchQuery {
+	public class ResultSearchQuery {
 		private ComputateSiteRequest siteRequest;
 
-		public SearchQuery(ComputateSiteRequest siteRequest) {
+		public ResultSearchQuery(ComputateSiteRequest siteRequest) {
 			this.siteRequest = siteRequest;
 		}
 
@@ -745,8 +745,39 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 		}
 	}
 
-	public SearchQuery search(ComputateSiteRequest siteRequest) {
-		return new SearchQuery(siteRequest);
+	public class ModelSearchQuery {
+		private ComputateSiteRequest siteRequest;
+
+		public ModelSearchQuery(ComputateSiteRequest siteRequest) {
+			this.siteRequest = siteRequest;
+		}
+
+		public Future<ComputateBaseModel> query(String idSearchVar, Class<?> c, String id) {
+			Promise<ComputateBaseModel> promise = Promise.promise();
+			if(id != null) {
+				SearchList<ComputateBaseModel> searchList = new SearchList<ComputateBaseModel>();
+				searchList.q("*:*");
+				searchList.setStore(true);
+				searchList.setC(c);
+				searchList.fq(idSearchVar + ":" + id);
+				searchList.promiseDeepSearchList(siteRequest).onSuccess(s -> {
+					promise.complete(searchList.getList().stream().findFirst().orElse(null));
+				}).onFailure(ex -> {
+					promise.fail(ex);
+				});
+			} else {
+				promise.complete();
+			}
+			return promise.future();
+		}
+	}
+
+	public ResultSearchQuery searchResult(ComputateSiteRequest siteRequest) {
+		return new ResultSearchQuery(siteRequest);
+	}
+
+	public ModelSearchQuery searchModel(ComputateSiteRequest siteRequest) {
+		return new ModelSearchQuery(siteRequest);
 	}
 
 	public Future<ServiceResponse> response200Search(SearchRequest searchRequest, SolrResponse responseSearch, JsonObject json) {

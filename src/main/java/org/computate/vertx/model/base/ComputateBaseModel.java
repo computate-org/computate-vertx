@@ -20,6 +20,8 @@ public interface ComputateBaseModel {
 
 	public Long getPk();
 
+	public String getSolrId();
+
 	public Object obtainForClass(String v);
 
 	public boolean relateForClass(String v, Object val);
