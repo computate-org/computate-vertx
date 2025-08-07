@@ -671,7 +671,48 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 							wPaths.tl(6, "default: ", contextRows);
 						wPaths.tl(6, "minimum: 0");
 					}
-					if(classApiMethod.contains("Search")) {
+					if(classApiMethod.contains(i18n.getString(I18n.var_PageEdition))) {
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: facet.range.start");
+						wPaths.tl(5, "description: 'The facet.range.start parameter specifies the lower bound of the ranges. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: facet.range.end");
+						wPaths.tl(5, "description: 'The facet.range.end specifies the upper bound of the ranges. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: facet.range.gap");
+						wPaths.tl(5, "description: 'The span of each range expressed as a value to be added to the lower bound. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: facet.pivot");
+						wPaths.tl(5, "description: 'The facet.pivot parameter defines the fields to use for the pivot. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "type: string");
+						wPaths.tl(4, "- in: query");
+						wPaths.tl(5, "name: facet.range");
+						wPaths.tl(5, "description: 'The facet.range parameter defines the field for which Solr should create range facets. '");
+						wPaths.tl(5, "required: false");
+						wPaths.tl(5, "schema:");
+						wPaths.tl(6, "type: array");
+						wPaths.tl(6, "items:");
+						wPaths.tl(7, "type: string");
+					} else if(classApiMethod.contains("Search")) {
 						wPaths.tl(4, "- in: query");
 						wPaths.tl(5, "name: fl");
 						wPaths.tl(5, "description: 'The field list parameter limits the information included in a query response to a specified list of fields. '");
