@@ -16,8 +16,9 @@ str_API: "API"
 str_au_total_avec_: '%s %s total with %s &quot;%s&quot;'
 str_aucun: 'none'
 str_Cartes_des: "Map of %s"
-str_chemin_absolu: "%s touched"
 str_chemin_absolu_url: "%s/java-class/%s"
+str_classe_touchee: "Class %s touched"
+str_classe_generee: "Class %s generated"
 str_créé_nouveau: "created new"
 str_Creer: "Create"
 str_Creer_: "Create "

@@ -14,8 +14,9 @@ str_API: "API"
 str_au_total_avec_: '%s %s total avec %s « %s »'
 str_aucun: 'aucun'
 str_Cartes_des: "Carte des %s"
-str_chemin_absolu: "%s touché"
 str_chemin_absolu_url: "%s/classe-java/%s"
+str_classe_touchee: "Classe %s.java touchée"
+str_classe_generee: "Classe %s.java génerée"
 str_confirmer_supprimer: "Voulez-vous vraiment supprimer cela ?"
 str_confirmer_archiver: "Voulez-vous vraiment archiver cela ?"
 str_créé_nouveau: "créé nouveau"
