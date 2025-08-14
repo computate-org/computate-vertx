@@ -1504,7 +1504,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 										searchList.q("*:*");
 										searchList.setC(Class.forName(classCanonicalName));
 										searchList.fq("archived_docvalues_boolean:false");
-										searchList.fq("pageId_docvalues_string:" + SearchTool.escapeQueryChars(pageId));
+										searchList.fq(String.format("%s_docvalues_string:", varPageId) + SearchTool.escapeQueryChars(pageId));
 										searchList.promiseDeepForClass(siteRequest).onSuccess(a -> {
 											try {
 												JsonObject resultJsonObject = JsonObject.mapFrom(searchList.getList().stream().findFirst().orElse(null));
