@@ -474,7 +474,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 							SolrResponse.Doc doc2 = entiteDocs.get(j);
 							wSqlCreate.s("ALTER TABLE ", classeNomSimple, " ADD COLUMN IF NOT EXISTS ");
 							wSqlCreate.s(doc2.get("entiteVar_" + languageName + "_stored_string"), " ", doc2.get("entiteTypeSql_stored_string"));
-							if(doc2.get("entiteAttribuerTypeJson_stored_string") != null)
+							if(doc2.get("entiteAttribuerTypeJson_stored_string") != null && BooleanUtils.isTrue((Boolean)doc2.get("entiteAttribuerEtendModeleBase_stored_boolean")))
 								wSqlCreate.s(" references ", (String)doc2.get("entiteAttribuerNomSimple_" + languageName + "_stored_string"), "(", (String)doc2.get("entiteAttribuerVar_" + languageName + "_stored_string"), ")");
 							if(BooleanUtils.isTrue((Boolean)doc2.get("entiteUnique_stored_boolean")))
 								wSqlCreate.s(" UNIQUE");
