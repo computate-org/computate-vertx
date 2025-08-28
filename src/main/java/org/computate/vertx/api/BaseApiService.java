@@ -2111,7 +2111,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 		searchList.start(valueStart);
 	}
 
-	public <SiteRequest extends ComputateSiteRequest, U extends ComputateSiteUser> void configureUserSearchApi(String uri, Router router, Class<SiteRequest> classSiteRequest, Class<U> classSiteUser, String userApiAddress, JsonObject config, WebClient webClient, List<String> authResources) {
+	public <SiteRequest extends ComputateSiteRequest, U extends ComputateSiteUser> void configureUserSearchApi(String uri, Router router, Class<SiteRequest> classSiteRequest, Class<U> classSiteUser, String userApiAddress, JsonObject config, WebClient webClient, List<String> authResources, List<String> classSimpleNames) {
 		router.getWithRegex(String.format("(?<uri>%s)", uri.replace("/", "\\/"))).handler(handler -> {
 			ServiceRequest serviceRequest = generateServiceRequest(handler);
 			JsonObject query = new JsonObject();
@@ -2173,7 +2173,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 							searchList.setStore(true);
 							searchList.q("*:*");
 							searchList.setSiteRequest_(siteRequest);
-							searchList.fq(String.format("classSimpleName_docvalues_string:" + rsnames.stream().collect(Collectors.joining(" OR ", "(", ")"))));
+							searchList.fq(String.format("classSimpleName_docvalues_string:%s", rsnames.stream().map(rsname -> classSimpleNames.get(authResources.indexOf(rsname))).collect(Collectors.joining(" OR ", "(", ")"))));
 
 							for(String paramName : query.fieldNames()) {
 								Object paramValuesObject = query.getValue(paramName);
@@ -2453,7 +2453,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 		});
 	}
 
-	public <SiteRequest extends ComputateSiteRequest, U extends ComputateSiteUser> void configurePublicSearchApi(String uri, Router router, Class<SiteRequest> classSiteRequest, JsonObject config, WebClient webClient, List<String> authResources) {
+	public <SiteRequest extends ComputateSiteRequest, U extends ComputateSiteUser> void configurePublicSearchApi(String uri, Router router, Class<SiteRequest> classSiteRequest, JsonObject config, WebClient webClient, List<String> classSimpleNames) {
 		router.getWithRegex(String.format("(?<uri>%s)", uri.replace("/", "\\/"))).handler(handler -> {
 			try {
 				ServiceRequest serviceRequest = generateServiceRequest(handler);
@@ -2491,7 +2491,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 				searchList.setStore(true);
 				searchList.q("*:*");
 				searchList.setSiteRequest_(siteRequest);
-				searchList.fq(String.format("classSimpleName_docvalues_string:" + authResources.stream().collect(Collectors.joining(" OR ", "(", ")"))));
+				searchList.fq(String.format("classSimpleName_docvalues_string:%s", classSimpleNames.stream().collect(Collectors.joining(" OR ", "(", ")"))));
 
 				for(String paramName : query.fieldNames()) {
 					Object paramValuesObject = query.getValue(paramName);
