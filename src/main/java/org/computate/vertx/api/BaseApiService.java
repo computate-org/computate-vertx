@@ -247,7 +247,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 
 	public ServiceRequest generateServiceRequest(RoutingContext ctx) {
 		ServiceRequest serviceRequest = new ServiceRequest(
-				new JsonObject().put("path", JsonObject.mapFrom(ctx.pathParams())).put("query", ctx.queryParams()).put("cookie", JsonObject.mapFrom(ctx.cookieMap()))
+				new JsonObject().put("path", JsonObject.mapFrom(ctx.pathParams())).put("query", JsonObject.mapFrom(ctx.queryParams())).put("cookie", JsonObject.mapFrom(ctx.cookieMap()))
 						, ctx.request().headers()
 						, Optional.ofNullable(ctx.user()).map(u -> u.principal()).orElse(null)
 						, new JsonObject()
@@ -1446,7 +1446,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 					ctx.put(ComputateConfigKeys.SITE_BASE_URL, config.getString(ComputateConfigKeys.SITE_BASE_URL));
 					ctx.put(ComputateConfigKeys.GITHUB_ORG, config.getString(ComputateConfigKeys.GITHUB_ORG));
 					ctx.put(ComputateConfigKeys.SITE_NAME, config.getString(ComputateConfigKeys.SITE_NAME));
+					ctx.put(ComputateConfigKeys.SITE_SHORT_NAME, config.getString(ComputateConfigKeys.SITE_SHORT_NAME));
 					ctx.put(ComputateConfigKeys.SITE_DISPLAY_NAME, config.getString(ComputateConfigKeys.SITE_DISPLAY_NAME));
+					ctx.put(ComputateConfigKeys.SITE_DESCRIPTION, config.getString(ComputateConfigKeys.SITE_DESCRIPTION));
 					ctx.put(ComputateConfigKeys.SITE_POWERED_BY_URL, config.getString(ComputateConfigKeys.SITE_POWERED_BY_URL));
 					ctx.put(ComputateConfigKeys.SITE_POWERED_BY_NAME, config.getString(ComputateConfigKeys.SITE_POWERED_BY_NAME));
 					ctx.put(ComputateConfigKeys.SITE_POWERED_BY_IMAGE, config.getString(ComputateConfigKeys.SITE_POWERED_BY_IMAGE));
@@ -1455,6 +1457,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 					ctx.put(ComputateConfigKeys.WEB_COMPONENTS_CSS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_CSS));
 					ctx.put(ComputateConfigKeys.WEB_COMPONENTS_PREFIX, config.getString(ComputateConfigKeys.WEB_COMPONENTS_PREFIX));
 					ctx.put(ComputateConfigKeys.WEB_COMPONENTS_JS, config.getString(ComputateConfigKeys.WEB_COMPONENTS_JS));
+					ctx.put(ComputateConfigKeys.WEB_COMPONENTS_THEME, config.getString(ComputateConfigKeys.WEB_COMPONENTS_THEME));
 					ctx.put(ComputateConfigKeys.PUBLIC_SEARCH_URI, config.getString(ComputateConfigKeys.PUBLIC_SEARCH_URI));
 					ctx.put(ComputateConfigKeys.USER_SEARCH_URI, config.getString(ComputateConfigKeys.USER_SEARCH_URI));
 					ctx.put(i18n.getString(I18n.var_resultat), result);

@@ -437,6 +437,8 @@ public class ComputateConfigKeys {
 		ctx.put(GITHUB_ORG, config.getString(GITHUB_ORG));
 		ctx.put(SITE_NAME, config.getString(SITE_NAME));
 		ctx.put(SITE_DISPLAY_NAME, config.getString(SITE_DISPLAY_NAME));
+		ctx.put(SITE_SHORT_NAME, config.getString(SITE_SHORT_NAME));
+		ctx.put(SITE_DESCRIPTION, config.getString(SITE_DESCRIPTION));
 		ctx.put(SITE_POWERED_BY_URL, config.getString(SITE_POWERED_BY_URL));
 		ctx.put(SITE_POWERED_BY_NAME, config.getString(SITE_POWERED_BY_NAME));
 		ctx.put(SITE_POWERED_BY_IMAGE, config.getString(SITE_POWERED_BY_IMAGE));
@@ -446,6 +448,7 @@ public class ComputateConfigKeys {
 		ctx.put(WEB_COMPONENTS_CSS, config.getString(WEB_COMPONENTS_CSS));
 		ctx.put(WEB_COMPONENTS_PREFIX, config.getString(WEB_COMPONENTS_PREFIX));
 		ctx.put(WEB_COMPONENTS_JS, config.getString(WEB_COMPONENTS_JS));
+		ctx.put(WEB_COMPONENTS_THEME, config.getString(WEB_COMPONENTS_THEME));
 		ctx.put(SITE_LOCALE, config.getString(SITE_LOCALE));
 		ctx.put(SITE_THEME, config.getString(SITE_THEME));
 		ctx.put(AUTH_SCOPE_ADMIN, config.getString(AUTH_SCOPE_ADMIN));
@@ -782,6 +785,16 @@ public class ComputateConfigKeys {
 	 * The display name of the site. 
 	 **/
 	public static final String SITE_DISPLAY_NAME = "SITE_DISPLAY_NAME";
+
+	/**
+	 * The short name of the site. 
+	 **/
+	public static final String SITE_SHORT_NAME = "SITE_SHORT_NAME";
+
+	/**
+	 * The description of the site. 
+	 **/
+	public static final String SITE_DESCRIPTION = "SITE_DESCRIPTION";
 
 	/**
 	 * 

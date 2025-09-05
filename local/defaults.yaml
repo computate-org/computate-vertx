@@ -9,7 +9,7 @@ SITE_SERVICES:
     SITE_SRC: "{{ SITE_PREFIX }}/computate-vertx"
 DOMAIN_NAME: computate.org
 DOMAIN_PACKAGE_NAME: org.computate.vertx
-SITE_BASE_URL: https://www.computate.org
+SITE_BASE_URL: https://computate.org
 SITE_ZONE: America/Denver
 SITE_LOCALE: en-US
 # The Auth roles required to be a super admin in the site. 
