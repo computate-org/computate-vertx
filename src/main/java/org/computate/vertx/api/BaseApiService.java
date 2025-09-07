@@ -355,12 +355,10 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 						for(Integer i = 0; i < definition.size(); i++) {
 							String columnName = definition.getColumnName(i);
 							Object columnValue = definition.getValue(i);
-							if(!"pk".equals(columnName)) {
-								try {
-									siteUser.persistForClass(columnName, columnValue);
-								} catch(Exception e) {
-									LOG.error(String.format("getDbUser failed. "), e);
-								}
+							try {
+								siteUser.persistForClass(columnName, columnValue);
+							} catch(Exception e) {
+								LOG.error(String.format("getDbUser failed to load column %s=%s. ", columnName, columnValue), e);
 							}
 						}
 						break;
@@ -448,6 +446,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 									if(commitWithin != null)
 										query.put("commitWithin", commitWithin);
 									params.put("query", query);
+									params.put("scopes", new JsonArray().add("GET"));
 									JsonObject context = new JsonObject().put("params", params).put("user", Optional.ofNullable(siteRequest.getUser()).map(u -> u.attributes().getJsonObject("tokenPrincipal")).orElse(null));
 									JsonObject json = new JsonObject().put("context", context);
 									eventBus.request(vertxAddress, json, new DeliveryOptions().addHeader("action", postAction)).onSuccess(a -> {
@@ -517,9 +516,10 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 											query.put("commitWithin", commitWithin);
 										query.put("q", "*:*").put("fq", new JsonArray().add("pk:" + siteUser1.getPk())).put("var", new JsonArray().add("refresh:false"));
 										params.put("query", query);
+									  params.put("scopes", new JsonArray().add("GET"));
 										JsonObject context = new JsonObject().put("params", params).put("user", Optional.ofNullable(siteRequest.getUser()).map(u -> u.attributes().getJsonObject("tokenPrincipal")).orElse(null));
 										JsonObject json = new JsonObject().put("context", context);
-										eventBus.request(vertxAddress, json, new DeliveryOptions().addHeader("action", postAction)).onSuccess(a -> {
+										eventBus.request(vertxAddress, json, new DeliveryOptions().addHeader("action", patchAction)).onSuccess(a -> {
 											JsonObject responseBody = (JsonObject)a.body();
 											siteRequest.setUserName(accessToken.getString("preferred_username"));
 											siteRequest.setUserFirstName(accessToken.getString("given_name"));
