@@ -555,6 +555,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 						wPaths.tl(4, "- ", authClientOpenApiId, ":");
 						wPaths.tl(5, "- openid");
 						wPaths.tl(5, "- profile");
+						wPaths.tl(5, "- customerProfileId");
 					});
 				}
 
