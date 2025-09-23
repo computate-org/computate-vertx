@@ -90,6 +90,7 @@ public class I18n {
 	public static final String str_Pret = "str_Pret";
 	public static final String str_recharger = "str_recharger";
 	public static final String str_recherche = "str_recherche";
+	public static final String str_Recharger = "str_Recharger";
 	public static final String str_Recherche_avancee_pour_ = "str_Recherche_avancee_pour_";
 	public static final String str_Rechercher = "str_Rechercher";
 	public static final String str_Rechercher_ = "str_Rechercher_";
