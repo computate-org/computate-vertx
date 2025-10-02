@@ -479,6 +479,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
                     promise.fail(ex);
                   });
                 } else {
+                  siteRequest.setSiteUser(siteUser1);
                   JsonObject jsonObject = new JsonObject();
                   jsonObject.put("setUserName", accessToken.getString("preferred_username"));
                   jsonObject.put("setUserFirstName", accessToken.getString("given_name"));
