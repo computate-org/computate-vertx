@@ -120,7 +120,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
   public static final String importTimerSkip = "Skip importing %s data. ";
   public static final String importTimerFail = "Scheduling the import of %s data failed. ";
   public static final String importDataFail = "Importing all %s data failed. ";
-  public static final String importDataComplete = "Importing all %s data completed. ";
+  public static final String importDataComplete = "Importing all %s data completed. Search the imported data here: %s ";
   public static final String importDataFileFail = "Importing %s data file failed. ";
   public static final String importDataFileComplete = "Importing %s data file completed. ";
   public static final String importModelComplete = "Importing page completed: %s";
@@ -1378,7 +1378,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
   
         importDataFile(vertx, siteRequest, yamlProcessor, pageTemplatePaths, 0, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, varPageId, varUserUrl, varDownload).onSuccess(a -> {
           deletePageData(siteRequest, now, classSimpleName).onSuccess(b -> {
-            LOG.info(String.format(importDataComplete, classSimpleName));
+            LOG.info(String.format(importDataComplete, classSimpleName, config.getString(ComputateConfigKeys.SITE_BASE_URL)));
             promise.complete();
           }).onFailure(ex -> {
             LOG.error(String.format(importDataFail, classSimpleName), ex);
