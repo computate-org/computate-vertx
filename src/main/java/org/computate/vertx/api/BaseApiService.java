@@ -1433,7 +1433,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
     return promise.future();
   }
 
-  public Future<JsonObject> generatePageBody(ComputateSiteRequest siteRequest, Map<String, Object> ctx, String templatePath, String classSimpleName) {
+  public Future<JsonObject> generatePageBody(ComputateSiteRequest siteRequest, Object o, String templatePath, String classSimpleName) {
     Promise<JsonObject> promise = Promise.promise();
     promise.complete(new JsonObject());
     return promise.future();
@@ -1442,7 +1442,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
   /**
    * Description: Import page
    */
-  private Future<Void> importModelFromFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, String templatePath, String classCanonicalName, String classSimpleName, String classApiAddress, String classAuthResource, String varPageId, String varUserUrl, String varDownload) {
+  public Future<Void> importModelFromFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, String templatePath, String classCanonicalName, String classSimpleName, String classApiAddress, String classAuthResource, String varPageId, String varUserUrl, String varDownload) {
     Promise<Void> promise = Promise.promise();
     vertx.fileSystem().readFile(templatePath).onSuccess(buffer -> {
       try {
@@ -1473,7 +1473,6 @@ abstract class BaseApiService implements BaseApiServiceInterface {
           ctx.put(ComputateConfigKeys.WEB_COMPONENTS_THEME, config.getString(ComputateConfigKeys.WEB_COMPONENTS_THEME));
           ctx.put(ComputateConfigKeys.PUBLIC_SEARCH_URI, config.getString(ComputateConfigKeys.PUBLIC_SEARCH_URI));
           ctx.put(ComputateConfigKeys.USER_SEARCH_URI, config.getString(ComputateConfigKeys.USER_SEARCH_URI));
-          ctx.put(i18n.getString(I18n.var_resultat), result);
 
           String metaPrefixResult = String.format("%s.", i18n.getString(I18n.var_resultat));
           Matcher m = Pattern.compile("<meta name=\"([^\"]+)\"\\s+content=\"([^\"]*)\"\\s*/>", Pattern.MULTILINE).matcher(template);
@@ -1492,38 +1491,58 @@ abstract class BaseApiService implements BaseApiServiceInterface {
             }
             trouve = m.find();
           }
+          ctx.put(i18n.getString(I18n.var_resultat), result);
+          m.reset();
+          trouve = m.find();
+          while (trouve) {
+            String resultKey = m.group(1);
+            if(resultKey.startsWith(metaPrefixResult)) {
+              String key = StringUtils.substringAfter(resultKey, metaPrefixResult);
+              String val = m.group(2);
+              if(val instanceof String) {
+                String rendered = jinjava.render(val, ctx);
+                result.put(key, rendered);
+              } else {
+                result.put(key, val);
+              }
+            }
+            trouve = m.find();
+          }
 
-          // JSoup HTML parsing
-          String renderedTemplate = jinjava.render(template, ctx);
-
-          Document htmDoc = Jsoup.parse(renderedTemplate);
-
-          generatePageBody(siteRequest, ctx, templatePath, classSimpleName).onSuccess(pageBody -> {
+          String pageId = (String)result.get(varPageId);
+          SearchList<Object> searchList = new SearchList<Object>();
+          searchList.setStore(true);
+          searchList.q("*:*");
+          searchList.setC(Class.forName(classCanonicalName));
+          searchList.fq("archived_docvalues_boolean:false");
+          searchList.fq(String.format("%s_docvalues_string:", varPageId) + SearchTool.escapeQueryChars(pageId));
+          searchList.promiseDeepForClass(siteRequest).onSuccess(a -> {
             try {
-              JsonObject pageParams = new JsonObject();
-              pageParams.put("body", pageBody);
-              pageParams.put("path", new JsonObject());
-              pageParams.put("cookie", new JsonObject());
-              pageParams.put("query", new JsonObject().put("softCommit", true).put("q", "*:*").put("var", new JsonArray().add("refresh:false")));
-              JsonObject pageContext = new JsonObject().put("params", pageParams);
-              JsonObject pageRequest = new JsonObject().put("context", pageContext);
+              JsonObject resultJsonObject = JsonObject.mapFrom(searchList.getList().stream().findFirst().orElse(null));
+              Object o = searchList.getList().stream().findFirst().orElse(null);
+              ctx.put(i18n.getString(I18n.var_resultat), JsonObject.mapFrom(o).getMap());
 
-              vertx.eventBus().request(classApiAddress, pageRequest, new DeliveryOptions().setSendTimeout(config.getLong(ComputateConfigKeys.VERTX_MAX_EVENT_LOOP_EXECUTE_TIME) * 1000).addHeader("action", String.format("putimport%sFuture", classSimpleName))).onSuccess(message -> {
+              // JSoup HTML parsing
+              String renderedTemplate = jinjava.render(template, ctx);
+
+              Document htmDoc = Jsoup.parse(renderedTemplate);
+
+              generatePageBody(siteRequest, o, templatePath, classSimpleName).onSuccess(pageBody -> {
                 try {
-                  String siteBaseUrl = config.getString(ComputateConfigKeys.SITE_BASE_URL);
-                  String pageId = pageBody.getString(varPageId);
-                  if(varUserUrl == null && varDownload == null) {
-                    promise.complete();
-                  } else {
-                    SearchList<Object> searchList = new SearchList<Object>();
-                    searchList.setStore(true);
-                    searchList.q("*:*");
-                    searchList.setC(Class.forName(classCanonicalName));
-                    searchList.fq("archived_docvalues_boolean:false");
-                    searchList.fq(String.format("%s_docvalues_string:", varPageId) + SearchTool.escapeQueryChars(pageId));
-                    searchList.promiseDeepForClass(siteRequest).onSuccess(a -> {
-                      try {
-                        JsonObject resultJsonObject = JsonObject.mapFrom(searchList.getList().stream().findFirst().orElse(null));
+                  JsonObject pageParams = new JsonObject();
+                  pageParams.put("body", pageBody);
+                  pageParams.put("path", new JsonObject());
+                  pageParams.put("cookie", new JsonObject());
+                  pageParams.put("query", new JsonObject().put("softCommit", true).put("q", "*:*").put("var", new JsonArray().add("refresh:false")));
+                  JsonObject pageContext = new JsonObject().put("params", pageParams);
+                  JsonObject pageRequest = new JsonObject().put("context", pageContext);
+
+                  vertx.eventBus().request(classApiAddress, pageRequest, new DeliveryOptions().setSendTimeout(config.getLong(ComputateConfigKeys.VERTX_MAX_EVENT_LOOP_EXECUTE_TIME) * 1000).addHeader("action", String.format("putimport%sFuture", classSimpleName))).onSuccess(message -> {
+                    try {
+                      String siteBaseUrl = config.getString(ComputateConfigKeys.SITE_BASE_URL);
+                      if(varUserUrl == null && varDownload == null) {
+                        promise.complete();
+                      } else {
                         String userUrl = Optional.ofNullable(varUserUrl).map(url -> resultJsonObject.getString(url)).orElse(null);
                         String downloadUrl = Optional.ofNullable(varDownload).map(url -> resultJsonObject.getString(url)).orElse(null);
                         if(userUrl == null && downloadUrl == null) {
@@ -1564,7 +1583,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
                                       .onSuccess(groupsResponse -> {
                                     try {
                                       JsonArray groups = Optional.ofNullable(groupsResponse.bodyAsJsonArray()).orElse(new JsonArray());
-                                      JsonObject group = groups.stream().findFirst().map(o -> (JsonObject)o).orElse(null);
+                                      JsonObject group = groups.stream().findFirst().map(b -> (JsonObject)b).orElse(null);
                                       if(group != null) {
                                         String groupId = group.getString("id");
                                         webClient.post(authPort, authHostName, String.format("/admin/realms/%s/clients/%s/authz/resource-server/policy/group", authRealm, authClient)).ssl(authSsl)
@@ -1643,27 +1662,27 @@ abstract class BaseApiService implements BaseApiServiceInterface {
                             promise.fail(ex);
                           });
                         }
-                      } catch(Throwable ex) {
-                        LOG.error(String.format("Failed to set up Keycloak credentials while creating fine-grained resource permissions for page %s", pageId), ex);
-                        promise.fail(ex);
                       }
-                    }).onFailure(ex -> {
+                    } catch(Throwable ex) {
+                      LOG.error(String.format("Failed to set up Keycloak credentials while creating fine-grained resource permissions for page"), ex);
                       promise.fail(ex);
-                    });
-                  }
-                } catch(Throwable ex) {
-                  LOG.error(String.format("Failed to set up Keycloak credentials while creating fine-grained resource permissions for page"), ex);
+                    }
+                  }).onFailure(ex -> {
+                    promise.fail(ex);
+                  });
+                } catch(Exception ex) {
+                  LOG.error(String.format("Failed to import model from file: %s", templatePath), ex);
                   promise.fail(ex);
                 }
               }).onFailure(ex -> {
+                LOG.error(String.format("Failed to import model from file: %s", templatePath), ex);
                 promise.fail(ex);
               });
-            } catch(Exception ex) {
-              LOG.error(String.format("Failed to import model from file: %s", templatePath), ex);
+            } catch(Throwable ex) {
+              LOG.error(String.format("Failed to find page in search engine %s", pageId), ex);
               promise.fail(ex);
             }
           }).onFailure(ex -> {
-            LOG.error(String.format("Failed to import model from file: %s", templatePath), ex);
             promise.fail(ex);
           });
         }
