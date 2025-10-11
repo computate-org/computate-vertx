@@ -164,6 +164,8 @@ public class ComputateConfigKeys {
 	}
 
 	public static String formatZonedDateTime(Object value, String pattern, String localeId, String zone) {
+		Logger LOG = LoggerFactory.getLogger(ComputateConfigKeys.class);
+    try {
 		if(value == null) {
 			return null;
 		} else {
@@ -172,6 +174,11 @@ public class ComputateConfigKeys {
 			ZoneId zoneId = ZoneId.of(zone);
 			return DateTimeFormatter.ofPattern(pattern, locale).format(date.withZoneSameInstant(zoneId));
 		}
+    } catch(Throwable ex) {
+      LOG.error("formatZonedDateTime error", ex);
+      ExceptionUtils.rethrow(ex);
+      return null;
+    }
 	}
 
 	public static String formatLocalDate(Object value, String pattern, String localeId, String zone) {
