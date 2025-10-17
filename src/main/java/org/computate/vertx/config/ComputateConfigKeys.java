@@ -164,6 +164,8 @@ public class ComputateConfigKeys {
 	}
 
 	public static String formatZonedDateTime(Object value, String pattern, String localeId, String zone) {
+		Logger LOG = LoggerFactory.getLogger(ComputateConfigKeys.class);
+    try {
 		if(value == null) {
 			return null;
 		} else {
@@ -172,6 +174,11 @@ public class ComputateConfigKeys {
 			ZoneId zoneId = ZoneId.of(zone);
 			return DateTimeFormatter.ofPattern(pattern, locale).format(date.withZoneSameInstant(zoneId));
 		}
+    } catch(Throwable ex) {
+      LOG.error("formatZonedDateTime error", ex);
+      ExceptionUtils.rethrow(ex);
+      return null;
+    }
 	}
 
 	public static String formatLocalDate(Object value, String pattern, String localeId, String zone) {
@@ -437,6 +444,8 @@ public class ComputateConfigKeys {
 		ctx.put(GITHUB_ORG, config.getString(GITHUB_ORG));
 		ctx.put(SITE_NAME, config.getString(SITE_NAME));
 		ctx.put(SITE_DISPLAY_NAME, config.getString(SITE_DISPLAY_NAME));
+		ctx.put(SITE_SHORT_NAME, config.getString(SITE_SHORT_NAME));
+		ctx.put(SITE_DESCRIPTION, config.getString(SITE_DESCRIPTION));
 		ctx.put(SITE_POWERED_BY_URL, config.getString(SITE_POWERED_BY_URL));
 		ctx.put(SITE_POWERED_BY_NAME, config.getString(SITE_POWERED_BY_NAME));
 		ctx.put(SITE_POWERED_BY_IMAGE, config.getString(SITE_POWERED_BY_IMAGE));
@@ -446,6 +455,7 @@ public class ComputateConfigKeys {
 		ctx.put(WEB_COMPONENTS_CSS, config.getString(WEB_COMPONENTS_CSS));
 		ctx.put(WEB_COMPONENTS_PREFIX, config.getString(WEB_COMPONENTS_PREFIX));
 		ctx.put(WEB_COMPONENTS_JS, config.getString(WEB_COMPONENTS_JS));
+		ctx.put(WEB_COMPONENTS_THEME, config.getString(WEB_COMPONENTS_THEME));
 		ctx.put(SITE_LOCALE, config.getString(SITE_LOCALE));
 		ctx.put(SITE_THEME, config.getString(SITE_THEME));
 		ctx.put(AUTH_SCOPE_ADMIN, config.getString(AUTH_SCOPE_ADMIN));
@@ -782,6 +792,16 @@ public class ComputateConfigKeys {
 	 * The display name of the site. 
 	 **/
 	public static final String SITE_DISPLAY_NAME = "SITE_DISPLAY_NAME";
+
+	/**
+	 * The short name of the site. 
+	 **/
+	public static final String SITE_SHORT_NAME = "SITE_SHORT_NAME";
+
+	/**
+	 * The description of the site. 
+	 **/
+	public static final String SITE_DESCRIPTION = "SITE_DESCRIPTION";
 
 	/**
 	 * 
@@ -1406,6 +1426,22 @@ public class ComputateConfigKeys {
 
 	public static final String USE_CASE_SRC = "USE_CASE_SRC";
 	public static final String USE_CASE_SUMMARY_NUM = "USE_CASE_SUMMARY_NUM";
+
+	public static final String ENABLE_AUTHORIZE_NET = "ENABLE_AUTHORIZE_NET";
+	public static final String AUTHORIZE_NET_ENVIRONMENT = "AUTHORIZE_NET_ENVIRONMENT";
+	public static final String AUTHORIZE_NET_URL = "AUTHORIZE_NET_URL";
+	public static final String AUTHORIZE_NET_API_HOST_NAME = "AUTHORIZE_NET_API_HOST_NAME";
+	public static final String AUTHORIZE_NET_API_PORT = "AUTHORIZE_NET_API_PORT";
+	public static final String AUTHORIZE_NET_API_SSL = "AUTHORIZE_NET_API_SSL";
+	public static final String AUTHORIZE_NET_API_URI = "AUTHORIZE_NET_API_URI";
+	public static final String AUTHORIZE_NET_ACCEPT_JS_URL = "AUTHORIZE_NET_ACCEPT_JS_URL";
+	public static final String AUTHORIZE_NET_API_LOGIN_ID = "AUTHORIZE_NET_API_LOGIN_ID";
+	public static final String AUTHORIZE_NET_TRANSACTION_KEY = "AUTHORIZE_NET_TRANSACTION_KEY";
+	public static final String AUTHORIZE_NET_SIGNATURE_KEY = "AUTHORIZE_NET_SIGNATURE_KEY";
+	public static final String AUTHORIZE_NET_PUBLIC_CLIENT_KEY = "AUTHORIZE_NET_PUBLIC_CLIENT_KEY";
+	public static final String AUTHORIZE_NET_NOTIFICATION_URL = "AUTHORIZE_NET_NOTIFICATION_URL";
+	public static final String AUTHORIZE_NET_WEBHOOK_UNLOCK_MILLIS = "AUTHORIZE_NET_WEBHOOK_UNLOCK_MILLIS";
+	public static final String AUTHORIZE_NET_WEBHOOK_TIMEOUT_MILLIS = "AUTHORIZE_NET_WEBHOOK_TIMEOUT_MILLIS";
 
 	public static final String ENABLE_SQUARE = "ENABLE_SQUARE";
 	public static final String SQUARE_ACCESS_TOKEN = "SQUARE_ACCESS_TOKEN";

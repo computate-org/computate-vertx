@@ -54,7 +54,7 @@ SOLR_CONFIGSET: "computate"
 # The Solr admin username
 SOLR_USERNAME: admin
 # The Solr admin password
-SOLR_PASSWORD: "{{ query('kubernetes.core.k8s', kind='Secret', resource_name='solr-admin', namespace=SOLR_NAMESPACE)[0].data['password'] | b64decode }}"
+SOLR_PASSWORD: "{{ query('kubernetes.core.k8s', kind='Secret', resource_name='solr-solrcloud-security-bootstrap', namespace=SOLR_NAMESPACE)[0].data['admin'] | b64decode }}"
 # Whether to use SSL when connecting to Solr. 
 
 # Whether to use SSL when connecting to Solr. 

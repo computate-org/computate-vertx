@@ -90,6 +90,7 @@ public class I18n {
 	public static final String str_Pret = "str_Pret";
 	public static final String str_recharger = "str_recharger";
 	public static final String str_recherche = "str_recherche";
+	public static final String str_Recharger = "str_Recharger";
 	public static final String str_Recherche_avancee_pour_ = "str_Recherche_avancee_pour_";
 	public static final String str_Rechercher = "str_Rechercher";
 	public static final String str_Rechercher_ = "str_Rechercher_";
@@ -209,6 +210,7 @@ public class I18n {
 	public static final String var_CLASSE_API_ADDRESSE = "var_CLASSE_API_ADDRESSE";
 	public static final String var_CLASSE_AUTH_RESSOURCE = "var_CLASSE_AUTH_RESSOURCE";
 	public static final String var_ClasseApiAddresse = "var_ClasseApiAddresse";
+	public static final String var_classeIconeClassesCss = "var_classeIconeClassesCss";
 	public static final String var_classeNomAdjectifSingulier = "var_classeNomAdjectifSingulier";
 	public static final String var_classeNomCanonique = "var_classeNomCanonique";
 	public static final String var_classeNomsCanoniques = "var_classeNomsCanoniques";
@@ -242,7 +244,7 @@ public class I18n {
 	public static final String var_constructeur = "var_constructeur";
 	public static final String var_Contexte = "var_Contexte";
 	public static final String var_CONTEXTE = "var_CONTEXTE";
-	public static final String var_classeIconeClassesCss = "var_classeIconeClassesCss";
+	public static final String var_Cookie = "var_Cookie";
 	public static final String var_copie = "var_copie";
 	public static final String var_Copie = "var_Copie";
 	public static final String var_Couleur = "var_Couleur";
