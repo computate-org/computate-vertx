@@ -1373,6 +1373,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
               pageParams.put("body", pageBody);
               pageParams.put("path", new JsonObject());
               pageParams.put("cookie", new JsonObject());
+              pageParams.put("scopes", new JsonArray().add("GET"));
               pageParams.put("query", new JsonObject().put("softCommit", true).put("q", "*:*").put("var", new JsonArray().add("refresh:false")));
               JsonObject pageContext = new JsonObject().put("params", pageParams);
               JsonObject pageRequest = new JsonObject().put("context", pageContext);
