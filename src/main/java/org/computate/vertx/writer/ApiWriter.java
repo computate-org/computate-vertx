@@ -614,6 +614,14 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 				if(!wRequestHeaders.getEmpty() || "GET".equals(classApiMethodMethod) || "DELETE".equals(classApiMethodMethod) || "PUT".equals(classApiMethodMethod) || "PATCH".equals(classApiMethodMethod)) {
 					wPaths.s(wRequestHeaders);
 
+					wPaths.tl(4, "- in: query");
+					wPaths.tl(5, "name: var");
+					wPaths.tl(5, "description: 'The var parameters are additional optional variables and values to pass into the application. '");
+					wPaths.tl(5, "required: false");
+					wPaths.tl(5, "schema:");
+					wPaths.tl(6, "type: array");
+					wPaths.tl(6, "items:");
+					wPaths.tl(7, "  type: string");
 					if(id != null) {
 						wPaths.tl(4, "- name: ", id);
 						wPaths.tl(5, "in: path");
@@ -638,14 +646,6 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 						wPaths.tl(6, "type: array");
 						wPaths.tl(6, "items:");
 						wPaths.tl(7, "type: string");
-						wPaths.tl(4, "- in: query");
-						wPaths.tl(5, "name: var");
-						wPaths.tl(5, "description: 'The var parameters are additional optional variables and values to pass into the application. '");
-						wPaths.tl(5, "required: false");
-						wPaths.tl(5, "schema:");
-						wPaths.tl(6, "type: array");
-						wPaths.tl(6, "items:");
-						wPaths.tl(7, "  type: string");
 					}
 					if(classApiMethod.contains("DELETE")) {
 						wPaths.tl(4, "- in: query");

@@ -26,6 +26,9 @@ public interface ComputateSiteUser extends ComputateBaseModel {
 		return CLASS_API_ADDRESS_ComputateSiteUser;
 	}
 
+	void setCustomerProfileId(String customerProfileId);
+	String getCustomerProfileId();
+
 	void setUserName(String userName);
 
 	void setUserFirstName(String userFirstName);

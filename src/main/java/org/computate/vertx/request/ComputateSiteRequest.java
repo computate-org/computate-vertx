@@ -48,6 +48,10 @@ public interface ComputateSiteRequest extends ComputateSearchSiteRequest {
 
 	void setSessionIdBefore(String sessionIdBefore);
 
+	String getCustomerProfileId();
+
+	void setCustomerProfileId(String customerProfileId);
+
 	ServiceRequest getServiceRequest();
 
 	ComputateSiteRequest copy();
