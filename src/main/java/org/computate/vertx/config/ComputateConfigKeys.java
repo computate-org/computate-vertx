@@ -461,6 +461,7 @@ public class ComputateConfigKeys {
     ctx.put(WEB_COMPONENTS_PREFIX, config.getString(WEB_COMPONENTS_PREFIX));
     ctx.put(WEB_COMPONENTS_JS, config.getString(WEB_COMPONENTS_JS));
     ctx.put(WEB_COMPONENTS_THEME, config.getString(WEB_COMPONENTS_THEME));
+    ctx.put(WEB_COMPONENTS_KIT, config.getString(WEB_COMPONENTS_KIT));
     ctx.put(SITE_LOCALE, config.getString(SITE_LOCALE));
     ctx.put(SITE_THEME, config.getString(SITE_THEME));
     ctx.put(AUTH_SCOPE_ADMIN, config.getString(AUTH_SCOPE_ADMIN));
@@ -1345,6 +1346,11 @@ public class ComputateConfigKeys {
    * 
    **/
   public static final String WEB_COMPONENTS_THEME = "WEB_COMPONENTS_THEME";
+
+  /**
+   * 
+   **/
+  public static final String WEB_COMPONENTS_KIT = "WEB_COMPONENTS_KIT";
 
   /**
    * 
