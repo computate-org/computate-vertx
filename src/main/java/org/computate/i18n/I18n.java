@@ -304,6 +304,7 @@ public class I18n {
 	public static final String var_Exact = "var_Exact";
 	public static final String var_executeurTravailleur = "var_executeurTravailleur";
 	public static final String var_ExecuteurTravailleur = "var_ExecuteurTravailleur";
+	public static final String var_FacetDefaut = "var_FacetDefaut";
 	public static final String var_Fermer = "var_Fermer";
 	public static final String var_fichier = "var_fichier";
 	public static final String var_filtre = "var_filtre";

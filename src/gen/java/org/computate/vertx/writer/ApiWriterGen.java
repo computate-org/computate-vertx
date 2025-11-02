@@ -592,6 +592,87 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return ApiWriter.staticSearchClassUris(siteRequest_, ApiWriter.staticSetClassUris(siteRequest_, o)).toString();
 	}
 
+	///////////////////
+	// defaultFacets //
+	///////////////////
+
+
+	/**	 The entity defaultFacets
+	 *	 is defined as null before being initialized. 
+	 */
+	@JsonProperty
+	@JsonFormat(shape = JsonFormat.Shape.ARRAY)
+	@JsonInclude(Include.NON_NULL)
+	protected List<String> defaultFacets;
+
+	/**	<br> The entity defaultFacets
+	 *  is defined as null before being initialized. 
+	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:defaultFacets">Find the entity defaultFacets in Solr</a>
+	 * <br>
+	 * @param w is for wrapping a value to assign to this entity during initialization. 
+	 **/
+	protected abstract void _defaultFacets(Wrap<List<String>> w);
+
+	public List<String> getDefaultFacets() {
+		return defaultFacets;
+	}
+
+	public void setDefaultFacets(List<String> defaultFacets) {
+		this.defaultFacets = defaultFacets;
+	}
+	@JsonIgnore
+	public void setDefaultFacets(String o) {
+		String l = ApiWriter.staticSetDefaultFacets(siteRequest_, o);
+		if(l != null)
+			addDefaultFacets(l);
+	}
+	public static String staticSetDefaultFacets(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+	public ApiWriter addDefaultFacets(String...objects) {
+		for(String o : objects) {
+			addDefaultFacets(o);
+		}
+		return (ApiWriter)this;
+	}
+	public ApiWriter addDefaultFacets(String o) {
+		if(o != null)
+			this.defaultFacets.add(o);
+		return (ApiWriter)this;
+	}
+	@JsonIgnore
+	public void setDefaultFacets(JsonArray objects) {
+		defaultFacets.clear();
+		if(objects == null)
+			return;
+		for(int i = 0; i < objects.size(); i++) {
+			String o = objects.getString(i);
+			addDefaultFacets(o);
+		}
+	}
+	protected ApiWriter defaultFacetsInit() {
+		Wrap<List<String>> defaultFacetsWrap = new Wrap<List<String>>().var("defaultFacets");
+		if(defaultFacets == null) {
+			_defaultFacets(defaultFacetsWrap);
+			Optional.ofNullable(defaultFacetsWrap.getO()).ifPresent(o -> {
+				setDefaultFacets(o);
+			});
+		}
+		return (ApiWriter)this;
+	}
+
+	public static String staticSearchDefaultFacets(ComputateSiteRequest siteRequest_, String o) {
+		return o;
+	}
+
+	public static String staticSearchStrDefaultFacets(ComputateSiteRequest siteRequest_, String o) {
+		return o == null ? null : o.toString();
+	}
+
+	public static String staticSearchFqDefaultFacets(ComputateSiteRequest siteRequest_, String o) {
+		return ApiWriter.staticSearchDefaultFacets(siteRequest_, ApiWriter.staticSetDefaultFacets(siteRequest_, o)).toString();
+	}
+
 	//////////////////////////
 	// openApiVersionNumber //
 	//////////////////////////
@@ -3282,6 +3363,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				classApiMethodInit();
 				openApiVersionInit();
 				classUrisInit();
+				defaultFacetsInit();
 				openApiVersionNumberInit();
 				tabsSchemaInit();
 				tabsResponsesInit();
@@ -3408,6 +3490,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 				return oApiWriter.openApiVersion;
 			case "classUris":
 				return oApiWriter.classUris;
+			case "defaultFacets":
+				return oApiWriter.defaultFacets;
 			case "openApiVersionNumber":
 				return oApiWriter.openApiVersionNumber;
 			case "tabsSchema":
@@ -3536,97 +3620,99 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	// staticSet //
 	///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSetApiWriter(entityVar,  siteRequest_, o);
+	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String v, ApiWriter o) {
+		return staticSetApiWriter(entityVar,  siteRequest_, v, o);
 	}
-	public static Object staticSetApiWriter(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+	public static Object staticSetApiWriter(String entityVar, ComputateSiteRequest siteRequest_, String v, ApiWriter o) {
 		switch(entityVar) {
 		case "languageName":
-			return ApiWriter.staticSetLanguageName(siteRequest_, o);
+			return ApiWriter.staticSetLanguageName(siteRequest_, v);
 		case "i18n":
-			return ApiWriter.staticSetI18n(siteRequest_, o);
+			return ApiWriter.staticSetI18n(siteRequest_, v);
 		case "contextRows":
-			return ApiWriter.staticSetContextRows(siteRequest_, o);
+			return ApiWriter.staticSetContextRows(siteRequest_, v);
 		case "classApiMethod":
-			return ApiWriter.staticSetClassApiMethod(siteRequest_, o);
+			return ApiWriter.staticSetClassApiMethod(siteRequest_, v);
 		case "openApiVersion":
-			return ApiWriter.staticSetOpenApiVersion(siteRequest_, o);
+			return ApiWriter.staticSetOpenApiVersion(siteRequest_, v);
 		case "classUris":
-			return ApiWriter.staticSetClassUris(siteRequest_, o);
+			return ApiWriter.staticSetClassUris(siteRequest_, v);
+		case "defaultFacets":
+			return ApiWriter.staticSetDefaultFacets(siteRequest_, v);
 		case "openApiVersionNumber":
-			return ApiWriter.staticSetOpenApiVersionNumber(siteRequest_, o);
+			return ApiWriter.staticSetOpenApiVersionNumber(siteRequest_, v);
 		case "tabsSchema":
-			return ApiWriter.staticSetTabsSchema(siteRequest_, o);
+			return ApiWriter.staticSetTabsSchema(siteRequest_, v);
 		case "tabsResponses":
-			return ApiWriter.staticSetTabsResponses(siteRequest_, o);
+			return ApiWriter.staticSetTabsResponses(siteRequest_, v);
 		case "config":
-			return ApiWriter.staticSetConfig(siteRequest_, o);
+			return ApiWriter.staticSetConfig(siteRequest_, v);
 		case "authClients":
-			return ApiWriter.staticSetAuthClients(siteRequest_, o);
+			return ApiWriter.staticSetAuthClients(siteRequest_, v);
 		case "classApiTag":
-			return ApiWriter.staticSetClassApiTag(siteRequest_, o);
+			return ApiWriter.staticSetClassApiTag(siteRequest_, v);
 		case "classExtendsBase":
-			return ApiWriter.staticSetClassExtendsBase(siteRequest_, o);
+			return ApiWriter.staticSetClassExtendsBase(siteRequest_, v);
 		case "classIsBase":
-			return ApiWriter.staticSetClassIsBase(siteRequest_, o);
+			return ApiWriter.staticSetClassIsBase(siteRequest_, v);
 		case "classFiware":
-			return ApiWriter.staticSetClassFiware(siteRequest_, o);
+			return ApiWriter.staticSetClassFiware(siteRequest_, v);
 		case "classSimpleName":
-			return ApiWriter.staticSetClassSimpleName(siteRequest_, o);
+			return ApiWriter.staticSetClassSimpleName(siteRequest_, v);
 		case "appName":
-			return ApiWriter.staticSetAppName(siteRequest_, o);
+			return ApiWriter.staticSetAppName(siteRequest_, v);
 		case "classAbsolutePath":
-			return ApiWriter.staticSetClassAbsolutePath(siteRequest_, o);
+			return ApiWriter.staticSetClassAbsolutePath(siteRequest_, v);
 		case "classApiMethodSecurity":
-			return ApiWriter.staticSetClassApiMethodSecurity(siteRequest_, o);
+			return ApiWriter.staticSetClassApiMethodSecurity(siteRequest_, v);
 		case "classApiUriMethod":
-			return ApiWriter.staticSetClassApiUriMethod(siteRequest_, o);
+			return ApiWriter.staticSetClassApiUriMethod(siteRequest_, v);
 		case "classRoleUserMethod":
-			return ApiWriter.staticSetClassRoleUserMethod(siteRequest_, o);
+			return ApiWriter.staticSetClassRoleUserMethod(siteRequest_, v);
 		case "classApiMethodMethod":
-			return ApiWriter.staticSetClassApiMethodMethod(siteRequest_, o);
+			return ApiWriter.staticSetClassApiMethodMethod(siteRequest_, v);
 		case "classApiMediaTypeRequestMethod":
-			return ApiWriter.staticSetClassApiMediaTypeRequestMethod(siteRequest_, o);
+			return ApiWriter.staticSetClassApiMediaTypeRequestMethod(siteRequest_, v);
 		case "classApiMediaType200Method":
-			return ApiWriter.staticSetClassApiMediaType200Method(siteRequest_, o);
+			return ApiWriter.staticSetClassApiMediaType200Method(siteRequest_, v);
 		case "classApiOperationIdMethod":
-			return ApiWriter.staticSetClassApiOperationIdMethod(siteRequest_, o);
+			return ApiWriter.staticSetClassApiOperationIdMethod(siteRequest_, v);
 		case "classApiOperationIdMethodRequest":
-			return ApiWriter.staticSetClassApiOperationIdMethodRequest(siteRequest_, o);
+			return ApiWriter.staticSetClassApiOperationIdMethodRequest(siteRequest_, v);
 		case "classApiOperationIdMethodResponse":
-			return ApiWriter.staticSetClassApiOperationIdMethodResponse(siteRequest_, o);
+			return ApiWriter.staticSetClassApiOperationIdMethodResponse(siteRequest_, v);
 		case "classSuperApiOperationIdMethodRequest":
-			return ApiWriter.staticSetClassSuperApiOperationIdMethodRequest(siteRequest_, o);
+			return ApiWriter.staticSetClassSuperApiOperationIdMethodRequest(siteRequest_, v);
 		case "classSuperApiOperationIdMethodResponse":
-			return ApiWriter.staticSetClassSuperApiOperationIdMethodResponse(siteRequest_, o);
+			return ApiWriter.staticSetClassSuperApiOperationIdMethodResponse(siteRequest_, v);
 		case "classPageCanonicalNameMethod":
-			return ApiWriter.staticSetClassPageCanonicalNameMethod(siteRequest_, o);
+			return ApiWriter.staticSetClassPageCanonicalNameMethod(siteRequest_, v);
 		case "classPageWithTemplateMethod":
-			return ApiWriter.staticSetClassPageWithTemplateMethod(siteRequest_, o);
+			return ApiWriter.staticSetClassPageWithTemplateMethod(siteRequest_, v);
 		case "classKeywordsFound":
-			return ApiWriter.staticSetClassKeywordsFound(siteRequest_, o);
+			return ApiWriter.staticSetClassKeywordsFound(siteRequest_, v);
 		case "classKeywords":
-			return ApiWriter.staticSetClassKeywords(siteRequest_, o);
+			return ApiWriter.staticSetClassKeywords(siteRequest_, v);
 		case "classPublicRead":
-			return ApiWriter.staticSetClassPublicRead(siteRequest_, o);
+			return ApiWriter.staticSetClassPublicRead(siteRequest_, v);
 		case "classSearchPagePublicRead":
-			return ApiWriter.staticSetClassSearchPagePublicRead(siteRequest_, o);
+			return ApiWriter.staticSetClassSearchPagePublicRead(siteRequest_, v);
 		case "classRoleSession":
-			return ApiWriter.staticSetClassRoleSession(siteRequest_, o);
+			return ApiWriter.staticSetClassRoleSession(siteRequest_, v);
 		case "classRoleUser":
-			return ApiWriter.staticSetClassRoleUser(siteRequest_, o);
+			return ApiWriter.staticSetClassRoleUser(siteRequest_, v);
 		case "classRoleAll":
-			return ApiWriter.staticSetClassRoleAll(siteRequest_, o);
+			return ApiWriter.staticSetClassRoleAll(siteRequest_, v);
 		case "classAuth":
-			return ApiWriter.staticSetClassAuth(siteRequest_, o);
+			return ApiWriter.staticSetClassAuth(siteRequest_, v);
 		case "classRolesFound":
-			return ApiWriter.staticSetClassRolesFound(siteRequest_, o);
+			return ApiWriter.staticSetClassRolesFound(siteRequest_, v);
 		case "classRoles":
-			return ApiWriter.staticSetClassRoles(siteRequest_, o);
+			return ApiWriter.staticSetClassRoles(siteRequest_, v);
 		case "classRoleReads":
-			return ApiWriter.staticSetClassRoleReads(siteRequest_, o);
+			return ApiWriter.staticSetClassRoleReads(siteRequest_, v);
 		case "classRolesLanguage":
-			return ApiWriter.staticSetClassRolesLanguage(siteRequest_, o);
+			return ApiWriter.staticSetClassRolesLanguage(siteRequest_, v);
 			default:
 				return null;
 		}
@@ -3653,6 +3739,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchOpenApiVersion(siteRequest_, (String)o);
 		case "classUris":
 			return ApiWriter.staticSearchClassUris(siteRequest_, (String)o);
+		case "defaultFacets":
+			return ApiWriter.staticSearchDefaultFacets(siteRequest_, (String)o);
 		case "openApiVersionNumber":
 			return ApiWriter.staticSearchOpenApiVersionNumber(siteRequest_, (Integer)o);
 		case "tabsSchema":
@@ -3753,6 +3841,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchStrOpenApiVersion(siteRequest_, (String)o);
 		case "classUris":
 			return ApiWriter.staticSearchStrClassUris(siteRequest_, (String)o);
+		case "defaultFacets":
+			return ApiWriter.staticSearchStrDefaultFacets(siteRequest_, (String)o);
 		case "openApiVersionNumber":
 			return ApiWriter.staticSearchStrOpenApiVersionNumber(siteRequest_, (Integer)o);
 		case "tabsSchema":
@@ -3853,6 +3943,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return ApiWriter.staticSearchFqOpenApiVersion(siteRequest_, o);
 		case "classUris":
 			return ApiWriter.staticSearchFqClassUris(siteRequest_, o);
+		case "defaultFacets":
+			return ApiWriter.staticSearchFqDefaultFacets(siteRequest_, o);
 		case "openApiVersionNumber":
 			return ApiWriter.staticSearchFqOpenApiVersionNumber(siteRequest_, o);
 		case "tabsSchema":
@@ -3942,6 +4034,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	}
 
 	public static final String CLASS_SIMPLE_NAME = "ApiWriter";
+	public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.writer.ApiWriter";
+	public static final String CLASS_AUTH_RESOURCE = "";
 	public static final String VAR_siteRequest_ = "siteRequest_";
 	public static final String VAR_languageName = "languageName";
 	public static final String VAR_i18n = "i18n";
@@ -3951,6 +4045,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String VAR_classApiMethod = "classApiMethod";
 	public static final String VAR_openApiVersion = "openApiVersion";
 	public static final String VAR_classUris = "classUris";
+	public static final String VAR_defaultFacets = "defaultFacets";
 	public static final String VAR_openApiVersionNumber = "openApiVersionNumber";
 	public static final String VAR_tabsSchema = "tabsSchema";
 	public static final String VAR_tabsResponses = "tabsResponses";
@@ -4010,6 +4105,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	public static final String DISPLAY_NAME_classApiMethod = "";
 	public static final String DISPLAY_NAME_openApiVersion = "";
 	public static final String DISPLAY_NAME_classUris = "";
+	public static final String DISPLAY_NAME_defaultFacets = "";
 	public static final String DISPLAY_NAME_openApiVersionNumber = "";
 	public static final String DISPLAY_NAME_tabsSchema = "";
 	public static final String DISPLAY_NAME_tabsResponses = "";
@@ -4092,6 +4188,10 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		return null;
 	}
 
+	public String classStringFormatUrlDownloadForClass() {
+		return null;
+	}
+
 	public static String displayNameForClass(String var) {
 		return ApiWriter.displayNameApiWriter(var);
 	}
@@ -4115,6 +4215,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 			return DISPLAY_NAME_openApiVersion;
 		case VAR_classUris:
 			return DISPLAY_NAME_classUris;
+		case VAR_defaultFacets:
+			return DISPLAY_NAME_defaultFacets;
 		case VAR_openApiVersionNumber:
 			return DISPLAY_NAME_openApiVersionNumber;
 		case VAR_tabsSchema:
@@ -4219,6 +4321,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 	}
 
 	public static String descriptionApiWriter(String var) {
+		if(var == null)
+			return null;
 		switch(var) {
 			default:
 				return null;
@@ -4244,6 +4348,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
 		case VAR_openApiVersion:
 			return "String";
 		case VAR_classUris:
+			return "List";
+		case VAR_defaultFacets:
 			return "List";
 		case VAR_openApiVersionNumber:
 			return "Integer";

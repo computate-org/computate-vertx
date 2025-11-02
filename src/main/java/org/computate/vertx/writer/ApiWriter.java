@@ -57,6 +57,9 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 	protected void _classUris(Wrap<List<String>> w) {
 	}
 
+	protected void _defaultFacets(Wrap<List<String>> w) {
+	}
+
 	protected void _openApiVersionNumber(Wrap<Integer> c) {
 		c.o((int)Double.parseDouble(StringUtils.substringBefore(openApiVersion, ".")));
 	}
@@ -801,6 +804,16 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 						wPaths.tl(6, "type: array");
 						wPaths.tl(6, "items:");
 						wPaths.tl(7, "type: string");
+						if(defaultFacets.size() > 0) {
+							wPaths.t(6, "default: [");
+							for(Integer i = 0; i < defaultFacets.size(); i++) {
+								String defaultFacet = defaultFacets.get(i);
+								if(i > 0)
+									wPaths.s(", ");
+								wPaths.s("\"", defaultFacet, "\"");
+							}
+							wPaths.l("]");
+						}
 						wPaths.tl(4, "- in: query");
 						wPaths.tl(5, "name: d");
 						wPaths.tl(5, "description: 'The radial distance, usually in kilometers. '");

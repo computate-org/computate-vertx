@@ -17,6 +17,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -283,6 +284,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 
 			List<String> classApiMethods = classDoc.getClassApiMethods();
 			classApiMethods.stream().sorted(Comparator.comparing(classApiMethod -> doc.get(String.format("classeApiMethode%s_%s_stored_string", classApiMethod, languageName))));
+			List<String> defaultFacets = Optional.ofNullable((List<String>)doc.get("classeFacetsDefaut_stored_strings")).orElse(Arrays.asList());
 			for(String classApiMethod : classDoc.getClassApiMethods()) {
 				ApiWriter apiWriter = new ApiWriter();
 				apiWriter.setI18n(i18n);
@@ -295,6 +297,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 				apiWriter.setWSchemas(wSchemas);
 				apiWriter.setOpenApiVersion(openApiVersion);
 				apiWriter.setClassUris(classUris);
+				apiWriter.setDefaultFacets(defaultFacets);
 				apiWriter.setAuthClients(Optional.ofNullable(config.getValue(ComputateConfigKeys.AUTH_CLIENTS))
 						.map(v -> v instanceof JsonObject ? (JsonObject)v : new JsonObject(v.toString()))
 						.orElse(new JsonObject().put(Optional.ofNullable(config.getString(ComputateConfigKeys.AUTH_OPEN_API_ID)).orElse("openIdConnect"), config)));
