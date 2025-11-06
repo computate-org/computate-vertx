@@ -89,16 +89,24 @@ public class ComputateConfigKeys {
         }
         Configuration.setDefaultApiClient(client);
         if("Secret".equals(kind)) {
-          CoreV1Api api = new CoreV1Api();
-          V1Secret secret = api.readNamespacedSecret(resource_name, namespace).execute();
-          secret.getData().keySet().forEach(key -> {
-            secret.getData().put(key, Base64.getEncoder().encode(secret.getData().get(key)));
-          });
-          return new KubernetesObject[] {secret};
+          try {
+            CoreV1Api api = new CoreV1Api();
+            V1Secret secret = api.readNamespacedSecret(resource_name, namespace).execute();
+            secret.getData().keySet().forEach(key -> {
+              secret.getData().put(key, Base64.getEncoder().encode(secret.getData().get(key)));
+            });
+            return new KubernetesObject[] {secret};
+          } catch(Throwable ex) {
+            return new KubernetesObject[] {};
+          }
         } else if("Ingress".equals(kind)) {
-          NetworkingV1Api api = new NetworkingV1Api();
-          V1Ingress ingress = api.readNamespacedIngress(resource_name, namespace).execute();
-          return new KubernetesObject[] {ingress};
+          try {
+            NetworkingV1Api api = new NetworkingV1Api();
+            V1Ingress ingress = api.readNamespacedIngress(resource_name, namespace).execute();
+            return new KubernetesObject[] {ingress};
+          } catch(Throwable ex) {
+            return new KubernetesObject[] {};
+          }
         }
       }
     } catch(Throwable ex) {
