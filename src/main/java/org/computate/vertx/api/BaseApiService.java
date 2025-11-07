@@ -318,17 +318,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
           oauth2AuthenticationProvider.authenticate(token.principal()).onSuccess(user -> {
             promise.complete(user);
           }).onFailure(ex -> {
-            oauth2AuthenticationProvider.refresh(token).onSuccess(user -> {
-              serviceRequest.setUser(user.principal());
-              getTokenUser(serviceRequest, cSiteRequest, cSiteUser, vertxAddress, postAction, patchAction).onSuccess(user2 -> {
-                promise.complete(user2);
-              }).onFailure(ex2 -> {
-                promise.fail(ex2);
-              });
-            }).onFailure(ex2 -> {
-              LOG.error(String.format("user failed. ", ex2));
-              promise.fail(ex2);
-            });
+            RuntimeException ex2 = new RuntimeException("Inactive Token", ex);
+            LOG.error("Inactive Token, logout required. ", ex2);
+            promise.fail(ex2);
           });
         }
       }
