@@ -319,7 +319,6 @@ abstract class BaseApiService implements BaseApiServiceInterface {
             promise.complete(user);
           }).onFailure(ex -> {
             RuntimeException ex2 = new RuntimeException("Inactive Token", ex);
-            LOG.error("Inactive Token, logout required. ", ex2);
             promise.fail(ex2);
           });
         }
