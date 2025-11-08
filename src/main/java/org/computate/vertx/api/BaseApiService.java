@@ -415,7 +415,6 @@ abstract class BaseApiService implements BaseApiServiceInterface {
             promise.fail(ex);
           }
         }).onFailure(ex -> {
-          LOG.error(String.format("user failed. "), ex);
           promise.fail(ex);
         });
       }).onFailure(ex -> {
