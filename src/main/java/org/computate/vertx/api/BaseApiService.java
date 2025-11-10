@@ -318,8 +318,26 @@ abstract class BaseApiService implements BaseApiServiceInterface {
           oauth2AuthenticationProvider.authenticate(token.principal()).onSuccess(user -> {
             promise.complete(user);
           }).onFailure(ex -> {
-            RuntimeException ex2 = new RuntimeException("Inactive Token", ex);
-            promise.fail(ex2);
+            if(!"GET".equals(serviceRequest.getExtra().getString("method"))) {
+              // For requests that are not GET requests, we want to obtain a refresh token if available, 
+              // so that the request does not fail, and a logout cannot be performed with a non GET method. 
+              oauth2AuthenticationProvider.refresh(token).onSuccess(user -> {
+                serviceRequest.setUser(user.principal());
+                getTokenUser(serviceRequest, cSiteRequest, cSiteUser, vertxAddress, postAction, patchAction).onSuccess(user2 -> {
+                  promise.complete(user2);
+                }).onFailure(ex2 -> {
+                  promise.fail(ex2);
+                });
+              }).onFailure(ex2 -> {
+                LOG.error(String.format("user failed. ", ex2));
+                promise.fail(ex2);
+              });
+            } else {
+              // For GET requests, we can fails with an "Inactive Token" RuntimeException 
+              // to force an application session logout to obtain a new token. 
+              RuntimeException ex2 = new RuntimeException("Inactive Token", ex);
+              promise.fail(ex2);
+            }
           });
         }
       }
