@@ -78,7 +78,7 @@ SITE_SRC: "{{ lookup('env', 'COMPUTATE_VERTX_SRC') | default(lookup('env', 'HOME
 
 DOMAIN_NAME: computate.org
 SITE_POM_ARTIFACT_ID: vertx
-DOMAIN_PACKAGE_NAME: "org.computate.vertx"
+SITE_JAVA_PACKAGE: "org.computate.vertx"
 RELATIVE_PATHS_TO_WATCH: "src/main/java/org/computate/vertx"
 SITE_BASE_URL: "http://localhost:10200"
 SITE_ZONE: "America/Denver"

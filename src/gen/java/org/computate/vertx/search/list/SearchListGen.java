@@ -129,946 +129,954 @@ import io.vertx.core.json.JsonArray;
  * Generated: true
  **/
 public abstract class SearchListGen<DEV> {
-	protected static final Logger LOG = LoggerFactory.getLogger(SearchList.class);
+  protected static final Logger LOG = LoggerFactory.getLogger(SearchList.class);
 
 	///////
-	// c //
+  // c //
 	///////
 
 
-	/**	 The entity c
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonIgnore
-	@JsonInclude(Include.NON_NULL)
-	protected Class<?> c;
+  /**   The entity c
+   *	 is defined as null before being initialized. 
+   */
+  @JsonIgnore
+  @JsonInclude(Include.NON_NULL)
+  protected Class<?> c;
 
-	/**	<br> The entity c
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:c">Find the entity c in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _c(Wrap<Class<?>> c);
+  /**  <br> The entity c
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:c">Find the entity c in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _c(Wrap<Class<?>> c);
 
-	public Class<?> getC() {
-		return c;
-	}
+  public Class<?> getC() {
+    return c;
+  }
 
-	public void setC(Class<?> c) {
-		this.c = c;
-	}
-	public static Class<?> staticSetC(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected SearchList cInit() {
-		Wrap<Class<?>> cWrap = new Wrap<Class<?>>().var("c");
-		if(c == null) {
-			_c(cWrap);
-			Optional.ofNullable(cWrap.getO()).ifPresent(o -> {
-				setC(o);
-			});
-		}
-		return (SearchList)this;
-	}
+  public void setC(Class<?> c) {
+    this.c = c;
+  }
+  public static Class<?> staticSetC(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected SearchList cInit() {
+    Wrap<Class<?>> cWrap = new Wrap<Class<?>>().var("c");
+    if(c == null) {
+      _c(cWrap);
+      Optional.ofNullable(cWrap.getO()).ifPresent(o -> {
+        setC(o);
+      });
+    }
+    return (SearchList)this;
+  }
 
 	//////////////////
-	// siteRequest_ //
+  // siteRequest_ //
 	//////////////////
 
 
-	/**	 The entity siteRequest_
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonIgnore
-	@JsonInclude(Include.NON_NULL)
-	protected ComputateSiteRequest siteRequest_;
+  /**   The entity siteRequest_
+   *	 is defined as null before being initialized. 
+   */
+  @JsonIgnore
+  @JsonInclude(Include.NON_NULL)
+  protected ComputateSiteRequest siteRequest_;
 
-	/**	<br> The entity siteRequest_
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _siteRequest_(Wrap<ComputateSiteRequest> c);
+  /**  <br> The entity siteRequest_
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _siteRequest_(Wrap<ComputateSiteRequest> c);
 
-	public ComputateSiteRequest getSiteRequest_() {
-		return siteRequest_;
-	}
+  public ComputateSiteRequest getSiteRequest_() {
+    return siteRequest_;
+  }
 
-	public void setSiteRequest_(ComputateSiteRequest siteRequest_) {
-		this.siteRequest_ = siteRequest_;
-	}
-	public static ComputateSiteRequest staticSetSiteRequest_(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected SearchList siteRequest_Init() {
-		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
-		if(siteRequest_ == null) {
-			_siteRequest_(siteRequest_Wrap);
-			Optional.ofNullable(siteRequest_Wrap.getO()).ifPresent(o -> {
-				setSiteRequest_(o);
-			});
-		}
-		return (SearchList)this;
-	}
-
-	///////////
-	// store //
-	///////////
-
-
-	/**	 The entity store
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonIgnore
-	@JsonInclude(Include.NON_NULL)
-	protected Boolean store;
-
-	/**	<br> The entity store
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:store">Find the entity store in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _store(Wrap<Boolean> c);
-
-	public Boolean getStore() {
-		return store;
-	}
-
-	public void setStore(Boolean store) {
-		this.store = store;
-	}
-	@JsonIgnore
-	public void setStore(String o) {
-		this.store = SearchList.staticSetStore(siteRequest_, o);
-	}
-	public static Boolean staticSetStore(ComputateSiteRequest siteRequest_, String o) {
-		return Boolean.parseBoolean(o);
-	}
-	protected SearchList storeInit() {
-		Wrap<Boolean> storeWrap = new Wrap<Boolean>().var("store");
-		if(store == null) {
-			_store(storeWrap);
-			Optional.ofNullable(storeWrap.getO()).ifPresent(o -> {
-				setStore(o);
-			});
-		}
-		return (SearchList)this;
-	}
-
-	public static Boolean staticSearchStore(ComputateSiteRequest siteRequest_, Boolean o) {
-		return o;
-	}
-
-	public static String staticSearchStrStore(ComputateSiteRequest siteRequest_, Boolean o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqStore(ComputateSiteRequest siteRequest_, String o) {
-		return SearchList.staticSearchStore(siteRequest_, SearchList.staticSetStore(siteRequest_, o)).toString();
-	}
-
-	//////////////
-	// populate //
-	//////////////
-
-
-	/**	 The entity populate
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonIgnore
-	@JsonInclude(Include.NON_NULL)
-	protected Boolean populate;
-
-	/**	<br> The entity populate
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:populate">Find the entity populate in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _populate(Wrap<Boolean> c);
-
-	public Boolean getPopulate() {
-		return populate;
-	}
-
-	public void setPopulate(Boolean populate) {
-		this.populate = populate;
-	}
-	@JsonIgnore
-	public void setPopulate(String o) {
-		this.populate = SearchList.staticSetPopulate(siteRequest_, o);
-	}
-	public static Boolean staticSetPopulate(ComputateSiteRequest siteRequest_, String o) {
-		return Boolean.parseBoolean(o);
-	}
-	protected SearchList populateInit() {
-		Wrap<Boolean> populateWrap = new Wrap<Boolean>().var("populate");
-		if(populate == null) {
-			_populate(populateWrap);
-			Optional.ofNullable(populateWrap.getO()).ifPresent(o -> {
-				setPopulate(o);
-			});
-		}
-		return (SearchList)this;
-	}
-
-	public static Boolean staticSearchPopulate(ComputateSiteRequest siteRequest_, Boolean o) {
-		return o;
-	}
-
-	public static String staticSearchStrPopulate(ComputateSiteRequest siteRequest_, Boolean o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqPopulate(ComputateSiteRequest siteRequest_, String o) {
-		return SearchList.staticSearchPopulate(siteRequest_, SearchList.staticSetPopulate(siteRequest_, o)).toString();
-	}
-
-	/////////////
-	// request //
-	/////////////
-
-
-	/**	 The entity request
-	 *	 It is constructed before being initialized with the constructor by default. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected SearchRequest request = new SearchRequest();
-
-	/**	<br> The entity request
-	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:request">Find the entity request in Solr</a>
-	 * <br>
-	 * @param o is the entity already constructed. 
-	 **/
-	protected abstract void _request(SearchRequest o);
-
-	public SearchRequest getRequest() {
-		return request;
-	}
-
-	public void setRequest(SearchRequest request) {
-		this.request = request;
-	}
-	public static SearchRequest staticSetRequest(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected SearchList requestInit() {
-		_request(request);
-		request.initDeepForClass(siteRequest_);
-		return (SearchList)this;
-	}
-
-	///////////////
-	// searchUrl //
-	///////////////
-
-
-	/**	 The entity searchUrl
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected String searchUrl;
-
-	/**	<br> The entity searchUrl
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:searchUrl">Find the entity searchUrl in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _searchUrl(Wrap<String> w);
-
-	public String getSearchUrl() {
-		return searchUrl;
-	}
-	public void setSearchUrl(String o) {
-		this.searchUrl = SearchList.staticSetSearchUrl(siteRequest_, o);
-	}
-	public static String staticSetSearchUrl(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-	protected SearchList searchUrlInit() {
-		Wrap<String> searchUrlWrap = new Wrap<String>().var("searchUrl");
-		if(searchUrl == null) {
-			_searchUrl(searchUrlWrap);
-			Optional.ofNullable(searchUrlWrap.getO()).ifPresent(o -> {
-				setSearchUrl(o);
-			});
-		}
-		return (SearchList)this;
-	}
-
-	public static String staticSearchSearchUrl(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-
-	public static String staticSearchStrSearchUrl(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqSearchUrl(ComputateSiteRequest siteRequest_, String o) {
-		return SearchList.staticSearchSearchUrl(siteRequest_, SearchList.staticSetSearchUrl(siteRequest_, o)).toString();
-	}
-
-	/////////////////
-	// defaultSort //
-	/////////////////
-
-
-	/**	 The entity defaultSort
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected Boolean defaultSort;
-
-	/**	<br> The entity defaultSort
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:defaultSort">Find the entity defaultSort in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _defaultSort(Wrap<Boolean> w);
-
-	public Boolean getDefaultSort() {
-		return defaultSort;
-	}
-
-	public void setDefaultSort(Boolean defaultSort) {
-		this.defaultSort = defaultSort;
-	}
-	@JsonIgnore
-	public void setDefaultSort(String o) {
-		this.defaultSort = SearchList.staticSetDefaultSort(siteRequest_, o);
-	}
-	public static Boolean staticSetDefaultSort(ComputateSiteRequest siteRequest_, String o) {
-		return Boolean.parseBoolean(o);
-	}
-	protected SearchList defaultSortInit() {
-		Wrap<Boolean> defaultSortWrap = new Wrap<Boolean>().var("defaultSort");
-		if(defaultSort == null) {
-			_defaultSort(defaultSortWrap);
-			Optional.ofNullable(defaultSortWrap.getO()).ifPresent(o -> {
-				setDefaultSort(o);
-			});
-		}
-		return (SearchList)this;
-	}
-
-	public static Boolean staticSearchDefaultSort(ComputateSiteRequest siteRequest_, Boolean o) {
-		return o;
-	}
-
-	public static String staticSearchStrDefaultSort(ComputateSiteRequest siteRequest_, Boolean o) {
-		return o == null ? null : o.toString();
-	}
-
-	public static String staticSearchFqDefaultSort(ComputateSiteRequest siteRequest_, String o) {
-		return SearchList.staticSearchDefaultSort(siteRequest_, SearchList.staticSetDefaultSort(siteRequest_, o)).toString();
-	}
-
-	//////////////
-	// response //
-	//////////////
-
-
-	/**	 The entity response
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonIgnore
-	@JsonInclude(Include.NON_NULL)
-	protected SolrResponse response;
-
-	/**	<br> The entity response
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:response">Find the entity response in Solr</a>
-	 * <br>
-	 * @param promise is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _response(Promise<SolrResponse> promise);
-
-	public SolrResponse getResponse() {
-		return response;
-	}
-
-	public void setResponse(SolrResponse response) {
-		this.response = response;
-	}
-	public static SolrResponse staticSetResponse(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected Future<SolrResponse> responsePromise() {
-		Promise<SolrResponse> promise = Promise.promise();
-		Promise<SolrResponse> promise2 = Promise.promise();
-		_response(promise2);
-		promise2.future().onSuccess(o -> {
-			setResponse(o);
-			promise.complete(o);
-		}).onFailure(ex -> {
-			promise.fail(ex);
-		});
-		return promise.future();
-	}
-
-	//////////
-	// docs //
-	//////////
-
-
-	/**	 The entity docs
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonIgnore
-	@JsonInclude(Include.NON_NULL)
-	protected List<Doc> docs;
-
-	/**	<br> The entity docs
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:docs">Find the entity docs in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _docs(Wrap<List<Doc>> w);
-
-	public List<Doc> getDocs() {
-		return docs;
-	}
-
-	public void setDocs(List<Doc> docs) {
-		this.docs = docs;
-	}
-	public static Doc staticSetDocs(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	public SearchList addDocs(Doc...objects) {
-		for(Doc o : objects) {
-			addDocs(o);
-		}
-		return (SearchList)this;
-	}
-	public SearchList addDocs(Doc o) {
-		if(o != null)
-			this.docs.add(o);
-		return (SearchList)this;
-	}
-	protected SearchList docsInit() {
-		Wrap<List<Doc>> docsWrap = new Wrap<List<Doc>>().var("docs");
-		if(docs == null) {
-			_docs(docsWrap);
-			Optional.ofNullable(docsWrap.getO()).ifPresent(o -> {
-				setDocs(o);
-			});
-		}
-		return (SearchList)this;
-	}
-
-	//////////
-	// list //
-	//////////
-
-
-	/**	 The entity list
-	 *	 It is constructed before being initialized with the constructor by default. 
-	 */
-	@JsonProperty
-	@JsonFormat(shape = JsonFormat.Shape.ARRAY)
-	@JsonInclude(Include.NON_NULL)
-	protected List<DEV> list = new ArrayList<DEV>();
-
-	/**	<br> The entity list
-	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:list">Find the entity list in Solr</a>
-	 * <br>
-	 * @param l is the entity already constructed. 
-	 **/
-	protected abstract void _list(List<DEV> l);
-
-	public List<DEV> getList() {
-		return list;
-	}
-
-	public void setList(List<DEV> list) {
-		this.list = list;
-	}
-	public SearchList addList(DEV...objects) {
-		for(DEV o : objects) {
-			addList(o);
-		}
-		return (SearchList)this;
-	}
-	public SearchList addList(DEV o) {
-		if(o != null)
-			this.list.add(o);
-		return (SearchList)this;
-	}
-	protected SearchList listInit() {
-		_list(list);
-		return (SearchList)this;
-	}
+  public void setSiteRequest_(ComputateSiteRequest siteRequest_) {
+    this.siteRequest_ = siteRequest_;
+  }
+  public static ComputateSiteRequest staticSetSiteRequest_(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected SearchList siteRequest_Init() {
+    Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
+    if(siteRequest_ == null) {
+      _siteRequest_(siteRequest_Wrap);
+      Optional.ofNullable(siteRequest_Wrap.getO()).ifPresent(o -> {
+        setSiteRequest_(o);
+      });
+    }
+    return (SearchList)this;
+  }
 
 	///////////
-	// first //
+  // store //
 	///////////
 
 
-	/**	 The entity first
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected Object first;
+  /**   The entity store
+   *	 is defined as null before being initialized. 
+   */
+  @JsonIgnore
+  @JsonInclude(Include.NON_NULL)
+  protected Boolean store;
 
-	/**	<br> The entity first
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:first">Find the entity first in Solr</a>
-	 * <br>
-	 * @param w is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _first(Wrap<Object> w);
+  /**  <br> The entity store
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:store">Find the entity store in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _store(Wrap<Boolean> c);
 
-	public Object getFirst() {
-		return first;
-	}
+  public Boolean getStore() {
+    return store;
+  }
 
-	public void setFirst(Object first) {
-		this.first = first;
-	}
-	public static Object staticSetFirst(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected SearchList firstInit() {
-		Wrap<Object> firstWrap = new Wrap<Object>().var("first");
-		if(first == null) {
-			_first(firstWrap);
-			Optional.ofNullable(firstWrap.getO()).ifPresent(o -> {
-				setFirst(o);
-			});
-		}
-		return (SearchList)this;
-	}
+  public void setStore(Boolean store) {
+    this.store = store;
+  }
+  @JsonIgnore
+  public void setStore(String o) {
+    this.store = SearchList.staticSetStore(siteRequest_, o);
+  }
+  public static Boolean staticSetStore(ComputateSiteRequest siteRequest_, String o) {
+    return Boolean.parseBoolean(o);
+  }
+  protected SearchList storeInit() {
+    Wrap<Boolean> storeWrap = new Wrap<Boolean>().var("store");
+    if(store == null) {
+      _store(storeWrap);
+      Optional.ofNullable(storeWrap.getO()).ifPresent(o -> {
+        setStore(o);
+      });
+    }
+    return (SearchList)this;
+  }
+
+  public static Boolean staticSearchStore(ComputateSiteRequest siteRequest_, Boolean o) {
+    return o;
+  }
+
+  public static String staticSearchStrStore(ComputateSiteRequest siteRequest_, Boolean o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqStore(ComputateSiteRequest siteRequest_, String o) {
+    return SearchList.staticSearchStore(siteRequest_, SearchList.staticSetStore(siteRequest_, o)).toString();
+  }
 
 	//////////////
-	// initDeep //
+  // populate //
 	//////////////
 
-	public Future<SearchListGen<DEV>> promiseDeepSearchList(ComputateSiteRequest siteRequest_) {
-		setSiteRequest_(siteRequest_);
-		return promiseDeepSearchList();
-	}
 
-	public Future<SearchListGen<DEV>> promiseDeepSearchList() {
-		Promise<SearchListGen<DEV>> promise = Promise.promise();
-		Promise<Void> promise2 = Promise.promise();
-		promiseSearchList(promise2);
-		promise2.future().onSuccess(a -> {
-			promise.complete(this);
-		}).onFailure(ex -> {
-			promise.fail(ex);
-		});
-		return promise.future();
-	}
+  /**   The entity populate
+   *	 is defined as null before being initialized. 
+   */
+  @JsonIgnore
+  @JsonInclude(Include.NON_NULL)
+  protected Boolean populate;
 
-	public Future<Void> promiseSearchList(Promise<Void> promise) {
-		Future.future(a -> a.complete()).compose(a -> {
-			Promise<Void> promise2 = Promise.promise();
-			try {
-				cInit();
-				siteRequest_Init();
-				storeInit();
-				populateInit();
-				requestInit();
-				searchUrlInit();
-				defaultSortInit();
-				promise2.complete();
-			} catch(Exception ex) {
-				promise2.fail(ex);
-			}
-			return promise2.future();
-		}).compose(a -> {
-			Promise<Void> promise2 = Promise.promise();
-			responsePromise().onSuccess(response -> {
-				promise2.complete();
-			}).onFailure(ex -> {
-				promise2.fail(ex);
-			});
-			return promise2.future();
-		}).compose(a -> {
-			Promise<Void> promise2 = Promise.promise();
-			try {
-				docsInit();
-				listInit();
-				firstInit();
-				promise2.complete();
-			} catch(Exception ex) {
-				promise2.fail(ex);
-			}
-			return promise2.future();
-		}).onSuccess(a -> {
-			promise.complete();
-		}).onFailure(ex -> {
-			promise.fail(ex);
-		});
-		return promise.future();
-	}
+  /**  <br> The entity populate
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:populate">Find the entity populate in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _populate(Wrap<Boolean> c);
 
-	public Future<? extends SearchListGen<DEV>> promiseDeepForClass(ComputateSiteRequest siteRequest_) {
-		return promiseDeepSearchList(siteRequest_);
-	}
+  public Boolean getPopulate() {
+    return populate;
+  }
 
-	/////////////////
-	// siteRequest //
-	/////////////////
+  public void setPopulate(Boolean populate) {
+    this.populate = populate;
+  }
+  @JsonIgnore
+  public void setPopulate(String o) {
+    this.populate = SearchList.staticSetPopulate(siteRequest_, o);
+  }
+  public static Boolean staticSetPopulate(ComputateSiteRequest siteRequest_, String o) {
+    return Boolean.parseBoolean(o);
+  }
+  protected SearchList populateInit() {
+    Wrap<Boolean> populateWrap = new Wrap<Boolean>().var("populate");
+    if(populate == null) {
+      _populate(populateWrap);
+      Optional.ofNullable(populateWrap.getO()).ifPresent(o -> {
+        setPopulate(o);
+      });
+    }
+    return (SearchList)this;
+  }
 
-	public void siteRequestSearchList(ComputateSiteRequest siteRequest_) {
-		if(request != null)
-			request.setSiteRequest_(siteRequest_);
-	}
+  public static Boolean staticSearchPopulate(ComputateSiteRequest siteRequest_, Boolean o) {
+    return o;
+  }
 
-	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
-		siteRequestSearchList(siteRequest_);
-	}
+  public static String staticSearchStrPopulate(ComputateSiteRequest siteRequest_, Boolean o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqPopulate(ComputateSiteRequest siteRequest_, String o) {
+    return SearchList.staticSearchPopulate(siteRequest_, SearchList.staticSetPopulate(siteRequest_, o)).toString();
+  }
 
 	/////////////
-	// obtain //
+  // request //
 	/////////////
 
-	public Object obtainForClass(String var) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = obtainSearchList(v);
-			else if(o instanceof Map) {
-				Map<?, ?> map = (Map<?, ?>)o;
-				o = map.get(v);
-			}
-		}
-		return o;
-	}
-	public Object obtainSearchList(String var) {
-		SearchList oSearchList = (SearchList)this;
-		switch(var) {
-			case "c":
-				return oSearchList.c;
-			case "siteRequest_":
-				return oSearchList.siteRequest_;
-			case "store":
-				return oSearchList.store;
-			case "populate":
-				return oSearchList.populate;
-			case "request":
-				return oSearchList.request;
-			case "searchUrl":
-				return oSearchList.searchUrl;
-			case "defaultSort":
-				return oSearchList.defaultSort;
-			case "response":
-				return oSearchList.response;
-			case "docs":
-				return oSearchList.docs;
-			case "list":
-				return oSearchList.list;
-			case "first":
-				return oSearchList.first;
-			default:
-				return null;
-		}
-	}
+
+  /**   The entity request
+   *	 It is constructed before being initialized with the constructor by default. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected SearchRequest request = new SearchRequest();
+
+  /**  <br> The entity request
+   *  It is constructed before being initialized with the constructor by default. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:request">Find the entity request in Solr</a>
+   * <br>
+   * @param o is the entity already constructed. 
+   **/
+  protected abstract void _request(SearchRequest o);
+
+  public SearchRequest getRequest() {
+    return request;
+  }
+
+  public void setRequest(SearchRequest request) {
+    this.request = request;
+  }
+  public static SearchRequest staticSetRequest(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected SearchList requestInit() {
+    _request(request);
+    request.initDeepForClass(siteRequest_);
+    return (SearchList)this;
+  }
 
 	///////////////
-	// relate //
+  // searchUrl //
 	///////////////
 
-	public boolean relateForClass(String var, Object val) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = relateSearchList(v, val);
-		}
-		return o != null;
-	}
-	public Object relateSearchList(String var, Object val) {
-		SearchList oSearchList = (SearchList)this;
-		switch(var) {
-			default:
-				return null;
-		}
-	}
 
-	///////////////
-	// staticSet //
-	///////////////
+  /**   The entity searchUrl
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String searchUrl;
 
-	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSetSearchList(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSetSearchList(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-		case "store":
-			return SearchList.staticSetStore(siteRequest_, o);
-		case "populate":
-			return SearchList.staticSetPopulate(siteRequest_, o);
-		case "searchUrl":
-			return SearchList.staticSetSearchUrl(siteRequest_, o);
-		case "defaultSort":
-			return SearchList.staticSetDefaultSort(siteRequest_, o);
-			default:
-				return null;
-		}
-	}
+  /**  <br> The entity searchUrl
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:searchUrl">Find the entity searchUrl in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _searchUrl(Wrap<String> w);
 
-	////////////////
-	// staticSearch //
-	////////////////
+  public String getSearchUrl() {
+    return searchUrl;
+  }
+  public void setSearchUrl(String o) {
+    this.searchUrl = SearchList.staticSetSearchUrl(siteRequest_, o);
+  }
+  public static String staticSetSearchUrl(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected SearchList searchUrlInit() {
+    Wrap<String> searchUrlWrap = new Wrap<String>().var("searchUrl");
+    if(searchUrl == null) {
+      _searchUrl(searchUrlWrap);
+      Optional.ofNullable(searchUrlWrap.getO()).ifPresent(o -> {
+        setSearchUrl(o);
+      });
+    }
+    return (SearchList)this;
+  }
 
-	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchSearchList(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSearchSearchList(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-		case "store":
-			return SearchList.staticSearchStore(siteRequest_, (Boolean)o);
-		case "populate":
-			return SearchList.staticSearchPopulate(siteRequest_, (Boolean)o);
-		case "searchUrl":
-			return SearchList.staticSearchSearchUrl(siteRequest_, (String)o);
-		case "defaultSort":
-			return SearchList.staticSearchDefaultSort(siteRequest_, (Boolean)o);
-			default:
-				return null;
-		}
-	}
+  public static String staticSearchSearchUrl(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
 
-	///////////////////
-	// staticSearchStr //
-	///////////////////
+  public static String staticSearchStrSearchUrl(ComputateSiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
 
-	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchStrSearchList(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchStrSearchList(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-		case "store":
-			return SearchList.staticSearchStrStore(siteRequest_, (Boolean)o);
-		case "populate":
-			return SearchList.staticSearchStrPopulate(siteRequest_, (Boolean)o);
-		case "searchUrl":
-			return SearchList.staticSearchStrSearchUrl(siteRequest_, (String)o);
-		case "defaultSort":
-			return SearchList.staticSearchStrDefaultSort(siteRequest_, (Boolean)o);
-			default:
-				return null;
-		}
-	}
+  public static String staticSearchFqSearchUrl(ComputateSiteRequest siteRequest_, String o) {
+    return SearchList.staticSearchSearchUrl(siteRequest_, SearchList.staticSetSearchUrl(siteRequest_, o)).toString();
+  }
 
-	//////////////////
-	// staticSearchFq //
-	//////////////////
+	/////////////////
+  // defaultSort //
+	/////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSearchFqSearchList(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchFqSearchList(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-		case "store":
-			return SearchList.staticSearchFqStore(siteRequest_, o);
-		case "populate":
-			return SearchList.staticSearchFqPopulate(siteRequest_, o);
-		case "searchUrl":
-			return SearchList.staticSearchFqSearchUrl(siteRequest_, o);
-		case "defaultSort":
-			return SearchList.staticSearchFqDefaultSort(siteRequest_, o);
-			default:
-				return null;
-		}
-	}
+
+  /**   The entity defaultSort
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected Boolean defaultSort;
+
+  /**  <br> The entity defaultSort
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:defaultSort">Find the entity defaultSort in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _defaultSort(Wrap<Boolean> w);
+
+  public Boolean getDefaultSort() {
+    return defaultSort;
+  }
+
+  public void setDefaultSort(Boolean defaultSort) {
+    this.defaultSort = defaultSort;
+  }
+  @JsonIgnore
+  public void setDefaultSort(String o) {
+    this.defaultSort = SearchList.staticSetDefaultSort(siteRequest_, o);
+  }
+  public static Boolean staticSetDefaultSort(ComputateSiteRequest siteRequest_, String o) {
+    return Boolean.parseBoolean(o);
+  }
+  protected SearchList defaultSortInit() {
+    Wrap<Boolean> defaultSortWrap = new Wrap<Boolean>().var("defaultSort");
+    if(defaultSort == null) {
+      _defaultSort(defaultSortWrap);
+      Optional.ofNullable(defaultSortWrap.getO()).ifPresent(o -> {
+        setDefaultSort(o);
+      });
+    }
+    return (SearchList)this;
+  }
+
+  public static Boolean staticSearchDefaultSort(ComputateSiteRequest siteRequest_, Boolean o) {
+    return o;
+  }
+
+  public static String staticSearchStrDefaultSort(ComputateSiteRequest siteRequest_, Boolean o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqDefaultSort(ComputateSiteRequest siteRequest_, String o) {
+    return SearchList.staticSearchDefaultSort(siteRequest_, SearchList.staticSetDefaultSort(siteRequest_, o)).toString();
+  }
 
 	//////////////
-	// toString //
+  // response //
 	//////////////
 
-	@Override public String toString() {
-		StringBuilder sb = new StringBuilder();
-		return sb.toString();
-	}
 
-	public static final String CLASS_SIMPLE_NAME = "SearchList";
-	public static final String VAR_c = "c";
-	public static final String VAR_siteRequest_ = "siteRequest_";
-	public static final String VAR_store = "store";
-	public static final String VAR_populate = "populate";
-	public static final String VAR_request = "request";
-	public static final String VAR_searchUrl = "searchUrl";
-	public static final String VAR_defaultSort = "defaultSort";
-	public static final String VAR_response = "response";
-	public static final String VAR_docs = "docs";
-	public static final String VAR_list = "list";
-	public static final String VAR_first = "first";
+  /**   The entity response
+   *	 is defined as null before being initialized. 
+   */
+  @JsonIgnore
+  @JsonInclude(Include.NON_NULL)
+  protected SolrResponse response;
 
-	public static final String DISPLAY_NAME_c = "";
-	public static final String DISPLAY_NAME_siteRequest_ = "";
-	public static final String DISPLAY_NAME_store = "";
-	public static final String DISPLAY_NAME_populate = "";
-	public static final String DISPLAY_NAME_request = "";
-	public static final String DISPLAY_NAME_searchUrl = "";
-	public static final String DISPLAY_NAME_defaultSort = "";
-	public static final String DISPLAY_NAME_response = "";
-	public static final String DISPLAY_NAME_docs = "";
-	public static final String DISPLAY_NAME_list = "";
-	public static final String DISPLAY_NAME_first = "";
+  /**  <br> The entity response
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:response">Find the entity response in Solr</a>
+   * <br>
+   * @param promise is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _response(Promise<SolrResponse> promise);
 
-	public String idForClass() {
-		return null;
-	}
+  public SolrResponse getResponse() {
+    return response;
+  }
 
-	public String titleForClass() {
-		return null;
-	}
+  public void setResponse(SolrResponse response) {
+    this.response = response;
+  }
+  public static SolrResponse staticSetResponse(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected Future<SolrResponse> responsePromise() {
+    Promise<SolrResponse> promise = Promise.promise();
+    Promise<SolrResponse> promise2 = Promise.promise();
+    _response(promise2);
+    promise2.future().onSuccess(o -> {
+      setResponse(o);
+      promise.complete(o);
+    }).onFailure(ex -> {
+      promise.fail(ex);
+    });
+    return promise.future();
+  }
 
-	public String nameForClass() {
-		return null;
-	}
+	//////////
+  // docs //
+	//////////
 
-	public String classNameAdjectiveSingularForClass() {
-		return null;
-	}
 
-	public String descriptionForClass() {
-		return null;
-	}
+  /**   The entity docs
+   *	 is defined as null before being initialized. 
+   */
+  @JsonIgnore
+  @JsonInclude(Include.NON_NULL)
+  protected List<Doc> docs;
 
-	public String classStringFormatUrlEditPageForClass() {
-		return null;
-	}
+  /**  <br> The entity docs
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:docs">Find the entity docs in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _docs(Wrap<List<Doc>> w);
 
-	public String classStringFormatUrlDisplayPageForClass() {
-		return null;
-	}
+  public List<Doc> getDocs() {
+    return docs;
+  }
 
-	public String classStringFormatUrlUserPageForClass() {
-		return null;
-	}
+  public void setDocs(List<Doc> docs) {
+    this.docs = docs;
+  }
+  public static Doc staticSetDocs(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  public SearchList addDocs(Doc...objects) {
+    for(Doc o : objects) {
+      addDocs(o);
+    }
+    return (SearchList)this;
+  }
+  public SearchList addDocs(Doc o) {
+    if(o != null)
+      this.docs.add(o);
+    return (SearchList)this;
+  }
+  protected SearchList docsInit() {
+    Wrap<List<Doc>> docsWrap = new Wrap<List<Doc>>().var("docs");
+    if(docs == null) {
+      _docs(docsWrap);
+      Optional.ofNullable(docsWrap.getO()).ifPresent(o -> {
+        setDocs(o);
+      });
+    }
+    return (SearchList)this;
+  }
 
-	public static String displayNameForClass(String var) {
-		return SearchList.displayNameSearchList(var);
-	}
-	public static String displayNameSearchList(String var) {
-		switch(var) {
-		case VAR_c:
-			return DISPLAY_NAME_c;
-		case VAR_siteRequest_:
-			return DISPLAY_NAME_siteRequest_;
-		case VAR_store:
-			return DISPLAY_NAME_store;
-		case VAR_populate:
-			return DISPLAY_NAME_populate;
-		case VAR_request:
-			return DISPLAY_NAME_request;
-		case VAR_searchUrl:
-			return DISPLAY_NAME_searchUrl;
-		case VAR_defaultSort:
-			return DISPLAY_NAME_defaultSort;
-		case VAR_response:
-			return DISPLAY_NAME_response;
-		case VAR_docs:
-			return DISPLAY_NAME_docs;
-		case VAR_list:
-			return DISPLAY_NAME_list;
-		case VAR_first:
-			return DISPLAY_NAME_first;
-		default:
-			return null;
-		}
-	}
+	//////////
+  // list //
+	//////////
 
-	public static String descriptionSearchList(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
 
-	public static String classSimpleNameSearchList(String var) {
-		switch(var) {
-		case VAR_c:
-			return "Class";
-		case VAR_siteRequest_:
-			return "ComputateSiteRequest";
-		case VAR_store:
-			return "Boolean";
-		case VAR_populate:
-			return "Boolean";
-		case VAR_request:
-			return "SearchRequest";
-		case VAR_searchUrl:
-			return "String";
-		case VAR_defaultSort:
-			return "Boolean";
-		case VAR_response:
-			return "SolrResponse";
-		case VAR_docs:
-			return "List";
-		case VAR_list:
-			return "List";
-		case VAR_first:
-			return "Object";
-			default:
-				return null;
-		}
-	}
+  /**   The entity list
+   *	 It is constructed before being initialized with the constructor by default. 
+   */
+  @JsonProperty
+  @JsonFormat(shape = JsonFormat.Shape.ARRAY)
+  @JsonInclude(Include.NON_NULL)
+  protected List<DEV> list = new ArrayList<DEV>();
 
-	public static Integer htmColumnSearchList(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  /**  <br> The entity list
+   *  It is constructed before being initialized with the constructor by default. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:list">Find the entity list in Solr</a>
+   * <br>
+   * @param l is the entity already constructed. 
+   **/
+  protected abstract void _list(List<DEV> l);
 
-	public static Integer htmRowSearchList(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public List<DEV> getList() {
+    return list;
+  }
 
-	public static Integer htmCellSearchList(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public void setList(List<DEV> list) {
+    this.list = list;
+  }
+  public SearchList addList(DEV...objects) {
+    for(DEV o : objects) {
+      addList(o);
+    }
+    return (SearchList)this;
+  }
+  public SearchList addList(DEV o) {
+    if(o != null)
+      this.list.add(o);
+    return (SearchList)this;
+  }
+  protected SearchList listInit() {
+    _list(list);
+    return (SearchList)this;
+  }
 
-	public static Integer lengthMinSearchList(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+	///////////
+  // first //
+	///////////
 
-	public static Integer lengthMaxSearchList(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
 
-	public static Integer maxSearchList(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  /**   The entity first
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected Object first;
 
-	public static Integer minSearchList(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  /**  <br> The entity first
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:first">Find the entity first in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _first(Wrap<Object> w);
+
+  public Object getFirst() {
+    return first;
+  }
+
+  public void setFirst(Object first) {
+    this.first = first;
+  }
+  public static Object staticSetFirst(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected SearchList firstInit() {
+    Wrap<Object> firstWrap = new Wrap<Object>().var("first");
+    if(first == null) {
+      _first(firstWrap);
+      Optional.ofNullable(firstWrap.getO()).ifPresent(o -> {
+        setFirst(o);
+      });
+    }
+    return (SearchList)this;
+  }
+
+  //////////////
+  // initDeep //
+  //////////////
+
+  public Future<SearchListGen<DEV>> promiseDeepSearchList(ComputateSiteRequest siteRequest_) {
+    setSiteRequest_(siteRequest_);
+    return promiseDeepSearchList();
+  }
+
+  public Future<SearchListGen<DEV>> promiseDeepSearchList() {
+    Promise<SearchListGen<DEV>> promise = Promise.promise();
+    Promise<Void> promise2 = Promise.promise();
+    promiseSearchList(promise2);
+    promise2.future().onSuccess(a -> {
+      promise.complete(this);
+    }).onFailure(ex -> {
+      promise.fail(ex);
+    });
+    return promise.future();
+  }
+
+  public Future<Void> promiseSearchList(Promise<Void> promise) {
+    Future.future(a -> a.complete()).compose(a -> {
+      Promise<Void> promise2 = Promise.promise();
+      try {
+        cInit();
+        siteRequest_Init();
+        storeInit();
+        populateInit();
+        requestInit();
+        searchUrlInit();
+        defaultSortInit();
+        promise2.complete();
+      } catch(Exception ex) {
+        promise2.fail(ex);
+      }
+      return promise2.future();
+    }).compose(a -> {
+      Promise<Void> promise2 = Promise.promise();
+      responsePromise().onSuccess(response -> {
+        promise2.complete();
+      }).onFailure(ex -> {
+        promise2.fail(ex);
+      });
+      return promise2.future();
+    }).compose(a -> {
+      Promise<Void> promise2 = Promise.promise();
+      try {
+        docsInit();
+        listInit();
+        firstInit();
+        promise2.complete();
+      } catch(Exception ex) {
+        promise2.fail(ex);
+      }
+      return promise2.future();
+    }).onSuccess(a -> {
+      promise.complete();
+    }).onFailure(ex -> {
+      promise.fail(ex);
+    });
+    return promise.future();
+  }
+
+  public Future<? extends SearchListGen<DEV>> promiseDeepForClass(ComputateSiteRequest siteRequest_) {
+    return promiseDeepSearchList(siteRequest_);
+  }
+
+  /////////////////
+  // siteRequest //
+  /////////////////
+
+  public void siteRequestSearchList(ComputateSiteRequest siteRequest_) {
+    if(request != null)
+      request.setSiteRequest_(siteRequest_);
+  }
+
+  public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
+    siteRequestSearchList(siteRequest_);
+  }
+
+  /////////////
+  // obtain //
+  /////////////
+
+  public Object obtainForClass(String var) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = obtainSearchList(v);
+      else if(o instanceof Map) {
+        Map<?, ?> map = (Map<?, ?>)o;
+        o = map.get(v);
+      }
+    }
+    return o;
+  }
+  public Object obtainSearchList(String var) {
+    SearchList oSearchList = (SearchList)this;
+    switch(var) {
+      case "c":
+        return oSearchList.c;
+      case "siteRequest_":
+        return oSearchList.siteRequest_;
+      case "store":
+        return oSearchList.store;
+      case "populate":
+        return oSearchList.populate;
+      case "request":
+        return oSearchList.request;
+      case "searchUrl":
+        return oSearchList.searchUrl;
+      case "defaultSort":
+        return oSearchList.defaultSort;
+      case "response":
+        return oSearchList.response;
+      case "docs":
+        return oSearchList.docs;
+      case "list":
+        return oSearchList.list;
+      case "first":
+        return oSearchList.first;
+      default:
+        return null;
+    }
+  }
+
+  ///////////////
+  // relate //
+  ///////////////
+
+  public boolean relateForClass(String var, Object val) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = relateSearchList(v, val);
+    }
+    return o != null;
+  }
+  public Object relateSearchList(String var, Object val) {
+    SearchList oSearchList = (SearchList)this;
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  ///////////////
+  // staticSet //
+  ///////////////
+
+  public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String v, SearchList o) {
+    return staticSetSearchList(entityVar,  siteRequest_, v, o);
+  }
+  public static Object staticSetSearchList(String entityVar, ComputateSiteRequest siteRequest_, String v, SearchList o) {
+    switch(entityVar) {
+    case "store":
+      return SearchList.staticSetStore(siteRequest_, v);
+    case "populate":
+      return SearchList.staticSetPopulate(siteRequest_, v);
+    case "searchUrl":
+      return SearchList.staticSetSearchUrl(siteRequest_, v);
+    case "defaultSort":
+      return SearchList.staticSetDefaultSort(siteRequest_, v);
+      default:
+        return null;
+    }
+  }
+
+  ////////////////
+  // staticSearch //
+  ////////////////
+
+  public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchSearchList(entityVar,  siteRequest_, o);
+  }
+  public static Object staticSearchSearchList(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+    case "store":
+      return SearchList.staticSearchStore(siteRequest_, (Boolean)o);
+    case "populate":
+      return SearchList.staticSearchPopulate(siteRequest_, (Boolean)o);
+    case "searchUrl":
+      return SearchList.staticSearchSearchUrl(siteRequest_, (String)o);
+    case "defaultSort":
+      return SearchList.staticSearchDefaultSort(siteRequest_, (Boolean)o);
+      default:
+        return null;
+    }
+  }
+
+  ///////////////////
+  // staticSearchStr //
+  ///////////////////
+
+  public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchStrSearchList(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchStrSearchList(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+    case "store":
+      return SearchList.staticSearchStrStore(siteRequest_, (Boolean)o);
+    case "populate":
+      return SearchList.staticSearchStrPopulate(siteRequest_, (Boolean)o);
+    case "searchUrl":
+      return SearchList.staticSearchStrSearchUrl(siteRequest_, (String)o);
+    case "defaultSort":
+      return SearchList.staticSearchStrDefaultSort(siteRequest_, (Boolean)o);
+      default:
+        return null;
+    }
+  }
+
+  //////////////////
+  // staticSearchFq //
+  //////////////////
+
+  public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    return staticSearchFqSearchList(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchFqSearchList(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    switch(entityVar) {
+    case "store":
+      return SearchList.staticSearchFqStore(siteRequest_, o);
+    case "populate":
+      return SearchList.staticSearchFqPopulate(siteRequest_, o);
+    case "searchUrl":
+      return SearchList.staticSearchFqSearchUrl(siteRequest_, o);
+    case "defaultSort":
+      return SearchList.staticSearchFqDefaultSort(siteRequest_, o);
+      default:
+        return null;
+    }
+  }
+
+  //////////////
+  // toString //
+  //////////////
+
+  @Override public String toString() {
+    StringBuilder sb = new StringBuilder();
+    return sb.toString();
+  }
+
+  public static final String CLASS_SIMPLE_NAME = "SearchList";
+  public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.search.list.SearchList";
+  public static final String CLASS_AUTH_RESOURCE = "";
+  public static final String VAR_c = "c";
+  public static final String VAR_siteRequest_ = "siteRequest_";
+  public static final String VAR_store = "store";
+  public static final String VAR_populate = "populate";
+  public static final String VAR_request = "request";
+  public static final String VAR_searchUrl = "searchUrl";
+  public static final String VAR_defaultSort = "defaultSort";
+  public static final String VAR_response = "response";
+  public static final String VAR_docs = "docs";
+  public static final String VAR_list = "list";
+  public static final String VAR_first = "first";
+
+  public static final String DISPLAY_NAME_c = "";
+  public static final String DISPLAY_NAME_siteRequest_ = "";
+  public static final String DISPLAY_NAME_store = "";
+  public static final String DISPLAY_NAME_populate = "";
+  public static final String DISPLAY_NAME_request = "";
+  public static final String DISPLAY_NAME_searchUrl = "";
+  public static final String DISPLAY_NAME_defaultSort = "";
+  public static final String DISPLAY_NAME_response = "";
+  public static final String DISPLAY_NAME_docs = "";
+  public static final String DISPLAY_NAME_list = "";
+  public static final String DISPLAY_NAME_first = "";
+
+  public String idForClass() {
+    return null;
+  }
+
+  public String titleForClass() {
+    return null;
+  }
+
+  public String nameForClass() {
+    return null;
+  }
+
+  public String classNameAdjectiveSingularForClass() {
+    return null;
+  }
+
+  public String descriptionForClass() {
+    return null;
+  }
+
+  public String classStringFormatUrlEditPageForClass() {
+    return null;
+  }
+
+  public String classStringFormatUrlDisplayPageForClass() {
+    return null;
+  }
+
+  public String classStringFormatUrlUserPageForClass() {
+    return null;
+  }
+
+  public String classStringFormatUrlDownloadForClass() {
+    return null;
+  }
+
+  public static String displayNameForClass(String var) {
+    return SearchList.displayNameSearchList(var);
+  }
+  public static String displayNameSearchList(String var) {
+    switch(var) {
+    case VAR_c:
+      return DISPLAY_NAME_c;
+    case VAR_siteRequest_:
+      return DISPLAY_NAME_siteRequest_;
+    case VAR_store:
+      return DISPLAY_NAME_store;
+    case VAR_populate:
+      return DISPLAY_NAME_populate;
+    case VAR_request:
+      return DISPLAY_NAME_request;
+    case VAR_searchUrl:
+      return DISPLAY_NAME_searchUrl;
+    case VAR_defaultSort:
+      return DISPLAY_NAME_defaultSort;
+    case VAR_response:
+      return DISPLAY_NAME_response;
+    case VAR_docs:
+      return DISPLAY_NAME_docs;
+    case VAR_list:
+      return DISPLAY_NAME_list;
+    case VAR_first:
+      return DISPLAY_NAME_first;
+    default:
+      return null;
+    }
+  }
+
+  public static String descriptionSearchList(String var) {
+    if(var == null)
+      return null;
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static String classSimpleNameSearchList(String var) {
+    switch(var) {
+    case VAR_c:
+      return "Class";
+    case VAR_siteRequest_:
+      return "ComputateSiteRequest";
+    case VAR_store:
+      return "Boolean";
+    case VAR_populate:
+      return "Boolean";
+    case VAR_request:
+      return "SearchRequest";
+    case VAR_searchUrl:
+      return "String";
+    case VAR_defaultSort:
+      return "Boolean";
+    case VAR_response:
+      return "SolrResponse";
+    case VAR_docs:
+      return "List";
+    case VAR_list:
+      return "List";
+    case VAR_first:
+      return "Object";
+      default:
+        return null;
+    }
+  }
+
+  public static Integer htmColumnSearchList(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer htmRowSearchList(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer htmCellSearchList(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer lengthMinSearchList(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer lengthMaxSearchList(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer maxSearchList(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer minSearchList(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 }

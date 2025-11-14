@@ -58,6 +58,14 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		return request.getQuery();
 	}
 
+	public SearchList<DEV> bf(String s) {
+		request.bf(s);
+		return this;
+	}
+	public List<String> getBoostFunctions() {
+		return request.getBoostFunctions();
+	}
+
 	public SearchList<DEV> fq(String s) {
 		request.fq(s);
 		return this;
