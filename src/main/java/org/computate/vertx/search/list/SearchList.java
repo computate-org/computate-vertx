@@ -58,6 +58,14 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
 		return request.getQuery();
 	}
 
+	public SearchList<DEV> defType(String s) {
+		request.defType(s);
+		return this;
+	}
+	public String getDefType() {
+		return request.getDefType();
+	}
+
 	public SearchList<DEV> bf(String s) {
 		request.bf(s);
 		return this;
