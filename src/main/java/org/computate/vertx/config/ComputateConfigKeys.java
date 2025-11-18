@@ -472,6 +472,9 @@ public class ComputateConfigKeys {
     ctx.put(WEB_COMPONENTS_KIT, config.getString(WEB_COMPONENTS_KIT));
     ctx.put(SITE_LOCALE, config.getString(SITE_LOCALE));
     ctx.put(SITE_THEME, config.getString(SITE_THEME));
+    ctx.put(AUTH_URL, config.getString(AUTH_URL));
+    ctx.put(AUTH_REALM, config.getString(AUTH_REALM));
+    ctx.put(AUTH_CLIENT, config.getString(AUTH_CLIENT));
     ctx.put(AUTH_SCOPE_ADMIN, config.getString(AUTH_SCOPE_ADMIN));
     ctx.put(AUTH_SCOPE_SUPER_ADMIN, config.getString(AUTH_SCOPE_SUPER_ADMIN));
     ctx.put(PUBLIC_SEARCH_URI, config.getString(PUBLIC_SEARCH_URI));
