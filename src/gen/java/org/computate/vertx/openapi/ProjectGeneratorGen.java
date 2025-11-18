@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2022 Computate Limited Liability Company in Utah, USA. 
- *
+ * Copyright Computate Limited Liability Company in Utah, USA. 
+ * SPDX-License-Identifier: AGPL-3.0
  * This program and the accompanying materials are made available under the
- * terms of the GNU GENERAL PUBLIC LICENSE Version 3 which is available at
+ * terms of the GNU AFFERO GENERAL PUBLIC LICENSE which is available at
  * 
- * https://www.gnu.org/licenses/gpl-3.0.en.html
+ * https://www.gnu.org/licenses/agpl-3.0.html
  * 
  * You may not propagate or modify a covered work except as expressly provided 
  * under this License. Any attempt otherwise to propagate or modify it is void, 
@@ -103,765 +103,790 @@ import io.vertx.core.json.JsonArray;
  * Generated: true
  **/
 public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
-	protected static final Logger LOG = LoggerFactory.getLogger(ProjectGenerator.class);
+  protected static final Logger LOG = LoggerFactory.getLogger(ProjectGenerator.class);
 
 	////////////////////
-	// siteStaticPath //
+  // siteStaticPath //
 	////////////////////
 
 
-	/**	 The entity siteStaticPath
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected String siteStaticPath;
+  /**
+   *  The entity siteStaticPath
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String siteStaticPath;
 
-	/**	<br> The entity siteStaticPath
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteStaticPath">Find the entity siteStaticPath in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _siteStaticPath(Wrap<String> c);
+  /**
+   * <br> The entity siteStaticPath
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteStaticPath">Find the entity siteStaticPath in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _siteStaticPath(Wrap<String> c);
 
-	public String getSiteStaticPath() {
-		return siteStaticPath;
-	}
-	public void setSiteStaticPath(String o) {
-		this.siteStaticPath = ProjectGenerator.staticSetSiteStaticPath(siteRequest_, o);
-	}
-	public static String staticSetSiteStaticPath(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-	protected ProjectGenerator siteStaticPathInit() {
-		Wrap<String> siteStaticPathWrap = new Wrap<String>().var("siteStaticPath");
-		if(siteStaticPath == null) {
-			_siteStaticPath(siteStaticPathWrap);
-			Optional.ofNullable(siteStaticPathWrap.getO()).ifPresent(o -> {
-				setSiteStaticPath(o);
-			});
-		}
-		return (ProjectGenerator)this;
-	}
+  public String getSiteStaticPath() {
+    return siteStaticPath;
+  }
+  public void setSiteStaticPath(String o) {
+    this.siteStaticPath = ProjectGenerator.staticSetSiteStaticPath(siteRequest_, o);
+  }
+  public static String staticSetSiteStaticPath(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected ProjectGenerator siteStaticPathInit() {
+    Wrap<String> siteStaticPathWrap = new Wrap<String>().var("siteStaticPath");
+    if(siteStaticPath == null) {
+      _siteStaticPath(siteStaticPathWrap);
+      Optional.ofNullable(siteStaticPathWrap.getO()).ifPresent(o -> {
+        setSiteStaticPath(o);
+      });
+    }
+    return (ProjectGenerator)this;
+  }
 
-	public static String staticSearchSiteStaticPath(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
+  public static String staticSearchSiteStaticPath(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
 
-	public static String staticSearchStrSiteStaticPath(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
+  public static String staticSearchStrSiteStaticPath(ComputateSiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
 
-	public static String staticSearchFqSiteStaticPath(ComputateSiteRequest siteRequest_, String o) {
-		return ProjectGenerator.staticSearchSiteStaticPath(siteRequest_, ProjectGenerator.staticSetSiteStaticPath(siteRequest_, o)).toString();
-	}
+  public static String staticSearchFqSiteStaticPath(ComputateSiteRequest siteRequest_, String o) {
+    return ProjectGenerator.staticSearchSiteStaticPath(siteRequest_, ProjectGenerator.staticSetSiteStaticPath(siteRequest_, o)).toString();
+  }
 
 	/////////////////////
-	// siteStaticJsDir //
+  // siteStaticJsDir //
 	/////////////////////
 
 
-	/**	 The entity siteStaticJsDir
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected File siteStaticJsDir;
+  /**
+   *  The entity siteStaticJsDir
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected File siteStaticJsDir;
 
-	/**	<br> The entity siteStaticJsDir
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteStaticJsDir">Find the entity siteStaticJsDir in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _siteStaticJsDir(Wrap<File> c);
+  /**
+   * <br> The entity siteStaticJsDir
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteStaticJsDir">Find the entity siteStaticJsDir in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _siteStaticJsDir(Wrap<File> c);
 
-	public File getSiteStaticJsDir() {
-		return siteStaticJsDir;
-	}
+  public File getSiteStaticJsDir() {
+    return siteStaticJsDir;
+  }
 
-	public void setSiteStaticJsDir(File siteStaticJsDir) {
-		this.siteStaticJsDir = siteStaticJsDir;
-	}
-	public static File staticSetSiteStaticJsDir(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected ProjectGenerator siteStaticJsDirInit() {
-		Wrap<File> siteStaticJsDirWrap = new Wrap<File>().var("siteStaticJsDir");
-		if(siteStaticJsDir == null) {
-			_siteStaticJsDir(siteStaticJsDirWrap);
-			Optional.ofNullable(siteStaticJsDirWrap.getO()).ifPresent(o -> {
-				setSiteStaticJsDir(o);
-			});
-		}
-		return (ProjectGenerator)this;
-	}
+  public void setSiteStaticJsDir(File siteStaticJsDir) {
+    this.siteStaticJsDir = siteStaticJsDir;
+  }
+  public static File staticSetSiteStaticJsDir(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected ProjectGenerator siteStaticJsDirInit() {
+    Wrap<File> siteStaticJsDirWrap = new Wrap<File>().var("siteStaticJsDir");
+    if(siteStaticJsDir == null) {
+      _siteStaticJsDir(siteStaticJsDirWrap);
+      Optional.ofNullable(siteStaticJsDirWrap.getO()).ifPresent(o -> {
+        setSiteStaticJsDir(o);
+      });
+    }
+    return (ProjectGenerator)this;
+  }
 
 	////////////////////////
-	// platformStaticPath //
+  // platformStaticPath //
 	////////////////////////
 
 
-	/**	 The entity platformStaticPath
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected String platformStaticPath;
+  /**
+   *  The entity platformStaticPath
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String platformStaticPath;
 
-	/**	<br> The entity platformStaticPath
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformStaticPath">Find the entity platformStaticPath in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _platformStaticPath(Wrap<String> c);
+  /**
+   * <br> The entity platformStaticPath
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformStaticPath">Find the entity platformStaticPath in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _platformStaticPath(Wrap<String> c);
 
-	public String getPlatformStaticPath() {
-		return platformStaticPath;
-	}
-	public void setPlatformStaticPath(String o) {
-		this.platformStaticPath = ProjectGenerator.staticSetPlatformStaticPath(siteRequest_, o);
-	}
-	public static String staticSetPlatformStaticPath(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-	protected ProjectGenerator platformStaticPathInit() {
-		Wrap<String> platformStaticPathWrap = new Wrap<String>().var("platformStaticPath");
-		if(platformStaticPath == null) {
-			_platformStaticPath(platformStaticPathWrap);
-			Optional.ofNullable(platformStaticPathWrap.getO()).ifPresent(o -> {
-				setPlatformStaticPath(o);
-			});
-		}
-		return (ProjectGenerator)this;
-	}
+  public String getPlatformStaticPath() {
+    return platformStaticPath;
+  }
+  public void setPlatformStaticPath(String o) {
+    this.platformStaticPath = ProjectGenerator.staticSetPlatformStaticPath(siteRequest_, o);
+  }
+  public static String staticSetPlatformStaticPath(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected ProjectGenerator platformStaticPathInit() {
+    Wrap<String> platformStaticPathWrap = new Wrap<String>().var("platformStaticPath");
+    if(platformStaticPath == null) {
+      _platformStaticPath(platformStaticPathWrap);
+      Optional.ofNullable(platformStaticPathWrap.getO()).ifPresent(o -> {
+        setPlatformStaticPath(o);
+      });
+    }
+    return (ProjectGenerator)this;
+  }
 
-	public static String staticSearchPlatformStaticPath(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
+  public static String staticSearchPlatformStaticPath(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
 
-	public static String staticSearchStrPlatformStaticPath(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
+  public static String staticSearchStrPlatformStaticPath(ComputateSiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
 
-	public static String staticSearchFqPlatformStaticPath(ComputateSiteRequest siteRequest_, String o) {
-		return ProjectGenerator.staticSearchPlatformStaticPath(siteRequest_, ProjectGenerator.staticSetPlatformStaticPath(siteRequest_, o)).toString();
-	}
+  public static String staticSearchFqPlatformStaticPath(ComputateSiteRequest siteRequest_, String o) {
+    return ProjectGenerator.staticSearchPlatformStaticPath(siteRequest_, ProjectGenerator.staticSetPlatformStaticPath(siteRequest_, o)).toString();
+  }
 
 	/////////////////////////
-	// platformStaticJsDir //
+  // platformStaticJsDir //
 	/////////////////////////
 
 
-	/**	 The entity platformStaticJsDir
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected File platformStaticJsDir;
+  /**
+   *  The entity platformStaticJsDir
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected File platformStaticJsDir;
 
-	/**	<br> The entity platformStaticJsDir
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformStaticJsDir">Find the entity platformStaticJsDir in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _platformStaticJsDir(Wrap<File> c);
+  /**
+   * <br> The entity platformStaticJsDir
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformStaticJsDir">Find the entity platformStaticJsDir in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _platformStaticJsDir(Wrap<File> c);
 
-	public File getPlatformStaticJsDir() {
-		return platformStaticJsDir;
-	}
+  public File getPlatformStaticJsDir() {
+    return platformStaticJsDir;
+  }
 
-	public void setPlatformStaticJsDir(File platformStaticJsDir) {
-		this.platformStaticJsDir = platformStaticJsDir;
-	}
-	public static File staticSetPlatformStaticJsDir(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected ProjectGenerator platformStaticJsDirInit() {
-		Wrap<File> platformStaticJsDirWrap = new Wrap<File>().var("platformStaticJsDir");
-		if(platformStaticJsDir == null) {
-			_platformStaticJsDir(platformStaticJsDirWrap);
-			Optional.ofNullable(platformStaticJsDirWrap.getO()).ifPresent(o -> {
-				setPlatformStaticJsDir(o);
-			});
-		}
-		return (ProjectGenerator)this;
-	}
+  public void setPlatformStaticJsDir(File platformStaticJsDir) {
+    this.platformStaticJsDir = platformStaticJsDir;
+  }
+  public static File staticSetPlatformStaticJsDir(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected ProjectGenerator platformStaticJsDirInit() {
+    Wrap<File> platformStaticJsDirWrap = new Wrap<File>().var("platformStaticJsDir");
+    if(platformStaticJsDir == null) {
+      _platformStaticJsDir(platformStaticJsDirWrap);
+      Optional.ofNullable(platformStaticJsDirWrap.getO()).ifPresent(o -> {
+        setPlatformStaticJsDir(o);
+      });
+    }
+    return (ProjectGenerator)this;
+  }
 
 	///////////////////////
-	// siteResourcesPath //
+  // siteResourcesPath //
 	///////////////////////
 
 
-	/**	 The entity siteResourcesPath
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected String siteResourcesPath;
+  /**
+   *  The entity siteResourcesPath
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String siteResourcesPath;
 
-	/**	<br> The entity siteResourcesPath
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteResourcesPath">Find the entity siteResourcesPath in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _siteResourcesPath(Wrap<String> c);
+  /**
+   * <br> The entity siteResourcesPath
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteResourcesPath">Find the entity siteResourcesPath in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _siteResourcesPath(Wrap<String> c);
 
-	public String getSiteResourcesPath() {
-		return siteResourcesPath;
-	}
-	public void setSiteResourcesPath(String o) {
-		this.siteResourcesPath = ProjectGenerator.staticSetSiteResourcesPath(siteRequest_, o);
-	}
-	public static String staticSetSiteResourcesPath(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-	protected ProjectGenerator siteResourcesPathInit() {
-		Wrap<String> siteResourcesPathWrap = new Wrap<String>().var("siteResourcesPath");
-		if(siteResourcesPath == null) {
-			_siteResourcesPath(siteResourcesPathWrap);
-			Optional.ofNullable(siteResourcesPathWrap.getO()).ifPresent(o -> {
-				setSiteResourcesPath(o);
-			});
-		}
-		return (ProjectGenerator)this;
-	}
+  public String getSiteResourcesPath() {
+    return siteResourcesPath;
+  }
+  public void setSiteResourcesPath(String o) {
+    this.siteResourcesPath = ProjectGenerator.staticSetSiteResourcesPath(siteRequest_, o);
+  }
+  public static String staticSetSiteResourcesPath(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected ProjectGenerator siteResourcesPathInit() {
+    Wrap<String> siteResourcesPathWrap = new Wrap<String>().var("siteResourcesPath");
+    if(siteResourcesPath == null) {
+      _siteResourcesPath(siteResourcesPathWrap);
+      Optional.ofNullable(siteResourcesPathWrap.getO()).ifPresent(o -> {
+        setSiteResourcesPath(o);
+      });
+    }
+    return (ProjectGenerator)this;
+  }
 
-	public static String staticSearchSiteResourcesPath(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
+  public static String staticSearchSiteResourcesPath(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
 
-	public static String staticSearchStrSiteResourcesPath(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
+  public static String staticSearchStrSiteResourcesPath(ComputateSiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
 
-	public static String staticSearchFqSiteResourcesPath(ComputateSiteRequest siteRequest_, String o) {
-		return ProjectGenerator.staticSearchSiteResourcesPath(siteRequest_, ProjectGenerator.staticSetSiteResourcesPath(siteRequest_, o)).toString();
-	}
+  public static String staticSearchFqSiteResourcesPath(ComputateSiteRequest siteRequest_, String o) {
+    return ProjectGenerator.staticSearchSiteResourcesPath(siteRequest_, ProjectGenerator.staticSetSiteResourcesPath(siteRequest_, o)).toString();
+  }
 
 	//////////////////////
-	// siteTemplatesDir //
+  // siteTemplatesDir //
 	//////////////////////
 
 
-	/**	 The entity siteTemplatesDir
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected File siteTemplatesDir;
+  /**
+   *  The entity siteTemplatesDir
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected File siteTemplatesDir;
 
-	/**	<br> The entity siteTemplatesDir
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteTemplatesDir">Find the entity siteTemplatesDir in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _siteTemplatesDir(Wrap<File> c);
+  /**
+   * <br> The entity siteTemplatesDir
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:siteTemplatesDir">Find the entity siteTemplatesDir in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _siteTemplatesDir(Wrap<File> c);
 
-	public File getSiteTemplatesDir() {
-		return siteTemplatesDir;
-	}
+  public File getSiteTemplatesDir() {
+    return siteTemplatesDir;
+  }
 
-	public void setSiteTemplatesDir(File siteTemplatesDir) {
-		this.siteTemplatesDir = siteTemplatesDir;
-	}
-	public static File staticSetSiteTemplatesDir(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected ProjectGenerator siteTemplatesDirInit() {
-		Wrap<File> siteTemplatesDirWrap = new Wrap<File>().var("siteTemplatesDir");
-		if(siteTemplatesDir == null) {
-			_siteTemplatesDir(siteTemplatesDirWrap);
-			Optional.ofNullable(siteTemplatesDirWrap.getO()).ifPresent(o -> {
-				setSiteTemplatesDir(o);
-			});
-		}
-		return (ProjectGenerator)this;
-	}
+  public void setSiteTemplatesDir(File siteTemplatesDir) {
+    this.siteTemplatesDir = siteTemplatesDir;
+  }
+  public static File staticSetSiteTemplatesDir(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected ProjectGenerator siteTemplatesDirInit() {
+    Wrap<File> siteTemplatesDirWrap = new Wrap<File>().var("siteTemplatesDir");
+    if(siteTemplatesDir == null) {
+      _siteTemplatesDir(siteTemplatesDirWrap);
+      Optional.ofNullable(siteTemplatesDirWrap.getO()).ifPresent(o -> {
+        setSiteTemplatesDir(o);
+      });
+    }
+    return (ProjectGenerator)this;
+  }
 
 	///////////////////////////
-	// platformResourcesPath //
+  // platformResourcesPath //
 	///////////////////////////
 
 
-	/**	 The entity platformResourcesPath
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected String platformResourcesPath;
+  /**
+   *  The entity platformResourcesPath
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String platformResourcesPath;
 
-	/**	<br> The entity platformResourcesPath
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformResourcesPath">Find the entity platformResourcesPath in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _platformResourcesPath(Wrap<String> c);
+  /**
+   * <br> The entity platformResourcesPath
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformResourcesPath">Find the entity platformResourcesPath in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _platformResourcesPath(Wrap<String> c);
 
-	public String getPlatformResourcesPath() {
-		return platformResourcesPath;
-	}
-	public void setPlatformResourcesPath(String o) {
-		this.platformResourcesPath = ProjectGenerator.staticSetPlatformResourcesPath(siteRequest_, o);
-	}
-	public static String staticSetPlatformResourcesPath(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-	protected ProjectGenerator platformResourcesPathInit() {
-		Wrap<String> platformResourcesPathWrap = new Wrap<String>().var("platformResourcesPath");
-		if(platformResourcesPath == null) {
-			_platformResourcesPath(platformResourcesPathWrap);
-			Optional.ofNullable(platformResourcesPathWrap.getO()).ifPresent(o -> {
-				setPlatformResourcesPath(o);
-			});
-		}
-		return (ProjectGenerator)this;
-	}
+  public String getPlatformResourcesPath() {
+    return platformResourcesPath;
+  }
+  public void setPlatformResourcesPath(String o) {
+    this.platformResourcesPath = ProjectGenerator.staticSetPlatformResourcesPath(siteRequest_, o);
+  }
+  public static String staticSetPlatformResourcesPath(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected ProjectGenerator platformResourcesPathInit() {
+    Wrap<String> platformResourcesPathWrap = new Wrap<String>().var("platformResourcesPath");
+    if(platformResourcesPath == null) {
+      _platformResourcesPath(platformResourcesPathWrap);
+      Optional.ofNullable(platformResourcesPathWrap.getO()).ifPresent(o -> {
+        setPlatformResourcesPath(o);
+      });
+    }
+    return (ProjectGenerator)this;
+  }
 
-	public static String staticSearchPlatformResourcesPath(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
+  public static String staticSearchPlatformResourcesPath(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
 
-	public static String staticSearchStrPlatformResourcesPath(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
+  public static String staticSearchStrPlatformResourcesPath(ComputateSiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
 
-	public static String staticSearchFqPlatformResourcesPath(ComputateSiteRequest siteRequest_, String o) {
-		return ProjectGenerator.staticSearchPlatformResourcesPath(siteRequest_, ProjectGenerator.staticSetPlatformResourcesPath(siteRequest_, o)).toString();
-	}
+  public static String staticSearchFqPlatformResourcesPath(ComputateSiteRequest siteRequest_, String o) {
+    return ProjectGenerator.staticSearchPlatformResourcesPath(siteRequest_, ProjectGenerator.staticSetPlatformResourcesPath(siteRequest_, o)).toString();
+  }
 
 	//////////////////////////
-	// platformTemplatesDir //
+  // platformTemplatesDir //
 	//////////////////////////
 
 
-	/**	 The entity platformTemplatesDir
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected File platformTemplatesDir;
+  /**
+   *  The entity platformTemplatesDir
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected File platformTemplatesDir;
 
-	/**	<br> The entity platformTemplatesDir
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformTemplatesDir">Find the entity platformTemplatesDir in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _platformTemplatesDir(Wrap<File> c);
+  /**
+   * <br> The entity platformTemplatesDir
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&fq=entiteVar_enUS_indexed_string:platformTemplatesDir">Find the entity platformTemplatesDir in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _platformTemplatesDir(Wrap<File> c);
 
-	public File getPlatformTemplatesDir() {
-		return platformTemplatesDir;
-	}
+  public File getPlatformTemplatesDir() {
+    return platformTemplatesDir;
+  }
 
-	public void setPlatformTemplatesDir(File platformTemplatesDir) {
-		this.platformTemplatesDir = platformTemplatesDir;
-	}
-	public static File staticSetPlatformTemplatesDir(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected ProjectGenerator platformTemplatesDirInit() {
-		Wrap<File> platformTemplatesDirWrap = new Wrap<File>().var("platformTemplatesDir");
-		if(platformTemplatesDir == null) {
-			_platformTemplatesDir(platformTemplatesDirWrap);
-			Optional.ofNullable(platformTemplatesDirWrap.getO()).ifPresent(o -> {
-				setPlatformTemplatesDir(o);
-			});
-		}
-		return (ProjectGenerator)this;
-	}
-	public static final String writeProjectSuccess1 = "Copy platform static files succeeded. ";
-	public static final String writeProjectSuccess = writeProjectSuccess1;
-	public static final String writeProjectFail1 = "Copy platform static files failed. ";
-	public static final String writeProjectFail = writeProjectFail1;
+  public void setPlatformTemplatesDir(File platformTemplatesDir) {
+    this.platformTemplatesDir = platformTemplatesDir;
+  }
+  public static File staticSetPlatformTemplatesDir(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected ProjectGenerator platformTemplatesDirInit() {
+    Wrap<File> platformTemplatesDirWrap = new Wrap<File>().var("platformTemplatesDir");
+    if(platformTemplatesDir == null) {
+      _platformTemplatesDir(platformTemplatesDirWrap);
+      Optional.ofNullable(platformTemplatesDirWrap.getO()).ifPresent(o -> {
+        setPlatformTemplatesDir(o);
+      });
+    }
+    return (ProjectGenerator)this;
+  }
+  public static final String writeProjectSuccess1 = "Copy platform static files succeeded. ";
+  public static final String writeProjectSuccess = writeProjectSuccess1;
+  public static final String writeProjectFail1 = "Copy platform static files failed. ";
+  public static final String writeProjectFail = writeProjectFail1;
 
-	public static final String copyPlatformStaticFilesSuccess1 = "Copy platform static files from %s to %s succeeded. ";
-	public static final String copyPlatformStaticFilesSuccess = copyPlatformStaticFilesSuccess1;
-	public static final String copyPlatformStaticFilesFail1 = "Copy platform static files from %s to %s failed. ";
-	public static final String copyPlatformStaticFilesFail = copyPlatformStaticFilesFail1;
+  public static final String copyPlatformStaticFilesSuccess1 = "Copy platform static files from %s to %s succeeded. ";
+  public static final String copyPlatformStaticFilesSuccess = copyPlatformStaticFilesSuccess1;
+  public static final String copyPlatformStaticFilesFail1 = "Copy platform static files from %s to %s failed. ";
+  public static final String copyPlatformStaticFilesFail = copyPlatformStaticFilesFail1;
 
-	public static final String copyPlatformResourceFilesSuccess1 = "Copy platform resource files from %s to %s succeeded. ";
-	public static final String copyPlatformResourceFilesSuccess = copyPlatformResourceFilesSuccess1;
-	public static final String copyPlatformResourceFilesFail1 = "Copy platform resource files from %s to %s failed. ";
-	public static final String copyPlatformResourceFilesFail = copyPlatformResourceFilesFail1;
+  public static final String copyPlatformResourceFilesSuccess1 = "Copy platform resource files from %s to %s succeeded. ";
+  public static final String copyPlatformResourceFilesSuccess = copyPlatformResourceFilesSuccess1;
+  public static final String copyPlatformResourceFilesFail1 = "Copy platform resource files from %s to %s failed. ";
+  public static final String copyPlatformResourceFilesFail = copyPlatformResourceFilesFail1;
 
-	public static final String copyRecursiveSuccess1 = "Copy files recursively succeeded. ";
-	public static final String copyRecursiveSuccess = copyRecursiveSuccess1;
-	public static final String copyRecursiveFail1 = "Copy files recursively failed. ";
-	public static final String copyRecursiveFail = copyRecursiveFail1;
+  public static final String copyRecursiveSuccess1 = "Copy files recursively succeeded. ";
+  public static final String copyRecursiveSuccess = copyRecursiveSuccess1;
+  public static final String copyRecursiveFail1 = "Copy files recursively failed. ";
+  public static final String copyRecursiveFail = copyRecursiveFail1;
 
 
-	//////////////
-	// initDeep //
-	//////////////
+  //////////////
+  // initDeep //
+  //////////////
 
-	public ProjectGenerator initDeepProjectGenerator(ComputateSiteRequest siteRequest_) {
-		setSiteRequest_(siteRequest_);
-		initDeepProjectGenerator();
-		return (ProjectGenerator)this;
-	}
+  public ProjectGenerator initDeepProjectGenerator(ComputateSiteRequest siteRequest_) {
+    setSiteRequest_(siteRequest_);
+    initDeepProjectGenerator();
+    return (ProjectGenerator)this;
+  }
 
-	public void initDeepProjectGenerator() {
-		super.initDeepBaseGenerator(siteRequest_);
-		initProjectGenerator();
-	}
+  public void initDeepProjectGenerator() {
+    super.initDeepBaseGenerator(siteRequest_);
+    initProjectGenerator();
+  }
 
-	public void initProjectGenerator() {
-				siteStaticPathInit();
-				siteStaticJsDirInit();
-				platformStaticPathInit();
-				platformStaticJsDirInit();
-				siteResourcesPathInit();
-				siteTemplatesDirInit();
-				platformResourcesPathInit();
-				platformTemplatesDirInit();
-	}
+  public void initProjectGenerator() {
+        siteStaticPathInit();
+        siteStaticJsDirInit();
+        platformStaticPathInit();
+        platformStaticJsDirInit();
+        siteResourcesPathInit();
+        siteTemplatesDirInit();
+        platformResourcesPathInit();
+        platformTemplatesDirInit();
+  }
 
-	@Override public void initDeepForClass(ComputateSiteRequest siteRequest_) {
-		initDeepProjectGenerator(siteRequest_);
-	}
+  @Override public void initDeepForClass(ComputateSiteRequest siteRequest_) {
+    initDeepProjectGenerator(siteRequest_);
+  }
 
-	/////////////////
-	// siteRequest //
-	/////////////////
+  /////////////////
+  // siteRequest //
+  /////////////////
 
-	public void siteRequestProjectGenerator(ComputateSiteRequest siteRequest_) {
-			super.siteRequestBaseGenerator(siteRequest_);
-	}
+  public void siteRequestProjectGenerator(ComputateSiteRequest siteRequest_) {
+      super.siteRequestBaseGenerator(siteRequest_);
+  }
 
-	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
-		siteRequestProjectGenerator(siteRequest_);
-	}
+  public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
+    siteRequestProjectGenerator(siteRequest_);
+  }
 
-	/////////////
-	// obtain //
-	/////////////
+  /////////////
+  // obtain //
+  /////////////
 
-	@Override public Object obtainForClass(String var) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = obtainProjectGenerator(v);
-			else if(o instanceof Map) {
-				Map<?, ?> map = (Map<?, ?>)o;
-				o = map.get(v);
-			}
-		}
-		return o;
-	}
-	public Object obtainProjectGenerator(String var) {
-		ProjectGenerator oProjectGenerator = (ProjectGenerator)this;
-		switch(var) {
-			case "siteStaticPath":
-				return oProjectGenerator.siteStaticPath;
-			case "siteStaticJsDir":
-				return oProjectGenerator.siteStaticJsDir;
-			case "platformStaticPath":
-				return oProjectGenerator.platformStaticPath;
-			case "platformStaticJsDir":
-				return oProjectGenerator.platformStaticJsDir;
-			case "siteResourcesPath":
-				return oProjectGenerator.siteResourcesPath;
-			case "siteTemplatesDir":
-				return oProjectGenerator.siteTemplatesDir;
-			case "platformResourcesPath":
-				return oProjectGenerator.platformResourcesPath;
-			case "platformTemplatesDir":
-				return oProjectGenerator.platformTemplatesDir;
-			default:
-				return super.obtainBaseGenerator(var);
-		}
-	}
+  @Override public Object obtainForClass(String var) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = obtainProjectGenerator(v);
+      else if(o instanceof Map) {
+        Map<?, ?> map = (Map<?, ?>)o;
+        o = map.get(v);
+      }
+    }
+    return o;
+  }
+  public Object obtainProjectGenerator(String var) {
+    ProjectGenerator oProjectGenerator = (ProjectGenerator)this;
+    switch(var) {
+      case "siteStaticPath":
+        return oProjectGenerator.siteStaticPath;
+      case "siteStaticJsDir":
+        return oProjectGenerator.siteStaticJsDir;
+      case "platformStaticPath":
+        return oProjectGenerator.platformStaticPath;
+      case "platformStaticJsDir":
+        return oProjectGenerator.platformStaticJsDir;
+      case "siteResourcesPath":
+        return oProjectGenerator.siteResourcesPath;
+      case "siteTemplatesDir":
+        return oProjectGenerator.siteTemplatesDir;
+      case "platformResourcesPath":
+        return oProjectGenerator.platformResourcesPath;
+      case "platformTemplatesDir":
+        return oProjectGenerator.platformTemplatesDir;
+      default:
+        return super.obtainBaseGenerator(var);
+    }
+  }
 
-	///////////////
-	// relate //
-	///////////////
+  ///////////////
+  // relate //
+  ///////////////
 
-	@Override public boolean relateForClass(String var, Object val) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = relateProjectGenerator(v, val);
-		}
-		return o != null;
-	}
-	public Object relateProjectGenerator(String var, Object val) {
-		ProjectGenerator oProjectGenerator = (ProjectGenerator)this;
-		switch(var) {
-			default:
-				return super.relateBaseGenerator(var, val);
-		}
-	}
+  @Override public boolean relateForClass(String var, Object val) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = relateProjectGenerator(v, val);
+    }
+    return o != null;
+  }
+  public Object relateProjectGenerator(String var, Object val) {
+    ProjectGenerator oProjectGenerator = (ProjectGenerator)this;
+    switch(var) {
+      default:
+        return super.relateBaseGenerator(var, val);
+    }
+  }
 
-	///////////////
-	// staticSet //
-	///////////////
+  ///////////////
+  // staticSet //
+  ///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSetProjectGenerator(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSetProjectGenerator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-		case "siteStaticPath":
-			return ProjectGenerator.staticSetSiteStaticPath(siteRequest_, o);
-		case "platformStaticPath":
-			return ProjectGenerator.staticSetPlatformStaticPath(siteRequest_, o);
-		case "siteResourcesPath":
-			return ProjectGenerator.staticSetSiteResourcesPath(siteRequest_, o);
-		case "platformResourcesPath":
-			return ProjectGenerator.staticSetPlatformResourcesPath(siteRequest_, o);
-			default:
-				return BaseGenerator.staticSetBaseGenerator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String v, ProjectGenerator o) {
+    return staticSetProjectGenerator(entityVar,  siteRequest_, v, o);
+  }
+  public static Object staticSetProjectGenerator(String entityVar, ComputateSiteRequest siteRequest_, String v, ProjectGenerator o) {
+    switch(entityVar) {
+    case "siteStaticPath":
+      return ProjectGenerator.staticSetSiteStaticPath(siteRequest_, v);
+    case "platformStaticPath":
+      return ProjectGenerator.staticSetPlatformStaticPath(siteRequest_, v);
+    case "siteResourcesPath":
+      return ProjectGenerator.staticSetSiteResourcesPath(siteRequest_, v);
+    case "platformResourcesPath":
+      return ProjectGenerator.staticSetPlatformResourcesPath(siteRequest_, v);
+      default:
+        return BaseGenerator.staticSetBaseGenerator(entityVar,  siteRequest_, v, o);
+    }
+  }
 
-	////////////////
-	// staticSearch //
-	////////////////
+  ////////////////
+  // staticSearch //
+  ////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchProjectGenerator(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSearchProjectGenerator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-		case "siteStaticPath":
-			return ProjectGenerator.staticSearchSiteStaticPath(siteRequest_, (String)o);
-		case "platformStaticPath":
-			return ProjectGenerator.staticSearchPlatformStaticPath(siteRequest_, (String)o);
-		case "siteResourcesPath":
-			return ProjectGenerator.staticSearchSiteResourcesPath(siteRequest_, (String)o);
-		case "platformResourcesPath":
-			return ProjectGenerator.staticSearchPlatformResourcesPath(siteRequest_, (String)o);
-			default:
-				return BaseGenerator.staticSearchBaseGenerator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchProjectGenerator(entityVar,  siteRequest_, o);
+  }
+  public static Object staticSearchProjectGenerator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+    case "siteStaticPath":
+      return ProjectGenerator.staticSearchSiteStaticPath(siteRequest_, (String)o);
+    case "platformStaticPath":
+      return ProjectGenerator.staticSearchPlatformStaticPath(siteRequest_, (String)o);
+    case "siteResourcesPath":
+      return ProjectGenerator.staticSearchSiteResourcesPath(siteRequest_, (String)o);
+    case "platformResourcesPath":
+      return ProjectGenerator.staticSearchPlatformResourcesPath(siteRequest_, (String)o);
+      default:
+        return BaseGenerator.staticSearchBaseGenerator(entityVar,  siteRequest_, o);
+    }
+  }
 
-	///////////////////
-	// staticSearchStr //
-	///////////////////
+  ///////////////////
+  // staticSearchStr //
+  ///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchStrProjectGenerator(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchStrProjectGenerator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-		case "siteStaticPath":
-			return ProjectGenerator.staticSearchStrSiteStaticPath(siteRequest_, (String)o);
-		case "platformStaticPath":
-			return ProjectGenerator.staticSearchStrPlatformStaticPath(siteRequest_, (String)o);
-		case "siteResourcesPath":
-			return ProjectGenerator.staticSearchStrSiteResourcesPath(siteRequest_, (String)o);
-		case "platformResourcesPath":
-			return ProjectGenerator.staticSearchStrPlatformResourcesPath(siteRequest_, (String)o);
-			default:
-				return BaseGenerator.staticSearchStrBaseGenerator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchStrProjectGenerator(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchStrProjectGenerator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+    case "siteStaticPath":
+      return ProjectGenerator.staticSearchStrSiteStaticPath(siteRequest_, (String)o);
+    case "platformStaticPath":
+      return ProjectGenerator.staticSearchStrPlatformStaticPath(siteRequest_, (String)o);
+    case "siteResourcesPath":
+      return ProjectGenerator.staticSearchStrSiteResourcesPath(siteRequest_, (String)o);
+    case "platformResourcesPath":
+      return ProjectGenerator.staticSearchStrPlatformResourcesPath(siteRequest_, (String)o);
+      default:
+        return BaseGenerator.staticSearchStrBaseGenerator(entityVar,  siteRequest_, o);
+    }
+  }
 
-	//////////////////
-	// staticSearchFq //
-	//////////////////
+  //////////////////
+  // staticSearchFq //
+  //////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSearchFqProjectGenerator(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchFqProjectGenerator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-		case "siteStaticPath":
-			return ProjectGenerator.staticSearchFqSiteStaticPath(siteRequest_, o);
-		case "platformStaticPath":
-			return ProjectGenerator.staticSearchFqPlatformStaticPath(siteRequest_, o);
-		case "siteResourcesPath":
-			return ProjectGenerator.staticSearchFqSiteResourcesPath(siteRequest_, o);
-		case "platformResourcesPath":
-			return ProjectGenerator.staticSearchFqPlatformResourcesPath(siteRequest_, o);
-			default:
-				return BaseGenerator.staticSearchFqBaseGenerator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    return staticSearchFqProjectGenerator(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchFqProjectGenerator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    switch(entityVar) {
+    case "siteStaticPath":
+      return ProjectGenerator.staticSearchFqSiteStaticPath(siteRequest_, o);
+    case "platformStaticPath":
+      return ProjectGenerator.staticSearchFqPlatformStaticPath(siteRequest_, o);
+    case "siteResourcesPath":
+      return ProjectGenerator.staticSearchFqSiteResourcesPath(siteRequest_, o);
+    case "platformResourcesPath":
+      return ProjectGenerator.staticSearchFqPlatformResourcesPath(siteRequest_, o);
+      default:
+        return BaseGenerator.staticSearchFqBaseGenerator(entityVar,  siteRequest_, o);
+    }
+  }
 
-	//////////////
-	// toString //
-	//////////////
+  //////////////
+  // toString //
+  //////////////
 
-	@Override public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(super.toString());
-		return sb.toString();
-	}
+  @Override public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append(super.toString());
+    return sb.toString();
+  }
 
-	public static final String[] ProjectGeneratorVals = new String[] { writeProjectSuccess1, writeProjectFail1, copyPlatformStaticFilesSuccess1, copyPlatformStaticFilesFail1, copyPlatformResourceFilesSuccess1, copyPlatformResourceFilesFail1, copyRecursiveSuccess1, copyRecursiveFail1 };
+  public static final String[] ProjectGeneratorVals = new String[] { writeProjectSuccess1, writeProjectFail1, copyPlatformStaticFilesSuccess1, copyPlatformStaticFilesFail1, copyPlatformResourceFilesSuccess1, copyPlatformResourceFilesFail1, copyRecursiveSuccess1, copyRecursiveFail1 };
 
-	public static final String CLASS_SIMPLE_NAME = "ProjectGenerator";
-	public static final String VAR_siteStaticPath = "siteStaticPath";
-	public static final String VAR_siteStaticJsDir = "siteStaticJsDir";
-	public static final String VAR_platformStaticPath = "platformStaticPath";
-	public static final String VAR_platformStaticJsDir = "platformStaticJsDir";
-	public static final String VAR_siteResourcesPath = "siteResourcesPath";
-	public static final String VAR_siteTemplatesDir = "siteTemplatesDir";
-	public static final String VAR_platformResourcesPath = "platformResourcesPath";
-	public static final String VAR_platformTemplatesDir = "platformTemplatesDir";
+  public static final String CLASS_SIMPLE_NAME = "ProjectGenerator";
+  public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.openapi.ProjectGenerator";
+  public static final String CLASS_AUTH_RESOURCE = "";
+  public static final String VAR_siteStaticPath = "siteStaticPath";
+  public static final String VAR_siteStaticJsDir = "siteStaticJsDir";
+  public static final String VAR_platformStaticPath = "platformStaticPath";
+  public static final String VAR_platformStaticJsDir = "platformStaticJsDir";
+  public static final String VAR_siteResourcesPath = "siteResourcesPath";
+  public static final String VAR_siteTemplatesDir = "siteTemplatesDir";
+  public static final String VAR_platformResourcesPath = "platformResourcesPath";
+  public static final String VAR_platformTemplatesDir = "platformTemplatesDir";
 
-	public static final String DISPLAY_NAME_siteStaticPath = "";
-	public static final String DISPLAY_NAME_siteStaticJsDir = "";
-	public static final String DISPLAY_NAME_platformStaticPath = "";
-	public static final String DISPLAY_NAME_platformStaticJsDir = "";
-	public static final String DISPLAY_NAME_siteResourcesPath = "";
-	public static final String DISPLAY_NAME_siteTemplatesDir = "";
-	public static final String DISPLAY_NAME_platformResourcesPath = "";
-	public static final String DISPLAY_NAME_platformTemplatesDir = "";
+  public static final String DISPLAY_NAME_siteStaticPath = "";
+  public static final String DISPLAY_NAME_siteStaticJsDir = "";
+  public static final String DISPLAY_NAME_platformStaticPath = "";
+  public static final String DISPLAY_NAME_platformStaticJsDir = "";
+  public static final String DISPLAY_NAME_siteResourcesPath = "";
+  public static final String DISPLAY_NAME_siteTemplatesDir = "";
+  public static final String DISPLAY_NAME_platformResourcesPath = "";
+  public static final String DISPLAY_NAME_platformTemplatesDir = "";
 
-	@Override
-	public String idForClass() {
-		return null;
-	}
+  @Override
+  public String idForClass() {
+    return null;
+  }
 
-	@Override
-	public String titleForClass() {
-		return null;
-	}
+  @Override
+  public String titleForClass() {
+    return null;
+  }
 
-	@Override
-	public String nameForClass() {
-		return null;
-	}
+  @Override
+  public String nameForClass() {
+    return null;
+  }
 
-	@Override
-	public String classNameAdjectiveSingularForClass() {
-		return null;
-	}
+  @Override
+  public String classNameAdjectiveSingularForClass() {
+    return null;
+  }
 
-	@Override
-	public String descriptionForClass() {
-		return null;
-	}
+  @Override
+  public String descriptionForClass() {
+    return null;
+  }
 
-	@Override
-	public String classStringFormatUrlEditPageForClass() {
-		return null;
-	}
+  @Override
+  public String classStringFormatUrlEditPageForClass() {
+    return null;
+  }
 
-	@Override
-	public String classStringFormatUrlDisplayPageForClass() {
-		return null;
-	}
+  @Override
+  public String classStringFormatUrlDisplayPageForClass() {
+    return null;
+  }
 
-	@Override
-	public String classStringFormatUrlUserPageForClass() {
-		return null;
-	}
+  @Override
+  public String classStringFormatUrlUserPageForClass() {
+    return null;
+  }
 
-	public static String displayNameForClass(String var) {
-		return ProjectGenerator.displayNameProjectGenerator(var);
-	}
-	public static String displayNameProjectGenerator(String var) {
-		switch(var) {
-		case VAR_siteStaticPath:
-			return DISPLAY_NAME_siteStaticPath;
-		case VAR_siteStaticJsDir:
-			return DISPLAY_NAME_siteStaticJsDir;
-		case VAR_platformStaticPath:
-			return DISPLAY_NAME_platformStaticPath;
-		case VAR_platformStaticJsDir:
-			return DISPLAY_NAME_platformStaticJsDir;
-		case VAR_siteResourcesPath:
-			return DISPLAY_NAME_siteResourcesPath;
-		case VAR_siteTemplatesDir:
-			return DISPLAY_NAME_siteTemplatesDir;
-		case VAR_platformResourcesPath:
-			return DISPLAY_NAME_platformResourcesPath;
-		case VAR_platformTemplatesDir:
-			return DISPLAY_NAME_platformTemplatesDir;
-		default:
-			return BaseGenerator.displayNameBaseGenerator(var);
-		}
-	}
+  @Override
+  public String classStringFormatUrlDownloadForClass() {
+    return null;
+  }
 
-	public static String descriptionProjectGenerator(String var) {
-		switch(var) {
-			default:
-				return BaseGenerator.descriptionBaseGenerator(var);
-		}
-	}
+  public static String displayNameForClass(String var) {
+    return ProjectGenerator.displayNameProjectGenerator(var);
+  }
+  public static String displayNameProjectGenerator(String var) {
+    switch(var) {
+    case VAR_siteStaticPath:
+      return DISPLAY_NAME_siteStaticPath;
+    case VAR_siteStaticJsDir:
+      return DISPLAY_NAME_siteStaticJsDir;
+    case VAR_platformStaticPath:
+      return DISPLAY_NAME_platformStaticPath;
+    case VAR_platformStaticJsDir:
+      return DISPLAY_NAME_platformStaticJsDir;
+    case VAR_siteResourcesPath:
+      return DISPLAY_NAME_siteResourcesPath;
+    case VAR_siteTemplatesDir:
+      return DISPLAY_NAME_siteTemplatesDir;
+    case VAR_platformResourcesPath:
+      return DISPLAY_NAME_platformResourcesPath;
+    case VAR_platformTemplatesDir:
+      return DISPLAY_NAME_platformTemplatesDir;
+    default:
+      return BaseGenerator.displayNameBaseGenerator(var);
+    }
+  }
 
-	public static String classSimpleNameProjectGenerator(String var) {
-		switch(var) {
-		case VAR_siteStaticPath:
-			return "String";
-		case VAR_siteStaticJsDir:
-			return "File";
-		case VAR_platformStaticPath:
-			return "String";
-		case VAR_platformStaticJsDir:
-			return "File";
-		case VAR_siteResourcesPath:
-			return "String";
-		case VAR_siteTemplatesDir:
-			return "File";
-		case VAR_platformResourcesPath:
-			return "String";
-		case VAR_platformTemplatesDir:
-			return "File";
-			default:
-				return BaseGenerator.classSimpleNameBaseGenerator(var);
-		}
-	}
+  public static String descriptionProjectGenerator(String var) {
+    if(var == null)
+      return null;
+    switch(var) {
+      default:
+        return BaseGenerator.descriptionBaseGenerator(var);
+    }
+  }
 
-	public static Integer htmColumnProjectGenerator(String var) {
-		switch(var) {
-			default:
-				return BaseGenerator.htmColumnBaseGenerator(var);
-		}
-	}
+  public static String classSimpleNameProjectGenerator(String var) {
+    switch(var) {
+    case VAR_siteStaticPath:
+      return "String";
+    case VAR_siteStaticJsDir:
+      return "File";
+    case VAR_platformStaticPath:
+      return "String";
+    case VAR_platformStaticJsDir:
+      return "File";
+    case VAR_siteResourcesPath:
+      return "String";
+    case VAR_siteTemplatesDir:
+      return "File";
+    case VAR_platformResourcesPath:
+      return "String";
+    case VAR_platformTemplatesDir:
+      return "File";
+      default:
+        return BaseGenerator.classSimpleNameBaseGenerator(var);
+    }
+  }
 
-	public static Integer htmRowProjectGenerator(String var) {
-		switch(var) {
-			default:
-				return BaseGenerator.htmRowBaseGenerator(var);
-		}
-	}
+  public static Integer htmColumnProjectGenerator(String var) {
+    switch(var) {
+      default:
+        return BaseGenerator.htmColumnBaseGenerator(var);
+    }
+  }
 
-	public static Integer htmCellProjectGenerator(String var) {
-		switch(var) {
-			default:
-				return BaseGenerator.htmCellBaseGenerator(var);
-		}
-	}
+  public static Integer htmRowProjectGenerator(String var) {
+    switch(var) {
+      default:
+        return BaseGenerator.htmRowBaseGenerator(var);
+    }
+  }
 
-	public static Integer lengthMinProjectGenerator(String var) {
-		switch(var) {
-			default:
-				return BaseGenerator.lengthMinBaseGenerator(var);
-		}
-	}
+  public static Integer htmCellProjectGenerator(String var) {
+    switch(var) {
+      default:
+        return BaseGenerator.htmCellBaseGenerator(var);
+    }
+  }
 
-	public static Integer lengthMaxProjectGenerator(String var) {
-		switch(var) {
-			default:
-				return BaseGenerator.lengthMaxBaseGenerator(var);
-		}
-	}
+  public static Integer lengthMinProjectGenerator(String var) {
+    switch(var) {
+      default:
+        return BaseGenerator.lengthMinBaseGenerator(var);
+    }
+  }
 
-	public static Integer maxProjectGenerator(String var) {
-		switch(var) {
-			default:
-				return BaseGenerator.maxBaseGenerator(var);
-		}
-	}
+  public static Integer lengthMaxProjectGenerator(String var) {
+    switch(var) {
+      default:
+        return BaseGenerator.lengthMaxBaseGenerator(var);
+    }
+  }
 
-	public static Integer minProjectGenerator(String var) {
-		switch(var) {
-			default:
-				return BaseGenerator.minBaseGenerator(var);
-		}
-	}
+  public static Integer maxProjectGenerator(String var) {
+    switch(var) {
+      default:
+        return BaseGenerator.maxBaseGenerator(var);
+    }
+  }
+
+  public static Integer minProjectGenerator(String var) {
+    switch(var) {
+      default:
+        return BaseGenerator.minBaseGenerator(var);
+    }
+  }
 }

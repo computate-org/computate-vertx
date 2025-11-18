@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2022 Computate Limited Liability Company in Utah, USA. 
- *
+ * Copyright Computate Limited Liability Company in Utah, USA. 
+ * SPDX-License-Identifier: AGPL-3.0
  * This program and the accompanying materials are made available under the
- * terms of the GNU GENERAL PUBLIC LICENSE Version 3 which is available at
+ * terms of the GNU AFFERO GENERAL PUBLIC LICENSE which is available at
  * 
- * https://www.gnu.org/licenses/gpl-3.0.en.html
+ * https://www.gnu.org/licenses/agpl-3.0.html
  * 
  * You may not propagate or modify a covered work except as expressly provided 
  * under this License. Any attempt otherwise to propagate or modify it is void, 
@@ -101,244 +101,252 @@ import io.vertx.core.json.JsonArray;
  * Generated: true
  **/
 public abstract class EmailVerticleGen<DEV> extends AbstractVerticle {
-	protected static final Logger LOG = LoggerFactory.getLogger(EmailVerticle.class);
+  protected static final Logger LOG = LoggerFactory.getLogger(EmailVerticle.class);
 
-	//////////////
-	// initDeep //
-	//////////////
+  //////////////
+  // initDeep //
+  //////////////
 
-	public EmailVerticle initDeepEmailVerticle(ComputateSiteRequest siteRequest_) {
-		initDeepEmailVerticle();
-		return (EmailVerticle)this;
-	}
+  public EmailVerticle initDeepEmailVerticle(ComputateSiteRequest siteRequest_) {
+    initDeepEmailVerticle();
+    return (EmailVerticle)this;
+  }
 
-	public void initDeepEmailVerticle() {
-		initEmailVerticle();
-	}
+  public void initDeepEmailVerticle() {
+    initEmailVerticle();
+  }
 
-	public void initEmailVerticle() {
-	}
+  public void initEmailVerticle() {
+  }
 
-	public void initDeepForClass(ComputateSiteRequest siteRequest_) {
-		initDeepEmailVerticle(siteRequest_);
-	}
+  public void initDeepForClass(ComputateSiteRequest siteRequest_) {
+    initDeepEmailVerticle(siteRequest_);
+  }
 
-	/////////////
-	// obtain //
-	/////////////
+  /////////////
+  // obtain //
+  /////////////
 
-	public Object obtainForClass(String var) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = obtainEmailVerticle(v);
-			else if(o instanceof Map) {
-				Map<?, ?> map = (Map<?, ?>)o;
-				o = map.get(v);
-			}
-		}
-		return o;
-	}
-	public Object obtainEmailVerticle(String var) {
-		EmailVerticle oEmailVerticle = (EmailVerticle)this;
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public Object obtainForClass(String var) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = obtainEmailVerticle(v);
+      else if(o instanceof Map) {
+        Map<?, ?> map = (Map<?, ?>)o;
+        o = map.get(v);
+      }
+    }
+    return o;
+  }
+  public Object obtainEmailVerticle(String var) {
+    EmailVerticle oEmailVerticle = (EmailVerticle)this;
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	///////////////
-	// relate //
-	///////////////
+  ///////////////
+  // relate //
+  ///////////////
 
-	public boolean relateForClass(String var, Object val) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = relateEmailVerticle(v, val);
-		}
-		return o != null;
-	}
-	public Object relateEmailVerticle(String var, Object val) {
-		EmailVerticle oEmailVerticle = (EmailVerticle)this;
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public boolean relateForClass(String var, Object val) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = relateEmailVerticle(v, val);
+    }
+    return o != null;
+  }
+  public Object relateEmailVerticle(String var, Object val) {
+    EmailVerticle oEmailVerticle = (EmailVerticle)this;
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	///////////////
-	// staticSet //
-	///////////////
+  ///////////////
+  // staticSet //
+  ///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSetEmailVerticle(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSetEmailVerticle(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-			default:
-				return null;
-		}
-	}
+  public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String v, EmailVerticle o) {
+    return staticSetEmailVerticle(entityVar,  siteRequest_, v, o);
+  }
+  public static Object staticSetEmailVerticle(String entityVar, ComputateSiteRequest siteRequest_, String v, EmailVerticle o) {
+    switch(entityVar) {
+      default:
+        return null;
+    }
+  }
 
-	////////////////
-	// staticSearch //
-	////////////////
+  ////////////////
+  // staticSearch //
+  ////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchEmailVerticle(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSearchEmailVerticle(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-			default:
-				return null;
-		}
-	}
+  public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchEmailVerticle(entityVar,  siteRequest_, o);
+  }
+  public static Object staticSearchEmailVerticle(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+      default:
+        return null;
+    }
+  }
 
-	///////////////////
-	// staticSearchStr //
-	///////////////////
+  ///////////////////
+  // staticSearchStr //
+  ///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchStrEmailVerticle(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchStrEmailVerticle(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-			default:
-				return null;
-		}
-	}
+  public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchStrEmailVerticle(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchStrEmailVerticle(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+      default:
+        return null;
+    }
+  }
 
-	//////////////////
-	// staticSearchFq //
-	//////////////////
+  //////////////////
+  // staticSearchFq //
+  //////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSearchFqEmailVerticle(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchFqEmailVerticle(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-			default:
-				return null;
-		}
-	}
+  public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    return staticSearchFqEmailVerticle(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchFqEmailVerticle(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    switch(entityVar) {
+      default:
+        return null;
+    }
+  }
 
-	//////////////
-	// toString //
-	//////////////
+  //////////////
+  // toString //
+  //////////////
 
-	@Override public String toString() {
-		StringBuilder sb = new StringBuilder();
-		return sb.toString();
-	}
+  @Override public String toString() {
+    StringBuilder sb = new StringBuilder();
+    return sb.toString();
+  }
 
-	public static final String CLASS_SIMPLE_NAME = "EmailVerticle";
+  public static final String CLASS_SIMPLE_NAME = "EmailVerticle";
+  public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.verticle.EmailVerticle";
+  public static final String CLASS_AUTH_RESOURCE = "";
 
 
-	public String idForClass() {
-		return null;
-	}
+  public String idForClass() {
+    return null;
+  }
 
-	public String titleForClass() {
-		return null;
-	}
+  public String titleForClass() {
+    return null;
+  }
 
-	public String nameForClass() {
-		return null;
-	}
+  public String nameForClass() {
+    return null;
+  }
 
-	public String classNameAdjectiveSingularForClass() {
-		return null;
-	}
+  public String classNameAdjectiveSingularForClass() {
+    return null;
+  }
 
-	public String descriptionForClass() {
-		return null;
-	}
+  public String descriptionForClass() {
+    return null;
+  }
 
-	public String classStringFormatUrlEditPageForClass() {
-		return null;
-	}
+  public String classStringFormatUrlEditPageForClass() {
+    return null;
+  }
 
-	public String classStringFormatUrlDisplayPageForClass() {
-		return null;
-	}
+  public String classStringFormatUrlDisplayPageForClass() {
+    return null;
+  }
 
-	public String classStringFormatUrlUserPageForClass() {
-		return null;
-	}
+  public String classStringFormatUrlUserPageForClass() {
+    return null;
+  }
 
-	public static String displayNameForClass(String var) {
-		return EmailVerticle.displayNameEmailVerticle(var);
-	}
-	public static String displayNameEmailVerticle(String var) {
-		switch(var) {
-		default:
-			return null;
-		}
-	}
+  public String classStringFormatUrlDownloadForClass() {
+    return null;
+  }
 
-	public static String descriptionEmailVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static String displayNameForClass(String var) {
+    return EmailVerticle.displayNameEmailVerticle(var);
+  }
+  public static String displayNameEmailVerticle(String var) {
+    switch(var) {
+    default:
+      return null;
+    }
+  }
 
-	public static String classSimpleNameEmailVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static String descriptionEmailVerticle(String var) {
+    if(var == null)
+      return null;
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer htmColumnEmailVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static String classSimpleNameEmailVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer htmRowEmailVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer htmColumnEmailVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer htmCellEmailVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer htmRowEmailVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer lengthMinEmailVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer htmCellEmailVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer lengthMaxEmailVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer lengthMinEmailVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer maxEmailVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer lengthMaxEmailVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer minEmailVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer maxEmailVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer minEmailVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 }

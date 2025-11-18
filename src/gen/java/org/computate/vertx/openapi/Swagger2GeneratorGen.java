@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2022 Computate Limited Liability Company in Utah, USA. 
- *
+ * Copyright Computate Limited Liability Company in Utah, USA. 
+ * SPDX-License-Identifier: AGPL-3.0
  * This program and the accompanying materials are made available under the
- * terms of the GNU GENERAL PUBLIC LICENSE Version 3 which is available at
+ * terms of the GNU AFFERO GENERAL PUBLIC LICENSE which is available at
  * 
- * https://www.gnu.org/licenses/gpl-3.0.en.html
+ * https://www.gnu.org/licenses/agpl-3.0.html
  * 
  * You may not propagate or modify a covered work except as expressly provided 
  * under this License. Any attempt otherwise to propagate or modify it is void, 
@@ -101,274 +101,283 @@ import io.vertx.core.json.JsonArray;
  * Generated: true
  **/
 public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
-	protected static final Logger LOG = LoggerFactory.getLogger(Swagger2Generator.class);
-	public static final String writeApiError1 = "An error occured while writing the API. ";
-	public static final String writeApiError = writeApiError1;
-	public static final String writeApiError21 = "An error occured while writing the API. ";
-	public static final String writeApiError2 = writeApiError21;
+  protected static final Logger LOG = LoggerFactory.getLogger(Swagger2Generator.class);
+  public static final String writeApiError1 = "An error occured while writing the API. ";
+  public static final String writeApiError = writeApiError1;
+  public static final String writeApiError21 = "An error occured while writing the API. ";
+  public static final String writeApiError2 = writeApiError21;
 
 
-	//////////////
-	// initDeep //
-	//////////////
+  //////////////
+  // initDeep //
+  //////////////
 
-	public Swagger2Generator initDeepSwagger2Generator(ComputateSiteRequest siteRequest_) {
-		setSiteRequest_(siteRequest_);
-		initDeepSwagger2Generator();
-		return (Swagger2Generator)this;
-	}
+  public Swagger2Generator initDeepSwagger2Generator(ComputateSiteRequest siteRequest_) {
+    setSiteRequest_(siteRequest_);
+    initDeepSwagger2Generator();
+    return (Swagger2Generator)this;
+  }
 
-	public void initDeepSwagger2Generator() {
-		super.initDeepFiwareGenerator(siteRequest_);
-		initSwagger2Generator();
-	}
+  public void initDeepSwagger2Generator() {
+    super.initDeepFiwareGenerator(siteRequest_);
+    initSwagger2Generator();
+  }
 
-	public void initSwagger2Generator() {
-	}
+  public void initSwagger2Generator() {
+  }
 
-	@Override public void initDeepForClass(ComputateSiteRequest siteRequest_) {
-		initDeepSwagger2Generator(siteRequest_);
-	}
+  @Override public void initDeepForClass(ComputateSiteRequest siteRequest_) {
+    initDeepSwagger2Generator(siteRequest_);
+  }
 
-	/////////////////
-	// siteRequest //
-	/////////////////
+  /////////////////
+  // siteRequest //
+  /////////////////
 
-	public void siteRequestSwagger2Generator(ComputateSiteRequest siteRequest_) {
-			super.siteRequestFiwareGenerator(siteRequest_);
-	}
+  public void siteRequestSwagger2Generator(ComputateSiteRequest siteRequest_) {
+      super.siteRequestFiwareGenerator(siteRequest_);
+  }
 
-	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
-		siteRequestSwagger2Generator(siteRequest_);
-	}
+  public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
+    siteRequestSwagger2Generator(siteRequest_);
+  }
 
-	/////////////
-	// obtain //
-	/////////////
+  /////////////
+  // obtain //
+  /////////////
 
-	@Override public Object obtainForClass(String var) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = obtainSwagger2Generator(v);
-			else if(o instanceof Map) {
-				Map<?, ?> map = (Map<?, ?>)o;
-				o = map.get(v);
-			}
-		}
-		return o;
-	}
-	public Object obtainSwagger2Generator(String var) {
-		Swagger2Generator oSwagger2Generator = (Swagger2Generator)this;
-		switch(var) {
-			default:
-				return super.obtainFiwareGenerator(var);
-		}
-	}
+  @Override public Object obtainForClass(String var) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = obtainSwagger2Generator(v);
+      else if(o instanceof Map) {
+        Map<?, ?> map = (Map<?, ?>)o;
+        o = map.get(v);
+      }
+    }
+    return o;
+  }
+  public Object obtainSwagger2Generator(String var) {
+    Swagger2Generator oSwagger2Generator = (Swagger2Generator)this;
+    switch(var) {
+      default:
+        return super.obtainFiwareGenerator(var);
+    }
+  }
 
-	///////////////
-	// relate //
-	///////////////
+  ///////////////
+  // relate //
+  ///////////////
 
-	@Override public boolean relateForClass(String var, Object val) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = relateSwagger2Generator(v, val);
-		}
-		return o != null;
-	}
-	public Object relateSwagger2Generator(String var, Object val) {
-		Swagger2Generator oSwagger2Generator = (Swagger2Generator)this;
-		switch(var) {
-			default:
-				return super.relateFiwareGenerator(var, val);
-		}
-	}
+  @Override public boolean relateForClass(String var, Object val) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = relateSwagger2Generator(v, val);
+    }
+    return o != null;
+  }
+  public Object relateSwagger2Generator(String var, Object val) {
+    Swagger2Generator oSwagger2Generator = (Swagger2Generator)this;
+    switch(var) {
+      default:
+        return super.relateFiwareGenerator(var, val);
+    }
+  }
 
-	///////////////
-	// staticSet //
-	///////////////
+  ///////////////
+  // staticSet //
+  ///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSetSwagger2Generator(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSetSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-			default:
-				return FiwareGenerator.staticSetFiwareGenerator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String v, Swagger2Generator o) {
+    return staticSetSwagger2Generator(entityVar,  siteRequest_, v, o);
+  }
+  public static Object staticSetSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, String v, Swagger2Generator o) {
+    switch(entityVar) {
+      default:
+        return FiwareGenerator.staticSetFiwareGenerator(entityVar,  siteRequest_, v, o);
+    }
+  }
 
-	////////////////
-	// staticSearch //
-	////////////////
+  ////////////////
+  // staticSearch //
+  ////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchSwagger2Generator(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSearchSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-			default:
-				return FiwareGenerator.staticSearchFiwareGenerator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchSwagger2Generator(entityVar,  siteRequest_, o);
+  }
+  public static Object staticSearchSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+      default:
+        return FiwareGenerator.staticSearchFiwareGenerator(entityVar,  siteRequest_, o);
+    }
+  }
 
-	///////////////////
-	// staticSearchStr //
-	///////////////////
+  ///////////////////
+  // staticSearchStr //
+  ///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchStrSwagger2Generator(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchStrSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-			default:
-				return FiwareGenerator.staticSearchStrFiwareGenerator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchStrSwagger2Generator(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchStrSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+      default:
+        return FiwareGenerator.staticSearchStrFiwareGenerator(entityVar,  siteRequest_, o);
+    }
+  }
 
-	//////////////////
-	// staticSearchFq //
-	//////////////////
+  //////////////////
+  // staticSearchFq //
+  //////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSearchFqSwagger2Generator(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchFqSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-			default:
-				return FiwareGenerator.staticSearchFqFiwareGenerator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    return staticSearchFqSwagger2Generator(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchFqSwagger2Generator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    switch(entityVar) {
+      default:
+        return FiwareGenerator.staticSearchFqFiwareGenerator(entityVar,  siteRequest_, o);
+    }
+  }
 
-	//////////////
-	// toString //
-	//////////////
+  //////////////
+  // toString //
+  //////////////
 
-	@Override public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(super.toString());
-		return sb.toString();
-	}
+  @Override public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append(super.toString());
+    return sb.toString();
+  }
 
-	public static final String[] Swagger2GeneratorVals = new String[] { writeApiError1, writeApiError21 };
+  public static final String[] Swagger2GeneratorVals = new String[] { writeApiError1, writeApiError21 };
 
-	public static final String CLASS_SIMPLE_NAME = "Swagger2Generator";
+  public static final String CLASS_SIMPLE_NAME = "Swagger2Generator";
+  public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.openapi.Swagger2Generator";
+  public static final String CLASS_AUTH_RESOURCE = "";
 
 
-	@Override
-	public String idForClass() {
-		return null;
-	}
+  @Override
+  public String idForClass() {
+    return null;
+  }
 
-	@Override
-	public String titleForClass() {
-		return null;
-	}
+  @Override
+  public String titleForClass() {
+    return null;
+  }
 
-	@Override
-	public String nameForClass() {
-		return null;
-	}
+  @Override
+  public String nameForClass() {
+    return null;
+  }
 
-	@Override
-	public String classNameAdjectiveSingularForClass() {
-		return null;
-	}
+  @Override
+  public String classNameAdjectiveSingularForClass() {
+    return null;
+  }
 
-	@Override
-	public String descriptionForClass() {
-		return null;
-	}
+  @Override
+  public String descriptionForClass() {
+    return null;
+  }
 
-	@Override
-	public String classStringFormatUrlEditPageForClass() {
-		return null;
-	}
+  @Override
+  public String classStringFormatUrlEditPageForClass() {
+    return null;
+  }
 
-	@Override
-	public String classStringFormatUrlDisplayPageForClass() {
-		return null;
-	}
+  @Override
+  public String classStringFormatUrlDisplayPageForClass() {
+    return null;
+  }
 
-	@Override
-	public String classStringFormatUrlUserPageForClass() {
-		return null;
-	}
+  @Override
+  public String classStringFormatUrlUserPageForClass() {
+    return null;
+  }
 
-	public static String displayNameForClass(String var) {
-		return Swagger2Generator.displayNameSwagger2Generator(var);
-	}
-	public static String displayNameSwagger2Generator(String var) {
-		switch(var) {
-		default:
-			return FiwareGenerator.displayNameFiwareGenerator(var);
-		}
-	}
+  @Override
+  public String classStringFormatUrlDownloadForClass() {
+    return null;
+  }
 
-	public static String descriptionSwagger2Generator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.descriptionFiwareGenerator(var);
-		}
-	}
+  public static String displayNameForClass(String var) {
+    return Swagger2Generator.displayNameSwagger2Generator(var);
+  }
+  public static String displayNameSwagger2Generator(String var) {
+    switch(var) {
+    default:
+      return FiwareGenerator.displayNameFiwareGenerator(var);
+    }
+  }
 
-	public static String classSimpleNameSwagger2Generator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.classSimpleNameFiwareGenerator(var);
-		}
-	}
+  public static String descriptionSwagger2Generator(String var) {
+    if(var == null)
+      return null;
+    switch(var) {
+      default:
+        return FiwareGenerator.descriptionFiwareGenerator(var);
+    }
+  }
 
-	public static Integer htmColumnSwagger2Generator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.htmColumnFiwareGenerator(var);
-		}
-	}
+  public static String classSimpleNameSwagger2Generator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.classSimpleNameFiwareGenerator(var);
+    }
+  }
 
-	public static Integer htmRowSwagger2Generator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.htmRowFiwareGenerator(var);
-		}
-	}
+  public static Integer htmColumnSwagger2Generator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.htmColumnFiwareGenerator(var);
+    }
+  }
 
-	public static Integer htmCellSwagger2Generator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.htmCellFiwareGenerator(var);
-		}
-	}
+  public static Integer htmRowSwagger2Generator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.htmRowFiwareGenerator(var);
+    }
+  }
 
-	public static Integer lengthMinSwagger2Generator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.lengthMinFiwareGenerator(var);
-		}
-	}
+  public static Integer htmCellSwagger2Generator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.htmCellFiwareGenerator(var);
+    }
+  }
 
-	public static Integer lengthMaxSwagger2Generator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.lengthMaxFiwareGenerator(var);
-		}
-	}
+  public static Integer lengthMinSwagger2Generator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.lengthMinFiwareGenerator(var);
+    }
+  }
 
-	public static Integer maxSwagger2Generator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.maxFiwareGenerator(var);
-		}
-	}
+  public static Integer lengthMaxSwagger2Generator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.lengthMaxFiwareGenerator(var);
+    }
+  }
 
-	public static Integer minSwagger2Generator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.minFiwareGenerator(var);
-		}
-	}
+  public static Integer maxSwagger2Generator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.maxFiwareGenerator(var);
+    }
+  }
+
+  public static Integer minSwagger2Generator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.minFiwareGenerator(var);
+    }
+  }
 }

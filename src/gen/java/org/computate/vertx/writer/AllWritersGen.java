@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2022 Computate Limited Liability Company in Utah, USA. 
- *
+ * Copyright Computate Limited Liability Company in Utah, USA. 
+ * SPDX-License-Identifier: AGPL-3.0
  * This program and the accompanying materials are made available under the
- * terms of the GNU GENERAL PUBLIC LICENSE Version 3 which is available at
+ * terms of the GNU AFFERO GENERAL PUBLIC LICENSE which is available at
  * 
- * https://www.gnu.org/licenses/gpl-3.0.en.html
+ * https://www.gnu.org/licenses/agpl-3.0.html
  * 
  * You may not propagate or modify a covered work except as expressly provided 
  * under this License. Any attempt otherwise to propagate or modify it is void, 
@@ -102,362 +102,374 @@ import io.vertx.core.json.JsonArray;
  * Generated: true
  **/
 public abstract class AllWritersGen<DEV> extends Object {
-	protected static final Logger LOG = LoggerFactory.getLogger(AllWriters.class);
+  protected static final Logger LOG = LoggerFactory.getLogger(AllWriters.class);
 
 	//////////////////
-	// siteRequest_ //
+  // siteRequest_ //
 	//////////////////
 
 
-	/**	 The entity siteRequest_
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected ComputateSiteRequest siteRequest_;
+  /**
+   *  The entity siteRequest_
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected ComputateSiteRequest siteRequest_;
 
-	/**	<br> The entity siteRequest_
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriters&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _siteRequest_(Wrap<ComputateSiteRequest> c);
+  /**
+   * <br> The entity siteRequest_
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriters&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _siteRequest_(Wrap<ComputateSiteRequest> c);
 
-	public ComputateSiteRequest getSiteRequest_() {
-		return siteRequest_;
-	}
+  public ComputateSiteRequest getSiteRequest_() {
+    return siteRequest_;
+  }
 
-	public void setSiteRequest_(ComputateSiteRequest siteRequest_) {
-		this.siteRequest_ = siteRequest_;
-	}
-	public static ComputateSiteRequest staticSetSiteRequest_(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected AllWriters siteRequest_Init() {
-		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
-		if(siteRequest_ == null) {
-			_siteRequest_(siteRequest_Wrap);
-			Optional.ofNullable(siteRequest_Wrap.getO()).ifPresent(o -> {
-				setSiteRequest_(o);
-			});
-		}
-		return (AllWriters)this;
-	}
-
-	/////////////
-	// writers //
-	/////////////
-
-
-	/**	 The entity writers
-	 *	 It is constructed before being initialized with the constructor by default. 
-	 */
-	@JsonProperty
-	@JsonFormat(shape = JsonFormat.Shape.ARRAY)
-	@JsonInclude(Include.NON_NULL)
-	protected List<AllWriter> writers = new ArrayList<AllWriter>();
-
-	/**	<br> The entity writers
-	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriters&fq=entiteVar_enUS_indexed_string:writers">Find the entity writers in Solr</a>
-	 * <br>
-	 * @param c is the entity already constructed. 
-	 **/
-	protected abstract void _writers(List<AllWriter> c);
-
-	public List<AllWriter> getWriters() {
-		return writers;
-	}
-
-	public void setWriters(List<AllWriter> writers) {
-		this.writers = writers;
-	}
-	public static AllWriter staticSetWriters(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	public AllWriters addWriters(AllWriter...objects) {
-		for(AllWriter o : objects) {
-			addWriters(o);
-		}
-		return (AllWriters)this;
-	}
-	public AllWriters addWriters(AllWriter o) {
-		if(o != null)
-			this.writers.add(o);
-		return (AllWriters)this;
-	}
-	protected AllWriters writersInit() {
-		_writers(writers);
-		return (AllWriters)this;
-	}
-
-	//////////////
-	// initDeep //
-	//////////////
-
-	public AllWriters initDeepAllWriters(ComputateSiteRequest siteRequest_) {
-		setSiteRequest_(siteRequest_);
-		initDeepAllWriters();
-		return (AllWriters)this;
-	}
-
-	public void initDeepAllWriters() {
-		initAllWriters();
-	}
-
-	public void initAllWriters() {
-				siteRequest_Init();
-				writersInit();
-	}
-
-	public void initDeepForClass(ComputateSiteRequest siteRequest_) {
-		initDeepAllWriters(siteRequest_);
-	}
-
-	/////////////////
-	// siteRequest //
-	/////////////////
-
-	public void siteRequestAllWriters(ComputateSiteRequest siteRequest_) {
-	}
-
-	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
-		siteRequestAllWriters(siteRequest_);
-	}
+  public void setSiteRequest_(ComputateSiteRequest siteRequest_) {
+    this.siteRequest_ = siteRequest_;
+  }
+  public static ComputateSiteRequest staticSetSiteRequest_(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected AllWriters siteRequest_Init() {
+    Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
+    if(siteRequest_ == null) {
+      _siteRequest_(siteRequest_Wrap);
+      Optional.ofNullable(siteRequest_Wrap.getO()).ifPresent(o -> {
+        setSiteRequest_(o);
+      });
+    }
+    return (AllWriters)this;
+  }
 
 	/////////////
-	// obtain //
+  // writers //
 	/////////////
 
-	public Object obtainForClass(String var) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = obtainAllWriters(v);
-			else if(o instanceof Map) {
-				Map<?, ?> map = (Map<?, ?>)o;
-				o = map.get(v);
-			}
-		}
-		return o;
-	}
-	public Object obtainAllWriters(String var) {
-		AllWriters oAllWriters = (AllWriters)this;
-		switch(var) {
-			case "siteRequest_":
-				return oAllWriters.siteRequest_;
-			case "writers":
-				return oAllWriters.writers;
-			default:
-				return null;
-		}
-	}
 
-	///////////////
-	// relate //
-	///////////////
+  /**
+   *  The entity writers
+   *	 It is constructed before being initialized with the constructor by default. 
+   */
+  @JsonProperty
+  @JsonFormat(shape = JsonFormat.Shape.ARRAY)
+  @JsonInclude(Include.NON_NULL)
+  protected List<AllWriter> writers = new ArrayList<AllWriter>();
 
-	public boolean relateForClass(String var, Object val) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = relateAllWriters(v, val);
-		}
-		return o != null;
-	}
-	public Object relateAllWriters(String var, Object val) {
-		AllWriters oAllWriters = (AllWriters)this;
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  /**
+   * <br> The entity writers
+   *  It is constructed before being initialized with the constructor by default. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.AllWriters&fq=entiteVar_enUS_indexed_string:writers">Find the entity writers in Solr</a>
+   * <br>
+   * @param c is the entity already constructed. 
+   **/
+  protected abstract void _writers(List<AllWriter> c);
 
-	///////////////
-	// staticSet //
-	///////////////
+  public List<AllWriter> getWriters() {
+    return writers;
+  }
 
-	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSetAllWriters(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSetAllWriters(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-			default:
-				return null;
-		}
-	}
+  public void setWriters(List<AllWriter> writers) {
+    this.writers = writers;
+  }
+  public static AllWriter staticSetWriters(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  public AllWriters addWriters(AllWriter...objects) {
+    for(AllWriter o : objects) {
+      addWriters(o);
+    }
+    return (AllWriters)this;
+  }
+  public AllWriters addWriters(AllWriter o) {
+    if(o != null)
+      this.writers.add(o);
+    return (AllWriters)this;
+  }
+  protected AllWriters writersInit() {
+    _writers(writers);
+    return (AllWriters)this;
+  }
 
-	////////////////
-	// staticSearch //
-	////////////////
+  //////////////
+  // initDeep //
+  //////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchAllWriters(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSearchAllWriters(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-			default:
-				return null;
-		}
-	}
+  public AllWriters initDeepAllWriters(ComputateSiteRequest siteRequest_) {
+    setSiteRequest_(siteRequest_);
+    initDeepAllWriters();
+    return (AllWriters)this;
+  }
 
-	///////////////////
-	// staticSearchStr //
-	///////////////////
+  public void initDeepAllWriters() {
+    initAllWriters();
+  }
 
-	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchStrAllWriters(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchStrAllWriters(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-			default:
-				return null;
-		}
-	}
+  public void initAllWriters() {
+        siteRequest_Init();
+        writersInit();
+  }
 
-	//////////////////
-	// staticSearchFq //
-	//////////////////
+  public void initDeepForClass(ComputateSiteRequest siteRequest_) {
+    initDeepAllWriters(siteRequest_);
+  }
 
-	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSearchFqAllWriters(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchFqAllWriters(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-			default:
-				return null;
-		}
-	}
+  /////////////////
+  // siteRequest //
+  /////////////////
 
-	//////////////
-	// toString //
-	//////////////
+  public void siteRequestAllWriters(ComputateSiteRequest siteRequest_) {
+  }
 
-	@Override public String toString() {
-		StringBuilder sb = new StringBuilder();
-		return sb.toString();
-	}
+  public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
+    siteRequestAllWriters(siteRequest_);
+  }
 
-	public static final String CLASS_SIMPLE_NAME = "AllWriters";
-	public static final String VAR_siteRequest_ = "siteRequest_";
-	public static final String VAR_writers = "writers";
+  /////////////
+  // obtain //
+  /////////////
 
-	public static final String DISPLAY_NAME_siteRequest_ = "";
-	public static final String DISPLAY_NAME_writers = "";
+  public Object obtainForClass(String var) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = obtainAllWriters(v);
+      else if(o instanceof Map) {
+        Map<?, ?> map = (Map<?, ?>)o;
+        o = map.get(v);
+      }
+    }
+    return o;
+  }
+  public Object obtainAllWriters(String var) {
+    AllWriters oAllWriters = (AllWriters)this;
+    switch(var) {
+      case "siteRequest_":
+        return oAllWriters.siteRequest_;
+      case "writers":
+        return oAllWriters.writers;
+      default:
+        return null;
+    }
+  }
 
-	public String idForClass() {
-		return null;
-	}
+  ///////////////
+  // relate //
+  ///////////////
 
-	public String titleForClass() {
-		return null;
-	}
+  public boolean relateForClass(String var, Object val) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = relateAllWriters(v, val);
+    }
+    return o != null;
+  }
+  public Object relateAllWriters(String var, Object val) {
+    AllWriters oAllWriters = (AllWriters)this;
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public String nameForClass() {
-		return null;
-	}
+  ///////////////
+  // staticSet //
+  ///////////////
 
-	public String classNameAdjectiveSingularForClass() {
-		return null;
-	}
+  public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String v, AllWriters o) {
+    return staticSetAllWriters(entityVar,  siteRequest_, v, o);
+  }
+  public static Object staticSetAllWriters(String entityVar, ComputateSiteRequest siteRequest_, String v, AllWriters o) {
+    switch(entityVar) {
+      default:
+        return null;
+    }
+  }
 
-	public String descriptionForClass() {
-		return null;
-	}
+  ////////////////
+  // staticSearch //
+  ////////////////
 
-	public String classStringFormatUrlEditPageForClass() {
-		return null;
-	}
+  public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchAllWriters(entityVar,  siteRequest_, o);
+  }
+  public static Object staticSearchAllWriters(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+      default:
+        return null;
+    }
+  }
 
-	public String classStringFormatUrlDisplayPageForClass() {
-		return null;
-	}
+  ///////////////////
+  // staticSearchStr //
+  ///////////////////
 
-	public String classStringFormatUrlUserPageForClass() {
-		return null;
-	}
+  public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchStrAllWriters(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchStrAllWriters(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+      default:
+        return null;
+    }
+  }
 
-	public static String displayNameForClass(String var) {
-		return AllWriters.displayNameAllWriters(var);
-	}
-	public static String displayNameAllWriters(String var) {
-		switch(var) {
-		case VAR_siteRequest_:
-			return DISPLAY_NAME_siteRequest_;
-		case VAR_writers:
-			return DISPLAY_NAME_writers;
-		default:
-			return null;
-		}
-	}
+  //////////////////
+  // staticSearchFq //
+  //////////////////
 
-	public static String descriptionAllWriters(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    return staticSearchFqAllWriters(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchFqAllWriters(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    switch(entityVar) {
+      default:
+        return null;
+    }
+  }
 
-	public static String classSimpleNameAllWriters(String var) {
-		switch(var) {
-		case VAR_siteRequest_:
-			return "ComputateSiteRequest";
-		case VAR_writers:
-			return "List";
-			default:
-				return null;
-		}
-	}
+  //////////////
+  // toString //
+  //////////////
 
-	public static Integer htmColumnAllWriters(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  @Override public String toString() {
+    StringBuilder sb = new StringBuilder();
+    return sb.toString();
+  }
 
-	public static Integer htmRowAllWriters(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static final String CLASS_SIMPLE_NAME = "AllWriters";
+  public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.writer.AllWriters";
+  public static final String CLASS_AUTH_RESOURCE = "";
+  public static final String VAR_siteRequest_ = "siteRequest_";
+  public static final String VAR_writers = "writers";
 
-	public static Integer htmCellAllWriters(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static final String DISPLAY_NAME_siteRequest_ = "";
+  public static final String DISPLAY_NAME_writers = "";
 
-	public static Integer lengthMinAllWriters(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public String idForClass() {
+    return null;
+  }
 
-	public static Integer lengthMaxAllWriters(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public String titleForClass() {
+    return null;
+  }
 
-	public static Integer maxAllWriters(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public String nameForClass() {
+    return null;
+  }
 
-	public static Integer minAllWriters(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public String classNameAdjectiveSingularForClass() {
+    return null;
+  }
+
+  public String descriptionForClass() {
+    return null;
+  }
+
+  public String classStringFormatUrlEditPageForClass() {
+    return null;
+  }
+
+  public String classStringFormatUrlDisplayPageForClass() {
+    return null;
+  }
+
+  public String classStringFormatUrlUserPageForClass() {
+    return null;
+  }
+
+  public String classStringFormatUrlDownloadForClass() {
+    return null;
+  }
+
+  public static String displayNameForClass(String var) {
+    return AllWriters.displayNameAllWriters(var);
+  }
+  public static String displayNameAllWriters(String var) {
+    switch(var) {
+    case VAR_siteRequest_:
+      return DISPLAY_NAME_siteRequest_;
+    case VAR_writers:
+      return DISPLAY_NAME_writers;
+    default:
+      return null;
+    }
+  }
+
+  public static String descriptionAllWriters(String var) {
+    if(var == null)
+      return null;
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static String classSimpleNameAllWriters(String var) {
+    switch(var) {
+    case VAR_siteRequest_:
+      return "ComputateSiteRequest";
+    case VAR_writers:
+      return "List";
+      default:
+        return null;
+    }
+  }
+
+  public static Integer htmColumnAllWriters(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer htmRowAllWriters(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer htmCellAllWriters(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer lengthMinAllWriters(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer lengthMaxAllWriters(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer maxAllWriters(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer minAllWriters(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 }

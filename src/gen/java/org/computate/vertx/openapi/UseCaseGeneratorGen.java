@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2022 Computate Limited Liability Company in Utah, USA. 
- *
+ * Copyright Computate Limited Liability Company in Utah, USA. 
+ * SPDX-License-Identifier: AGPL-3.0
  * This program and the accompanying materials are made available under the
- * terms of the GNU GENERAL PUBLIC LICENSE Version 3 which is available at
+ * terms of the GNU AFFERO GENERAL PUBLIC LICENSE which is available at
  * 
- * https://www.gnu.org/licenses/gpl-3.0.en.html
+ * https://www.gnu.org/licenses/agpl-3.0.html
  * 
  * You may not propagate or modify a covered work except as expressly provided 
  * under this License. Any attempt otherwise to propagate or modify it is void, 
@@ -108,661 +108,682 @@ import io.vertx.core.Future;
  * Generated: true
  **/
 public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
-	protected static final Logger LOG = LoggerFactory.getLogger(UseCaseGenerator.class);
+  protected static final Logger LOG = LoggerFactory.getLogger(UseCaseGenerator.class);
 
 	/////////////////
-	// useCasePath //
+  // useCasePath //
 	/////////////////
 
 
-	/**	 The entity useCasePath
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected String useCasePath;
+  /**
+   *  The entity useCasePath
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String useCasePath;
 
-	/**	<br> The entity useCasePath
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCasePath">Find the entity useCasePath in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _useCasePath(Wrap<String> c);
+  /**
+   * <br> The entity useCasePath
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCasePath">Find the entity useCasePath in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _useCasePath(Wrap<String> c);
 
-	public String getUseCasePath() {
-		return useCasePath;
-	}
-	public void setUseCasePath(String o) {
-		this.useCasePath = UseCaseGenerator.staticSetUseCasePath(siteRequest_, o);
-	}
-	public static String staticSetUseCasePath(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
-	protected UseCaseGenerator useCasePathInit() {
-		Wrap<String> useCasePathWrap = new Wrap<String>().var("useCasePath");
-		if(useCasePath == null) {
-			_useCasePath(useCasePathWrap);
-			Optional.ofNullable(useCasePathWrap.getO()).ifPresent(o -> {
-				setUseCasePath(o);
-			});
-		}
-		return (UseCaseGenerator)this;
-	}
+  public String getUseCasePath() {
+    return useCasePath;
+  }
+  public void setUseCasePath(String o) {
+    this.useCasePath = UseCaseGenerator.staticSetUseCasePath(siteRequest_, o);
+  }
+  public static String staticSetUseCasePath(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected UseCaseGenerator useCasePathInit() {
+    Wrap<String> useCasePathWrap = new Wrap<String>().var("useCasePath");
+    if(useCasePath == null) {
+      _useCasePath(useCasePathWrap);
+      Optional.ofNullable(useCasePathWrap.getO()).ifPresent(o -> {
+        setUseCasePath(o);
+      });
+    }
+    return (UseCaseGenerator)this;
+  }
 
-	public static String staticSearchUseCasePath(ComputateSiteRequest siteRequest_, String o) {
-		return o;
-	}
+  public static String staticSearchUseCasePath(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
 
-	public static String staticSearchStrUseCasePath(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
+  public static String staticSearchStrUseCasePath(ComputateSiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
 
-	public static String staticSearchFqUseCasePath(ComputateSiteRequest siteRequest_, String o) {
-		return UseCaseGenerator.staticSearchUseCasePath(siteRequest_, UseCaseGenerator.staticSetUseCasePath(siteRequest_, o)).toString();
-	}
+  public static String staticSearchFqUseCasePath(ComputateSiteRequest siteRequest_, String o) {
+    return UseCaseGenerator.staticSearchUseCasePath(siteRequest_, UseCaseGenerator.staticSetUseCasePath(siteRequest_, o)).toString();
+  }
 
 	////////////////////
-	// useCaseSummary //
+  // useCaseSummary //
 	////////////////////
 
 
-	/**	 The entity useCaseSummary
-	 *	 It is constructed before being initialized with the constructor by default. 
-	 */
-	@JsonProperty
-	@JsonDeserialize(using = JsonObjectDeserializer.class)
-	@JsonInclude(Include.NON_NULL)
-	protected JsonObject useCaseSummary = new JsonObject();
+  /**
+   *  The entity useCaseSummary
+   *	 It is constructed before being initialized with the constructor by default. 
+   */
+  @JsonProperty
+  @JsonDeserialize(using = JsonObjectDeserializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected JsonObject useCaseSummary = new JsonObject();
 
-	/**	<br> The entity useCaseSummary
-	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCaseSummary">Find the entity useCaseSummary in Solr</a>
-	 * <br>
-	 * @param o is the entity already constructed. 
-	 **/
-	protected abstract void _useCaseSummary(JsonObject o);
+  /**
+   * <br> The entity useCaseSummary
+   *  It is constructed before being initialized with the constructor by default. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCaseSummary">Find the entity useCaseSummary in Solr</a>
+   * <br>
+   * @param o is the entity already constructed. 
+   **/
+  protected abstract void _useCaseSummary(JsonObject o);
 
-	public JsonObject getUseCaseSummary() {
-		return useCaseSummary;
-	}
+  public JsonObject getUseCaseSummary() {
+    return useCaseSummary;
+  }
 
-	public void setUseCaseSummary(JsonObject useCaseSummary) {
-		this.useCaseSummary = useCaseSummary;
-	}
-	@JsonIgnore
-	public void setUseCaseSummary(String o) {
-		this.useCaseSummary = UseCaseGenerator.staticSetUseCaseSummary(siteRequest_, o);
-	}
-	public static JsonObject staticSetUseCaseSummary(ComputateSiteRequest siteRequest_, String o) {
-		if(o != null) {
-				return new JsonObject(o);
-		}
-		return null;
-	}
-	protected UseCaseGenerator useCaseSummaryInit() {
-		_useCaseSummary(useCaseSummary);
-		return (UseCaseGenerator)this;
-	}
+  public void setUseCaseSummary(JsonObject useCaseSummary) {
+    this.useCaseSummary = useCaseSummary;
+  }
+  @JsonIgnore
+  public void setUseCaseSummary(String o) {
+    this.useCaseSummary = UseCaseGenerator.staticSetUseCaseSummary(siteRequest_, o);
+  }
+  public static JsonObject staticSetUseCaseSummary(ComputateSiteRequest siteRequest_, String o) {
+    if(o != null) {
+        return new JsonObject(o);
+    }
+    return null;
+  }
+  protected UseCaseGenerator useCaseSummaryInit() {
+    _useCaseSummary(useCaseSummary);
+    return (UseCaseGenerator)this;
+  }
 
-	public static String staticSearchUseCaseSummary(ComputateSiteRequest siteRequest_, JsonObject o) {
-		return o.toString();
-	}
+  public static String staticSearchUseCaseSummary(ComputateSiteRequest siteRequest_, JsonObject o) {
+    return o.toString();
+  }
 
-	public static String staticSearchStrUseCaseSummary(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
+  public static String staticSearchStrUseCaseSummary(ComputateSiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
 
-	public static String staticSearchFqUseCaseSummary(ComputateSiteRequest siteRequest_, String o) {
-		return UseCaseGenerator.staticSearchUseCaseSummary(siteRequest_, UseCaseGenerator.staticSetUseCaseSummary(siteRequest_, o)).toString();
-	}
+  public static String staticSearchFqUseCaseSummary(ComputateSiteRequest siteRequest_, String o) {
+    return UseCaseGenerator.staticSearchUseCaseSummary(siteRequest_, UseCaseGenerator.staticSetUseCaseSummary(siteRequest_, o)).toString();
+  }
 
 	/////////////////////////
-	// useCaseSummaryCells //
+  // useCaseSummaryCells //
 	/////////////////////////
 
 
-	/**	 The entity useCaseSummaryCells
-	 *	 It is constructed before being initialized with the constructor by default. 
-	 */
-	@JsonProperty
-	@JsonDeserialize(using = JsonArrayDeserializer.class)
-	@JsonInclude(Include.NON_NULL)
-	protected JsonArray useCaseSummaryCells = new JsonArray();
+  /**
+   *  The entity useCaseSummaryCells
+   *	 It is constructed before being initialized with the constructor by default. 
+   */
+  @JsonProperty
+  @JsonDeserialize(using = JsonArrayDeserializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected JsonArray useCaseSummaryCells = new JsonArray();
 
-	/**	<br> The entity useCaseSummaryCells
-	 *  It is constructed before being initialized with the constructor by default. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCaseSummaryCells">Find the entity useCaseSummaryCells in Solr</a>
-	 * <br>
-	 * @param a is the entity already constructed. 
-	 **/
-	protected abstract void _useCaseSummaryCells(JsonArray a);
+  /**
+   * <br> The entity useCaseSummaryCells
+   *  It is constructed before being initialized with the constructor by default. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCaseSummaryCells">Find the entity useCaseSummaryCells in Solr</a>
+   * <br>
+   * @param a is the entity already constructed. 
+   **/
+  protected abstract void _useCaseSummaryCells(JsonArray a);
 
-	public JsonArray getUseCaseSummaryCells() {
-		return useCaseSummaryCells;
-	}
+  public JsonArray getUseCaseSummaryCells() {
+    return useCaseSummaryCells;
+  }
 
-	public void setUseCaseSummaryCells(JsonArray useCaseSummaryCells) {
-		this.useCaseSummaryCells = useCaseSummaryCells;
-	}
-	@JsonIgnore
-	public void setUseCaseSummaryCells(String o) {
-		this.useCaseSummaryCells = UseCaseGenerator.staticSetUseCaseSummaryCells(siteRequest_, o);
-	}
-	public static JsonArray staticSetUseCaseSummaryCells(ComputateSiteRequest siteRequest_, String o) {
-		if(o != null) {
-				return new JsonArray(o);
-		}
-		return null;
-	}
-	protected UseCaseGenerator useCaseSummaryCellsInit() {
-		_useCaseSummaryCells(useCaseSummaryCells);
-		return (UseCaseGenerator)this;
-	}
+  public void setUseCaseSummaryCells(JsonArray useCaseSummaryCells) {
+    this.useCaseSummaryCells = useCaseSummaryCells;
+  }
+  @JsonIgnore
+  public void setUseCaseSummaryCells(String o) {
+    this.useCaseSummaryCells = UseCaseGenerator.staticSetUseCaseSummaryCells(siteRequest_, o);
+  }
+  public static JsonArray staticSetUseCaseSummaryCells(ComputateSiteRequest siteRequest_, String o) {
+    if(o != null) {
+        return new JsonArray(o);
+    }
+    return null;
+  }
+  protected UseCaseGenerator useCaseSummaryCellsInit() {
+    _useCaseSummaryCells(useCaseSummaryCells);
+    return (UseCaseGenerator)this;
+  }
 
-	public static String staticSearchUseCaseSummaryCells(ComputateSiteRequest siteRequest_, JsonArray o) {
-		return o.toString();
-	}
+  public static String staticSearchUseCaseSummaryCells(ComputateSiteRequest siteRequest_, JsonArray o) {
+    return o.toString();
+  }
 
-	public static String staticSearchStrUseCaseSummaryCells(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
+  public static String staticSearchStrUseCaseSummaryCells(ComputateSiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
 
-	public static String staticSearchFqUseCaseSummaryCells(ComputateSiteRequest siteRequest_, String o) {
-		return UseCaseGenerator.staticSearchUseCaseSummaryCells(siteRequest_, UseCaseGenerator.staticSetUseCaseSummaryCells(siteRequest_, o)).toString();
-	}
+  public static String staticSearchFqUseCaseSummaryCells(ComputateSiteRequest siteRequest_, String o) {
+    return UseCaseGenerator.staticSearchUseCaseSummaryCells(siteRequest_, UseCaseGenerator.staticSetUseCaseSummaryCells(siteRequest_, o)).toString();
+  }
 
 	///////////////////////
-	// useCaseSummaryNum //
+  // useCaseSummaryNum //
 	///////////////////////
 
 
-	/**	 The entity useCaseSummaryNum
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonSerialize(using = ToStringSerializer.class)
-	@JsonInclude(Include.NON_NULL)
-	protected Integer useCaseSummaryNum;
+  /**
+   *  The entity useCaseSummaryNum
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Integer useCaseSummaryNum;
 
-	/**	<br> The entity useCaseSummaryNum
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCaseSummaryNum">Find the entity useCaseSummaryNum in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _useCaseSummaryNum(Wrap<Integer> c);
+  /**
+   * <br> The entity useCaseSummaryNum
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCaseSummaryNum">Find the entity useCaseSummaryNum in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _useCaseSummaryNum(Wrap<Integer> c);
 
-	public Integer getUseCaseSummaryNum() {
-		return useCaseSummaryNum;
-	}
+  public Integer getUseCaseSummaryNum() {
+    return useCaseSummaryNum;
+  }
 
-	public void setUseCaseSummaryNum(Integer useCaseSummaryNum) {
-		this.useCaseSummaryNum = useCaseSummaryNum;
-	}
-	@JsonIgnore
-	public void setUseCaseSummaryNum(String o) {
-		this.useCaseSummaryNum = UseCaseGenerator.staticSetUseCaseSummaryNum(siteRequest_, o);
-	}
-	public static Integer staticSetUseCaseSummaryNum(ComputateSiteRequest siteRequest_, String o) {
-		if(NumberUtils.isParsable(o))
-			return Integer.parseInt(o);
-		return null;
-	}
-	protected UseCaseGenerator useCaseSummaryNumInit() {
-		Wrap<Integer> useCaseSummaryNumWrap = new Wrap<Integer>().var("useCaseSummaryNum");
-		if(useCaseSummaryNum == null) {
-			_useCaseSummaryNum(useCaseSummaryNumWrap);
-			Optional.ofNullable(useCaseSummaryNumWrap.getO()).ifPresent(o -> {
-				setUseCaseSummaryNum(o);
-			});
-		}
-		return (UseCaseGenerator)this;
-	}
+  public void setUseCaseSummaryNum(Integer useCaseSummaryNum) {
+    this.useCaseSummaryNum = useCaseSummaryNum;
+  }
+  @JsonIgnore
+  public void setUseCaseSummaryNum(String o) {
+    this.useCaseSummaryNum = UseCaseGenerator.staticSetUseCaseSummaryNum(siteRequest_, o);
+  }
+  public static Integer staticSetUseCaseSummaryNum(ComputateSiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Integer.parseInt(o);
+    return null;
+  }
+  protected UseCaseGenerator useCaseSummaryNumInit() {
+    Wrap<Integer> useCaseSummaryNumWrap = new Wrap<Integer>().var("useCaseSummaryNum");
+    if(useCaseSummaryNum == null) {
+      _useCaseSummaryNum(useCaseSummaryNumWrap);
+      Optional.ofNullable(useCaseSummaryNumWrap.getO()).ifPresent(o -> {
+        setUseCaseSummaryNum(o);
+      });
+    }
+    return (UseCaseGenerator)this;
+  }
 
-	public static Integer staticSearchUseCaseSummaryNum(ComputateSiteRequest siteRequest_, Integer o) {
-		return o;
-	}
+  public static Integer staticSearchUseCaseSummaryNum(ComputateSiteRequest siteRequest_, Integer o) {
+    return o;
+  }
 
-	public static String staticSearchStrUseCaseSummaryNum(ComputateSiteRequest siteRequest_, Integer o) {
-		return o == null ? null : o.toString();
-	}
+  public static String staticSearchStrUseCaseSummaryNum(ComputateSiteRequest siteRequest_, Integer o) {
+    return o == null ? null : o.toString();
+  }
 
-	public static String staticSearchFqUseCaseSummaryNum(ComputateSiteRequest siteRequest_, String o) {
-		return UseCaseGenerator.staticSearchUseCaseSummaryNum(siteRequest_, UseCaseGenerator.staticSetUseCaseSummaryNum(siteRequest_, o)).toString();
-	}
+  public static String staticSearchFqUseCaseSummaryNum(ComputateSiteRequest siteRequest_, String o) {
+    return UseCaseGenerator.staticSearchUseCaseSummaryNum(siteRequest_, UseCaseGenerator.staticSetUseCaseSummaryNum(siteRequest_, o)).toString();
+  }
 
 	////////////////////////
-	// useCaseSummaryFile //
+  // useCaseSummaryFile //
 	////////////////////////
 
 
-	/**	 The entity useCaseSummaryFile
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected File useCaseSummaryFile;
+  /**
+   *  The entity useCaseSummaryFile
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected File useCaseSummaryFile;
 
-	/**	<br> The entity useCaseSummaryFile
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCaseSummaryFile">Find the entity useCaseSummaryFile in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _useCaseSummaryFile(Wrap<File> c);
+  /**
+   * <br> The entity useCaseSummaryFile
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:useCaseSummaryFile">Find the entity useCaseSummaryFile in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _useCaseSummaryFile(Wrap<File> c);
 
-	public File getUseCaseSummaryFile() {
-		return useCaseSummaryFile;
-	}
+  public File getUseCaseSummaryFile() {
+    return useCaseSummaryFile;
+  }
 
-	public void setUseCaseSummaryFile(File useCaseSummaryFile) {
-		this.useCaseSummaryFile = useCaseSummaryFile;
-	}
-	public static File staticSetUseCaseSummaryFile(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected UseCaseGenerator useCaseSummaryFileInit() {
-		Wrap<File> useCaseSummaryFileWrap = new Wrap<File>().var("useCaseSummaryFile");
-		if(useCaseSummaryFile == null) {
-			_useCaseSummaryFile(useCaseSummaryFileWrap);
-			Optional.ofNullable(useCaseSummaryFileWrap.getO()).ifPresent(o -> {
-				setUseCaseSummaryFile(o);
-			});
-		}
-		return (UseCaseGenerator)this;
-	}
+  public void setUseCaseSummaryFile(File useCaseSummaryFile) {
+    this.useCaseSummaryFile = useCaseSummaryFile;
+  }
+  public static File staticSetUseCaseSummaryFile(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected UseCaseGenerator useCaseSummaryFileInit() {
+    Wrap<File> useCaseSummaryFileWrap = new Wrap<File>().var("useCaseSummaryFile");
+    if(useCaseSummaryFile == null) {
+      _useCaseSummaryFile(useCaseSummaryFileWrap);
+      Optional.ofNullable(useCaseSummaryFileWrap.getO()).ifPresent(o -> {
+        setUseCaseSummaryFile(o);
+      });
+    }
+    return (UseCaseGenerator)this;
+  }
 
 	/////////////////////
-	// wUseCaseSummary //
+  // wUseCaseSummary //
 	/////////////////////
 
 
-	/**	 The entity wUseCaseSummary
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected AllWriter wUseCaseSummary;
+  /**
+   *  The entity wUseCaseSummary
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected AllWriter wUseCaseSummary;
 
-	/**	<br> The entity wUseCaseSummary
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:wUseCaseSummary">Find the entity wUseCaseSummary in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _wUseCaseSummary(Wrap<AllWriter> c);
+  /**
+   * <br> The entity wUseCaseSummary
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&fq=entiteVar_enUS_indexed_string:wUseCaseSummary">Find the entity wUseCaseSummary in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _wUseCaseSummary(Wrap<AllWriter> c);
 
-	public AllWriter getWUseCaseSummary() {
-		return wUseCaseSummary;
-	}
+  public AllWriter getWUseCaseSummary() {
+    return wUseCaseSummary;
+  }
 
-	public void setWUseCaseSummary(AllWriter wUseCaseSummary) {
-		this.wUseCaseSummary = wUseCaseSummary;
-	}
-	public static AllWriter staticSetWUseCaseSummary(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected UseCaseGenerator wUseCaseSummaryInit() {
-		Wrap<AllWriter> wUseCaseSummaryWrap = new Wrap<AllWriter>().var("wUseCaseSummary");
-		if(wUseCaseSummary == null) {
-			_wUseCaseSummary(wUseCaseSummaryWrap);
-			Optional.ofNullable(wUseCaseSummaryWrap.getO()).ifPresent(o -> {
-				setWUseCaseSummary(o);
-			});
-		}
-		if(wUseCaseSummary != null)
-			wUseCaseSummary.initDeepForClass(siteRequest_);
-		return (UseCaseGenerator)this;
-	}
+  public void setWUseCaseSummary(AllWriter wUseCaseSummary) {
+    this.wUseCaseSummary = wUseCaseSummary;
+  }
+  public static AllWriter staticSetWUseCaseSummary(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected UseCaseGenerator wUseCaseSummaryInit() {
+    Wrap<AllWriter> wUseCaseSummaryWrap = new Wrap<AllWriter>().var("wUseCaseSummary");
+    if(wUseCaseSummary == null) {
+      _wUseCaseSummary(wUseCaseSummaryWrap);
+      Optional.ofNullable(wUseCaseSummaryWrap.getO()).ifPresent(o -> {
+        setWUseCaseSummary(o);
+      });
+    }
+    if(wUseCaseSummary != null)
+      wUseCaseSummary.initDeepForClass(siteRequest_);
+    return (UseCaseGenerator)this;
+  }
 
-	//////////////
-	// initDeep //
-	//////////////
+  //////////////
+  // initDeep //
+  //////////////
 
-	public UseCaseGenerator initDeepUseCaseGenerator(ComputateSiteRequest siteRequest_) {
-		setSiteRequest_(siteRequest_);
-		initDeepUseCaseGenerator();
-		return (UseCaseGenerator)this;
-	}
+  public UseCaseGenerator initDeepUseCaseGenerator(ComputateSiteRequest siteRequest_) {
+    setSiteRequest_(siteRequest_);
+    initDeepUseCaseGenerator();
+    return (UseCaseGenerator)this;
+  }
 
-	public void initDeepUseCaseGenerator() {
-		super.initDeepFiwareGenerator(siteRequest_);
-		initUseCaseGenerator();
-	}
+  public void initDeepUseCaseGenerator() {
+    super.initDeepFiwareGenerator(siteRequest_);
+    initUseCaseGenerator();
+  }
 
-	public void initUseCaseGenerator() {
-				useCasePathInit();
-				useCaseSummaryInit();
-				useCaseSummaryCellsInit();
-				useCaseSummaryNumInit();
-				useCaseSummaryFileInit();
-				wUseCaseSummaryInit();
-	}
+  public void initUseCaseGenerator() {
+        useCasePathInit();
+        useCaseSummaryInit();
+        useCaseSummaryCellsInit();
+        useCaseSummaryNumInit();
+        useCaseSummaryFileInit();
+        wUseCaseSummaryInit();
+  }
 
-	@Override public void initDeepForClass(ComputateSiteRequest siteRequest_) {
-		initDeepUseCaseGenerator(siteRequest_);
-	}
+  @Override public void initDeepForClass(ComputateSiteRequest siteRequest_) {
+    initDeepUseCaseGenerator(siteRequest_);
+  }
 
-	/////////////////
-	// siteRequest //
-	/////////////////
+  /////////////////
+  // siteRequest //
+  /////////////////
 
-	public void siteRequestUseCaseGenerator(ComputateSiteRequest siteRequest_) {
-			super.siteRequestFiwareGenerator(siteRequest_);
-		if(wUseCaseSummary != null)
-			wUseCaseSummary.setSiteRequest_(siteRequest_);
-	}
+  public void siteRequestUseCaseGenerator(ComputateSiteRequest siteRequest_) {
+      super.siteRequestFiwareGenerator(siteRequest_);
+    if(wUseCaseSummary != null)
+      wUseCaseSummary.setSiteRequest_(siteRequest_);
+  }
 
-	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
-		siteRequestUseCaseGenerator(siteRequest_);
-	}
+  public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
+    siteRequestUseCaseGenerator(siteRequest_);
+  }
 
-	/////////////
-	// obtain //
-	/////////////
+  /////////////
+  // obtain //
+  /////////////
 
-	@Override public Object obtainForClass(String var) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = obtainUseCaseGenerator(v);
-			else if(o instanceof Map) {
-				Map<?, ?> map = (Map<?, ?>)o;
-				o = map.get(v);
-			}
-		}
-		return o;
-	}
-	public Object obtainUseCaseGenerator(String var) {
-		UseCaseGenerator oUseCaseGenerator = (UseCaseGenerator)this;
-		switch(var) {
-			case "useCasePath":
-				return oUseCaseGenerator.useCasePath;
-			case "useCaseSummary":
-				return oUseCaseGenerator.useCaseSummary;
-			case "useCaseSummaryCells":
-				return oUseCaseGenerator.useCaseSummaryCells;
-			case "useCaseSummaryNum":
-				return oUseCaseGenerator.useCaseSummaryNum;
-			case "useCaseSummaryFile":
-				return oUseCaseGenerator.useCaseSummaryFile;
-			case "wUseCaseSummary":
-				return oUseCaseGenerator.wUseCaseSummary;
-			default:
-				return super.obtainFiwareGenerator(var);
-		}
-	}
+  @Override public Object obtainForClass(String var) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = obtainUseCaseGenerator(v);
+      else if(o instanceof Map) {
+        Map<?, ?> map = (Map<?, ?>)o;
+        o = map.get(v);
+      }
+    }
+    return o;
+  }
+  public Object obtainUseCaseGenerator(String var) {
+    UseCaseGenerator oUseCaseGenerator = (UseCaseGenerator)this;
+    switch(var) {
+      case "useCasePath":
+        return oUseCaseGenerator.useCasePath;
+      case "useCaseSummary":
+        return oUseCaseGenerator.useCaseSummary;
+      case "useCaseSummaryCells":
+        return oUseCaseGenerator.useCaseSummaryCells;
+      case "useCaseSummaryNum":
+        return oUseCaseGenerator.useCaseSummaryNum;
+      case "useCaseSummaryFile":
+        return oUseCaseGenerator.useCaseSummaryFile;
+      case "wUseCaseSummary":
+        return oUseCaseGenerator.wUseCaseSummary;
+      default:
+        return super.obtainFiwareGenerator(var);
+    }
+  }
 
-	///////////////
-	// relate //
-	///////////////
+  ///////////////
+  // relate //
+  ///////////////
 
-	@Override public boolean relateForClass(String var, Object val) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = relateUseCaseGenerator(v, val);
-		}
-		return o != null;
-	}
-	public Object relateUseCaseGenerator(String var, Object val) {
-		UseCaseGenerator oUseCaseGenerator = (UseCaseGenerator)this;
-		switch(var) {
-			default:
-				return super.relateFiwareGenerator(var, val);
-		}
-	}
+  @Override public boolean relateForClass(String var, Object val) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = relateUseCaseGenerator(v, val);
+    }
+    return o != null;
+  }
+  public Object relateUseCaseGenerator(String var, Object val) {
+    UseCaseGenerator oUseCaseGenerator = (UseCaseGenerator)this;
+    switch(var) {
+      default:
+        return super.relateFiwareGenerator(var, val);
+    }
+  }
 
-	///////////////
-	// staticSet //
-	///////////////
+  ///////////////
+  // staticSet //
+  ///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSetUseCaseGenerator(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSetUseCaseGenerator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-		case "useCasePath":
-			return UseCaseGenerator.staticSetUseCasePath(siteRequest_, o);
-		case "useCaseSummary":
-			return UseCaseGenerator.staticSetUseCaseSummary(siteRequest_, o);
-		case "useCaseSummaryCells":
-			return UseCaseGenerator.staticSetUseCaseSummaryCells(siteRequest_, o);
-		case "useCaseSummaryNum":
-			return UseCaseGenerator.staticSetUseCaseSummaryNum(siteRequest_, o);
-			default:
-				return FiwareGenerator.staticSetFiwareGenerator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String v, UseCaseGenerator o) {
+    return staticSetUseCaseGenerator(entityVar,  siteRequest_, v, o);
+  }
+  public static Object staticSetUseCaseGenerator(String entityVar, ComputateSiteRequest siteRequest_, String v, UseCaseGenerator o) {
+    switch(entityVar) {
+    case "useCasePath":
+      return UseCaseGenerator.staticSetUseCasePath(siteRequest_, v);
+    case "useCaseSummary":
+      return UseCaseGenerator.staticSetUseCaseSummary(siteRequest_, v);
+    case "useCaseSummaryCells":
+      return UseCaseGenerator.staticSetUseCaseSummaryCells(siteRequest_, v);
+    case "useCaseSummaryNum":
+      return UseCaseGenerator.staticSetUseCaseSummaryNum(siteRequest_, v);
+      default:
+        return FiwareGenerator.staticSetFiwareGenerator(entityVar,  siteRequest_, v, o);
+    }
+  }
 
-	////////////////
-	// staticSearch //
-	////////////////
+  ////////////////
+  // staticSearch //
+  ////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchUseCaseGenerator(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSearchUseCaseGenerator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-		case "useCasePath":
-			return UseCaseGenerator.staticSearchUseCasePath(siteRequest_, (String)o);
-		case "useCaseSummary":
-			return UseCaseGenerator.staticSearchUseCaseSummary(siteRequest_, (JsonObject)o);
-		case "useCaseSummaryCells":
-			return UseCaseGenerator.staticSearchUseCaseSummaryCells(siteRequest_, (JsonArray)o);
-		case "useCaseSummaryNum":
-			return UseCaseGenerator.staticSearchUseCaseSummaryNum(siteRequest_, (Integer)o);
-			default:
-				return FiwareGenerator.staticSearchFiwareGenerator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchUseCaseGenerator(entityVar,  siteRequest_, o);
+  }
+  public static Object staticSearchUseCaseGenerator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+    case "useCasePath":
+      return UseCaseGenerator.staticSearchUseCasePath(siteRequest_, (String)o);
+    case "useCaseSummary":
+      return UseCaseGenerator.staticSearchUseCaseSummary(siteRequest_, (JsonObject)o);
+    case "useCaseSummaryCells":
+      return UseCaseGenerator.staticSearchUseCaseSummaryCells(siteRequest_, (JsonArray)o);
+    case "useCaseSummaryNum":
+      return UseCaseGenerator.staticSearchUseCaseSummaryNum(siteRequest_, (Integer)o);
+      default:
+        return FiwareGenerator.staticSearchFiwareGenerator(entityVar,  siteRequest_, o);
+    }
+  }
 
-	///////////////////
-	// staticSearchStr //
-	///////////////////
+  ///////////////////
+  // staticSearchStr //
+  ///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchStrUseCaseGenerator(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchStrUseCaseGenerator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-		case "useCasePath":
-			return UseCaseGenerator.staticSearchStrUseCasePath(siteRequest_, (String)o);
-		case "useCaseSummary":
-			return UseCaseGenerator.staticSearchStrUseCaseSummary(siteRequest_, (String)o);
-		case "useCaseSummaryCells":
-			return UseCaseGenerator.staticSearchStrUseCaseSummaryCells(siteRequest_, (String)o);
-		case "useCaseSummaryNum":
-			return UseCaseGenerator.staticSearchStrUseCaseSummaryNum(siteRequest_, (Integer)o);
-			default:
-				return FiwareGenerator.staticSearchStrFiwareGenerator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchStrUseCaseGenerator(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchStrUseCaseGenerator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+    case "useCasePath":
+      return UseCaseGenerator.staticSearchStrUseCasePath(siteRequest_, (String)o);
+    case "useCaseSummary":
+      return UseCaseGenerator.staticSearchStrUseCaseSummary(siteRequest_, (String)o);
+    case "useCaseSummaryCells":
+      return UseCaseGenerator.staticSearchStrUseCaseSummaryCells(siteRequest_, (String)o);
+    case "useCaseSummaryNum":
+      return UseCaseGenerator.staticSearchStrUseCaseSummaryNum(siteRequest_, (Integer)o);
+      default:
+        return FiwareGenerator.staticSearchStrFiwareGenerator(entityVar,  siteRequest_, o);
+    }
+  }
 
-	//////////////////
-	// staticSearchFq //
-	//////////////////
+  //////////////////
+  // staticSearchFq //
+  //////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSearchFqUseCaseGenerator(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchFqUseCaseGenerator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-		case "useCasePath":
-			return UseCaseGenerator.staticSearchFqUseCasePath(siteRequest_, o);
-		case "useCaseSummary":
-			return UseCaseGenerator.staticSearchFqUseCaseSummary(siteRequest_, o);
-		case "useCaseSummaryCells":
-			return UseCaseGenerator.staticSearchFqUseCaseSummaryCells(siteRequest_, o);
-		case "useCaseSummaryNum":
-			return UseCaseGenerator.staticSearchFqUseCaseSummaryNum(siteRequest_, o);
-			default:
-				return FiwareGenerator.staticSearchFqFiwareGenerator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    return staticSearchFqUseCaseGenerator(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchFqUseCaseGenerator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    switch(entityVar) {
+    case "useCasePath":
+      return UseCaseGenerator.staticSearchFqUseCasePath(siteRequest_, o);
+    case "useCaseSummary":
+      return UseCaseGenerator.staticSearchFqUseCaseSummary(siteRequest_, o);
+    case "useCaseSummaryCells":
+      return UseCaseGenerator.staticSearchFqUseCaseSummaryCells(siteRequest_, o);
+    case "useCaseSummaryNum":
+      return UseCaseGenerator.staticSearchFqUseCaseSummaryNum(siteRequest_, o);
+      default:
+        return FiwareGenerator.staticSearchFqFiwareGenerator(entityVar,  siteRequest_, o);
+    }
+  }
 
-	//////////////
-	// toString //
-	//////////////
+  //////////////
+  // toString //
+  //////////////
 
-	@Override public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(super.toString());
-		return sb.toString();
-	}
+  @Override public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append(super.toString());
+    return sb.toString();
+  }
 
-	public static final String CLASS_SIMPLE_NAME = "UseCaseGenerator";
-	public static final String VAR_useCasePath = "useCasePath";
-	public static final String VAR_useCaseSummary = "useCaseSummary";
-	public static final String VAR_useCaseSummaryCells = "useCaseSummaryCells";
-	public static final String VAR_useCaseSummaryNum = "useCaseSummaryNum";
-	public static final String VAR_useCaseSummaryFile = "useCaseSummaryFile";
-	public static final String VAR_wUseCaseSummary = "wUseCaseSummary";
+  public static final String CLASS_SIMPLE_NAME = "UseCaseGenerator";
+  public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.openapi.UseCaseGenerator";
+  public static final String CLASS_AUTH_RESOURCE = "";
+  public static final String VAR_useCasePath = "useCasePath";
+  public static final String VAR_useCaseSummary = "useCaseSummary";
+  public static final String VAR_useCaseSummaryCells = "useCaseSummaryCells";
+  public static final String VAR_useCaseSummaryNum = "useCaseSummaryNum";
+  public static final String VAR_useCaseSummaryFile = "useCaseSummaryFile";
+  public static final String VAR_wUseCaseSummary = "wUseCaseSummary";
 
-	public static final String DISPLAY_NAME_useCasePath = "";
-	public static final String DISPLAY_NAME_useCaseSummary = "";
-	public static final String DISPLAY_NAME_useCaseSummaryCells = "";
-	public static final String DISPLAY_NAME_useCaseSummaryNum = "";
-	public static final String DISPLAY_NAME_useCaseSummaryFile = "";
-	public static final String DISPLAY_NAME_wUseCaseSummary = "";
+  public static final String DISPLAY_NAME_useCasePath = "";
+  public static final String DISPLAY_NAME_useCaseSummary = "";
+  public static final String DISPLAY_NAME_useCaseSummaryCells = "";
+  public static final String DISPLAY_NAME_useCaseSummaryNum = "";
+  public static final String DISPLAY_NAME_useCaseSummaryFile = "";
+  public static final String DISPLAY_NAME_wUseCaseSummary = "";
 
-	@Override
-	public String idForClass() {
-		return null;
-	}
+  @Override
+  public String idForClass() {
+    return null;
+  }
 
-	@Override
-	public String titleForClass() {
-		return null;
-	}
+  @Override
+  public String titleForClass() {
+    return null;
+  }
 
-	@Override
-	public String nameForClass() {
-		return null;
-	}
+  @Override
+  public String nameForClass() {
+    return null;
+  }
 
-	@Override
-	public String classNameAdjectiveSingularForClass() {
-		return null;
-	}
+  @Override
+  public String classNameAdjectiveSingularForClass() {
+    return null;
+  }
 
-	@Override
-	public String descriptionForClass() {
-		return null;
-	}
+  @Override
+  public String descriptionForClass() {
+    return null;
+  }
 
-	@Override
-	public String classStringFormatUrlEditPageForClass() {
-		return null;
-	}
+  @Override
+  public String classStringFormatUrlEditPageForClass() {
+    return null;
+  }
 
-	@Override
-	public String classStringFormatUrlDisplayPageForClass() {
-		return null;
-	}
+  @Override
+  public String classStringFormatUrlDisplayPageForClass() {
+    return null;
+  }
 
-	@Override
-	public String classStringFormatUrlUserPageForClass() {
-		return null;
-	}
+  @Override
+  public String classStringFormatUrlUserPageForClass() {
+    return null;
+  }
 
-	public static String displayNameForClass(String var) {
-		return UseCaseGenerator.displayNameUseCaseGenerator(var);
-	}
-	public static String displayNameUseCaseGenerator(String var) {
-		switch(var) {
-		case VAR_useCasePath:
-			return DISPLAY_NAME_useCasePath;
-		case VAR_useCaseSummary:
-			return DISPLAY_NAME_useCaseSummary;
-		case VAR_useCaseSummaryCells:
-			return DISPLAY_NAME_useCaseSummaryCells;
-		case VAR_useCaseSummaryNum:
-			return DISPLAY_NAME_useCaseSummaryNum;
-		case VAR_useCaseSummaryFile:
-			return DISPLAY_NAME_useCaseSummaryFile;
-		case VAR_wUseCaseSummary:
-			return DISPLAY_NAME_wUseCaseSummary;
-		default:
-			return FiwareGenerator.displayNameFiwareGenerator(var);
-		}
-	}
+  @Override
+  public String classStringFormatUrlDownloadForClass() {
+    return null;
+  }
 
-	public static String descriptionUseCaseGenerator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.descriptionFiwareGenerator(var);
-		}
-	}
+  public static String displayNameForClass(String var) {
+    return UseCaseGenerator.displayNameUseCaseGenerator(var);
+  }
+  public static String displayNameUseCaseGenerator(String var) {
+    switch(var) {
+    case VAR_useCasePath:
+      return DISPLAY_NAME_useCasePath;
+    case VAR_useCaseSummary:
+      return DISPLAY_NAME_useCaseSummary;
+    case VAR_useCaseSummaryCells:
+      return DISPLAY_NAME_useCaseSummaryCells;
+    case VAR_useCaseSummaryNum:
+      return DISPLAY_NAME_useCaseSummaryNum;
+    case VAR_useCaseSummaryFile:
+      return DISPLAY_NAME_useCaseSummaryFile;
+    case VAR_wUseCaseSummary:
+      return DISPLAY_NAME_wUseCaseSummary;
+    default:
+      return FiwareGenerator.displayNameFiwareGenerator(var);
+    }
+  }
 
-	public static String classSimpleNameUseCaseGenerator(String var) {
-		switch(var) {
-		case VAR_useCasePath:
-			return "String";
-		case VAR_useCaseSummary:
-			return "JsonObject";
-		case VAR_useCaseSummaryCells:
-			return "JsonArray";
-		case VAR_useCaseSummaryNum:
-			return "Integer";
-		case VAR_useCaseSummaryFile:
-			return "File";
-		case VAR_wUseCaseSummary:
-			return "AllWriter";
-			default:
-				return FiwareGenerator.classSimpleNameFiwareGenerator(var);
-		}
-	}
+  public static String descriptionUseCaseGenerator(String var) {
+    if(var == null)
+      return null;
+    switch(var) {
+      default:
+        return FiwareGenerator.descriptionFiwareGenerator(var);
+    }
+  }
 
-	public static Integer htmColumnUseCaseGenerator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.htmColumnFiwareGenerator(var);
-		}
-	}
+  public static String classSimpleNameUseCaseGenerator(String var) {
+    switch(var) {
+    case VAR_useCasePath:
+      return "String";
+    case VAR_useCaseSummary:
+      return "JsonObject";
+    case VAR_useCaseSummaryCells:
+      return "JsonArray";
+    case VAR_useCaseSummaryNum:
+      return "Integer";
+    case VAR_useCaseSummaryFile:
+      return "File";
+    case VAR_wUseCaseSummary:
+      return "AllWriter";
+      default:
+        return FiwareGenerator.classSimpleNameFiwareGenerator(var);
+    }
+  }
 
-	public static Integer htmRowUseCaseGenerator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.htmRowFiwareGenerator(var);
-		}
-	}
+  public static Integer htmColumnUseCaseGenerator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.htmColumnFiwareGenerator(var);
+    }
+  }
 
-	public static Integer htmCellUseCaseGenerator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.htmCellFiwareGenerator(var);
-		}
-	}
+  public static Integer htmRowUseCaseGenerator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.htmRowFiwareGenerator(var);
+    }
+  }
 
-	public static Integer lengthMinUseCaseGenerator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.lengthMinFiwareGenerator(var);
-		}
-	}
+  public static Integer htmCellUseCaseGenerator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.htmCellFiwareGenerator(var);
+    }
+  }
 
-	public static Integer lengthMaxUseCaseGenerator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.lengthMaxFiwareGenerator(var);
-		}
-	}
+  public static Integer lengthMinUseCaseGenerator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.lengthMinFiwareGenerator(var);
+    }
+  }
 
-	public static Integer maxUseCaseGenerator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.maxFiwareGenerator(var);
-		}
-	}
+  public static Integer lengthMaxUseCaseGenerator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.lengthMaxFiwareGenerator(var);
+    }
+  }
 
-	public static Integer minUseCaseGenerator(String var) {
-		switch(var) {
-			default:
-				return FiwareGenerator.minFiwareGenerator(var);
-		}
-	}
+  public static Integer maxUseCaseGenerator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.maxFiwareGenerator(var);
+    }
+  }
+
+  public static Integer minUseCaseGenerator(String var) {
+    switch(var) {
+      default:
+        return FiwareGenerator.minFiwareGenerator(var);
+    }
+  }
 }

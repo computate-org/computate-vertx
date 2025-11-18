@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2022 Computate Limited Liability Company in Utah, USA. 
- *
+ * Copyright Computate Limited Liability Company in Utah, USA. 
+ * SPDX-License-Identifier: AGPL-3.0
  * This program and the accompanying materials are made available under the
- * terms of the GNU GENERAL PUBLIC LICENSE Version 3 which is available at
+ * terms of the GNU AFFERO GENERAL PUBLIC LICENSE which is available at
  * 
- * https://www.gnu.org/licenses/gpl-3.0.en.html
+ * https://www.gnu.org/licenses/agpl-3.0.html
  * 
  * You may not propagate or modify a covered work except as expressly provided 
  * under this License. Any attempt otherwise to propagate or modify it is void, 
@@ -136,14 +136,16 @@ public abstract class SearchListGen<DEV> {
 	///////
 
 
-  /**   The entity c
+  /**
+   *  The entity c
    *	 is defined as null before being initialized. 
    */
   @JsonIgnore
   @JsonInclude(Include.NON_NULL)
   protected Class<?> c;
 
-  /**  <br> The entity c
+  /**
+   * <br> The entity c
    *  is defined as null before being initialized. 
    * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:c">Find the entity c in Solr</a>
    * <br>
@@ -177,14 +179,16 @@ public abstract class SearchListGen<DEV> {
 	//////////////////
 
 
-  /**   The entity siteRequest_
+  /**
+   *  The entity siteRequest_
    *	 is defined as null before being initialized. 
    */
   @JsonIgnore
   @JsonInclude(Include.NON_NULL)
   protected ComputateSiteRequest siteRequest_;
 
-  /**  <br> The entity siteRequest_
+  /**
+   * <br> The entity siteRequest_
    *  is defined as null before being initialized. 
    * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
    * <br>
@@ -218,14 +222,16 @@ public abstract class SearchListGen<DEV> {
 	///////////
 
 
-  /**   The entity store
+  /**
+   *  The entity store
    *	 is defined as null before being initialized. 
    */
   @JsonIgnore
   @JsonInclude(Include.NON_NULL)
   protected Boolean store;
 
-  /**  <br> The entity store
+  /**
+   * <br> The entity store
    *  is defined as null before being initialized. 
    * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:store">Find the entity store in Solr</a>
    * <br>
@@ -275,14 +281,16 @@ public abstract class SearchListGen<DEV> {
 	//////////////
 
 
-  /**   The entity populate
+  /**
+   *  The entity populate
    *	 is defined as null before being initialized. 
    */
   @JsonIgnore
   @JsonInclude(Include.NON_NULL)
   protected Boolean populate;
 
-  /**  <br> The entity populate
+  /**
+   * <br> The entity populate
    *  is defined as null before being initialized. 
    * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:populate">Find the entity populate in Solr</a>
    * <br>
@@ -332,14 +340,16 @@ public abstract class SearchListGen<DEV> {
 	/////////////
 
 
-  /**   The entity request
+  /**
+   *  The entity request
    *	 It is constructed before being initialized with the constructor by default. 
    */
   @JsonProperty
   @JsonInclude(Include.NON_NULL)
   protected SearchRequest request = new SearchRequest();
 
-  /**  <br> The entity request
+  /**
+   * <br> The entity request
    *  It is constructed before being initialized with the constructor by default. 
    * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:request">Find the entity request in Solr</a>
    * <br>
@@ -368,14 +378,16 @@ public abstract class SearchListGen<DEV> {
 	///////////////
 
 
-  /**   The entity searchUrl
+  /**
+   *  The entity searchUrl
    *	 is defined as null before being initialized. 
    */
   @JsonProperty
   @JsonInclude(Include.NON_NULL)
   protected String searchUrl;
 
-  /**  <br> The entity searchUrl
+  /**
+   * <br> The entity searchUrl
    *  is defined as null before being initialized. 
    * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:searchUrl">Find the entity searchUrl in Solr</a>
    * <br>
@@ -420,14 +432,16 @@ public abstract class SearchListGen<DEV> {
 	/////////////////
 
 
-  /**   The entity defaultSort
+  /**
+   *  The entity defaultSort
    *	 is defined as null before being initialized. 
    */
   @JsonProperty
   @JsonInclude(Include.NON_NULL)
   protected Boolean defaultSort;
 
-  /**  <br> The entity defaultSort
+  /**
+   * <br> The entity defaultSort
    *  is defined as null before being initialized. 
    * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:defaultSort">Find the entity defaultSort in Solr</a>
    * <br>
@@ -477,14 +491,16 @@ public abstract class SearchListGen<DEV> {
 	//////////////
 
 
-  /**   The entity response
+  /**
+   *  The entity response
    *	 is defined as null before being initialized. 
    */
   @JsonIgnore
   @JsonInclude(Include.NON_NULL)
   protected SolrResponse response;
 
-  /**  <br> The entity response
+  /**
+   * <br> The entity response
    *  is defined as null before being initialized. 
    * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:response">Find the entity response in Solr</a>
    * <br>
@@ -520,14 +536,16 @@ public abstract class SearchListGen<DEV> {
 	//////////
 
 
-  /**   The entity docs
+  /**
+   *  The entity docs
    *	 is defined as null before being initialized. 
    */
   @JsonIgnore
   @JsonInclude(Include.NON_NULL)
   protected List<Doc> docs;
 
-  /**  <br> The entity docs
+  /**
+   * <br> The entity docs
    *  is defined as null before being initialized. 
    * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:docs">Find the entity docs in Solr</a>
    * <br>
@@ -572,7 +590,8 @@ public abstract class SearchListGen<DEV> {
 	//////////
 
 
-  /**   The entity list
+  /**
+   *  The entity list
    *	 It is constructed before being initialized with the constructor by default. 
    */
   @JsonProperty
@@ -580,7 +599,8 @@ public abstract class SearchListGen<DEV> {
   @JsonInclude(Include.NON_NULL)
   protected List<DEV> list = new ArrayList<DEV>();
 
-  /**  <br> The entity list
+  /**
+   * <br> The entity list
    *  It is constructed before being initialized with the constructor by default. 
    * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:list">Find the entity list in Solr</a>
    * <br>
@@ -616,14 +636,16 @@ public abstract class SearchListGen<DEV> {
 	///////////
 
 
-  /**   The entity first
+  /**
+   *  The entity first
    *	 is defined as null before being initialized. 
    */
   @JsonProperty
   @JsonInclude(Include.NON_NULL)
   protected Object first;
 
-  /**  <br> The entity first
+  /**
+   * <br> The entity first
    *  is defined as null before being initialized. 
    * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:first">Find the entity first in Solr</a>
    * <br>

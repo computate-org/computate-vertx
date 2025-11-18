@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2022 Computate Limited Liability Company in Utah, USA. 
- *
+ * Copyright Computate Limited Liability Company in Utah, USA. 
+ * SPDX-License-Identifier: AGPL-3.0
  * This program and the accompanying materials are made available under the
- * terms of the GNU GENERAL PUBLIC LICENSE Version 3 which is available at
+ * terms of the GNU AFFERO GENERAL PUBLIC LICENSE which is available at
  * 
- * https://www.gnu.org/licenses/gpl-3.0.en.html
+ * https://www.gnu.org/licenses/agpl-3.0.html
  * 
  * You may not propagate or modify a covered work except as expressly provided 
  * under this License. Any attempt otherwise to propagate or modify it is void, 
@@ -46,6 +46,7 @@ import org.slf4j.LoggerFactory;
 import java.math.RoundingMode;
 import java.util.Map;
 import io.vertx.core.json.JsonObject;
+import org.computate.vertx.serialize.vertx.JsonObjectDeserializer;
 import java.lang.Long;
 import java.lang.String;
 import org.computate.search.wrap.Wrap;
@@ -104,460 +105,475 @@ import io.vertx.core.json.JsonArray;
  * Generated: true
  **/
 public abstract class SearchResultGen<DEV> extends Object {
-	protected static final Logger LOG = LoggerFactory.getLogger(SearchResult.class);
+  protected static final Logger LOG = LoggerFactory.getLogger(SearchResult.class);
 
 	//////////////////
-	// siteRequest_ //
-	//////////////////
-
-
-	/**	 The entity siteRequest_
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected ComputateSiteRequest siteRequest_;
-
-	/**	<br> The entity siteRequest_
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _siteRequest_(Wrap<ComputateSiteRequest> c);
-
-	public ComputateSiteRequest getSiteRequest_() {
-		return siteRequest_;
-	}
-
-	public void setSiteRequest_(ComputateSiteRequest siteRequest_) {
-		this.siteRequest_ = siteRequest_;
-	}
-	public static ComputateSiteRequest staticSetSiteRequest_(ComputateSiteRequest siteRequest_, String o) {
-		return null;
-	}
-	protected SearchResult siteRequest_Init() {
-		Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
-		if(siteRequest_ == null) {
-			_siteRequest_(siteRequest_Wrap);
-			Optional.ofNullable(siteRequest_Wrap.getO()).ifPresent(o -> {
-				setSiteRequest_(o);
-			});
-		}
-		return (SearchResult)this;
-	}
-
-	//////////////////
-	// solrDocument //
+  // siteRequest_ //
 	//////////////////
 
 
-	/**	 The entity solrDocument
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonInclude(Include.NON_NULL)
-	protected JsonObject solrDocument;
+  /**
+   *  The entity siteRequest_
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected ComputateSiteRequest siteRequest_;
 
-	/**	<br> The entity solrDocument
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&fq=entiteVar_enUS_indexed_string:solrDocument">Find the entity solrDocument in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _solrDocument(Wrap<JsonObject> c);
+  /**
+   * <br> The entity siteRequest_
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&fq=entiteVar_enUS_indexed_string:siteRequest_">Find the entity siteRequest_ in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _siteRequest_(Wrap<ComputateSiteRequest> c);
 
-	public JsonObject getSolrDocument() {
-		return solrDocument;
-	}
+  public ComputateSiteRequest getSiteRequest_() {
+    return siteRequest_;
+  }
 
-	public void setSolrDocument(JsonObject solrDocument) {
-		this.solrDocument = solrDocument;
-	}
-	@JsonIgnore
-	public void setSolrDocument(String o) {
-		this.solrDocument = SearchResult.staticSetSolrDocument(siteRequest_, o);
-	}
-	public static JsonObject staticSetSolrDocument(ComputateSiteRequest siteRequest_, String o) {
-		if(o != null) {
-				return new JsonObject(o);
-		}
-		return null;
-	}
-	protected SearchResult solrDocumentInit() {
-		Wrap<JsonObject> solrDocumentWrap = new Wrap<JsonObject>().var("solrDocument");
-		if(solrDocument == null) {
-			_solrDocument(solrDocumentWrap);
-			Optional.ofNullable(solrDocumentWrap.getO()).ifPresent(o -> {
-				setSolrDocument(o);
-			});
-		}
-		return (SearchResult)this;
-	}
+  public void setSiteRequest_(ComputateSiteRequest siteRequest_) {
+    this.siteRequest_ = siteRequest_;
+  }
+  public static ComputateSiteRequest staticSetSiteRequest_(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected SearchResult siteRequest_Init() {
+    Wrap<ComputateSiteRequest> siteRequest_Wrap = new Wrap<ComputateSiteRequest>().var("siteRequest_");
+    if(siteRequest_ == null) {
+      _siteRequest_(siteRequest_Wrap);
+      Optional.ofNullable(siteRequest_Wrap.getO()).ifPresent(o -> {
+        setSiteRequest_(o);
+      });
+    }
+    return (SearchResult)this;
+  }
 
-	public static String staticSearchSolrDocument(ComputateSiteRequest siteRequest_, JsonObject o) {
-		return o.toString();
-	}
+	//////////////////
+  // solrDocument //
+	//////////////////
 
-	public static String staticSearchStrSolrDocument(ComputateSiteRequest siteRequest_, String o) {
-		return o == null ? null : o.toString();
-	}
 
-	public static String staticSearchFqSolrDocument(ComputateSiteRequest siteRequest_, String o) {
-		return SearchResult.staticSearchSolrDocument(siteRequest_, SearchResult.staticSetSolrDocument(siteRequest_, o)).toString();
-	}
+  /**
+   *  The entity solrDocument
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonDeserialize(using = JsonObjectDeserializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected JsonObject solrDocument;
+
+  /**
+   * <br> The entity solrDocument
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&fq=entiteVar_enUS_indexed_string:solrDocument">Find the entity solrDocument in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _solrDocument(Wrap<JsonObject> c);
+
+  public JsonObject getSolrDocument() {
+    return solrDocument;
+  }
+
+  public void setSolrDocument(JsonObject solrDocument) {
+    this.solrDocument = solrDocument;
+  }
+  @JsonIgnore
+  public void setSolrDocument(String o) {
+    this.solrDocument = SearchResult.staticSetSolrDocument(siteRequest_, o);
+  }
+  public static JsonObject staticSetSolrDocument(ComputateSiteRequest siteRequest_, String o) {
+    if(o != null) {
+        return new JsonObject(o);
+    }
+    return null;
+  }
+  protected SearchResult solrDocumentInit() {
+    Wrap<JsonObject> solrDocumentWrap = new Wrap<JsonObject>().var("solrDocument");
+    if(solrDocument == null) {
+      _solrDocument(solrDocumentWrap);
+      Optional.ofNullable(solrDocumentWrap.getO()).ifPresent(o -> {
+        setSolrDocument(o);
+      });
+    }
+    return (SearchResult)this;
+  }
+
+  public static String staticSearchSolrDocument(ComputateSiteRequest siteRequest_, JsonObject o) {
+    return o.toString();
+  }
+
+  public static String staticSearchStrSolrDocument(ComputateSiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqSolrDocument(ComputateSiteRequest siteRequest_, String o) {
+    return SearchResult.staticSearchSolrDocument(siteRequest_, SearchResult.staticSetSolrDocument(siteRequest_, o)).toString();
+  }
 
 	/////////////////
-	// resultIndex //
+  // resultIndex //
 	/////////////////
 
 
-	/**	 The entity resultIndex
-	 *	 is defined as null before being initialized. 
-	 */
-	@JsonProperty
-	@JsonSerialize(using = ToStringSerializer.class)
-	@JsonInclude(Include.NON_NULL)
-	protected Long resultIndex;
+  /**
+   *  The entity resultIndex
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonSerialize(using = ToStringSerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Long resultIndex;
 
-	/**	<br> The entity resultIndex
-	 *  is defined as null before being initialized. 
-	 * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&fq=entiteVar_enUS_indexed_string:resultIndex">Find the entity resultIndex in Solr</a>
-	 * <br>
-	 * @param c is for wrapping a value to assign to this entity during initialization. 
-	 **/
-	protected abstract void _resultIndex(Wrap<Long> c);
+  /**
+   * <br> The entity resultIndex
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&fq=entiteVar_enUS_indexed_string:resultIndex">Find the entity resultIndex in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _resultIndex(Wrap<Long> c);
 
-	public Long getResultIndex() {
-		return resultIndex;
-	}
+  public Long getResultIndex() {
+    return resultIndex;
+  }
 
-	public void setResultIndex(Long resultIndex) {
-		this.resultIndex = resultIndex;
-	}
-	@JsonIgnore
-	public void setResultIndex(String o) {
-		this.resultIndex = SearchResult.staticSetResultIndex(siteRequest_, o);
-	}
-	public static Long staticSetResultIndex(ComputateSiteRequest siteRequest_, String o) {
-		if(NumberUtils.isParsable(o))
-			return Long.parseLong(o);
-		return null;
-	}
-	protected SearchResult resultIndexInit() {
-		Wrap<Long> resultIndexWrap = new Wrap<Long>().var("resultIndex");
-		if(resultIndex == null) {
-			_resultIndex(resultIndexWrap);
-			Optional.ofNullable(resultIndexWrap.getO()).ifPresent(o -> {
-				setResultIndex(o);
-			});
-		}
-		return (SearchResult)this;
-	}
+  public void setResultIndex(Long resultIndex) {
+    this.resultIndex = resultIndex;
+  }
+  @JsonIgnore
+  public void setResultIndex(String o) {
+    this.resultIndex = SearchResult.staticSetResultIndex(siteRequest_, o);
+  }
+  public static Long staticSetResultIndex(ComputateSiteRequest siteRequest_, String o) {
+    if(NumberUtils.isParsable(o))
+      return Long.parseLong(o);
+    return null;
+  }
+  protected SearchResult resultIndexInit() {
+    Wrap<Long> resultIndexWrap = new Wrap<Long>().var("resultIndex");
+    if(resultIndex == null) {
+      _resultIndex(resultIndexWrap);
+      Optional.ofNullable(resultIndexWrap.getO()).ifPresent(o -> {
+        setResultIndex(o);
+      });
+    }
+    return (SearchResult)this;
+  }
 
-	public static Long staticSearchResultIndex(ComputateSiteRequest siteRequest_, Long o) {
-		return o;
-	}
+  public static Long staticSearchResultIndex(ComputateSiteRequest siteRequest_, Long o) {
+    return o;
+  }
 
-	public static String staticSearchStrResultIndex(ComputateSiteRequest siteRequest_, Long o) {
-		return o == null ? null : o.toString();
-	}
+  public static String staticSearchStrResultIndex(ComputateSiteRequest siteRequest_, Long o) {
+    return o == null ? null : o.toString();
+  }
 
-	public static String staticSearchFqResultIndex(ComputateSiteRequest siteRequest_, String o) {
-		return SearchResult.staticSearchResultIndex(siteRequest_, SearchResult.staticSetResultIndex(siteRequest_, o)).toString();
-	}
+  public static String staticSearchFqResultIndex(ComputateSiteRequest siteRequest_, String o) {
+    return SearchResult.staticSearchResultIndex(siteRequest_, SearchResult.staticSetResultIndex(siteRequest_, o)).toString();
+  }
 
-	//////////////
-	// initDeep //
-	//////////////
+  //////////////
+  // initDeep //
+  //////////////
 
-	public SearchResult initDeepSearchResult(ComputateSiteRequest siteRequest_) {
-		setSiteRequest_(siteRequest_);
-		initDeepSearchResult();
-		return (SearchResult)this;
-	}
+  public SearchResult initDeepSearchResult(ComputateSiteRequest siteRequest_) {
+    setSiteRequest_(siteRequest_);
+    initDeepSearchResult();
+    return (SearchResult)this;
+  }
 
-	public void initDeepSearchResult() {
-		initSearchResult();
-	}
+  public void initDeepSearchResult() {
+    initSearchResult();
+  }
 
-	public void initSearchResult() {
-				siteRequest_Init();
-				solrDocumentInit();
-				resultIndexInit();
-	}
+  public void initSearchResult() {
+        siteRequest_Init();
+        solrDocumentInit();
+        resultIndexInit();
+  }
 
-	public void initDeepForClass(ComputateSiteRequest siteRequest_) {
-		initDeepSearchResult(siteRequest_);
-	}
+  public void initDeepForClass(ComputateSiteRequest siteRequest_) {
+    initDeepSearchResult(siteRequest_);
+  }
 
-	/////////////////
-	// siteRequest //
-	/////////////////
+  /////////////////
+  // siteRequest //
+  /////////////////
 
-	public void siteRequestSearchResult(ComputateSiteRequest siteRequest_) {
-	}
+  public void siteRequestSearchResult(ComputateSiteRequest siteRequest_) {
+  }
 
-	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
-		siteRequestSearchResult(siteRequest_);
-	}
+  public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
+    siteRequestSearchResult(siteRequest_);
+  }
 
-	/////////////
-	// obtain //
-	/////////////
+  /////////////
+  // obtain //
+  /////////////
 
-	public Object obtainForClass(String var) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = obtainSearchResult(v);
-			else if(o instanceof Map) {
-				Map<?, ?> map = (Map<?, ?>)o;
-				o = map.get(v);
-			}
-		}
-		return o;
-	}
-	public Object obtainSearchResult(String var) {
-		SearchResult oSearchResult = (SearchResult)this;
-		switch(var) {
-			case "siteRequest_":
-				return oSearchResult.siteRequest_;
-			case "solrDocument":
-				return oSearchResult.solrDocument;
-			case "resultIndex":
-				return oSearchResult.resultIndex;
-			default:
-				return null;
-		}
-	}
+  public Object obtainForClass(String var) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = obtainSearchResult(v);
+      else if(o instanceof Map) {
+        Map<?, ?> map = (Map<?, ?>)o;
+        o = map.get(v);
+      }
+    }
+    return o;
+  }
+  public Object obtainSearchResult(String var) {
+    SearchResult oSearchResult = (SearchResult)this;
+    switch(var) {
+      case "siteRequest_":
+        return oSearchResult.siteRequest_;
+      case "solrDocument":
+        return oSearchResult.solrDocument;
+      case "resultIndex":
+        return oSearchResult.resultIndex;
+      default:
+        return null;
+    }
+  }
 
-	///////////////
-	// relate //
-	///////////////
+  ///////////////
+  // relate //
+  ///////////////
 
-	public boolean relateForClass(String var, Object val) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = relateSearchResult(v, val);
-		}
-		return o != null;
-	}
-	public Object relateSearchResult(String var, Object val) {
-		SearchResult oSearchResult = (SearchResult)this;
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public boolean relateForClass(String var, Object val) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = relateSearchResult(v, val);
+    }
+    return o != null;
+  }
+  public Object relateSearchResult(String var, Object val) {
+    SearchResult oSearchResult = (SearchResult)this;
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	///////////////
-	// staticSet //
-	///////////////
+  ///////////////
+  // staticSet //
+  ///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSetSearchResult(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSetSearchResult(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-		case "solrDocument":
-			return SearchResult.staticSetSolrDocument(siteRequest_, o);
-		case "resultIndex":
-			return SearchResult.staticSetResultIndex(siteRequest_, o);
-			default:
-				return null;
-		}
-	}
+  public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String v, SearchResult o) {
+    return staticSetSearchResult(entityVar,  siteRequest_, v, o);
+  }
+  public static Object staticSetSearchResult(String entityVar, ComputateSiteRequest siteRequest_, String v, SearchResult o) {
+    switch(entityVar) {
+    case "solrDocument":
+      return SearchResult.staticSetSolrDocument(siteRequest_, v);
+    case "resultIndex":
+      return SearchResult.staticSetResultIndex(siteRequest_, v);
+      default:
+        return null;
+    }
+  }
 
-	////////////////
-	// staticSearch //
-	////////////////
+  ////////////////
+  // staticSearch //
+  ////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchSearchResult(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSearchSearchResult(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-		case "solrDocument":
-			return SearchResult.staticSearchSolrDocument(siteRequest_, (JsonObject)o);
-		case "resultIndex":
-			return SearchResult.staticSearchResultIndex(siteRequest_, (Long)o);
-			default:
-				return null;
-		}
-	}
+  public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchSearchResult(entityVar,  siteRequest_, o);
+  }
+  public static Object staticSearchSearchResult(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+    case "solrDocument":
+      return SearchResult.staticSearchSolrDocument(siteRequest_, (JsonObject)o);
+    case "resultIndex":
+      return SearchResult.staticSearchResultIndex(siteRequest_, (Long)o);
+      default:
+        return null;
+    }
+  }
 
-	///////////////////
-	// staticSearchStr //
-	///////////////////
+  ///////////////////
+  // staticSearchStr //
+  ///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchStrSearchResult(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchStrSearchResult(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-		case "solrDocument":
-			return SearchResult.staticSearchStrSolrDocument(siteRequest_, (String)o);
-		case "resultIndex":
-			return SearchResult.staticSearchStrResultIndex(siteRequest_, (Long)o);
-			default:
-				return null;
-		}
-	}
+  public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchStrSearchResult(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchStrSearchResult(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+    case "solrDocument":
+      return SearchResult.staticSearchStrSolrDocument(siteRequest_, (String)o);
+    case "resultIndex":
+      return SearchResult.staticSearchStrResultIndex(siteRequest_, (Long)o);
+      default:
+        return null;
+    }
+  }
 
-	//////////////////
-	// staticSearchFq //
-	//////////////////
+  //////////////////
+  // staticSearchFq //
+  //////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSearchFqSearchResult(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchFqSearchResult(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-		case "solrDocument":
-			return SearchResult.staticSearchFqSolrDocument(siteRequest_, o);
-		case "resultIndex":
-			return SearchResult.staticSearchFqResultIndex(siteRequest_, o);
-			default:
-				return null;
-		}
-	}
+  public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    return staticSearchFqSearchResult(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchFqSearchResult(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    switch(entityVar) {
+    case "solrDocument":
+      return SearchResult.staticSearchFqSolrDocument(siteRequest_, o);
+    case "resultIndex":
+      return SearchResult.staticSearchFqResultIndex(siteRequest_, o);
+      default:
+        return null;
+    }
+  }
 
-	//////////////
-	// toString //
-	//////////////
+  //////////////
+  // toString //
+  //////////////
 
-	@Override public String toString() {
-		StringBuilder sb = new StringBuilder();
-		return sb.toString();
-	}
+  @Override public String toString() {
+    StringBuilder sb = new StringBuilder();
+    return sb.toString();
+  }
 
-	public static final String CLASS_SIMPLE_NAME = "SearchResult";
-	public static final String VAR_siteRequest_ = "siteRequest_";
-	public static final String VAR_solrDocument = "solrDocument";
-	public static final String VAR_resultIndex = "resultIndex";
+  public static final String CLASS_SIMPLE_NAME = "SearchResult";
+  public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.search.list.SearchResult";
+  public static final String CLASS_AUTH_RESOURCE = "";
+  public static final String VAR_siteRequest_ = "siteRequest_";
+  public static final String VAR_solrDocument = "solrDocument";
+  public static final String VAR_resultIndex = "resultIndex";
 
-	public static final String DISPLAY_NAME_siteRequest_ = "";
-	public static final String DISPLAY_NAME_solrDocument = "";
-	public static final String DISPLAY_NAME_resultIndex = "";
+  public static final String DISPLAY_NAME_siteRequest_ = "";
+  public static final String DISPLAY_NAME_solrDocument = "";
+  public static final String DISPLAY_NAME_resultIndex = "";
 
-	public String idForClass() {
-		return null;
-	}
+  public String idForClass() {
+    return null;
+  }
 
-	public String titleForClass() {
-		return null;
-	}
+  public String titleForClass() {
+    return null;
+  }
 
-	public String nameForClass() {
-		return null;
-	}
+  public String nameForClass() {
+    return null;
+  }
 
-	public String classNameAdjectiveSingularForClass() {
-		return null;
-	}
+  public String classNameAdjectiveSingularForClass() {
+    return null;
+  }
 
-	public String descriptionForClass() {
-		return null;
-	}
+  public String descriptionForClass() {
+    return null;
+  }
 
-	public String classStringFormatUrlEditPageForClass() {
-		return null;
-	}
+  public String classStringFormatUrlEditPageForClass() {
+    return null;
+  }
 
-	public String classStringFormatUrlDisplayPageForClass() {
-		return null;
-	}
+  public String classStringFormatUrlDisplayPageForClass() {
+    return null;
+  }
 
-	public String classStringFormatUrlUserPageForClass() {
-		return null;
-	}
+  public String classStringFormatUrlUserPageForClass() {
+    return null;
+  }
 
-	public static String displayNameForClass(String var) {
-		return SearchResult.displayNameSearchResult(var);
-	}
-	public static String displayNameSearchResult(String var) {
-		switch(var) {
-		case VAR_siteRequest_:
-			return DISPLAY_NAME_siteRequest_;
-		case VAR_solrDocument:
-			return DISPLAY_NAME_solrDocument;
-		case VAR_resultIndex:
-			return DISPLAY_NAME_resultIndex;
-		default:
-			return null;
-		}
-	}
+  public String classStringFormatUrlDownloadForClass() {
+    return null;
+  }
 
-	public static String descriptionSearchResult(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static String displayNameForClass(String var) {
+    return SearchResult.displayNameSearchResult(var);
+  }
+  public static String displayNameSearchResult(String var) {
+    switch(var) {
+    case VAR_siteRequest_:
+      return DISPLAY_NAME_siteRequest_;
+    case VAR_solrDocument:
+      return DISPLAY_NAME_solrDocument;
+    case VAR_resultIndex:
+      return DISPLAY_NAME_resultIndex;
+    default:
+      return null;
+    }
+  }
 
-	public static String classSimpleNameSearchResult(String var) {
-		switch(var) {
-		case VAR_siteRequest_:
-			return "ComputateSiteRequest";
-		case VAR_solrDocument:
-			return "JsonObject";
-		case VAR_resultIndex:
-			return "Long";
-			default:
-				return null;
-		}
-	}
+  public static String descriptionSearchResult(String var) {
+    if(var == null)
+      return null;
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer htmColumnSearchResult(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static String classSimpleNameSearchResult(String var) {
+    switch(var) {
+    case VAR_siteRequest_:
+      return "ComputateSiteRequest";
+    case VAR_solrDocument:
+      return "JsonObject";
+    case VAR_resultIndex:
+      return "Long";
+      default:
+        return null;
+    }
+  }
 
-	public static Integer htmRowSearchResult(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer htmColumnSearchResult(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer htmCellSearchResult(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer htmRowSearchResult(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer lengthMinSearchResult(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer htmCellSearchResult(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer lengthMaxSearchResult(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer lengthMinSearchResult(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer maxSearchResult(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer lengthMaxSearchResult(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer minSearchResult(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer maxSearchResult(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer minSearchResult(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 }

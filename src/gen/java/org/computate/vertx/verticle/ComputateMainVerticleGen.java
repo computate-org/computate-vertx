@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2022 Computate Limited Liability Company in Utah, USA. 
- *
+ * Copyright Computate Limited Liability Company in Utah, USA. 
+ * SPDX-License-Identifier: AGPL-3.0
  * This program and the accompanying materials are made available under the
- * terms of the GNU GENERAL PUBLIC LICENSE Version 3 which is available at
+ * terms of the GNU AFFERO GENERAL PUBLIC LICENSE which is available at
  * 
- * https://www.gnu.org/licenses/gpl-3.0.en.html
+ * https://www.gnu.org/licenses/agpl-3.0.html
  * 
  * You may not propagate or modify a covered work except as expressly provided 
  * under this License. Any attempt otherwise to propagate or modify it is void, 
@@ -101,244 +101,252 @@ import io.vertx.core.json.JsonArray;
  * Generated: true
  **/
 public abstract class ComputateMainVerticleGen<DEV> extends AbstractVerticle {
-	protected static final Logger LOG = LoggerFactory.getLogger(ComputateMainVerticle.class);
+  protected static final Logger LOG = LoggerFactory.getLogger(ComputateMainVerticle.class);
 
-	//////////////
-	// initDeep //
-	//////////////
+  //////////////
+  // initDeep //
+  //////////////
 
-	public ComputateMainVerticle initDeepComputateMainVerticle(ComputateSiteRequest siteRequest_) {
-		initDeepComputateMainVerticle();
-		return (ComputateMainVerticle)this;
-	}
+  public ComputateMainVerticle initDeepComputateMainVerticle(ComputateSiteRequest siteRequest_) {
+    initDeepComputateMainVerticle();
+    return (ComputateMainVerticle)this;
+  }
 
-	public void initDeepComputateMainVerticle() {
-		initComputateMainVerticle();
-	}
+  public void initDeepComputateMainVerticle() {
+    initComputateMainVerticle();
+  }
 
-	public void initComputateMainVerticle() {
-	}
+  public void initComputateMainVerticle() {
+  }
 
-	public void initDeepForClass(ComputateSiteRequest siteRequest_) {
-		initDeepComputateMainVerticle(siteRequest_);
-	}
+  public void initDeepForClass(ComputateSiteRequest siteRequest_) {
+    initDeepComputateMainVerticle(siteRequest_);
+  }
 
-	/////////////
-	// obtain //
-	/////////////
+  /////////////
+  // obtain //
+  /////////////
 
-	public Object obtainForClass(String var) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = obtainComputateMainVerticle(v);
-			else if(o instanceof Map) {
-				Map<?, ?> map = (Map<?, ?>)o;
-				o = map.get(v);
-			}
-		}
-		return o;
-	}
-	public Object obtainComputateMainVerticle(String var) {
-		ComputateMainVerticle oComputateMainVerticle = (ComputateMainVerticle)this;
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public Object obtainForClass(String var) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = obtainComputateMainVerticle(v);
+      else if(o instanceof Map) {
+        Map<?, ?> map = (Map<?, ?>)o;
+        o = map.get(v);
+      }
+    }
+    return o;
+  }
+  public Object obtainComputateMainVerticle(String var) {
+    ComputateMainVerticle oComputateMainVerticle = (ComputateMainVerticle)this;
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	///////////////
-	// relate //
-	///////////////
+  ///////////////
+  // relate //
+  ///////////////
 
-	public boolean relateForClass(String var, Object val) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = relateComputateMainVerticle(v, val);
-		}
-		return o != null;
-	}
-	public Object relateComputateMainVerticle(String var, Object val) {
-		ComputateMainVerticle oComputateMainVerticle = (ComputateMainVerticle)this;
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public boolean relateForClass(String var, Object val) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = relateComputateMainVerticle(v, val);
+    }
+    return o != null;
+  }
+  public Object relateComputateMainVerticle(String var, Object val) {
+    ComputateMainVerticle oComputateMainVerticle = (ComputateMainVerticle)this;
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	///////////////
-	// staticSet //
-	///////////////
+  ///////////////
+  // staticSet //
+  ///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSetComputateMainVerticle(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSetComputateMainVerticle(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-			default:
-				return null;
-		}
-	}
+  public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String v, ComputateMainVerticle o) {
+    return staticSetComputateMainVerticle(entityVar,  siteRequest_, v, o);
+  }
+  public static Object staticSetComputateMainVerticle(String entityVar, ComputateSiteRequest siteRequest_, String v, ComputateMainVerticle o) {
+    switch(entityVar) {
+      default:
+        return null;
+    }
+  }
 
-	////////////////
-	// staticSearch //
-	////////////////
+  ////////////////
+  // staticSearch //
+  ////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchComputateMainVerticle(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSearchComputateMainVerticle(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-			default:
-				return null;
-		}
-	}
+  public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchComputateMainVerticle(entityVar,  siteRequest_, o);
+  }
+  public static Object staticSearchComputateMainVerticle(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+      default:
+        return null;
+    }
+  }
 
-	///////////////////
-	// staticSearchStr //
-	///////////////////
+  ///////////////////
+  // staticSearchStr //
+  ///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchStrComputateMainVerticle(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchStrComputateMainVerticle(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-			default:
-				return null;
-		}
-	}
+  public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchStrComputateMainVerticle(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchStrComputateMainVerticle(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+      default:
+        return null;
+    }
+  }
 
-	//////////////////
-	// staticSearchFq //
-	//////////////////
+  //////////////////
+  // staticSearchFq //
+  //////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSearchFqComputateMainVerticle(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchFqComputateMainVerticle(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-			default:
-				return null;
-		}
-	}
+  public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    return staticSearchFqComputateMainVerticle(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchFqComputateMainVerticle(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    switch(entityVar) {
+      default:
+        return null;
+    }
+  }
 
-	//////////////
-	// toString //
-	//////////////
+  //////////////
+  // toString //
+  //////////////
 
-	@Override public String toString() {
-		StringBuilder sb = new StringBuilder();
-		return sb.toString();
-	}
+  @Override public String toString() {
+    StringBuilder sb = new StringBuilder();
+    return sb.toString();
+  }
 
-	public static final String CLASS_SIMPLE_NAME = "ComputateMainVerticle";
+  public static final String CLASS_SIMPLE_NAME = "ComputateMainVerticle";
+  public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.verticle.ComputateMainVerticle";
+  public static final String CLASS_AUTH_RESOURCE = "";
 
 
-	public String idForClass() {
-		return null;
-	}
+  public String idForClass() {
+    return null;
+  }
 
-	public String titleForClass() {
-		return null;
-	}
+  public String titleForClass() {
+    return null;
+  }
 
-	public String nameForClass() {
-		return null;
-	}
+  public String nameForClass() {
+    return null;
+  }
 
-	public String classNameAdjectiveSingularForClass() {
-		return null;
-	}
+  public String classNameAdjectiveSingularForClass() {
+    return null;
+  }
 
-	public String descriptionForClass() {
-		return null;
-	}
+  public String descriptionForClass() {
+    return null;
+  }
 
-	public String classStringFormatUrlEditPageForClass() {
-		return null;
-	}
+  public String classStringFormatUrlEditPageForClass() {
+    return null;
+  }
 
-	public String classStringFormatUrlDisplayPageForClass() {
-		return null;
-	}
+  public String classStringFormatUrlDisplayPageForClass() {
+    return null;
+  }
 
-	public String classStringFormatUrlUserPageForClass() {
-		return null;
-	}
+  public String classStringFormatUrlUserPageForClass() {
+    return null;
+  }
 
-	public static String displayNameForClass(String var) {
-		return ComputateMainVerticle.displayNameComputateMainVerticle(var);
-	}
-	public static String displayNameComputateMainVerticle(String var) {
-		switch(var) {
-		default:
-			return null;
-		}
-	}
+  public String classStringFormatUrlDownloadForClass() {
+    return null;
+  }
 
-	public static String descriptionComputateMainVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static String displayNameForClass(String var) {
+    return ComputateMainVerticle.displayNameComputateMainVerticle(var);
+  }
+  public static String displayNameComputateMainVerticle(String var) {
+    switch(var) {
+    default:
+      return null;
+    }
+  }
 
-	public static String classSimpleNameComputateMainVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static String descriptionComputateMainVerticle(String var) {
+    if(var == null)
+      return null;
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer htmColumnComputateMainVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static String classSimpleNameComputateMainVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer htmRowComputateMainVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer htmColumnComputateMainVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer htmCellComputateMainVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer htmRowComputateMainVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer lengthMinComputateMainVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer htmCellComputateMainVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer lengthMaxComputateMainVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer lengthMinComputateMainVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer maxComputateMainVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer lengthMaxComputateMainVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 
-	public static Integer minComputateMainVerticle(String var) {
-		switch(var) {
-			default:
-				return null;
-		}
-	}
+  public static Integer maxComputateMainVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
+
+  public static Integer minComputateMainVerticle(String var) {
+    switch(var) {
+      default:
+        return null;
+    }
+  }
 }

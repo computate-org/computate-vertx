@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2018-2022 Computate Limited Liability Company in Utah, USA. 
- *
+ * Copyright Computate Limited Liability Company in Utah, USA. 
+ * SPDX-License-Identifier: AGPL-3.0
  * This program and the accompanying materials are made available under the
- * terms of the GNU GENERAL PUBLIC LICENSE Version 3 which is available at
+ * terms of the GNU AFFERO GENERAL PUBLIC LICENSE which is available at
  * 
- * https://www.gnu.org/licenses/gpl-3.0.en.html
+ * https://www.gnu.org/licenses/agpl-3.0.html
  * 
  * You may not propagate or modify a covered work except as expressly provided 
  * under this License. Any attempt otherwise to propagate or modify it is void, 
@@ -102,267 +102,276 @@ import io.vertx.core.json.JsonArray;
  * Generated: true
  **/
 public abstract class OpenApi3GeneratorGen<DEV> extends Swagger2Generator {
-	protected static final Logger LOG = LoggerFactory.getLogger(OpenApi3Generator.class);
+  protected static final Logger LOG = LoggerFactory.getLogger(OpenApi3Generator.class);
 
-	//////////////
-	// initDeep //
-	//////////////
+  //////////////
+  // initDeep //
+  //////////////
 
-	public OpenApi3Generator initDeepOpenApi3Generator(ComputateSiteRequest siteRequest_) {
-		setSiteRequest_(siteRequest_);
-		initDeepOpenApi3Generator();
-		return (OpenApi3Generator)this;
-	}
+  public OpenApi3Generator initDeepOpenApi3Generator(ComputateSiteRequest siteRequest_) {
+    setSiteRequest_(siteRequest_);
+    initDeepOpenApi3Generator();
+    return (OpenApi3Generator)this;
+  }
 
-	public void initDeepOpenApi3Generator() {
-		super.initDeepSwagger2Generator(siteRequest_);
-		initOpenApi3Generator();
-	}
+  public void initDeepOpenApi3Generator() {
+    super.initDeepSwagger2Generator(siteRequest_);
+    initOpenApi3Generator();
+  }
 
-	public void initOpenApi3Generator() {
-	}
+  public void initOpenApi3Generator() {
+  }
 
-	@Override public void initDeepForClass(ComputateSiteRequest siteRequest_) {
-		initDeepOpenApi3Generator(siteRequest_);
-	}
+  @Override public void initDeepForClass(ComputateSiteRequest siteRequest_) {
+    initDeepOpenApi3Generator(siteRequest_);
+  }
 
-	/////////////////
-	// siteRequest //
-	/////////////////
+  /////////////////
+  // siteRequest //
+  /////////////////
 
-	public void siteRequestOpenApi3Generator(ComputateSiteRequest siteRequest_) {
-			super.siteRequestSwagger2Generator(siteRequest_);
-	}
+  public void siteRequestOpenApi3Generator(ComputateSiteRequest siteRequest_) {
+      super.siteRequestSwagger2Generator(siteRequest_);
+  }
 
-	public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
-		siteRequestOpenApi3Generator(siteRequest_);
-	}
+  public void siteRequestForClass(ComputateSiteRequest siteRequest_) {
+    siteRequestOpenApi3Generator(siteRequest_);
+  }
 
-	/////////////
-	// obtain //
-	/////////////
+  /////////////
+  // obtain //
+  /////////////
 
-	@Override public Object obtainForClass(String var) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = obtainOpenApi3Generator(v);
-			else if(o instanceof Map) {
-				Map<?, ?> map = (Map<?, ?>)o;
-				o = map.get(v);
-			}
-		}
-		return o;
-	}
-	public Object obtainOpenApi3Generator(String var) {
-		OpenApi3Generator oOpenApi3Generator = (OpenApi3Generator)this;
-		switch(var) {
-			default:
-				return super.obtainSwagger2Generator(var);
-		}
-	}
+  @Override public Object obtainForClass(String var) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = obtainOpenApi3Generator(v);
+      else if(o instanceof Map) {
+        Map<?, ?> map = (Map<?, ?>)o;
+        o = map.get(v);
+      }
+    }
+    return o;
+  }
+  public Object obtainOpenApi3Generator(String var) {
+    OpenApi3Generator oOpenApi3Generator = (OpenApi3Generator)this;
+    switch(var) {
+      default:
+        return super.obtainSwagger2Generator(var);
+    }
+  }
 
-	///////////////
-	// relate //
-	///////////////
+  ///////////////
+  // relate //
+  ///////////////
 
-	@Override public boolean relateForClass(String var, Object val) {
-		String[] vars = StringUtils.split(var, ".");
-		Object o = null;
-		for(String v : vars) {
-			if(o == null)
-				o = relateOpenApi3Generator(v, val);
-		}
-		return o != null;
-	}
-	public Object relateOpenApi3Generator(String var, Object val) {
-		OpenApi3Generator oOpenApi3Generator = (OpenApi3Generator)this;
-		switch(var) {
-			default:
-				return super.relateSwagger2Generator(var, val);
-		}
-	}
+  @Override public boolean relateForClass(String var, Object val) {
+    String[] vars = StringUtils.split(var, ".");
+    Object o = null;
+    for(String v : vars) {
+      if(o == null)
+        o = relateOpenApi3Generator(v, val);
+    }
+    return o != null;
+  }
+  public Object relateOpenApi3Generator(String var, Object val) {
+    OpenApi3Generator oOpenApi3Generator = (OpenApi3Generator)this;
+    switch(var) {
+      default:
+        return super.relateSwagger2Generator(var, val);
+    }
+  }
 
-	///////////////
-	// staticSet //
-	///////////////
+  ///////////////
+  // staticSet //
+  ///////////////
 
-	public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSetOpenApi3Generator(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSetOpenApi3Generator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-			default:
-				return Swagger2Generator.staticSetSwagger2Generator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static Object staticSetForClass(String entityVar, ComputateSiteRequest siteRequest_, String v, OpenApi3Generator o) {
+    return staticSetOpenApi3Generator(entityVar,  siteRequest_, v, o);
+  }
+  public static Object staticSetOpenApi3Generator(String entityVar, ComputateSiteRequest siteRequest_, String v, OpenApi3Generator o) {
+    switch(entityVar) {
+      default:
+        return Swagger2Generator.staticSetSwagger2Generator(entityVar,  siteRequest_, v, o);
+    }
+  }
 
-	////////////////
-	// staticSearch //
-	////////////////
+  ////////////////
+  // staticSearch //
+  ////////////////
 
-	public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchOpenApi3Generator(entityVar,  siteRequest_, o);
-	}
-	public static Object staticSearchOpenApi3Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-			default:
-				return Swagger2Generator.staticSearchSwagger2Generator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchOpenApi3Generator(entityVar,  siteRequest_, o);
+  }
+  public static Object staticSearchOpenApi3Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+      default:
+        return Swagger2Generator.staticSearchSwagger2Generator(entityVar,  siteRequest_, o);
+    }
+  }
 
-	///////////////////
-	// staticSearchStr //
-	///////////////////
+  ///////////////////
+  // staticSearchStr //
+  ///////////////////
 
-	public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		return staticSearchStrOpenApi3Generator(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchStrOpenApi3Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
-		switch(entityVar) {
-			default:
-				return Swagger2Generator.staticSearchStrSwagger2Generator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static String staticSearchStrForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    return staticSearchStrOpenApi3Generator(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchStrOpenApi3Generator(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
+    switch(entityVar) {
+      default:
+        return Swagger2Generator.staticSearchStrSwagger2Generator(entityVar,  siteRequest_, o);
+    }
+  }
 
-	//////////////////
-	// staticSearchFq //
-	//////////////////
+  //////////////////
+  // staticSearchFq //
+  //////////////////
 
-	public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		return staticSearchFqOpenApi3Generator(entityVar,  siteRequest_, o);
-	}
-	public static String staticSearchFqOpenApi3Generator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
-		switch(entityVar) {
-			default:
-				return Swagger2Generator.staticSearchFqSwagger2Generator(entityVar,  siteRequest_, o);
-		}
-	}
+  public static String staticSearchFqForClass(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    return staticSearchFqOpenApi3Generator(entityVar,  siteRequest_, o);
+  }
+  public static String staticSearchFqOpenApi3Generator(String entityVar, ComputateSiteRequest siteRequest_, String o) {
+    switch(entityVar) {
+      default:
+        return Swagger2Generator.staticSearchFqSwagger2Generator(entityVar,  siteRequest_, o);
+    }
+  }
 
-	//////////////
-	// toString //
-	//////////////
+  //////////////
+  // toString //
+  //////////////
 
-	@Override public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(super.toString());
-		return sb.toString();
-	}
+  @Override public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append(super.toString());
+    return sb.toString();
+  }
 
-	public static final String CLASS_SIMPLE_NAME = "OpenApi3Generator";
+  public static final String CLASS_SIMPLE_NAME = "OpenApi3Generator";
+  public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.openapi.OpenApi3Generator";
+  public static final String CLASS_AUTH_RESOURCE = "";
 
 
-	@Override
-	public String idForClass() {
-		return null;
-	}
+  @Override
+  public String idForClass() {
+    return null;
+  }
 
-	@Override
-	public String titleForClass() {
-		return null;
-	}
+  @Override
+  public String titleForClass() {
+    return null;
+  }
 
-	@Override
-	public String nameForClass() {
-		return null;
-	}
+  @Override
+  public String nameForClass() {
+    return null;
+  }
 
-	@Override
-	public String classNameAdjectiveSingularForClass() {
-		return null;
-	}
+  @Override
+  public String classNameAdjectiveSingularForClass() {
+    return null;
+  }
 
-	@Override
-	public String descriptionForClass() {
-		return null;
-	}
+  @Override
+  public String descriptionForClass() {
+    return null;
+  }
 
-	@Override
-	public String classStringFormatUrlEditPageForClass() {
-		return null;
-	}
+  @Override
+  public String classStringFormatUrlEditPageForClass() {
+    return null;
+  }
 
-	@Override
-	public String classStringFormatUrlDisplayPageForClass() {
-		return null;
-	}
+  @Override
+  public String classStringFormatUrlDisplayPageForClass() {
+    return null;
+  }
 
-	@Override
-	public String classStringFormatUrlUserPageForClass() {
-		return null;
-	}
+  @Override
+  public String classStringFormatUrlUserPageForClass() {
+    return null;
+  }
 
-	public static String displayNameForClass(String var) {
-		return OpenApi3Generator.displayNameOpenApi3Generator(var);
-	}
-	public static String displayNameOpenApi3Generator(String var) {
-		switch(var) {
-		default:
-			return Swagger2Generator.displayNameSwagger2Generator(var);
-		}
-	}
+  @Override
+  public String classStringFormatUrlDownloadForClass() {
+    return null;
+  }
 
-	public static String descriptionOpenApi3Generator(String var) {
-		switch(var) {
-			default:
-				return Swagger2Generator.descriptionSwagger2Generator(var);
-		}
-	}
+  public static String displayNameForClass(String var) {
+    return OpenApi3Generator.displayNameOpenApi3Generator(var);
+  }
+  public static String displayNameOpenApi3Generator(String var) {
+    switch(var) {
+    default:
+      return Swagger2Generator.displayNameSwagger2Generator(var);
+    }
+  }
 
-	public static String classSimpleNameOpenApi3Generator(String var) {
-		switch(var) {
-			default:
-				return Swagger2Generator.classSimpleNameSwagger2Generator(var);
-		}
-	}
+  public static String descriptionOpenApi3Generator(String var) {
+    if(var == null)
+      return null;
+    switch(var) {
+      default:
+        return Swagger2Generator.descriptionSwagger2Generator(var);
+    }
+  }
 
-	public static Integer htmColumnOpenApi3Generator(String var) {
-		switch(var) {
-			default:
-				return Swagger2Generator.htmColumnSwagger2Generator(var);
-		}
-	}
+  public static String classSimpleNameOpenApi3Generator(String var) {
+    switch(var) {
+      default:
+        return Swagger2Generator.classSimpleNameSwagger2Generator(var);
+    }
+  }
 
-	public static Integer htmRowOpenApi3Generator(String var) {
-		switch(var) {
-			default:
-				return Swagger2Generator.htmRowSwagger2Generator(var);
-		}
-	}
+  public static Integer htmColumnOpenApi3Generator(String var) {
+    switch(var) {
+      default:
+        return Swagger2Generator.htmColumnSwagger2Generator(var);
+    }
+  }
 
-	public static Integer htmCellOpenApi3Generator(String var) {
-		switch(var) {
-			default:
-				return Swagger2Generator.htmCellSwagger2Generator(var);
-		}
-	}
+  public static Integer htmRowOpenApi3Generator(String var) {
+    switch(var) {
+      default:
+        return Swagger2Generator.htmRowSwagger2Generator(var);
+    }
+  }
 
-	public static Integer lengthMinOpenApi3Generator(String var) {
-		switch(var) {
-			default:
-				return Swagger2Generator.lengthMinSwagger2Generator(var);
-		}
-	}
+  public static Integer htmCellOpenApi3Generator(String var) {
+    switch(var) {
+      default:
+        return Swagger2Generator.htmCellSwagger2Generator(var);
+    }
+  }
 
-	public static Integer lengthMaxOpenApi3Generator(String var) {
-		switch(var) {
-			default:
-				return Swagger2Generator.lengthMaxSwagger2Generator(var);
-		}
-	}
+  public static Integer lengthMinOpenApi3Generator(String var) {
+    switch(var) {
+      default:
+        return Swagger2Generator.lengthMinSwagger2Generator(var);
+    }
+  }
 
-	public static Integer maxOpenApi3Generator(String var) {
-		switch(var) {
-			default:
-				return Swagger2Generator.maxSwagger2Generator(var);
-		}
-	}
+  public static Integer lengthMaxOpenApi3Generator(String var) {
+    switch(var) {
+      default:
+        return Swagger2Generator.lengthMaxSwagger2Generator(var);
+    }
+  }
 
-	public static Integer minOpenApi3Generator(String var) {
-		switch(var) {
-			default:
-				return Swagger2Generator.minSwagger2Generator(var);
-		}
-	}
+  public static Integer maxOpenApi3Generator(String var) {
+    switch(var) {
+      default:
+        return Swagger2Generator.maxSwagger2Generator(var);
+    }
+  }
+
+  public static Integer minOpenApi3Generator(String var) {
+    switch(var) {
+      default:
+        return Swagger2Generator.minSwagger2Generator(var);
+    }
+  }
 }
