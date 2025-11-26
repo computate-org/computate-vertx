@@ -33,6 +33,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.curator.shaded.com.google.common.base.Strings;
 import org.computate.i18n.I18n;
 import org.computate.search.request.SearchRequest;
 import org.computate.search.response.solr.SolrResponse;
@@ -816,60 +817,70 @@ abstract class BaseApiService implements BaseApiServiceInterface {
   public Future<Void> importTimer(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classCanonicalName, String classSimpleName, String classApiAddress, String classAuthResource, String varPageId, String varUserUrl, String varDownload) {
     Promise<Void> promise = Promise.promise();
     if(Boolean.parseBoolean(config.getString(String.format("%s_%s", ComputateConfigKeys.ENABLE_IMPORT_DATA, classSimpleName), "true"))) {
-      // Load the import start time and period configuration. 
-      String importStartTime = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_START_TIME, classSimpleName));
-      String importPeriod = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_PERIOD, classSimpleName));
-      // Get the duration of the import period. 
-      // Calculate the next start time, or the next start time after that, if the start time is in less than a minute, 
-      // to give the following code enough time to complete it's calculations to ensure the import starts correctly. 
-
-      Duration nextStartDuration = null;
-      ZonedDateTime nextStartTime = null;
-      if(importPeriod != null) {
-        Duration duration = TimeTool.parseNextDuration(importPeriod);
-        if(importStartTime == null) {
-          nextStartTime = Optional.of(ZonedDateTime.now(ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE))))
-              .map(t -> Duration.between(Instant.now(), t).toMinutes() < 1L ? t.plus(duration) : t).get();
-        } else {
-          nextStartTime = TimeTool.parseNextZonedTime(importStartTime);
-        }
-
-        // Get the time now for the import start time zone. 
-        ZonedDateTime now = ZonedDateTime.now(nextStartTime.getZone());
-        BigDecimal[] divideAndRemainder = BigDecimal.valueOf(Duration.between(now, nextStartTime).toMillis())
-            .divideAndRemainder(BigDecimal.valueOf(duration.toMillis()));
-        nextStartDuration = Duration.between(now, nextStartTime);
-        if(divideAndRemainder[0].compareTo(BigDecimal.ONE) >= 0) {
-          nextStartDuration = Duration.ofMillis(divideAndRemainder[1].longValueExact());
-          nextStartTime = now.plus(nextStartDuration);
-        }
-        LOG.info(String.format(importTimerScheduling, classSimpleName, nextStartTime.format(TIME_FORMAT)));
-      }
-      ZonedDateTime nextStartTime2 = nextStartTime;
-
-      if(importStartTime == null) {
-        try {
-          vertx.setTimer(1, a -> {
-            workerExecutor.executeBlocking(() -> {
-              return importBlocking(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, null, varPageId, varUserUrl, varDownload);
-            });
-          });
+      Boolean importDataOnce = config.getBoolean(ComputateConfigKeys.IMPORT_DATA_ONCE, false);
+      if(importDataOnce) {
+        importData(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, varPageId, varUserUrl, varDownload).onSuccess(a -> {
           promise.complete();
-        } catch(Exception ex) {
+        }).onFailure(ex -> {
           LOG.error(String.format(importTimerFail, classSimpleName), ex);
           promise.fail(ex);
-        }
+        });
       } else {
-        try {
-          vertx.setTimer(nextStartDuration.toMillis(), a -> {
-            workerExecutor.executeBlocking(() -> {
-              return importBlocking(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, nextStartTime2, varPageId, varUserUrl, varDownload);
+        // Load the import start time and period configuration. 
+        String importStartTime = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_START_TIME, classSimpleName));
+        String importPeriod = config.getString(String.format("%s_%s", ComputateConfigKeys.IMPORT_DATA_PERIOD, classSimpleName));
+        // Get the duration of the import period. 
+        // Calculate the next start time, or the next start time after that, if the start time is in less than a minute, 
+        // to give the following code enough time to complete it's calculations to ensure the import starts correctly. 
+
+        Duration nextStartDuration = null;
+        ZonedDateTime nextStartTime = null;
+        if(!Strings.isNullOrEmpty(importPeriod)) {
+          Duration duration = TimeTool.parseNextDuration(importPeriod);
+          if(Strings.isNullOrEmpty(importStartTime)) {
+            nextStartTime = Optional.of(ZonedDateTime.now(ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE))))
+                .map(t -> Duration.between(Instant.now(), t).toMinutes() < 1L ? t.plus(duration) : t).get();
+          } else {
+            nextStartTime = TimeTool.parseNextZonedTime(importStartTime);
+          }
+
+          // Get the time now for the import start time zone. 
+          ZonedDateTime now = ZonedDateTime.now(nextStartTime.getZone());
+          BigDecimal[] divideAndRemainder = BigDecimal.valueOf(Duration.between(now, nextStartTime).toMillis())
+              .divideAndRemainder(BigDecimal.valueOf(duration.toMillis()));
+          nextStartDuration = Duration.between(now, nextStartTime);
+          if(divideAndRemainder[0].compareTo(BigDecimal.ONE) >= 0) {
+            nextStartDuration = Duration.ofMillis(divideAndRemainder[1].longValueExact());
+            nextStartTime = now.plus(nextStartDuration);
+          }
+          LOG.info(String.format(importTimerScheduling, classSimpleName, nextStartTime.format(TIME_FORMAT)));
+        }
+        ZonedDateTime nextStartTime2 = nextStartTime;
+
+        if(Strings.isNullOrEmpty(importStartTime)) {
+          try {
+            vertx.setTimer(1, a -> {
+              workerExecutor.executeBlocking(() -> {
+                return importBlocking(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, null, varPageId, varUserUrl, varDownload);
+              });
             });
-          });
-          promise.complete();
-        } catch(Exception ex) {
-          LOG.error(String.format(importTimerFail, classSimpleName), ex);
-          promise.fail(ex);
+            promise.complete();
+          } catch(Exception ex) {
+            LOG.error(String.format(importTimerFail, classSimpleName), ex);
+            promise.fail(ex);
+          }
+        } else {
+          try {
+            vertx.setTimer(nextStartDuration.toMillis(), a -> {
+              workerExecutor.executeBlocking(() -> {
+                return importBlocking(pagePath, vertx, siteRequest, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, nextStartTime2, varPageId, varUserUrl, varDownload);
+              });
+            });
+            promise.complete();
+          } catch(Exception ex) {
+            LOG.error(String.format(importTimerFail, classSimpleName), ex);
+            promise.fail(ex);
+          }
         }
       }
     } else {
@@ -1219,35 +1230,39 @@ abstract class BaseApiService implements BaseApiServiceInterface {
    * Val.Complete.enUS:Importing %s data completed. 
    * Val.Fail.enUS:Importing %s data failed. 
    */
-  protected Future<Void> importData(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classCanonicalName, String classSimpleName, String classApiAddress, String classAuthResource, String varPageId, String varUserUrl, String varDownload) {
+  public Future<Void> importData(Path pagePath, Vertx vertx, ComputateSiteRequest siteRequest, String classCanonicalName, String classSimpleName, String classApiAddress, String classAuthResource, String varPageId, String varUserUrl, String varDownload) {
     Promise<Void> promise = Promise.promise();
     ZonedDateTime now = ZonedDateTime.now(ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE)));
     // i18nGenerator().onSuccess(i18n -> {
     try {
-      List<String> pageTemplatePaths = new ArrayList<>();
-      if(Files.exists(pagePath)) {
-        try(Stream<Path> stream = Files.walk(pagePath)) {
-          stream.filter(Files::isRegularFile).filter(p -> 
-              p.getFileName().toString().endsWith(".htm")
-              || p.getFileName().toString().endsWith(".html")
-              ).forEach(path -> {
-            pageTemplatePaths.add(path.toAbsolutePath().toString());
-          });
-        }
-        YamlProcessor yamlProcessor = new YamlProcessor();
+      if(Boolean.parseBoolean(config.getString(String.format("%s_%s", ComputateConfigKeys.ENABLE_IMPORT_DATA, classSimpleName), "true"))) {
+        List<String> pageTemplatePaths = new ArrayList<>();
+        if(Files.exists(pagePath)) {
+          try(Stream<Path> stream = Files.walk(pagePath)) {
+            stream.filter(Files::isRegularFile).filter(p -> 
+                p.getFileName().toString().endsWith(".htm")
+                || p.getFileName().toString().endsWith(".html")
+                ).forEach(path -> {
+              pageTemplatePaths.add(path.toAbsolutePath().toString());
+            });
+          }
+          YamlProcessor yamlProcessor = new YamlProcessor();
   
-        importDataFile(vertx, siteRequest, yamlProcessor, pageTemplatePaths, 0, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, varPageId, varUserUrl, varDownload).onSuccess(a -> {
-          deletePageData(siteRequest, now, classSimpleName).onSuccess(b -> {
-            LOG.info(String.format(importDataComplete, classSimpleName, config.getString(ComputateConfigKeys.SITE_BASE_URL)));
-            promise.complete();
+          importDataFile(vertx, siteRequest, yamlProcessor, pageTemplatePaths, 0, classCanonicalName, classSimpleName, classApiAddress, classAuthResource, varPageId, varUserUrl, varDownload).onSuccess(a -> {
+            deletePageData(siteRequest, now, classSimpleName).onSuccess(b -> {
+              LOG.info(String.format(importDataComplete, classSimpleName, config.getString(ComputateConfigKeys.SITE_BASE_URL)));
+              promise.complete();
+            }).onFailure(ex -> {
+              LOG.error(String.format(importDataFail, classSimpleName), ex);
+              promise.fail(ex);
+            });
           }).onFailure(ex -> {
             LOG.error(String.format(importDataFail, classSimpleName), ex);
             promise.fail(ex);
           });
-        }).onFailure(ex -> {
-          LOG.error(String.format(importDataFail, classSimpleName), ex);
-          promise.fail(ex);
-        });
+        } else {
+          promise.complete();
+        }
       } else {
         promise.complete();
       }

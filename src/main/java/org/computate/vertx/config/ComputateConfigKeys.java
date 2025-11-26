@@ -1187,6 +1187,11 @@ public class ComputateConfigKeys {
   public static final String ENABLE_IMPORT_DATA = "ENABLE_IMPORT_DATA";
 
   /**
+   * A boolean whether to import the data once, or set a timer. 
+   **/
+  public static final String IMPORT_DATA_ONCE = "IMPORT_DATA_ONCE";
+
+  /**
    * Parse a zoned time (HH:mm VV, example: 18:12 UTC, 13:12 America/New_York, 12:12 America/Chicago). 
    **/
   public static final String IMPORT_DATA_START_TIME = "IMPORT_DATA_START_TIME";
