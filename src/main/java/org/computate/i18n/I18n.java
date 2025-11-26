@@ -73,6 +73,7 @@ public class I18n {
 	public static final String str_L_entité_ = "str_L_entité_";
 	public static final String str_la_variable_de_tri_nexiste_pas = "str_la_variable_de_tri_nexiste_pas";
 	public static final String str_la_classe_ = "str_la_classe_";
+	public static final String str_Le_fuseau_horaire_description = "str_Le_fuseau_horaire_description";
 	public static final String str_liste_champs = "str_liste_champs";
 	public static final String str_Liste_Champs = "str_Liste_Champs";
 	public static final String str_le_projet_ = "str_le_projet_";
@@ -105,6 +106,7 @@ public class I18n {
 	public static final String str_Supprimer = "str_Supprimer";
 	public static final String str_Supprimer_ = "str_Supprimer_";
 	public static final String str_Télécharger_image = "str_Télécharger_image";
+	public static final String str_fuseau_horaire = "str_fuseau_horaire";
 	public static final String str_tri = "str_tri";
 	public static final String str_Tri = "str_Tri";
 	public static final String str_trier_par___croissante = "str_trier_par___croissante";
