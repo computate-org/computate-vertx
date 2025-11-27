@@ -47,6 +47,17 @@ public class I18n {
 	public static final String str_de = "str_de";
 	public static final String str_decroissante = "str_decroissante";
 	public static final String str_Definir = "str_Definir";
+	public static final String str_dernieres_minutes = "str_dernieres_minutes";
+	public static final String str_dernieres_heures = "str_dernieres_heures";
+	public static final String str_derniers_jours = "str_derniers_jours";
+	public static final String str_dernieres_semaines = "str_dernieres_semaines";
+	public static final String str_derniers_mois = "str_derniers_mois";
+	public static final String str_n_dernieres_minutes = "str_n_dernieres_minutes";
+	public static final String str_n_dernieres_heures = "str_n_dernieres_heures";
+	public static final String str_n_derniers_jours = "str_n_derniers_jours";
+	public static final String str_n_dernieres_semaines = "str_n_dernieres_semaines";
+	public static final String str_n_derniers_mois = "str_n_derniers_mois";
+	public static final String str_n_dernieres_annees = "str_n_dernieres_annees";
 	public static final String str_deuxPoints = "str_deuxPoints";
 	public static final String str_Dupliquer = "str_Dupliquer";
 	public static final String str_Dupliquer_ = "str_Dupliquer_";
@@ -62,6 +73,7 @@ public class I18n {
 	public static final String str_Fusionner = "str_Fusionner";
 	public static final String str_Fusionner_ = "str_Fusionner_";
 	public static final String str_gamme = "str_gamme";
+	public static final String str_gammes_simples = "str_gammes_simples";
 	public static final String str_Genere = "str_Genere";
 	public static final String str_Il_est_construit_avant_d_être_initialisé_avec_le_constructeur_par_défaut = "str_Il_est_construit_avant_d_être_initialisé_avec_le_constructeur_par_défaut";
 	public static final String str_Importer = "str_Importer";
@@ -331,6 +343,7 @@ public class I18n {
 	public static final String var_Future = "var_Future";
 	public static final String var_gamme = "var_gamme";
 	public static final String var_Gamme = "var_Gamme";
+	public static final String var_GammeSimple = "var_GammeSimple";
 	public static final String var_Generer = "var_Generer";
 	public static final String var_generer = "var_generer";
 	public static final String var_GENERER_MAINTENANT = "var_GENERER_MAINTENANT";
