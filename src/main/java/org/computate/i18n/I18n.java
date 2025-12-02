@@ -493,7 +493,9 @@ public class I18n {
 	public static final String var_page = "var_page";
 	public static final String var_Page = "var_Page";
 	public static final String var_PageAffichage = "var_PageAffichage";
+	public static final String var_pageBoutonsRecherche = "var_pageBoutonsRecherche";
 	public static final String var_PageEdition = "var_PageEdition";
+	public static final String var_pageFormulaireRecherche = "var_pageFormulaireRecherche";
 	public static final String var_PagePart = "var_PagePart";
 	public static final String var_PageRecherche = "var_PageRecherche";
 	public static final String var_PageRecherchePublicLire = "var_PageRecherchePublicLire";
