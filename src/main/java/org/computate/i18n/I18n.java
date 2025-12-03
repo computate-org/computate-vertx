@@ -103,6 +103,7 @@ public class I18n {
 	public static final String str_Pret = "str_Pret";
 	public static final String str_recharger = "str_recharger";
 	public static final String str_recherche = "str_recherche";
+	public static final String str_rechercher = "str_rechercher";
 	public static final String str_Recharger = "str_Recharger";
 	public static final String str_Recherche_avancee_pour_ = "str_Recherche_avancee_pour_";
 	public static final String str_Rechercher = "str_Rechercher";
@@ -495,6 +496,7 @@ public class I18n {
 	public static final String var_PageAffichage = "var_PageAffichage";
 	public static final String var_pageBoutonsRecherche = "var_pageBoutonsRecherche";
 	public static final String var_PageEdition = "var_PageEdition";
+	public static final String var_pageFilDAriane = "var_pageFilDAriane";
 	public static final String var_pageFormulaireRecherche = "var_pageFormulaireRecherche";
 	public static final String var_PagePart = "var_PagePart";
 	public static final String var_PageRecherche = "var_PageRecherche";
