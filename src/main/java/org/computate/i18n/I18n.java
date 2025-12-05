@@ -202,6 +202,7 @@ public class I18n {
 	public static final String var_BarreLaterale = "var_BarreLaterale";
 	public static final String var_BaseApiServiceImpl = "var_BaseApiServiceImpl";
 	public static final String var_Bouton = "var_Bouton";
+	public static final String var_BoutonsFormulaireRecherche = "var_BoutonsFormulaireRecherche";
 	public static final String var_BoutonsPagination = "var_BoutonsPagination";
 	public static final String var_BoutonsRecherche = "var_BoutonsRecherche";
 	public static final String var_Cacher = "var_Cacher";
@@ -494,6 +495,7 @@ public class I18n {
 	public static final String var_page = "var_page";
 	public static final String var_Page = "var_Page";
 	public static final String var_PageAffichage = "var_PageAffichage";
+	public static final String var_pageBoutonsFormulaireRecherche = "var_pageBoutonsFormulaireRecherche";
 	public static final String var_pageBoutonsRecherche = "var_pageBoutonsRecherche";
 	public static final String var_PageEdition = "var_PageEdition";
 	public static final String var_pageFilDAriane = "var_pageFilDAriane";
