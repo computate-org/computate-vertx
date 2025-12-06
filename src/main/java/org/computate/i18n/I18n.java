@@ -439,6 +439,7 @@ public class I18n {
 	public static final String var_Min = "var_Min";
 	public static final String var_MiseEnPage = "var_MiseEnPage";
 	public static final String var_Modale = "var_Modale";
+	public static final String var_ModeDArrondi = "var_ModeDArrondi";
 	public static final String var_modele = "var_modele";
 	public static final String var_Modele = "var_Modele";
 	public static final String var_ModeleAlternatif = "var_ModeleAlternatif";
@@ -518,6 +519,7 @@ public class I18n {
 	public static final String var_PourClasse = "var_PourClasse";
 	public static final String var_Pour = "var_Pour";
 	public static final String var_Precedent = "var_Precedent";
+	public static final String var_Precision = "var_Precision";
 	public static final String var_premier = "var_premier";
 	public static final String var_Premier = "var_Premier";
 	public static final String var_Prenom = "var_Prenom";
