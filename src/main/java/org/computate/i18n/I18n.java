@@ -317,6 +317,7 @@ public class I18n {
 	public static final String var_Envoi = "var_Envoi";
 	public static final String var_erreur = "var_erreur";
 	public static final String var_Erreur = "var_Erreur";
+	public static final String var_Etape = "var_Etape";
 	public static final String var_Exact = "var_Exact";
 	public static final String var_executeurTravailleur = "var_executeurTravailleur";
 	public static final String var_ExecuteurTravailleur = "var_ExecuteurTravailleur";
