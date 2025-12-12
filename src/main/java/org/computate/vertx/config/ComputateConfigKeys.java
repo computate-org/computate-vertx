@@ -1488,6 +1488,10 @@ public class ComputateConfigKeys {
   public static final String USER_SEARCH_URI = "USER_SEARCH_URI";
   public static final String YOUTUBE_URL = "YOUTUBE_URL";
   public static final String LINKEDIN_URL = "LINKEDIN_URL";
+
+  public static final String PERSISTENT_METRICS_ZOOKEEPER_HOST_NAME = "PERSISTENT_METRICS_ZOOKEEPER_HOST_NAME";
+  public static final String PERSISTENT_METRICS_ZOOKEEPER_PORT = "PERSISTENT_METRICS_ZOOKEEPER_PORT";
+  public static final String PERSISTENT_METRICS_ZOOKEEPER_SSL = "PERSISTENT_METRICS_ZOOKEEPER_SSL";
 }
 
 /**
