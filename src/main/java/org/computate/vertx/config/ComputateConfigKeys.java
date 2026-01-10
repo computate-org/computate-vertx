@@ -586,6 +586,7 @@ public class ComputateConfigKeys {
   public static final String OPENSHIFT_SERVICE = "OPENSHIFT_SERVICE";
 
   public static final String SITE_LANG = "SITE_LANG";
+  public static final String OTHER_LANGUAGES = "OTHER_LANGUAGES";
 
   /**
    * The name of the principal group of settings of the config for this website. 

@@ -154,6 +154,60 @@ public abstract class ApiWriterGen<DEV> extends Object {
     return (ApiWriter)this;
   }
 
+	/////////////////////////
+  // defaultLanguageName //
+	/////////////////////////
+
+
+  /**
+   *  The entity defaultLanguageName
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected String defaultLanguageName;
+
+  /**
+   * <br> The entity defaultLanguageName
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&fq=entiteVar_enUS_indexed_string:defaultLanguageName">Find the entity defaultLanguageName in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _defaultLanguageName(Wrap<String> c);
+
+  public String getDefaultLanguageName() {
+    return defaultLanguageName;
+  }
+  public void setDefaultLanguageName(String o) {
+    this.defaultLanguageName = ApiWriter.staticSetDefaultLanguageName(siteRequest_, o);
+  }
+  public static String staticSetDefaultLanguageName(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected ApiWriter defaultLanguageNameInit() {
+    Wrap<String> defaultLanguageNameWrap = new Wrap<String>().var("defaultLanguageName");
+    if(defaultLanguageName == null) {
+      _defaultLanguageName(defaultLanguageNameWrap);
+      Optional.ofNullable(defaultLanguageNameWrap.getO()).ifPresent(o -> {
+        setDefaultLanguageName(o);
+      });
+    }
+    return (ApiWriter)this;
+  }
+
+  public static String staticSearchDefaultLanguageName(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrDefaultLanguageName(ComputateSiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqDefaultLanguageName(ComputateSiteRequest siteRequest_, String o) {
+    return ApiWriter.staticSearchDefaultLanguageName(siteRequest_, ApiWriter.staticSetDefaultLanguageName(siteRequest_, o)).toString();
+  }
+
 	//////////////////
   // languageName //
 	//////////////////
@@ -3473,6 +3527,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
 
   public void initApiWriter() {
         siteRequest_Init();
+        defaultLanguageNameInit();
         languageNameInit();
         i18nInit();
         classDocInit();
@@ -3592,6 +3647,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
     switch(var) {
       case "siteRequest_":
         return oApiWriter.siteRequest_;
+      case "defaultLanguageName":
+        return oApiWriter.defaultLanguageName;
       case "languageName":
         return oApiWriter.languageName;
       case "i18n":
@@ -3743,6 +3800,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
   }
   public static Object staticSetApiWriter(String entityVar, ComputateSiteRequest siteRequest_, String v, ApiWriter o) {
     switch(entityVar) {
+    case "defaultLanguageName":
+      return ApiWriter.staticSetDefaultLanguageName(siteRequest_, v);
     case "languageName":
       return ApiWriter.staticSetLanguageName(siteRequest_, v);
     case "i18n":
@@ -3845,6 +3904,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
   }
   public static Object staticSearchApiWriter(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
     switch(entityVar) {
+    case "defaultLanguageName":
+      return ApiWriter.staticSearchDefaultLanguageName(siteRequest_, (String)o);
     case "languageName":
       return ApiWriter.staticSearchLanguageName(siteRequest_, (String)o);
     case "i18n":
@@ -3947,6 +4008,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
   }
   public static String staticSearchStrApiWriter(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
     switch(entityVar) {
+    case "defaultLanguageName":
+      return ApiWriter.staticSearchStrDefaultLanguageName(siteRequest_, (String)o);
     case "languageName":
       return ApiWriter.staticSearchStrLanguageName(siteRequest_, (String)o);
     case "i18n":
@@ -4049,6 +4112,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
   }
   public static String staticSearchFqApiWriter(String entityVar, ComputateSiteRequest siteRequest_, String o) {
     switch(entityVar) {
+    case "defaultLanguageName":
+      return ApiWriter.staticSearchFqDefaultLanguageName(siteRequest_, o);
     case "languageName":
       return ApiWriter.staticSearchFqLanguageName(siteRequest_, o);
     case "i18n":
@@ -4155,6 +4220,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
   public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.writer.ApiWriter";
   public static final String CLASS_AUTH_RESOURCE = "";
   public static final String VAR_siteRequest_ = "siteRequest_";
+  public static final String VAR_defaultLanguageName = "defaultLanguageName";
   public static final String VAR_languageName = "languageName";
   public static final String VAR_i18n = "i18n";
   public static final String VAR_classDoc = "classDoc";
@@ -4215,6 +4281,7 @@ public abstract class ApiWriterGen<DEV> extends Object {
   public static final String VAR_entitySolrDocument = "entitySolrDocument";
 
   public static final String DISPLAY_NAME_siteRequest_ = "";
+  public static final String DISPLAY_NAME_defaultLanguageName = "";
   public static final String DISPLAY_NAME_languageName = "";
   public static final String DISPLAY_NAME_i18n = "";
   public static final String DISPLAY_NAME_classDoc = "";
@@ -4317,6 +4384,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
     switch(var) {
     case VAR_siteRequest_:
       return DISPLAY_NAME_siteRequest_;
+    case VAR_defaultLanguageName:
+      return DISPLAY_NAME_defaultLanguageName;
     case VAR_languageName:
       return DISPLAY_NAME_languageName;
     case VAR_i18n:
@@ -4451,6 +4520,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
     switch(var) {
     case VAR_siteRequest_:
       return "ComputateSiteRequest";
+    case VAR_defaultLanguageName:
+      return "String";
     case VAR_languageName:
       return "String";
     case VAR_i18n:

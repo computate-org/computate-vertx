@@ -33,6 +33,9 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
   protected void _siteRequest_(Wrap<ComputateSiteRequest> w) {
   }
 
+  protected void _defaultLanguageName(Wrap<String> c) {
+  }
+
   protected void _languageName(Wrap<String> c) {
   }
 
@@ -548,7 +551,7 @@ public class ApiWriter extends ApiWriterGen<Object> implements Comparable<ApiWri
 
         wPaths.tl(2, StringUtils.lowerCase(classApiMethodMethod), ":");
         wPaths.tl(3, "operationId: ", classApiOperationIdMethod);
-        wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", languageName, "-", classSimpleName);
+        wPaths.tl(3, "x-vertx-event-bus: ", appName, "-", defaultLanguageName, "-", classSimpleName);
 
         // if it's not a GET request and it's not a session/user/all request and has class auth
         // or it's a GET request, but it's not a session or public read page
