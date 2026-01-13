@@ -15,6 +15,7 @@ package org.computate.i18n;
 
 public class I18n {
 
+	public static final String str_a = "str_a";
 	public static final String str_a_démarré = "str_a_démarré";
 	public static final String str_a_échoué = "str_a_échoué";
 	public static final String str_a_réussi = "str_a_réussi";
@@ -27,7 +28,9 @@ public class I18n {
 	public static final String str_Afficher_les_resultats_sous_forme_de_cartes = "str_Afficher_les_resultats_sous_forme_de_cartes";
 	public static final String str_Afficher_les_resultats_sous_forme_de_details = "str_Afficher_les_resultats_sous_forme_de_details";
 	public static final String str_Ajout_portee_GET = "str_Ajout_portee_GET";
+	public static final String str_ajouter = "str_ajouter";
 	public static final String str_API = "str_API";
+	public static final String str_archive = "str_archive";
 	public static final String str_au_total_avec_ = "str_au_total_avec_";
 	public static final String str_aucun = "str_aucun";
 	public static final String str_Cartes_des = "str_Cartes_des";
@@ -52,6 +55,7 @@ public class I18n {
 	public static final String str_derniers_jours = "str_derniers_jours";
 	public static final String str_dernieres_semaines = "str_dernieres_semaines";
 	public static final String str_derniers_mois = "str_derniers_mois";
+	public static final String str_Envoi = "str_Envoi";
 	public static final String str_n_dernieres_minutes = "str_n_dernieres_minutes";
 	public static final String str_n_dernieres_heures = "str_n_dernieres_heures";
 	public static final String str_n_derniers_jours = "str_n_derniers_jours";
@@ -128,6 +132,7 @@ public class I18n {
 	public static final String str_Trouver_l_entité_ = "str_Trouver_l_entité_";
 	public static final String str_UneProblemeExecutionRegarderRepertoire = "str_UneProblemeExecutionRegarderRepertoire";
 	public static final String str_ValiderLaSignature = "str_ValiderLaSignature";
+	public static final String str_Vider = "str_Vider";
 	public static final String str_voir_valeurs = "str_voir_valeurs";
 	public static final String str_Vous_pouvez_remplacer_les_valeurs_par_defaut_ci_dessous = "str_Vous_pouvez_remplacer_les_valeurs_par_defaut_ci_dessous";
 	public static final String var_a = "var_a";
