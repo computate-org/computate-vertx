@@ -236,10 +236,6 @@ public class I18n {
 	public static final String var_classeNomCanonique = "var_classeNomCanonique";
 	public static final String var_classeNomsCanoniques = "var_classeNomsCanoniques";
 	public static final String var_classeNomSimple = "var_classeNomSimple";
-	public static final String var_classeStringFormatUrlPageAffichage = "var_classeStringFormatUrlPageAffichage";
-	public static final String var_classeStringFormatUrlPageEdition = "var_classeStringFormatUrlPageEdition";
-	public static final String var_classeStringFormatUrlPageUtilisateur = "var_classeStringFormatUrlPageUtilisateur";
-	public static final String var_classeStringFormatUrlTelechargement = "var_classeStringFormatUrlTelechargement";
 	public static final String var_Cle = "var_Cle";
 	public static final String var_ClePrimaire = "var_ClePrimaire";
 	public static final String var_Cles = "var_Cles";
@@ -625,6 +621,10 @@ public class I18n {
 	public static final String var_stocker = "var_stocker";
 	public static final String var_Stocker = "var_Stocker";
 	public static final String var_Stocke = "var_Stocke";
+	public static final String var_StringFormatUrlPageAffichage = "var_StringFormatUrlPageAffichage";
+	public static final String var_StringFormatUrlPageEdition = "var_StringFormatUrlPageEdition";
+	public static final String var_StringFormatUrlPageUtilisateur = "var_StringFormatUrlPageUtilisateur";
+	public static final String var_StringFormatUrlTelechargement = "var_StringFormatUrlTelechargement";
 	public static final String var_Succes = "var_Succes";
 	public static final String var_suggere = "var_suggere";
 	public static final String var_Suggere = "var_Suggere";
