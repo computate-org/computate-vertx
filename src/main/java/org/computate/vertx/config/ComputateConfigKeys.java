@@ -61,6 +61,7 @@ import io.kubernetes.client.openapi.models.V1Ingress;
 import io.kubernetes.client.openapi.models.V1Secret;
 import io.kubernetes.client.util.ClientBuilder;
 import io.kubernetes.client.util.Config;
+import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
@@ -68,6 +69,21 @@ import io.vertx.core.json.JsonObject;
  * Keyword: classSimpleNameConfigKeys
  */
 public class ComputateConfigKeys {
+
+  public static Object from_json(String str) {
+    if(str == null) {
+      return null;
+    } else {
+      Object result = Json.decodeValue(str);
+      if(result instanceof JsonObject) {
+        return ((JsonObject)result).getMap();
+      } else if(result instanceof JsonArray) {
+        return ((JsonArray)result).getList();
+      } else {
+        return result;
+      }
+    }
+  }
 
   public static String lookup(String type, String arg1) {
     if("env".equals(type)) {
@@ -316,6 +332,7 @@ public class ComputateConfigKeys {
       JinjavaConfig jinjavaConfig = new JinjavaConfig();
       jinjava = new Jinjava(jinjavaConfig);
       
+      jinjava.registerFunction(new ELFunctionDefinition("", "from_json", ComputateConfigKeys.class, "from_json", String.class));
       jinjava.registerFunction(new ELFunctionDefinition("", "lookup", ComputateConfigKeys.class, "lookup", String.class, String.class));
       jinjava.registerFunction(new ELFunctionDefinition("", "query", ComputateConfigKeys.class, "query", String.class, String.class, String.class, String.class));
       jinjava.registerFunction(new ELFunctionDefinition("", "toJsonObjectString", ComputateConfigKeys.class, "toJsonObjectString", Object.class));
