@@ -284,7 +284,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
         ComputateEnUSClass classDoc = JsonObject.mapFrom(doc.getFields()).mapTo(ComputateEnUSClass.class);
         List<ApiWriter> apiWriters = new ArrayList<>();
         ArrayList<String> classUris = new ArrayList<>();
-        JsonArray toutesLangues = Optional.ofNullable(config.getJsonArray(ComputateConfigKeys.OTHER_LANGUAGES).copy()).orElse(new JsonArray());
+        JsonArray toutesLangues = Optional.ofNullable(config.getJsonArray(ComputateConfigKeys.OTHER_LANGUAGES)).map(l -> l.copy()).orElse(new JsonArray());
         toutesLangues.add(languageName);
         List<Future> futures = new ArrayList<>();
         toutesLangues.stream().map(o -> (String)o).forEach(classLanguage -> {
