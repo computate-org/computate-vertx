@@ -82,6 +82,7 @@ public class I18n {
 	public static final String str_Il_est_construit_avant_d_être_initialisé_avec_le_constructeur_par_défaut = "str_Il_est_construit_avant_d_être_initialisé_avec_le_constructeur_par_défaut";
 	public static final String str_Importer = "str_Importer";
 	public static final String str_Importer_ = "str_Importer_";
+	public static final String str_Impossible_de_creer_l_utilisateur_du_site = "str_Impossible_de_creer_l_utilisateur_du_site";
 	public static final String str_Impossible_de_trouver_le_telechargement = "str_Impossible_de_trouver_le_telechargement";
 	public static final String str_Interdit_autorisations_de_recherche = "str_Interdit_autorisations_de_recherche";
 	public static final String str_Interroger_lAPI_REST_JSON_pour_ = "str_Interroger_lAPI_REST_JSON_pour_";

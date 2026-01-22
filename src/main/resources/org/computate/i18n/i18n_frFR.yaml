@@ -64,6 +64,7 @@ str_Genere: "Genéré"
 str_Il_est_construit_avant_d_être_initialisé_avec_le_constructeur_par_défaut: "Il est construit avant d'être initialisé avec le constructeur par défaut"
 str_Importer: "Importer"
 str_Importer_: "Importer "
+str_Impossible_de_creer_l_utilisateur_du_site: Impossible de créer l'utilisateur du site.
 str_Impossible_de_trouver_le_telechargement: "Impossible de trouver le téléchargement %s"
 str_Interdit_autorisations_de_recherche: "Interdit : Vous n'avez pas les autorisations pour effectuer cette requête dans le moteur de recherche."
 str_Interroger_lAPI_REST_JSON_pour_: "Interroger l'API REST JSON pour "
