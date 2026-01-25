@@ -39,6 +39,7 @@ public class I18n {
 	public static final String str_classe_generee = "str_classe_generee";
 	public static final String str_confirmer_supprimer = "str_confirmer_supprimer";
 	public static final String str_confirmer_archiver = "str_confirmer_archiver";
+	public static final String str_Courriel = "str_Courriel";
 	public static final String str_créé_nouveau = "str_créé_nouveau";
 	public static final String str_Creer = "str_Creer";
 	public static final String str_Creer_ = "str_Creer_";
@@ -94,12 +95,15 @@ public class I18n {
 	public static final String str_liste_champs = "str_liste_champs";
 	public static final String str_Liste_Champs = "str_Liste_Champs";
 	public static final String str_le_projet_ = "str_le_projet_";
+	public static final String str_menu = "str_menu";
 	public static final String str_Modifier = "str_Modifier";
 	public static final String str_Modifier_des_ = "str_Modifier_des_";
 	public static final String str_moins = "str_moins";
 	public static final String str_Moins = "str_Moins";
+	public static final String str_mon_page_d_utilisteur = "str_mon_page_d_utilisteur";
 	public static final String str_s_s_non_trouve = "str_s_s_non_trouve";
 	public static final String str_nest_pas_une_entite_indexe = "str_nest_pas_une_entite_indexe";
+	public static final String str_Partager_par_courriel = "str_Partager_par_courriel";
 	public static final String str_pivot = "str_pivot";
 	public static final String str_plus = "str_plus";
 	public static final String str_Plus = "str_Plus";
@@ -117,6 +121,8 @@ public class I18n {
 	public static final String str_retourner = "str_retourner";
 	public static final String str_retourner_a_ = "str_retourner_a_";
 	public static final String str_roles_requis = "str_roles_requis";
+	public static final String str_se_connecter = "str_se_connecter";
+	public static final String str_se_deconnecter = "str_se_deconnecter";
 	public static final String str_stats = "str_stats";
 	public static final String str_Stats = "str_Stats";
 	public static final String str_suivant = "str_suivant";
@@ -133,7 +139,11 @@ public class I18n {
 	public static final String str_Trouver_l_entité_ = "str_Trouver_l_entité_";
 	public static final String str_UneProblemeExecutionRegarderRepertoire = "str_UneProblemeExecutionRegarderRepertoire";
 	public static final String str_ValiderLaSignature = "str_ValiderLaSignature";
+	public static final String str_utilisateur = "str_utilisateur";
 	public static final String str_Vider = "str_Vider";
+	public static final String str_Voir_le_site_dans_la_langue_1 = "str_Voir_le_site_dans_la_langue_1";
+	public static final String str_Voir_le_site_dans_la_langue_2 = "str_Voir_le_site_dans_la_langue_2";
+	public static final String str_voir_ou_changer_votre_profile_d_utilisateur = "str_voir_ou_changer_votre_profile_d_utilisateur";
 	public static final String str_voir_valeurs = "str_voir_valeurs";
 	public static final String str_Vous_pouvez_remplacer_les_valeurs_par_defaut_ci_dessous = "str_Vous_pouvez_remplacer_les_valeurs_par_defaut_ci_dessous";
 	public static final String var_a = "var_a";
@@ -246,7 +256,6 @@ public class I18n {
 	public static final String var_clientSql = "var_clientSql";
 	public static final String var_ClientSql = "var_ClientSql";
 	public static final String var_clientWeb = "var_clientWeb";
-	public static final String var_ModeleBase = "var_ModeleBase";
 	public static final String var_Colonne = "var_Colonne";
 	public static final String var_COMPOSANTS_WEB_PREFIXE = "var_COMPOSANTS_WEB_PREFIXE";
 	public static final String var_COMPUTATE_ENSEMBLE_RECHERCHE_PREFIXE = "var_COMPUTATE_ENSEMBLE_RECHERCHE_PREFIXE";
@@ -446,6 +455,7 @@ public class I18n {
 	public static final String var_modele = "var_modele";
 	public static final String var_Modele = "var_Modele";
 	public static final String var_ModeleAlternatif = "var_ModeleAlternatif";
+	public static final String var_ModeleBase = "var_ModeleBase";
 	public static final String var_modifie = "var_modifie";
 	public static final String var_Modifie = "var_Modifie";
 	public static final String var_modifié = "var_modifié";
@@ -648,6 +658,8 @@ public class I18n {
 	public static final String var_TiroirRecherche = "var_TiroirRecherche";
 	public static final String var_titre = "var_titre";
 	public static final String var_Titre = "var_Titre";
+	public static final String var_TitreMenu = "var_MenuTitre";
+	public static final String var_TitreMenuOuvert = "var_MenuTitreOuvert";
 	public static final String var_TousNom = "var_TousNom";
 	public static final String var_Tous = "var_Tous";
 	public static final String var_ToutEcrivain = "var_ToutEcrivain";
