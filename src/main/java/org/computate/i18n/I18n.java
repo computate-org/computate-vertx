@@ -342,6 +342,7 @@ public class I18n {
 	public static final String var_fin = "var_fin";
 	public static final String var_Fin = "var_Fin";
 	public static final String var_FiwareContexte = "var_FiwareContexte";
+	public static final String var_Fonctionnalite = "var_Fonctionnalite";
 	public static final String var_FONTAWESOME_STYLE = "var_FONTAWESOME_STYLE";
 	public static final String var_formulaireFiltres = "var_formulaireFiltres";
 	public static final String var_FormulaireFiltres = "var_FormulaireFiltres";
@@ -658,8 +659,9 @@ public class I18n {
 	public static final String var_TiroirRecherche = "var_TiroirRecherche";
 	public static final String var_titre = "var_titre";
 	public static final String var_Titre = "var_Titre";
-	public static final String var_TitreMenu = "var_MenuTitre";
-	public static final String var_TitreMenuOuvert = "var_MenuTitreOuvert";
+	public static final String var_TitreMenu = "var_TitreMenu";
+	public static final String var_TitreMenuFonctionnalite = "var_TitreMenuFonctionnalite";
+	public static final String var_TitreMenuOuvert = "var_TitreMenuOuvert";
 	public static final String var_TousNom = "var_TousNom";
 	public static final String var_Tous = "var_Tous";
 	public static final String var_ToutEcrivain = "var_ToutEcrivain";
