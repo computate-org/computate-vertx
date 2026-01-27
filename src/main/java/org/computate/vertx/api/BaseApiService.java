@@ -34,6 +34,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.curator.shaded.com.google.common.base.Strings;
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 import org.computate.i18n.I18n;
 import org.computate.search.request.SearchRequest;
 import org.computate.search.response.solr.SolrResponse;
@@ -1242,6 +1245,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
             stream.filter(Files::isRegularFile).filter(p -> 
                 p.getFileName().toString().endsWith(".htm")
                 || p.getFileName().toString().endsWith(".html")
+                || p.getFileName().toString().endsWith(".md")
                 ).forEach(path -> {
               pageTemplatePaths.add(path.toAbsolutePath().toString());
             });
@@ -1317,7 +1321,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
   /**
    * Description: Import page
    */
-  private Future<Void> importModelFromFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, String templatePath, String classCanonicalName, String classSimpleName, String classApiAddress, String classAuthResource, String varPageId, String varUserUrl, String varDownload) {
+  protected Future<Void> importModelFromFile(Vertx vertx, ComputateSiteRequest siteRequest, YamlProcessor yamlProcessor, String templatePath, String classCanonicalName, String classSimpleName, String classApiAddress, String classAuthResource, String varPageId, String varUserUrl, String varDownload) {
     Promise<Void> promise = Promise.promise();
     vertx.fileSystem().readFile(templatePath).onSuccess(buffer -> {
       try {
@@ -1353,45 +1357,97 @@ abstract class BaseApiService implements BaseApiServiceInterface {
           ctx.put(i18n.getString(I18n.var_resultat), result);
 
           String metaPrefixResult = String.format("%s.", i18n.getString(I18n.var_resultat));
-          Matcher m = Pattern.compile("<meta name=\"([^\"]+)\"\\s+content=\"([^\"]*)\"\\s*/>", Pattern.MULTILINE).matcher(template);
-          boolean trouve = m.find();
-          while (trouve) {
-            String resultKey = m.group(1);
-            if(resultKey.startsWith(metaPrefixResult)) {
-              String key = StringUtils.substringAfter(resultKey, metaPrefixResult);
-              String val = m.group(2);
-              if(val instanceof String) {
-                String rendered = jinjava.render(val, ctx);
-                result.put(key, rendered);
-              } else {
-                result.put(key, val);
+          String htm;
+          if(templatePath.endsWith(".md")) {
+            String body = "";
+            // Process markdown metadata
+            if(template.startsWith("---\n")) {
+              Matcher mMeta = Pattern.compile("---\n([\\w\\W]+?)\n---\n([\\w\\W]+)", Pattern.MULTILINE).matcher(template);
+              if(mMeta.find()) {
+                String meta = mMeta.group(1);
+                body = mMeta.group(2);
+                Matcher m = Pattern.compile("^([^:]+?): (.*)", Pattern.MULTILINE).matcher(meta);
+                boolean trouve = m.find();
+                while (trouve) {
+                  String resultKey = m.group(1);
+                  if(resultKey.startsWith(metaPrefixResult)) {
+                    String key = StringUtils.substringAfter(resultKey, metaPrefixResult);
+                    String val = m.group(2);
+                    if(val instanceof String) {
+                      String rendered = jinjava.render(val, ctx);
+                      result.put(key, rendered);
+                    } else {
+                      result.put(key, val);
+                    }
+                  }
+                  trouve = m.find();
+                }
+                ctx.put(i18n.getString(I18n.var_resultat), result);
+                m.reset();
+                trouve = m.find();
+                while (trouve) {
+                  String resultKey = m.group(1);
+                  if(resultKey.startsWith(metaPrefixResult)) {
+                    String key = StringUtils.substringAfter(resultKey, metaPrefixResult);
+                    String val = m.group(2);
+                    if(val instanceof String) {
+                      String rendered = jinjava.render(val, ctx);
+                      result.put(key, rendered);
+                    } else {
+                      result.put(key, val);
+                    }
+                  }
+                  trouve = m.find();
+                }
               }
             }
-            trouve = m.find();
-          }
-          ctx.put(i18n.getString(I18n.var_resultat), result);
-          m.reset();
-          trouve = m.find();
-          while (trouve) {
-            String resultKey = m.group(1);
-            if(resultKey.startsWith(metaPrefixResult)) {
-              String key = StringUtils.substringAfter(resultKey, metaPrefixResult);
-              String val = m.group(2);
-              if(val instanceof String) {
-                String rendered = jinjava.render(val, ctx);
-                result.put(key, rendered);
-              } else {
-                result.put(key, val);
+            Parser parser = Parser.builder().build();
+            Node document = parser.parse(body);
+            HtmlRenderer renderer = HtmlRenderer.builder().build();
+            htm = "{% block htmBodyMiddleArticle %}\n" + renderer.render(document) + "\n{% endblock htmBodyMiddleArticle %}\n";
+          } else {
+            // Process HTM metadata
+            Matcher m = Pattern.compile("<meta name=\"([^\"]+)\"\\s+content=\"([^\"]*)\"\\s*/>", Pattern.MULTILINE).matcher(template);
+            boolean trouve = m.find();
+            while (trouve) {
+              String resultKey = m.group(1);
+              if(resultKey.startsWith(metaPrefixResult)) {
+                String key = StringUtils.substringAfter(resultKey, metaPrefixResult);
+                String val = m.group(2);
+                if(val instanceof String) {
+                  String rendered = jinjava.render(val, ctx);
+                  result.put(key, rendered);
+                } else {
+                  result.put(key, val);
+                }
               }
+              trouve = m.find();
             }
+            ctx.put(i18n.getString(I18n.var_resultat), result);
+            m.reset();
             trouve = m.find();
+            while (trouve) {
+              String resultKey = m.group(1);
+              if(resultKey.startsWith(metaPrefixResult)) {
+                String key = StringUtils.substringAfter(resultKey, metaPrefixResult);
+                String val = m.group(2);
+                if(val instanceof String) {
+                  String rendered = jinjava.render(val, ctx);
+                  result.put(key, rendered);
+                } else {
+                  result.put(key, val);
+                }
+              }
+              trouve = m.find();
+            }
+            htm = template;
           }
 
           generatePageBody(siteRequest, ctx, templatePath, classSimpleName).onSuccess(pageBody -> {
             try {
               String pageId = (String)result.get(varPageId);
               // JSoup HTML parsing
-              String renderedTemplate = jinjava.render(template, ctx);
+              String renderedTemplate = jinjava.render(htm, ctx);
               Document htmDoc = Jsoup.parse(renderedTemplate);
 
               JsonObject pageParams = new JsonObject();
