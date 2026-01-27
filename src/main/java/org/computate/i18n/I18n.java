@@ -303,6 +303,9 @@ public class I18n {
 	public static final String var_description = "var_description";
 	public static final String var_DescriptionAlternatif = "var_DescriptionAlternatif";
 	public static final String var_desindexer = "var_desindexer";
+	public static final String var_DetailsMenu = "var_DetailsMenu";
+	public static final String var_DetailsMenuFonctionnalite = "var_DetailsMenuFonctionnalite";
+	public static final String var_DetailsMenuOuvert = "var_DetailsMenuOuvert";
 	public static final String var_Dialogue = "var_Dialogue";
 	public static final String var_Diminuer = "var_Diminuer";
 	public static final String var_Direction = "var_Direction";
@@ -660,8 +663,6 @@ public class I18n {
 	public static final String var_titre = "var_titre";
 	public static final String var_Titre = "var_Titre";
 	public static final String var_TitreMenu = "var_TitreMenu";
-	public static final String var_TitreMenuFonctionnalite = "var_TitreMenuFonctionnalite";
-	public static final String var_TitreMenuOuvert = "var_TitreMenuOuvert";
 	public static final String var_TousNom = "var_TousNom";
 	public static final String var_Tous = "var_Tous";
 	public static final String var_ToutEcrivain = "var_ToutEcrivain";
