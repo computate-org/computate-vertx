@@ -51,6 +51,7 @@ import org.computate.vertx.result.base.ComputateBaseResult;
 import org.computate.vertx.search.list.SearchList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.yaml.snakeyaml.Yaml;
 
 import com.google.common.io.Resources;
 import com.hubspot.jinjava.Jinjava;
@@ -1312,7 +1313,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
     return promise.future();
   }
 
-  public Future<JsonObject> generatePageBody(ComputateSiteRequest siteRequest, Map<String, Object> ctx, String templatePath, String classSimpleName) {
+  public Future<JsonObject> generatePageBody(ComputateSiteRequest siteRequest, Map<String, Object> ctx, String templatePath, String classSimpleName, String pageTemplate) {
     Promise<JsonObject> promise = Promise.promise();
     promise.complete(new JsonObject());
     return promise.future();
@@ -1357,7 +1358,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
           ctx.put(i18n.getString(I18n.var_resultat), result);
 
           String metaPrefixResult = String.format("%s.", i18n.getString(I18n.var_resultat));
-          String htm;
+          String pageTemplate;
           if(templatePath.endsWith(".md")) {
             String body = "";
             // Process markdown metadata
@@ -1366,13 +1367,13 @@ abstract class BaseApiService implements BaseApiServiceInterface {
               if(mMeta.find()) {
                 String meta = mMeta.group(1);
                 body = mMeta.group(2);
-                Matcher m = Pattern.compile("^([^:]+?): (.*)", Pattern.MULTILINE).matcher(meta);
-                boolean trouve = m.find();
-                while (trouve) {
-                  String resultKey = m.group(1);
+                // Matcher m = Pattern.compile("^([^:]+?): (.*)", Pattern.MULTILINE).matcher(meta);
+                Yaml yaml = new Yaml();
+                Map<String, Object> map = yaml.load(meta);
+                map.forEach((resultKey, value) -> {
                   if(resultKey.startsWith(metaPrefixResult)) {
                     String key = StringUtils.substringAfter(resultKey, metaPrefixResult);
-                    String val = m.group(2);
+                    String val = Optional.ofNullable(value).map(v -> v.toString()).orElse(null);
                     if(val instanceof String) {
                       String rendered = jinjava.render(val, ctx);
                       result.put(key, rendered);
@@ -1380,16 +1381,12 @@ abstract class BaseApiService implements BaseApiServiceInterface {
                       result.put(key, val);
                     }
                   }
-                  trouve = m.find();
-                }
+                });
                 ctx.put(i18n.getString(I18n.var_resultat), result);
-                m.reset();
-                trouve = m.find();
-                while (trouve) {
-                  String resultKey = m.group(1);
+                map.forEach((resultKey, value) -> {
                   if(resultKey.startsWith(metaPrefixResult)) {
                     String key = StringUtils.substringAfter(resultKey, metaPrefixResult);
-                    String val = m.group(2);
+                    String val = Optional.ofNullable(value).map(v -> v.toString()).orElse(null);
                     if(val instanceof String) {
                       String rendered = jinjava.render(val, ctx);
                       result.put(key, rendered);
@@ -1397,14 +1394,14 @@ abstract class BaseApiService implements BaseApiServiceInterface {
                       result.put(key, val);
                     }
                   }
-                  trouve = m.find();
-                }
+                });
               }
             }
             Parser parser = Parser.builder().build();
             Node document = parser.parse(body);
             HtmlRenderer renderer = HtmlRenderer.builder().build();
-            htm = "{% block htmBodyMiddleArticle %}\n" + renderer.render(document) + "\n{% endblock htmBodyMiddleArticle %}\n";
+            String pageExtends =  Optional.ofNullable((String)result.get("extends")).orElse("en-us/Article.htm");
+            pageTemplate = "{% extends \"" + pageExtends + "\" %}\n{% block htmBodyMiddleArticle %}\n" + renderer.render(document) + "\n{% endblock htmBodyMiddleArticle %}\n";
           } else {
             // Process HTM metadata
             Matcher m = Pattern.compile("<meta name=\"([^\"]+)\"\\s+content=\"([^\"]*)\"\\s*/>", Pattern.MULTILINE).matcher(template);
@@ -1440,14 +1437,14 @@ abstract class BaseApiService implements BaseApiServiceInterface {
               }
               trouve = m.find();
             }
-            htm = template;
+            pageTemplate = template;
           }
 
-          generatePageBody(siteRequest, ctx, templatePath, classSimpleName).onSuccess(pageBody -> {
+          generatePageBody(siteRequest, ctx, templatePath, classSimpleName, pageTemplate).onSuccess(pageBody -> {
             try {
               String pageId = (String)result.get(varPageId);
               // JSoup HTML parsing
-              String renderedTemplate = jinjava.render(htm, ctx);
+              String renderedTemplate = jinjava.render(pageTemplate, ctx);
               Document htmDoc = Jsoup.parse(renderedTemplate);
 
               JsonObject pageParams = new JsonObject();

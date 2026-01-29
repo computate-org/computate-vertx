@@ -653,6 +653,7 @@ public class I18n {
 	public static final String var_Telechargement = "var_Telechargement";
 	public static final String var_template = "var_template";
 	public static final String var_templateChemin = "var_templateChemin";
+	public static final String var_templatePage = "var_templatePage";
 	public static final String var_TEMPLATE_CHEMIN = "var_TEMPLATE_CHEMIN";
 	public static final String var_tempsRecherche = "var_tempsRecherche";
 	public static final String var_tempsRestant = "var_tempsRestant";
@@ -681,6 +682,7 @@ public class I18n {
 	public static final String var_UriPageRecherche = "var_UriPageRecherche";
 	public static final String var_UriPageUtilisateur = "var_UriPageUtilisateur";
 	public static final String var_UriTelechargement = "var_UriTelechargement";
+	public static final String var_uriTemplate = "var_uriTemplate";
 	public static final String var_Url = "var_Url";
 	public static final String var_utilisateurCles = "var_utilisateurCles";
 	public static final String var_UtilisateurCles = "var_UtilisateurCles";
@@ -712,6 +714,7 @@ public class I18n {
 	public static final String var_VarModifie = "var_VarModifie";
 	public static final String var_VarNom = "var_VarNom";
 	public static final String var_VarRecherche = "var_VarRecherche";
+	public static final String var_VarTemplatePage = "var_VarTemplatePage";
 	public static final String var_VarTitre = "var_VarTitre";
 	public static final String var_VarUrl = "var_VarUrl";
 	public static final String var_VarValeur = "var_VarValeur";
