@@ -308,7 +308,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
     return promise.future();
   }
 
-  public <T extends ComputateSiteRequest> Future<User> getTokenUser(ServiceRequest serviceRequest, Class<T> cSiteRequest, Class<?> cSiteUser, String vertxAddress, String postAction, String patchAction) {
+  public <T extends ComputateSiteRequest> Future<User> getTokenUser(ServiceRequest serviceRequest, Class<T> cSiteRequest, Class<?> cSiteUser, String vertxAddress, String postAction, String patchAction, Boolean refresh) {
     Promise<User> promise = Promise.promise();
     try {
       JsonObject userPrincipal = serviceRequest.getUser();
@@ -323,23 +323,28 @@ abstract class BaseApiService implements BaseApiServiceInterface {
           oauth2AuthenticationProvider.authenticate(token.principal()).onSuccess(user -> {
             promise.complete(user);
           }).onFailure(ex -> {
-            if(!"GET".equals(serviceRequest.getExtra().getString("method"))) {
-              // For requests that are not GET requests, we want to obtain a refresh token if available, 
-              // so that the request does not fail, and a logout cannot be performed with a non GET method. 
-              oauth2AuthenticationProvider.refresh(token).onSuccess(user -> {
-                serviceRequest.setUser(user.principal());
-                getTokenUser(serviceRequest, cSiteRequest, cSiteUser, vertxAddress, postAction, patchAction).onSuccess(user2 -> {
-                  promise.complete(user2);
+            if(refresh) {
+              if(!"GET".equals(Optional.ofNullable(serviceRequest.getExtra()).map(s -> s.getString("method")).orElse(null))) {
+                // For requests that are not GET requests, we want to obtain a refresh token if available, 
+                // so that the request does not fail, and a logout cannot be performed with a non GET method. 
+                oauth2AuthenticationProvider.refresh(token).onSuccess(user -> {
+                  serviceRequest.setUser(user.principal());
+                  getTokenUser(serviceRequest, cSiteRequest, cSiteUser, vertxAddress, postAction, patchAction, refresh).onSuccess(user2 -> {
+                    promise.complete(user2);
+                  }).onFailure(ex2 -> {
+                    promise.fail(ex2);
+                  });
                 }).onFailure(ex2 -> {
+                  LOG.error(String.format("user failed. ", ex2));
                   promise.fail(ex2);
                 });
-              }).onFailure(ex2 -> {
-                LOG.error(String.format("user failed. ", ex2));
+              } else {
+                // For GET requests, we can fails with an "Inactive Token" RuntimeException 
+                // to force an application session logout to obtain a new token. 
+                RuntimeException ex2 = new RuntimeException("Inactive Token", ex);
                 promise.fail(ex2);
-              });
+              }
             } else {
-              // For GET requests, we can fails with an "Inactive Token" RuntimeException 
-              // to force an application session logout to obtain a new token. 
               RuntimeException ex2 = new RuntimeException("Inactive Token", ex);
               promise.fail(ex2);
             }
@@ -369,10 +374,14 @@ abstract class BaseApiService implements BaseApiServiceInterface {
   }
 
   public <T extends ComputateSiteRequest> Future<T> user(ServiceRequest serviceRequest, Class<T> cSiteRequest, Class<?> cSiteUser, String vertxAddress, String postAction, String patchAction, Boolean publicRead) {
+    return userRefresh(serviceRequest, cSiteRequest, cSiteUser, vertxAddress, postAction, patchAction, publicRead, false);
+  }
+
+  public <T extends ComputateSiteRequest> Future<T> userRefresh(ServiceRequest serviceRequest, Class<T> cSiteRequest, Class<?> cSiteUser, String vertxAddress, String postAction, String patchAction, Boolean publicRead, Boolean refresh) {
     Promise<T> promise = Promise.promise();
     try {
       getUserPrincipal(serviceRequest, cSiteRequest, cSiteUser, vertxAddress, postAction, patchAction).onSuccess(userPrincipal -> {
-        getTokenUser(serviceRequest, cSiteRequest, cSiteUser, vertxAddress, postAction, patchAction).onSuccess(user -> {
+        getTokenUser(serviceRequest, cSiteRequest, cSiteUser, vertxAddress, postAction, patchAction, refresh).onSuccess(user -> {
           try {
             if(user == null) {
               ComputateSiteRequest siteRequest = generateSiteRequest(null, null, serviceRequest, cSiteRequest);
@@ -442,7 +451,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
         });
       }).onFailure(ex -> {
         LOG.error(String.format("user failed. "), ex);
-        promise.fail(ex);
+        promise.tryFail(ex);
       });
     } catch(Exception ex) {
       LOG.error(String.format("user failed. "), ex);
