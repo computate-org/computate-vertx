@@ -716,6 +716,7 @@ public class I18n {
 	public static final String var_VarRecherche = "var_VarRecherche";
 	public static final String var_VarTemplatePage = "var_VarTemplatePage";
 	public static final String var_VarTitre = "var_VarTitre";
+	public static final String var_VarUriTemplate = "var_VarUriTemplate";
 	public static final String var_VarUrl = "var_VarUrl";
 	public static final String var_VarValeur = "var_VarValeur";
 	public static final String var_Verticale = "var_Verticale";
