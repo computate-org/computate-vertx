@@ -102,6 +102,7 @@ import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileVisitOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
@@ -1251,7 +1252,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
       if(Boolean.parseBoolean(config.getString(String.format("%s_%s", ComputateConfigKeys.ENABLE_IMPORT_DATA, classSimpleName), "true"))) {
         List<String> pageTemplatePaths = new ArrayList<>();
         if(Files.exists(pagePath)) {
-          try(Stream<Path> stream = Files.walk(pagePath)) {
+          try(Stream<Path> stream = Files.walk(pagePath, FileVisitOption.FOLLOW_LINKS)) {
             stream.filter(Files::isRegularFile).filter(p -> 
                 p.getFileName().toString().endsWith(".htm")
                 || p.getFileName().toString().endsWith(".html")
