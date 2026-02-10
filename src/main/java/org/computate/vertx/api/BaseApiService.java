@@ -1414,7 +1414,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
             pageTemplate = "{% extends \"" + pageExtends + "\" %}\n{% block htmBodyMiddleArticle %}\n" + renderer.render(document) + "\n{% endblock htmBodyMiddleArticle %}\n";
           } else {
             // Process HTM metadata
-            Matcher m = Pattern.compile("<meta name=\"([^\"]+)\"\\s+content=\"([^\"]*)\"\\s*/>", Pattern.MULTILINE).matcher(template);
+            Matcher m = Pattern.compile("<meta\\s+name=[\"'](.*?)[\"']\\s+content=[\"'](.*?)[\"']\\s*\\/?>", Pattern.MULTILINE).matcher(template);
             boolean trouve = m.find();
             while (trouve) {
               String resultKey = m.group(1);
