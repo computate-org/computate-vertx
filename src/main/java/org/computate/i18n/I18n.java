@@ -533,6 +533,8 @@ public class I18n {
 	public static final String var_pivot = "var_pivot";
 	public static final String var_Pivot = "var_Pivot";
 	public static final String var_portees = "var_portees";
+	public static final String var_portee = "var_portee";
+	public static final String var_Portee = "var_Portee";
 	public static final String var_PourClasse = "var_PourClasse";
 	public static final String var_Pour = "var_Pour";
 	public static final String var_Precedent = "var_Precedent";

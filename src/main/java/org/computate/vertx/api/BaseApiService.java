@@ -987,6 +987,19 @@ abstract class BaseApiService implements BaseApiServiceInterface {
    * @return access_token String for creating other authorization resources. 
    */
   public Future<String> createAuthorizationScopes() {
+    String[] authScopes = new String[] {"POST", "PATCH", "GET", "DELETE", "PUT"
+        , config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN)
+        , config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN)
+        };
+    return createAuthorizationScopes(authScopes);
+  }
+
+  /**
+   * Creates computate project related Keycloak authorization scopes. 
+   * These include POST, PATCH, GET, DELETE, SiteAdmin, and SuperAdmin scopes. 
+   * @return access_token String for creating other authorization resources. 
+   */
+  public Future<String> createAuthorizationScopes(String[] authScopes) {
     Promise<String> promise = Promise.promise();
     try {
       String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
@@ -999,10 +1012,6 @@ abstract class BaseApiService implements BaseApiServiceInterface {
       String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
       String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
       List<Future<?>> futures = new ArrayList<>();
-      String[] authScopes = new String[] {"POST", "PATCH", "GET", "DELETE", "PUT"
-          , config.getString(ComputateConfigKeys.AUTH_SCOPE_ADMIN)
-          , config.getString(ComputateConfigKeys.AUTH_SCOPE_SUPER_ADMIN)
-          };
 
       webClient.post(authPort, authHostName, "/realms/master/protocol/openid-connect/token").ssl(authSsl)
           .sendForm(MultiMap.caseInsensitiveMultiMap()

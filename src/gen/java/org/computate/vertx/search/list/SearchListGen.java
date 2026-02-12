@@ -46,8 +46,8 @@ import java.math.RoundingMode;
 import java.util.Map;
 import java.lang.Class;
 import java.lang.Boolean;
-import org.computate.search.request.SearchRequest;
 import java.lang.String;
+import org.computate.search.request.SearchRequest;
 import org.computate.search.response.solr.SolrResponse;
 import org.computate.search.response.solr.SolrResponse.Doc;
 import java.lang.Object;
@@ -116,15 +116,21 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class SearchList in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.search.list in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.search.list&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.search.list&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * Generated: true
  **/
@@ -333,6 +339,60 @@ public abstract class SearchListGen<DEV> {
 
   public static String staticSearchFqPopulate(ComputateSiteRequest siteRequest_, String o) {
     return SearchList.staticSearchPopulate(siteRequest_, SearchList.staticSetPopulate(siteRequest_, o)).toString();
+  }
+
+	///////////
+  // scope //
+	///////////
+
+
+  /**
+   *  The entity scope
+   *	 is defined as null before being initialized. 
+   */
+  @JsonIgnore
+  @JsonInclude(Include.NON_NULL)
+  protected String scope;
+
+  /**
+   * <br> The entity scope
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchList&fq=entiteVar_enUS_indexed_string:scope">Find the entity scope in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _scope(Wrap<String> w);
+
+  public String getScope() {
+    return scope;
+  }
+  public void setScope(String o) {
+    this.scope = SearchList.staticSetScope(siteRequest_, o);
+  }
+  public static String staticSetScope(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
+  protected SearchList scopeInit() {
+    Wrap<String> scopeWrap = new Wrap<String>().var("scope");
+    if(scope == null) {
+      _scope(scopeWrap);
+      Optional.ofNullable(scopeWrap.getO()).ifPresent(o -> {
+        setScope(o);
+      });
+    }
+    return (SearchList)this;
+  }
+
+  public static String staticSearchScope(ComputateSiteRequest siteRequest_, String o) {
+    return o;
+  }
+
+  public static String staticSearchStrScope(ComputateSiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqScope(ComputateSiteRequest siteRequest_, String o) {
+    return SearchList.staticSearchScope(siteRequest_, SearchList.staticSetScope(siteRequest_, o)).toString();
   }
 
 	/////////////
@@ -703,6 +763,7 @@ public abstract class SearchListGen<DEV> {
         siteRequest_Init();
         storeInit();
         populateInit();
+        scopeInit();
         requestInit();
         searchUrlInit();
         defaultSortInit();
@@ -783,6 +844,8 @@ public abstract class SearchListGen<DEV> {
         return oSearchList.store;
       case "populate":
         return oSearchList.populate;
+      case "scope":
+        return oSearchList.scope;
       case "request":
         return oSearchList.request;
       case "searchUrl":
@@ -836,6 +899,8 @@ public abstract class SearchListGen<DEV> {
       return SearchList.staticSetStore(siteRequest_, v);
     case "populate":
       return SearchList.staticSetPopulate(siteRequest_, v);
+    case "scope":
+      return SearchList.staticSetScope(siteRequest_, v);
     case "searchUrl":
       return SearchList.staticSetSearchUrl(siteRequest_, v);
     case "defaultSort":
@@ -858,6 +923,8 @@ public abstract class SearchListGen<DEV> {
       return SearchList.staticSearchStore(siteRequest_, (Boolean)o);
     case "populate":
       return SearchList.staticSearchPopulate(siteRequest_, (Boolean)o);
+    case "scope":
+      return SearchList.staticSearchScope(siteRequest_, (String)o);
     case "searchUrl":
       return SearchList.staticSearchSearchUrl(siteRequest_, (String)o);
     case "defaultSort":
@@ -880,6 +947,8 @@ public abstract class SearchListGen<DEV> {
       return SearchList.staticSearchStrStore(siteRequest_, (Boolean)o);
     case "populate":
       return SearchList.staticSearchStrPopulate(siteRequest_, (Boolean)o);
+    case "scope":
+      return SearchList.staticSearchStrScope(siteRequest_, (String)o);
     case "searchUrl":
       return SearchList.staticSearchStrSearchUrl(siteRequest_, (String)o);
     case "defaultSort":
@@ -902,6 +971,8 @@ public abstract class SearchListGen<DEV> {
       return SearchList.staticSearchFqStore(siteRequest_, o);
     case "populate":
       return SearchList.staticSearchFqPopulate(siteRequest_, o);
+    case "scope":
+      return SearchList.staticSearchFqScope(siteRequest_, o);
     case "searchUrl":
       return SearchList.staticSearchFqSearchUrl(siteRequest_, o);
     case "defaultSort":
@@ -927,6 +998,7 @@ public abstract class SearchListGen<DEV> {
   public static final String VAR_siteRequest_ = "siteRequest_";
   public static final String VAR_store = "store";
   public static final String VAR_populate = "populate";
+  public static final String VAR_scope = "scope";
   public static final String VAR_request = "request";
   public static final String VAR_searchUrl = "searchUrl";
   public static final String VAR_defaultSort = "defaultSort";
@@ -939,6 +1011,7 @@ public abstract class SearchListGen<DEV> {
   public static final String DISPLAY_NAME_siteRequest_ = "";
   public static final String DISPLAY_NAME_store = "";
   public static final String DISPLAY_NAME_populate = "";
+  public static final String DISPLAY_NAME_scope = "";
   public static final String DISPLAY_NAME_request = "";
   public static final String DISPLAY_NAME_searchUrl = "";
   public static final String DISPLAY_NAME_defaultSort = "";
@@ -996,6 +1069,8 @@ public abstract class SearchListGen<DEV> {
       return DISPLAY_NAME_store;
     case VAR_populate:
       return DISPLAY_NAME_populate;
+    case VAR_scope:
+      return DISPLAY_NAME_scope;
     case VAR_request:
       return DISPLAY_NAME_request;
     case VAR_searchUrl:
@@ -1034,6 +1109,8 @@ public abstract class SearchListGen<DEV> {
       return "Boolean";
     case VAR_populate:
       return "Boolean";
+    case VAR_scope:
+      return "String";
     case VAR_request:
       return "SearchRequest";
     case VAR_searchUrl:
