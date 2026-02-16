@@ -247,6 +247,7 @@ public class I18n {
 	public static final String var_classeNomCanonique = "var_classeNomCanonique";
 	public static final String var_classeNomsCanoniques = "var_classeNomsCanoniques";
 	public static final String var_classeNomSimple = "var_classeNomSimple";
+	public static final String var_classeTousNom = "var_classeTousNom";
 	public static final String var_Cle = "var_Cle";
 	public static final String var_ClePrimaire = "var_ClePrimaire";
 	public static final String var_Cles = "var_Cles";
