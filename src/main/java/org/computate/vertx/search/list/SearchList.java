@@ -15,6 +15,7 @@ package org.computate.vertx.search.list;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -113,6 +114,35 @@ public class SearchList<DEV> extends SearchListGen<DEV> implements Iterable<DEV>
   }
   public Long getRows() {
     return request.getRows();
+  }
+
+  public SearchList<DEV> d(BigDecimal pt) {
+    request.d(pt);
+    return this;
+  }
+  public SearchList<DEV> d(Double pt) {
+    request.d(pt);
+    return this;
+  }
+
+  public SearchList<DEV> pt(String pt) {
+    request.pt(pt);
+    return this;
+  }
+
+  public SearchList<DEV> spatial(Boolean b) {
+    request.spatial(b);
+    return this;
+  }
+
+  public SearchList<DEV> sfield(String s) {
+    request.sfield(s);
+    return this;
+  }
+
+  public SearchList<DEV> qOp(String s) {
+    request.qOp(s);
+    return this;
   }
 
   public SearchList<DEV> start(Long s) {
