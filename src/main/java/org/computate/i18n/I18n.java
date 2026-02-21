@@ -70,6 +70,7 @@ public class I18n {
 	public static final String str_EEE_d_MMM_yyyy_HAposhAposmmColonss_zz = "str_EEE_d_MMM_yyyy_HAposhAposmmColonss_zz";
 	public static final String str_EEE_d_MMM_yyyy_HAposhAposmmColonss_zz_VV = "str_EEE_d_MMM_yyyy_HAposhAposmmColonss_zz_VV";
 	public static final String str_Erreur_lors_de_lanalyse_de_la_classe = "str_Erreur_lors_de_lanalyse_de_la_classe";
+	public static final String str_Erreur_lors_de_linterrogation_ = "str_Erreur_lors_de_linterrogation_";
 	public static final String str__est_défini_comme_null_avant_d_être_initialisé__ = "str__est_défini_comme_null_avant_d_être_initialisé__";
 	public static final String str__est_l_entité_déjà_construit__ = "str__est_l_entité_déjà_construit__";
 	public static final String str__est_pour_envelopper_une_valeur_à_assigner_à_cette_entité_lors_de_l_initialisation__ = "str__est_pour_envelopper_une_valeur_à_assigner_à_cette_entité_lors_de_l_initialisation__";
