@@ -436,6 +436,7 @@ public class I18n {
 	public static final String var_longeurMin = "var_longeurMin";
 	public static final String var_LongeurMin = "var_LongeurMin";
 	public static final String var_lueur = "var_lueur";
+	public static final String var_MacrosFormulaireRecherche = "var_MacrosFormulaireRecherche";
 	public static final String var_MailAdmin = "var_MailAdmin";
 	public static final String var_MailDe = "var_MailDe";
 	public static final String var_Mail = "var_Mail";
