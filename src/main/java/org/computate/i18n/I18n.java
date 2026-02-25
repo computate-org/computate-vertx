@@ -397,6 +397,7 @@ public class I18n {
 	public static final String var_ImageHauteur = "var_ImageHauteur";
 	public static final String var_Image = "var_Image";
 	public static final String var_ImageLargeur = "var_ImageLargeur";
+	public static final String var_ImporterNull = "var_ImporterNull";
 	public static final String var_Incremente = "var_Incremente";
 	public static final String var_Indexe = "var_Indexe";
 	public static final String var_indexer = "var_indexer";
