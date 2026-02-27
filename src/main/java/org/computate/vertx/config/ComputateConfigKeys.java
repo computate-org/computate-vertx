@@ -499,6 +499,7 @@ public class ComputateConfigKeys {
     ctx.put(MAILING_LIST_URL, config.getString(MAILING_LIST_URL));
     ctx.put(MAILING_LIST_EMAIL, config.getString(MAILING_LIST_EMAIL));
     ctx.put(SITE_REPO_HTTPS, config.getString(SITE_REPO_HTTPS));
+    ctx.put(MAPBOX_TOKEN, config.getString(MAPBOX_TOKEN));
     return ctx;
   }
 
@@ -1499,6 +1500,8 @@ public class ComputateConfigKeys {
   public static final String SQUARE_NOTIFICATION_URL = "SQUARE_NOTIFICATION_URL";
   public static final String SQUARE_WEBHOOK_UNLOCK_MILLIS = "SQUARE_WEBHOOK_UNLOCK_MILLIS";
   public static final String SQUARE_WEBHOOK_TIMEOUT_MILLIS = "SQUARE_WEBHOOK_TIMEOUT_MILLIS";
+
+  public static final String MAPBOX_TOKEN = "MAPBOX_TOKEN";
 
   /** The public search endpoint for searching public items in the site. **/
   public static final String PUBLIC_SEARCH_URI = "PUBLIC_SEARCH_URI";
