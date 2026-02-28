@@ -317,6 +317,7 @@ public class I18n {
 	public static final String var_documentsSolr = "var_documentsSolr";
 	public static final String var_DocValues = "var_DocValues";
 	public static final String var_Droits = "var_Droits";
+	public static final String var_Echelle = "var_Echelle";
 	public static final String var_ecrireApi = "var_ecrireApi";
 	public static final String var_ECRIRE_API = "var_ECRIRE_API";
 	public static final String var_ecrireCommentaire = "var_ecrireCommentaire";
