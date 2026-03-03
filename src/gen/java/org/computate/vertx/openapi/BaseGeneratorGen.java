@@ -96,15 +96,21 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class BaseGenerator in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.openapi in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * Generated: true
  **/
@@ -1303,6 +1309,51 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
     return (BaseGenerator)this;
   }
 
+	////////////////////
+  // wSqlReferences //
+	////////////////////
+
+
+  /**
+   *  The entity wSqlReferences
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonInclude(Include.NON_NULL)
+  protected AllWriter wSqlReferences;
+
+  /**
+   * <br> The entity wSqlReferences
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.BaseGenerator&fq=entiteVar_enUS_indexed_string:wSqlReferences">Find the entity wSqlReferences in Solr</a>
+   * <br>
+   * @param c is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _wSqlReferences(Wrap<AllWriter> c);
+
+  public AllWriter getWSqlReferences() {
+    return wSqlReferences;
+  }
+
+  public void setWSqlReferences(AllWriter wSqlReferences) {
+    this.wSqlReferences = wSqlReferences;
+  }
+  public static AllWriter staticSetWSqlReferences(ComputateSiteRequest siteRequest_, String o) {
+    return null;
+  }
+  protected BaseGenerator wSqlReferencesInit() {
+    Wrap<AllWriter> wSqlReferencesWrap = new Wrap<AllWriter>().var("wSqlReferences");
+    if(wSqlReferences == null) {
+      _wSqlReferences(wSqlReferencesWrap);
+      Optional.ofNullable(wSqlReferencesWrap.getO()).ifPresent(o -> {
+        setWSqlReferences(o);
+      });
+    }
+    if(wSqlReferences != null)
+      wSqlReferences.initDeepForClass(siteRequest_);
+    return (BaseGenerator)this;
+  }
+
 	//////////////
   // wSqlDrop //
 	//////////////
@@ -1521,6 +1572,7 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
         sqlDropFileInit();
         wInit();
         wSqlCreateInit();
+        wSqlReferencesInit();
         wSqlDropInit();
         wPathsInit();
         wRequestBodiesInit();
@@ -1540,6 +1592,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
       w.setSiteRequest_(siteRequest_);
     if(wSqlCreate != null)
       wSqlCreate.setSiteRequest_(siteRequest_);
+    if(wSqlReferences != null)
+      wSqlReferences.setSiteRequest_(siteRequest_);
     if(wSqlDrop != null)
       wSqlDrop.setSiteRequest_(siteRequest_);
     if(wPaths != null)
@@ -1620,6 +1674,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
         return oBaseGenerator.w;
       case "wSqlCreate":
         return oBaseGenerator.wSqlCreate;
+      case "wSqlReferences":
+        return oBaseGenerator.wSqlReferences;
       case "wSqlDrop":
         return oBaseGenerator.wSqlDrop;
       case "wPaths":
@@ -1698,9 +1754,9 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
 
   public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
     return staticSearchBaseGenerator(entityVar,  siteRequest_, o);
@@ -1843,32 +1899,61 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
   public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.openapi.BaseGenerator";
   public static final String CLASS_AUTH_RESOURCE = "";
   public static final String VAR_vertx_ = "vertx_";
+  public static final String SET_vertx_ = "setVertx_";
   public static final String VAR_webClient = "webClient";
+  public static final String SET_webClient = "setWebClient";
   public static final String VAR_siteRequest_ = "siteRequest_";
+  public static final String SET_siteRequest_ = "setSiteRequest_";
   public static final String VAR_config = "config";
+  public static final String SET_config = "setConfig";
   public static final String VAR_appName = "appName";
+  public static final String SET_appName = "setAppName";
   public static final String VAR_languageName = "languageName";
+  public static final String SET_languageName = "setLanguageName";
   public static final String VAR_computateVertxSrc = "computateVertxSrc";
+  public static final String SET_computateVertxSrc = "setComputateVertxSrc";
   public static final String VAR_i18n = "i18n";
+  public static final String SET_i18n = "setI18n";
   public static final String VAR_appPath = "appPath";
+  public static final String SET_appPath = "setAppPath";
   public static final String VAR_appStaticPath = "appStaticPath";
+  public static final String SET_appStaticPath = "setAppStaticPath";
   public static final String VAR_platformPomArtifactId = "platformPomArtifactId";
+  public static final String SET_platformPomArtifactId = "setPlatformPomArtifactId";
   public static final String VAR_openApiVersion = "openApiVersion";
+  public static final String SET_openApiVersion = "setOpenApiVersion";
   public static final String VAR_openApiVersionNumber = "openApiVersionNumber";
+  public static final String SET_openApiVersionNumber = "setOpenApiVersionNumber";
   public static final String VAR_tabsSchema = "tabsSchema";
+  public static final String SET_tabsSchema = "setTabsSchema";
   public static final String VAR_apiVersion = "apiVersion";
+  public static final String SET_apiVersion = "setApiVersion";
   public static final String VAR_openApiYamlPath = "openApiYamlPath";
+  public static final String SET_openApiYamlPath = "setOpenApiYamlPath";
   public static final String VAR_openApiYamlFile = "openApiYamlFile";
+  public static final String SET_openApiYamlFile = "setOpenApiYamlFile";
   public static final String VAR_sqlCreatePath = "sqlCreatePath";
+  public static final String SET_sqlCreatePath = "setSqlCreatePath";
   public static final String VAR_sqlCreateFile = "sqlCreateFile";
+  public static final String SET_sqlCreateFile = "setSqlCreateFile";
   public static final String VAR_sqlDropPath = "sqlDropPath";
+  public static final String SET_sqlDropPath = "setSqlDropPath";
   public static final String VAR_sqlDropFile = "sqlDropFile";
+  public static final String SET_sqlDropFile = "setSqlDropFile";
   public static final String VAR_w = "w";
+  public static final String SET_w = "setW";
   public static final String VAR_wSqlCreate = "wSqlCreate";
+  public static final String SET_wSqlCreate = "setWSqlCreate";
+  public static final String VAR_wSqlReferences = "wSqlReferences";
+  public static final String SET_wSqlReferences = "setWSqlReferences";
   public static final String VAR_wSqlDrop = "wSqlDrop";
+  public static final String SET_wSqlDrop = "setWSqlDrop";
   public static final String VAR_wPaths = "wPaths";
+  public static final String SET_wPaths = "setWPaths";
   public static final String VAR_wRequestBodies = "wRequestBodies";
+  public static final String SET_wRequestBodies = "setWRequestBodies";
   public static final String VAR_wSchemas = "wSchemas";
+  public static final String SET_wSchemas = "setWSchemas";
 
   public static final String DISPLAY_NAME_vertx_ = "";
   public static final String DISPLAY_NAME_webClient = "";
@@ -1893,46 +1978,11 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
   public static final String DISPLAY_NAME_sqlDropFile = "";
   public static final String DISPLAY_NAME_w = "";
   public static final String DISPLAY_NAME_wSqlCreate = "";
+  public static final String DISPLAY_NAME_wSqlReferences = "";
   public static final String DISPLAY_NAME_wSqlDrop = "";
   public static final String DISPLAY_NAME_wPaths = "";
   public static final String DISPLAY_NAME_wRequestBodies = "";
   public static final String DISPLAY_NAME_wSchemas = "";
-
-  public String idForClass() {
-    return null;
-  }
-
-  public String titleForClass() {
-    return null;
-  }
-
-  public String nameForClass() {
-    return null;
-  }
-
-  public String classNameAdjectiveSingularForClass() {
-    return null;
-  }
-
-  public String descriptionForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlEditPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
-  }
 
   public static String displayNameForClass(String var) {
     return BaseGenerator.displayNameBaseGenerator(var);
@@ -1985,6 +2035,8 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
       return DISPLAY_NAME_w;
     case VAR_wSqlCreate:
       return DISPLAY_NAME_wSqlCreate;
+    case VAR_wSqlReferences:
+      return DISPLAY_NAME_wSqlReferences;
     case VAR_wSqlDrop:
       return DISPLAY_NAME_wSqlDrop;
     case VAR_wPaths:
@@ -1995,125 +2047,6 @@ public abstract class BaseGeneratorGen<DEV> extends Object {
       return DISPLAY_NAME_wSchemas;
     default:
       return null;
-    }
-  }
-
-  public static String descriptionBaseGenerator(String var) {
-    if(var == null)
-      return null;
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static String classSimpleNameBaseGenerator(String var) {
-    switch(var) {
-    case VAR_vertx_:
-      return "Vertx";
-    case VAR_webClient:
-      return "WebClient";
-    case VAR_siteRequest_:
-      return "ComputateSiteRequest";
-    case VAR_config:
-      return "JsonObject";
-    case VAR_appName:
-      return "String";
-    case VAR_languageName:
-      return "String";
-    case VAR_computateVertxSrc:
-      return "String";
-    case VAR_i18n:
-      return "JsonObject";
-    case VAR_appPath:
-      return "String";
-    case VAR_appStaticPath:
-      return "String";
-    case VAR_platformPomArtifactId:
-      return "String";
-    case VAR_openApiVersion:
-      return "String";
-    case VAR_openApiVersionNumber:
-      return "Integer";
-    case VAR_tabsSchema:
-      return "Integer";
-    case VAR_apiVersion:
-      return "String";
-    case VAR_openApiYamlPath:
-      return "String";
-    case VAR_openApiYamlFile:
-      return "File";
-    case VAR_sqlCreatePath:
-      return "String";
-    case VAR_sqlCreateFile:
-      return "File";
-    case VAR_sqlDropPath:
-      return "String";
-    case VAR_sqlDropFile:
-      return "File";
-    case VAR_w:
-      return "AllWriter";
-    case VAR_wSqlCreate:
-      return "AllWriter";
-    case VAR_wSqlDrop:
-      return "AllWriter";
-    case VAR_wPaths:
-      return "AllWriter";
-    case VAR_wRequestBodies:
-      return "AllWriter";
-    case VAR_wSchemas:
-      return "AllWriter";
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmColumnBaseGenerator(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmRowBaseGenerator(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmCellBaseGenerator(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer lengthMinBaseGenerator(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer lengthMaxBaseGenerator(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer maxBaseGenerator(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer minBaseGenerator(String var) {
-    switch(var) {
-      default:
-        return null;
     }
   }
 }

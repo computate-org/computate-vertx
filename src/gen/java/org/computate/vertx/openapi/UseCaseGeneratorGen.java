@@ -95,15 +95,21 @@ import io.vertx.core.Future;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class UseCaseGenerator in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.UseCaseGenerator&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.openapi in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * Generated: true
  **/
@@ -550,9 +556,9 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
 
   public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
     return staticSearchUseCaseGenerator(entityVar,  siteRequest_, o);
@@ -630,11 +636,17 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
   public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.openapi.UseCaseGenerator";
   public static final String CLASS_AUTH_RESOURCE = "";
   public static final String VAR_useCasePath = "useCasePath";
+  public static final String SET_useCasePath = "setUseCasePath";
   public static final String VAR_useCaseSummary = "useCaseSummary";
+  public static final String SET_useCaseSummary = "setUseCaseSummary";
   public static final String VAR_useCaseSummaryCells = "useCaseSummaryCells";
+  public static final String SET_useCaseSummaryCells = "setUseCaseSummaryCells";
   public static final String VAR_useCaseSummaryNum = "useCaseSummaryNum";
+  public static final String SET_useCaseSummaryNum = "setUseCaseSummaryNum";
   public static final String VAR_useCaseSummaryFile = "useCaseSummaryFile";
+  public static final String SET_useCaseSummaryFile = "setUseCaseSummaryFile";
   public static final String VAR_wUseCaseSummary = "wUseCaseSummary";
+  public static final String SET_wUseCaseSummary = "setWUseCaseSummary";
 
   public static final String DISPLAY_NAME_useCasePath = "";
   public static final String DISPLAY_NAME_useCaseSummary = "";
@@ -642,51 +654,6 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
   public static final String DISPLAY_NAME_useCaseSummaryNum = "";
   public static final String DISPLAY_NAME_useCaseSummaryFile = "";
   public static final String DISPLAY_NAME_wUseCaseSummary = "";
-
-  @Override
-  public String idForClass() {
-    return null;
-  }
-
-  @Override
-  public String titleForClass() {
-    return null;
-  }
-
-  @Override
-  public String nameForClass() {
-    return null;
-  }
-
-  @Override
-  public String classNameAdjectiveSingularForClass() {
-    return null;
-  }
-
-  @Override
-  public String descriptionForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlEditPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
-  }
 
   public static String displayNameForClass(String var) {
     return UseCaseGenerator.displayNameUseCaseGenerator(var);
@@ -707,83 +674,6 @@ public abstract class UseCaseGeneratorGen<DEV> extends FiwareGenerator {
       return DISPLAY_NAME_wUseCaseSummary;
     default:
       return FiwareGenerator.displayNameFiwareGenerator(var);
-    }
-  }
-
-  public static String descriptionUseCaseGenerator(String var) {
-    if(var == null)
-      return null;
-    switch(var) {
-      default:
-        return FiwareGenerator.descriptionFiwareGenerator(var);
-    }
-  }
-
-  public static String classSimpleNameUseCaseGenerator(String var) {
-    switch(var) {
-    case VAR_useCasePath:
-      return "String";
-    case VAR_useCaseSummary:
-      return "JsonObject";
-    case VAR_useCaseSummaryCells:
-      return "JsonArray";
-    case VAR_useCaseSummaryNum:
-      return "Integer";
-    case VAR_useCaseSummaryFile:
-      return "File";
-    case VAR_wUseCaseSummary:
-      return "AllWriter";
-      default:
-        return FiwareGenerator.classSimpleNameFiwareGenerator(var);
-    }
-  }
-
-  public static Integer htmColumnUseCaseGenerator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.htmColumnFiwareGenerator(var);
-    }
-  }
-
-  public static Integer htmRowUseCaseGenerator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.htmRowFiwareGenerator(var);
-    }
-  }
-
-  public static Integer htmCellUseCaseGenerator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.htmCellFiwareGenerator(var);
-    }
-  }
-
-  public static Integer lengthMinUseCaseGenerator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.lengthMinFiwareGenerator(var);
-    }
-  }
-
-  public static Integer lengthMaxUseCaseGenerator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.lengthMaxFiwareGenerator(var);
-    }
-  }
-
-  public static Integer maxUseCaseGenerator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.maxFiwareGenerator(var);
-    }
-  }
-
-  public static Integer minUseCaseGenerator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.minFiwareGenerator(var);
     }
   }
 }

@@ -215,6 +215,10 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
     c.o(AllWriter.create(siteRequest_, sqlCreateFile, "  "));
   }
 
+  protected void _wSqlReferences(Wrap<AllWriter> c) {
+    c.o(AllWriter.create(siteRequest_, "  "));
+  }
+
   protected void _wSqlDrop(Wrap<AllWriter> c) {
     c.o(AllWriter.create(siteRequest_, sqlDropFile, "  "));
   }
@@ -522,8 +526,33 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
               SolrResponse.Doc doc2 = entiteDocs.get(j);
               wSqlCreate.s("ALTER TABLE ", classeNomSimple, " ADD COLUMN IF NOT EXISTS ");
               wSqlCreate.s(doc2.get("entiteVar_" + languageName + "_stored_string"), " ", doc2.get("entiteTypeSql_stored_string"));
-              if(doc2.get("entiteAttribuerTypeJson_stored_string") != null && BooleanUtils.isTrue((Boolean)doc2.get("entiteAttribuerEtendModeleBase_stored_boolean")))
-                wSqlCreate.s(" references ", (String)doc2.get("entiteAttribuerNomSimple_" + languageName + "_stored_string"), "(", (String)doc2.get("entiteAttribuerVar_" + languageName + "_stored_string"), ")");
+              if(doc2.get("entiteAttribuerTypeJson_stored_string") != null && BooleanUtils.isTrue((Boolean)doc2.get("entiteAttribuerEtendModeleBase_stored_boolean"))) {
+                Boolean entiteAttribuerAttribuer = BooleanUtils.isTrue((Boolean)doc2.get("entiteAttribuerAttribuer_stored_boolean"));
+                String entiteAttribuerNomSimple = (String)doc2.get("entiteAttribuerNomSimple_" + languageName + "_stored_string");
+                String entiteAttribuerAttribuerNomSimple = (String)doc2.get("entiteAttribuerAttribuerNomSimple_" + languageName + "_stored_string");
+                String entiteAttribuerAttribuerVar = (String)doc2.get("entiteAttribuerAttribuerVar_" + languageName + "_stored_string");
+                String entiteAttribuerAttribuerVarId = (String)doc2.get("entiteAttribuerAttribuerVarId_" + languageName + "_stored_string");
+                String entiteVar = (String)doc2.get("entiteVar_" + languageName + "_stored_string");
+                if(entiteAttribuerAttribuer && classeNomSimple.equals(entiteAttribuerAttribuerNomSimple) && entiteVar.equals(entiteAttribuerAttribuerVar)) {
+                  String constraintName = classeNomSimple.toLowerCase() + "_" + entiteVar.toLowerCase() + "_" + entiteAttribuerNomSimple.toLowerCase() + "_fkey";
+                  wSqlReferences.s("DO $$ BEGIN");
+                  wSqlReferences.s(" IF NOT EXISTS (SELECT constraint_name FROM information_schema.constraint_column_usage WHERE table_schema = 'public' AND constraint_name = '", constraintName, "') THEN");
+                  wSqlReferences.s(" ALTER TABLE ", classeNomSimple, " ADD CONSTRAINT ", constraintName);
+                  wSqlReferences.s(" FOREIGN KEY(", entiteVar, ")");
+                  wSqlReferences.s(" REFERENCES ", (String)doc2.get("entiteAttribuerNomSimple_" + languageName + "_stored_string"), "(", entiteAttribuerAttribuerVarId, ");");
+                  wSqlReferences.s(" END IF;");
+                  wSqlReferences.l(" END $$;");
+                } else {
+                  String constraintName = classeNomSimple.toLowerCase() + "_" + entiteVar.toLowerCase() + "_" + entiteAttribuerNomSimple.toLowerCase() + "_fkey";
+                  wSqlReferences.s("DO $$ BEGIN");
+                  wSqlReferences.s(" IF NOT EXISTS (SELECT constraint_name FROM information_schema.constraint_column_usage WHERE table_schema = 'public' AND constraint_name = '", constraintName, "') THEN");
+                  wSqlReferences.s(" ALTER TABLE ", classeNomSimple, " ADD CONSTRAINT ", constraintName);
+                  wSqlReferences.s(" FOREIGN KEY(", entiteVar, ")");
+                  wSqlReferences.s(" REFERENCES ", (String)doc2.get("entiteAttribuerNomSimple_" + languageName + "_stored_string"), "(", (String)doc2.get("entiteAttribuerVar_" + languageName + "_stored_string"), ");");
+                  wSqlReferences.s(" END IF;");
+                  wSqlReferences.l(" END $$;");
+                }
+              }
               if(BooleanUtils.isTrue((Boolean)doc2.get("entiteUnique_stored_boolean")))
                 wSqlCreate.s(" UNIQUE");
               wSqlCreate.l(";");
@@ -637,6 +666,8 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
 
     loadSql1().onSuccess(a -> {
       loadSql2().onSuccess(b -> {
+        wSqlCreate.l();
+        wSqlCreate.s(wSqlReferences);
         wSqlCreate.flushClose();
         wSqlDrop.flushClose();
         LOG.info("Write SQL completed. ");

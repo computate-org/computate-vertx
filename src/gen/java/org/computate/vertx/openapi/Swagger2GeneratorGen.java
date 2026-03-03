@@ -88,15 +88,21 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class Swagger2Generator in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.Swagger2Generator&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.openapi in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * Generated: true
  **/
@@ -202,9 +208,9 @@ public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
 
   public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
     return staticSearchSwagger2Generator(entityVar,  siteRequest_, o);
@@ -261,51 +267,6 @@ public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
   public static final String CLASS_AUTH_RESOURCE = "";
 
 
-  @Override
-  public String idForClass() {
-    return null;
-  }
-
-  @Override
-  public String titleForClass() {
-    return null;
-  }
-
-  @Override
-  public String nameForClass() {
-    return null;
-  }
-
-  @Override
-  public String classNameAdjectiveSingularForClass() {
-    return null;
-  }
-
-  @Override
-  public String descriptionForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlEditPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
-  }
-
   public static String displayNameForClass(String var) {
     return Swagger2Generator.displayNameSwagger2Generator(var);
   }
@@ -313,71 +274,6 @@ public abstract class Swagger2GeneratorGen<DEV> extends FiwareGenerator {
     switch(var) {
     default:
       return FiwareGenerator.displayNameFiwareGenerator(var);
-    }
-  }
-
-  public static String descriptionSwagger2Generator(String var) {
-    if(var == null)
-      return null;
-    switch(var) {
-      default:
-        return FiwareGenerator.descriptionFiwareGenerator(var);
-    }
-  }
-
-  public static String classSimpleNameSwagger2Generator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.classSimpleNameFiwareGenerator(var);
-    }
-  }
-
-  public static Integer htmColumnSwagger2Generator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.htmColumnFiwareGenerator(var);
-    }
-  }
-
-  public static Integer htmRowSwagger2Generator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.htmRowFiwareGenerator(var);
-    }
-  }
-
-  public static Integer htmCellSwagger2Generator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.htmCellFiwareGenerator(var);
-    }
-  }
-
-  public static Integer lengthMinSwagger2Generator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.lengthMinFiwareGenerator(var);
-    }
-  }
-
-  public static Integer lengthMaxSwagger2Generator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.lengthMaxFiwareGenerator(var);
-    }
-  }
-
-  public static Integer maxSwagger2Generator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.maxFiwareGenerator(var);
-    }
-  }
-
-  public static Integer minSwagger2Generator(String var) {
-    switch(var) {
-      default:
-        return FiwareGenerator.minFiwareGenerator(var);
     }
   }
 }

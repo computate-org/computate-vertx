@@ -90,15 +90,21 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class ProjectGenerator in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.ProjectGenerator&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.openapi in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * Generated: true
  **/
@@ -639,9 +645,9 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
 
   public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
     return staticSearchProjectGenerator(entityVar,  siteRequest_, o);
@@ -721,13 +727,21 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
   public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.openapi.ProjectGenerator";
   public static final String CLASS_AUTH_RESOURCE = "";
   public static final String VAR_siteStaticPath = "siteStaticPath";
+  public static final String SET_siteStaticPath = "setSiteStaticPath";
   public static final String VAR_siteStaticJsDir = "siteStaticJsDir";
+  public static final String SET_siteStaticJsDir = "setSiteStaticJsDir";
   public static final String VAR_platformStaticPath = "platformStaticPath";
+  public static final String SET_platformStaticPath = "setPlatformStaticPath";
   public static final String VAR_platformStaticJsDir = "platformStaticJsDir";
+  public static final String SET_platformStaticJsDir = "setPlatformStaticJsDir";
   public static final String VAR_siteResourcesPath = "siteResourcesPath";
+  public static final String SET_siteResourcesPath = "setSiteResourcesPath";
   public static final String VAR_siteTemplatesDir = "siteTemplatesDir";
+  public static final String SET_siteTemplatesDir = "setSiteTemplatesDir";
   public static final String VAR_platformResourcesPath = "platformResourcesPath";
+  public static final String SET_platformResourcesPath = "setPlatformResourcesPath";
   public static final String VAR_platformTemplatesDir = "platformTemplatesDir";
+  public static final String SET_platformTemplatesDir = "setPlatformTemplatesDir";
 
   public static final String DISPLAY_NAME_siteStaticPath = "";
   public static final String DISPLAY_NAME_siteStaticJsDir = "";
@@ -737,51 +751,6 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
   public static final String DISPLAY_NAME_siteTemplatesDir = "";
   public static final String DISPLAY_NAME_platformResourcesPath = "";
   public static final String DISPLAY_NAME_platformTemplatesDir = "";
-
-  @Override
-  public String idForClass() {
-    return null;
-  }
-
-  @Override
-  public String titleForClass() {
-    return null;
-  }
-
-  @Override
-  public String nameForClass() {
-    return null;
-  }
-
-  @Override
-  public String classNameAdjectiveSingularForClass() {
-    return null;
-  }
-
-  @Override
-  public String descriptionForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlEditPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
-  }
 
   public static String displayNameForClass(String var) {
     return ProjectGenerator.displayNameProjectGenerator(var);
@@ -806,87 +775,6 @@ public abstract class ProjectGeneratorGen<DEV> extends BaseGenerator {
       return DISPLAY_NAME_platformTemplatesDir;
     default:
       return BaseGenerator.displayNameBaseGenerator(var);
-    }
-  }
-
-  public static String descriptionProjectGenerator(String var) {
-    if(var == null)
-      return null;
-    switch(var) {
-      default:
-        return BaseGenerator.descriptionBaseGenerator(var);
-    }
-  }
-
-  public static String classSimpleNameProjectGenerator(String var) {
-    switch(var) {
-    case VAR_siteStaticPath:
-      return "String";
-    case VAR_siteStaticJsDir:
-      return "File";
-    case VAR_platformStaticPath:
-      return "String";
-    case VAR_platformStaticJsDir:
-      return "File";
-    case VAR_siteResourcesPath:
-      return "String";
-    case VAR_siteTemplatesDir:
-      return "File";
-    case VAR_platformResourcesPath:
-      return "String";
-    case VAR_platformTemplatesDir:
-      return "File";
-      default:
-        return BaseGenerator.classSimpleNameBaseGenerator(var);
-    }
-  }
-
-  public static Integer htmColumnProjectGenerator(String var) {
-    switch(var) {
-      default:
-        return BaseGenerator.htmColumnBaseGenerator(var);
-    }
-  }
-
-  public static Integer htmRowProjectGenerator(String var) {
-    switch(var) {
-      default:
-        return BaseGenerator.htmRowBaseGenerator(var);
-    }
-  }
-
-  public static Integer htmCellProjectGenerator(String var) {
-    switch(var) {
-      default:
-        return BaseGenerator.htmCellBaseGenerator(var);
-    }
-  }
-
-  public static Integer lengthMinProjectGenerator(String var) {
-    switch(var) {
-      default:
-        return BaseGenerator.lengthMinBaseGenerator(var);
-    }
-  }
-
-  public static Integer lengthMaxProjectGenerator(String var) {
-    switch(var) {
-      default:
-        return BaseGenerator.lengthMaxBaseGenerator(var);
-    }
-  }
-
-  public static Integer maxProjectGenerator(String var) {
-    switch(var) {
-      default:
-        return BaseGenerator.maxBaseGenerator(var);
-    }
-  }
-
-  public static Integer minProjectGenerator(String var) {
-    switch(var) {
-      default:
-        return BaseGenerator.minBaseGenerator(var);
     }
   }
 }

@@ -93,15 +93,21 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class FiwareGenerator in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.openapi.FiwareGenerator&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.openapi in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.openapi&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * Generated: true
  **/
@@ -674,9 +680,9 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
 
   public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
     return staticSearchFiwareGenerator(entityVar,  siteRequest_, o);
@@ -748,14 +754,23 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
   public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.openapi.FiwareGenerator";
   public static final String CLASS_AUTH_RESOURCE = "";
   public static final String VAR_fiwareSwaggerYamlPath = "fiwareSwaggerYamlPath";
+  public static final String SET_fiwareSwaggerYamlPath = "setFiwareSwaggerYamlPath";
   public static final String VAR_fiwareSwaggerYamlFile = "fiwareSwaggerYamlFile";
+  public static final String SET_fiwareSwaggerYamlFile = "setFiwareSwaggerYamlFile";
   public static final String VAR_wFiwareSwagger = "wFiwareSwagger";
+  public static final String SET_wFiwareSwagger = "setWFiwareSwagger";
   public static final String VAR_wFiwareExamples = "wFiwareExamples";
+  public static final String SET_wFiwareExamples = "setWFiwareExamples";
   public static final String VAR_wFiwareExamplesNormalized = "wFiwareExamplesNormalized";
+  public static final String SET_wFiwareExamplesNormalized = "setWFiwareExamplesNormalized";
   public static final String VAR_fiwareContext = "fiwareContext";
+  public static final String SET_fiwareContext = "setFiwareContext";
   public static final String VAR_fiwareContextJsonldPath = "fiwareContextJsonldPath";
+  public static final String SET_fiwareContextJsonldPath = "setFiwareContextJsonldPath";
   public static final String VAR_fiwareContextJsonldFile = "fiwareContextJsonldFile";
+  public static final String SET_fiwareContextJsonldFile = "setFiwareContextJsonldFile";
   public static final String VAR_wFiwareContext = "wFiwareContext";
+  public static final String SET_wFiwareContext = "setWFiwareContext";
 
   public static final String DISPLAY_NAME_fiwareSwaggerYamlPath = "";
   public static final String DISPLAY_NAME_fiwareSwaggerYamlFile = "";
@@ -766,51 +781,6 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
   public static final String DISPLAY_NAME_fiwareContextJsonldPath = "";
   public static final String DISPLAY_NAME_fiwareContextJsonldFile = "";
   public static final String DISPLAY_NAME_wFiwareContext = "";
-
-  @Override
-  public String idForClass() {
-    return null;
-  }
-
-  @Override
-  public String titleForClass() {
-    return null;
-  }
-
-  @Override
-  public String nameForClass() {
-    return null;
-  }
-
-  @Override
-  public String classNameAdjectiveSingularForClass() {
-    return null;
-  }
-
-  @Override
-  public String descriptionForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlEditPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  @Override
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
-  }
 
   public static String displayNameForClass(String var) {
     return FiwareGenerator.displayNameFiwareGenerator(var);
@@ -837,89 +807,6 @@ public abstract class FiwareGeneratorGen<DEV> extends ProjectGenerator {
       return DISPLAY_NAME_wFiwareContext;
     default:
       return ProjectGenerator.displayNameProjectGenerator(var);
-    }
-  }
-
-  public static String descriptionFiwareGenerator(String var) {
-    if(var == null)
-      return null;
-    switch(var) {
-      default:
-        return ProjectGenerator.descriptionProjectGenerator(var);
-    }
-  }
-
-  public static String classSimpleNameFiwareGenerator(String var) {
-    switch(var) {
-    case VAR_fiwareSwaggerYamlPath:
-      return "String";
-    case VAR_fiwareSwaggerYamlFile:
-      return "File";
-    case VAR_wFiwareSwagger:
-      return "AllWriter";
-    case VAR_wFiwareExamples:
-      return "AllWriter";
-    case VAR_wFiwareExamplesNormalized:
-      return "AllWriter";
-    case VAR_fiwareContext:
-      return "JsonObject";
-    case VAR_fiwareContextJsonldPath:
-      return "String";
-    case VAR_fiwareContextJsonldFile:
-      return "File";
-    case VAR_wFiwareContext:
-      return "AllWriter";
-      default:
-        return ProjectGenerator.classSimpleNameProjectGenerator(var);
-    }
-  }
-
-  public static Integer htmColumnFiwareGenerator(String var) {
-    switch(var) {
-      default:
-        return ProjectGenerator.htmColumnProjectGenerator(var);
-    }
-  }
-
-  public static Integer htmRowFiwareGenerator(String var) {
-    switch(var) {
-      default:
-        return ProjectGenerator.htmRowProjectGenerator(var);
-    }
-  }
-
-  public static Integer htmCellFiwareGenerator(String var) {
-    switch(var) {
-      default:
-        return ProjectGenerator.htmCellProjectGenerator(var);
-    }
-  }
-
-  public static Integer lengthMinFiwareGenerator(String var) {
-    switch(var) {
-      default:
-        return ProjectGenerator.lengthMinProjectGenerator(var);
-    }
-  }
-
-  public static Integer lengthMaxFiwareGenerator(String var) {
-    switch(var) {
-      default:
-        return ProjectGenerator.lengthMaxProjectGenerator(var);
-    }
-  }
-
-  public static Integer maxFiwareGenerator(String var) {
-    switch(var) {
-      default:
-        return ProjectGenerator.maxProjectGenerator(var);
-    }
-  }
-
-  public static Integer minFiwareGenerator(String var) {
-    switch(var) {
-      default:
-        return ProjectGenerator.minProjectGenerator(var);
     }
   }
 }
