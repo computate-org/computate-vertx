@@ -65,12 +65,18 @@ public class JsonObjectDeserializer extends JsonDeserializer<JsonObject> {
 				if(b.charAt(b.length() - 1) != '{')
 					b.append(",");
 				b.append("\"").append(StringEscapeUtils.escapeJson(jsonParser.getText())).append("\":");
+			} else if(token.equals(JsonToken.VALUE_STRING)) {
+				if(isArrays.peek()) {
+					if(b.charAt(b.length() - 1) != '[')
+						b.append(",");
+				}
+				b.append("\"").append(StringEscapeUtils.escapeJson(jsonParser.getValueAsString())).append("\"");
 			} else if(token.isBoolean() || token.isNumeric() || token.isStructEnd() || token.isStructStart()) {
 				if(isArrays.peek()) {
 					if(b.charAt(b.length() - 1) != '[')
 						b.append(",");
 				}
-				b.append(jsonParser.getText());
+				b.append(jsonParser.getValueAsString());
 			} else {
 				if(isArrays.peek())
 					b.append(",");
@@ -79,6 +85,7 @@ public class JsonObjectDeserializer extends JsonDeserializer<JsonObject> {
 			token = jsonParser.nextToken();
 		}
 		text = b.toString();
+		System.out.println(text);
 		return new JsonObject(text);
 	}
 }
