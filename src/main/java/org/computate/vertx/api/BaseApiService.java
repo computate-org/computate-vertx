@@ -252,8 +252,10 @@ abstract class BaseApiService implements BaseApiServiceInterface {
   }
 
   public ServiceRequest generateServiceRequest(RoutingContext ctx) {
+    JsonObject cookieObj = new JsonObject();
+    ctx.request().cookies().stream().forEach(cookie -> cookieObj.put(cookie.getName(), cookie.getValue()));
     ServiceRequest serviceRequest = new ServiceRequest(
-        new JsonObject().put("path", JsonObject.mapFrom(ctx.pathParams())).put("query", JsonObject.mapFrom(ctx.queryParams())).put("cookie", JsonObject.mapFrom(ctx.request().cookies()))
+        new JsonObject().put("path", (ctx.pathParams().size() == 0 ? new JsonObject() : JsonObject.mapFrom(ctx.pathParams()))).put("query", JsonObject.mapFrom(ctx.queryParams())).put("cookie", cookieObj)
             , ctx.request().headers()
             , Optional.ofNullable(ctx.user()).map(u -> u.principal()).orElse(null)
             , new JsonObject()
@@ -321,8 +323,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
             promise.complete(User.create(userPrincipal));
         } else {
           User token = User.create(userPrincipal);
-          oauth2AuthenticationProvider.authenticate(new TokenCredentials(token.principal())).onSuccess(user -> {
-            promise.complete(user);
+          oauth2AuthenticationProvider.userInfo(token).onSuccess(userInfo -> {
+            token.attributes().put("accessToken", userInfo);
+            promise.complete(token);
           }).onFailure(ex -> {
             if(refresh) {
               if(!"GET".equals(Optional.ofNullable(serviceRequest.getExtra()).map(s -> s.getString("method")).orElse(null))) {
