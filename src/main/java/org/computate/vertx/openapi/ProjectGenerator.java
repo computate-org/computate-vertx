@@ -38,174 +38,175 @@ import io.vertx.core.impl.VertxInternal;
  */
 public class ProjectGenerator extends ProjectGeneratorGen<BaseGenerator> {
 
-	protected void _siteStaticPath(Wrap<String> c) {
-		c.o(appPath + "-static");
-	}
+  protected void _siteStaticPath(Wrap<String> c) {
+    c.o(appPath + "-static");
+  }
 
-	protected void _siteStaticJsDir(Wrap<File> c) {
-		c.o(new File(siteStaticPath, "js").getAbsoluteFile());
-	}
+  protected void _siteStaticJsDir(Wrap<File> c) {
+    c.o(new File(siteStaticPath, "js").getAbsoluteFile());
+  }
 
-	protected void _platformStaticPath(Wrap<String> c) {
-		if(platformPomArtifactId != null)
-			c.o(appPath + "/../" + platformPomArtifactId + "-static");
-	}
+  protected void _platformStaticPath(Wrap<String> c) {
+    if(platformPomArtifactId != null)
+      c.o(appPath + "/../" + platformPomArtifactId + "-static");
+  }
 
-	protected void _platformStaticJsDir(Wrap<File> c) {
-		if(platformPomArtifactId != null)
-			c.o(new File(platformStaticPath, "js").getAbsoluteFile());
-	}
+  protected void _platformStaticJsDir(Wrap<File> c) {
+    if(platformPomArtifactId != null)
+      c.o(new File(platformStaticPath, "js").getAbsoluteFile());
+  }
 
-	protected void _siteResourcesPath(Wrap<String> c) {
-		c.o(appPath + "/src/main/resources");
-	}
+  protected void _siteResourcesPath(Wrap<String> c) {
+    c.o(appPath + "/src/main/resources");
+  }
 
-	protected void _siteTemplatesDir(Wrap<File> c) {
-		c.o(new File(siteResourcesPath, "templates").getAbsoluteFile());
-	}
+  protected void _siteTemplatesDir(Wrap<File> c) {
+    c.o(new File(siteResourcesPath, "templates").getAbsoluteFile());
+  }
 
-	protected void _platformResourcesPath(Wrap<String> c) {
-		if(platformPomArtifactId != null)
-			c.o(appPath + "/../" + platformPomArtifactId + "/src/main/resources");
-	}
+  protected void _platformResourcesPath(Wrap<String> c) {
+    if(platformPomArtifactId != null)
+      c.o(appPath + "/../" + platformPomArtifactId + "/src/main/resources");
+  }
 
-	protected void _platformTemplatesDir(Wrap<File> c) {
-		if(platformPomArtifactId != null)
-			c.o(new File(platformResourcesPath, "templates").getAbsoluteFile());
-	}
+  protected void _platformTemplatesDir(Wrap<File> c) {
+    if(platformPomArtifactId != null)
+      c.o(new File(platformResourcesPath, "templates").getAbsoluteFile());
+  }
 
-	/**
-	 * Val.Success.enUS: Copy platform static files succeeded. 
-	 * Val.Fail.enUS: Copy platform static files failed. 
-	 **/
-	public Future<Void> writeProject() {
-		Promise<Void> promise = Promise.promise();
+  /**
+   * Val.Success.enUS: Copy platform static files succeeded. 
+   * Val.Fail.enUS: Copy platform static files failed. 
+   **/
+  public Future<Void> writeProject() {
+    Promise<Void> promise = Promise.promise();
 
-		copyPlatformStaticFiles().onSuccess(a -> {
-			copyPlatformResourceFiles().onSuccess(b -> {
-				LOG.info(writeProjectSuccess);
-				promise.complete();
-			}).onFailure(ex -> {
-				LOG.error(writeProjectFail, ex);
-				promise.fail(ex);
-			});
-		}).onFailure(ex -> {
-			LOG.error(writeProjectFail, ex);
-			promise.fail(ex);
-		});
+    copyPlatformStaticFiles().onSuccess(a -> {
+      copyPlatformResourceFiles().onSuccess(b -> {
+        LOG.info(writeProjectSuccess);
+        promise.complete();
+      }).onFailure(ex -> {
+        LOG.error(writeProjectFail, ex);
+        promise.fail(ex);
+      });
+    }).onFailure(ex -> {
+      LOG.error(writeProjectFail, ex);
+      promise.fail(ex);
+    });
 
-		return promise.future();
-	}
+    return promise.future();
+  }
 
-	/**
-	 * Val.Success.enUS: Copy platform static files from %s to %s succeeded. 
-	 * Val.Fail.enUS: Copy platform static files from %s to %s failed. 
-	 **/
-	public Future<Void> copyPlatformStaticFiles() {
-		Promise<Void> promise = Promise.promise();
+  /**
+   * Val.Success.enUS: Copy platform static files from %s to %s succeeded. 
+   * Val.Fail.enUS: Copy platform static files from %s to %s failed. 
+   **/
+  public Future<Void> copyPlatformStaticFiles() {
+    Promise<Void> promise = Promise.promise();
 
-		try {
-			if(platformStaticJsDir == null || siteStaticJsDir == null) {
-				promise.complete();
-			} else {
-				vertx_.fileSystem().mkdirs(siteStaticJsDir.getAbsolutePath()).onComplete(a -> {
-					copyRecursive(vertx_, platformStaticJsDir.getAbsolutePath(), siteStaticJsDir.getAbsolutePath()).onComplete(b -> {
-						LOG.info(String.format(copyPlatformStaticFilesSuccess, platformStaticJsDir.getAbsolutePath(), siteStaticJsDir.getAbsolutePath()));
-						promise.complete();
-					}).onFailure(ex -> {
-						LOG.error(String.format(copyPlatformStaticFilesFail, platformStaticJsDir.getAbsolutePath(), siteStaticJsDir.getAbsolutePath()), ex);
-						promise.fail(ex);
-					});
-				}).onFailure(ex -> {
-					LOG.error(String.format(copyPlatformStaticFilesFail, platformStaticJsDir.getAbsolutePath(), siteStaticJsDir.getAbsolutePath()), ex);
-					promise.fail(ex);
-				});
-			}
-		} catch (Exception ex) {
-			LOG.error(String.format(copyPlatformStaticFilesFail, platformStaticJsDir.getAbsolutePath(), siteStaticJsDir.getAbsolutePath()), ex);
-			promise.fail(ex);
-		}
+    try {
+      if(platformStaticJsDir == null || siteStaticJsDir == null) {
+        promise.complete();
+      } else {
+        vertx_.fileSystem().mkdirs(siteStaticJsDir.getAbsolutePath()).onComplete(a -> {
+          copyRecursive(vertx_, platformStaticJsDir.getAbsolutePath(), siteStaticJsDir.getAbsolutePath()).onComplete(b -> {
+            LOG.info(String.format(copyPlatformStaticFilesSuccess, platformStaticJsDir.getAbsolutePath(), siteStaticJsDir.getAbsolutePath()));
+            promise.complete();
+          }).onFailure(ex -> {
+            LOG.error(String.format(copyPlatformStaticFilesFail, platformStaticJsDir.getAbsolutePath(), siteStaticJsDir.getAbsolutePath()), ex);
+            promise.fail(ex);
+          });
+        }).onFailure(ex -> {
+          LOG.error(String.format(copyPlatformStaticFilesFail, platformStaticJsDir.getAbsolutePath(), siteStaticJsDir.getAbsolutePath()), ex);
+          promise.fail(ex);
+        });
+      }
+    } catch (Exception ex) {
+      LOG.error(String.format(copyPlatformStaticFilesFail, platformStaticJsDir.getAbsolutePath(), siteStaticJsDir.getAbsolutePath()), ex);
+      promise.fail(ex);
+    }
 
-		return promise.future();
-	}
+    return promise.future();
+  }
 
-	/**
-	 * Val.Success.enUS: Copy platform resource files from %s to %s succeeded. 
-	 * Val.Fail.enUS: Copy platform resource files from %s to %s failed. 
-	 **/
-	public Future<Void> copyPlatformResourceFiles() {
-		Promise<Void> promise = Promise.promise();
+  /**
+   * Val.Success.enUS: Copy platform resource files from %s to %s succeeded. 
+   * Val.Fail.enUS: Copy platform resource files from %s to %s failed. 
+   **/
+  public Future<Void> copyPlatformResourceFiles() {
+    Promise<Void> promise = Promise.promise();
 
-		try {
-			if(platformTemplatesDir == null || siteTemplatesDir == null) {
-				promise.complete();
-			} else {
-				vertx_.fileSystem().mkdirs(siteTemplatesDir.getAbsolutePath()).onComplete(a -> {
-					copyRecursive(vertx_, platformTemplatesDir.getAbsolutePath(), siteTemplatesDir.getAbsolutePath()).onComplete(b -> {
-						LOG.error(String.format(copyPlatformResourceFilesSuccess, platformTemplatesDir.getAbsolutePath(), siteTemplatesDir.getAbsolutePath()));
-						promise.complete();
-					}).onFailure(ex -> {
-						LOG.error(String.format(copyPlatformResourceFilesFail, platformTemplatesDir.getAbsolutePath(), siteTemplatesDir.getAbsolutePath()), ex);
-						promise.fail(ex);
-					});
-				}).onFailure(ex -> {
-					LOG.error(String.format(copyPlatformResourceFilesFail, platformTemplatesDir.getAbsolutePath(), siteTemplatesDir.getAbsolutePath()), ex);
-					promise.fail(ex);
-				});
-			}
-		} catch (Exception ex) {
-			LOG.error(String.format(copyPlatformResourceFilesFail, platformTemplatesDir.getAbsolutePath(), siteTemplatesDir.getAbsolutePath()), ex);
-			promise.fail(ex);
-		}
+    try {
+      if(platformTemplatesDir == null || siteTemplatesDir == null) {
+        promise.complete();
+      } else {
+        vertx_.fileSystem().mkdirs(siteTemplatesDir.getAbsolutePath()).onComplete(a -> {
+          copyRecursive(vertx_, platformTemplatesDir.getAbsolutePath(), siteTemplatesDir.getAbsolutePath()).onComplete(b -> {
+            LOG.error(String.format(copyPlatformResourceFilesSuccess, platformTemplatesDir.getAbsolutePath(), siteTemplatesDir.getAbsolutePath()));
+            promise.complete();
+          }).onFailure(ex -> {
+            LOG.error(String.format(copyPlatformResourceFilesFail, platformTemplatesDir.getAbsolutePath(), siteTemplatesDir.getAbsolutePath()), ex);
+            promise.fail(ex);
+          });
+        }).onFailure(ex -> {
+          LOG.error(String.format(copyPlatformResourceFilesFail, platformTemplatesDir.getAbsolutePath(), siteTemplatesDir.getAbsolutePath()), ex);
+          promise.fail(ex);
+        });
+      }
+    } catch (Exception ex) {
+      LOG.error(String.format(copyPlatformResourceFilesFail, platformTemplatesDir.getAbsolutePath(), siteTemplatesDir.getAbsolutePath()), ex);
+      promise.fail(ex);
+    }
 
-		return promise.future();
-	}
+    return promise.future();
+  }
 
-	/**
-	 * Val.Success.enUS: Copy files recursively succeeded. 
-	 * Val.Fail.enUS: Copy files recursively failed. 
-	 **/
-	private Future<Void> copyRecursive(Vertx vertx, String from, String to) {
-		Promise<Void> promise = Promise.promise();
-		try {
-			Objects.requireNonNull(from);
-			Objects.requireNonNull(to);
-			vertx.executeBlocking(a -> {
-				try {
-					Path source = ((VertxInternal)vertx).resolveFile(from).toPath();
-					Path target = ((VertxInternal)vertx).resolveFile(to).toPath();
-					Files.walkFileTree(source, EnumSet.of(FileVisitOption.FOLLOW_LINKS), Integer.MAX_VALUE,
-							new SimpleFileVisitor<Path>() {
-								public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
-										throws IOException {
-									Path targetDir = target.resolve(source.relativize(dir));
-									try {
-										Files.copy(dir, targetDir);
-									} catch (FileAlreadyExistsException e) {
-										if (!Files.isDirectory(targetDir)) {
-											throw e;
-										}
-									}
-									return FileVisitResult.CONTINUE;
-								}
-	
-								@Override
-								public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
-										throws IOException {
-									Files.copy(file, target.resolve(source.relativize(file)), StandardCopyOption.REPLACE_EXISTING);
-									return FileVisitResult.CONTINUE;
-								}
-							});
-					promise.complete();
-				} catch (Exception ex) {
-					LOG.error(copyRecursiveFail, ex);
-					promise.fail(ex);
-				}
-			});
-		} catch (Exception ex) {
-			LOG.error(copyRecursiveFail, ex);
-			promise.fail(ex);
-		}
-		return promise.future();
-	}
+  /**
+   * Val.Success.enUS: Copy files recursively succeeded. 
+   * Val.Fail.enUS: Copy files recursively failed. 
+   **/
+  private Future<Void> copyRecursive(Vertx vertx, String from, String to) {
+    Promise<Void> promise = Promise.promise();
+    try {
+      Objects.requireNonNull(from);
+      Objects.requireNonNull(to);
+      vertx.executeBlocking(() -> {
+        try {
+          Path source = ((VertxInternal)vertx).fileResolver().resolveFile(from).toPath();
+          Path target = ((VertxInternal)vertx).fileResolver().resolveFile(to).toPath();
+          return Files.walkFileTree(source, EnumSet.of(FileVisitOption.FOLLOW_LINKS), Integer.MAX_VALUE,
+              new SimpleFileVisitor<Path>() {
+                public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
+                    throws IOException {
+                  Path targetDir = target.resolve(source.relativize(dir));
+                  try {
+                    Files.copy(dir, targetDir);
+                  } catch (FileAlreadyExistsException e) {
+                    if (!Files.isDirectory(targetDir)) {
+                      throw e;
+                    }
+                  }
+                  return FileVisitResult.CONTINUE;
+                }
+  
+                @Override
+                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+                    throws IOException {
+                  Files.copy(file, target.resolve(source.relativize(file)), StandardCopyOption.REPLACE_EXISTING);
+                  return FileVisitResult.CONTINUE;
+                }
+              });
+        } catch (Exception ex) {
+          LOG.error(copyRecursiveFail, ex);
+          return null;
+        }
+      }).onComplete(a -> {
+        promise.complete();
+      });
+    } catch (Exception ex) {
+      LOG.error(copyRecursiveFail, ex);
+      promise.fail(ex);
+    }
+    return promise.future();
+  }
 }

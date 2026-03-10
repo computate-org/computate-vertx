@@ -73,6 +73,7 @@ import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.json.impl.JsonUtil;
 import io.vertx.ext.auth.User;
+import io.vertx.ext.auth.authentication.TokenCredentials;
 import io.vertx.ext.auth.authorization.AuthorizationProvider;
 import io.vertx.ext.auth.oauth2.OAuth2Auth;
 import io.vertx.ext.web.Router;
@@ -80,13 +81,12 @@ import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.api.service.ServiceRequest;
 import io.vertx.ext.web.api.service.ServiceResponse;
 import io.vertx.ext.web.client.WebClient;
-import io.vertx.ext.web.client.predicate.ResponsePredicate;
+import io.vertx.ext.web.handler.impl.OAuth2AuthHandlerImpl;
 import io.vertx.kafka.client.producer.KafkaProducer;
 import io.vertx.mqtt.MqttClient;
 import io.vertx.amqp.AmqpClient;
 import io.vertx.amqp.AmqpSender;
 import io.vertx.rabbitmq.RabbitMQClient;
-import io.vertx.pgclient.PgPool;
 import io.vertx.sqlclient.Pool;
 import io.vertx.sqlclient.Row;
 import io.vertx.sqlclient.Tuple;
@@ -253,7 +253,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
 
   public ServiceRequest generateServiceRequest(RoutingContext ctx) {
     ServiceRequest serviceRequest = new ServiceRequest(
-        new JsonObject().put("path", JsonObject.mapFrom(ctx.pathParams())).put("query", JsonObject.mapFrom(ctx.queryParams())).put("cookie", JsonObject.mapFrom(ctx.cookieMap()))
+        new JsonObject().put("path", JsonObject.mapFrom(ctx.pathParams())).put("query", JsonObject.mapFrom(ctx.queryParams())).put("cookie", JsonObject.mapFrom(ctx.request().cookies()))
             , ctx.request().headers()
             , Optional.ofNullable(ctx.user()).map(u -> u.principal()).orElse(null)
             , new JsonObject()
@@ -321,7 +321,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
             promise.complete(User.create(userPrincipal));
         } else {
           User token = User.create(userPrincipal);
-          oauth2AuthenticationProvider.authenticate(token.principal()).onSuccess(user -> {
+          oauth2AuthenticationProvider.authenticate(new TokenCredentials(token.principal())).onSuccess(user -> {
             promise.complete(user);
           }).onFailure(ex -> {
             if(refresh) {
@@ -2111,11 +2111,12 @@ abstract class BaseApiService implements BaseApiServiceInterface {
             )
             .ssl(Boolean.parseBoolean(config.getString(ComputateConfigKeys.AUTH_SSL)))
             .putHeader("Authorization", String.format("Bearer %s", siteRequest.getUser().principal().getString("access_token")))
-            .expect(ResponsePredicate.status(200))
             .sendForm(multiMap).onFailure(ex -> {
-          String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
-          handler.fail(403, new RuntimeException("search failed"));
-        }).onSuccess(authorizationDecision -> {
+              String msg = String.format("403 FORBIDDEN user %s to %s %s", siteRequest.getUser().attributes().getJsonObject("accessToken").getString("preferred_username"), serviceRequest.getExtra().getString("method"), serviceRequest.getExtra().getString("uri"));
+              handler.fail(403, new RuntimeException("search failed"));
+            })
+            .expecting(HttpResponseExpectation.SC_OK)
+            .onSuccess(authorizationDecision -> {
           try {
             JsonArray scopes = authorizationDecision.bodyAsJsonArray().stream().findFirst().map(decision -> ((JsonObject)decision).getJsonArray("scopes")).orElse(new JsonArray());
             List<String> rsnames = authorizationDecision.bodyAsJsonArray().stream().map(decision -> ((JsonObject)decision).getString("rsname")).collect(Collectors.toList());

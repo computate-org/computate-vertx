@@ -23,12 +23,12 @@ public class VertxTool {
   /**
    * Description: Import futures in batches
    */
-  public static Future<Void> importFutures(List<Future> futures, Long i, Long rows) {
+  public static Future<Void> importFutures(List<Future<?>> futures, Long i, Long rows) {
     Promise<Void> promise = Promise.promise();
     try {
       if(i < futures.size()) {
-        List<Future> subList = futures.stream().skip(i).limit(rows).collect(Collectors.toList());
-        CompositeFuture.all(subList).onSuccess(b -> {
+        List<Future<?>> subList = futures.stream().skip(i).limit(rows).collect(Collectors.toList());
+        Future.all(subList).onSuccess(b -> {
           importFutures(futures, i + rows, rows).onSuccess(recordMetadata -> {
             promise.complete();
           }).onFailure(ex -> {

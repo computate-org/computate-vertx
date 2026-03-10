@@ -290,7 +290,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
         ArrayList<String> classUris = new ArrayList<>();
         JsonArray toutesLangues = Optional.ofNullable(new JsonArray(config.getString(ComputateConfigKeys.OTHER_LANGUAGES))).map(l -> l.copy()).orElse(new JsonArray());
         toutesLangues.add(languageName);
-        List<Future> futures = new ArrayList<>();
+        List<Future<?>> futures = new ArrayList<>();
         toutesLangues.stream().map(o -> (String)o).forEach(classLanguage -> {
           futures.add(Future.future(promise1 -> {
             loadLanguageClass(classLanguage, classDoc, doc, apiWriters, classUris).onSuccess(a -> {
@@ -301,7 +301,7 @@ public class BaseGenerator extends BaseGeneratorGen<Object> {
             });
           }));
         });
-        CompositeFuture.all(futures).onSuccess(b -> {
+        Future.all(futures).onSuccess(b -> {
           try {
             Collections.sort(apiWriters);
             loadEntities(classDoc, apiWriters).onSuccess(a -> {
