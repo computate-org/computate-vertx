@@ -13,22 +13,6 @@
  */
 package org.computate.vertx.api;
 
-import org.computate.vertx.openapi.ComputateOAuth2AuthHandlerImpl;
-
-import com.hubspot.jinjava.Jinjava;
-
-import io.vertx.core.WorkerExecutor;
-import io.vertx.core.json.JsonObject;
-import io.vertx.ext.auth.authorization.AuthorizationProvider;
-import io.vertx.ext.auth.oauth2.OAuth2Auth;
-import io.vertx.ext.web.client.WebClient;
-import io.vertx.kafka.client.producer.KafkaProducer;
-import io.vertx.mqtt.MqttClient;
-import io.vertx.amqp.AmqpSender;
-import io.vertx.rabbitmq.RabbitMQClient;
-import io.vertx.pgclient.PgPool;
-import io.vertx.core.Vertx;
-
 public abstract class BaseApiServiceImpl extends BaseApiServiceModel {
 
 	public BaseApiServiceImpl() {

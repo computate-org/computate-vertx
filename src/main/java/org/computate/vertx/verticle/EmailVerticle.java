@@ -130,14 +130,12 @@ public class EmailVerticle extends EmailVerticleGen<AbstractVerticle> {
 					message.setTo(mailTo);
 					message.setSubject(mailSubject);
 					message.setHtml(html);
-					mailClient.sendMail(message, result -> {
-						if(result.succeeded()) {
-							LOG.info(result.result().toString());
-							event.reply(html);
-						} else {
-							LOG.error("sendMail failed. ", result.cause());
-							event.reply(null);
-						}
+					mailClient.sendMail(message).onSuccess(result -> {
+						LOG.info(result.toString());
+						event.reply(html);
+					}).onFailure(ex -> {
+						LOG.error("sendMail failed. ", ex);
+						event.reply(null);
 					});
 				} catch(Exception ex) {
 					LOG.error("Rendering email template failed. ", ex);
