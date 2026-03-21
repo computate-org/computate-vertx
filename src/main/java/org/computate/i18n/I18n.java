@@ -138,6 +138,7 @@ public class I18n {
 	public static final String str_trier_par___decroissante = "str_trier_par___decroissante";
 	public static final String str_Trouver_la_classe_ = "str_Trouver_la_classe_";
 	public static final String str_Trouver_l_entité_ = "str_Trouver_l_entité_";
+	public static final String str_Une_erreur_inconnue_est_survenue = "str_Une_erreur_inconnue_est_survenue";
 	public static final String str_UneProblemeExecutionRegarderRepertoire = "str_UneProblemeExecutionRegarderRepertoire";
 	public static final String str_ValiderLaSignature = "str_ValiderLaSignature";
 	public static final String str_utilisateur = "str_utilisateur";
@@ -146,6 +147,8 @@ public class I18n {
 	public static final String str_Voir_le_site_dans_la_langue_2 = "str_Voir_le_site_dans_la_langue_2";
 	public static final String str_voir_ou_changer_votre_profile_d_utilisateur = "str_voir_ou_changer_votre_profile_d_utilisateur";
 	public static final String str_voir_valeurs = "str_voir_valeurs";
+	public static final String str_Vous_n_etes_pas_autorise = "str_Vous_n_etes_pas_autorise";
+	public static final String str_Vous_n_etes_plus_connecte = "str_Vous_n_etes_plus_connecte";
 	public static final String str_Vous_pouvez_remplacer_les_valeurs_par_defaut_ci_dessous = "str_Vous_pouvez_remplacer_les_valeurs_par_defaut_ci_dessous";
 	public static final String var_a = "var_a";
 	public static final String var_activer = "var_activer";
