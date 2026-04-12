@@ -468,6 +468,10 @@ public class ComputateConfigKeys {
 
   public static JsonObject getPageContext(JsonObject config) {
     JsonObject ctx = new JsonObject();
+    ctx.put(API_VERSION, config.getString(API_VERSION));
+    ctx.put(SITE_POM_VERSION, config.getString(SITE_POM_VERSION));
+    ctx.put(SITE_POM_GROUP_ID, config.getString(SITE_POM_GROUP_ID));
+    ctx.put(SITE_POM_ARTIFACT_ID, config.getString(SITE_POM_ARTIFACT_ID));
     ctx.put(STATIC_BASE_URL, config.getString(STATIC_BASE_URL));
     ctx.put(SITE_BASE_URL, config.getString(SITE_BASE_URL));
     ctx.put(GITHUB_ORG, config.getString(GITHUB_ORG));
@@ -843,6 +847,11 @@ public class ComputateConfigKeys {
    * 
    **/
   public static final String SITE_PUBLIC_URL = "SITE_PUBLIC_URL";
+
+  /**
+   * 
+   **/
+  public static final String SITE_POM_VERSION = "SITE_POM_VERSION";
 
   /**
    * 
