@@ -33,6 +33,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.curator.shaded.com.google.common.base.Strings;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
@@ -1419,13 +1420,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
               String resultKey = m.group(1);
               if(resultKey.startsWith(metaPrefixResult)) {
                 String key = StringUtils.substringAfter(resultKey, metaPrefixResult);
-                String val = m.group(2);
-                if(val instanceof String) {
-                  String rendered = jinjava.render(val, ctx);
-                  result.put(key, rendered);
-                } else {
-                  result.put(key, val);
-                }
+                String val = StringEscapeUtils.unescapeHtml4(m.group(2));
+                String rendered = jinjava.render(val, ctx).replaceAll("\\\\([\\{\\}%])\\\\([\\{\\}%])", "$1$2");
+                result.put(key, rendered);
               }
               trouve = m.find();
             }
@@ -1436,13 +1433,9 @@ abstract class BaseApiService implements BaseApiServiceInterface {
               String resultKey = m.group(1);
               if(resultKey.startsWith(metaPrefixResult)) {
                 String key = StringUtils.substringAfter(resultKey, metaPrefixResult);
-                String val = m.group(2);
-                if(val instanceof String) {
-                  String rendered = jinjava.render(val, ctx);
-                  result.put(key, rendered);
-                } else {
-                  result.put(key, val);
-                }
+                String val = StringEscapeUtils.unescapeHtml4(m.group(2));
+                String rendered = jinjava.render(val, ctx).replaceAll("\\\\([\\{\\}%])\\\\([\\{\\}%])", "$1$2");
+                result.put(key, rendered);
               }
               trouve = m.find();
             }

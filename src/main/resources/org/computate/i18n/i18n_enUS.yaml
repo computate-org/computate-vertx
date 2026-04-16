@@ -94,7 +94,7 @@ classe:
       copyCode: '{{ result.commentVar }}: {{ result.exampleValue }}'
       exampleCode: "{{ result.copyCode }}"
       descriptionCourt: |
-        Generate a Java REST API and OpenAPI spec for the given ApiMethods of the Java Class.
+        Generate a Java REST API and OpenAPI spec for the Java class. 
       commentaire: |
         <h2>
           {{ result.exampleCode }}
@@ -112,8 +112,8 @@ classe:
     ApiMethode:
       commentVar: "ApiMethod"
       javaType: class
-      javaClass: Boolean
-      sinceVersion: '3'
+      javaClass: YAML Object
+      sinceVersion: '4'
       supportStatus: 'stable'
       exampleValue: "{{ exampleValue | default('  Search:\n  GET:\n  PATCH:\n  POST:\n  DELETE:', true) }}"
       copyCode: |-
@@ -121,7 +121,7 @@ classe:
         {{ result.exampleValue }}
       exampleCode: "{{ result.copyCode }}"
       descriptionCourt: |
-        Generate a Java REST API and OpenAPI spec for the given ApiMethods of the Java Class.
+        Generate a Java REST API and OpenAPI spec for the given ApiMethods of the Java class.
       commentaire: |
         <h2>
           {{ result.exampleCode }}
