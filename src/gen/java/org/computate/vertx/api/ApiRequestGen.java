@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
@@ -66,7 +67,9 @@ import io.vertx.core.Future;
 /**
  * <ol>
 <h3>Suggestions that can generate more code for you: </h3> * </ol>
- * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these ApiRequest objects in a RESTful API. 
+ * <li><p>
+ *   You can add a class comment <kbd><b>Api: true</b></kbd> if you wish to GET, POST, PATCH or PUT these  objects in a RESTful API. 
+ * </p>
  * </li><li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ApiRequestGen into the class ApiRequest. 
  * </li>
  * <h3>About the ApiRequest class and it's generated class ApiRequestGen&lt;Object&gt;: </h3>extends ApiRequestGen
@@ -85,7 +88,9 @@ import io.vertx.core.Future;
  * The generated <code>class ApiRequestGen extends Object</code> which means that ApiRequest extends ApiRequestGen which extends Object. 
  * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
- * <h2>Api: true</h2>
+ * <h2>
+ *   Api: true
+ * </h2>
  * <h2>ApiTag.enUS: true</h2>
  * <h2>ApiUri.enUS: null</h2>
  * <h2>Color: null</h2>
@@ -93,7 +98,30 @@ import io.vertx.core.Future;
  * <h2>{@inheritDoc}</h2>
  * <p>By adding a class comment "{@inheritDoc}", the ApiRequest class will inherit the helpful inherited class comments from the super class ApiRequestGen. 
  * </p>
- * <h2>Rows: null</h2>
+ * <h2>
+ *   Rows: 10
+ * </h2>
+ * <p>This class contains a comment <kbd><b>Rows: 10</b></kbd>, which means the  API will return a default of 10 results instead of 10 by default. 
+ * Each API has built in pagination of the search results to ensure a user can query all the data a page at a time without running the application out of memory. 
+ * </p>
+ * <p>
+ *   You can add a class comment <kbd><b>Rows: 100</b></kbd> if you wish for the  API to return more or less than 10 results by default. 
+ *   In this case, the API will return 100 results from the API instead of 10 by default. 
+ *   Each API has built in pagination of the search results to ensure a user can query all the data a page at a time without running the application out of memory. 
+ * </p>
+ * <h2>
+ *   Order: 1
+ * </h2>
+ * <p>
+ *   This class contains a comment <kbd><b>Order: 1</b></kbd>, 
+ *   which means this class will be sorted by the given number 1 
+ *   ascending when code that relates to multiple classes at the same time is generated. 
+ * </p>
+ * <p>
+ *   You can add a class comment <kbd><b>Order: </b></kbd>, followed by an Integer to sort this class compared to other classes in the project. 
+ *   There is code that is generated that queries several classes and writes code for each class in a sequence. 
+ *   The <kbd><b>Order</b></kbd> comment allows you to define which order the class code is generated. 
+ * </p>
  * <h2>Model: true</h2>
  * <h2>Page: true</h2>
  * <h2>SuperPage.enUS: null</h2>
@@ -101,15 +129,21 @@ import io.vertx.core.Future;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class ApiRequest in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.api.ApiRequest&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.api in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.api&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.api&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * Generated: true
  **/
@@ -1006,7 +1040,8 @@ public abstract class ApiRequestGen<DEV> extends Object {
   //////////////
 
   public ApiRequest initDeepApiRequest(ComputateSiteRequest siteRequest_) {
-    setSiteRequest_(siteRequest_);
+    if(this.siteRequest_ == null)
+      setSiteRequest_(siteRequest_);
     initDeepApiRequest();
     return (ApiRequest)this;
   }
@@ -1158,9 +1193,9 @@ public abstract class ApiRequestGen<DEV> extends Object {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
 
   public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
     return staticSearchApiRequest(entityVar,  siteRequest_, o);
@@ -1285,19 +1320,33 @@ public abstract class ApiRequestGen<DEV> extends Object {
   public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.api.ApiRequest";
   public static final String CLASS_AUTH_RESOURCE = "";
   public static final String VAR_siteRequest_ = "siteRequest_";
+  public static final String SET_siteRequest_ = "setSiteRequest_";
   public static final String VAR_created = "created";
+  public static final String SET_created = "setCreated";
   public static final String VAR_rows = "rows";
+  public static final String SET_rows = "setRows";
   public static final String VAR_numFound = "numFound";
+  public static final String SET_numFound = "setNumFound";
   public static final String VAR_numPATCH = "numPATCH";
+  public static final String SET_numPATCH = "setNumPATCH";
   public static final String VAR_uuid = "uuid";
+  public static final String SET_uuid = "setUuid";
   public static final String VAR_id = "id";
+  public static final String SET_id = "setId";
   public static final String VAR_solrId = "solrId";
+  public static final String SET_solrId = "setSolrId";
   public static final String VAR_original = "original";
+  public static final String SET_original = "setOriginal";
   public static final String VAR_solrIds = "solrIds";
+  public static final String SET_solrIds = "setSolrIds";
   public static final String VAR_ids = "ids";
+  public static final String SET_ids = "setIds";
   public static final String VAR_classes = "classes";
+  public static final String SET_classes = "setClasses";
   public static final String VAR_vars = "vars";
+  public static final String SET_vars = "setVars";
   public static final String VAR_timeRemaining = "timeRemaining";
+  public static final String SET_timeRemaining = "setTimeRemaining";
 
   public static final String DISPLAY_NAME_siteRequest_ = "";
   public static final String DISPLAY_NAME_created = "";
@@ -1313,42 +1362,6 @@ public abstract class ApiRequestGen<DEV> extends Object {
   public static final String DISPLAY_NAME_classes = "";
   public static final String DISPLAY_NAME_vars = "";
   public static final String DISPLAY_NAME_timeRemaining = "";
-
-  public String idForClass() {
-    return null;
-  }
-
-  public String titleForClass() {
-    return null;
-  }
-
-  public String nameForClass() {
-    return null;
-  }
-
-  public String classNameAdjectiveSingularForClass() {
-    return null;
-  }
-
-  public String descriptionForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlEditPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
-  }
 
   public static String displayNameForClass(String var) {
     return ApiRequest.displayNameApiRequest(var);
@@ -1385,99 +1398,6 @@ public abstract class ApiRequestGen<DEV> extends Object {
       return DISPLAY_NAME_timeRemaining;
     default:
       return null;
-    }
-  }
-
-  public static String descriptionApiRequest(String var) {
-    if(var == null)
-      return null;
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static String classSimpleNameApiRequest(String var) {
-    switch(var) {
-    case VAR_siteRequest_:
-      return "ComputateSiteRequest";
-    case VAR_created:
-      return "ZonedDateTime";
-    case VAR_rows:
-      return "Long";
-    case VAR_numFound:
-      return "Long";
-    case VAR_numPATCH:
-      return "Long";
-    case VAR_uuid:
-      return "String";
-    case VAR_id:
-      return "String";
-    case VAR_solrId:
-      return "Long";
-    case VAR_original:
-      return "Object";
-    case VAR_solrIds:
-      return "List";
-    case VAR_ids:
-      return "List";
-    case VAR_classes:
-      return "List";
-    case VAR_vars:
-      return "List";
-    case VAR_timeRemaining:
-      return "String";
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmColumnApiRequest(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmRowApiRequest(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmCellApiRequest(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer lengthMinApiRequest(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer lengthMaxApiRequest(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer maxApiRequest(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer minApiRequest(String var) {
-    switch(var) {
-      default:
-        return null;
     }
   }
 }

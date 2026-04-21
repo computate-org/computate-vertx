@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
@@ -57,7 +58,9 @@ import io.vertx.core.json.JsonArray;
 /**
  * <ol>
 <h3>Suggestions that can generate more code for you: </h3> * </ol>
- * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these SearchResult objects in a RESTful API. 
+ * <li><p>
+ *   You can add a class comment <kbd><b>Api: true</b></kbd> if you wish to GET, POST, PATCH or PUT these  objects in a RESTful API. 
+ * </p>
  * </li><li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class SearchResultGen into the class SearchResult. 
  * </li>
  * <h3>About the SearchResult class and it's generated class SearchResultGen&lt;Object&gt;: </h3>extends SearchResultGen
@@ -76,7 +79,9 @@ import io.vertx.core.json.JsonArray;
  * The generated <code>class SearchResultGen extends Object</code> which means that SearchResult extends SearchResultGen which extends Object. 
  * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
- * <h2>Api: true</h2>
+ * <h2>
+ *   Api: true
+ * </h2>
  * <h2>ApiTag.enUS: true</h2>
  * <h2>ApiUri.enUS: null</h2>
  * <h2>Color: null</h2>
@@ -84,7 +89,30 @@ import io.vertx.core.json.JsonArray;
  * <h2>{@inheritDoc}</h2>
  * <p>By adding a class comment "{@inheritDoc}", the SearchResult class will inherit the helpful inherited class comments from the super class SearchResultGen. 
  * </p>
- * <h2>Rows: null</h2>
+ * <h2>
+ *   Rows: 10
+ * </h2>
+ * <p>This class contains a comment <kbd><b>Rows: 10</b></kbd>, which means the  API will return a default of 10 results instead of 10 by default. 
+ * Each API has built in pagination of the search results to ensure a user can query all the data a page at a time without running the application out of memory. 
+ * </p>
+ * <p>
+ *   You can add a class comment <kbd><b>Rows: 100</b></kbd> if you wish for the  API to return more or less than 10 results by default. 
+ *   In this case, the API will return 100 results from the API instead of 10 by default. 
+ *   Each API has built in pagination of the search results to ensure a user can query all the data a page at a time without running the application out of memory. 
+ * </p>
+ * <h2>
+ *   Order: 1
+ * </h2>
+ * <p>
+ *   This class contains a comment <kbd><b>Order: 1</b></kbd>, 
+ *   which means this class will be sorted by the given number 1 
+ *   ascending when code that relates to multiple classes at the same time is generated. 
+ * </p>
+ * <p>
+ *   You can add a class comment <kbd><b>Order: </b></kbd>, followed by an Integer to sort this class compared to other classes in the project. 
+ *   There is code that is generated that queries several classes and writes code for each class in a sequence. 
+ *   The <kbd><b>Order</b></kbd> comment allows you to define which order the class code is generated. 
+ * </p>
  * <h2>Model: true</h2>
  * <h2>Page: true</h2>
  * <h2>SuperPage.enUS: null</h2>
@@ -92,15 +120,21 @@ import io.vertx.core.json.JsonArray;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class SearchResult in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.search.list.SearchResult&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.search.list in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.search.list&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.search.list&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * Generated: true
  **/
@@ -280,7 +314,8 @@ public abstract class SearchResultGen<DEV> extends Object {
   //////////////
 
   public SearchResult initDeepSearchResult(ComputateSiteRequest siteRequest_) {
-    setSiteRequest_(siteRequest_);
+    if(this.siteRequest_ == null)
+      setSiteRequest_(siteRequest_);
     initDeepSearchResult();
     return (SearchResult)this;
   }
@@ -380,9 +415,9 @@ public abstract class SearchResultGen<DEV> extends Object {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
 
   public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
     return staticSearchSearchResult(entityVar,  siteRequest_, o);
@@ -447,48 +482,15 @@ public abstract class SearchResultGen<DEV> extends Object {
   public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.search.list.SearchResult";
   public static final String CLASS_AUTH_RESOURCE = "";
   public static final String VAR_siteRequest_ = "siteRequest_";
+  public static final String SET_siteRequest_ = "setSiteRequest_";
   public static final String VAR_solrDocument = "solrDocument";
+  public static final String SET_solrDocument = "setSolrDocument";
   public static final String VAR_resultIndex = "resultIndex";
+  public static final String SET_resultIndex = "setResultIndex";
 
   public static final String DISPLAY_NAME_siteRequest_ = "";
   public static final String DISPLAY_NAME_solrDocument = "";
   public static final String DISPLAY_NAME_resultIndex = "";
-
-  public String idForClass() {
-    return null;
-  }
-
-  public String titleForClass() {
-    return null;
-  }
-
-  public String nameForClass() {
-    return null;
-  }
-
-  public String classNameAdjectiveSingularForClass() {
-    return null;
-  }
-
-  public String descriptionForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlEditPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
-  }
 
   public static String displayNameForClass(String var) {
     return SearchResult.displayNameSearchResult(var);
@@ -503,77 +505,6 @@ public abstract class SearchResultGen<DEV> extends Object {
       return DISPLAY_NAME_resultIndex;
     default:
       return null;
-    }
-  }
-
-  public static String descriptionSearchResult(String var) {
-    if(var == null)
-      return null;
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static String classSimpleNameSearchResult(String var) {
-    switch(var) {
-    case VAR_siteRequest_:
-      return "ComputateSiteRequest";
-    case VAR_solrDocument:
-      return "JsonObject";
-    case VAR_resultIndex:
-      return "Long";
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmColumnSearchResult(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmRowSearchResult(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmCellSearchResult(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer lengthMinSearchResult(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer lengthMaxSearchResult(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer maxSearchResult(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer minSearchResult(String var) {
-    switch(var) {
-      default:
-        return null;
     }
   }
 }

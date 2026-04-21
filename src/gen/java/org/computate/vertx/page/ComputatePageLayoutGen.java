@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
@@ -61,7 +62,9 @@ import io.vertx.core.Future;
 /**
  * <ol>
 <h3>Suggestions that can generate more code for you: </h3> * </ol>
- * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these ComputatePageLayout objects in a RESTful API. 
+ * <li><p>
+ *   You can add a class comment <kbd><b>Api: true</b></kbd> if you wish to GET, POST, PATCH or PUT these  objects in a RESTful API. 
+ * </p>
  * </li><li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ComputatePageLayoutGen into the class ComputatePageLayout. 
  * </li>
  * <h3>About the ComputatePageLayout class and it's generated class ComputatePageLayoutGen&lt;Object&gt;: </h3>extends ComputatePageLayoutGen
@@ -80,7 +83,9 @@ import io.vertx.core.Future;
  * The generated <code>class ComputatePageLayoutGen extends Object</code> which means that ComputatePageLayout extends ComputatePageLayoutGen which extends Object. 
  * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
- * <h2>Api: true</h2>
+ * <h2>
+ *   Api: true
+ * </h2>
  * <h2>ApiTag.enUS: true</h2>
  * <h2>ApiUri.enUS: null</h2>
  * <h2>Color: null</h2>
@@ -88,13 +93,36 @@ import io.vertx.core.Future;
  * <h2>{@inheritDoc}</h2>
  * <p>By adding a class comment "{@inheritDoc}", the ComputatePageLayout class will inherit the helpful inherited class comments from the super class ComputatePageLayoutGen. 
  * </p>
- * <h2>Rows: null</h2>
+ * <h2>
+ *   Rows: 10
+ * </h2>
+ * <p>This class contains a comment <kbd><b>Rows: 10</b></kbd>, which means the  API will return a default of 10 results instead of 10 by default. 
+ * Each API has built in pagination of the search results to ensure a user can query all the data a page at a time without running the application out of memory. 
+ * </p>
+ * <p>
+ *   You can add a class comment <kbd><b>Rows: 100</b></kbd> if you wish for the  API to return more or less than 10 results by default. 
+ *   In this case, the API will return 100 results from the API instead of 10 by default. 
+ *   Each API has built in pagination of the search results to ensure a user can query all the data a page at a time without running the application out of memory. 
+ * </p>
+ * <h2>
+ *   Order: 1
+ * </h2>
+ * <p>
+ *   This class contains a comment <kbd><b>Order: 1</b></kbd>, 
+ *   which means this class will be sorted by the given number 1 
+ *   ascending when code that relates to multiple classes at the same time is generated. 
+ * </p>
+ * <p>
+ *   You can add a class comment <kbd><b>Order: </b></kbd>, followed by an Integer to sort this class compared to other classes in the project. 
+ *   There is code that is generated that queries several classes and writes code for each class in a sequence. 
+ *   The <kbd><b>Order</b></kbd> comment allows you to define which order the class code is generated. 
+ * </p>
  * <h2>Model: true</h2>
  * <h2>Page: true</h2>
  * <h2>SuperPage.enUS: null</h2>
  * <h2>Promise: true</h2>
  * <p>
- *   This class contains a comment <b>"Promise: true"</b>
+ *   This class contains a comment <kbd><b>Promise: true</b></kbd>
  *   Sometimes a Java class must be initialized asynchronously when it involves calling a blocking API. 
  *   This means that the ComputatePageLayout Java class has promiseDeep methods which must be initialized asynchronously as a Vert.x Promise  instead of initDeep methods which are a simple non-asynchronous method. 
  * </p>
@@ -118,15 +146,21 @@ import io.vertx.core.Future;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class ComputatePageLayout in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.page in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.page&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.page&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * Generated: true
  **/
@@ -3711,23 +3745,29 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
   public void setDEFAULT_MAP_ZOOM(String o) {
     this.DEFAULT_MAP_ZOOM = ComputatePageLayout.staticSetDEFAULT_MAP_ZOOM(siteRequest_, o);
   }
+  public static Integer staticScaleDEFAULT_MAP_ZOOM() {
+    return 2;
+  }
+  public static MathContext staticMathContextDEFAULT_MAP_ZOOM() {
+    return new MathContext(0, RoundingMode.valueOf("HALF_UP"));
+  }
   public static BigDecimal staticSetDEFAULT_MAP_ZOOM(ComputateSiteRequest siteRequest_, String o) {
-    o = StringUtils.removeAll(o, "[^\\d\\.]");
+    o = StringUtils.removeAll(o, "[^\\d\\.-]");
     if(NumberUtils.isParsable(o))
-      return new BigDecimal(o, MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP);
+      return new BigDecimal(o, staticMathContextDEFAULT_MAP_ZOOM()).setScale(staticScaleDEFAULT_MAP_ZOOM(), RoundingMode.valueOf("HALF_UP"));
     return null;
   }
   @JsonIgnore
   public void setDEFAULT_MAP_ZOOM(Double o) {
-    setDEFAULT_MAP_ZOOM(new BigDecimal(o, MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP));
+    setDEFAULT_MAP_ZOOM(new BigDecimal(o, staticMathContextDEFAULT_MAP_ZOOM()).setScale(staticScaleDEFAULT_MAP_ZOOM(), RoundingMode.valueOf("HALF_UP")));
   }
   @JsonIgnore
   public void setDEFAULT_MAP_ZOOM(Integer o) {
-    setDEFAULT_MAP_ZOOM(new BigDecimal(o, MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP));
+    setDEFAULT_MAP_ZOOM(new BigDecimal(o, staticMathContextDEFAULT_MAP_ZOOM()).setScale(staticScaleDEFAULT_MAP_ZOOM(), RoundingMode.valueOf("HALF_UP")));
   }
   @JsonIgnore
   public void setDEFAULT_MAP_ZOOM(Number o) {
-    setDEFAULT_MAP_ZOOM(new BigDecimal(o.doubleValue(), MathContext.DECIMAL64).setScale(2, RoundingMode.HALF_UP));
+    setDEFAULT_MAP_ZOOM(new BigDecimal(o.doubleValue(), staticMathContextDEFAULT_MAP_ZOOM()).setScale(staticScaleDEFAULT_MAP_ZOOM(), RoundingMode.valueOf("HALF_UP")));
   }
   protected ComputatePageLayout DEFAULT_MAP_ZOOMInit() {
     Wrap<BigDecimal> DEFAULT_MAP_ZOOMWrap = new Wrap<BigDecimal>().var("DEFAULT_MAP_ZOOM");
@@ -3740,11 +3780,11 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
     return (ComputatePageLayout)this;
   }
 
-  public static Double staticSearchDEFAULT_MAP_ZOOM(ComputateSiteRequest siteRequest_, BigDecimal o) {
-    return o == null ? null : o.doubleValue();
+  public static String staticSearchDEFAULT_MAP_ZOOM(ComputateSiteRequest siteRequest_, BigDecimal o) {
+    return o == null ? null : o.toString();
   }
 
-  public static String staticSearchStrDEFAULT_MAP_ZOOM(ComputateSiteRequest siteRequest_, Double o) {
+  public static String staticSearchStrDEFAULT_MAP_ZOOM(ComputateSiteRequest siteRequest_, String o) {
     return o == null ? null : o.toString();
   }
 
@@ -4304,7 +4344,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
   //////////////
 
   public Future<ComputatePageLayoutGen<DEV>> promiseDeepComputatePageLayout(ComputateSiteRequest siteRequest_) {
-    setSiteRequest_(siteRequest_);
+    if(this.siteRequest_ == null)
+      setSiteRequest_(siteRequest_);
     return promiseDeepComputatePageLayout();
   }
 
@@ -4775,9 +4816,9 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
 
   public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
     return staticSearchComputatePageLayout(entityVar,  siteRequest_, o);
@@ -5027,7 +5068,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
     case "DEFAULT_MAP_LOCATION":
       return ComputatePageLayout.staticSearchStrDEFAULT_MAP_LOCATION(siteRequest_, (String)o);
     case "DEFAULT_MAP_ZOOM":
-      return ComputatePageLayout.staticSearchStrDEFAULT_MAP_ZOOM(siteRequest_, (Double)o);
+      return ComputatePageLayout.staticSearchStrDEFAULT_MAP_ZOOM(siteRequest_, (String)o);
     case "queryStr":
       return ComputatePageLayout.staticSearchStrQueryStr(siteRequest_, (String)o);
     case "pageImageUri":
@@ -5202,76 +5243,147 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
   public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.page.ComputatePageLayout";
   public static final String CLASS_AUTH_RESOURCE = "";
   public static final String VAR_siteRequest_ = "siteRequest_";
+  public static final String SET_siteRequest_ = "setSiteRequest_";
   public static final String VAR_lang = "lang";
+  public static final String SET_lang = "setLang";
   public static final String VAR_requestVars = "requestVars";
+  public static final String SET_requestVars = "setRequestVars";
   public static final String VAR_config = "config";
+  public static final String SET_config = "setConfig";
   public static final String VAR_serviceRequest = "serviceRequest";
+  public static final String SET_serviceRequest = "setServiceRequest";
   public static final String VAR_staticBaseUrl = "staticBaseUrl";
+  public static final String SET_staticBaseUrl = "setStaticBaseUrl";
   public static final String VAR_siteBaseUrl = "siteBaseUrl";
+  public static final String SET_siteBaseUrl = "setSiteBaseUrl";
   public static final String VAR_siteAuthUrl = "siteAuthUrl";
+  public static final String SET_siteAuthUrl = "setSiteAuthUrl";
   public static final String VAR_siteAuthRealm = "siteAuthRealm";
+  public static final String SET_siteAuthRealm = "setSiteAuthRealm";
   public static final String VAR_fontAwesomeKit = "fontAwesomeKit";
+  public static final String SET_fontAwesomeKit = "setFontAwesomeKit";
   public static final String VAR_facebookGraphVersion = "facebookGraphVersion";
+  public static final String SET_facebookGraphVersion = "setFacebookGraphVersion";
   public static final String VAR_facebookAppId = "facebookAppId";
+  public static final String SET_facebookAppId = "setFacebookAppId";
   public static final String VAR_pageUri = "pageUri";
+  public static final String SET_pageUri = "setPageUri";
   public static final String VAR_pageId = "pageId";
+  public static final String SET_pageId = "setPageId";
   public static final String VAR_apiUri = "apiUri";
+  public static final String SET_apiUri = "setApiUri";
   public static final String VAR_pageMethod = "pageMethod";
+  public static final String SET_pageMethod = "setPageMethod";
   public static final String VAR_params = "params";
+  public static final String SET_params = "setParams";
   public static final String VAR_userKey = "userKey";
+  public static final String SET_userKey = "setUserKey";
   public static final String VAR_userFullName = "userFullName";
+  public static final String SET_userFullName = "setUserFullName";
   public static final String VAR_userName = "userName";
+  public static final String SET_userName = "setUserName";
   public static final String VAR_userEmail = "userEmail";
+  public static final String SET_userEmail = "setUserEmail";
   public static final String VAR_logoutUrl = "logoutUrl";
+  public static final String SET_logoutUrl = "setLogoutUrl";
   public static final String VAR_promiseBefore = "promiseBefore";
+  public static final String SET_promiseBefore = "setPromiseBefore";
   public static final String VAR_classSimpleName = "classSimpleName";
+  public static final String SET_classSimpleName = "setClassSimpleName";
   public static final String VAR_pageTitle = "pageTitle";
+  public static final String SET_pageTitle = "setPageTitle";
   public static final String VAR_scopes = "scopes";
+  public static final String SET_scopes = "setScopes";
   public static final String VAR_roleRequired = "roleRequired";
+  public static final String SET_roleRequired = "setRoleRequired";
   public static final String VAR_authRoleAdmin = "authRoleAdmin";
+  public static final String SET_authRoleAdmin = "setAuthRoleAdmin";
   public static final String VAR_authRoleSuperAdmin = "authRoleSuperAdmin";
+  public static final String SET_authRoleSuperAdmin = "setAuthRoleSuperAdmin";
   public static final String VAR_stats = "stats";
+  public static final String SET_stats = "setStats";
   public static final String VAR_facetCounts = "facetCounts";
+  public static final String SET_facetCounts = "setFacetCounts";
   public static final String VAR_pagination = "pagination";
+  public static final String SET_pagination = "setPagination";
   public static final String VAR_defaultSortVars = "defaultSortVars";
+  public static final String SET_defaultSortVars = "setDefaultSortVars";
   public static final String VAR_defaultFieldListVars = "defaultFieldListVars";
+  public static final String SET_defaultFieldListVars = "setDefaultFieldListVars";
   public static final String VAR_defaultStatsVars = "defaultStatsVars";
+  public static final String SET_defaultStatsVars = "setDefaultStatsVars";
   public static final String VAR_defaultPivotVars = "defaultPivotVars";
+  public static final String SET_defaultPivotVars = "setDefaultPivotVars";
   public static final String VAR_varsQ = "varsQ";
+  public static final String SET_varsQ = "setVarsQ";
   public static final String VAR_varsFq = "varsFq";
+  public static final String SET_varsFq = "setVarsFq";
   public static final String VAR_varsRange = "varsRange";
+  public static final String SET_varsRange = "setVarsRange";
   public static final String VAR_query = "query";
+  public static final String SET_query = "setQuery";
   public static final String VAR_pageResponse = "pageResponse";
+  public static final String SET_pageResponse = "setPageResponse";
   public static final String VAR_defaultZoneId = "defaultZoneId";
+  public static final String SET_defaultZoneId = "setDefaultZoneId";
   public static final String VAR_defaultTimeZone = "defaultTimeZone";
+  public static final String SET_defaultTimeZone = "setDefaultTimeZone";
   public static final String VAR_defaultLocaleId = "defaultLocaleId";
+  public static final String SET_defaultLocaleId = "setDefaultLocaleId";
   public static final String VAR_rows = "rows";
+  public static final String SET_rows = "setRows";
   public static final String VAR_start = "start";
+  public static final String SET_start = "setStart";
   public static final String VAR_defaultLocale = "defaultLocale";
+  public static final String SET_defaultLocale = "setDefaultLocale";
   public static final String VAR_rangeGap = "rangeGap";
+  public static final String SET_rangeGap = "setRangeGap";
   public static final String VAR_rangeEnd = "rangeEnd";
+  public static final String SET_rangeEnd = "setRangeEnd";
   public static final String VAR_rangeStart = "rangeStart";
+  public static final String SET_rangeStart = "setRangeStart";
   public static final String VAR_defaultRangeStats = "defaultRangeStats";
+  public static final String SET_defaultRangeStats = "setDefaultRangeStats";
   public static final String VAR_defaultRangeGap = "defaultRangeGap";
+  public static final String SET_defaultRangeGap = "setDefaultRangeGap";
   public static final String VAR_defaultRangeEnd = "defaultRangeEnd";
+  public static final String SET_defaultRangeEnd = "setDefaultRangeEnd";
   public static final String VAR_defaultRangeStart = "defaultRangeStart";
+  public static final String SET_defaultRangeStart = "setDefaultRangeStart";
   public static final String VAR_defaultRangeVar = "defaultRangeVar";
+  public static final String SET_defaultRangeVar = "setDefaultRangeVar";
   public static final String VAR_defaultFacetSort = "defaultFacetSort";
+  public static final String SET_defaultFacetSort = "setDefaultFacetSort";
   public static final String VAR_defaultFacetLimit = "defaultFacetLimit";
+  public static final String SET_defaultFacetLimit = "setDefaultFacetLimit";
   public static final String VAR_defaultFacetMinCount = "defaultFacetMinCount";
+  public static final String SET_defaultFacetMinCount = "setDefaultFacetMinCount";
   public static final String VAR_defaultPivotMinCount = "defaultPivotMinCount";
+  public static final String SET_defaultPivotMinCount = "setDefaultPivotMinCount";
   public static final String VAR_DEFAULT_MAP_LOCATION = "DEFAULT_MAP_LOCATION";
+  public static final String SET_DEFAULT_MAP_LOCATION = "setDEFAULT_MAP_LOCATION";
   public static final String VAR_DEFAULT_MAP_ZOOM = "DEFAULT_MAP_ZOOM";
+  public static final String SET_DEFAULT_MAP_ZOOM = "setDEFAULT_MAP_ZOOM";
   public static final String VAR_queryStr = "queryStr";
+  public static final String SET_queryStr = "setQueryStr";
   public static final String VAR_promiseAfter = "promiseAfter";
+  public static final String SET_promiseAfter = "setPromiseAfter";
   public static final String VAR_pageImageUri = "pageImageUri";
+  public static final String SET_pageImageUri = "setPageImageUri";
   public static final String VAR_pageImageWidth = "pageImageWidth";
+  public static final String SET_pageImageWidth = "setPageImageWidth";
   public static final String VAR_pageImageHeight = "pageImageHeight";
+  public static final String SET_pageImageHeight = "setPageImageHeight";
   public static final String VAR_pageVideoId = "pageVideoId";
+  public static final String SET_pageVideoId = "setPageVideoId";
   public static final String VAR_classIconGroup = "classIconGroup";
+  public static final String SET_classIconGroup = "setClassIconGroup";
   public static final String VAR_classIconName = "classIconName";
+  public static final String SET_classIconName = "setClassIconName";
   public static final String VAR_classIconCssClasses = "classIconCssClasses";
+  public static final String SET_classIconCssClasses = "setClassIconCssClasses";
   public static final String VAR_pageDescription = "pageDescription";
+  public static final String SET_pageDescription = "setPageDescription";
 
   public static final String DISPLAY_NAME_siteRequest_ = "";
   public static final String DISPLAY_NAME_lang = "";
@@ -5344,42 +5456,6 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
   public static final String DISPLAY_NAME_classIconName = "";
   public static final String DISPLAY_NAME_classIconCssClasses = "";
   public static final String DISPLAY_NAME_pageDescription = "";
-
-  public String idForClass() {
-    return null;
-  }
-
-  public String titleForClass() {
-    return null;
-  }
-
-  public String nameForClass() {
-    return null;
-  }
-
-  public String classNameAdjectiveSingularForClass() {
-    return null;
-  }
-
-  public String descriptionForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlEditPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
-  }
 
   public static String displayNameForClass(String var) {
     return ComputatePageLayout.displayNameComputatePageLayout(var);
@@ -5530,281 +5606,6 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
       return DISPLAY_NAME_pageDescription;
     default:
       return null;
-    }
-  }
-
-  public static String descriptionComputatePageLayout(String var) {
-    if(var == null)
-      return null;
-    switch(var) {
-    case VAR_siteRequest_:
-      return "The current request object";
-    case VAR_lang:
-      return "The current request language";
-    case VAR_requestVars:
-      return "The current request vars";
-    case VAR_config:
-      return "the site configuration";
-    case VAR_serviceRequest:
-      return "The current Vert.x service request";
-    case VAR_pageUri:
-      return "The current request URI";
-    case VAR_pageId:
-      return "The current page name";
-    case VAR_apiUri:
-      return "The API request URI";
-    case VAR_pageMethod:
-      return "The current request HTTP method";
-    case VAR_params:
-      return "The current request parameters";
-    case VAR_userKey:
-      return "The current user's primary key";
-    case VAR_userFullName:
-      return "The current user's full name";
-    case VAR_userName:
-      return "The current user's username";
-    case VAR_userEmail:
-      return "The current user's email";
-    case VAR_logoutUrl:
-      return "The logout URL";
-    case VAR_promiseBefore:
-      return "A method that can be overridden at the start of the request that makes this main template be initialized with a Vert.x promise for reactive initialization";
-    case VAR_classSimpleName:
-      return "The simple name of this Java class";
-    case VAR_pageTitle:
-      return "The page title to override";
-    case VAR_scopes:
-      return "The user's roles";
-    case VAR_roleRequired:
-      return "The required roles to access this page";
-    case VAR_authRoleAdmin:
-      return "The admin roles required to access this page";
-    case VAR_authRoleSuperAdmin:
-      return "The super-admin roles required to access this page";
-    case VAR_pagination:
-      return "The pagination data about this request";
-    case VAR_query:
-      return "The query data about this request";
-    case VAR_queryStr:
-      return "The query String for this request";
-    case VAR_promiseAfter:
-      return "A method that can be overridden at the end of the request that makes this main template be initialized with a Vert.x promise for reactive initialization";
-    case VAR_pageImageUri:
-      return "The image URI for this page";
-    case VAR_pageImageWidth:
-      return "The image width";
-    case VAR_pageImageHeight:
-      return "The image height";
-    case VAR_pageVideoId:
-      return "The video ID for this page";
-    case VAR_classIconGroup:
-      return "The icon group for this page";
-    case VAR_classIconName:
-      return "The icon name for this page";
-    case VAR_classIconCssClasses:
-      return "The icon CSS classes for this page";
-    case VAR_pageDescription:
-      return "An optional description field for the page";
-      default:
-        return null;
-    }
-  }
-
-  public static String classSimpleNameComputatePageLayout(String var) {
-    switch(var) {
-    case VAR_siteRequest_:
-      return "ComputateSiteRequest";
-    case VAR_lang:
-      return "String";
-    case VAR_requestVars:
-      return "Map";
-    case VAR_config:
-      return "JsonObject";
-    case VAR_serviceRequest:
-      return "ServiceRequest";
-    case VAR_staticBaseUrl:
-      return "String";
-    case VAR_siteBaseUrl:
-      return "String";
-    case VAR_siteAuthUrl:
-      return "String";
-    case VAR_siteAuthRealm:
-      return "String";
-    case VAR_fontAwesomeKit:
-      return "String";
-    case VAR_facebookGraphVersion:
-      return "String";
-    case VAR_facebookAppId:
-      return "String";
-    case VAR_pageUri:
-      return "String";
-    case VAR_pageId:
-      return "String";
-    case VAR_apiUri:
-      return "String";
-    case VAR_pageMethod:
-      return "String";
-    case VAR_params:
-      return "JsonObject";
-    case VAR_userKey:
-      return "Long";
-    case VAR_userFullName:
-      return "String";
-    case VAR_userName:
-      return "String";
-    case VAR_userEmail:
-      return "String";
-    case VAR_logoutUrl:
-      return "String";
-    case VAR_promiseBefore:
-      return "Void";
-    case VAR_classSimpleName:
-      return "String";
-    case VAR_pageTitle:
-      return "String";
-    case VAR_scopes:
-      return "List";
-    case VAR_roleRequired:
-      return "List";
-    case VAR_authRoleAdmin:
-      return "List";
-    case VAR_authRoleSuperAdmin:
-      return "List";
-    case VAR_stats:
-      return "Stats";
-    case VAR_facetCounts:
-      return "FacetCounts";
-    case VAR_pagination:
-      return "JsonObject";
-    case VAR_defaultSortVars:
-      return "List";
-    case VAR_defaultFieldListVars:
-      return "List";
-    case VAR_defaultStatsVars:
-      return "List";
-    case VAR_defaultPivotVars:
-      return "List";
-    case VAR_varsQ:
-      return "JsonObject";
-    case VAR_varsFq:
-      return "JsonObject";
-    case VAR_varsRange:
-      return "JsonObject";
-    case VAR_query:
-      return "JsonObject";
-    case VAR_pageResponse:
-      return "String";
-    case VAR_defaultZoneId:
-      return "String";
-    case VAR_defaultTimeZone:
-      return "ZoneId";
-    case VAR_defaultLocaleId:
-      return "String";
-    case VAR_rows:
-      return "Long";
-    case VAR_start:
-      return "Long";
-    case VAR_defaultLocale:
-      return "Locale";
-    case VAR_rangeGap:
-      return "String";
-    case VAR_rangeEnd:
-      return "ZonedDateTime";
-    case VAR_rangeStart:
-      return "ZonedDateTime";
-    case VAR_defaultRangeStats:
-      return "JsonObject";
-    case VAR_defaultRangeGap:
-      return "String";
-    case VAR_defaultRangeEnd:
-      return "ZonedDateTime";
-    case VAR_defaultRangeStart:
-      return "ZonedDateTime";
-    case VAR_defaultRangeVar:
-      return "String";
-    case VAR_defaultFacetSort:
-      return "String";
-    case VAR_defaultFacetLimit:
-      return "Integer";
-    case VAR_defaultFacetMinCount:
-      return "Integer";
-    case VAR_defaultPivotMinCount:
-      return "Integer";
-    case VAR_DEFAULT_MAP_LOCATION:
-      return "JsonObject";
-    case VAR_DEFAULT_MAP_ZOOM:
-      return "BigDecimal";
-    case VAR_queryStr:
-      return "String";
-    case VAR_promiseAfter:
-      return "Void";
-    case VAR_pageImageUri:
-      return "String";
-    case VAR_pageImageWidth:
-      return "Integer";
-    case VAR_pageImageHeight:
-      return "Integer";
-    case VAR_pageVideoId:
-      return "String";
-    case VAR_classIconGroup:
-      return "String";
-    case VAR_classIconName:
-      return "String";
-    case VAR_classIconCssClasses:
-      return "String";
-    case VAR_pageDescription:
-      return "String";
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmColumnComputatePageLayout(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmRowComputatePageLayout(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmCellComputatePageLayout(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer lengthMinComputatePageLayout(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer lengthMaxComputatePageLayout(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer maxComputatePageLayout(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer minComputatePageLayout(String var) {
-    switch(var) {
-      default:
-        return null;
     }
   }
 }

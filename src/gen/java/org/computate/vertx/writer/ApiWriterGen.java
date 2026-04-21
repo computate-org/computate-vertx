@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
@@ -62,7 +63,9 @@ import io.vertx.core.Future;
 /**
  * <ol>
 <h3>Suggestions that can generate more code for you: </h3> * </ol>
- * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these ApiWriter objects in a RESTful API. 
+ * <li><p>
+ *   You can add a class comment <kbd><b>Api: true</b></kbd> if you wish to GET, POST, PATCH or PUT these  objects in a RESTful API. 
+ * </p>
  * </li>
  * <h3>About the ApiWriter class and it's generated class ApiWriterGen&lt;Object&gt;: </h3>extends ApiWriterGen
  * <p>
@@ -80,7 +83,9 @@ import io.vertx.core.Future;
  * The generated <code>class ApiWriterGen extends Object</code> which means that ApiWriter extends ApiWriterGen which extends Object. 
  * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
- * <h2>Api: true</h2>
+ * <h2>
+ *   Api: true
+ * </h2>
  * <h2>ApiTag.enUS: true</h2>
  * <h2>ApiUri.enUS: null</h2>
  * <h2>Color: null</h2>
@@ -88,7 +93,30 @@ import io.vertx.core.Future;
  * <h2>{@inheritDoc}</h2>
  * <p>By adding a class comment "{@inheritDoc}", the ApiWriter class will inherit the helpful inherited class comments from the super class ApiWriterGen. 
  * </p>
- * <h2>Rows: null</h2>
+ * <h2>
+ *   Rows: 10
+ * </h2>
+ * <p>This class contains a comment <kbd><b>Rows: 10</b></kbd>, which means the  API will return a default of 10 results instead of 10 by default. 
+ * Each API has built in pagination of the search results to ensure a user can query all the data a page at a time without running the application out of memory. 
+ * </p>
+ * <p>
+ *   You can add a class comment <kbd><b>Rows: 100</b></kbd> if you wish for the  API to return more or less than 10 results by default. 
+ *   In this case, the API will return 100 results from the API instead of 10 by default. 
+ *   Each API has built in pagination of the search results to ensure a user can query all the data a page at a time without running the application out of memory. 
+ * </p>
+ * <h2>
+ *   Order: 1
+ * </h2>
+ * <p>
+ *   This class contains a comment <kbd><b>Order: 1</b></kbd>, 
+ *   which means this class will be sorted by the given number 1 
+ *   ascending when code that relates to multiple classes at the same time is generated. 
+ * </p>
+ * <p>
+ *   You can add a class comment <kbd><b>Order: </b></kbd>, followed by an Integer to sort this class compared to other classes in the project. 
+ *   There is code that is generated that queries several classes and writes code for each class in a sequence. 
+ *   The <kbd><b>Order</b></kbd> comment allows you to define which order the class code is generated. 
+ * </p>
  * <h2>Model: true</h2>
  * <h2>Page: true</h2>
  * <h2>SuperPage.enUS: null</h2>
@@ -96,15 +124,21 @@ import io.vertx.core.Future;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class ApiWriter in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.writer.ApiWriter&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.writer in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.writer&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.writer&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * Generated: true
  **/
@@ -3516,7 +3550,8 @@ public abstract class ApiWriterGen<DEV> extends Object {
   //////////////
 
   public ApiWriter initDeepApiWriter(ComputateSiteRequest siteRequest_) {
-    setSiteRequest_(siteRequest_);
+    if(this.siteRequest_ == null)
+      setSiteRequest_(siteRequest_);
     initDeepApiWriter();
     return (ApiWriter)this;
   }
@@ -3895,9 +3930,9 @@ public abstract class ApiWriterGen<DEV> extends Object {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
 
   public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
     return staticSearchApiWriter(entityVar,  siteRequest_, o);
@@ -4220,65 +4255,125 @@ public abstract class ApiWriterGen<DEV> extends Object {
   public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.writer.ApiWriter";
   public static final String CLASS_AUTH_RESOURCE = "";
   public static final String VAR_siteRequest_ = "siteRequest_";
+  public static final String SET_siteRequest_ = "setSiteRequest_";
   public static final String VAR_defaultLanguageName = "defaultLanguageName";
+  public static final String SET_defaultLanguageName = "setDefaultLanguageName";
   public static final String VAR_languageName = "languageName";
+  public static final String SET_languageName = "setLanguageName";
   public static final String VAR_i18n = "i18n";
+  public static final String SET_i18n = "setI18n";
   public static final String VAR_classDoc = "classDoc";
+  public static final String SET_classDoc = "setClassDoc";
   public static final String VAR_classSolrDocument = "classSolrDocument";
+  public static final String SET_classSolrDocument = "setClassSolrDocument";
   public static final String VAR_contextRows = "contextRows";
+  public static final String SET_contextRows = "setContextRows";
   public static final String VAR_classApiMethod = "classApiMethod";
+  public static final String SET_classApiMethod = "setClassApiMethod";
   public static final String VAR_openApiVersion = "openApiVersion";
+  public static final String SET_openApiVersion = "setOpenApiVersion";
   public static final String VAR_classUris = "classUris";
+  public static final String SET_classUris = "setClassUris";
   public static final String VAR_defaultFacets = "defaultFacets";
+  public static final String SET_defaultFacets = "setDefaultFacets";
   public static final String VAR_openApiVersionNumber = "openApiVersionNumber";
+  public static final String SET_openApiVersionNumber = "setOpenApiVersionNumber";
   public static final String VAR_tabsSchema = "tabsSchema";
+  public static final String SET_tabsSchema = "setTabsSchema";
   public static final String VAR_tabsResponses = "tabsResponses";
+  public static final String SET_tabsResponses = "setTabsResponses";
   public static final String VAR_wPaths = "wPaths";
+  public static final String SET_wPaths = "setWPaths";
   public static final String VAR_wRequestBodies = "wRequestBodies";
+  public static final String SET_wRequestBodies = "setWRequestBodies";
   public static final String VAR_wSchemas = "wSchemas";
+  public static final String SET_wSchemas = "setWSchemas";
   public static final String VAR_config = "config";
+  public static final String SET_config = "setConfig";
   public static final String VAR_authClients = "authClients";
+  public static final String SET_authClients = "setAuthClients";
   public static final String VAR_wRequestHeaders = "wRequestHeaders";
+  public static final String SET_wRequestHeaders = "setWRequestHeaders";
   public static final String VAR_wRequestDescription = "wRequestDescription";
+  public static final String SET_wRequestDescription = "setWRequestDescription";
   public static final String VAR_wResponseDescription = "wResponseDescription";
+  public static final String SET_wResponseDescription = "setWResponseDescription";
   public static final String VAR_wRequestBody = "wRequestBody";
+  public static final String SET_wRequestBody = "setWRequestBody";
   public static final String VAR_wResponseBody = "wResponseBody";
+  public static final String SET_wResponseBody = "setWResponseBody";
   public static final String VAR_wRequestSchema = "wRequestSchema";
+  public static final String SET_wRequestSchema = "setWRequestSchema";
   public static final String VAR_wResponseSchema = "wResponseSchema";
+  public static final String SET_wResponseSchema = "setWResponseSchema";
   public static final String VAR_writers = "writers";
+  public static final String SET_writers = "setWriters";
   public static final String VAR_classApiTag = "classApiTag";
+  public static final String SET_classApiTag = "setClassApiTag";
   public static final String VAR_classExtendsBase = "classExtendsBase";
+  public static final String SET_classExtendsBase = "setClassExtendsBase";
   public static final String VAR_classIsBase = "classIsBase";
+  public static final String SET_classIsBase = "setClassIsBase";
   public static final String VAR_classFiware = "classFiware";
+  public static final String SET_classFiware = "setClassFiware";
   public static final String VAR_classSimpleName = "classSimpleName";
+  public static final String SET_classSimpleName = "setClassSimpleName";
   public static final String VAR_appName = "appName";
+  public static final String SET_appName = "setAppName";
   public static final String VAR_classAbsolutePath = "classAbsolutePath";
+  public static final String SET_classAbsolutePath = "setClassAbsolutePath";
   public static final String VAR_classApiMethodSecurity = "classApiMethodSecurity";
+  public static final String SET_classApiMethodSecurity = "setClassApiMethodSecurity";
   public static final String VAR_classApiUriMethod = "classApiUriMethod";
+  public static final String SET_classApiUriMethod = "setClassApiUriMethod";
   public static final String VAR_classRoleUserMethod = "classRoleUserMethod";
+  public static final String SET_classRoleUserMethod = "setClassRoleUserMethod";
   public static final String VAR_classApiMethodMethod = "classApiMethodMethod";
+  public static final String SET_classApiMethodMethod = "setClassApiMethodMethod";
   public static final String VAR_classApiMediaTypeRequestMethod = "classApiMediaTypeRequestMethod";
+  public static final String SET_classApiMediaTypeRequestMethod = "setClassApiMediaTypeRequestMethod";
   public static final String VAR_classApiMediaType200Method = "classApiMediaType200Method";
+  public static final String SET_classApiMediaType200Method = "setClassApiMediaType200Method";
   public static final String VAR_classApiOperationIdMethod = "classApiOperationIdMethod";
+  public static final String SET_classApiOperationIdMethod = "setClassApiOperationIdMethod";
   public static final String VAR_classApiOperationIdMethodRequest = "classApiOperationIdMethodRequest";
+  public static final String SET_classApiOperationIdMethodRequest = "setClassApiOperationIdMethodRequest";
   public static final String VAR_classApiOperationIdMethodResponse = "classApiOperationIdMethodResponse";
+  public static final String SET_classApiOperationIdMethodResponse = "setClassApiOperationIdMethodResponse";
   public static final String VAR_classSuperApiOperationIdMethodRequest = "classSuperApiOperationIdMethodRequest";
+  public static final String SET_classSuperApiOperationIdMethodRequest = "setClassSuperApiOperationIdMethodRequest";
   public static final String VAR_classSuperApiOperationIdMethodResponse = "classSuperApiOperationIdMethodResponse";
+  public static final String SET_classSuperApiOperationIdMethodResponse = "setClassSuperApiOperationIdMethodResponse";
   public static final String VAR_classPageCanonicalNameMethod = "classPageCanonicalNameMethod";
+  public static final String SET_classPageCanonicalNameMethod = "setClassPageCanonicalNameMethod";
   public static final String VAR_classPageWithTemplateMethod = "classPageWithTemplateMethod";
+  public static final String SET_classPageWithTemplateMethod = "setClassPageWithTemplateMethod";
   public static final String VAR_classKeywordsFound = "classKeywordsFound";
+  public static final String SET_classKeywordsFound = "setClassKeywordsFound";
   public static final String VAR_classKeywords = "classKeywords";
+  public static final String SET_classKeywords = "setClassKeywords";
   public static final String VAR_classPublicRead = "classPublicRead";
+  public static final String SET_classPublicRead = "setClassPublicRead";
   public static final String VAR_classSearchPagePublicRead = "classSearchPagePublicRead";
+  public static final String SET_classSearchPagePublicRead = "setClassSearchPagePublicRead";
   public static final String VAR_classRoleSession = "classRoleSession";
+  public static final String SET_classRoleSession = "setClassRoleSession";
   public static final String VAR_classRoleUser = "classRoleUser";
+  public static final String SET_classRoleUser = "setClassRoleUser";
   public static final String VAR_classRoleAll = "classRoleAll";
+  public static final String SET_classRoleAll = "setClassRoleAll";
   public static final String VAR_classAuth = "classAuth";
+  public static final String SET_classAuth = "setClassAuth";
   public static final String VAR_classRolesFound = "classRolesFound";
+  public static final String SET_classRolesFound = "setClassRolesFound";
   public static final String VAR_classRoles = "classRoles";
+  public static final String SET_classRoles = "setClassRoles";
   public static final String VAR_classRoleReads = "classRoleReads";
+  public static final String SET_classRoleReads = "setClassRoleReads";
   public static final String VAR_classRolesLanguage = "classRolesLanguage";
+  public static final String SET_classRolesLanguage = "setClassRolesLanguage";
   public static final String VAR_entitySolrDocument = "entitySolrDocument";
+  public static final String SET_entitySolrDocument = "setEntitySolrDocument";
 
   public static final String DISPLAY_NAME_siteRequest_ = "";
   public static final String DISPLAY_NAME_defaultLanguageName = "";
@@ -4340,42 +4435,6 @@ public abstract class ApiWriterGen<DEV> extends Object {
   public static final String DISPLAY_NAME_classRoleReads = "";
   public static final String DISPLAY_NAME_classRolesLanguage = "";
   public static final String DISPLAY_NAME_entitySolrDocument = "";
-
-  public String idForClass() {
-    return null;
-  }
-
-  public String titleForClass() {
-    return null;
-  }
-
-  public String nameForClass() {
-    return null;
-  }
-
-  public String classNameAdjectiveSingularForClass() {
-    return null;
-  }
-
-  public String descriptionForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlEditPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
-  }
 
   public static String displayNameForClass(String var) {
     return ApiWriter.displayNameApiWriter(var);
@@ -4504,191 +4563,6 @@ public abstract class ApiWriterGen<DEV> extends Object {
       return DISPLAY_NAME_entitySolrDocument;
     default:
       return null;
-    }
-  }
-
-  public static String descriptionApiWriter(String var) {
-    if(var == null)
-      return null;
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static String classSimpleNameApiWriter(String var) {
-    switch(var) {
-    case VAR_siteRequest_:
-      return "ComputateSiteRequest";
-    case VAR_defaultLanguageName:
-      return "String";
-    case VAR_languageName:
-      return "String";
-    case VAR_i18n:
-      return "JsonObject";
-    case VAR_classDoc:
-      return "ComputateEnUSClass";
-    case VAR_classSolrDocument:
-      return "Doc";
-    case VAR_contextRows:
-      return "Integer";
-    case VAR_classApiMethod:
-      return "String";
-    case VAR_openApiVersion:
-      return "String";
-    case VAR_classUris:
-      return "List";
-    case VAR_defaultFacets:
-      return "List";
-    case VAR_openApiVersionNumber:
-      return "Integer";
-    case VAR_tabsSchema:
-      return "Integer";
-    case VAR_tabsResponses:
-      return "Integer";
-    case VAR_wPaths:
-      return "AllWriter";
-    case VAR_wRequestBodies:
-      return "AllWriter";
-    case VAR_wSchemas:
-      return "AllWriter";
-    case VAR_config:
-      return "JsonObject";
-    case VAR_authClients:
-      return "JsonObject";
-    case VAR_wRequestHeaders:
-      return "AllWriter";
-    case VAR_wRequestDescription:
-      return "AllWriter";
-    case VAR_wResponseDescription:
-      return "AllWriter";
-    case VAR_wRequestBody:
-      return "AllWriter";
-    case VAR_wResponseBody:
-      return "AllWriter";
-    case VAR_wRequestSchema:
-      return "AllWriter";
-    case VAR_wResponseSchema:
-      return "AllWriter";
-    case VAR_writers:
-      return "AllWriters";
-    case VAR_classApiTag:
-      return "String";
-    case VAR_classExtendsBase:
-      return "Boolean";
-    case VAR_classIsBase:
-      return "Boolean";
-    case VAR_classFiware:
-      return "Boolean";
-    case VAR_classSimpleName:
-      return "String";
-    case VAR_appName:
-      return "String";
-    case VAR_classAbsolutePath:
-      return "String";
-    case VAR_classApiMethodSecurity:
-      return "Boolean";
-    case VAR_classApiUriMethod:
-      return "String";
-    case VAR_classRoleUserMethod:
-      return "Boolean";
-    case VAR_classApiMethodMethod:
-      return "String";
-    case VAR_classApiMediaTypeRequestMethod:
-      return "String";
-    case VAR_classApiMediaType200Method:
-      return "String";
-    case VAR_classApiOperationIdMethod:
-      return "String";
-    case VAR_classApiOperationIdMethodRequest:
-      return "String";
-    case VAR_classApiOperationIdMethodResponse:
-      return "String";
-    case VAR_classSuperApiOperationIdMethodRequest:
-      return "String";
-    case VAR_classSuperApiOperationIdMethodResponse:
-      return "String";
-    case VAR_classPageCanonicalNameMethod:
-      return "String";
-    case VAR_classPageWithTemplateMethod:
-      return "Boolean";
-    case VAR_classKeywordsFound:
-      return "Boolean";
-    case VAR_classKeywords:
-      return "List";
-    case VAR_classPublicRead:
-      return "Boolean";
-    case VAR_classSearchPagePublicRead:
-      return "Boolean";
-    case VAR_classRoleSession:
-      return "Boolean";
-    case VAR_classRoleUser:
-      return "Boolean";
-    case VAR_classRoleAll:
-      return "Boolean";
-    case VAR_classAuth:
-      return "Boolean";
-    case VAR_classRolesFound:
-      return "Boolean";
-    case VAR_classRoles:
-      return "List";
-    case VAR_classRoleReads:
-      return "List";
-    case VAR_classRolesLanguage:
-      return "List";
-    case VAR_entitySolrDocument:
-      return "Doc";
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmColumnApiWriter(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmRowApiWriter(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmCellApiWriter(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer lengthMinApiWriter(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer lengthMaxApiWriter(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer maxApiWriter(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer minApiWriter(String var) {
-    switch(var) {
-      default:
-        return null;
     }
   }
 }

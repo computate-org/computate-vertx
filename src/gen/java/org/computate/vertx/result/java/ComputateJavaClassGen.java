@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalDateDeserializer;
@@ -58,7 +59,9 @@ import io.vertx.core.Future;
 /**
  * <ol>
 <h3>Suggestions that can generate more code for you: </h3> * </ol>
- * <li>You can add a class comment <b>"Api: true"</b> if you wish to GET, POST, PATCH or PUT these ComputateJavaClass objects in a RESTful API. 
+ * <li><p>
+ *   You can add a class comment <kbd><b>Api: true</b></kbd> if you wish to GET, POST, PATCH or PUT these  objects in a RESTful API. 
+ * </p>
  * </li><li>You can add a class comment "{@inheritDoc}" if you wish to inherit the helpful inherited class comments from class ComputateJavaClassGen into the class ComputateJavaClass. 
  * </li>
  * <h3>About the ComputateJavaClass class and it's generated class ComputateJavaClassGen&lt;Object&gt;: </h3>extends ComputateJavaClassGen
@@ -77,7 +80,9 @@ import io.vertx.core.Future;
  * The generated <code>class ComputateJavaClassGen extends Object</code> which means that ComputateJavaClass extends ComputateJavaClassGen which extends Object. 
  * This generated inheritance is a powerful feature that allows a lot of boiler plate code to be created for you automatically while still preserving inheritance through the power of Java Generic classes. 
  * </p>
- * <h2>Api: true</h2>
+ * <h2>
+ *   Api: true
+ * </h2>
  * <h2>ApiTag.enUS: true</h2>
  * <h2>ApiUri.enUS: null</h2>
  * <h2>Color: null</h2>
@@ -85,13 +90,36 @@ import io.vertx.core.Future;
  * <h2>{@inheritDoc}</h2>
  * <p>By adding a class comment "{@inheritDoc}", the ComputateJavaClass class will inherit the helpful inherited class comments from the super class ComputateJavaClassGen. 
  * </p>
- * <h2>Rows: null</h2>
+ * <h2>
+ *   Rows: 10
+ * </h2>
+ * <p>This class contains a comment <kbd><b>Rows: 10</b></kbd>, which means the  API will return a default of 10 results instead of 10 by default. 
+ * Each API has built in pagination of the search results to ensure a user can query all the data a page at a time without running the application out of memory. 
+ * </p>
+ * <p>
+ *   You can add a class comment <kbd><b>Rows: 100</b></kbd> if you wish for the  API to return more or less than 10 results by default. 
+ *   In this case, the API will return 100 results from the API instead of 10 by default. 
+ *   Each API has built in pagination of the search results to ensure a user can query all the data a page at a time without running the application out of memory. 
+ * </p>
+ * <h2>
+ *   Order: 1
+ * </h2>
+ * <p>
+ *   This class contains a comment <kbd><b>Order: 1</b></kbd>, 
+ *   which means this class will be sorted by the given number 1 
+ *   ascending when code that relates to multiple classes at the same time is generated. 
+ * </p>
+ * <p>
+ *   You can add a class comment <kbd><b>Order: </b></kbd>, followed by an Integer to sort this class compared to other classes in the project. 
+ *   There is code that is generated that queries several classes and writes code for each class in a sequence. 
+ *   The <kbd><b>Order</b></kbd> comment allows you to define which order the class code is generated. 
+ * </p>
  * <h2>Model: true</h2>
  * <h2>Page: true</h2>
  * <h2>SuperPage.enUS: null</h2>
  * <h2>Promise: true</h2>
  * <p>
- *   This class contains a comment <b>"Promise: true"</b>
+ *   This class contains a comment <kbd><b>Promise: true</b></kbd>
  *   Sometimes a Java class must be initialized asynchronously when it involves calling a blocking API. 
  *   This means that the ComputateJavaClass Java class has promiseDeep methods which must be initialized asynchronously as a Vert.x Promise  instead of initDeep methods which are a simple non-asynchronous method. 
  * </p>
@@ -115,15 +143,21 @@ import io.vertx.core.Future;
  * <h2>AName.enUS: null</h2>
  * <p>
  * Delete the class ComputateJavaClass in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomCanonique_enUS_indexed_string:org.computate.vertx.result.java.ComputateJavaClass&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the package org.computate.vertx.result.java in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.result.java&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;classeNomEnsemble_enUS_indexed_string:org.computate.vertx.result.java&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * <p>
  * Delete  the project computate-vertx in Solr: 
- * curl -k 'https://solr.apps-crc.testing/update?commitWithin=1000&overwrite=true&wt=json' -X POST -H 'Content-type: text/xml' --data-raw '&lt;add&gt;&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;&lt;/add&gt;'
+ * <pre>
+ * curl -k 'https://solr.apps-crc.testing/solr/computate/update?commitWithin=1000&amp;overwrite=true&amp;wt=json' -X POST -H 'Content-type: text/xml' -u "admin:$(oc -n solr get secret/solr-solrcloud-security-bootstrap -o jsonpath={.data.admin} | base64 -d)" --data-raw '&lt;delete&gt;&lt;query&gt;siteNom_indexed_string:computate\-vertx&lt;/query&gt;&lt;/delete&gt;'
+ * </pre>
  * </p>
  * Generated: true
  **/
@@ -276,6 +310,10 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
     return inheritPk;
   }
 
+  public static String staticJsonInheritPk(String inheritPk) {
+    return inheritPk;
+  }
+
 	/////////////
   // created //
 	/////////////
@@ -361,6 +399,10 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
     return created == null ? null : created.toOffsetDateTime();
   }
 
+  public static String staticJsonCreated(ZonedDateTime created) {
+    return Optional.ofNullable(created).map(v -> v.format(ComputateZonedDateTimeSerializer.ZONED_DATE_TIME_FORMATTER)).orElse(null);
+  }
+
 	//////////////
   // archived //
 	//////////////
@@ -424,6 +466,10 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
     return archived;
   }
 
+  public static Boolean staticJsonArchived(Boolean archived) {
+    return archived;
+  }
+
 	/////////////
   // deleted //
 	/////////////
@@ -484,6 +530,10 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
   }
 
   public Boolean sqlDeleted() {
+    return deleted;
+  }
+
+  public static Boolean staticJsonDeleted(Boolean deleted) {
     return deleted;
   }
 
@@ -622,6 +672,10 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
     return sessionId;
   }
 
+  public static String staticJsonSessionId(String sessionId) {
+    return sessionId;
+  }
+
 	/////////////
   // userKey //
 	/////////////
@@ -686,6 +740,10 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
   public Long sqlUserKey() {
     return userKey;
+  }
+
+  public static String staticJsonUserKey(Long userKey) {
+    return Optional.ofNullable(userKey).map(v -> v.toString()).orElse(null);
   }
 
 	///////////
@@ -874,6 +932,10 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
   }
 
   public String sqlObjectId() {
+    return objectId;
+  }
+
+  public static String staticJsonObjectId(String objectId) {
     return objectId;
   }
 
@@ -4880,6 +4942,10 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
   }
 
   public String sqlId() {
+    return id;
+  }
+
+  public static String staticJsonId(String id) {
     return id;
   }
 
@@ -9318,7 +9384,8 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
   //////////////
 
   public Future<ComputateJavaClassGen<DEV>> promiseDeepComputateJavaClass(ComputateSiteRequest siteRequest_) {
-    setSiteRequest_(siteRequest_);
+    if(this.siteRequest_ == null)
+      setSiteRequest_(siteRequest_);
     return promiseDeepComputateJavaClass();
   }
 
@@ -10216,9 +10283,9 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
     }
   }
 
-  ////////////////
+  //////////////////
   // staticSearch //
-  ////////////////
+  //////////////////
 
   public static Object staticSearchForClass(String entityVar, ComputateSiteRequest siteRequest_, Object o) {
     return staticSearchComputateJavaClass(entityVar,  siteRequest_, o);
@@ -11214,161 +11281,317 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
   public static final String CLASS_CANONICAL_NAME = "org.computate.vertx.result.java.ComputateJavaClass";
   public static final String CLASS_AUTH_RESOURCE = "";
   public static final String VAR_siteRequest_ = "siteRequest_";
+  public static final String SET_siteRequest_ = "setSiteRequest_";
   public static final String VAR_promiseBefore = "promiseBefore";
+  public static final String SET_promiseBefore = "setPromiseBefore";
   public static final String VAR_inheritPk = "inheritPk";
+  public static final String SET_inheritPk = "setInheritPk";
   public static final String VAR_created = "created";
+  public static final String SET_created = "setCreated";
   public static final String VAR_archived = "archived";
+  public static final String SET_archived = "setArchived";
   public static final String VAR_deleted = "deleted";
+  public static final String SET_deleted = "setDeleted";
   public static final String VAR_classCanonicalNames = "classCanonicalNames";
+  public static final String SET_classCanonicalNames = "setClassCanonicalNames";
   public static final String VAR_sessionId = "sessionId";
+  public static final String SET_sessionId = "setSessionId";
   public static final String VAR_userKey = "userKey";
+  public static final String SET_userKey = "setUserKey";
   public static final String VAR_saves = "saves";
+  public static final String SET_saves = "setSaves";
   public static final String VAR_objectTitle = "objectTitle";
+  public static final String SET_objectTitle = "setObjectTitle";
   public static final String VAR_objectId = "objectId";
+  public static final String SET_objectId = "setObjectId";
   public static final String VAR_objectSuggest = "objectSuggest";
+  public static final String SET_objectSuggest = "setObjectSuggest";
   public static final String VAR_objectText = "objectText";
+  public static final String SET_objectText = "setObjectText";
   public static final String VAR_pageUrlId = "pageUrlId";
+  public static final String SET_pageUrlId = "setPageUrlId";
   public static final String VAR_pageUrlPk = "pageUrlPk";
+  public static final String SET_pageUrlPk = "setPageUrlPk";
   public static final String VAR_pageUrlApi = "pageUrlApi";
+  public static final String SET_pageUrlApi = "setPageUrlApi";
   public static final String VAR_doc = "doc";
+  public static final String SET_doc = "setDoc";
   public static final String VAR_sitePath = "sitePath";
+  public static final String SET_sitePath = "setSitePath";
   public static final String VAR_siteName = "siteName";
+  public static final String SET_siteName = "setSiteName";
   public static final String VAR_superClassParamsTypeName = "superClassParamsTypeName";
+  public static final String SET_superClassParamsTypeName = "setSuperClassParamsTypeName";
   public static final String VAR_superClassCompleteName = "superClassCompleteName";
+  public static final String SET_superClassCompleteName = "setSuperClassCompleteName";
   public static final String VAR_superClassGenericCompleteName = "superClassGenericCompleteName";
+  public static final String SET_superClassGenericCompleteName = "setSuperClassGenericCompleteName";
   public static final String VAR_superClassGenericCanonicalName = "superClassGenericCanonicalName";
+  public static final String SET_superClassGenericCanonicalName = "setSuperClassGenericCanonicalName";
   public static final String VAR_superClassGenericSimpleName = "superClassGenericSimpleName";
+  public static final String SET_superClassGenericSimpleName = "setSuperClassGenericSimpleName";
   public static final String VAR_classIsBase = "classIsBase";
+  public static final String SET_classIsBase = "setClassIsBase";
   public static final String VAR_classExtendsBase = "classExtendsBase";
+  public static final String SET_classExtendsBase = "setClassExtendsBase";
   public static final String VAR_classBaseExtendsGen = "classBaseExtendsGen";
+  public static final String SET_classBaseExtendsGen = "setClassBaseExtendsGen";
   public static final String VAR_classContainsSiteRequest = "classContainsSiteRequest";
+  public static final String SET_classContainsSiteRequest = "setClassContainsSiteRequest";
   public static final String VAR_classTranslate = "classTranslate";
+  public static final String SET_classTranslate = "setClassTranslate";
   public static final String VAR_classInitDeep = "classInitDeep";
+  public static final String SET_classInitDeep = "setClassInitDeep";
   public static final String VAR_classExtendsGen = "classExtendsGen";
+  public static final String SET_classExtendsGen = "setClassExtendsGen";
   public static final String VAR_languageName = "languageName";
+  public static final String SET_languageName = "setLanguageName";
   public static final String VAR_modified = "modified";
+  public static final String SET_modified = "setModified";
   public static final String VAR_classCanonicalName = "classCanonicalName";
+  public static final String SET_classCanonicalName = "setClassCanonicalName";
   public static final String VAR_classSimpleName = "classSimpleName";
+  public static final String SET_classSimpleName = "setClassSimpleName";
   public static final String VAR_classPackageName = "classPackageName";
+  public static final String SET_classPackageName = "setClassPackageName";
   public static final String VAR_classCanonicalNameGen = "classCanonicalNameGen";
+  public static final String SET_classCanonicalNameGen = "setClassCanonicalNameGen";
   public static final String VAR_classSimpleNameGen = "classSimpleNameGen";
+  public static final String SET_classSimpleNameGen = "setClassSimpleNameGen";
   public static final String VAR_superClassCanonicalName = "superClassCanonicalName";
+  public static final String SET_superClassCanonicalName = "setSuperClassCanonicalName";
   public static final String VAR_superClassSimpleName = "superClassSimpleName";
+  public static final String SET_superClassSimpleName = "setSuperClassSimpleName";
   public static final String VAR_classAbsolutePath = "classAbsolutePath";
+  public static final String SET_classAbsolutePath = "setClassAbsolutePath";
   public static final String VAR_classPath = "classPath";
+  public static final String SET_classPath = "setClassPath";
   public static final String VAR_classDirectoryPath = "classDirectoryPath";
+  public static final String SET_classDirectoryPath = "setClassDirectoryPath";
   public static final String VAR_classPathGen = "classPathGen";
+  public static final String SET_classPathGen = "setClassPathGen";
   public static final String VAR_classDirectoryPathGen = "classDirectoryPathGen";
+  public static final String SET_classDirectoryPathGen = "setClassDirectoryPathGen";
   public static final String VAR_domainPackageName = "domainPackageName";
+  public static final String SET_domainPackageName = "setDomainPackageName";
   public static final String VAR_entityClassesSuperAndMeWithoutGen = "entityClassesSuperAndMeWithoutGen";
+  public static final String SET_entityClassesSuperAndMeWithoutGen = "setEntityClassesSuperAndMeWithoutGen";
   public static final String VAR_classIsAbstract = "classIsAbstract";
+  public static final String SET_classIsAbstract = "setClassIsAbstract";
   public static final String VAR_classModel = "classModel";
+  public static final String SET_classModel = "setClassModel";
   public static final String VAR_classApi = "classApi";
+  public static final String SET_classApi = "setClassApi";
   public static final String VAR_classSimplePage = "classSimplePage";
+  public static final String SET_classSimplePage = "setClassSimplePage";
   public static final String VAR_classSaved = "classSaved";
+  public static final String SET_classSaved = "setClassSaved";
   public static final String VAR_classSimpleNameApiPackageInfo = "classSimpleNameApiPackageInfo";
+  public static final String SET_classSimpleNameApiPackageInfo = "setClassSimpleNameApiPackageInfo";
   public static final String VAR_classSimpleNameGenApiServiceImpl = "classSimpleNameGenApiServiceImpl";
+  public static final String SET_classSimpleNameGenApiServiceImpl = "setClassSimpleNameGenApiServiceImpl";
   public static final String VAR_classSimpleNameApiServiceImpl = "classSimpleNameApiServiceImpl";
+  public static final String SET_classSimpleNameApiServiceImpl = "setClassSimpleNameApiServiceImpl";
   public static final String VAR_classSimpleNameGenApiService = "classSimpleNameGenApiService";
+  public static final String SET_classSimpleNameGenApiService = "setClassSimpleNameGenApiService";
   public static final String VAR_classCanonicalNameApiPackageInfo = "classCanonicalNameApiPackageInfo";
+  public static final String SET_classCanonicalNameApiPackageInfo = "setClassCanonicalNameApiPackageInfo";
   public static final String VAR_classCanonicalNameGenApiServiceImpl = "classCanonicalNameGenApiServiceImpl";
+  public static final String SET_classCanonicalNameGenApiServiceImpl = "setClassCanonicalNameGenApiServiceImpl";
   public static final String VAR_classCanonicalNameApiServiceImpl = "classCanonicalNameApiServiceImpl";
+  public static final String SET_classCanonicalNameApiServiceImpl = "setClassCanonicalNameApiServiceImpl";
   public static final String VAR_classCanonicalNameGenApiService = "classCanonicalNameGenApiService";
+  public static final String SET_classCanonicalNameGenApiService = "setClassCanonicalNameGenApiService";
   public static final String VAR_classPathApiPackageInfo = "classPathApiPackageInfo";
+  public static final String SET_classPathApiPackageInfo = "setClassPathApiPackageInfo";
   public static final String VAR_classPathGenApiServiceImpl = "classPathGenApiServiceImpl";
+  public static final String SET_classPathGenApiServiceImpl = "setClassPathGenApiServiceImpl";
   public static final String VAR_classPathApiServiceImpl = "classPathApiServiceImpl";
+  public static final String SET_classPathApiServiceImpl = "setClassPathApiServiceImpl";
   public static final String VAR_classPathGenApiService = "classPathGenApiService";
+  public static final String SET_classPathGenApiService = "setClassPathGenApiService";
   public static final String VAR_classPublicRead = "classPublicRead";
+  public static final String SET_classPublicRead = "setClassPublicRead";
   public static final String VAR_classRoleSession = "classRoleSession";
+  public static final String SET_classRoleSession = "setClassRoleSession";
   public static final String VAR_classRoleUser = "classRoleUser";
+  public static final String SET_classRoleUser = "setClassRoleUser";
   public static final String VAR_classRoleEach = "classRoleEach";
+  public static final String SET_classRoleEach = "setClassRoleEach";
   public static final String VAR_classRoles = "classRoles";
+  public static final String SET_classRoles = "setClassRoles";
   public static final String VAR_classRolesLanguage = "classRolesLanguage";
+  public static final String SET_classRolesLanguage = "setClassRolesLanguage";
   public static final String VAR_classRolesFound = "classRolesFound";
+  public static final String SET_classRolesFound = "setClassRolesFound";
   public static final String VAR_classRoleReadFound = "classRoleReadFound";
+  public static final String SET_classRoleReadFound = "setClassRoleReadFound";
   public static final String VAR_classSessionWrite = "classSessionWrite";
+  public static final String SET_classSessionWrite = "setClassSessionWrite";
   public static final String VAR_classUserWrite = "classUserWrite";
+  public static final String SET_classUserWrite = "setClassUserWrite";
   public static final String VAR_classPublicWrite = "classPublicWrite";
+  public static final String SET_classPublicWrite = "setClassPublicWrite";
   public static final String VAR_classSessionRead = "classSessionRead";
+  public static final String SET_classSessionRead = "setClassSessionRead";
   public static final String VAR_classUserRead = "classUserRead";
+  public static final String SET_classUserRead = "setClassUserRead";
   public static final String VAR_classFiltersFound = "classFiltersFound";
+  public static final String SET_classFiltersFound = "setClassFiltersFound";
   public static final String VAR_sqlSort = "sqlSort";
+  public static final String SET_sqlSort = "setSqlSort";
   public static final String VAR_id = "id";
+  public static final String SET_id = "setId";
   public static final String VAR_partIsClass = "partIsClass";
+  public static final String SET_partIsClass = "setPartIsClass";
   public static final String VAR_partNumber = "partNumber";
+  public static final String SET_partNumber = "setPartNumber";
   public static final String VAR_classImports = "classImports";
+  public static final String SET_classImports = "setClassImports";
   public static final String VAR_classEntityVars = "classEntityVars";
+  public static final String SET_classEntityVars = "setClassEntityVars";
   public static final String VAR_classImportsGenApi = "classImportsGenApi";
+  public static final String SET_classImportsGenApi = "setClassImportsGenApi";
   public static final String VAR_classAttributeSimpleNamePages = "classAttributeSimpleNamePages";
+  public static final String SET_classAttributeSimpleNamePages = "setClassAttributeSimpleNamePages";
   public static final String VAR_classMethodVars = "classMethodVars";
+  public static final String SET_classMethodVars = "setClassMethodVars";
   public static final String VAR_classVarSuggested = "classVarSuggested";
+  public static final String SET_classVarSuggested = "setClassVarSuggested";
   public static final String VAR_classVarText = "classVarText";
+  public static final String SET_classVarText = "setClassVarText";
   public static final String VAR_classVarPrimaryKey = "classVarPrimaryKey";
+  public static final String SET_classVarPrimaryKey = "setClassVarPrimaryKey";
   public static final String VAR_classVarInheritPrimaryKey = "classVarInheritPrimaryKey";
+  public static final String SET_classVarInheritPrimaryKey = "setClassVarInheritPrimaryKey";
   public static final String VAR_classVarSaves = "classVarSaves";
+  public static final String SET_classVarSaves = "setClassVarSaves";
   public static final String VAR_classvarUniqueKey = "classvarUniqueKey";
+  public static final String SET_classvarUniqueKey = "setClassvarUniqueKey";
   public static final String VAR_classVarModified = "classVarModified";
+  public static final String SET_classVarModified = "setClassVarModified";
   public static final String VAR_classVarCreated = "classVarCreated";
+  public static final String SET_classVarCreated = "setClassVarCreated";
   public static final String VAR_classVarUrlId = "classVarUrlId";
+  public static final String SET_classVarUrlId = "setClassVarUrlId";
   public static final String VAR_classVarUrlPk = "classVarUrlPk";
+  public static final String SET_classVarUrlPk = "setClassVarUrlPk";
   public static final String VAR_classVarId = "classVarId";
+  public static final String SET_classVarId = "setClassVarId";
   public static final String VAR_classVarTitle = "classVarTitle";
+  public static final String SET_classVarTitle = "setClassVarTitle";
   public static final String VAR_classKeywordsFound = "classKeywordsFound";
+  public static final String SET_classKeywordsFound = "setClassKeywordsFound";
   public static final String VAR_classPageCanonicalName = "classPageCanonicalName";
+  public static final String SET_classPageCanonicalName = "setClassPageCanonicalName";
   public static final String VAR_classPageSimpleName = "classPageSimpleName";
+  public static final String SET_classPageSimpleName = "setClassPageSimpleName";
   public static final String VAR_classGenPageSimpleName = "classGenPageSimpleName";
+  public static final String SET_classGenPageSimpleName = "setClassGenPageSimpleName";
   public static final String VAR_classGenPageCanonicalName = "classGenPageCanonicalName";
+  public static final String SET_classGenPageCanonicalName = "setClassGenPageCanonicalName";
   public static final String VAR_classGenPagePath = "classGenPagePath";
+  public static final String SET_classGenPagePath = "setClassGenPagePath";
   public static final String VAR_classPagePath = "classPagePath";
+  public static final String SET_classPagePath = "setClassPagePath";
   public static final String VAR_classPagePathCss = "classPagePathCss";
+  public static final String SET_classPagePathCss = "setClassPagePathCss";
   public static final String VAR_classPagePathJs = "classPagePathJs";
+  public static final String SET_classPagePathJs = "setClassPagePathJs";
   public static final String VAR_classPagePathHbs = "classPagePathHbs";
+  public static final String SET_classPagePathHbs = "setClassPagePathHbs";
   public static final String VAR_classGenPagePathHbs = "classGenPagePathHbs";
+  public static final String SET_classGenPagePathHbs = "setClassGenPagePathHbs";
   public static final String VAR_classPageLanguageName = "classPageLanguageName";
+  public static final String SET_classPageLanguageName = "setClassPageLanguageName";
   public static final String VAR_classPageSuperCanonicalName = "classPageSuperCanonicalName";
+  public static final String SET_classPageSuperCanonicalName = "setClassPageSuperCanonicalName";
   public static final String VAR_classSuperPageSimpleName = "classSuperPageSimpleName";
+  public static final String SET_classSuperPageSimpleName = "setClassSuperPageSimpleName";
   public static final String VAR_classImportsGenPage = "classImportsGenPage";
+  public static final String SET_classImportsGenPage = "setClassImportsGenPage";
   public static final String VAR_classApiUri = "classApiUri";
+  public static final String SET_classApiUri = "setClassApiUri";
   public static final String VAR_classApiTag = "classApiTag";
+  public static final String SET_classApiTag = "setClassApiTag";
   public static final String VAR_classApiMethods = "classApiMethods";
+  public static final String SET_classApiMethods = "setClassApiMethods";
   public static final String VAR_classContext = "classContext";
+  public static final String SET_classContext = "setClassContext";
   public static final String VAR_contextColor = "contextColor";
+  public static final String SET_contextColor = "setContextColor";
   public static final String VAR_contextIconGroup = "contextIconGroup";
+  public static final String SET_contextIconGroup = "setContextIconGroup";
   public static final String VAR_contextIconName = "contextIconName";
+  public static final String SET_contextIconName = "setContextIconName";
   public static final String VAR_contextRows = "contextRows";
+  public static final String SET_contextRows = "setContextRows";
   public static final String VAR_contextAName = "contextAName";
+  public static final String SET_contextAName = "setContextAName";
   public static final String VAR_contextNameSingular = "contextNameSingular";
+  public static final String SET_contextNameSingular = "setContextNameSingular";
   public static final String VAR_contextNamePlural = "contextNamePlural";
+  public static final String SET_contextNamePlural = "setContextNamePlural";
   public static final String VAR_contextNameVar = "contextNameVar";
+  public static final String SET_contextNameVar = "setContextNameVar";
   public static final String VAR_contextTheNames = "contextTheNames";
+  public static final String SET_contextTheNames = "setContextTheNames";
   public static final String VAR_contextNameAdjectiveSingular = "contextNameAdjectiveSingular";
+  public static final String SET_contextNameAdjectiveSingular = "setContextNameAdjectiveSingular";
   public static final String VAR_contextNameAdjectivePlural = "contextNameAdjectivePlural";
+  public static final String SET_contextNameAdjectivePlural = "setContextNameAdjectivePlural";
   public static final String VAR_contextThis = "contextThis";
+  public static final String SET_contextThis = "setContextThis";
   public static final String VAR_contextA = "contextA";
+  public static final String SET_contextA = "setContextA";
   public static final String VAR_contextCreated = "contextCreated";
+  public static final String SET_contextCreated = "setContextCreated";
   public static final String VAR_contextModified = "contextModified";
+  public static final String SET_contextModified = "setContextModified";
   public static final String VAR_contextActualName = "contextActualName";
+  public static final String SET_contextActualName = "setContextActualName";
   public static final String VAR_contextAll = "contextAll";
+  public static final String SET_contextAll = "setContextAll";
   public static final String VAR_contextAllName = "contextAllName";
+  public static final String SET_contextAllName = "setContextAllName";
   public static final String VAR_contextSearchAllNameBy = "contextSearchAllNameBy";
+  public static final String SET_contextSearchAllNameBy = "setContextSearchAllNameBy";
   public static final String VAR_contextSearchAllName = "contextSearchAllName";
+  public static final String SET_contextSearchAllName = "setContextSearchAllName";
   public static final String VAR_contextNoNameFound = "contextNoNameFound";
+  public static final String SET_contextNoNameFound = "setContextNoNameFound";
   public static final String VAR_contextANameAdjective = "contextANameAdjective";
+  public static final String SET_contextANameAdjective = "setContextANameAdjective";
   public static final String VAR_contextThisName = "contextThisName";
+  public static final String SET_contextThisName = "setContextThisName";
   public static final String VAR_contextTheName = "contextTheName";
+  public static final String SET_contextTheName = "setContextTheName";
   public static final String VAR_contextOfName = "contextOfName";
+  public static final String SET_contextOfName = "setContextOfName";
   public static final String VAR_contextThisLowercase = "contextThisLowercase";
+  public static final String SET_contextThisLowercase = "setContextThisLowercase";
   public static final String VAR_contextTitle = "contextTitle";
+  public static final String SET_contextTitle = "setContextTitle";
   public static final String VAR_classIndexed = "classIndexed";
+  public static final String SET_classIndexed = "setClassIndexed";
   public static final String VAR_classImage = "classImage";
+  public static final String SET_classImage = "setClassImage";
   public static final String VAR_classPromise = "classPromise";
+  public static final String SET_classPromise = "setClassPromise";
   public static final String VAR_classImportsGen = "classImportsGen";
+  public static final String SET_classImportsGen = "setClassImportsGen";
   public static final String VAR_classSortsFound = "classSortsFound";
+  public static final String SET_classSortsFound = "setClassSortsFound";
   public static final String VAR_classSortsSuffixType = "classSortsSuffixType";
+  public static final String SET_classSortsSuffixType = "setClassSortsSuffixType";
   public static final String VAR_classSortsOrder = "classSortsOrder";
+  public static final String SET_classSortsOrder = "setClassSortsOrder";
   public static final String VAR_classSortsVar = "classSortsVar";
+  public static final String SET_classSortsVar = "setClassSortsVar";
   public static final String VAR_classPage = "classPage";
+  public static final String SET_classPage = "setClassPage";
   public static final String VAR_version = "version";
+  public static final String SET_version = "setVersion";
 
   public static final String DISPLAY_NAME_siteRequest_ = "";
   public static final String DISPLAY_NAME_promiseBefore = "";
@@ -11533,34 +11756,6 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
 
   public String titleForClass() {
     return objectTitle;
-  }
-
-  public String nameForClass() {
-    return null;
-  }
-
-  public String classNameAdjectiveSingularForClass() {
-    return null;
-  }
-
-  public String descriptionForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlEditPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlDisplayPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlUserPageForClass() {
-    return null;
-  }
-
-  public String enUSStringFormatUrlDownloadForClass() {
-    return null;
   }
 
   public static String displayNameForClass(String var) {
@@ -11882,425 +12077,6 @@ public abstract class ComputateJavaClassGen<DEV> extends Object {
       return DISPLAY_NAME_version;
     default:
       return null;
-    }
-  }
-
-  public static String descriptionComputateJavaClass(String var) {
-    if(var == null)
-      return null;
-    switch(var) {
-    case VAR_siteRequest_:
-      return "The current request object";
-    case VAR_promiseBefore:
-      return "An asynchronous method for searching for a computer related to this message";
-    case VAR_inheritPk:
-      return "An optional inherited primary key from a legacy system for this object in the database";
-    case VAR_created:
-      return "A created timestamp for this record in the database";
-    case VAR_archived:
-      return "For archiving this record";
-    case VAR_deleted:
-      return "For deleting this record";
-    case VAR_classCanonicalNames:
-      return "All the inherited canonical names of this Java class";
-    case VAR_sessionId:
-      return "The session ID of the user that created this object";
-    case VAR_userKey:
-      return "The primary key of the user that created this record";
-    case VAR_saves:
-      return "A list of fields that are saved for this record in the database";
-    case VAR_objectTitle:
-      return "The title of this object";
-    case VAR_objectId:
-      return "A URL friendly unique ID for this object";
-    case VAR_objectSuggest:
-      return "The indexed field in the search engine for this record while using autosuggest";
-    case VAR_objectText:
-      return "The full text search field in the search engine for this record while using autosuggest";
-    case VAR_pageUrlId:
-      return "The link by name for this object in the UI";
-    case VAR_pageUrlPk:
-      return "The link by primary key for this object in the UI";
-    case VAR_pageUrlApi:
-      return "The link to this object in the API";
-    case VAR_modified:
-      return "A modified timestamp for this record in the database";
-    case VAR_classCanonicalName:
-      return "the canonical name of this Java class";
-    case VAR_classSimpleName:
-      return "The simple name of this Java class";
-    case VAR_id:
-      return "The unique key for this record in the search engine";
-      default:
-        return null;
-    }
-  }
-
-  public static String classSimpleNameComputateJavaClass(String var) {
-    switch(var) {
-    case VAR_siteRequest_:
-      return "ComputateSiteRequest";
-    case VAR_promiseBefore:
-      return "Void";
-    case VAR_inheritPk:
-      return "String";
-    case VAR_created:
-      return "ZonedDateTime";
-    case VAR_archived:
-      return "Boolean";
-    case VAR_deleted:
-      return "Boolean";
-    case VAR_classCanonicalNames:
-      return "List";
-    case VAR_sessionId:
-      return "String";
-    case VAR_userKey:
-      return "Long";
-    case VAR_saves:
-      return "List";
-    case VAR_objectTitle:
-      return "String";
-    case VAR_objectId:
-      return "String";
-    case VAR_objectSuggest:
-      return "String";
-    case VAR_objectText:
-      return "List";
-    case VAR_pageUrlId:
-      return "String";
-    case VAR_pageUrlPk:
-      return "String";
-    case VAR_pageUrlApi:
-      return "String";
-    case VAR_doc:
-      return "JsonObject";
-    case VAR_sitePath:
-      return "String";
-    case VAR_siteName:
-      return "String";
-    case VAR_superClassParamsTypeName:
-      return "List";
-    case VAR_superClassCompleteName:
-      return "String";
-    case VAR_superClassGenericCompleteName:
-      return "String";
-    case VAR_superClassGenericCanonicalName:
-      return "String";
-    case VAR_superClassGenericSimpleName:
-      return "String";
-    case VAR_classIsBase:
-      return "Boolean";
-    case VAR_classExtendsBase:
-      return "Boolean";
-    case VAR_classBaseExtendsGen:
-      return "Boolean";
-    case VAR_classContainsSiteRequest:
-      return "Boolean";
-    case VAR_classTranslate:
-      return "Boolean";
-    case VAR_classInitDeep:
-      return "Boolean";
-    case VAR_classExtendsGen:
-      return "Boolean";
-    case VAR_languageName:
-      return "String";
-    case VAR_modified:
-      return "String";
-    case VAR_classCanonicalName:
-      return "String";
-    case VAR_classSimpleName:
-      return "String";
-    case VAR_classPackageName:
-      return "String";
-    case VAR_classCanonicalNameGen:
-      return "String";
-    case VAR_classSimpleNameGen:
-      return "String";
-    case VAR_superClassCanonicalName:
-      return "String";
-    case VAR_superClassSimpleName:
-      return "String";
-    case VAR_classAbsolutePath:
-      return "String";
-    case VAR_classPath:
-      return "String";
-    case VAR_classDirectoryPath:
-      return "String";
-    case VAR_classPathGen:
-      return "String";
-    case VAR_classDirectoryPathGen:
-      return "String";
-    case VAR_domainPackageName:
-      return "String";
-    case VAR_entityClassesSuperAndMeWithoutGen:
-      return "List";
-    case VAR_classIsAbstract:
-      return "Boolean";
-    case VAR_classModel:
-      return "Boolean";
-    case VAR_classApi:
-      return "Boolean";
-    case VAR_classSimplePage:
-      return "Boolean";
-    case VAR_classSaved:
-      return "Boolean";
-    case VAR_classSimpleNameApiPackageInfo:
-      return "String";
-    case VAR_classSimpleNameGenApiServiceImpl:
-      return "String";
-    case VAR_classSimpleNameApiServiceImpl:
-      return "String";
-    case VAR_classSimpleNameGenApiService:
-      return "String";
-    case VAR_classCanonicalNameApiPackageInfo:
-      return "String";
-    case VAR_classCanonicalNameGenApiServiceImpl:
-      return "String";
-    case VAR_classCanonicalNameApiServiceImpl:
-      return "String";
-    case VAR_classCanonicalNameGenApiService:
-      return "String";
-    case VAR_classPathApiPackageInfo:
-      return "String";
-    case VAR_classPathGenApiServiceImpl:
-      return "String";
-    case VAR_classPathApiServiceImpl:
-      return "String";
-    case VAR_classPathGenApiService:
-      return "String";
-    case VAR_classPublicRead:
-      return "Boolean";
-    case VAR_classRoleSession:
-      return "Boolean";
-    case VAR_classRoleUser:
-      return "Boolean";
-    case VAR_classRoleEach:
-      return "Boolean";
-    case VAR_classRoles:
-      return "List";
-    case VAR_classRolesLanguage:
-      return "List";
-    case VAR_classRolesFound:
-      return "Boolean";
-    case VAR_classRoleReadFound:
-      return "Boolean";
-    case VAR_classSessionWrite:
-      return "Boolean";
-    case VAR_classUserWrite:
-      return "Boolean";
-    case VAR_classPublicWrite:
-      return "Boolean";
-    case VAR_classSessionRead:
-      return "Boolean";
-    case VAR_classUserRead:
-      return "Boolean";
-    case VAR_classFiltersFound:
-      return "Boolean";
-    case VAR_sqlSort:
-      return "Integer";
-    case VAR_id:
-      return "String";
-    case VAR_partIsClass:
-      return "Boolean";
-    case VAR_partNumber:
-      return "Integer";
-    case VAR_classImports:
-      return "List";
-    case VAR_classEntityVars:
-      return "List";
-    case VAR_classImportsGenApi:
-      return "List";
-    case VAR_classAttributeSimpleNamePages:
-      return "List";
-    case VAR_classMethodVars:
-      return "List";
-    case VAR_classVarSuggested:
-      return "String";
-    case VAR_classVarText:
-      return "String";
-    case VAR_classVarPrimaryKey:
-      return "String";
-    case VAR_classVarInheritPrimaryKey:
-      return "String";
-    case VAR_classVarSaves:
-      return "String";
-    case VAR_classvarUniqueKey:
-      return "String";
-    case VAR_classVarModified:
-      return "String";
-    case VAR_classVarCreated:
-      return "String";
-    case VAR_classVarUrlId:
-      return "String";
-    case VAR_classVarUrlPk:
-      return "String";
-    case VAR_classVarId:
-      return "String";
-    case VAR_classVarTitle:
-      return "String";
-    case VAR_classKeywordsFound:
-      return "Boolean";
-    case VAR_classPageCanonicalName:
-      return "String";
-    case VAR_classPageSimpleName:
-      return "String";
-    case VAR_classGenPageSimpleName:
-      return "String";
-    case VAR_classGenPageCanonicalName:
-      return "String";
-    case VAR_classGenPagePath:
-      return "String";
-    case VAR_classPagePath:
-      return "String";
-    case VAR_classPagePathCss:
-      return "String";
-    case VAR_classPagePathJs:
-      return "String";
-    case VAR_classPagePathHbs:
-      return "String";
-    case VAR_classGenPagePathHbs:
-      return "String";
-    case VAR_classPageLanguageName:
-      return "String";
-    case VAR_classPageSuperCanonicalName:
-      return "String";
-    case VAR_classSuperPageSimpleName:
-      return "String";
-    case VAR_classImportsGenPage:
-      return "List";
-    case VAR_classApiUri:
-      return "String";
-    case VAR_classApiTag:
-      return "String";
-    case VAR_classApiMethods:
-      return "List";
-    case VAR_classContext:
-      return "Boolean";
-    case VAR_contextColor:
-      return "String";
-    case VAR_contextIconGroup:
-      return "String";
-    case VAR_contextIconName:
-      return "String";
-    case VAR_contextRows:
-      return "Integer";
-    case VAR_contextAName:
-      return "String";
-    case VAR_contextNameSingular:
-      return "String";
-    case VAR_contextNamePlural:
-      return "String";
-    case VAR_contextNameVar:
-      return "String";
-    case VAR_contextTheNames:
-      return "String";
-    case VAR_contextNameAdjectiveSingular:
-      return "String";
-    case VAR_contextNameAdjectivePlural:
-      return "String";
-    case VAR_contextThis:
-      return "String";
-    case VAR_contextA:
-      return "String";
-    case VAR_contextCreated:
-      return "String";
-    case VAR_contextModified:
-      return "String";
-    case VAR_contextActualName:
-      return "String";
-    case VAR_contextAll:
-      return "String";
-    case VAR_contextAllName:
-      return "String";
-    case VAR_contextSearchAllNameBy:
-      return "String";
-    case VAR_contextSearchAllName:
-      return "String";
-    case VAR_contextNoNameFound:
-      return "String";
-    case VAR_contextANameAdjective:
-      return "String";
-    case VAR_contextThisName:
-      return "String";
-    case VAR_contextTheName:
-      return "String";
-    case VAR_contextOfName:
-      return "String";
-    case VAR_contextThisLowercase:
-      return "String";
-    case VAR_contextTitle:
-      return "String";
-    case VAR_classIndexed:
-      return "Boolean";
-    case VAR_classImage:
-      return "Boolean";
-    case VAR_classPromise:
-      return "Boolean";
-    case VAR_classImportsGen:
-      return "List";
-    case VAR_classSortsFound:
-      return "Boolean";
-    case VAR_classSortsSuffixType:
-      return "List";
-    case VAR_classSortsOrder:
-      return "List";
-    case VAR_classSortsVar:
-      return "List";
-    case VAR_classPage:
-      return "Boolean";
-    case VAR_version:
-      return "Boolean";
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmColumnComputateJavaClass(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmRowComputateJavaClass(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer htmCellComputateJavaClass(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer lengthMinComputateJavaClass(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer lengthMaxComputateJavaClass(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer maxComputateJavaClass(String var) {
-    switch(var) {
-      default:
-        return null;
-    }
-  }
-
-  public static Integer minComputateJavaClass(String var) {
-    switch(var) {
-      default:
-        return null;
     }
   }
 }
