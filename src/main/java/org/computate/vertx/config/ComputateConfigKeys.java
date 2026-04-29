@@ -1425,6 +1425,7 @@ public class ComputateConfigKeys {
    * Map default zoom. 
    **/
   public static final String DEFAULT_MAP_ZOOM = "DEFAULT_MAP_ZOOM";
+  public static final String DEFAULT_UNIT_ALTITUDE = "DEFAULT_UNIT_ALTITUDE";
 
   /**
    * Facebook Graph Version
