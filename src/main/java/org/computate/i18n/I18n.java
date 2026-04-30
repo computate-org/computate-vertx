@@ -173,6 +173,7 @@ public class I18n {
 	public static final String var_Ajouter = "var_Ajouter";
 	public static final String var_ajouterErreur = "var_ajouterErreur";
 	public static final String var_ajouterLueur = "var_ajouterLueur";
+	public static final String var_Altitude = "var_Altitude";
 	public static final String var_Api = "var_Api";
 	public static final String var_ApiDescription = "var_ApiDescription";
 	public static final String var_ApiInterne = "var_ApiInterne";
@@ -420,6 +421,7 @@ public class I18n {
 	public static final String var_jsWebsocket = "var_jsWebsocket";
 	public static final String var_JsWebsocket = "var_JsWebsocket";
 	public static final String var_LANGUE_NOM = "var_LANGUE_NOM";
+	public static final String var_Lacet = "var_Lacet";
 	public static final String var_Langue = "var_Langue";
 	public static final String var_Largeur = "var_Largeur";
 	public static final String var_LeNomAdjectif = "var_LeNomAdjectif";
@@ -603,6 +605,8 @@ public class I18n {
 	public static final String var_ResultatBase = "var_ResultatBase";
 	public static final String var_retourner_a_ = "var_retourner_a_";
 	public static final String var_Role = "var_Role";
+	public static final String var_Rotation = "var_Rotation";
+	public static final String var_Roulis = "var_Roulis";
 	public static final String var_routeur = "var_routeur";
 	public static final String var_Sauvegarde = "var_Sauvegarde";
 	public static final String var_sauvegardes = "var_sauvegardes";
@@ -660,6 +664,7 @@ public class I18n {
 	public static final String var_Supprimer = "var_Supprimer";
 	public static final String var_supprime = "var_supprime";
 	public static final String var_Supprime = "var_Supprime";
+	public static final String var_Tangage = "var_Tangage";
 	public static final String var_Telechargement = "var_Telechargement";
 	public static final String var_template = "var_template";
 	public static final String var_templateChemin = "var_templateChemin";
