@@ -157,4 +157,12 @@ public class GeoTool {
     }
     return null;
   }
+
+  public static Unit<?> parseUnit(String unit) {
+    return GeoTool.parseUnit(unit, UNIT_FORMAT);
+  }
+
+  public static Unit<?> parseUnit(String unit, SimpleUnitFormat unitFormat) {
+    return unitFormat.parse(unit);
+  }
 }

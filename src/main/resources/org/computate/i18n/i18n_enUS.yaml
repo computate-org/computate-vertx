@@ -468,6 +468,7 @@ var_Ajouter: "Add"
 var_ajouterErreur: "addError"
 var_ajouterLueur: "addGlow"
 var_Altitude: "Altitude"
+var_AltitudeMetres: "AltitudeMeters"
 var_Api: "Api"
 var_ApiDescription: "ApiDescription"
 var_ApiInterne: "ApiInternal"
@@ -673,6 +674,7 @@ var_generer: "generate"
 var_genererCorpsPage: "generatePageBody"
 var_gestionnaireEvenements: "eventHandler"
 var_GestionnaireEvenements: "EventHandler"
+var_Gltf: Gltf
 var_graphique: graph
 var_Graphique: Graph
 var_Groupe: "Group"

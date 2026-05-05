@@ -174,6 +174,7 @@ public class I18n {
 	public static final String var_ajouterErreur = "var_ajouterErreur";
 	public static final String var_ajouterLueur = "var_ajouterLueur";
 	public static final String var_Altitude = "var_Altitude";
+	public static final String var_AltitudeMetres = "var_AltitudeMetres";
 	public static final String var_Api = "var_Api";
 	public static final String var_ApiDescription = "var_ApiDescription";
 	public static final String var_ApiInterne = "var_ApiInterne";
@@ -375,6 +376,7 @@ public class I18n {
 	public static final String var_genererCorpsPage = "var_genererCorpsPage";
 	public static final String var_gestionnaireEvenements = "var_gestionnaireEvenements";
 	public static final String var_GestionnaireEvenements = "var_GestionnaireEvenements";
+	public static final String var_Gltf = "var_Gltf";
 	public static final String var_graphique = "var_graphique";
 	public static final String var_Graphique = "var_Graphique";
 	public static final String var_Groupe = "var_Groupe";

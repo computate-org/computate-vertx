@@ -38,10 +38,16 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.TimeZone;
 
+import javax.measure.Quantity;
+import javax.measure.quantity.Angle;
+import javax.measure.quantity.Length;
+
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.computate.search.serialize.ComputateLocalDateSerializer;
 import org.computate.search.serialize.ComputateLocalTimeSerializer;
 import org.computate.search.serialize.ComputateZonedDateTimeSerializer;
+import org.computate.vertx.tool.GeoTool;
+import org.geotools.measure.Measure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
@@ -64,6 +70,8 @@ import io.kubernetes.client.util.Config;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
+import systems.uom.common.USCustomary;
+import tech.units.indriya.unit.Units;
 
 /**
  * Keyword: classSimpleNameConfigKeys
@@ -309,6 +317,39 @@ public class ComputateConfigKeys {
     }
   }
 
+  public static Double toRadian(String quantityStr) {
+    Logger LOG = LoggerFactory.getLogger(ComputateConfigKeys.class);
+    try {
+      return ((Quantity<Angle>)GeoTool.parseQuantity(quantityStr)).to(Units.RADIAN).getValue().doubleValue();
+    } catch(Throwable ex) {
+      LOG.error(String.format("Exception %s", ex));
+      ExceptionUtils.rethrow(ex);
+      return null;
+    }
+  }
+
+  public static Double toDegree(String quantityStr) {
+    Logger LOG = LoggerFactory.getLogger(ComputateConfigKeys.class);
+    try {
+      return ((Quantity<Angle>)GeoTool.parseQuantity(quantityStr)).to(USCustomary.DEGREE_ANGLE).getValue().doubleValue();
+    } catch(Throwable ex) {
+      LOG.error(String.format("Exception %s", ex));
+      ExceptionUtils.rethrow(ex);
+      return null;
+    }
+  }
+
+  public static Double toMeter(String quantityStr) {
+    Logger LOG = LoggerFactory.getLogger(ComputateConfigKeys.class);
+    try {
+      return ((Quantity<Length>)GeoTool.parseQuantity(quantityStr)).to(Units.METRE).getValue().doubleValue();
+    } catch(Throwable ex) {
+      LOG.error(String.format("Exception %s", ex));
+      ExceptionUtils.rethrow(ex);
+      return null;
+    }
+  }
+
   public static String siteZonedDateTimeFormat(Object value, String pattern, String localeStr) {
     return siteZonedDateTimeFormatTz(value, pattern, localeStr, null);
   }
@@ -345,6 +386,9 @@ public class ComputateConfigKeys {
       jinjava.registerFunction(new ELFunctionDefinition("", "formatLocalTime", ComputateConfigKeys.class, "formatLocalTime", Object.class, String.class, String.class, String.class));
       jinjava.registerFunction(new ELFunctionDefinition("", "formatNumber", ComputateConfigKeys.class, "formatNumber", Object.class, String.class, String.class, Boolean.class, Integer.class, Integer.class, Integer.class, Integer.class, Boolean.class, String.class));
       jinjava.registerFunction(new ELFunctionDefinition("", "formatNumber", ComputateConfigKeys.class, "formatNumber", Object.class, String.class, String.class));
+      jinjava.registerFunction(new ELFunctionDefinition("", "toRadian", ComputateConfigKeys.class, "toRadian", String.class));
+      jinjava.registerFunction(new ELFunctionDefinition("", "toDegree", ComputateConfigKeys.class, "toDegree", String.class));
+      jinjava.registerFunction(new ELFunctionDefinition("", "toMeter", ComputateConfigKeys.class, "toMeter", String.class));
 
       jinjava.registerFilter(new Filter() {
         @Override
@@ -504,6 +548,9 @@ public class ComputateConfigKeys {
     ctx.put(MAILING_LIST_EMAIL, config.getString(MAILING_LIST_EMAIL));
     ctx.put(SITE_REPO_HTTPS, config.getString(SITE_REPO_HTTPS));
     ctx.put(MAPBOX_TOKEN, config.getString(MAPBOX_TOKEN));
+    ctx.put(DEFAULT_MAP_LOCATION, config.getString(DEFAULT_MAP_LOCATION));
+    ctx.put(DEFAULT_MAP_ZOOM, config.getString(DEFAULT_MAP_ZOOM));
+    ctx.put(DEFAULT_MAP_PITCH, config.getString(DEFAULT_MAP_PITCH));
     return ctx;
   }
 
@@ -1425,7 +1472,11 @@ public class ComputateConfigKeys {
    * Map default zoom. 
    **/
   public static final String DEFAULT_MAP_ZOOM = "DEFAULT_MAP_ZOOM";
-  public static final String DEFAULT_UNIT_ALTITUDE = "DEFAULT_UNIT_ALTITUDE";
+
+  /**
+   * Map default pitch in deg or rad ("60 deg"). 
+   **/
+  public static final String DEFAULT_MAP_PITCH = "DEFAULT_MAP_PITCH";
 
   /**
    * Facebook Graph Version

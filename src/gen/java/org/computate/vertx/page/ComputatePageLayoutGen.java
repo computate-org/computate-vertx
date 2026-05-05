@@ -1,5 +1,31 @@
 package org.computate.vertx.page;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.net.URLEncoder;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import javax.measure.Quantity;
+import javax.measure.quantity.Angle;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.computate.search.response.solr.SolrResponse;
+import org.computate.search.tool.SearchTool;
+import org.computate.search.wrap.Wrap;
+import org.computate.vertx.config.ComputateConfigKeys;
+import org.computate.vertx.request.ComputateSiteRequest;
+import io.vertx.core.Promise;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
+import io.vertx.ext.web.api.service.ServiceRequest;
 import org.computate.vertx.request.ComputateSiteRequest;
 import java.lang.Object;
 import org.computate.vertx.api.ApiRequest;
@@ -23,6 +49,7 @@ import org.computate.search.serialize.ComputateZonedDateTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import org.computate.search.serialize.ComputateBigDecimalDeserializer;
 import java.math.MathContext;
 import org.apache.commons.lang3.math.NumberUtils;
 import java.text.NumberFormat;
@@ -55,6 +82,22 @@ import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.lang.Integer;
 import java.math.BigDecimal;
+import javax.measure.Quantity;
+import javax.measure.quantity.Angle;
+import org.computate.vertx.tool.VertxTool;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.deser.BeanDeserializerModifier;
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.BeanDescription;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import java.util.stream.Collectors;
+import io.vertx.core.json.Json;
+import io.vertx.pgclient.data.Point;
+import tech.units.indriya.format.SimpleUnitFormat;
+import org.computate.vertx.tool.GeoTool;
+import org.computate.vertx.serialize.unit.QuantitySerializer;
+import org.computate.vertx.serialize.unit.QuantityDeserializer;
 import org.computate.search.wrap.Wrap;
 import io.vertx.core.Promise;
 import io.vertx.core.Future;
@@ -3792,6 +3835,75 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
     return ComputatePageLayout.staticSearchDEFAULT_MAP_ZOOM(siteRequest_, ComputatePageLayout.staticSetDEFAULT_MAP_ZOOM(siteRequest_, o)).toString();
   }
 
+	///////////////////////
+  // DEFAULT_MAP_PITCH //
+	///////////////////////
+
+
+  /**
+   *  The entity DEFAULT_MAP_PITCH
+   *	 is defined as null before being initialized. 
+   */
+  @JsonProperty
+  @JsonDeserialize(using = QuantityDeserializer.class)
+  @JsonSerialize(using = QuantitySerializer.class)
+  @JsonInclude(Include.NON_NULL)
+  protected Quantity<Angle> DEFAULT_MAP_PITCH;
+
+  /**
+   * <br> The entity DEFAULT_MAP_PITCH
+   *  is defined as null before being initialized. 
+   * <br><a href="https://solr.apps-crc.testing/solr/#/computate/query?q=*:*&fq=partEstEntite_indexed_boolean:true&fq=classeNomCanonique_enUS_indexed_string:org.computate.vertx.page.ComputatePageLayout&fq=entiteVar_enUS_indexed_string:DEFAULT_MAP_PITCH">Find the entity DEFAULT_MAP_PITCH in Solr</a>
+   * <br>
+   * @param w is for wrapping a value to assign to this entity during initialization. 
+   **/
+  protected abstract void _DEFAULT_MAP_PITCH(Wrap<Quantity<Angle>> w);
+
+  public Quantity<Angle> getDEFAULT_MAP_PITCH() {
+    return DEFAULT_MAP_PITCH;
+  }
+
+  public void setDEFAULT_MAP_PITCH(Quantity<Angle> DEFAULT_MAP_PITCH) {
+    this.DEFAULT_MAP_PITCH = DEFAULT_MAP_PITCH;
+  }
+  /** Example: 100 meters, 1 m, 2 feet, 1 ft **/
+  @JsonIgnore
+  public void setDEFAULT_MAP_PITCH(String o) {
+    this.DEFAULT_MAP_PITCH = ComputatePageLayout.staticSetDEFAULT_MAP_PITCH(siteRequest_, o);
+  }
+  public static Quantity<Angle> staticSetDEFAULT_MAP_PITCH(String o) {
+    if(o != null)
+      return GeoTool.parseQuantity(o).asType(javax.measure.quantity.Angle.class);
+    return null;
+  }
+  public static Quantity<Angle> staticSetDEFAULT_MAP_PITCH(ComputateSiteRequest siteRequest_, String o) {
+    if(o != null)
+      return GeoTool.parseQuantity(o).asType(javax.measure.quantity.Angle.class);
+    return null;
+  }
+  protected ComputatePageLayout DEFAULT_MAP_PITCHInit() {
+    Wrap<Quantity<Angle>> DEFAULT_MAP_PITCHWrap = new Wrap<Quantity<Angle>>().var("DEFAULT_MAP_PITCH");
+    if(DEFAULT_MAP_PITCH == null) {
+      _DEFAULT_MAP_PITCH(DEFAULT_MAP_PITCHWrap);
+      Optional.ofNullable(DEFAULT_MAP_PITCHWrap.getO()).ifPresent(o -> {
+        setDEFAULT_MAP_PITCH(o);
+      });
+    }
+    return (ComputatePageLayout)this;
+  }
+
+  public static String staticSearchDEFAULT_MAP_PITCH(ComputateSiteRequest siteRequest_, Quantity o) {
+    return o.toString();
+  }
+
+  public static String staticSearchStrDEFAULT_MAP_PITCH(ComputateSiteRequest siteRequest_, String o) {
+    return o == null ? null : o.toString();
+  }
+
+  public static String staticSearchFqDEFAULT_MAP_PITCH(ComputateSiteRequest siteRequest_, String o) {
+    return ComputatePageLayout.staticSearchDEFAULT_MAP_PITCH(siteRequest_, ComputatePageLayout.staticSetDEFAULT_MAP_PITCH(siteRequest_, o)).toString();
+  }
+
 	//////////////
   // queryStr //
 	//////////////
@@ -4441,6 +4553,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
         defaultPivotMinCountInit();
         DEFAULT_MAP_LOCATIONInit();
         DEFAULT_MAP_ZOOMInit();
+        DEFAULT_MAP_PITCHInit();
         queryStrInit();
         promise2.complete();
       } catch(Exception ex) {
@@ -4636,6 +4749,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
         return oComputatePageLayout.DEFAULT_MAP_LOCATION;
       case "DEFAULT_MAP_ZOOM":
         return oComputatePageLayout.DEFAULT_MAP_ZOOM;
+      case "DEFAULT_MAP_PITCH":
+        return oComputatePageLayout.DEFAULT_MAP_PITCH;
       case "queryStr":
         return oComputatePageLayout.queryStr;
       case "promiseAfter":
@@ -4793,6 +4908,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
       return ComputatePageLayout.staticSetDEFAULT_MAP_LOCATION(siteRequest_, v);
     case "DEFAULT_MAP_ZOOM":
       return ComputatePageLayout.staticSetDEFAULT_MAP_ZOOM(siteRequest_, v);
+    case "DEFAULT_MAP_PITCH":
+      return ComputatePageLayout.staticSetDEFAULT_MAP_PITCH(siteRequest_, v);
     case "queryStr":
       return ComputatePageLayout.staticSetQueryStr(siteRequest_, v);
     case "pageImageUri":
@@ -4931,6 +5048,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
       return ComputatePageLayout.staticSearchDEFAULT_MAP_LOCATION(siteRequest_, (JsonObject)o);
     case "DEFAULT_MAP_ZOOM":
       return ComputatePageLayout.staticSearchDEFAULT_MAP_ZOOM(siteRequest_, (BigDecimal)o);
+    case "DEFAULT_MAP_PITCH":
+      return ComputatePageLayout.staticSearchDEFAULT_MAP_PITCH(siteRequest_, (Quantity<Angle>)o);
     case "queryStr":
       return ComputatePageLayout.staticSearchQueryStr(siteRequest_, (String)o);
     case "pageImageUri":
@@ -5069,6 +5188,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
       return ComputatePageLayout.staticSearchStrDEFAULT_MAP_LOCATION(siteRequest_, (String)o);
     case "DEFAULT_MAP_ZOOM":
       return ComputatePageLayout.staticSearchStrDEFAULT_MAP_ZOOM(siteRequest_, (String)o);
+    case "DEFAULT_MAP_PITCH":
+      return ComputatePageLayout.staticSearchStrDEFAULT_MAP_PITCH(siteRequest_, (String)o);
     case "queryStr":
       return ComputatePageLayout.staticSearchStrQueryStr(siteRequest_, (String)o);
     case "pageImageUri":
@@ -5207,6 +5328,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
       return ComputatePageLayout.staticSearchFqDEFAULT_MAP_LOCATION(siteRequest_, o);
     case "DEFAULT_MAP_ZOOM":
       return ComputatePageLayout.staticSearchFqDEFAULT_MAP_ZOOM(siteRequest_, o);
+    case "DEFAULT_MAP_PITCH":
+      return ComputatePageLayout.staticSearchFqDEFAULT_MAP_PITCH(siteRequest_, o);
     case "queryStr":
       return ComputatePageLayout.staticSearchFqQueryStr(siteRequest_, o);
     case "pageImageUri":
@@ -5364,6 +5487,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
   public static final String SET_DEFAULT_MAP_LOCATION = "setDEFAULT_MAP_LOCATION";
   public static final String VAR_DEFAULT_MAP_ZOOM = "DEFAULT_MAP_ZOOM";
   public static final String SET_DEFAULT_MAP_ZOOM = "setDEFAULT_MAP_ZOOM";
+  public static final String VAR_DEFAULT_MAP_PITCH = "DEFAULT_MAP_PITCH";
+  public static final String SET_DEFAULT_MAP_PITCH = "setDEFAULT_MAP_PITCH";
   public static final String VAR_queryStr = "queryStr";
   public static final String SET_queryStr = "setQueryStr";
   public static final String VAR_promiseAfter = "promiseAfter";
@@ -5446,6 +5571,7 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
   public static final String DISPLAY_NAME_defaultPivotMinCount = "";
   public static final String DISPLAY_NAME_DEFAULT_MAP_LOCATION = "";
   public static final String DISPLAY_NAME_DEFAULT_MAP_ZOOM = "";
+  public static final String DISPLAY_NAME_DEFAULT_MAP_PITCH = "";
   public static final String DISPLAY_NAME_queryStr = "";
   public static final String DISPLAY_NAME_promiseAfter = "";
   public static final String DISPLAY_NAME_pageImageUri = "";
@@ -5584,6 +5710,8 @@ public abstract class ComputatePageLayoutGen<DEV> extends Object {
       return DISPLAY_NAME_DEFAULT_MAP_LOCATION;
     case VAR_DEFAULT_MAP_ZOOM:
       return DISPLAY_NAME_DEFAULT_MAP_ZOOM;
+    case VAR_DEFAULT_MAP_PITCH:
+      return DISPLAY_NAME_DEFAULT_MAP_PITCH;
     case VAR_queryStr:
       return DISPLAY_NAME_queryStr;
     case VAR_promiseAfter:
