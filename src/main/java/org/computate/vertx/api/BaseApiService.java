@@ -1347,7 +1347,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
           result.put(i18n.getString(I18n.var_nomFichierCourt), shortFileName);
           ctx.put(ComputateConfigKeys.STATIC_BASE_URL, config.getString(ComputateConfigKeys.STATIC_BASE_URL));
           ctx.put(ComputateConfigKeys.SITE_BASE_URL, config.getString(ComputateConfigKeys.SITE_BASE_URL));
-          ctx.put(ComputateConfigKeys.GITHUB_ORG, config.getString(ComputateConfigKeys.GITHUB_ORG));
+          ctx.put(ComputateConfigKeys.GIT_ORG, config.getString(ComputateConfigKeys.GIT_ORG));
           ctx.put(ComputateConfigKeys.SITE_NAME, config.getString(ComputateConfigKeys.SITE_NAME));
           ctx.put(ComputateConfigKeys.SITE_SHORT_NAME, config.getString(ComputateConfigKeys.SITE_SHORT_NAME));
           ctx.put(ComputateConfigKeys.SITE_DISPLAY_NAME, config.getString(ComputateConfigKeys.SITE_DISPLAY_NAME));

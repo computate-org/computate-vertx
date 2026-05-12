@@ -518,7 +518,7 @@ public class ComputateConfigKeys {
     ctx.put(SITE_POM_ARTIFACT_ID, config.getString(SITE_POM_ARTIFACT_ID));
     ctx.put(STATIC_BASE_URL, config.getString(STATIC_BASE_URL));
     ctx.put(SITE_BASE_URL, config.getString(SITE_BASE_URL));
-    ctx.put(GITHUB_ORG, config.getString(GITHUB_ORG));
+    ctx.put(GIT_ORG, config.getString(GIT_ORG));
     ctx.put(SITE_NAME, config.getString(SITE_NAME));
     ctx.put(SITE_DISPLAY_NAME, config.getString(SITE_DISPLAY_NAME));
     ctx.put(SITE_SHORT_NAME, config.getString(SITE_SHORT_NAME));
@@ -923,7 +923,7 @@ public class ComputateConfigKeys {
   /**
    * The name Github organization for the site. 
    **/
-  public static final String GITHUB_ORG = "GITHUB_ORG";
+  public static final String GIT_ORG = "GIT_ORG";
 
   /**
    * The project powered by URL. 
