@@ -1130,6 +1130,44 @@ abstract class BaseApiService implements BaseApiServiceInterface {
   // }
 
   /**
+   * Obtain a Keycloak admin token for creating authorization resources, scopes, policies, and permissions. 
+   * @return access_token String for creating other authorization resources. 
+   */
+  public Future<String> obtainKeycloakAdminToken() {
+    Promise<String> promise = Promise.promise();
+    try {
+      String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
+      String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
+      Integer authPort = Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT));
+      String authHostName = config.getString(ComputateConfigKeys.AUTH_HOST_NAME);
+      Boolean authSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.AUTH_SSL));
+
+      webClient.post(authPort, authHostName, "/realms/master/protocol/openid-connect/token").ssl(authSsl)
+          .sendForm(MultiMap.caseInsensitiveMultiMap()
+              .add("username", authAdminUsername)
+              .add("password", authAdminPassword)
+              .add("grant_type", "password")
+              .add("client_id", "admin-cli")
+              ).onSuccess(tokenResponse -> {
+        try {
+          String authToken = tokenResponse.bodyAsJsonObject().getString("access_token");
+          promise.complete(authToken);
+        } catch(Throwable ex) {
+          LOG.error("Failed to obtain Keycloak admin token", ex);
+          promise.fail(ex);
+        }
+      }).onFailure(ex -> {
+        LOG.error("Failed to obtain Keycloak admin token", ex);
+        promise.fail(ex);
+      });
+    } catch(Throwable ex) {
+      LOG.error("Failed to obtain Keycloak admin token", ex);
+      promise.fail(ex);
+    }
+    return promise.future();
+  }
+
+  /**
    * Creates Keycloak group and authorization resource, policy, and permission for the group to class data in the site. 
    */
   public Future<Void> authorizeGroupData(String authToken, String classAuthResource, String groupName, String[] scopes) {
@@ -1479,11 +1517,6 @@ abstract class BaseApiService implements BaseApiServiceInterface {
                           promise.complete();
                         } else {
                           ZoneId zoneId = ZoneId.of(config.getString(ComputateConfigKeys.SITE_ZONE));
-                          String groupName = String.format("%s-%s-GET", classAuthResource, pageId);
-                          String policyId = String.format("%s-%s-GET", classAuthResource, pageId);
-                          String policyName = String.format("%s-%s-GET", classAuthResource, pageId);
-                          String resourceName = String.format("%s-%s", classAuthResource, pageId);
-                          String resourceDisplayName = String.format("%s %s", classAuthResource, pageId);
                           String authAdminUsername = config.getString(ComputateConfigKeys.AUTH_ADMIN_USERNAME);
                           String authAdminPassword = config.getString(ComputateConfigKeys.AUTH_ADMIN_PASSWORD);
                           Integer authPort = Integer.parseInt(config.getString(ComputateConfigKeys.AUTH_PORT));
@@ -1491,6 +1524,11 @@ abstract class BaseApiService implements BaseApiServiceInterface {
                           Boolean authSsl = Boolean.parseBoolean(config.getString(ComputateConfigKeys.AUTH_SSL));
                           String authRealm = config.getString(ComputateConfigKeys.AUTH_REALM);
                           String authClient = config.getString(ComputateConfigKeys.AUTH_CLIENT);
+                          String groupName = String.format("%s-%s-GET", classAuthResource, pageId);
+                          String policyId = String.format("%s-%s-%s-GET", authRealm, classAuthResource, pageId);
+                          String policyName = String.format("%s-%s-%s-GET", authRealm, classAuthResource, pageId);
+                          String resourceName = String.format("%s-%s", classAuthResource, pageId);
+                          String resourceDisplayName = String.format("%s %s", classAuthResource, pageId);
                           webClient.post(authPort, authHostName, "/realms/master/protocol/openid-connect/token").ssl(authSsl)
                               .sendForm(MultiMap.caseInsensitiveMultiMap()
                                   .add("username", authAdminUsername)
