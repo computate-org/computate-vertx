@@ -85,7 +85,6 @@ public class JsonObjectDeserializer extends JsonDeserializer<JsonObject> {
 			token = jsonParser.nextToken();
 		}
 		text = b.toString();
-		System.out.println(text);
 		return new JsonObject(text);
 	}
 }
