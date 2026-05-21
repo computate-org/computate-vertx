@@ -1576,6 +1576,8 @@ public class ComputateConfigKeys {
   public static final String PERSISTENT_METRICS_ZOOKEEPER_SSL = "PERSISTENT_METRICS_ZOOKEEPER_SSL";
 
   public static final String CONTENT_TYPE_PDF = "CONTENT_TYPE_PDF";
+  public static final String ENABLE_IRON_PDF = "ENABLE_IRON_PDF";
+  public static final String IRON_PDF_CONTAINER = "IRON_PDF_CONTAINER";
 }
 
 /**
