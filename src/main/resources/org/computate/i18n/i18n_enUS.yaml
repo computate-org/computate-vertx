@@ -104,11 +104,11 @@ classe:
           This class contains a comment <kbd><b>Api: true</b></kbd>, which means this class will have Java Vert.x API backend code generated for these objects. 
         </p>
       suggere: |-
-        {%% if exampleValue is not defined -%%}
+        {% if exampleValue is not defined -%}
         <p>
           You can add a class comment <kbd><b>Api: true</b></kbd> if you wish to GET, POST, PATCH or PUT these {{ classeNomSingulier }} objects in a RESTful API. 
         </p>
-        {%% endif %%}
+        {% endif %}
     ApiMethode:
       commentVar: "ApiMethod"
       javaType: class
@@ -219,13 +219,13 @@ classe:
         Each API has built in pagination of the search results to ensure a user can query all the data a page at a time without running the application out of memory. 
         </p>
       suggere: |-
-        {%% if exampleValue is not defined -%%}
+        {% if exampleValue is not defined -%}
         <p>
           You can add a class comment <kbd><b>Rows: 100</b></kbd> if you wish for the {{ classeNomSingulier }} API to return more or less than 10 results by default. 
           In this case, the API will return 100 results from the API instead of 10 by default. 
           Each API has built in pagination of the search results to ensure a user can query all the data a page at a time without running the application out of memory. 
         </p>
-        {%% endif -%%}
+        {% endif -%}
     Modele:
       commentVar: "Model"
       commentaire: "<h2>Model: true</h2>"
@@ -258,13 +258,13 @@ classe:
           ascending when code that relates to multiple classes at the same time is generated. 
         </p>
       suggere: |-
-        {%% if exampleValue is not defined -%%}
+        {% if exampleValue is not defined -%}
         <p>
           You can add a {{ result.javaType }} comment <kbd><b>{{ result.copyCode }}</b></kbd>, followed by an Integer to sort this class compared to other classes in the project. 
           There is code that is generated that queries several classes and writes code for each class in a sequence. 
           The <kbd><b>{{ result.commentVar }}</b></kbd> comment allows you to define which order the class code is generated. 
         </p>
-        {%% endif -%%}
+        {% endif -%}
     OrdreSql:
       commentVar: "SqlOrder"
       javaType: class
