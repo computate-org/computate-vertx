@@ -456,6 +456,7 @@ public class I18n {
 	public static final String var_Max = "var_Max";
 	public static final String var_Menu = "var_Menu";
 	public static final String var_message = "var_message";
+	public static final String var_Message = "var_Message";
 	public static final String var_Methode = "var_Methode";
 	public static final String var_methode = "var_methode";
 	public static final String var_methodeNom = "var_methodeNom";
@@ -731,6 +732,7 @@ public class I18n {
 	public static final String var_VarModifie = "var_VarModifie";
 	public static final String var_VarNom = "var_VarNom";
 	public static final String var_VarRecherche = "var_VarRecherche";
+	public static final String var_VarsMessage = "var_VarsMessage";
 	public static final String var_VarTemplatePage = "var_VarTemplatePage";
 	public static final String var_VarTitre = "var_VarTitre";
 	public static final String var_VarUriTemplate = "var_VarUriTemplate";
