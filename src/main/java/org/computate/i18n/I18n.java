@@ -207,7 +207,6 @@ public class I18n {
 	public static final String var_AuthPortees = "var_AuthPortees";
 	public static final String var_authPourLire = "var_authPourLire";
 	public static final String var_authPourEcrire = "var_authPourEcrire";
-	public static final String var_AuthRessource = "var_AuthRessource";
 	public static final String var_authRoleAdmin = "var_authRoleAdmin";
 	public static final String var_authRoleSuperAdmin = "var_authRoleSuperAdmin";
 	public static final String var_AuthSession = "var_AuthSession";
