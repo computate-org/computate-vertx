@@ -691,6 +691,10 @@ public class ComputateConfigKeys {
    * The number of computate code generation instances of the Vertx verticle to deploy. 
    **/
   public static final String COMPUTATE_INSTANCES = "COMPUTATE_INSTANCES";
+  /**
+   * The number of computate code generation worker threads per Vertx verticle to deploy to write multiple files at the same time. 
+   **/
+  public static final String COMPUTATE_WORKER_POOL_SIZE = "COMPUTATE_WORKER_POOL_SIZE";
 
   /**
    * The number of instances of the Vertx verticle to deploy. 
@@ -1578,6 +1582,13 @@ public class ComputateConfigKeys {
   public static final String CONTENT_TYPE_PDF = "CONTENT_TYPE_PDF";
   public static final String ENABLE_IRON_PDF = "ENABLE_IRON_PDF";
   public static final String IRON_PDF_CONTAINER = "IRON_PDF_CONTAINER";
+
+  public static final String AAP_HOST_NAME = "AAP_HOST_NAME";
+  public static final String AAP_SSL = "AAP_SSL";
+  public static final String AAP_PORT = "AAP_PORT";
+  public static final String AAP_OPENSHIFT_SECRET = "AAP_OPENSHIFT_SECRET";
+  public static final String AAP_USER_NAME = "AAP_USER_NAME";
+  public static final String AAP_PASSWORD = "AAP_PASSWORD";
 }
 
 /**

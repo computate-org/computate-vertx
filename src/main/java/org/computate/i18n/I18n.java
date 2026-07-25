@@ -70,6 +70,7 @@ public class I18n {
 	public static final String str_EEE_d_MMM_yyyy_HAposhAposmmColonss_zz = "str_EEE_d_MMM_yyyy_HAposhAposmmColonss_zz";
 	public static final String str_EEE_d_MMM_yyyy_HAposhAposmmColonss_zz_VV = "str_EEE_d_MMM_yyyy_HAposhAposmmColonss_zz_VV";
 	public static final String str_Erreur_lors_de_lanalyse_de_la_classe = "str_Erreur_lors_de_lanalyse_de_la_classe";
+	public static final String str_Erreur_lors_de_lautorisation_ = "str_Erreur_lors_de_lautorisation_";
 	public static final String str_Erreur_lors_de_linterrogation_ = "str_Erreur_lors_de_linterrogation_";
 	public static final String str__est_défini_comme_null_avant_d_être_initialisé__ = "str__est_défini_comme_null_avant_d_être_initialisé__";
 	public static final String str__est_l_entité_déjà_construit__ = "str__est_l_entité_déjà_construit__";
@@ -140,6 +141,7 @@ public class I18n {
 	public static final String str_Trouver_l_entité_ = "str_Trouver_l_entité_";
 	public static final String str_Une_erreur_inconnue_est_survenue = "str_Une_erreur_inconnue_est_survenue";
 	public static final String str_UneProblemeExecutionRegarderRepertoire = "str_UneProblemeExecutionRegarderRepertoire";
+	public static final String str_UneProblemeExecutionIndexerFichier = "str_UneProblemeExecutionIndexerFichier";
 	public static final String str_ValiderLaSignature = "str_ValiderLaSignature";
 	public static final String str_utilisateur = "str_utilisateur";
 	public static final String str_Vider = "str_Vider";
@@ -197,6 +199,7 @@ public class I18n {
 	public static final String var_Attribuer = "var_Attribuer";
 	public static final String var_AucunNomTrouve = "var_AucunNomTrouve";
 	public static final String var_Augmenter = "var_Augmenter";
+	public static final String var_autorisation = "var_autorisation";
 	public static final String var_AuthChacun = "var_AuthChacun";
 	public static final String var_AuthClientDefaut = "var_AuthClientDefaut";
 	public static final String var_AuthGroupe = "var_AuthGroupe";
@@ -236,6 +239,7 @@ public class I18n {
 	public static final String var_cheminTelechargement = "var_cheminTelechargement";
 	public static final String var_CHEMIN_STATIQUE = "var_CHEMIN_STATIQUE";
 	public static final String var_CHEMIN_TELECHARGEMENT = "var_CHEMIN_TELECHARGEMENT";
+	public static final String var_classeApiMethode = "var_classeApiMethode";
 	public static final String var_classeApiMethodeMethode = "var_classeApiMethodeMethode";
 	public static final String var_classeApiUriMethode = "var_classeApiUriMethode";
 	public static final String var_classeCheminAbsolu = "var_classeCheminAbsolu";
@@ -546,6 +550,7 @@ public class I18n {
 	public static final String var_pivot = "var_pivot";
 	public static final String var_Pivot = "var_Pivot";
 	public static final String var_portees = "var_portees";
+	public static final String var_Portees = "var_Portees";
 	public static final String var_portee = "var_portee";
 	public static final String var_Portee = "var_Portee";
 	public static final String var_PourClasse = "var_PourClasse";
