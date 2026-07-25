@@ -279,6 +279,7 @@ abstract class BaseApiService implements BaseApiServiceInterface {
       siteRequest.setConfig(config);
       siteRequest.setServiceRequest(serviceRequest);
       siteRequest.setI18n(i18n);
+      siteRequest.setGroups(Optional.ofNullable(user).map(u -> u.attributes().getJsonArray("groups").stream().map(o -> o.toString()).toList()).orElse(Arrays.asList()));
       siteRequest.setSiteRequest_(siteRequest);
       siteRequest.initDeepForClass();
     } catch (Exception ex) {
