@@ -293,6 +293,8 @@ public class I18n {
 	public static final String var_Crypte = "var_Crypte";
 	public static final String var_cVar = "var_cVar";
 	public static final String var_dans = "var_dans";
+	public static final String var_DCMGenerer = "var_DCMGenerer";
+	public static final String var_DCMGenere = "var_DCMGenere";
 	public static final String var_ddDashMMDashyyyy = "var_ddDashMMDashyyyy";
 	public static final String var_DDDashMMDashYYYY = "var_DDDashMMDashYYYY";
 	public static final String var_debut = "var_debut";
