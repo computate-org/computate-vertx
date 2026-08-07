@@ -1559,6 +1559,20 @@ public class ComputateConfigKeys {
   public static final String AUTHORIZE_NET_WEBHOOK_UNLOCK_MILLIS = "AUTHORIZE_NET_WEBHOOK_UNLOCK_MILLIS";
   public static final String AUTHORIZE_NET_WEBHOOK_TIMEOUT_MILLIS = "AUTHORIZE_NET_WEBHOOK_TIMEOUT_MILLIS";
 
+  public static final String ENABLE_BILL_COM = "ENABLE_BILL_COM";
+  public static final String BILL_COM_ENVIRONMENT = "BILL_COM_ENVIRONMENT";
+  public static final String BILL_COM_URL = "BILL_COM_URL";
+  public static final String BILL_COM_API_HOST_NAME = "BILL_COM_API_HOST_NAME";
+  public static final String BILL_COM_API_PORT = "BILL_COM_API_PORT";
+  public static final String BILL_COM_API_SSL = "BILL_COM_API_SSL";
+  public static final String BILL_COM_API_URI = "BILL_COM_API_URI";
+  public static final String BILL_COM_WEBHOOKS_URI = "BILL_COM_WEBHOOKS_URI";
+  public static final String BILL_COM_USER_NAME = "BILL_COM_USER_NAME";
+  public static final String BILL_COM_PASSWORD = "BILL_COM_PASSWORD";
+  public static final String BILL_COM_DEVELOPER_KEY = "BILL_COM_DEVELOPER_KEY";
+  public static final String BILL_COM_ORGANIZATION_ID = "BILL_COM_ORGANIZATION_ID";
+  public static final String BILL_COM_PAYMENT_NETWORK_ID = "BILL_COM_PAYMENT_NETWORK_ID";
+
   public static final String ENABLE_SQUARE = "ENABLE_SQUARE";
   public static final String SQUARE_ACCESS_TOKEN = "SQUARE_ACCESS_TOKEN";
   public static final String SQUARE_SIGNATURE_KEY = "SQUARE_SIGNATURE_KEY";

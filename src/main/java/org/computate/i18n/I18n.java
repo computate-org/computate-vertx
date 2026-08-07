@@ -293,8 +293,14 @@ public class I18n {
 	public static final String var_Crypte = "var_Crypte";
 	public static final String var_cVar = "var_cVar";
 	public static final String var_dans = "var_dans";
+	public static final String var_DCMApprobation = "var_DCMApprobation";
+	public static final String var_DCMDecouvert = "var_DCMDecouvert";
+	public static final String var_DCMDemande = "var_DCMDemande";
 	public static final String var_DCMGenerer = "var_DCMGenerer";
 	public static final String var_DCMGenere = "var_DCMGenere";
+	public static final String var_DCMIntention = "var_DCMIntention";
+	public static final String var_DCMPrestataire = "var_DCMPrestataire";
+	public static final String var_DCMRealise = "var_DCMRealise";
 	public static final String var_ddDashMMDashyyyy = "var_ddDashMMDashyyyy";
 	public static final String var_DDDashMMDashYYYY = "var_DDDashMMDashYYYY";
 	public static final String var_debut = "var_debut";
@@ -696,6 +702,7 @@ public class I18n {
 	public static final String var_tri = "var_tri";
 	public static final String var_Tri = "var_Tri";
 	public static final String var_TypeMedia = "var_TypeMedia";
+	public static final String var_UDLM = "var_UDLM";
 	public static final String var_Unique = "var_Unique";
 	public static final String var_UniteLabel = "var_UniteLabel";
 	public static final String var_UnNomAdjectif = "var_UnNomAdjectif";
